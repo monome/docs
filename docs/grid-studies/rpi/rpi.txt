@@ -1,0 +1,70 @@
+rpi.txt
+
+wtf: http://www.newark.com/wolfson-microelectronics/cirrus-logic-audio-card/hd-audio-card-wm5102-stereo-rpi/dp/84X8125
+
+get your card going
+
+https://www.raspberrypi.org/downloads/raspbian/
+
+ssh in
+
+https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md
+https://www.raspberrypi.org/documentation/troubleshooting/hardware/networking/ip-address.md
+
+    internet sharing to usb bridge
+    nmap -sn 192.168.2.0/24
+    192.168.2.*
+    ssh pi@
+    pw raspberry
+
+
+cd ~/.ssh && ssh-keygen
+
+install serialosc
+
+liblo
+    apt-get update
+    apt-get install liblo-dev
+
+libavahi
+    sudo apt-get install libavahi-compat-libdnssd-dev
+
+libudev
+    sudo apt-get install libudev-dev
+
+libmonome
+    wget https://github.com/monome/libmonome/releases/download/v1.4.0/libmonome-1.4.0.tar.bz2
+    tar xjvf lib
+    cd libmonome
+    ./waf configure
+    ./waf
+    sudo ./waf install
+
+serialosc
+    cd ~
+    wget https://github.com/monome/serialosc/releases/download/v1.4/serialosc-1.4.tar.bz2
+    tar xjvf ser
+    cd serialosc
+    ./waf configure
+    ./waf
+    sudo ./waf install
+
+
+////
+
+raspi-config
+    expand file system
+    set time zone
+    reboot
+
+sudo apt-get update
+sudo apt-get upgrade
+
+
+
+
+
+
+install sc
+sound out
+autoboot

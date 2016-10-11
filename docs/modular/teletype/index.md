@@ -643,6 +643,8 @@ Firmware update version 1.1 introduces new features and fixes-- all scenes writt
 
 **CAUTION** your scenes will be erased on update. If you type out your scenes first into a text editor, you'll be able to re-import them via USB flash drive.
 
+For the full list of fixes and improvements, see the [changelog on GitHub][changelog].
+
 ### USB flash drive scene read/write
 
 Requires a FAT32 formatted flash drive.
@@ -673,7 +675,7 @@ OR x y              logical operation OR
 XOR x y             logical operation XOR
 EXP x               exponentiation table lookup. 0-16383 range (V 0-10)
 
-O.MIN, O.MAX, O.WRAP, O.DIR - range control for special var O
+O.MIN, O.MAX, O.WRAP, O.INC - range control for special var O
 DRUNK.MIN, DRUNK.MAX, DRUNK.WRAP - range control for special var DRUNK
 ~~~~
 
@@ -708,3 +710,38 @@ OR.GRST
 OR.CVA
 OR.CVB
 ~~~
+
+## Teletype 1.2 Addendum
+
+Firmware update version 1.2 adds support for [Ansible][ansible-docs], a new Euclidean rhythm op (`ER`), as well as several bug fixes and improvements.
+
+### Ansible support
+
+The following ops: `CV`, `CV.OFF`, `CV.SET`, `CV.SLEW`, `STATE`, `TR`, `TR.POL`, `TR.PULSE`, `TR.TIME`, `TR.TOG` now support the Teletype mode on Ansible, see the [Ansible docs][ansible-docs] for more information.
+
+[ansible-docs]: /docs/modular/ansible/
+
+### Euclidean rhythms
+
+A new op `ER` has been added to help generate Euclidean rhythms.
+
+~~~
+ER f l s            Euclidean rhythm helper, f: fill (1-32),
+                    l: length (1-32), s: step (any value),
+                    returns a 0 or 1
+~~~
+
+See [this write up][euclidean] for more information on Euclidean rhythms and their usage on the Teletype.
+
+[euclidean]: http://samdoshi.com/post/2016/03/teletype-euclidean/
+
+### Other fixes
+
+- `O.DIR` renamed to `O.INC`, it is the value by which `O` is _incremented_ when it is accessed
+- `P.RM` now returns the value removed
+- `TR.TIME 0` will disable the pulse
+- Improved key repeat support
+
+For the full list of fixes and improvements, see the [changelog on GitHub][changelog].
+
+[changelog]: https://github.com/monome/teletype/blob/master/CHANGELOG.md

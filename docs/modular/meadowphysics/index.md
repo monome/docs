@@ -13,7 +13,7 @@ permalink: /docs/modular/meadowphysics/
 
 ### WARNING: monome modules require high +5v current
 
-Please make certain to check your cases +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [SWITCH](www.http://monome.org/modular/) is required. Available very affordably from our [retailers](http://monome.org/order/).
+Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [SWITCH](www.http://monome.org/modular/) is required. Available very affordably from our [retailers](http://monome.org/order/).
 
 ## Introduction
 
@@ -39,7 +39,7 @@ Full configurations are preset-able and savable to flash for later recall and in
 - Be careful not to misalign the connector left-to-right either as it can damage this module, and other's in your case.
 - Secure the module in your case with included screws, hiding under blue tape in the box.
 
-As mentioned at top, monome modules require high +5v current. Before powering up your case, make sure the power supply can provide at least 600mA of current on the +5v line. Even if it appears to work in an underpowered case, it may degrade slowly over time until it fails and destroys the White Whale. These repairs are not waranteed.
+As mentioned at top, monome modules require high +5v current. Before powering up your case, make sure the power supply can provide at least 600mA of current on the +5v line. Even if it appears to work in an underpowered case, it may degrade slowly over time until it fails and destroys the Meadowphysics. These repairs are not warrantied.
 
 Power consumption:
 
@@ -81,7 +81,7 @@ Holding the leftmost key in any row displays the currently *linked* rows. The gr
 
 While holding this left *link* key press another row to toggle a *link* on or off for that row. By default the top row is *linked* to all rows below, while the remaining rows have no connections.
 
-Basic clock division and polyrhythms are already achieved in the default state. Adding *links* between the lower rows allows more complex and shifting rhtyhms to be uncovered.
+Basic clock division and polyrhythms are already achieved in the default state. Adding *links* between the lower rows allows more complex and shifting rhythms to be uncovered.
 
 ### Rules
 
@@ -191,13 +191,13 @@ Using even number values will create simple and many traditional rhythmic patter
 
 Another basic approach to linking rows is the 'cascade' where each row is linked only to the row immediately beneath it.
 
-For example you can set all row's counts to 2 and count in a binary fashion (ie. frequencies of 2,4,8,16 etc). Changing all rows to 3 you have a ternary counter, or powers of 3 (ie. frequencies of 3,9,27,81 etc). Of course the count in each row need not be the same, and arbitrary values can be used to create longform counters.
+For example you can set all row's counts to 2 and count in a binary fashion (ie. frequencies of 2,4,8,16 etc). Changing all rows to 3 you have a ternary counter, or powers of 3 (ie. frequencies of 3,9,27,81 etc). Of course the count in each row need not be the same, and arbitrary values can be used to create long-form counters.
 
 This structure will create rapid output on the top triggers, and very sparse triggers below. In the powers of 3 example above it takes over 2000 pulses for the last row to trigger!
 
 ### Rhizomatic Patterns
 
-Any row can trigger any other row in meadowphysics allowing quite complex patterns. Importantly it allows rows to trigger in a syncopated way where previously triggers were at constant intervals. A simple example:
+Any row can trigger any other row in Meadowphysics allowing quite complex patterns. Importantly it allows rows to trigger in a syncopated way where previously triggers were at constant intervals. A simple example:
 
 - Link row 1 to rows 2 and 3
 - Link row 2 and 3 to row 4.
@@ -232,7 +232,7 @@ This creates a pattern where row 3's output becomes less frequent over time and 
 - Set row 4 to a count of 2.
 - Link row 4 to row 2.
 
-Now changing the count of rows 2 & 4 will change the rate of row 3's decelleration.
+Now changing the count of rows 2 & 4 will change the rate of row 3's deceleration.
 
 A similar approach could have two rows applying increment and decrement to a third row such that the movement is balanced out. The trick (and challenge!) is to have the count of these rows somewhat similar, or balanced such that the system doesn't always lead in one direction.
 

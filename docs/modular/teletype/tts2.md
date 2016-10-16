@@ -29,7 +29,7 @@ You'll see `16384` pop up. Try `V 5`. You'll get half that.
 
 ## Making volts
 
-Let's actually hear it. Plug ouput CV 1 into the frequency input of an oscillator, and patch that so it makes sound. We change the CV value with with the `CV` command:
+Let's actually hear it. Plug output CV 1 into the frequency input of an oscillator, and patch that so it makes sound. We change the CV value with with the `CV` command:
 
     CV 1 V 2
 
@@ -47,7 +47,7 @@ To get 2.5 volts, use the `VV` lookup:
 
     VV 250
 
-You'll get 4096 (honestly it's not really important what the value is.) But why did we type `250`? `VV` takes a range of 0 to 1000, where 1000 can be thought of as "10.00". So 250 actually means 2.50. You always need to specify two decimal places, otherwise it'll be a bug, so remember!
+You'll get 4096 (honestly it's not really important what the value is). But why did we type `250`? `VV` takes a range of 0 to 1000, where 1000 can be thought of as "10.00". So 250 actually means 2.50. You always need to specify two decimal places, otherwise it'll be a bug, so remember!
 
     2.5v  = VV 250
     1.25v = VV 125

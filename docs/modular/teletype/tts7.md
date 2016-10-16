@@ -140,7 +140,7 @@ We're just doing some multiplying and dividing at this point.
 
 The reason these all work is because they're evenly spaced-- the distance between each pitch is the same.
 
-*RELATED ASIDE &rarr;* One trick we can do with these sorts of scales is make a quantizer. First, let's set our desired quantization to the variable `X`, in the case below a wholetone scale:
+*RELATED ASIDE &rarr;* One trick we can do with these sorts of scales is make a quantizer. First, let's set our desired quantization to the variable `X`, in the case below a whole tone scale:
 
     X N 2
 

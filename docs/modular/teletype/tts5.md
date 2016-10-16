@@ -58,7 +58,7 @@ And then we `P.INS 0 5` the pattern will become:
 
 **5, 3, 4, 8, 0...**
 
-We have a smiliar operator for removing a number, where the latter numbers are brought forward:
+We have a similar operator for removing a number, where the latter numbers are brought forward:
 
     P.RM 1
 
@@ -122,7 +122,7 @@ The length is 5 and play head set to 3. The last line advances the play head to 
 
 What happens if we call `P.NEXT` again, but we're at the end of the list?
 
-`P.WRAP` determines if we wrap to the start/end: 1 = yes, 0 = no. Each pattern has its own wrap attribute. So if wrap is on, `P.NEXT` will move the read head to zero and the first number of the pattern will be returned. If wrap is off, the play head will not advance, but you'll get the final number retruned still. To turn on wrap:
+`P.WRAP` determines if we wrap to the start/end: 1 = yes, 0 = no. Each pattern has its own wrap attribute. So if wrap is on, `P.NEXT` will move the read head to zero and the first number of the pattern will be returned. If wrap is off, the play head will not advance, but you'll still get the final number returned. To turn on wrap:
 
     P.WRAP 1
 
@@ -176,7 +176,7 @@ The left column shows the index number. A scrollbar indicates your relative posi
 * **SHIFT-BACKSPACE** erases a value, sets it to 0.
 
 * **ALT-X**, **ALT-C**, **ALT-V** all work as cut-copy-paste.
-* **SHIFT-ALT-V** insert-pastes a number, shifting data and legnth forward.
+* **SHIFT-ALT-V** insert-pastes a number, shifting data and length forward.
 
 Param knob live input:
 
@@ -221,7 +221,7 @@ If let run freely, the pattern will simply loop. Trigger inputs 1-4 for the foll
 
 ![](../images/tts5.png)
 
-In the video Teletype is being driven by an unsynchronized White Whale. This way the script triggers phase with the playback speed of the pattern-- the result being the sample and hold between the two voices constantly shifts which tone is being copied to the second voice. The steps of sequence on the White Whale are in "choose" mode: one of several choices is made per step, so the action Teletype takes is variable per looped WW bar yet regular enough to stay musical.
+In the video Teletype is being driven by an unsynchronized White Whale. This way the script triggers phase with the playback speed of the pattern-- the result being the sample and hold between the two voices constantly shifts which tone is being copied to the second voice. The steps of sequence on the White Whale are in "choose" mode: one of several choices is made per step, so the action Teletype takes is variable per looped WW bar, yet regular enough to stay musical.
 
 
 ## Reference

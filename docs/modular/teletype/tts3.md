@@ -100,7 +100,7 @@ Variables can be both set and read in the same command. Consider this:
 
 First `X` gets set to 10. In the second line the `ADD` reads `X` and adds 1, returning 11. So `X` gets set to 11. Push the up arrow to re-execute that last line. `X` is counting up by 1 each time.
 
-Variables are global-- they keep their value across scripts. For example `X` can be changed by script 1 and then read and further manupulated by script 2.
+Variables are global-- they keep their value across scripts. For example `X` can be changed by script 1 and then read and further manipulated by script 2.
 
 ~~~
     1:
@@ -120,7 +120,7 @@ With various staggered triggering of these three scripts, you will likely find m
 
 ### More is more
 
-You may feel that four variables just isn't enough-- c'mon a four-note melody? (Enough for me most days.) Fortunately there is a whole different system for saving tons of numbers: *patterns*. We'll cover this in a very-near-future part of this series.
+You may feel that four variables just isn't enough-- c'mon, a four-note melody? (Enough for me most days.) Fortunately there is a whole different system for saving tons of numbers: *patterns*. We'll cover this in a very-near-future part of this series.
 
 In the meantime, if you're really desperate for more variables-- `A`, `B`, `C`, and `D` can be overwritten. By default these are initialized to 1-4 on startup.
 
@@ -143,7 +143,7 @@ Lastly, variables aren't saved when powering down. On power-up memory is cleared
 
 ## Here at the post office
 
-A long time ago at the post office in Castaic, CA: the postmaster asked the lady ahead of us "How fast do you want this to ship?" There was a lot of confusion and shrugging and finally "I don't care." To which the postmaster responded resoundly:
+A long time ago at the post office in Castaic, CA: the postmaster asked the lady ahead of us "How fast do you want this to ship?" There was a lot of confusion and shrugging and finally "I don't care." To which the postmaster responded resoundingly:
 
 *"Here at the post office we only deal in absolutes."*
 
@@ -189,7 +189,7 @@ The first line turns ON a random trigger output. The second line turns OFF a ran
 
     TOSS
 
-This operator has no arguments! It retuns a 0 or 1, randomly.
+This operator has no arguments! It returns a 0 or 1, randomly.
 
     TR RRAND 1 4 TOSS
 

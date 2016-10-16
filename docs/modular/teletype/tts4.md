@@ -37,7 +37,7 @@ Each time input 1 is triggered, the voltage on *in* is read and CV output 1 is a
 
 ## So smooth too smooth
 
-Let's break up the contiunuum of numbers. [Quantization](https://en.wikipedia.org/wiki/Quantization) is the procedure of constraining a number to a smaller set. Teletype has a quantization operator:
+Let's break up the continuum of numbers. [Quantization](https://en.wikipedia.org/wiki/Quantization) is the procedure of constraining a number to a smaller set. Teletype has a quantization operator:
 
     QT (input) (quantization)
 
@@ -93,7 +93,7 @@ We're outputting CV notes that are shifted according to `X`. If a script is modu
 
 **1 &rarr; 2 &rarr; 4 &rarr; 8 &rarr; 16 &rarr; 32**
 
-## Setting boundries
+## Setting boundaries
 
 Sometimes you need to keep your numbers in line, to prevent them from wandering into unmusical territory. There are some authoritarian operators for this:
 

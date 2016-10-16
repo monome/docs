@@ -12,7 +12,7 @@ permalink: /docs/modular/switch/
 
 Switch operates in isolation from your Eurorack power supply. Simply screw the module into your case and you're ready to power up.
 
-Attach the included 9v power adaptor to the input plug labeled '9-24V DC' at the base of the module. Alternative power supplies can be used provided they meet the following specifications:
+Attach the included 9v power adapter to the input plug labeled '9-24V DC' at the base of the module. Alternative power supplies can be used provided they meet the following specifications:
 
 - +9v to +24v DC output
 - Tip-positive
@@ -57,4 +57,4 @@ We have found much success using a computer for processing the audio output from
 
 ## Closing
 
-For further documentation and examples see [docs/modular](/docs/modaular).
+For further documentation and examples see [docs/modular](/docs/modular).

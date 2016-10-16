@@ -24,11 +24,11 @@ Earthsea is a platform for playing, looping, and manipulating control-voltage ge
 
 A monome grid is plugged into the front panel of the module, becoming a complete interface. Looped patterns continue to play when the grid is disconnected, facilitating hot-swap reconnection to other monome-enabled modules during performance.
 
-Earthsea is built upon a map of tones, using the grid as a playing surface for melodies, availabe as *Pos*. The *Edge* output provides various gating modes including a fixed interval and drone.
+Earthsea is built upon a map of tones, using the grid as a playing surface for melodies, available as *Pos*. The *Edge* output provides various gating modes including a fixed interval and drone.
 
 Multi-press gestures invoke *shape-memories*. Three channels of CV memory are set by turning panel knobs per shape. These sets of CV can be instantly recalled by the different shapes, or glide between memories with independent slew per channel and shape.
 
-Patterns of notes and shapes can be recorded into a bank of sixteen slots. Gate, retrigger or loop playback while performing additonal notes or shapes atop. Recall previous patterns from the bank, or perform the bank directly. Patterns can also be performed across the keymap with arpeggiate mode, shifting the root note and retriggering the pattern.
+Patterns of notes and shapes can be recorded into a bank of sixteen slots. Gate, retrigger or loop playback while performing additional notes or shapes atop. Recall previous patterns from the bank, or perform the bank directly. Patterns can also be performed across the keymap with arpeggiate mode, shifting the root note and retriggering the pattern.
 
 *Shape-memories* and all recorded patterns are storable to internal flash memory for instant recall on power-up. eight full presets can be stored and dynamically loaded.
 
@@ -43,7 +43,7 @@ Additional magic shapes for pattern modulations allow the resequencing of your p
 - Be careful not to misalign the connector left-to-right either as it can damage this module, and other's in your case.
 - Secure the module in your case with included screws, hiding under blue tape in the box.
 
-As mentioned at top, monome modules require high +5v current. Before powering up your case, make sure the power supply can provide at least 600mA of current on the +5v line. Even if it appears to work in an underpowered case, it may degrade slowly over time until it fails and destroys the White Whale. These repairs are not waranteed.
+As mentioned at top, monome modules require high +5v current. Before powering up your case, make sure the power supply can provide at least 600mA of current on the +5v line. Even if it appears to work in an underpowered case, it may degrade slowly over time until it fails and destroys the Earthsea. These repairs are not warrantied.
 
 Power consumption:
 
@@ -224,7 +224,7 @@ These *runes* allow navigating through the pattern bank without having to use th
 
 ### Double / Half Speed
 
-These *runes* destructively edit the playback speed of a pattern, even while it is currently playing. Press double-speed a couple times to make rapid arpeggios, or even gameboy-esque chords when taken to the limit. Half speed opens up the possibility for long evolving chord sequences, especially when applied to a linearized pattern.
+These *runes* destructively edit the playback speed of a pattern, even while it is currently playing. Press double-speed a couple times to make rapid arpeggios, or even Gameboy-esque chords when taken to the limit. Half speed opens up the possibility for long evolving chord sequences, especially when applied to a linearized pattern.
 
 > Note: Doubling the speed too many times will gradually degrade the timing between notes. At the extreme this can mean patterns are not able to be returned to normal speed with the Half speed rune.
 > 

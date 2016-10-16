@@ -15,6 +15,6 @@ see [firmware update](/docs/modular/update) for flashing instructions.
 
 note: there is an unpopulated UART header which allows for proper debugging. we use an FTDI breakout board for communication with the module.
 
-note: there is also an unpolulated reset switch, which allows for faster development.
+note: there is also an unpopulated reset switch, which allows for faster development.
 
 note: after uploading a new image, the firmware will start immediately, but an additional reset is needed to re-enable USB host (ie, grids).

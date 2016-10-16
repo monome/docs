@@ -13,7 +13,7 @@ permalink: /docs/modular/whitewhale/
 
 #### WARNING: monome modules require high +5v current
 
-Please make certain to check your cases +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [SWITCH](http://monome.org/modular/) is required. Available very affordably from our [retailers](http://monome.org/order/).
+Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [SWITCH](http://monome.org/modular/) is required. Available very affordably from our [retailers](http://monome.org/order/).
 
 ## Introduction
 
@@ -36,7 +36,7 @@ Timing can be internal (controlled via *clock* knob) or externally triggered.
 - Be careful not to misalign the connector left-to-right either as it can damage this module, and other's in your case.
 - Secure the module in your case with included screws, hiding under blue tape in the box.
 
-As mentioned at top, monome modules require high +5v current. Before powering up your case, make sure the power supply can provide at least 600mA of current on the +5v line. Even if it appears to work in an underpowered case, it may degrade slowly over time until it fails and destroys the White Whale. These repairs are not waranteed.
+As mentioned at top, monome modules require high +5v current. Before powering up your case, make sure the power supply can provide at least 600mA of current on the +5v line. Even if it appears to work in an underpowered case, it may degrade slowly over time until it fails and destroys the White Whale. These repairs are not warrantied.
 
 Power consumption:
 
@@ -121,7 +121,7 @@ Values can also be **randomized** per step:
 
 In addition to the above *per step* modifications all of the transpose and randomize functions can be applied to the entire CV Curve, using the *meta* key.
 
-- Hold *meta* while adjusting tranpose to shift all 16 steps.
+- Hold *meta* while adjusting transpose to shift all 16 steps.
 
 The entire CV Curve can be randomized to spur your creativity:
 
@@ -129,20 +129,20 @@ The entire CV Curve can be randomized to spur your creativity:
 - Hold any *center* key (Row 6).
 - Press any bottom row key (Row 8).
 
-As above, the range of the randomization is set by the *param* knob. The *param* knob defines the maximum value of the randomizer. Set *param* to a small value to create subtley shifting sequences. Random values are always semi-tone quantized.
+As above, the range of the randomization is set by the *param* knob. The *param* knob defines the maximum value of the randomizer. Set *param* to a small value to create subtly shifting sequences. Random values are always semi-tone quantized.
 
 
 ## Step Mutes
 
 ![Step Mutes](images/mutes.png)
 
-Row four display per-step mutes. *Triggers* and both *CV* channels have independent mutes. *Trigger* mutes affect all four trigger outputs, and can be used to selectively mute certain rhythmic elements in a patch. When muted, a step will not send a trigger out                                                                    
+Row four display per-step mutes. *Triggers* and both *CV* channels have independent mutes. *Trigger* mutes affect all four trigger outputs, and can be used to selectively mute certain rhythmic elements in a patch. When muted, a step will not send a trigger out.                                                                  
 
 *CV* mutes cause the output value not to change when a muted step is reached, instead the previously held voltage is maintained. This CV mute behaviour is particularly useful when sustaining notes in a sequence, rather than having to copy the same CV value to subsequent steps.
 
 ### Mute Choice
 
-In addition to *muting* steps, it is possible to add a chance probability or *choice* to a given step. Setting a *choice* defines the liklihood that an event will occur. Where *step mutes* above set either a 100% (active) or 0% (muted) chance of an event, *choice* allows events to occur *sometimes*. The function is available for both *triggers* and *CV* outputs.
+In addition to *muting* steps, it is possible to add a chance probability or *choice* to a given step. Setting a *choice* defines the likelihood that an event will occur. Where *step mutes* above set either a 100% (active) or 0% (muted) chance of an event, *choice* allows events to occur *sometimes*. The function is available for both *triggers* and *CV* outputs.
 
 ![Mute Choice](images/mute_choice.png)
 
@@ -250,7 +250,7 @@ Multiple options can be set per series stage to add uncertainty to the sequence.
 - Hold the first pattern choice.
 - Press a second pattern choice.
 - Now you can toggle additional choices on/off.
-- Deactive choice by toggling off all but one options.
+- Deactivate choice by toggling off all but one option.
 
 ## Trigger Choice
 All discussion of *Triggers* so far refers to each trigger output independent of one another. *Trigger choice* on the other hand allows the different rows of triggers to interact. When enabled at a given step, only one of the selected triggers will be executed.

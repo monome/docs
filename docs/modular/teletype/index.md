@@ -47,7 +47,7 @@ The keyboard is attached to the front panel, for typing commands. The commands c
 
 ## LIVE mode
 
-Teletype starts up in LIVE mode. You'll see a friendly **>** prompt, where commands are entered. The commmand:
+Teletype starts up in LIVE mode. You'll see a friendly **>** prompt, where commands are entered. The command:
 
     TR.TOG A
 
@@ -227,7 +227,7 @@ In this section we'll present the complete command set.
 
 Teletype uses prefix notation. Evaluation happens from right to left.
 
-The leftvalue gets assignment (*set*). Here, temp variable `X` is assigned zero:
+The left value gets assignment (*set*). Here, temp variable `X` is assigned zero:
 
     X 0
 
@@ -429,7 +429,7 @@ Prior to the separator we have `PROB 80`, which creates a condition for the rema
 Some of the commands included here are actually operators (those that don't have separators) but are functionally closely tied to PRE operations, so we've included them here.
 
 ~~~
-PROB a : ..         potential to excecute with (a) probability [0-100]
+PROB a : ..         potential to execute with (a) probability [0-100]
 
 DEL a : ..          delay (postpone) command by (a) ms
 DEL.CLR             kill all delays
@@ -484,7 +484,7 @@ These commands change pattern length:
     P.PUSH a        add value (a) to end of pattern (like a stack)
     P.POP           remove and return value from end of pattern (like a stack)
 
-pattern attributes: get current values by ommiting a value
+pattern attributes: get current values by omiting a value
 
     P.L a           get/set length, nondestructive to data
     P.WRAP a        enable/disable (or get) wrapping [0/1], which changes behavior of prev/next
@@ -623,7 +623,7 @@ arrows          scroll through text
 
 ~~~~
 arrows          navigation
-(text)          edit text decription
+(text)          edit text description
 ]               scroll forward scene write destination
 [               scroll back scene write destination
 ALT+ENTER       write scene
@@ -659,7 +659,7 @@ See [TT00.TXT](tt00.txt) for an example of the file format. It's quite straightf
 
 ~~~
 SCRIPT x            execute script (1-8), has infinite loop detection
-                    this alllows you to chain multiple scripts together!
+                    this allows you to chain multiple scripts together!
 STATE x             read the current state of a script trigger input (0/1 for low/high)
 MUTE x              disable external script inputs (1-8), turns off input jack
 UNMUTE x            re-enable external script inputs (1-8)

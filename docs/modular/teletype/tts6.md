@@ -16,7 +16,7 @@ And why do we care about truth? Because sometimes we need to ask hard questions.
 
     GT X 2
 
-Teleteype will tell you. If `X` is greater than 2, the value `1` (TRUE) will be returned. Otherwise you'll get `0` (FALSE).
+Teletype will tell you. If `X` is greater than 2, the value `1` (TRUE) will be returned. Otherwise you'll get `0` (FALSE).
 
 Here's a list of [relational operators](https://en.wikipedia.org/wiki/Relational_operator) that can let you test a condition:
 
@@ -63,7 +63,7 @@ We can expand the command within a *PRE* to become more complicated, however:
 
 Here knob input `PARAM` is read and compared to 5 volts. If greater, CV output 1 is assigned to `PARAM`, basically limiting the lower bound of the knob-to-cv-output assignment. (Note that this could more effectively be accomplished with `CV 1 LIM PARAM V 5 V 10`.)
 
-We like randomness right?
+We like randomness, right?
 
     IF TOSS : P.NEXT
 
@@ -112,7 +112,7 @@ This is not:
     X GT PARAM V 5
     IF X : CV 1 V RRAND 2 8
 
-## Later dudes
+## Later, dudes
 
 For your scheduling needs, there is a *PRE* for postponing a command:
 
@@ -126,7 +126,7 @@ You can clear the delay buffer (canceling the pending commands) with a single op
 
     DEL.CLR
 
-## A sortof TODO list?
+## A sort-of TODO list?
 
 Teletype has a command [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) which can lead to some musically interesting exploration. This might feel weird at first, but stick with us though it.
 
@@ -138,11 +138,11 @@ Now the command `TR.TOG 1` is on the stack-- it has not been executed. To execut
 
     S.POP
 
-This executes the *most recently added* command on the stack. Think of the stack as a pile of donuts-- the most recently added is the one on top. `S.POP` executes and removes the top command. If you're really hungry though:
+This executes the *most recently added* command on the stack. Think of the stack as a pile of donuts-- the most recently added is the one on top. `S.POP` executes and removes the top command. If you're really hungry, though:
 
     S.ALL
 
-This executes the entire stack, which leaves it empty. Why is this interesting though? Take the following two scripts:
+This executes the entire stack, which leaves it empty. Why is this interesting, though? Take the following two scripts:
 
     1:  S : CV 1 N RAND 10
 
@@ -151,7 +151,7 @@ This executes the entire stack, which leaves it empty. Why is this interesting t
 
 Say script 2 was executing on a regular interval, and script 1 was somewhat random. Given we're using the stack, musical events get time quantized to only happen on the execution of script 2. This is a great method to achieve sync when desired.
 
-The stack can hold 8 commands. If you try to add more, and the stack is full, the command will simply be thrown away. We can read the stack legnth (height):
+The stack can hold 8 commands. If you try to add more, and the stack is full, the command will simply be thrown away. We can read the stack length (height):
 
     S.L
 
@@ -177,7 +177,7 @@ This scene is featured in the banner video above.
 
 A metronome triggers a pulse and executes the stack. Trigger inputs 1 and 3 add commands to the stack. All input scripts possibly modulate the tempo using a `PROB` *PRE*.
 
-Script 2 condtionally changes CV output 4 based on the state of var `X`. `X` is toggled between 1 and 0 by script 3-- creating some additional dynamic behavior between the two scripts.
+Script 2 conditionally changes CV output 4 based on the state of var `X`. `X` is toggled between 1 and 0 by script 3-- creating some additional dynamic behavior between the two scripts.
 
 In the banner video, all inputs are driven by a WW sequence that has a few trigger-choice steps. TT is driving the frequency of an oscillator from CV out 1. CV out 2 controls an overtone timbre of this oscillator. CV out 4 controls the level of an additional sub oscillator. Trigger out 1 is connected to an envelope to spike the oscillator's level.
 

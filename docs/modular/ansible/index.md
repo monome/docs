@@ -33,7 +33,7 @@ These are maximums. Power consumption varies greatly based on which USB controll
 
 ## Firmware Updates
 
-Ansible ships with a strange USB A-A cable. This is used for firmware updates. We expect to be adding features from time to time, and the Ansible is a good condidate for community hacking. It's suggested to update your firmware to ensure you're running the newest version-- so the following documentation will be applicable rather than confusing.
+Ansible ships with a strange USB A-A cable. This is used for firmware updates. We expect to be adding features from time to time, and the Ansible is a good candidate for community hacking. It's suggested to update your firmware to ensure you're running the newest version-- so the following documentation will be applicable rather than confusing.
 
 Firmware update information [instructions are available](http://monome.org/docs/modular/update/).
 
@@ -244,7 +244,7 @@ Scales are constructed from the bottom row up. (In this case, the bottom row is 
 
 Moving upwards through the rows, each row specifies a number of semitones to be added to the previous scale note, building an ascending scale.
 
-For example, a whole tone scale (2 semitones per note) would be constructed by setting all rows to the second position. (The *zero* postion is indicated dimly. Scale notes set to zero will be identical to the previous scale step).
+For example, a whole tone scale (2 semitones per note) would be constructed by setting all rows to the second position. (The *zero* position is indicated dimly. Scale notes set to zero will be identical to the previous scale step).
 
 Scales are shared between Kria and Meadowphysics, and are saved to flash whenever a preset of either is saved.
 
@@ -270,7 +270,7 @@ Kria has two parameters, represented on the left and right quadrants of the grid
 
 **Note Sync** can be toggled on or off on the left side by touching any key-- the square icon will be lit bright when Note Sync is on.
 
-When Note Sync is on, *Note* and *Trigger* editing is linked. In Note view, you can now press on a step's current note value to toggle off the Trigger at that step, and this is reflected in the interface. This way you can edit note sequences intuitively with rests without swtiching between two views.
+When Note Sync is on, *Note* and *Trigger* editing is linked. In Note view, you can now press on a step's current note value to toggle off the Trigger at that step, and this is reflected in the interface. This way you can edit note sequences intuitively with rests without switching between two views.
 
 Note Sync requires that Loop Sync is in Track or All mode, as the sync interface does not make sense if loops are desynchronized between Note and Trigger.
 
@@ -423,7 +423,7 @@ To read a preset, press the position to select, and then press again to read.
 
 To write a preset, press and hold the position to write to.
 
-A "glyph" can be drawn in the right 8x8 quandrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
+A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
 
 ## MIDI/voice
@@ -531,16 +531,16 @@ TR 5 1 			// set Ansible TR 1 to 1
 TR 5 			// read Ansible TR 1
 TR.TOG 6 		// toggle Ansible TR 2
 TR.POL 7 0 		// reverse polarity for Ansible TR 3 pulse
-TR.TIME 7 250 	// set Ansible TR 3 pulse time to 250 ms
+TR.TIME 7 250 		// set Ansible TR 3 pulse time to 250 ms
 TR.PULSE 7 		// pulse Ansible TR 3
 TR.TIME 7 		// read Ansible TR 3 pulse time
 
-CV.SLEW 5 100 	// set Ansible CV 1 slew to 100 ms
+CV.SLEW 5 100 		// set Ansible CV 1 slew to 100 ms
 CV 5 V 10 		// set Ansible CV 1 to 10 volts
 CV 5 			// read Ansible CV 1
 CV.SET 5 0 		// set Ansible CV 1 to 0, no slew
 CV.SLEW 5 		// read Ansible CV 1 slew
-CV.OFF 6 V 1 	// set Ansible CV 2 offset to 1 volt
+CV.OFF 6 V 1 		// set Ansible CV 2 offset to 1 volt
 CV.OFF 6 		// read Ansible CV 2 offset
 ```
 

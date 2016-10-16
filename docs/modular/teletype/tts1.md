@@ -37,7 +37,7 @@ If we want to find out the current value of an output, simply leave off the last
 
 In the terminal the value will be displayed.
 
-There are a few other ways to use the TR outputs. If you want to switch the state of the output, use the folliwng:
+There are a few other ways to use the TR outputs. If you want to switch the state of the output, use the following:
 
     TR.TOG B
 

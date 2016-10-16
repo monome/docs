@@ -60,7 +60,7 @@ Unifying the two footswitches is a set of *Two Footed Logic* functions. These ou
 
 The XOR function flashes the panel led WHITE, while the AND function sets the led YELLOW. The two functions are exclusive so only one function is ever high at the same time.
 
-These outputs reflect how much foot interaction is currently occuring, and respond to the *Momentary* state of the switches (not toggles). The utility of these functions is much less prescriptive than the above independent functions, instead encouraging exploration and experimentation.
+These outputs reflect how much foot interaction is currently occurring, and respond to the *Momentary* state of the switches (not toggles). The utility of these functions is much less prescriptive than the above independent functions, instead encouraging exploration and experimentation.
 
 Rhythmic pressing of the footswitches will be highly responsive to these logic functions, with the AND output being responsive to the amount of overlap between alternate presses. Patching with both *Momentary* outputs and these *Logic* functions can create some very interesting patterns that are well suited to triggering rhythmic generators.
 

@@ -62,7 +62,7 @@ run `cmd` as Administrator (not sure it matters but best to anyway), cd to the d
 
     $ unzip firmware.zip
 
-to run the firmware update command, your user will need to be in the "dialout" or "uucp" group, depending on what your distribution calls it. otherwise you'll need to run it as root/sudo
+to run the firmware update command, your user will need to be in the `dialout` or `uucp` group, depending on what your distribution calls it. otherwise you'll need to run it as root/sudo:
 
 ```
 $ ./update_firmware.command

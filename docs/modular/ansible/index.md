@@ -150,7 +150,7 @@ Each ring has its own rotational momentum: turn the ring to accelerate in either
 
 The CV value is determined by the ring's Shape which is either Triangle (default) or Saw. A Tri shape has the CV output high towards to north side of a ring, and low towards the south side. A Saw shape is a gradual increase from low to high when rotating clockwise from north.
 
-The TR value is a a phase indicator. On the right side of a ring TR is low, on the left it is high.
+The TR value is a phase indicator. On the right side of a ring TR is low, on the left it is high.
 
 ![](images/arc_CYCLES_main_mode_PHASE_1.2.png)
 

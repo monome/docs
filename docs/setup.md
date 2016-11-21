@@ -9,7 +9,7 @@ permalink: /docs/setup/
 
 serialosc is the grid communication router. it runs in the background and converts serial communication (over USB) into [OSC](/docs/osc). applications can query serialosc to connect to the grid.
 
-if you're using Windows or an older version of Mac OS (older than 10.9), you will need to manually install the [FTDI driver](http://www.ftdichip.com/Drivers/VCP.htm).
+if you're using Windows or an older version of Mac OS (older than 10.9), you will need to manually install the [FTDI VCP driver](http://www.ftdichip.com/Drivers/VCP.htm) (*not* the D2XX driver).
 
 if you have upgraded to Mac OS 10.11 from an earlier version and have the FTDI driver installed, you'll need to remove it. Open a terminal and type `sudo
 rm -r /Library/Extensions/FTDIUSBSerialDriver.kext` and then reboot.

@@ -742,6 +742,14 @@ See [this write up][euclidean] for more information on Euclidean rhythms and the
 - `TR.TIME 0` will disable the pulse
 - Improved key repeat support
 
+## Teletype 1.3.0 Addendum
+
+Additional ops for Ansible grid and arc modes addded, see [Ansible docs][ansible-docs].
+
+[ansible-docs]: /docs/modular/ansible/
+
+---
+
 For the full list of fixes and improvements, see the [changelog on GitHub][changelog].
 
 [changelog]: https://github.com/monome/teletype/blob/master/CHANGELOG.md

@@ -516,6 +516,8 @@ Additional parameters can be controlled via CC input:
 
 ## Teletype
 
+Teletype firmware 1.3 or newer is required for Ansible support.
+
 With no USB device plugged in Ansible continues to run the most recently used application. For example, Kria can continue playing.
 
 By hitting the `preset` key (next to the USB port) with no device plugged, Ansible will toggle into Teletype mode. In this mode the Ansible's outputs and inputs function as an extender, fitting naturally into the Teletype system.
@@ -579,9 +581,72 @@ Address 		Out 	In
 3 				17-20 	21-24
 ```
 
-Teletype firmware 1.2 or newer is required for Ansible support.
+## Parameter control via Teletype
 
-*Teletype control over application parameter forthcoming.*
+Teletype can control various parameters for Kria, Meadowphysics, Levels, and Cycles.
+
+### Kria
+
+```
+KR.PRE x		read preset x
+KR.PRE 			return current preset number
+KR.PERIOD x 	set internal clock period to x
+KR.PERIOD 		return current internal clock period
+KR.PAT x 		set pattern to x
+KR.PAT 			return current pattern
+KR.SCALE x		set scale to x
+KR.SCALE  		return current scale
+KR.POS x y z	set position to z for track x parameter y
+				a value of 0 for x means all tracks
+				a value of 0 for y means all parameters
+				parameters: 0 = all, 1 = trigger, 2 = note, 3 = octave, 4 = length
+KR.POS x y 		return position of track x parameter y
+KR.L.ST x y z 	set loop start to z for track x parameter y
+KR.L.ST x y 	return loop start of track x parameter y
+KR.L.LEN x y z 	set length to z for track x parameter y
+KR.L.LEN x y 	return loop length of track x parameter y
+KR.RES x y 		set position to loop start for track x parameter y
+```
+
+### Meadowphysics
+
+```
+MP.PRE x		read preset x
+MP.PRE 			return current preset number
+MP.SCALE x 		set scale to x
+MP.SCALE 		return current scale
+MP.PERIOD x 	set internal clock period to x
+MP.PERIOD 		return current internal clock period
+MP.OFF x		stop channel x (0 = all)
+MP.RES x 		reset channel x (0 = all) (also used as "start")
+```
+
+### Levels
+
+```
+LV.PRE x		read preset x
+LV.PRE  		return current preset number
+LV.RES x 		reset. x = 0 for soft reset (will reset on next ext clock), 1 for hard reset
+LV.POS x  		set current position
+LV.POS 			return current position
+LV.L.ST x 		set loop start
+LV.L.ST 		return current loop start
+LV.L.LEN x 		set loop length
+LV.L.LEN 		return current loop length
+LV.L.DIR x 		set loop direction
+LV.L.DIR 		return current loop direction
+```
+
+### Cycles
+
+```
+CY.PRE x 		read preset x
+CY.PRE 			return current preset number
+CY.RES x 		reset channel x (0 = all)
+CY.POS x y 		set position of channel x to y (scaled 0-255) (x = 0 means all)
+CY.POS x 		return position of channel x (scaled 0-255)
+CY.REV x 		reverse direction of channel x (0 = all)
+```
 
 ## Contributions
 

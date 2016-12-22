@@ -341,17 +341,17 @@ Press and hold the left column to configure that row:
 ```
 col 3: STOP/START
 col 4: RESET
-	by default, self is toggled on. toggle on other rows for this row to reset those rows
-	way to make one-shots
+    by default, self is toggled on. toggle on other rows for this row to reset those rows
+    way to make one-shots
 col 5: PLAY MODE
-	toggles on/off for all rows. send trigger when new count is chosen ("play" trigger on key press)
+    toggles on/off for all rows. send trigger when new count is chosen ("play" trigger on key press)
 col 6-7: RESET ACTION
-	col 6: GATE. toggle state on reset
-	col 7: TRIGGER. pulse output on reset. pulse length is one full clock period.
-	one row can gate/trigger other rows, not just itself. or no rows.
+    col 6: GATE. toggle state on reset
+    col 7: TRIGGER. pulse output on reset. pulse length is one full clock period.
+    one row can gate/trigger other rows, not just itself. or no rows.
 right half of grid: speeds
-	rightwards is slower, as clock division. number of ticks to wait per countdown
-		can specify range of speeds, also by default incrementing
+    rightwards is slower, as clock division. number of ticks to wait per countdown
+        can specify range of speeds, also by default incrementing
 ```
 
 ### Rules
@@ -362,12 +362,12 @@ Hold the left two keys to access rules screen. Parameters are similarly per row:
 
 ```
 col 5-7 triple: RULE SEND
-	choose vertical position to specify the destination row that rule will be applied to
-	left: rule applies to position
-	middle: rule applies to speed
-	right: rule applies to both position and speed
+    choose vertical position to specify the destination row that rule will be applied to
+    left: rule applies to position
+    middle: rule applies to speed
+    right: rule applies to both position and speed
 right half: top to bottom select
-	none, inc, dec, min, max, rand, pole, stop
+    none, inc, dec, min, max, rand, pole, stop
 ```
 
 ### Time
@@ -529,21 +529,21 @@ This requires the Ansible to be on the internal *II* bus, a 6 conductor ribbon b
 By default Ansible's 4 TR outputs and 4 CV outputs are mapped as TR 5-8 and CV 5-8. All Teletype output commands are available:
 
 ```
-TR 5 1 			// set Ansible TR 1 to 1
-TR 5 			// read Ansible TR 1
-TR.TOG 6 		// toggle Ansible TR 2
-TR.POL 7 0 		// reverse polarity for Ansible TR 3 pulse
-TR.TIME 7 250 		// set Ansible TR 3 pulse time to 250 ms
-TR.PULSE 7 		// pulse Ansible TR 3
-TR.TIME 7 		// read Ansible TR 3 pulse time
+TR 5 1          // set Ansible TR 1 to 1
+TR 5            // read Ansible TR 1
+TR.TOG 6        // toggle Ansible TR 2
+TR.POL 7 0      // reverse polarity for Ansible TR 3 pulse
+TR.TIME 7 250   // set Ansible TR 3 pulse time to 250 ms
+TR.PULSE 7      // pulse Ansible TR 3
+TR.TIME 7       // read Ansible TR 3 pulse time
 
-CV.SLEW 5 100 		// set Ansible CV 1 slew to 100 ms
-CV 5 V 10 		// set Ansible CV 1 to 10 volts
-CV 5 			// read Ansible CV 1
-CV.SET 5 0 		// set Ansible CV 1 to 0, no slew
-CV.SLEW 5 		// read Ansible CV 1 slew
-CV.OFF 6 V 1 		// set Ansible CV 2 offset to 1 volt
-CV.OFF 6 		// read Ansible CV 2 offset
+CV.SLEW 5 100   // set Ansible CV 1 slew to 100 ms
+CV 5 V 10       // set Ansible CV 1 to 10 volts
+CV 5            // read Ansible CV 1
+CV.SET 5 0      // set Ansible CV 1 to 0, no slew
+CV.SLEW 5       // read Ansible CV 1 slew
+CV.OFF 6 V 1    // set Ansible CV 2 offset to 1 volt
+CV.OFF 6        // read Ansible CV 2 offset
 ```
 
 ### Input
@@ -551,10 +551,10 @@ CV.OFF 6 		// read Ansible CV 2 offset
 Ansible's `In 1`, `In 2`, `Key 1`, and `Key 2` are mapped to `STATE` 9-12 respectively.
 
 ```
-STATE 9 		// read Ansible In 1
-STATE 10		// read Ansible In 2
-STATE 11 		// read Ansible Key 1
-STATE 12 		// read Ansible Key 1
+STATE 9         // read Ansible In 1
+STATE 10        // read Ansible In 2
+STATE 11        // read Ansible Key 1
+STATE 12        // read Ansible Key 1
 ```
 
 ### II Address for Multiple Ansible
@@ -564,21 +564,21 @@ If using more than one Ansible connected to Teletype, the II address can be set 
 The address is according to the following:
 
 ```
-Address 		Key 1 	Key 2
-0 				off 	off
-1 				on  	off
-2 				off 	on
-3 				on 		on
+Address         Key 1   Key 2
+0               off     off
+1               on      off
+2               off     on
+3               on      on
 ```
 
 Mappings for input and output are shifted for each address:
 
 ```
-Address 		Out 	In
-0 				5-8 	9-12
-1 				9-12 	13-16
-2 				13-16 	17-20
-3 				17-20 	21-24
+Address         Out     In
+0               5-8     9-12
+1               9-12    13-16
+2               13-16   17-20
+3               17-20   21-24
 ```
 
 ## Parameter control via Teletype
@@ -588,64 +588,64 @@ Teletype can control various parameters for Kria, Meadowphysics, Levels, and Cyc
 ### Kria
 
 ```
-KR.PRE x		read preset x
-KR.PRE 			return current preset number
-KR.PERIOD x 	set internal clock period to x
-KR.PERIOD 		return current internal clock period
-KR.PAT x 		set pattern to x
-KR.PAT 			return current pattern
-KR.SCALE x		set scale to x
-KR.SCALE  		return current scale
-KR.POS x y z	set position to z for track x parameter y
-				a value of 0 for x means all tracks
-				a value of 0 for y means all parameters
-				parameters: 0 = all, 1 = trigger, 2 = note, 3 = octave, 4 = length
-KR.POS x y 		return position of track x parameter y
-KR.L.ST x y z 	set loop start to z for track x parameter y
-KR.L.ST x y 	return loop start of track x parameter y
-KR.L.LEN x y z 	set length to z for track x parameter y
-KR.L.LEN x y 	return loop length of track x parameter y
-KR.RES x y 		set position to loop start for track x parameter y
+KR.PRE x        read preset x
+KR.PRE          return current preset number
+KR.PERIOD x     set internal clock period to x
+KR.PERIOD       return current internal clock period
+KR.PAT x        set pattern to x
+KR.PAT          return current pattern
+KR.SCALE x      set scale to x
+KR.SCALE        return current scale
+KR.POS x y z    set position to z for track x parameter y
+                a value of 0 for x means all tracks
+                a value of 0 for y means all parameters
+                parameters: 0 = all, 1 = trigger, 2 = note, 3 = octave, 4 = length
+KR.POS x y      return position of track x parameter y
+KR.L.ST x y z   set loop start to z for track x parameter y
+KR.L.ST x y     return loop start of track x parameter y
+KR.L.LEN x y z  set length to z for track x parameter y
+KR.L.LEN x y    return loop length of track x parameter y
+KR.RES x y      set position to loop start for track x parameter y
 ```
 
 ### Meadowphysics
 
 ```
-MP.PRE x		read preset x
-MP.PRE 			return current preset number
-MP.SCALE x 		set scale to x
-MP.SCALE 		return current scale
-MP.PERIOD x 	set internal clock period to x
-MP.PERIOD 		return current internal clock period
-MP.OFF x		stop channel x (0 = all)
-MP.RES x 		reset channel x (0 = all) (also used as "start")
+MP.PRE x        read preset x
+MP.PRE          return current preset number
+MP.SCALE x      set scale to x
+MP.SCALE        return current scale
+MP.PERIOD x     set internal clock period to x
+MP.PERIOD       return current internal clock period
+MP.OFF x        stop channel x (0 = all)
+MP.RES x        reset channel x (0 = all) (also used as "start")
 ```
 
 ### Levels
 
 ```
-LV.PRE x		read preset x
-LV.PRE  		return current preset number
-LV.RES x 		reset. x = 0 for soft reset (will reset on next ext clock), 1 for hard reset
-LV.POS x  		set current position
-LV.POS 			return current position
-LV.L.ST x 		set loop start
-LV.L.ST 		return current loop start
-LV.L.LEN x 		set loop length
-LV.L.LEN 		return current loop length
-LV.L.DIR x 		set loop direction
-LV.L.DIR 		return current loop direction
+LV.PRE x        read preset x
+LV.PRE          return current preset number
+LV.RES x        reset. x = 0 for soft reset (will reset on next ext clock), 1 for hard reset
+LV.POS x        set current position
+LV.POS          return current position
+LV.L.ST x       set loop start
+LV.L.ST         return current loop start
+LV.L.LEN x      set loop length
+LV.L.LEN        return current loop length
+LV.L.DIR x      set loop direction
+LV.L.DIR        return current loop direction
 ```
 
 ### Cycles
 
 ```
-CY.PRE x 		read preset x
-CY.PRE 			return current preset number
-CY.RES x 		reset channel x (0 = all)
-CY.POS x y 		set position of channel x to y (scaled 0-255) (x = 0 means all)
-CY.POS x 		return position of channel x (scaled 0-255)
-CY.REV x 		reverse direction of channel x (0 = all)
+CY.PRE x        read preset x
+CY.PRE          return current preset number
+CY.RES x        reset channel x (0 = all)
+CY.POS x y      set position of channel x to y (scaled 0-255) (x = 0 means all)
+CY.POS x        return position of channel x (scaled 0-255)
+CY.REV x        reverse direction of channel x (0 = all)
 ```
 
 ## Contributions

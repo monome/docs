@@ -3,15 +3,14 @@ layout: page
 permalink: /docs/arc/
 ---
 
+![](/images/arc-hands.jpg)
 
-![](/docs/images/arc-side.jpg)
+### [setup and introduction](/docs/setup) -- first steps. start here.
 
-## arc
+### [applications](/docs/app) -- the complete collection.
 
-the monome arc two and arc four were produced in 2011 and 2012.
+### technical -- [osc](/docs/osc) and [serial](/docs/serial.txt) reference information. [libraries](/docs/libraries). 
 
-the principle idea of the arc matches that of the grid: decoupled input and output. here the input is a very high quality optical encoder (knob), with 64 segmented variable-brightness LEDs as output.
+## media
 
-interaction between the input and output is similarly determined by the application on the computer. some are listed on the [applications page](/docs/app).
-
-the first edition (shown above) featured a thicker walnut enclosure and pushbutton encoder with orange lighting. the second edition has a thinner walnut enclosure and higher resolution encoders in favor of the pushbutton, with yellow-orange lighting.
+<div class="vid"><iframe src="https://player.vimeo.com/video/182119406?color=ff7700&title=0&byline=0&portrait=0" width="860" height="483" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>

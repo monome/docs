@@ -17,3 +17,9 @@ The following tutorials show how to use different languages and environments to 
 - [SuperCollider](/docs/grid-studies/sc) -- synthesis engine and programming environment.
 - [Python](/docs/grid-studies/python) -- general purpose programming language.
 - [Node.js](/docs/grid-studies/nodejs) -- web-centric script programming platform.
+
+## Grids in Education
+
+We now offer an educational discount to currently enrolled college and university students. The discount is 10%, limited to a single grid which we sell directly. Contact <a href="mailto:info@monome.org">info@monome.org</a> with school and government IDs attached.
+
+In addition we also offer institutional package pricing and workshops extending from the Grid Studies series of tutorials. Please contact <a href="mailto:info@monome.org">info@monome.org</a> for further details and to discuss how we can best introduce the grids to your students.

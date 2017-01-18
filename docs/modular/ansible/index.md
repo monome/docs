@@ -479,12 +479,14 @@ Enter learning mode by holding `Key 1` and pressing `preset` (all CV/TR will cle
 
 _as of Ansible firmware 1.4_
 
-Holding `Key 2` and a short press on `preset` saves the current value for the following to flash as the default:
+Holding `Key 2` and a short press on `preset` saves the current value for the following to flash as the default (mode light blinks once):
 
   * selected voice allocation mode
   * pitch slew (set via teletype)
   * pitch offset (set via teletype)
   * fixed mapping
+
+Holding `Key 2` and a long press on `preset` will clear the stored configuration and reset back to default vaules (mode light blinks twice).
 
 The default pitch offset is -2 octaves which is the equivalent of issuing the following Teletype command `MID.SHIFT N -24`.
 
@@ -529,7 +531,7 @@ Additional parameters can be controlled via CC input:
 
 _as of Ansible firmware 1.4_
 
-Holding `Key 2` and a short press on `preset` saves the current value for the following to flash as the default:
+Holding `Key 2` and a short press on `preset` saves the current value for the following to flash as the default (mode light blinks once):
 
   * clock period
   * selected arp style
@@ -539,6 +541,7 @@ Holding `Key 2` and a short press on `preset` saves the current value for the fo
   * pattern repeat values
   * euclidean rhythm parameters
 
+Holding `Key 2` and a long press on `preset` will clear the stored configuration and reset back to default vaules (the mode light blinks twice).
 
 ## Teletype
 

@@ -458,7 +458,7 @@ CV 4: Mod
 TR 1: Gate
 TR 2: Damper/sustain (cc64)
 TR 3: Generic (cc80)
-TR 4: MIDI clock (8th note timing)
+TR 4: MIDI clock (16th note timing as of firmware 1.4)
 ```
 
 +/- 1 octave pitch bend supported.
@@ -473,16 +473,26 @@ TR mapped to notes C4, D4, E4, F4 (60,62,64,65).
 
 CV mapped to CC 16,17,18,19
 
-Enter learning mode by holding `Key 2` and pressing `preset` (all CV/TR will clear). As unique notes and/or CC messages are received they are mapped to the next available CV/TR output respectively. Once all outputs are mapped all LEDs will go out. Press `Key 1` (panic) to cancel learning.
+Enter learning mode by holding `Key 1` and pressing `preset` (all CV/TR will clear). As unique notes and/or CC messages are received they are mapped to the next available CV/TR output respectively. Once all outputs are mapped all LEDs will go out. Press `Key 1` (panic) to cancel learning.
 
 ### Preset
 
-A short press of the front key saves current fixed mapping and the currently selected voice allocation mode to flash as the default.
+_as of Ansible firmware 1.4_
+
+Holding `Key 2` and a short press on `preset` saves the current value for the following to flash as the default:
+
+  * selected voice allocation mode
+  * pitch slew (set via teletype)
+  * pitch offset (set via teletype)
+  * fixed mapping
+
+The default pitch offset is -2 octaves which is the equivalent of issuing the following Teletype command `MID.SHIFT N -24`.
+
 
 
 ## MIDI/arp
 
-The mode LED will show white when running.
+The mode LED will show orange when running.
 
 ### Interface
 
@@ -490,6 +500,7 @@ The mode LED will show white when running.
   * `In 1`: sync / ext clock
 
   * `Key 2`: arp style:
+     * as played       _(as of firmware 1.4)_
      * up
      * down
      * up/down (tri)
@@ -513,6 +524,21 @@ Additional parameters can be controlled via CC input:
       * `1,8,12,16`
 
  If MIDI clock is received it will be used as the clock source when no external clock is present.
+
+### Preset
+
+_as of Ansible firmware 1.4_
+
+Holding `Key 2` and a short press on `preset` saves the current value for the following to flash as the default:
+
+  * clock period
+  * selected arp style
+  * hold mode (on/off)
+  * pitch slew values
+  * pitch shift values
+  * pattern repeat values
+  * euclidean rhythm parameters
+
 
 ## Teletype
 
@@ -648,8 +674,34 @@ CY.POS x        return position of channel x (scaled 0-255)
 CY.REV x        reverse direction of channel x (0 = all)
 ```
 
+### MIDI
+
+_Supported as of Teletype firmware 1.4 and Ansible firmware 1.4._
+
+```
+MID.SLEW t      set pitch slew time in ms (applies to all allocation styles expect FIXED)
+MID.SHIFT o     shift pitch cv by standard tt pitch value (e.g. N 6, V -1, etc)
+
+
+ARP.HLD h       0 disables key hold mode, other values enable
+ARP.STY y       set base arp style [0-7] (see above for style list)
+ARP.GT v g      set voice gate length [0-127], scaled/synced to course divisions of voice clock
+ARP.SLEW v t    set voice slew time in ms
+
+ARP.RPT v n s   set voice pattern repeat, n times [0-8], shifted by s semitones [-24, 24]
+
+ARP.DIV v d     set voice clock divisor (euclidean length), range [1-32]
+ARP.FIL v f     set voice euclidean fill, use 1 for straight clock division, range [1-32]
+ARP.ROT v r     set voice euclidean rotation, range [-32, 32]
+ARP.ER v f d r  set all euclidean rhythm
+
+ARP.RES v       reset voice clock/pattern on next base clock tick
+
+ARP.SHIFT v o   shift voice cv by standard tt pitch value (e.g. N 6, V -1, etc)
+```
+
 ## Contributions
 
 Diagrams by [Piotr Szyhalski / Laborcamp](http://laborcamp.org)
 
-MIDI design and code by [ngwese](https://github.com/ngwese)
+MIDI design and code by [Greg Wuller / ngwese](https://github.com/ngwese)

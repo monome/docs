@@ -7,11 +7,11 @@ permalink: /docs/editions/
 
 ### 2016 arc
 
-matches the 2015 grid. bright warm white light. variable brightness. two-tone all-aluminum assembly. super thin. bus powred. mini-usb.
+matches the 2015 grid. bright warm white light. variable brightness. two-tone all-aluminum assembly. super thin. bus powered. mini-usb.
 
 ### 2015 grid
 
-128 only. bright warm white light. variable brightness. two-tone all-aluminum assembly. super thin. bus powred. mini-usb.
+128 only. bright warm white light. variable brightness. two-tone all-aluminum assembly. super thin. bus powered. mini-usb.
 
 ### 2014 grid kit
 

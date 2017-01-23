@@ -7,7 +7,17 @@ permalink: /docs/modular/teletype/
 
 # Teletype
 
-*Algorithmic ecosystem.*
+Algorithmic ecosystem: a dynamic, musical event triggering platform.
+
+Scripts are assigned to each of the eight trigger inputs. Herein you can set CV values (four outputs) and trigger gates (four outputs) with extended functionality for pattern manipulation, slews, randomness, sequences, basic arithmetic, stacks, delays, and much more.
+
+Edit scripts with a USB keyboard which plugs into the front panel. Syntax is simple and easy to learn with the provided tutorials, video, and reference pages. Teletype runs without the keyboard attached: you might treat editing as precomposition, or leave the keyboard plugged in for live coding.
+
+* Eurorack
+* 18hp width
+* 26mm depth
+
+![](/images/tt.jpg)
 
 ## Installation
 
@@ -25,7 +35,7 @@ Secure the module with the four included screws, hiding under the tape in the bo
 - 12ma @ -12V
 - No +5v required
 
-**Teletype v1.1 firmware is available! See addendum at the bottom.**
+**Teletype firmware updates available. See addendum at the bottom.**
 
 ## Introduction
 
@@ -290,11 +300,11 @@ With some practice it becomes easier to combine many functions into the same com
 
 ### Variables
 
-General purpose temp vars: `X`, `Y`, `Z`, and `T`. 
+General purpose temp vars: `X`, `Y`, `Z`, and `T`.
 
 `T` typically used for time values, but can be used freely.
 
-`A`-`D` are assigned 1-4 by default (as a convenience for TR labeling, but TR can be addressed with simply 1-4). All may be overwritten and used freely. 
+`A`-`D` are assigned 1-4 by default (as a convenience for TR labeling, but TR can be addressed with simply 1-4). All may be overwritten and used freely.
 
 #### Special variables
 
@@ -344,17 +354,17 @@ CV 1-4                  CV target value
 CV.SLEW 1-4             CV slew time in ms (how long to reach the target)
 CV.SET 1-4              set CV value directly, ignoring slew time
 CV.OFF 1-4              CV offset (added to CV value at final stage)
-    
+
 IN                      get value of IN jack (0-16383)
 PARAM                   get value of PARAM knob (0-16383)
-    
+
 M                       metro time in ms, the M script is executed at this interval
 M.ACT                   [0/1] enable/disable metro
 M.RESET                 hard reset metro count without triggering
-    
+
 TIME                    timer value (counts up in ms. wraps after 32 seconds)
 TIME.ACT                [0/1] enable/disable timer counting
-    
+
 SCENE                  read/recall scene
 ~~~
 
@@ -555,7 +565,7 @@ One of each module (WW/MP/ES) can be connected on the same cable to one Teletype
 ### Keys
 
 ~~~
-TAB             toggle between LIVE and EDIT mode 
+TAB             toggle between LIVE and EDIT mode
 ~ (tilde)       toggle between LIVE and TRACKER mode
 ESC             toggle into SCENE load
 ALT-ESC         SCENE write
@@ -564,39 +574,39 @@ ALT-ESC         SCENE write
 #### LIVE mode
 
 ~~~
-ENTER           execute command 
-UP              previous command in history 
-ALT-X           cut command 
-ALT-C           copy command 
-ALT-V           paste command 
-SHIFT-BACKSPACE clear command 
+ENTER           execute command
+UP              previous command in history
+ALT-X           cut command
+ALT-C           copy command
+ALT-V           paste command
+SHIFT-BACKSPACE clear command
 ~~~
 
 #### EDIT mode
 
 ~~~
-]               next script 
-[               previous script 
-ENTER           add/overwrite command 
-SHIFT-ENTER     insert command 
+]               next script
+[               previous script
+ENTER           add/overwrite command
+SHIFT-ENTER     insert command
 ALT-X           cut command (move subsequent lines up)
-ALT-C           copy command 
+ALT-C           copy command
 ALT-V           paste command
-SHIFT-BACKSPACE clear command 
+SHIFT-BACKSPACE clear command
 ~~~
 
 #### TRACKER mode
 
 ~~~
-arrows          navigate edit position 
-ALT-up/down     jump page position up/down 
-ALT-left/right  jump to top/bottom 
+arrows          navigate edit position
+ALT-up/down     jump page position up/down
+ALT-left/right  jump to top/bottom
 ALT-L           jump to position of current pattern length (last edited value)
 0-9             numeric entry
 -               flip sign
 BACKSPACE       divide by 10 (remove least significant digit, really, it makes sense) until zero
 SPACE           toggle non-zero to zero, and zero to one (for trigger sequences)
-]               increment value at edit position 
+]               increment value at edit position
 [               decrement value at edit position
 ALT-X           cut value at index, shift remaining pattern up
 ALT-C           copy value at index
@@ -745,6 +755,12 @@ See [this write up][euclidean] for more information on Euclidean rhythms and the
 ## Teletype 1.3.0 Addendum
 
 Additional ops for Ansible grid and arc modes addded, see [Ansible docs][ansible-docs].
+
+[ansible-docs]: /docs/modular/ansible/
+
+## Teletype 1.4.0 Addendum
+
+Additional ops for Ansible MIDI modes addded, see [Ansible docs][ansible-docs].
 
 [ansible-docs]: /docs/modular/ansible/
 

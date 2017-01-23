@@ -11,7 +11,22 @@ permalink: /docs/modular/ansible/
 
 *Far communicator, speaks openly.*
 
-grid- arc- teletype- midi- enabled. Requires at least one of these.
+Connects to Grids, Arcs, and MIDI devices, integrating external controllers into the modular environment. Also extends Teletype. Many modes are available, activated by connecting different USB devices and a preset key:
+
+* Kria (Grid) live step sequencer, polyphasic parameters, emergent patterns.
+* Meadowphysics (Grid) rhizomatic cascading counter.
+* Levels (Arc) rotational pattern instrument.
+* Cycles (Arc) physically manipulated waves.
+* Reach (Teletype) further ecosystem output and input.
+* Traffic (MIDI) device voice allocation and various arpeggiation.
+
+**Grid, Arc, MIDI device, or Teletype required.**
+
+* Eurorack
+* 6hp width
+* 39mm depth
+
+![](/images/ansible.jpg)
 
 ## Installation
 
@@ -37,19 +52,6 @@ Ansible ships with a strange USB A-A cable. This is used for firmware updates. W
 
 Firmware update information [instructions are available](http://monome.org/docs/modular/update/).
 
-## Introduction
-
-Change applications by plugging different USB devices and a preset key.
-
-* Kria (grid) - live step sequencer, polyphasic parameters, emergent patterns.
-* Meadowphysics (grid) - rhizomatic cascading counter.
-* Levels (arc) - rotational pattern instrument.
-* Cycles (arc) - physically manipulated waves.
-* Reach (teletype) - further ecosystem output and input.
-* Traffic (midi) - device voice allocation and various arpeggiation.
-
-
-
 ## Basics
 
 ![Panel Overlay](images/ansible_CLEAN.png)
@@ -66,7 +68,7 @@ Modes are indicated with a white or orange LED near the mode key.
 
 ## Levels (Arc)
 
-Levels allows Arc encoders to assign voltages to CV outputs and create patterns which can be clocked. 
+Levels allows Arc encoders to assign voltages to CV outputs and create patterns which can be clocked.
 
 The mode LED will show orange when running.
 

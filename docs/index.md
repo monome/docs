@@ -63,8 +63,4 @@ technical -- [firmware updates](/docs/modular/update), [preset management](/docs
 
 ## [help](/docs/help) -- [repairs](/docs/repairs)
 
-looking for the old wiki? it will be briefly maintained at [archive.monome.org/docs](http://archive.monome.org/docs)
-
-## [about](/docs/about)
-
-monome is <a href="http://nnnnnnnn.co">brian crabtree</a> and <a href="http://kellicain.com">kelli cain</a>.
+looking for the old forum? it's read-only, at [archive.monome.org/community](http://archive.monome.org/community/index.html)

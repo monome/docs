@@ -20,7 +20,8 @@ permalink: /docs/
 * [re:mix](https://github.com/el-quinto/mix) -- extended mlr within ableton live.
 * [mlrv](https://github.com/trentgill/mlrv2/releases/latest) -- the quintessential grid-based sampling instrument.
 * [sum](/docs/app/sum) -- a collection of essential monome apps synced together to work as one flexible tool for creating music.
-* [terms](/docs/app/terms) -- sum, pulled apart, as max for live plugins for ableton.
+* [terms](/docs/app/terms) -- sum, pulled apart, as max for live plugins for ableton
+* [capstarc](https://github.com/mhetrick/capstarc) -- tactile sample scrubbing for arc
 
 #### [applications](/docs/app) -- the growing collection.
 

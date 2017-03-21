@@ -19,7 +19,9 @@ contact [info@monome.org](mailto:info@monome.org) to have your application liste
 * [re:mix](https://github.com/el-quinto/mix) -- extended mlr within ableton live.
 * [mlrv](https://github.com/trentgill/mlrv2/releases/latest) -- the quintessential grid-based sampling instrument.
 * [sum](/docs/app/sum) -- a collection of essential monome apps synced together to work as one flexible tool for creating music.
-* [terms](/docs/app/terms) -- sum, pulled apart, as max for live plugins for ableton.
+* [terms](/docs/app/terms) -- sum, pulled apart, as max for live plugins for ableton
+* [capstarc](https://github.com/mhetrick/capstarc) -- tactile sample scrubbing for arc
+
 
 ## audio
 
@@ -61,6 +63,7 @@ contact [info@monome.org](mailto:info@monome.org) to have your application liste
 
 * [max 7 package](/docs/app/package) -- several patchers and tools for use within Max 7
 * [returns](https://github.com/monome-community/returns) -- simple yet versatile cc output. lfo and sensitivity control.
+* [capstarc](https://github.com/mhetrick/capstarc) -- tactile sample scrubbing for arc.
 * [arc mapper](http://www.maxforlive.com/library/device/2438/arc4-mapper) - max for live arc mapping utility
 * [grainstorm](https://github.com/monome-community/grainstorm) -- four voice granular synthesizer.
 * [electric dharma wheels](https://github.com/monome-community/edw) -- FM synthesizer.

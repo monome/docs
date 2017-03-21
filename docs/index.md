@@ -49,7 +49,7 @@ technical -- [firmware updates](/docs/modular/update), [preset management](/docs
 
 * [information](/aleph) -- details about aleph sound computer.
 * [reference](/docs/aleph/reference) -- information about modules and applications.
-* [tutorial](/docs/aleph/tutorial) -- introduction to using the aleph.
+* [tutorial](/docs/aleph/tutorial-0) -- introduction to using the aleph.
 * [development](/docs/aleph/dev) -- guides for creating your own modules, applications, and bees operators.
 
 ## archive

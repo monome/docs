@@ -7,7 +7,7 @@ permalink: /docs/modular/update/
 
 new releases are available per module:
 
-- [teletype](https://github.com/monome/teletype/releases) **2.0.0** (july 18 2017)
+- [teletype](https://github.com/monome/teletype/releases) **2.0.1** (september 26 2017)
 - [ansible](https://github.com/monome/ansible/releases) **1.5.1** (august 9 2017)
 - [whitewhale](https://github.com/monome/whitewhale/releases) **1.5.0** (march 27 2017)
 - [meadowphysics](https://github.com/monome/meadowphysics/releases) **2.1.0** (march 25 2017)

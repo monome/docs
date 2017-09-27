@@ -3,7 +3,6 @@ layout: page
 permalink: /docs/grid-kit/
 ---
 # grid kit
-buy this kit at [market.monome.org](http://market.monome.org) for $480.
 
 ![](/docs/kits/images/gridkit-grid-kit01.jpg)
 

@@ -19,7 +19,7 @@ Scene loading this way is particularly helpful if you're using precomposed scene
 
 Before we make sounds, we have to have a talk. About numbers. I'll try to make it fast.
 
-Eurorack modular uses control voltages in a range of 0 to 10 volts. This is a continuous, analog range. Computers (including Teletype) are generally not analog and represent values (numbers) as a [series of digital bits](https://en.wikipedia.org/wiki/Bit). ([Here's a better explanation](https://youtu.be/GyMG70U8p_Y?t=13m54s)). Teletype uses signed 16 bit numbers, so -16384 through 16384. Let us explain further:
+Eurorack modular uses control voltages in a range of 0 to 10 volts. This is a continuous, analog range. Computers (including Teletype) are generally not analog and represent values (numbers) as a [series of digital bits](https://en.wikipedia.org/wiki/Bit). ([Here's a better explanation](https://www.youtube.com/watch?v=RPl-wYIj6Xw?t=13m54s)). Teletype uses signed 16 bit numbers, so -16384 through 16384. Let us explain further:
 
 The CV outputs 1-4 can create voltages between 0 and 10. Internally, Teletype sees this as 0 through 16384, which is 14 bit. But it's somewhat inconvenient to remember 16383 is equal to 10 volts-- so instead we use a lookup table. In *LIVE* mode, type:
 

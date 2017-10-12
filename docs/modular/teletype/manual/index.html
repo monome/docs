@@ -50,6 +50,7 @@
                 <ul>
                 <li><a href="#introduction">Introduction</a></li>
                 <li><a href="#whats-new">What's new?</a><ul>
+                <li><a href="#version-2.1">Version 2.1</a></li>
                 <li><a href="#version-2.0">Version 2.0</a></li>
                 </ul></li>
                 <li><a href="#quickstart">Quickstart</a><ul>
@@ -81,6 +82,7 @@
                 <li><a href="#delay">Delay</a></li>
                 <li><a href="#stack">Stack</a></li>
                 <li><a href="#queue">Queue</a></li>
+                <li><a href="#turtle">Turtle</a></li>
                 <li><a href="#ansible">Ansible</a></li>
                 <li><a href="#white-whale">White Whale</a></li>
                 <li><a href="#meadowphysics">Meadowphysics</a></li>
@@ -99,6 +101,7 @@
                 <li><a href="#alphabetical-list-of-ops-and-mods">Alphabetical list of OPs and MODs</a></li>
                 <li><a href="#missing-documentation">Missing documentation</a></li>
                 <li><a href="#changelog">Changelog</a><ul>
+                <li><a href="#v2.1">V2.1</a></li>
                 <li><a href="#v2.0.1">v2.0.1</a></li>
                 <li><a href="#v2.0">v2.0</a></li>
                 <li><a href="#v1.4.1">v1.4.1</a></li>
@@ -148,12 +151,34 @@
 <ul>
 <li><a href="https://monome.org/docs/modular/teletype/studies-1">Teletype Studies</a> - guided series of tutorials</li>
 <li><p><a href="https://monome.org/docs/modular/teletype/TT_commands_card_1.3.pdf">PDF command reference chart</a> — <a href="https://monome.org/docs/modular/teletype/TT_keys_card_1.3.pdf">PDF key reference chart</a> — <a href="https://monome.org/docs/modular/teletype/TT_scene_RECALL_sheet.pdf">PDF scene recall sheet</a> — <a href="http://monome.org/docs/modular/teletype/scenes-1.0/">Default scenes</a></p></li>
-<li><p>Current version: 2.0.1 — <a href="https://monome.org/docs/modular/update/">Firmware update procedure</a></p></li>
+<li><p>Current version: 2.1.0 — <a href="https://monome.org/docs/modular/update/">Firmware update procedure</a></p></li>
 </ul>
 <h1 id="whats-new">What's new?</h1>
+<h2 id="version-2.1">Version 2.1</h2>
+<p>Teletype version 2.1 introduces new operators that mature the syntax and capability of the Teletype, as well as several bug fixes and enhancement features.</p>
+<h3 id="major-new-features">Major new features</h3>
+<h4 id="tracker-data-entry-improvements">Tracker Data Entry Improvements</h4>
+<p>Data entry in the tracker screen is now <em>buffered</em>, requiring an <code>ENTER</code> keystroke to commit changes, or <code>SHIFT-ENTER</code> to insert the value. All other navigation keystrokes will abandon data entry. The increment / decrement keystrokes (<code>]</code> and <code>[</code>), as well as the negate keystroke (<code>-</code>) function immediately if not in data entry mode, but modify the currently buffered value in edit mode (again, requiring a commit).</p>
+<h4 id="turtle-operator">Turtle Operator</h4>
+<p>The Turtle operator allows 2-dimensional access to the patterns as portrayed out in Tracker mode. It uses new operators with the <code>@</code> prefix. You can <code>@MOVE X Y</code> the turtle relative to its current position, or set its direction in degrees with <code>@DIR</code> and its speed with <code>@SPEED</code> and then execute a <code>@STEP</code>.</p>
+<p>To access the value that the turtle operator points to, use <code>@</code>, which can also set the value with an argument.</p>
+<p>The turtle can be constrained on the tracker grid by setting its fence with <code>@FX1</code>, <code>@FY1</code>, <code>@FX2</code>, and <code>@FY2</code>, or by using the shortcut operator <code>@F x1 y1 x2 y2</code>. When the turtle reaches the fence, its behaviour is governed by its <em>fence mode</em>, where the turtle can simply stop (<code>@BUMP</code>), wrap around to the other edge (<code>@WRAP</code>), or bounce off the fence and change direction (<code>@BOUNCE</code>). Each of these can be set to <code>1</code> to enable that mode.</p>
+<p>Finally, the turtle can be displayed on the tracker screen with <code>@SHOW 1</code>, where it will indicate the current cell by pointing to it from the right side with the <code>&lt;</code> symbol.</p>
+<h4 id="script-line-commenting">Script Line &quot;Commenting&quot;</h4>
+<p>Individual lines in scripts can now be disabled from execution by highlighting the line and pressing <code>ALT-/</code>. Disabled lines will appear dim. This status will persist through save/load from flash, but will not carry over to scenes saved to USB drive.</p>
+<h3 id="new-operators">New Operators</h3>
+<p><code>W [condition]:</code> is a new mod that operates as a while loop. The <code>BREAK</code> operator stops executing the current script <code>BPM [bpm]</code> returns the number of milliseconds per beat in a given BPM, great for setting <code>M</code>. <code>LAST [script]</code> returns the number of milliseconds since <code>script</code> was last called.</p>
+<h3 id="new-operator-behaviour">New Operator Behaviour</h3>
+<p><code>SCRIPT</code> with no argument now returns the current script number. <code>I</code> is now local to its corresponding <code>L</code> statement. <code>IF/ELSE</code> is now local to its script.</p>
+<h3 id="new-keybindings">New keybindings</h3>
+<p><code>CTRL-1</code> through <code>CTRL-8</code> toggle the mute status for scripts 1 to 8 respectively. <code>CTRL-9</code> toggles the METRO script. <code>SHIFT-ENTER</code> now inserts a line in Scene Write mode.</p>
+<h3 id="bug-fixes">Bug fixes</h3>
+<p>Temporal recursion now possible by fixing delay allocation issue, e.g.: DEL 250: SCRIPT SCRIPT <code>KILL</code> now clears <code>TR</code> outputs and stops METRO. <code>SCENE</code> will no longer execute from the INIT script on initial scene load. <code>AVG</code> and <code>Q.AVG</code> now round up from offsets of 0.5 and greater.</p>
+<h3 id="breaking-changes">Breaking Changes</h3>
+<p>As <code>I</code> is now local to <code>L</code> loops, it is no longer usable across scripts or as a general-purpose variable. As <code>IF/ELSE</code> is now local to a script, scenes that relied on IF in one script and ELSE in another will be functionally broken.</p>
 <h2 id="version-2.0">Version 2.0</h2>
 <p>Teletype version 2.0 represents a large rewrite of the Teletype code base. There are many new language additions, some small breaking changes and a lot of under the hood enhancements.</p>
-<h3 id="major-new-features">Major new features</h3>
+<h3 id="major-new-features-1">Major new features</h3>
 <h4 id="sub-commands">Sub commands</h4>
 <p>Several commands on one line, separated by semicolons.</p>
 <p>e.g. <code>CV 1 N 60; TR.PULSE 1</code></p>
@@ -172,7 +197,7 @@ P.START 10</code></pre>
 PN.START 1 10</code></pre>
 <h4 id="telexi-and-telexo-ops">TELEXi and TELEXo <code>OP</code>s</h4>
 <p>Lots of <code>OP</code>s have been added for interacting with the wonderful TELEXi input expander and TELEXo output expander. See their respective sections in the documentation for more information.</p>
-<h4 id="new-keybindings">New keybindings</h4>
+<h4 id="new-keybindings-1">New keybindings</h4>
 <p>The function keys can now directly trigger a script.</p>
 <p>The <code>&lt;tab&gt;</code> key is now used to cycle between live, edit and pattern modes, and there are now easy access keys to directly jump to a mode.</p>
 <p>Many new text editing keyboard shortcuts have been added.</p>
@@ -186,7 +211,7 @@ PN.START 1 10</code></pre>
 <li>Limited script recursion now allowed (max recursion depth is 8) including self recursion.</li>
 <li>Metro scripts limited to 25ms, but new <code>M!</code> op to set it as low as 2ms (at your own risk), see &quot;Metronome&quot; <code>OP</code> section for more.</li>
 </ul>
-<h3 id="breaking-changes">Breaking changes</h3>
+<h3 id="breaking-changes-1">Breaking changes</h3>
 <ul>
 <li><p><strong>Removed the need for the <code>II</code> <code>OP</code>.</strong></p>
 <p>For example, <code>II MP.PRESET 1</code> will become just <code>MP.PRESET 1</code>.</p></li>
@@ -283,8 +308,8 @@ P.PUSH 3</code></pre>
 <p>Patterns are stored in flash with each scene!</p>
 <h3 id="tracker-mode">TRACKER mode</h3>
 <p>Editing patterns with scripts or from the command line isn't always ergonomic. When you'd like to visually edit patterns, TRACKER mode is the way.</p>
-<p>The <code>~</code> (tilde) key, above <code>TAB</code>, toggles into TRACKER mode.</p>
-<p>The current pattern memory is displayed in columns. Use the arrow keys to navigate. Holding ALT will jump by pages.</p>
+<p>The <code>TAB</code> key cycles between LIVE, EDIT and TRACKER mode. You can also get directly to TRACKER mode by pressing the <code>NUM LOCK</code> key. TRACKER mode is the one with 4 columns of numbers on the Teletype screen.</p>
+<p>The current pattern memory is displayed in these columns. Use the arrow keys to navigate. Holding ALT will jump by pages.</p>
 <p>The edit position is indicated by the brightest number. Very dim numbers indicate they are outside the pattern length.</p>
 <p>Use the square bracket keys <code>[</code> and <code>]</code> to decrease/increase the values. Backspace sets the value to 0. Entering numbers will overwrite a new value. You can cut/copy/paste with ALT-X-C-V.</p>
 <h2 id="scenes">Scenes</h2>
@@ -309,7 +334,7 @@ P.PUSH 3</code></pre>
 <li>VALUE -- a number</li>
 <li>OPERATOR -- a function, may need value(s) as argument(s), may return value</li>
 <li>VARIABLE -- named memory storage</li>
-<li>MOD -- condition/rule that applies to rest of the <em>command</em>, ie del, prob, if, s</li>
+<li>MOD -- condition/rule that applies to rest of the <em>command</em>, e.g.: del, prob, if, s</li>
 </ul>
 <h3 id="syntax">Syntax</h3>
 <p>Teletype uses prefix notation. Evaluation happens from right to left.</p>
@@ -405,6 +430,14 @@ CV X 0</code></pre>
 <tr class="odd">
 <td><code>alt-&lt;F10&gt;</code></td>
 <td>edit init script</td>
+</tr>
+<tr class="even">
+<td><code>ctrl-&lt;F1&gt;</code> to <code>ctrl-&lt;F8&gt;</code></td>
+<td>mute/unmute corresponding script</td>
+</tr>
+<tr class="odd">
+<td><code>ctrl-&lt;F9&gt;</code></td>
+<td>enable/disable metro script</td>
 </tr>
 <tr class="even">
 <td><code>&lt;numpad-1&gt;</code> to <code>&lt;numpad-8&gt;</code></td>
@@ -541,14 +574,18 @@ CV X 0</code></pre>
 <td><code>shift-&lt;enter&gt;</code></td>
 <td>insert command</td>
 </tr>
+<tr class="odd">
+<td><code>alt-/</code></td>
+<td>toggle line comment</td>
+</tr>
 </tbody>
 </table>
 <h2 id="tracker-mode-1">Tracker mode</h2>
 <p>The tracker mode clipboard is independent of text and code clipboard.</p>
 <table>
 <colgroup>
-<col style="width: 30%"></col>
-<col style="width: 69%"></col>
+<col style="width: 20%"></col>
+<col style="width: 80%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -607,11 +644,11 @@ CV X 0</code></pre>
 </tr>
 <tr class="odd">
 <td><code>&lt;enter&gt;</code></td>
-<td>move down (increase length only if on the entry immediately after the current length)</td>
+<td>commit edit (increase length if cursor in position after last entry)</td>
 </tr>
 <tr class="even">
 <td><code>shift-&lt;enter&gt;</code></td>
-<td>duplicate entry and shift downwards (increase length as <code>&lt;enter&gt;</code>)</td>
+<td>commit edit, then duplicate entry and shift downwards (increase length as <code>&lt;enter&gt;</code>)</td>
 </tr>
 <tr class="odd">
 <td><code>alt-x</code></td>
@@ -664,6 +701,10 @@ CV X 0</code></pre>
 <tr class="odd">
 <td><code>0</code> to <code>9</code></td>
 <td>numeric entry</td>
+</tr>
+<tr class="even">
+<td><code>shift-2</code> (<code>@</code>)</td>
+<td>toggle turtle display marker (<code>&lt;</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -900,18 +941,24 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td>enable or disable timer counting, default <code>1</code></td>
 </tr>
 <tr class="odd">
+<td><strong><code>LAST x</code></strong></td>
+<td></td>
+<td></td>
+<td>get value in milliseconds since last script run time</td>
+</tr>
+<tr class="even">
 <td><strong><code>X</code></strong></td>
 <td><strong><code>X x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>X</code>, default <code>0</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>Y</code></strong></td>
 <td><strong><code>Y x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>Y</code>, default <code>0</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>Z</code></strong></td>
 <td><strong><code>Z x</code></strong></td>
 <td></td>
@@ -944,6 +991,14 @@ O           =&gt; 2
 O           =&gt; 0
 O           =&gt; 63
 O           =&gt; 61</code></pre>
+<h3 id="last"><code>LAST</code></h3>
+<ul>
+<li><strong><code>LAST x</code></strong></li>
+</ul>
+<p>Gets the number of milliseconds since the current script was run. From the live mode, shows time elapsed since last run of I script.</p>
+<p>For example, one-line tap tempo:</p>
+<pre><code>M LAST SCRIPT </code></pre>
+<p>Running this script twice will set the metronome to be the time between runs.</p>
 
 <h2 id="hardware">Hardware</h2>
 <p>The Teletype trigger inputs are numbered 1-8, the CV and trigger outputs 1-4. See the Ansible documentation for details of the Ansible output numbering when in Teletype mode.</p>
@@ -1025,7 +1080,7 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <tr class="odd">
 <td><strong><code>TR.PULSE x</code></strong></td>
 <td></td>
-<td><strong><code>TR.P x</code></strong></td>
+<td><strong><code>TR.P</code></strong></td>
 <td>Pulse trigger output x</td>
 </tr>
 <tr class="even">
@@ -1096,7 +1151,7 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <h3 id="tr.pulse"><code>TR.PULSE</code></h3>
 <ul>
 <li><strong><code>TR.PULSE x</code></strong></li>
-<li><em>alias</em>: <strong><code>TR.P x</code></strong></li>
+<li><em>alias</em>: <strong><code>TR.P</code></strong></li>
 </ul>
 <p>Pulse trigger output x.</p>
 <h3 id="mute"><code>MUTE</code></h3>
@@ -1396,28 +1451,64 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td>run the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code></td>
 </tr>
 <tr class="odd">
+<td><strong><code>W x: ...</code></strong></td>
+<td></td>
+<td></td>
+<td>run the command while condition x is true</td>
+</tr>
+<tr class="even">
+<td><strong><code>EVERY x: ...</code></strong></td>
+<td></td>
+<td></td>
+<td>run the command every <code>x</code> times the command is called</td>
+</tr>
+<tr class="odd">
+<td><strong><code>SKIP x: ...</code></strong></td>
+<td></td>
+<td></td>
+<td>run the command every time except the <code>x</code>th time.</td>
+</tr>
+<tr class="even">
+<td><strong><code>OTHER: ...</code></strong></td>
+<td></td>
+<td></td>
+<td>runs the command when the previous <code>EVERY</code>/<code>SKIP</code> did not run its command.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>SYNC x</code></strong></td>
+<td></td>
+<td></td>
+<td>synchronizes <em>all</em> <code>EVERY</code> and <code>SKIP</code> counters to offset <code>x</code>.</td>
+</tr>
+<tr class="even">
 <td><strong><code>PROB x: ...</code></strong></td>
 <td></td>
 <td></td>
 <td>potentially execute command with probability <code>x</code> (0-100)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
+<td><strong><code>SCRIPT</code></strong></td>
 <td><strong><code>SCRIPT x</code></strong></td>
 <td></td>
-<td></td>
-<td>execute script <code>x</code> (1-8), recursion allowed</td>
-</tr>
-<tr class="odd">
-<td><strong><code>SCENE x</code></strong></td>
-<td></td>
-<td></td>
-<td>load scene <code>x</code> (0-31)</td>
+<td>get current script number, or execute script <code>x</code> (1-8), recursion allowed</td>
 </tr>
 <tr class="even">
+<td><strong><code>SCENE</code></strong></td>
+<td><strong><code>SCENE x</code></strong></td>
+<td></td>
+<td>get the current scene number, or load scene <code>x</code> (0-31)</td>
+</tr>
+<tr class="odd">
 <td><strong><code>KILL</code></strong></td>
 <td></td>
 <td></td>
-<td>clears stack, clears delays, cancels pulses, cancels slews</td>
+<td>clears stack, clears delays, cancels pulses, cancels slews, disables metronome</td>
+</tr>
+<tr class="even">
+<td><strong><code>BREAK</code></strong></td>
+<td></td>
+<td><strong><code>BRK</code></strong></td>
+<td>halts execution of the current script</td>
 </tr>
 </tbody>
 </table>
@@ -1446,14 +1537,6 @@ IF 1: TR.P 1    =&gt; pulse output 1
 SCRIPT 2:
 ELSE: TR.P 2    =&gt; never runs regardless of what happens in script 1
                    (see example 2)</code></pre></li>
-<li><p>Dependent scripts</p>
-<pre class="text"><code>SCRIPT 1:
-IF 0: TR.P 1    =&gt; do nothing
-SCRIPT 2        =&gt; will pulse output 2
-
-SCRIPT 2:
-ELSE: TR.P 2    =&gt; will not pulse output 2 if called directly,
-                   but will if called from script 1</code></pre></li>
 </ol>
 <h3 id="l"><code>L</code></h3>
 <ul>
@@ -1463,18 +1546,61 @@ ELSE: TR.P 2    =&gt; will not pulse output 2 if called directly,
 <p>For example:</p>
 <pre><code>L 1 4: TR.PULSE I   =&gt; pulse outputs 1, 2, 3 and 4
 L 4 1: TR.PULSE I   =&gt; pulse outputs 4, 3, 2 and 1</code></pre>
+<h3 id="w"><code>W</code></h3>
+<ul>
+<li><strong><code>W x: ...</code></strong></li>
+</ul>
+<p>Runs the command while the condition <code>x</code> is true or the loop iterations exceed 10000.</p>
+<p>For example, to find the first iterated power of 2 greater than 100:</p>
+<pre><code>A 2
+W LT A 100: A * A A </code></pre>
+<p>A will be 256.</p>
+<h3 id="every"><code>EVERY</code></h3>
+<ul>
+<li><strong><code>EVERY x: ...</code></strong></li>
+</ul>
+<p>Runs the command every <code>x</code> times the line is executed. This is tracked on a per-line basis, so each script can have 6 different &quot;dividers&quot;.</p>
+<p>Here is a 1-script clock divider:</p>
+<pre><code>EVERY 2: TR.P 1
+EVERY 4: TR.P 2
+EVERY 8: TR.P 3
+EVERY 16: TR.P 4</code></pre>
+<p>The numbers do <em>not</em> need to be evenly divisible by each other, so there is no problem with:</p>
+<pre><code>EVERY 2: TR.P 1
+EVERY 3: TR.P 2</code></pre>
+<h3 id="skip"><code>SKIP</code></h3>
+<ul>
+<li><strong><code>SKIP x: ...</code></strong></li>
+</ul>
+<p>This is the corollary function to <code>EVERY</code>, essentially behaving as its exact opposite.</p>
+<h3 id="other"><code>OTHER</code></h3>
+<ul>
+<li><strong><code>OTHER: ...</code></strong></li>
+</ul>
+<p><code>OTHER</code> can be used to do somthing alternately with a preceding <code>EVERY</code> or <code>SKIP</code> command.</p>
+<p>For example, here is a script that alternates between two triggers to make a four-on-the-floor beat with hats between the beats:</p>
+<pre><code>EVERY 4: TR.P 1
+OTHER: TR.P 2</code></pre>
+<p>You could add snares on beats 2 and 4 with:</p>
+<pre><code>SKIP 2: TR.P 3</code></pre>
+<h3 id="sync"><code>SYNC</code></h3>
+<ul>
+<li><strong><code>SYNC x</code></strong></li>
+</ul>
+<p>Causes all of the <code>EVERY</code> and <code>SYNC</code> counters to synchronize their offsets, respecting their individual divisor values.</p>
+<p>Negative numbers will synchronize to to the divisor value, such that <code>SYNC -1</code> causes all every counters to be 1 number before their divisor, causing each <code>EVERY</code> to be true on its next call, and each <code>SKIP</code> to be false.</p>
 <h3 id="script"><code>SCRIPT</code></h3>
 <ul>
-<li><strong><code>SCRIPT x</code></strong></li>
+<li><strong><code>SCRIPT</code></strong> / <strong><code>SCRIPT x</code></strong></li>
 </ul>
 <p>Execute script <code>x</code> (1-8), recursion allowed.</p>
 <p>There is a limit of 8 for the maximum number of nested calls to <code>SCRIPT</code> to stop infinite loops from locking up the Teletype.</p>
 <h3 id="scene"><code>SCENE</code></h3>
 <ul>
-<li><strong><code>SCENE x</code></strong></li>
+<li><strong><code>SCENE</code></strong> / <strong><code>SCENE x</code></strong></li>
 </ul>
 <p>Load scene <code>x</code> (0-31).</p>
-<p>Does <em>not</em> execute the <code>I</code> script.</p>
+<p>Does <em>not</em> execute the <code>I</code> script. Will <em>not</em> execute from the <code>I</code> script on scene load. Will execute on subsequent calls to the <code>I</code> script.</p>
 <p><strong>WARNING</strong>: You will lose any unsaved changes to your scene.</p>
 
 <h2 id="maths">Maths</h2>
@@ -1681,24 +1807,30 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td>Euclidean rhythm, <code>f</code> is fill (<code>1-32</code>), <code>l</code> is length (<code>1-32</code>) and <code>i</code> is step (any value), returns <code>0</code> or <code>1</code></td>
 </tr>
 <tr class="odd">
+<td><strong><code>BPM x</code></strong></td>
+<td></td>
+<td></td>
+<td>milliseconds per beat in BPM <code>x</code></td>
+</tr>
+<tr class="even">
 <td><strong><code>N x</code></strong></td>
 <td></td>
 <td></td>
 <td>converts an equal temperament note number to a value usable by the CV outputs (<code>x</code> in the range <code>-127</code> to <code>127</code>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>V x</code></strong></td>
 <td></td>
 <td></td>
 <td>converts a voltage to a value usable by the CV outputs (<code>x</code> between <code>0</code> and <code>10</code>)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>VV x</code></strong></td>
 <td></td>
 <td></td>
 <td>converts a voltage to a value usable by the CV outputs (<code>x</code> between <code>0</code> and <code>1000</code>, <code>100</code> represents 1V)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>EXP x</code></strong></td>
 <td></td>
 <td></td>
@@ -1962,6 +2094,134 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <li><strong><code>Q.AVG</code></strong> / <strong><code>Q.AVG x</code></strong></li>
 </ul>
 <p>Getting the value the average of the values in the queue. Setting <code>x</code> sets the value of each entry in the queue to <code>x</code>.</p>
+
+<h2 id="turtle">Turtle</h2>
+<p>A 2-dimensional, movable index into the pattern values as displayed on the TRACKER screen.</p>
+<!--
+make sure that the description column is long!
+Pandoc uses the size of the header column to calculate the absolute column widths
+(as Latex requires explict column sizes)
+-->
+<table style="width:100%;">
+<colgroup>
+<col style="width: 25%"></col>
+<col style="width: 23%"></col>
+<col style="width: 11%"></col>
+<col style="width: 39%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>OP</th>
+<th>OP <em>(set)</em></th>
+<th><em>(aliases)</em></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>@</code></strong></td>
+<td><strong><code>@ x</code></strong></td>
+<td></td>
+<td>get or set the current pattern value under the turtle</td>
+</tr>
+<tr class="even">
+<td><strong><code>@X</code></strong></td>
+<td><strong><code>@X x</code></strong></td>
+<td></td>
+<td>get the turtle X coordinate, or set it to x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@Y</code></strong></td>
+<td><strong><code>@Y x</code></strong></td>
+<td></td>
+<td>get the turtle Y coordinate, or set it to x</td>
+</tr>
+<tr class="even">
+<td><strong><code>@MOVE x y</code></strong></td>
+<td></td>
+<td></td>
+<td>move the turtle x cells in the X axis and y cells in the Y axis</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@F x1 y1 x2 y2</code></strong></td>
+<td></td>
+<td></td>
+<td>set the turtle's fence to corners x1,y1 and x2,y2</td>
+</tr>
+<tr class="even">
+<td><strong><code>@FX1</code></strong></td>
+<td><strong><code>@FX1 x</code></strong></td>
+<td></td>
+<td>get the left fence line or set it to x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@FX2</code></strong></td>
+<td><strong><code>@FX2 x</code></strong></td>
+<td></td>
+<td>get the right fence line or set it to x</td>
+</tr>
+<tr class="even">
+<td><strong><code>@FY1</code></strong></td>
+<td><strong><code>@FY1 x</code></strong></td>
+<td></td>
+<td>get the top fence line or set it to x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@FY2</code></strong></td>
+<td><strong><code>@FY2 x</code></strong></td>
+<td></td>
+<td>get the bottom fence line or set it to x</td>
+</tr>
+<tr class="even">
+<td><strong><code>@SPEED</code></strong></td>
+<td><strong><code>@SPEED x</code></strong></td>
+<td></td>
+<td>get the speed of the turtle's <span class="citation" data-cites="STEP">@STEP</span> in cells per step or set it to x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@DIR</code></strong></td>
+<td><strong><code>@DIR x</code></strong></td>
+<td></td>
+<td>get the direction of the turtle's <span class="citation" data-cites="STEP">@STEP</span> in degrees or set it to x</td>
+</tr>
+<tr class="even">
+<td><strong><code>@STEP</code></strong></td>
+<td></td>
+<td></td>
+<td>move <code>@SPEED</code>/100 cells forward in <code>@DIR</code>, triggering <code>@SCRIPT</code> on cell change</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@BUMP</code></strong></td>
+<td><strong><code>@BUMP 1</code></strong></td>
+<td></td>
+<td>get whether the turtle fence mode is BUMP, or set it to BUMP with 1</td>
+</tr>
+<tr class="even">
+<td><strong><code>@WRAP</code></strong></td>
+<td><strong><code>@WRAP 1</code></strong></td>
+<td></td>
+<td>get whether the turtle fence mode is WRAP, or set it to WRAP with 1</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@BOUNCE</code></strong></td>
+<td><strong><code>@BOUNCE 1</code></strong></td>
+<td></td>
+<td>get whether the turtle fence mode is BOUNCE, or set it to BOUNCE with 1</td>
+</tr>
+<tr class="even">
+<td><strong><code>@SCRIPT</code></strong></td>
+<td><strong><code>@SCRIPT x</code></strong></td>
+<td></td>
+<td>get which script runs when the turtle changes cells, or set it to x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@SHOW</code></strong></td>
+<td><strong><code>@SHOW 0/1</code></strong></td>
+<td></td>
+<td>get whether the turtle is displayed on the TRACKER screen, or turn it on or off</td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="ansible">Ansible</h2>
 <!--
@@ -3806,292 +4066,412 @@ Pandoc uses the size of the header column to calculate the absolute column width
 </thead>
 <tbody>
 <tr class="odd">
+<td><strong><code>@</code></strong></td>
+<td><strong><code>@ x</code></strong></td>
+<td></td>
+<td>get or set the current pattern value under the turtle</td>
+</tr>
+<tr class="even">
+<td><strong><code>@BOUNCE</code></strong></td>
+<td><strong><code>@BOUNCE 1</code></strong></td>
+<td></td>
+<td>get whether the turtle fence mode is BOUNCE, or set it to BOUNCE with 1</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@BUMP</code></strong></td>
+<td><strong><code>@BUMP 1</code></strong></td>
+<td></td>
+<td>get whether the turtle fence mode is BUMP, or set it to BUMP with 1</td>
+</tr>
+<tr class="even">
+<td><strong><code>@DIR</code></strong></td>
+<td><strong><code>@DIR x</code></strong></td>
+<td></td>
+<td>get the direction of the turtle's <span class="citation" data-cites="STEP">@STEP</span> in degrees or set it to x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@F x1 y1 x2 y2</code></strong></td>
+<td></td>
+<td></td>
+<td>set the turtle's fence to corners x1,y1 and x2,y2</td>
+</tr>
+<tr class="even">
+<td><strong><code>@FX1</code></strong></td>
+<td><strong><code>@FX1 x</code></strong></td>
+<td></td>
+<td>get the left fence line or set it to x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@FX2</code></strong></td>
+<td><strong><code>@FX2 x</code></strong></td>
+<td></td>
+<td>get the right fence line or set it to x</td>
+</tr>
+<tr class="even">
+<td><strong><code>@FY1</code></strong></td>
+<td><strong><code>@FY1 x</code></strong></td>
+<td></td>
+<td>get the top fence line or set it to x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@FY2</code></strong></td>
+<td><strong><code>@FY2 x</code></strong></td>
+<td></td>
+<td>get the bottom fence line or set it to x</td>
+</tr>
+<tr class="even">
+<td><strong><code>@MOVE x y</code></strong></td>
+<td></td>
+<td></td>
+<td>move the turtle x cells in the X axis and y cells in the Y axis</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@SCRIPT</code></strong></td>
+<td><strong><code>@SCRIPT x</code></strong></td>
+<td></td>
+<td>get which script runs when the turtle changes cells, or set it to x</td>
+</tr>
+<tr class="even">
+<td><strong><code>@SHOW</code></strong></td>
+<td><strong><code>@SHOW 0/1</code></strong></td>
+<td></td>
+<td>get whether the turtle is displayed on the TRACKER screen, or turn it on or off</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@SPEED</code></strong></td>
+<td><strong><code>@SPEED x</code></strong></td>
+<td></td>
+<td>get the speed of the turtle's <span class="citation" data-cites="STEP">@STEP</span> in cells per step or set it to x</td>
+</tr>
+<tr class="even">
+<td><strong><code>@STEP</code></strong></td>
+<td></td>
+<td></td>
+<td>move <code>@SPEED</code>/100 cells forward in <code>@DIR</code>, triggering <code>@SCRIPT</code> on cell change</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@WRAP</code></strong></td>
+<td><strong><code>@WRAP 1</code></strong></td>
+<td></td>
+<td>get whether the turtle fence mode is WRAP, or set it to WRAP with 1</td>
+</tr>
+<tr class="even">
+<td><strong><code>@X</code></strong></td>
+<td><strong><code>@X x</code></strong></td>
+<td></td>
+<td>get the turtle X coordinate, or set it to x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>@Y</code></strong></td>
+<td><strong><code>@Y x</code></strong></td>
+<td></td>
+<td>get the turtle Y coordinate, or set it to x</td>
+</tr>
+<tr class="even">
 <td><strong><code>A</code></strong></td>
 <td><strong><code>A x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>A</code>, default <code>1</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ABS x</code></strong></td>
 <td></td>
 <td></td>
 <td>absolute value of <code>x</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ADD x y</code></strong></td>
 <td></td>
 <td><strong><code>+</code></strong></td>
 <td>add <code>x</code> and <code>y</code> together</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>AND x y</code></strong></td>
 <td></td>
 <td><strong><code>&amp;&amp;</code></strong></td>
 <td>logical AND of <code>x</code> and <code>y</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.DIV v d</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice clock divisor (euclidean length), range [1-32]</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.ER v f d r</code></strong></td>
 <td></td>
 <td></td>
 <td>set all euclidean rhythm</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.FIL v f</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice euclidean fill, use 1 for straight clock division, range [1-32]</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.GT v g</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice gate length [0-127], scaled/synced to course divisions of voice clock</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.HLD h</code></strong></td>
 <td></td>
 <td></td>
 <td><code>0</code> disables key hold mode, other values enable</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.RES v</code></strong></td>
 <td></td>
 <td></td>
 <td>reset voice clock/pattern on next base clock tick</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.ROT v r</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice euclidean rotation, range [-32, 32]</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.RPT v n s</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice pattern repeat, <code>n</code> times [0-8], shifted by <code>s</code> semitones [-24, 24]</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.SHIFT v o</code></strong></td>
 <td></td>
 <td></td>
 <td>shift voice cv by standard tt pitch value (e.g. N 6, V -1, etc)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.SLEW v t</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice slew time in ms</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.STY y</code></strong></td>
 <td></td>
 <td></td>
 <td>set base arp style [0-7]</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>AVG x y</code></strong></td>
 <td></td>
 <td></td>
 <td>the average of <code>x</code> and <code>y</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>B</code></strong></td>
 <td><strong><code>B x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>B</code>, default <code>2</code></td>
 </tr>
+<tr class="odd">
+<td><strong><code>BPM x</code></strong></td>
+<td></td>
+<td></td>
+<td>milliseconds per beat in BPM <code>x</code></td>
+</tr>
 <tr class="even">
+<td><strong><code>BREAK</code></strong></td>
+<td></td>
+<td><strong><code>BRK</code></strong></td>
+<td>halts execution of the current script</td>
+</tr>
+<tr class="odd">
 <td><strong><code>C</code></strong></td>
 <td><strong><code>C x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>C</code>, default <code>3</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>CV x</code></strong></td>
 <td><strong><code>CV x y</code></strong></td>
 <td></td>
 <td>CV target value</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>CV.OFF x</code></strong></td>
 <td><strong><code>CV.OFF x y</code></strong></td>
 <td></td>
 <td>CV offset added to output</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>CV.SET x</code></strong></td>
 <td></td>
 <td></td>
 <td>Set CV value</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>CV.SLEW x</code></strong></td>
 <td><strong><code>CV.SLEW x y</code></strong></td>
 <td></td>
 <td>Get/set the CV slew time in ms</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>CY.CV x</code></strong></td>
 <td></td>
 <td></td>
 <td>get the current CV value for channel <code>x</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>CY.POS x</code></strong></td>
 <td><strong><code>CY.POS x y</code></strong></td>
 <td></td>
 <td>get / set position of channel <code>x</code> (<code>x = 0</code> to set all), position between <code>0-255</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>CY.PRE</code></strong></td>
 <td><strong><code>CY.PRE x</code></strong></td>
 <td></td>
 <td>return current preset / load preset <code>x</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>CY.RES x</code></strong></td>
 <td></td>
 <td></td>
 <td>reset channel <code>x</code> (<code>0</code> = all)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>CY.REV x</code></strong></td>
 <td></td>
 <td></td>
 <td>reverse channel <code>x</code> (<code>0</code> = all)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>D</code></strong></td>
 <td><strong><code>D x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>D</code>, default <code>4</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>DEL x: ...</code></strong></td>
 <td></td>
 <td></td>
 <td>Delay command by <code>x</code> ms</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>DEL.CLR</code></strong></td>
 <td></td>
 <td></td>
 <td>Clear the delay buffer</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>DIV x y</code></strong></td>
 <td></td>
 <td><strong><code>/</code></strong></td>
 <td>divide <code>x</code> by <code>y</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>DRUNK</code></strong></td>
 <td><strong><code>DRUNK x</code></strong></td>
 <td></td>
 <td>changes by <code>-1</code>, <code>0</code>, or <code>1</code> upon each read saving its state, setting will give it a new value for the next read</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>DRUNK.MAX</code></strong></td>
 <td><strong><code>DRUNK.MAX x</code></strong></td>
 <td></td>
 <td>set the upper bound for <code>DRUNK</code>, default <code>255</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>DRUNK.MIN</code></strong></td>
 <td><strong><code>DRUNK.MIN x</code></strong></td>
 <td></td>
 <td>set the lower bound for <code>DRUNK</code>, default <code>0</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>DRUNK.WRAP</code></strong></td>
 <td><strong><code>DRUNK.WRAP x</code></strong></td>
 <td></td>
 <td>should <code>DRUNK</code> wrap around when it reaches it's bounds, default <code>0</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ELIF x: ...</code></strong></td>
 <td></td>
 <td></td>
 <td>if all previous <code>IF</code> / <code>ELIF</code> fail, and <code>x</code> is not zero, execute command</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ELSE: ...</code></strong></td>
 <td></td>
 <td></td>
 <td>if all previous <code>IF</code> / <code>ELIF</code> fail, excute command</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>EQ x y</code></strong></td>
 <td></td>
 <td><strong><code>==</code></strong></td>
 <td>does <code>x</code> equal <code>y</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ER f l i</code></strong></td>
 <td></td>
 <td></td>
 <td>Euclidean rhythm, <code>f</code> is fill (<code>1-32</code>), <code>l</code> is length (<code>1-32</code>) and <code>i</code> is step (any value), returns <code>0</code> or <code>1</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ES.CLOCK x</code></strong></td>
 <td></td>
 <td></td>
 <td>If II clocked, next pattern event</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ES.MAGIC x</code></strong></td>
 <td></td>
 <td></td>
 <td>Magic shape (1= halfspeed, 2=doublespeed, 3=linearize)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ES.MODE x</code></strong></td>
 <td></td>
 <td></td>
 <td>Set pattern clock mode. (0=normal, 1=II clock)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ES.PATTERN x</code></strong></td>
 <td></td>
 <td></td>
 <td>Select playing pattern (0-15)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ES.PRESET x</code></strong></td>
 <td></td>
 <td></td>
 <td>Recall preset <code>x</code> (0-7)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ES.RESET x</code></strong></td>
 <td></td>
 <td></td>
 <td>Reset pattern to start (and start playing)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ES.STOP x</code></strong></td>
 <td></td>
 <td></td>
 <td>Stop pattern playback.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ES.TRANS x</code></strong></td>
 <td></td>
 <td></td>
 <td>Transpose the current pattern</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ES.TRIPLE x</code></strong></td>
 <td></td>
 <td></td>
 <td>Recall triple shape (1-4)</td>
+</tr>
+<tr class="even">
+<td><strong><code>EVERY x: ...</code></strong></td>
+<td></td>
+<td></td>
+<td>run the command every <code>x</code> times the command is called</td>
 </tr>
 <tr class="odd">
 <td><strong><code>EXP x</code></strong></td>
@@ -4223,7 +4603,7 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td><strong><code>KILL</code></strong></td>
 <td></td>
 <td></td>
-<td>clears stack, clears delays, cancels pulses, cancels slews</td>
+<td>clears stack, clears delays, cancels pulses, cancels slews, disables metronome</td>
 </tr>
 <tr class="odd">
 <td><strong><code>KR.L.LEN x y</code></strong></td>
@@ -4280,334 +4660,346 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td>run the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code></td>
 </tr>
 <tr class="even">
+<td><strong><code>LAST x</code></strong></td>
+<td></td>
+<td></td>
+<td>get value in milliseconds since last script run time</td>
+</tr>
+<tr class="odd">
 <td><strong><code>LIM x y z</code></strong></td>
 <td></td>
 <td></td>
 <td>limit the value <code>x</code> to the range <code>y</code> to <code>z</code> inclusive</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>LSH x y</code></strong></td>
 <td></td>
 <td><strong><code>&lt;&lt;</code></strong></td>
 <td>left shift <code>x</code> by <code>y</code> bits, in effect multiply by <code>2</code> to the power of <code>x</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>LT x y</code></strong></td>
 <td></td>
 <td><strong><code>&lt;</code></strong></td>
 <td><code>x</code> is less than <code>y</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>LTE x y</code></strong></td>
 <td></td>
 <td><strong><code>&lt;=</code></strong></td>
 <td><code>x</code> is less than or equal to <code>y</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>LV.CV x</code></strong></td>
 <td></td>
 <td></td>
 <td>get the current CV value for channel <code>x</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>LV.L.DIR</code></strong></td>
 <td><strong><code>LV.L.DIR x</code></strong></td>
 <td></td>
 <td>get/set loop direction</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>LV.L.LEN</code></strong></td>
 <td><strong><code>LV.L.LEN x</code></strong></td>
 <td></td>
 <td>get/set loop length</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>LV.L.ST</code></strong></td>
 <td><strong><code>LV.L.ST x</code></strong></td>
 <td></td>
 <td>get/set loop start</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>LV.POS</code></strong></td>
 <td><strong><code>LV.POS x</code></strong></td>
 <td></td>
 <td>get/set current position</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>LV.PRE</code></strong></td>
 <td><strong><code>LV.PRE x</code></strong></td>
 <td></td>
 <td>return current preset / load preset <code>x</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>LV.RES x</code></strong></td>
 <td></td>
 <td></td>
 <td>reset, <code>0</code> for soft reset (on next ext. clock), <code>1</code> for hard reset</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>M</code></strong></td>
 <td><strong><code>M x</code></strong></td>
 <td></td>
 <td>get/set metronome interval to <code>x</code> (in ms), default <code>1000</code>, minimum value <code>25</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>M!</code></strong></td>
 <td><strong><code>M! x</code></strong></td>
 <td></td>
 <td>get/set metronome to experimental interval <code>x</code> (in ms), minimum value <code>2</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>M.ACT</code></strong></td>
 <td><strong><code>M.ACT x</code></strong></td>
 <td></td>
 <td>get/set metronome activation to <code>x</code> (<code>0/1</code>), default <code>1</code> (enabled)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>M.RESET</code></strong></td>
 <td></td>
 <td></td>
 <td>hard reset metronome count without triggering</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>MAX x y</code></strong></td>
 <td></td>
 <td></td>
 <td>return the maximum of <code>x</code> and <code>y</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ME.PERIOD</code></strong></td>
 <td><strong><code>ME.PERIOD x</code></strong></td>
 <td></td>
 <td>get/set internal clock period</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ME.PRE</code></strong></td>
 <td><strong><code>ME.PRE x</code></strong></td>
 <td></td>
 <td>return current preset / load preset <code>x</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ME.RES x</code></strong></td>
 <td></td>
 <td></td>
 <td>reset channel <code>x</code> (<code>0</code> = all), also used as &quot;start&quot;</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ME.SCALE</code></strong></td>
 <td><strong><code>ME.SCALE x</code></strong></td>
 <td></td>
 <td>get/set current scale</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ME.STOP x</code></strong></td>
 <td></td>
 <td></td>
 <td>stop channel <code>x</code> (<code>0</code> = all)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>MID.SHIFT o</code></strong></td>
 <td></td>
 <td></td>
 <td>shift pitch CV by standard Teletype pitch value (e.g. <code>N 6</code>, <code>V -1</code>, etc)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>MID.SLEW t</code></strong></td>
 <td></td>
 <td></td>
 <td>set pitch slew time in ms (applies to all allocation styles except FIXED)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>MIN x y</code></strong></td>
 <td></td>
 <td></td>
 <td>return the minimum of <code>x</code> and <code>y</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>MOD x y</code></strong></td>
 <td></td>
 <td><strong><code>%</code></strong></td>
 <td>find the remainder after division of <code>x</code> by <code>y</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>MP.PRESET x</code></strong></td>
 <td></td>
 <td></td>
 <td>set Meadowphysics to preset <code>x</code> (indexed from <code>0</code>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>MP.RESET x</code></strong></td>
 <td></td>
 <td></td>
 <td>reset countdown for channel <code>x</code> (<code>0</code> = all, <code>1-8</code> = individual channels)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>MP.STOP x</code></strong></td>
 <td></td>
 <td></td>
 <td>reset channel <code>x</code> (<code>0</code> = all, <code>1-8</code> = individual channels)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>MUL x y</code></strong></td>
 <td></td>
 <td><strong><code>*</code></strong></td>
 <td>multiply <code>x</code> and <code>y</code> together</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>MUTE x</code></strong></td>
 <td><strong><code>MUTE x y</code></strong></td>
 <td></td>
 <td>Disable trigger input x</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>N x</code></strong></td>
 <td></td>
 <td></td>
 <td>converts an equal temperament note number to a value usable by the CV outputs (<code>x</code> in the range <code>-127</code> to <code>127</code>)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>NE x y</code></strong></td>
 <td></td>
 <td><strong><code>!=</code></strong> , <strong><code>XOR</code></strong></td>
 <td><code>x</code> is not equal to <code>y</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>NZ x</code></strong></td>
 <td></td>
 <td></td>
 <td><code>x</code> is not <code>0</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>O</code></strong></td>
 <td><strong><code>O x</code></strong></td>
 <td></td>
 <td>auto-increments <em>after</em> each access, can be set, starting value <code>0</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>O.INC</code></strong></td>
 <td><strong><code>O.INC x</code></strong></td>
 <td></td>
 <td>how much to increment <code>O</code> by on each invocation, default <code>1</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>O.MAX</code></strong></td>
 <td><strong><code>O.MAX x</code></strong></td>
 <td></td>
 <td>the upper bound for <code>O</code>, default <code>63</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>O.MIN</code></strong></td>
 <td><strong><code>O.MIN x</code></strong></td>
 <td></td>
 <td>the lower bound for <code>O</code>, default <code>0</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>O.WRAP</code></strong></td>
 <td><strong><code>O.WRAP x</code></strong></td>
 <td></td>
 <td>should <code>O</code> wrap when it reaches its bounds, default <code>1</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>OR x y</code></strong></td>
 <td></td>
 <td><strong><code>||</code></strong></td>
 <td>logical OR of <code>x</code> and <code>y</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>OR.BANK x</code></strong></td>
 <td></td>
 <td></td>
 <td>Select preset bank <code>x</code> (<code>1-8</code>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>OR.CLK x</code></strong></td>
 <td></td>
 <td></td>
 <td>Advance track <code>x</code> (<code>1-4</code>)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>OR.CVA x</code></strong></td>
 <td></td>
 <td></td>
 <td>Select tracks for CV A where <code>x</code> is a binary number representing the tracks</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>OR.CVB x</code></strong></td>
 <td></td>
 <td></td>
 <td>Select tracks for CV B where <code>x</code> is a binary number representing the tracks</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>OR.DIV x</code></strong></td>
 <td></td>
 <td></td>
 <td>Set divisor for selected track to <code>x</code> (<code>1-16</code>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>OR.GRST x</code></strong></td>
 <td></td>
 <td></td>
 <td>Global reset (<code>x</code> can be any value)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>OR.MUTE x</code></strong></td>
 <td></td>
 <td></td>
 <td>Mute trigger selected by <code>OR.TRK</code> (<code>0</code> = on, <code>1</code> = mute)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>OR.PHASE x</code></strong></td>
 <td></td>
 <td></td>
 <td>Set phase for selected track to <code>x</code> (<code>0-16</code>)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>OR.PRESET x</code></strong></td>
 <td></td>
 <td></td>
 <td>Select preset <code>x</code> (<code>1-8</code>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>OR.RELOAD x</code></strong></td>
 <td></td>
 <td></td>
 <td>Reload preset or bank (<code>0</code> - current preset, <code>1</code> - current bank, <code>2</code> - all banks)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>OR.ROTS x</code></strong></td>
 <td></td>
 <td></td>
 <td>Rotate scales by <code>x</code> (<code>1-15</code>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>OR.ROTW x</code></strong></td>
 <td></td>
 <td></td>
 <td>Rotate weights by <code>x</code> (<code>1-3</code>)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>OR.RST x</code></strong></td>
 <td></td>
 <td></td>
 <td>Reset track <code>x</code> (<code>1-4</code>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>OR.SCALE x</code></strong></td>
 <td></td>
 <td></td>
 <td>Select scale <code>x</code> (<code>1-16</code>)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>OR.TRK x</code></strong></td>
 <td></td>
 <td></td>
 <td>Choose track <code>x</code> (<code>1-4</code>) to be used by <code>OR.DIV</code>, <code>OR.PHASE</code>, <code>OR.WGT</code> or <code>OR.MUTE</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>OR.WGT x</code></strong></td>
 <td></td>
 <td></td>
 <td>Set weight for selected track to <code>x</code> (<code>1-8</code>)</td>
+</tr>
+<tr class="even">
+<td><strong><code>OTHER: ...</code></strong></td>
+<td></td>
+<td></td>
+<td>runs the command when the previous <code>EVERY</code>/<code>SKIP</code> did not run its command.</td>
 </tr>
 <tr class="odd">
 <td><strong><code>P x</code></strong></td>
@@ -4862,28 +5254,40 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td>scale <code>i</code> from range <code>a</code> to <code>b</code> to range <code>x</code> to <code>y</code>, i.e. <code>i * (y - x) / (b - a)</code></td>
 </tr>
 <tr class="odd">
+<td><strong><code>SCENE</code></strong></td>
 <td><strong><code>SCENE x</code></strong></td>
 <td></td>
-<td></td>
-<td>load scene <code>x</code> (0-31)</td>
+<td>get the current scene number, or load scene <code>x</code> (0-31)</td>
 </tr>
 <tr class="even">
+<td><strong><code>SCRIPT</code></strong></td>
 <td><strong><code>SCRIPT x</code></strong></td>
 <td></td>
-<td></td>
-<td>execute script <code>x</code> (1-8), recursion allowed</td>
+<td>get current script number, or execute script <code>x</code> (1-8), recursion allowed</td>
 </tr>
 <tr class="odd">
+<td><strong><code>SKIP x: ...</code></strong></td>
+<td></td>
+<td></td>
+<td>run the command every time except the <code>x</code>th time.</td>
+</tr>
+<tr class="even">
 <td><strong><code>STATE x</code></strong></td>
 <td></td>
 <td></td>
 <td>Read the current state of input x</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>SUB x y</code></strong></td>
 <td></td>
 <td><strong><code>-</code></strong></td>
 <td>subtract <code>y</code> from <code>x</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>SYNC x</code></strong></td>
+<td></td>
+<td></td>
+<td>synchronizes <em>all</em> <code>EVERY</code> and <code>SKIP</code> counters to offset <code>x</code>.</td>
 </tr>
 <tr class="odd">
 <td><strong><code>T</code></strong></td>
@@ -5494,7 +5898,7 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <tr class="even">
 <td><strong><code>TR.PULSE x</code></strong></td>
 <td></td>
-<td><strong><code>TR.P x</code></strong></td>
+<td><strong><code>TR.P</code></strong></td>
 <td>Pulse trigger output x</td>
 </tr>
 <tr class="odd">
@@ -5522,108 +5926,114 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td>converts a voltage to a value usable by the CV outputs (<code>x</code> between <code>0</code> and <code>1000</code>, <code>100</code> represents 1V)</td>
 </tr>
 <tr class="odd">
+<td><strong><code>W x: ...</code></strong></td>
+<td></td>
+<td></td>
+<td>run the command while condition x is true</td>
+</tr>
+<tr class="even">
 <td><strong><code>WRAP x y z</code></strong></td>
 <td></td>
 <td></td>
 <td>limit the value <code>x</code> to the range <code>y</code> to <code>z</code> inclusive, but with wrapping</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>WW.END x</code></strong></td>
 <td></td>
 <td></td>
 <td>Set the loop end position (0-15)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>WW.MUTE1 x</code></strong></td>
 <td></td>
 <td></td>
 <td>Mute trigger 1 (0 = on, 1 = mute)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>WW.MUTE2 x</code></strong></td>
 <td></td>
 <td></td>
 <td>Mute trigger 2 (0 = on, 1 = mute)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>WW.MUTE3 x</code></strong></td>
 <td></td>
 <td></td>
 <td>Mute trigger 3 (0 = on, 1 = mute)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>WW.MUTE4 x</code></strong></td>
 <td></td>
 <td></td>
 <td>Mute trigger 4 (0 = on, 1 = mute)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>WW.MUTEA x</code></strong></td>
 <td></td>
 <td></td>
 <td>Mute CV A (0 = on, 1 = mute)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>WW.MUTEB x</code></strong></td>
 <td></td>
 <td></td>
 <td>Mute CV B (0 = on, 1 = mute)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>WW.PATTERN x</code></strong></td>
 <td></td>
 <td></td>
 <td>Change pattern (0-15)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>WW.PMODE x</code></strong></td>
 <td></td>
 <td></td>
 <td>Set the loop play mode (0-5)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>WW.POS x</code></strong></td>
 <td></td>
 <td></td>
 <td>Cut to position (0-15)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>WW.PRESET x</code></strong></td>
 <td></td>
 <td></td>
 <td>Recall preset (0-7)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>WW.QPATTERN x</code></strong></td>
 <td></td>
 <td></td>
 <td>Change pattern (0-15) after current pattern ends</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>WW.START x</code></strong></td>
 <td></td>
 <td></td>
 <td>Set the loop start position (0-15)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>WW.SYNC x</code></strong></td>
 <td></td>
 <td></td>
 <td>Cut to position (0-15) and hard-sync the clock (if clocked internally)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>X</code></strong></td>
 <td><strong><code>X x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>X</code>, default <code>0</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>Y</code></strong></td>
 <td><strong><code>Y x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>Y</code>, default <code>0</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>Z</code></strong></td>
 <td><strong><code>Z x</code></strong></td>
 <td></td>
@@ -5632,8 +6042,30 @@ Pandoc uses the size of the header column to calculate the absolute column width
 </tbody>
 </table>
 <h1 id="missing-documentation">Missing documentation</h1>
-<p><code>TR.P</code></p>
 <h1 id="changelog">Changelog</h1>
+<h2 id="v2.1">V2.1</h2>
+<ul>
+<li><strong>BREAKING</strong>: the <code>I</code> variable is now scoped to the <code>L</code> loop, and does not exist outside of an execution context. Scripts using <code>I</code> as a general-purpose variable will be broken.</li>
+<li><strong>FIX</strong>: <code>SCENE</code> will not run from <code>INIT</code> script during scene load.</li>
+<li><strong>NEW</strong>: Tracker data entry overhaul. Type numbers, press enter to commit.</li>
+<li><strong>NEW</strong>: new op: <code>BPM</code> to get milliseconds per beat in given BPM</li>
+<li><strong>NEW</strong>: script lines can be disabled / enabled with ctrl-/</li>
+<li><strong>NEW</strong>: shift-enter in scene write mode now inserts a line</li>
+<li><strong>NEW</strong>: new ops: <code>LAST x</code> for the last time script <code>x</code> was called</li>
+<li><strong>NEW</strong>: <code>SCRIPT</code> with no arguments gets the current script number.</li>
+<li><strong>FIX</strong>: <code>AVG</code> and <code>Q.AVG</code> now round up properly</li>
+<li><strong>NEW</strong>: new op: <code>BREAK</code> to stop the remainder of the script</li>
+<li><strong>NEW</strong>: new mod: <code>W [condition]: [statement]</code> will execute <code>statement</code> as long as <code>condition</code> is true (up to an iteration limit).</li>
+<li><strong>NEW</strong>: new mods: <code>EVERY x:</code>, <code>SKIP x:</code>, <code>OTHER:</code> to alternately execute or not execute a command.</li>
+<li><strong>NEW</strong>: new op: <code>SYNC x</code> will synchronize all <code>EVERY</code> and <code>SKIP</code> line to the same step.</li>
+<li><strong>NEW</strong>: new feature: @ - the turtle. Walks around the pattern grid. Many ops, see documentation.</li>
+<li><strong>OLD</strong>: ctrl-F1 to F8 mute/unmute scripts.</li>
+<li><strong>NEW</strong>: ctrl-F9 enables/disables METRO.</li>
+<li><strong>FIX</strong>: recursive delay fix. Now you can <code>1: DEL 500: SCRIPT 1</code> for temporal recursion.</li>
+<li><strong>FIX</strong>: KILL now clears TR output as well as disabling the METRO script.</li>
+<li><strong>FIX</strong>: if / else conditions no longer transcend their script</li>
+<li><strong>IMP</strong>: functional exectuion stack for <code>SCRIPT</code> operations</li>
+</ul>
 <h2 id="v2.0.1">v2.0.1</h2>
 <ul>
 <li><strong>FIX</strong>: update IRQ masking which prevents screen glitches and crashing under heavy load</li>

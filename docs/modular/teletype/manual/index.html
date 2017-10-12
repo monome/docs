@@ -164,6 +164,9 @@
 <p>To access the value that the turtle operator points to, use <code>@</code>, which can also set the value with an argument.</p>
 <p>The turtle can be constrained on the tracker grid by setting its fence with <code>@FX1</code>, <code>@FY1</code>, <code>@FX2</code>, and <code>@FY2</code>, or by using the shortcut operator <code>@F x1 y1 x2 y2</code>. When the turtle reaches the fence, its behaviour is governed by its <em>fence mode</em>, where the turtle can simply stop (<code>@BUMP</code>), wrap around to the other edge (<code>@WRAP</code>), or bounce off the fence and change direction (<code>@BOUNCE</code>). Each of these can be set to <code>1</code> to enable that mode.</p>
 <p>Finally, the turtle can be displayed on the tracker screen with <code>@SHOW 1</code>, where it will indicate the current cell by pointing to it from the right side with the <code>&lt;</code> symbol.</p>
+<h4 id="new-mods-every-skip-and-other-plus-sync">New Mods: EVERY, SKIP, and OTHER, plus SYNC</h4>
+<p>These mods allow rhythmic division of control flow. EVERY X: executes the post-command once per X at the Xth time the script is called. SKIP X: executes it every time but the Xth. OTHER: will execute when the previous EVERY/SKIP command did not.</p>
+<p>Finally, SYNC X will set each EVERY and SKIP counter to X without modifying its divisor value. Using a negative number will set it to that number of steps before the step. Using SYNC -1 will cause each EVERY to execute on its next call, and each SKIP will not execute.</p>
 <h4 id="script-line-commenting">Script Line &quot;Commenting&quot;</h4>
 <p>Individual lines in scripts can now be disabled from execution by highlighting the line and pressing <code>ALT-/</code>. Disabled lines will appear dim. This status will persist through save/load from flash, but will not carry over to scenes saved to USB drive.</p>
 <h3 id="new-operators">New Operators</h3>

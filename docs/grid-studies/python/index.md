@@ -1,3 +1,8 @@
+----
+ -layout: page
+ -permalink: /docs/grid-studies/python/
+----
+
 # Grid Studies: Python
 
 By design the monome grid does nothing on its own. You the user assign it purpose and meaning: instrument, experiment, tool, toy... choose your own adventure. This grid is *intended* to be reimagined. Here we set forth to impart some introductory knowledge: potential energy for radical creative freedom.

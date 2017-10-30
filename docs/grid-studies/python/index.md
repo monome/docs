@@ -1,8 +1,3 @@
----
-layout: page
-permalink: /docs/grid-studies/python/
----
-
 # Grid Studies: Python
 
 By design the monome grid does nothing on its own. You the user assign it purpose and meaning: instrument, experiment, tool, toy... choose your own adventure. This grid is *intended* to be reimagined. Here we set forth to impart some introductory knowledge: potential energy for radical creative freedom.
@@ -13,13 +8,11 @@ Python is is a widely used general-purpose, high-level programming language. Its
 
 This tutorial assumes a basic familiarity with the Python langauge and its programing workflow. If you're very new to Python, check out the [Python Tutorial](https://docs.python.org/3/tutorial/).
 
-Python 3.4 is required. See [python.org](https://www.python.org/). Python 3.3 with the `asyncio` module will also work.
-
-Install asyncio (for Python 3.3): `pip3 install asyncio`
+Python 3.5 is required. See [python.org](https://www.python.org/).
 
 Install pymonome: `pip3 install pymonome`
 
-Download the code examples here: [files/grid-studies-python.zip](files/grid-studies-python.zip)
+Download the code examples here: [github.com/monome/grid-studies-python/releases/latest](https://github.com/monome/grid-studies-python/releases/latest)
 
 ## 1. Connect and Basics
 
@@ -31,45 +24,67 @@ Download the code examples here: [files/grid-studies-python.zip](files/grid-stud
 import asyncio
 import monome
 
-class GridStudies(monome.Monome):
+class GridStudies(monome.App):
     def __init__(self):
         super().__init__('/monome')
 
-    def grid_key(self, x, y, s):
+    def on_grid_key(self, x, y, s):
         print("key:", x, y, s)
-        self.led_level_set(x, y, s*15)
+        self.grid.led_level_set(x, y, s*15)
 
 if __name__ == '__main__':
+    grid_studies = GridStudies()
+
     loop = asyncio.get_event_loop()
-    asyncio.async(monome.create_serialosc_connection(GridStudies))
+    asyncio.async(monome.SerialOsc.create(loop=loop, autoconnect_app=grid_studies))
     loop.run_forever()
 ```
 
 The `pymonome` library simplifies communication with the grid.
 
-Here the first monome device found is attached, the important line being within the `__main__` code towards the bottom:
+Note that the example here consists of two parts. First, we describe the class `GridStudies` that inherits `monome.App`. This class defines the behavior and properties of our grid-based application. Next, we setup the *serialosc* client, instantiate the application and start the main loop.
+
+Creating application instance is actually the first step our program takes:
 
 ```python
-asyncio.async(monome.create_serialosc_connection(GridStudies))
+grid_studies = GridStudies()
 ```
 
-The library queries *serialosc* and connects the first found device to our class `GridStudies` which is the primary definition of this application.
+Next, we create the event loop:
+
+```python
+loop = asyncio.get_event_loop()
+```
+
+The next line is a bit tricky. We're creating a *serialosc* client by calling a special method `monome.SerialOsc.create` passing it our event loop and the app via `autoconnect_app` argument. The latter instructs `SerialOsc` to connect the given application to a grid as soon as the grid is plugged in. Also note that creating *serialosc* client is an asynchronous operation. `SerialOsc.create` method returns a _coroutine_, so we can't call it directly. Thus, we also schedule the coroutine execution using `asyncio.async()`.
+
+```python
+asyncio.async(monome.SerialOsc.create(loop=loop, autoconnect_app=grid_studies))
+```
+
+Finally, we start our main loop with the last line:
+
+```python
+loop.run_forever()
+```
+
+After the loop is started, the library creates a *serialosc* client and connects the first discovered device to our `GridStudies` app which is the primary definition of this application.
 
 For a detailed description of how the *serialosc* mechanism and protocol work, see [monome.org/docs/tech:osc](http://monome.org/docs/tech:osc).
 
-We initialize our class:
+Let's take a look at our application class:
 
 ```python
-class GridStudies(monome.Monome):
+class GridStudies(monome.App):
     def __init__(self):
         super().__init__('/monome')
 ```
 
-The only argument specifies the *prefix* (in this case, `/monome`) which is attached to all OSC messages exchanged with serialosc. For most cases we simply use `/monome` as a default.
+The constructor here simply calls the parent constructor and its only argument specifies the *prefix* (in this case, `/monome`) which is attached to all OSC messages exchanged with serialosc. For most cases we simply use `/monome` as a default.
 
 ### 1.1 Key input
 
-The library calls the function `grid_key()` upon receiving input from the grid. It has three parameters.
+The library calls the method `on_grid_key()` upon receiving input from the grid. It has three parameters.
 
     x : horizontal position (0-15)
     y : vertical position (0-7)
@@ -78,16 +93,16 @@ The library calls the function `grid_key()` upon receiving input from the grid. 
 Below we define the key function and simply print out incoming data.
 
 ```python
-def grid_key(self, x, y, s):
+def on_grid_key(self, x, y, s):
     print("key:", x, y, s)
 ```
 
 ### 1.2 LED output
 
-We can set an LED value with the `led_level_set()` function. Below we set (0,0) to full brightness (15).
+`GridStudies` is inherited from `monome.App` which is a base class for grid-based applications. It exposes the grid via the `grid` property so we can actually do something with the grid, for example set a an LED value by calling `self.grid.led_level_set()`.
 
 ```python
-self.led_level_set(x, y, s*15)
+self.grid.led_level_set(x, y, s*15)
 ```
 
 Here we send a new LED update per key event. Since `s` is either 0 or 1, when we multiply it by 15 we get off or full brightness. We set the LED location according to the position incoming key press, x and y.
@@ -109,34 +124,35 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 We will have grid display refresh on a timer, which will later also serve as the play head. Below is the basic structure that our code will fit into:
 
 ```python
-def ready(self):
+def on_grid_ready(self):
     # ...
     asyncio.async(self.play())
 
-@asyncio.coroutine
-def play(self):
+async def play(self):
     while True:
         # ...
         self.draw()
-        yield from asyncio.sleep(0.1)
+        await asyncio.sleep(0.1)
 ```
 
-The while loop within the `play()` function will be executed every `0.1` seconds. `self.draw()` is where we refresh the grid display.
+Note, that we define `play()` method with the `async` keyword. Thus, calling play() will return a coroutine, which we can schedule for execution using `asyncio.async(self.play())`.
+
+The body of the while loop within the `play()` function will be executed every `0.1` seconds. `self.draw()` is where we refresh the grid display.
 
 Key data will be processed as it comes in.
 
-Furthermore, we'll use a subclass called `LedBuffer` for managing the display state. This section creates a buffer based on grid size:
+Furthermore, we'll use a subclass called `GridBuffer` for managing the display state. This section creates a buffer based on grid size:
 
 ```python
-def ready(self):
-    self.buffer = monome.LedBuffer(self.width, self.height)
+def on_grid_ready(self):
+    self.buffer = monome.GridBuffer(self.grid.width, self.grid.height)
 ```
 
 Instead of updating single LEDs at a time, we'll draw the entire grid and then render that to the hardware:
 
 ```python
 # update grid
-buffer.render(self)
+buffer.render(self.grid)
 ```
 
 First let's make a bank of toggles for the sequencer.
@@ -148,13 +164,13 @@ First let's make a bank of toggles for the sequencer.
 First we'll create a new array called `step` that can hold 6 rows of step data, inside `ready()`:
 
 ```python
-self.step = [[0 for col in range(self.width)] for row in range(6)]
+self.step = [[0 for col in range(self.grid.width)] for row in range(6)]
 ```
 
 On key input we'll look for key-down events in the top six rows:
 
 ```python
-def grid_key(self, x, y, s):
+def on_grid_key(self, x, y, s):
     # toggle steps
     if s == 1 and y < 6:
         self.step[y][x] ^= 1
@@ -165,10 +181,10 @@ We will build the LED display from scratch each time we need to refresh. This wi
 
 ```python
 def draw(self):
-    buffer = monome.LedBuffer(self.width, self.height)
+    buffer = monome.GridBuffer(self.grid.width, self.grid.height)
 
     # display steps
-    for x in range(self.width):
+    for x in range(self.grid.width):
         for y in range(6):
             buffer.led_level_set(x, y, self.step[y][x] * 11)
 ```
@@ -182,9 +198,9 @@ That'll get us started.
 On each iteration inside `play()` we process the next step, which in this case simply means incrementing `play_position`. This value must be wrapped to 0 if it's at the end.
 
 ```python
-def play(self):
+async def play(self):
     while True:
-        if self.play_position == self.width - 1:
+        if self.play_position == self.grid.width - 1:
             self.play_position = 0
         else:
             self.play_position += 1
@@ -193,14 +209,14 @@ def play(self):
 The playback rate is controlled by the time interval between `play()` iterations:
 
 ```python
-yield from asyncio.sleep(0.1)
+await asyncio.sleep(0.1)
 ```
 
 For the redraw we add highlighting for the play position:
 
 ```python
 # display steps
-for x in range(self.width):
+for x in range(self.grid.width):
     # highlight the play position
     if x == self.play_position:
         highlight = 4
@@ -223,7 +239,7 @@ Drawing the trigger row happens entirely in the `draw()`:
 
 ```python
 # draw trigger bar and on-states
-for x in range(self.width):
+for x in range(self.grid.width):
     buffer.led_level_set(x, 6, 4)
 
 for y in range(6):
@@ -276,11 +292,11 @@ elif y == 7:
 We've added two variables, `cutting` and `next_position`. Check out the changed code where we check the timer:
 
 ```python
-def play(self):
+async def play(self):
     while True:
         if self.cutting:
             self.play_position = self.next_position
-        elif self.play_position == self.width - 1:
+        elif self.play_position == self.grid.width - 1:
             self.play_position = 0
         else:
             self.play_position += 1
@@ -295,10 +311,10 @@ Now, when pressing keys on the bottom row it will cue the next position to be pl
 Lastly, we'll implement setting the loop start and end points with a two-press gesture: pressing and holding the start point, and pressing an end point while still holding the first key. We'll need to add a variable to count keys held, one to track the last key pressed, and variables to store the loop positions.
 
 ```python
-def ready(self):
+def on_grid_ready(self):
     ...
     self.loop_start = 0
-    self.loop_end = self.width - 1
+    self.loop_end = self.grid.width - 1
     self.keys_held = 0
     self.key_last = 0
 ```
@@ -328,11 +344,11 @@ elif s == 1 and self.keys_held == 2:
 We then modify the position change code:
 
 ```python
-def play(self):
+async def play(self):
     while True:
         if self.cutting:
             self.play_position = self.next_position
-        elif self.play_position == self.width - 1:
+        elif self.play_position == self.grid.width - 1:
             self.play_position = 0
         elif self.play_position == self.loop_end:
             self.play_position = self.loop_start

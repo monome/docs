@@ -1,7 +1,7 @@
-----
- -layout: page
- -permalink: /docs/grid-studies/python/
-----
+---
+layout: page
+permalink: /docs/grid-studies/python/
+---
 
 # Grid Studies: Python
 

@@ -95,9 +95,14 @@ While pressing the left most key in a row, the rows that it will *reset* are sho
 
 Holding the leftmost (*link*) key in a row, then adding the second to left key will display that row's *rule* and destination. This *rule* can change the *count* of the destination row, within that rows chosen *range*.
 
-Select the destination of a rule by pressing column 6/7. Change the rule by pressing the right half of the grid. Select vertically and a glyph is displayed. Most *rules* require a *range* to be selected.
+Select the destination of a rule by pressing column 5 or 6 of the row the rule should effect. The column selection allows the rule to effect the position, speed or both, 
 
-Define a *range* by holding a count and selecting another position. this defines the maximum and minumum.
+* Column 5: the rule effects the position.
+* Column 6: the rule effects the speed.
+
+Change the rule by pressing the right half of the grid. Select vertically and a glyph is displayed. Most *rules* require a *range* to be selected.
+
+Define a *range* by holding a count and selecting another position. this defines the maximum and minimum.
 
 By default the "increment" rule is selected. On each execution, count will be increased. If max is hit, the next execution will be the minimum.
 

@@ -55,19 +55,11 @@ Power consumption:
 
 Connect your monome grid (via SWITCH if used) to the Meadowphysics panel. Eight counters are represented vertically on the grid, echoed onto the eight output jacks on the panel. As each counter reaches the left edge of the grid, it outputs a trigger as indicated by the panel led, and is reset to its starting *Count*. Turn the *clock* knob to watch the speed of the counters advance faster or slower.
 
-![Position and Trigger](images/overview.png)
-> Above: *Count* is indicated by the dim bar in the row. The bright led shows the current *Position* as incremented by the clock. When reaching  the left edge an *Event* is created, at which point the *Position* resets to *Count*.
-TODO: Need updated image above
-
 Each row's timing, or *count*, is set by a press along the given row, excluding the far left column.
 
 Hold the leftmost key to see a row's configuration. The row on which you hold the leftmost key is the *source*.
 
 ### Row Configuration
-
-![](images/grid_MP_RESET-OUTPUT-SPEEDS_1.2.png)
-
-TODO: Change above image
 
 Press and hold the left column to configure that row:
 

@@ -24,3 +24,9 @@ the [max 7 monome package](/docs/app/package) is a collection of applications an
 see the [applications list](/docs/app) for several more.
 
 ## [help!](/docs/help)
+
+when seeking setup help be sure to include:
+
+- which grid or arc [edition](/docs/editions) you're using
+- which OS and version (ie, mac os 10.13.12)
+- what you've tried, details about what is not working

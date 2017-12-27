@@ -290,4 +290,4 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
 
 This tutorial was created by [Trent Gill](http://whimsicalraps.com) for [monome.org](monome.org).
 
-Contributions welcome. Submit a pull request to [github.com/monome/grid-studies-pd](https://github.com/monome/grid-studies-pd) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).

@@ -1,28 +1,35 @@
-var grid = require('monome-grid')();
+const monomeGrid = require('monome-grid');
 
-// initialize 2-dimensional led array
-var led = [];
-for (var y=0;y<8;y++) {
-  led[y] = [];
-  for (var x=0;x<16;x++)
-    led[y][x] = 0;
-}
+async function run() {
+  let grid = await monomeGrid(); // optionally pass in grid identifier
 
-var dirty = true;
 
-// refresh leds with a pattern
-function refresh() {
-  if(dirty) {
-    grid.refresh(led);
-    dirty = false;
+  // initialize 2-dimensional led array
+  let led = [];
+  for (let y=0;y<8;y++) {
+    led[y] = [];
+    for (let x=0;x<16;x++)
+      led[y][x] = 0;
   }
+
+  let dirty = true;
+
+  // refresh leds with a pattern
+  let refresh = function() {
+    if(dirty) {
+      grid.refresh(led);
+      dirty = false;
+    }
+  }
+
+  // call refresh() function 60 times per second
+  setInterval(refresh, 1000 / 60);
+
+  // set up key handler
+  grid.key((x, y, s) => {
+    led[y][x] = s * 15;
+    dirty = true;
+  });
 }
 
-// call refresh() function 60 times per second
-setInterval(refresh, 1000 / 60);
-
-// set up key handler
-grid.key(function (x, y, s) {
-  led[y][x] = s * 15;
-  dirty = true;
-});
+run();

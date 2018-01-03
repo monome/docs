@@ -392,15 +392,15 @@ We've added two variables, `cutting` and `next_position`. Check out the changed 
 
 ```javascript
 if(timer == STEP_TIME) {
-	if(cutting)
-		play_position = next_position;
-	else if(play_position == 15)
-		play_position = 0;
-	else 
-		play_position++;
-		
-	cutting = false;
-// ...
+  if(cutting)
+    play_position = next_position;
+  else if(play_position == 15)
+    play_position = 0;
+  else 
+    play_position++;
+
+  cutting = false;
+  // ...
 ```
 
 Now, when pressing keys on the bottom row it will cue the next position to be played. Note that we set `cutting = false` after each cycle so that each press only affects the timer once.
@@ -429,20 +429,20 @@ We'll then use the `keys_held` counter to do different actions:
 ```javascript
 // cut and loop
 else if(y == 7) {
-	// track number of keys held
-	keys_held = keys_held + (s*2) - 1;
-	    
-	// cut
-	if(s == 1 && keys_held == 1) {
-		cutting = true;
-		next_position = x;
-		key_last = x;
-	}
-	// set loop points
-	else if(s == 1 && keys_held == 2) {
-		loop_start = key_last;
-		loop_end = x;
-	}
+  // track number of keys held
+  keys_held = keys_held + (s*2) - 1;
+
+  // cut
+  if(s == 1 && keys_held == 1) {
+    cutting = true;
+    next_position = x;
+    key_last = x;
+  }
+  // set loop points
+  else if(s == 1 && keys_held == 2) {
+    loop_start = key_last;
+    loop_end = x;
+  }
 }
 ```
 
@@ -450,14 +450,14 @@ We then modify the position change code:
 
 ```javascript
 if(timer == STEP_TIME) {
-	if(cutting)
-		play_position = next_position;
-	else if(play_position == 15)
-		play_position = 0;
-	else if(play_position == loop_end)
-		play_position = loop_start;
-	else 
-		play_position++;
+  if(cutting)
+    play_position = next_position;
+  else if(play_position == 15)
+    play_position = 0;
+  else if(play_position == loop_end)
+    play_position = loop_start;
+  else 
+    play_position++;
 ```
 
 Done!

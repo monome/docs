@@ -402,4 +402,4 @@ Done!
 
 This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](monome.org). Huge thanks to Raja Das for his very extensive [Monoming with SuperCollider Tutorial](http://monome.org/docs/dev:supercollider_tutorial).
 
-Contributions welcome. Submit a pull request to [github.com/monome/grid-studies-sc](https://github.com/monome/grid-studies-sc) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).

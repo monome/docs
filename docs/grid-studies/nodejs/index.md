@@ -613,4 +613,4 @@ The *monome-grid* library was written and is maintained by [Tom Dinchak](https:/
 
 This tutorial was created by [Tom Dinchak](https://soundcloud.com/phortran) and [Tom Armitage](https://tomarmitage.com) for [monome.org](monome.org).
 
-Contributions welcome. Submit a pull request to [github.com/monome/grid-studies-nodejs](https://github.com/monome/grid-studies-nodejs) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).

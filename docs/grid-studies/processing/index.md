@@ -439,4 +439,4 @@ Done!
 
 This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](monome.org).
 
-Contributions welcome. Submit a pull request to [github.com/monome/grid-studies-processing](https://github.com/monome/grid-studies-processing) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).

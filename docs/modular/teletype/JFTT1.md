@@ -25,7 +25,7 @@ Just Type comes pre-installed since Just Friends v3 (late 2017). Get the update 
 
 Just Type also requires [Teletype 2.0+](https://monome.org/docs/modular/update/). Any 2.x+ commands in the accompanying musical examples will be explained and hyperlinked to reference points in the [manual](https://monome.org/docs/modular/teletype/manual/).
 
-And of course you'll need to connect an ii cable between the TT and JF. If you have more than 3 modules on your ii bus you will likely need a TT bus board to ensure the electrical levels are correct. 
+And of course you'll need to connect an [ii cable] (https://market.monome.org/collections/other/products/ii-cable) between the TT and JF. If you have more than 3 modules on your ii bus you will likely need a [TT bus board] (https://market.monome.org/collections/other/products/tt-busboard) to ensure the electrical levels are correct. 
 
 ## Practical Magic
 
@@ -160,18 +160,18 @@ M 120
 CV.SLEW 2 3000
 
 #P
-4	 16	  19	11
-7	 7	  0		12
-0	 12	  11	16
-11	 7	  4		23
-19	 23	  7		19
+4   16  19  11
+7   7   0   12
+0   12  11  16
+11  7   4   23
+19  23  7   19
 ```
 
 ## Reference
 
-| OP  |  Description | nb |
-|:------------- |:---------------|:---------------|
-| `JF.TR x y`   | set channel `x` (`1`-`6`, `0` all) to state `y` (`1`/`0`) | *sustain* requires `JF.TR x 0` to release
+OP | Description | nb
+------------- | ------------- | -------------
+`JF.TR x y`   | set channel `x` (`1`-`6`, `0` all) to state `y` (`1`/`0`) | *sustain* requires `JF.TR x 0` to release
 
 ## Just Type Studies Continued
 

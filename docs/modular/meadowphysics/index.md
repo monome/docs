@@ -23,11 +23,11 @@ A monome grid is plugged into the front panel of the module, becoming a complete
 
 Meadowphysics is composed of eight counters, one per row, falling toward zero. When a counter reaches zero, an *Event* is triggered. *Events* can send CV triggers through the numbered jack associated with the row, toggle the on / off state of the associated jack, reset the row or any other row's count, or execute and apply a rule to itself or another counter.
 
-Each counter is configured via the main grid interface, setting the number of counts per row before an event is created. The internal clock, or externally patched clock input, can be divided per counter, creating a rhythmic base to build tangled polyrhythmic structures.
+Each counter is configured via the main grid interface, setting the number of counts per row before an event is created. The internal clock, or externally patched clock input, can be divided per counter.
 
 Each counter can manipulate any other row. Any combination of cross-assignments is possible, enabling the intuitive creation of very complicated long-form mutating polyrhythms.
 
-When counters hit zero and create events, they can also effect *Rules* on themselves or other counters. The length of the effected counter, normally set by the grid, can be reassigned by these Rules. Rules can increment, decrement or randomize Count, amongst others. Interlinking these Rules between different counters, long evolving patterns will emerge.
+When counters hit zero and create events, they can also trigger *Rules* on themselves or other counters. The length of the effected counter, normally set by the grid, can be reassigned by these Rules. Rules can increment, decrement or randomize Count, amongst others. Interlinking these Rules between different counters, long evolving patterns will emerge.
 
 Through carefully balanced interlinked counters and rules, complex rhythms can be created that push and pull in ways not associated with digital sequences. These non-linear, rhizomatic sequences become particularly interesting when they respond to user input, allowing one to guide the structure into musical territory.
 
@@ -53,7 +53,7 @@ Power consumption:
 
 (Hint: video tutorial at the bottom).
 
-Connect your monome grid (via SWITCH if used) to the Meadowphysics panel. Eight counters are represented vertically on the grid, echoed onto the eight output jacks on the panel. As each counter reaches the left edge of the grid, it outputs a trigger as indicated by the panel led, and is reset to its starting *Count*. Turn the *clock* knob to watch the speed of the counters advance faster or slower.
+Connect your monome grid (via SWITCH or offworld usb if used) to the Meadowphysics panel. Eight counters are represented vertically on the grid, echoed onto the eight output jacks on the panel. As each counter reaches the left edge of the grid, it outputs a trigger as indicated by the panel led, and is reset to its starting *Count*. Turn the *clock* knob to watch the speed of the counters advance faster or slower.
 
 Each row's timing, or *count*, is set by a press along the given row, excluding the far left column.
 
@@ -78,7 +78,7 @@ right half of grid: speeds
     rightwards is slower, as clock division. number of ticks to wait per countdown
         can specify range of speeds, also by default incrementing
 ```
-
+![Row configuration grid image](images/grid_MP_RESET-OUTPUT-SPEEDS_1.2.png)
 ### Count, Position & Clock
 
 *Count* is indicated by the dim bar in each row. It represents the number of clock pulses this row requires before creating its own event. Pressing a key will change the row's *count* and reset the countdown *position* to this new maximum. *Count* moves once per clock pulse, divided by the rows clock division. Set the clock division by holding rows left most button, then pressing any key on the right half of the grid. The further right the clock divider selection is, the slower the count will move for that row.
@@ -95,7 +95,7 @@ While pressing the left most key in a row, the rows that it will *reset* are sho
 
 Holding the leftmost (*link*) key in a row, then adding the second to left key will display that row's *rule* and destination. This *rule* can change the *count* of the destination row, within that rows chosen *range*.
 
-Select the destination of a rule by pressing column 5 or 6 of the row the rule should effect. The column selection allows the rule to effect the position, speed or both, 
+Select the destination of a rule by pressing column 5 or 6 of the row the rule should effect. The column selection allows the rule to effect the position, speed or both,
 
 * Column 5: the rule effects the position.
 * Column 6: the rule effects the speed.
@@ -117,6 +117,7 @@ Other rules do different things, listed from top to bottom:
 * pole: go to min or max, whichever is furthest away.
 * stop: stop.
 
+![Grid rules image](images/grid_MP_RULE_GLYPHS_1.2.png)
 ## Preset
 
 Entire collections of sixteen patterns can be saved to internal flash. On power-up the most recently saved set will be recalled and will play instantly.

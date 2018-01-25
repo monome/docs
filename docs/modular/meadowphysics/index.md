@@ -122,8 +122,7 @@ Other rules do different things, listed from top to bottom:
 
 Entire collections of sixteen patterns can be saved to internal flash. On power-up the most recently saved set will be recalled and will play instantly.
 
-![Preset](images/preset.png)
-
+![grid presets image](images/grid_PRESETS_1.2.png)
 To access the memory system, push the key next to the USB port on the module's panel. The display on the grid will change to display the *Preset* system. Either storage locations are accessed from the left most column. The current Preset is indicated with a bright led.
 
 - Press a key in the left column to select a *Preset*.

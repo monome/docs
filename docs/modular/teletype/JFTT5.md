@@ -3,7 +3,7 @@ layout: page
 permalink: /docs/modular/teletype/jt-5/
 ---
 
-<div class="div"><iframe width="860" height="484" src="https://www.youtube.com/embed/PF7gS-sXw_k?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+<div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/PF7gS-sXw_k?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
 ## Geode (abstract)
 

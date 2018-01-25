@@ -7,7 +7,7 @@ permalink: /docs/modular/teletype/jt-2/
 
 ## Locomotion
 
-One of the most notable aspects of Just Friends is its RUN jack. Simultaneously a switch and a lever, it shifts functionality and equations with the mere presence of a patch cable. Negative and positive voltages further affect behaviors. Modes are determined by the *sound/shape* and *transient/sustain/cycle* switches on the physical unit.
+One of the most notable aspects of Just Friends is its RUN jack. Simultaneously a switch and a lever, it shifts functionality and equations with the mere presence of a patch cable. Negative and positive voltages further affect behaviors. Modes are determined by the *sound / shape* and *transient / sustain / cycle* switches on the physical unit.
 
 Just Type can activate and modulate the RUN jack without a physical connection:
 
@@ -82,7 +82,9 @@ Just Friends is set to *shape/transient* for *SHIFT*.
 
 In the `M` script, we're again making use of `EVERY x:` commands. This time, to stagger the execution of CV note commands between two external oscillators against randomly selected sets of RUN voltage commands and CV offsets.
 
-The TIME knob changes the rhythmic divisions. It might be worthwhile to expand SECRET HANDSHAKE by modulating TIME with a physical cable from one of Teletype’s free CV outputs.
+*I*, *4N*, *5N* and *6N* are all patched to control dynamics (VCA, LPG and VCF). The TIME knob changes the rhythmic divisions of each.
+
+It might be worthwhile to expand SECRET HANDSHAKE by modulating TIME with a physical cable from one of Teletype’s free CV outputs.
 
 ```
 #1
@@ -125,13 +127,13 @@ JF.RMODE 1
 0	 7	  0 	0
 4	 11	  0		0
 7	 14	  0 	0
-11	 18   0	    0
+11 18   0	  0
 ```
 
 ## Reference
 
-| OP  |  Description | nb |
-|:------------- |:---------------|:---------------|
+| OP  |  Description | nb
+|------------- | ------------- | -------------
 | `JF.VTR x y`   | trigger channel `x` (`1`-`6`, `0` all) with velocity `y` | `y` expects `V 1`-`V 10`, mute with `V 0`
 | `JF.RMODE x`	| non-zero `x` activates RUN mode, `0` deactivates
 | `JF.RUN x`		| apply `x` volts to RUN | `y` expects `V -5` to `V 5`. requires `JF.RMODE 1`

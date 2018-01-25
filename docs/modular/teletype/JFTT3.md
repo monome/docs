@@ -19,7 +19,7 @@ Just Type provides familiar points of entry with Teletype's `N`, `V` and `VV`:
 
 ## Rational thinking
 
-INTONE provides a compass to navigate a landscape of (East Village) factory-set ratios. In *shape*, these are demarcated by the numbered *N* outputs; eg *2N* & *3N* provide two:three ratios or rhythms. In *sound*, these are the first six elements of the harmonic series. At INTONE's CCW and CW extremes, the outs pulse or sing this ratio low or high, with various detunings available along the curve.
+INTONE provides a compass to navigate a landscape of factory-set ratios. In *shape*, these are demarcated by the numbered *N* outputs; eg *2N* & *3N* provide two:three ratios or rhythms. In *sound*, these are the first six elements of the harmonic series. At INTONE's CCW and CW extremes, the outs pulse or sing this ratio low or high, with various detunings available along the curve.
 
 Just Type allows the synthesist to free these voices from their metropolitan assumptions and explore new tuning ratios:
 
@@ -84,20 +84,20 @@ JF.RMODE 1
 X 5
 
 #P
--2	 0	  0	    0
--3	 0	  0		0
--2	 0	  0	    0
-5	 0	  0		0
-3	 0	  0	    0
-2	 0	  0		0
+-2	0	  0	  0
+-3	0	  0		0
+-2  0	  0	  0
+5	  0	  0		0
+3	  0	  0   0
+2	  0	  0		0
 ```
 
 ## Reference
 
-| OP  |  Description | nb |
-|:------------- |:---------------|:---------------|
-| `JF.SHIFT x` | shift the base rate (TIME) by `x` volts/semitones
-| `JF.TUNE x y z` | adjust the tuning ratio `y`:`z` of channel `x` (1-6). | recall defaults with `JF.TUNE 0 0 0`, save custom ratios across power cycles with `JF.TUNE -1 0 0`
+| OP | Description | nb |
+| ------------- | ------------- | ------------- |
+|`JF.SHIFT x` | shift the base rate (TIME) by `x` volts/semitones |
+|`JF.TUNE x y z` | adjust the tuning ratio `y`:`z` of channel `x` (1-6). | recall defaults with `JF.TUNE 0 0 0`, save custom ratios across power cycles with `JF.TUNE -1 0 0` |
 
 ## Just Type Studies Continued
 

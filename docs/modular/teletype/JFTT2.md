@@ -46,7 +46,7 @@ You might find reason to adjust the oomph of the envelopes (and later, audio out
 
 Channels remember their latest *velocity* setting and apply it regardless of *TRIGGER* origin (digital or physical).
 
-`JF.VTR` opens a new realm of dynamicism without the need for physical attenuation.
+`JF.VTR` opens a new realm of dynamics without the need for physical attenuation.
 
 ## Ghost in the machine
 
@@ -68,7 +68,7 @@ JF.RUN V -1		<~~~~ RUN voltage = -1V
 JF.TR 1 1		<~~~~ TRIGGER channel 1, 4 repetitions
 JF.RUN V 4		<~~~~ RUN voltage = 4V
 JF.TR 2 1		<~~~~ TRIGGER channel 2, 25 repetitions
-JF.RUN vv -50	<~~~~ RUN voltage = -0.5V
+JF.RUN vv -50		<~~~~ RUN voltage = -0.5V
 JF.TR 3 1		<~~~~ TRIGGER channel 3, 5 repetitions
 ```
 
@@ -142,4 +142,4 @@ JF.RMODE 1
 
 Part 2: Nudge Nudge
 
-[Part 1: Pratical Magic &larr;](../jt-1)
+[Part 1: Practical Magic &larr;](../jt-1)

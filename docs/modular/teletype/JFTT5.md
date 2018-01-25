@@ -7,7 +7,7 @@ permalink: /docs/modular/teletype/jt-5/
 
 ## Geode (abstract)
 
-*Geode* is a rythmic engine for polymetric & -phasic patterns. This is fundamentally a 'clocked' mode, whether internally or via Teletype. TIME & INTONE maintain their standard free-running influence.
+*Geode* is a rhythmic engine for polymetric & polyphasic patterns. This is fundamentally a 'clocked' mode, whether internally or via Teletype. TIME & INTONE maintain their standard free-running influence.
 
 Notes are a combination of a standard trigger along with a repeat count & subdivision. The former sets the number of envelope events to create, while the latter chooses the rhythmic relation of those repeats to the master timebase. *transient / sustain / cycle* chooses how the repeats' amplitude is modified over time. *sustain* decays to zero-level over the duration of the repeats. *cycle* adds a rhythmic undulation to the envelope level, controlled via the RUN jack. Experiment!
 
@@ -53,7 +53,7 @@ Though streams use *division* to determine their rhythm, events can be queued an
 
 - *divison*: `1` to `32` sets the subdivision and activates quantization, `0` deactivates
 
-Think of `JF.QT` as a performative glue rather than a rigid gridlock. It will slightly affect the timing and 'swing' of events. This is especially wonderful when executive scripts manually or with a fuzz-timed source.
+Think of `JF.QT` as a performative glue rather than a rigid gridlock. It will slightly affect the timing and 'swing' of events. This is especially wonderful when executing scripts manually or with a fuzz-timed source.
 
 ## Example: JUNG LOVE
 
@@ -131,4 +131,4 @@ Part 5: Evens and Odds
 
 [Part 2: Nudge Nudge &larr;](../jt-2)
 
-[Part 1: Pratical Magic &larr;](../jt-1)
+[Part 1: Practical Magic &larr;](../jt-1)

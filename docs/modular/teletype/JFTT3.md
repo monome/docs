@@ -11,7 +11,7 @@ Depending on the mode, TIME adjusts the rate of *shape* or the pitch of *sound*.
 
 External CV broadens this range significantly, allowing for "languid undulations" of 30 seconds to near-ultrasonic audio at 24khz.
 
-Just Type provides familair points of entry with Teletype's `N`, `V` and `VV`:
+Just Type provides familiar points of entry with Teletype's `N`, `V` and `VV`:
 
 `JF.SHIFT pitch`
 
@@ -44,7 +44,7 @@ Permanently save changes to `JF.TUNE` across power cycles with: `JF.TUNE -1 0 0`
 
 Reading up on just intonation will help guide experimentation and illustrate the 'why' behind the results. [A starting point](http://www.kylegann.com/tuning.html).
 
-##Add it up
+## Add it up
 
 It feels worthwhile (though perhaps obvious) to note that `JF.SHIFT` causes global change across each channel, just as CV sequencing the v/8 jack would.
 
@@ -52,7 +52,7 @@ Without Just Type, one could dial INTONE modulation in tandem with v/8 and FM se
 
 `JF.TUNE` really shines by removing immediate barriers and allowing single-channel modulation with straightforward maths. When sequenced alongside `JF.SHIFT`, minimal material can create complex melodies or rhythmic patterns.
 
-##Example: INDEPENDENCE DAY
+## Example: INDEPENDENCE DAY
 
 Featured in the banner video above.
 
@@ -107,4 +107,4 @@ Part 3: Freedom
 
 [Part 2: Nudge Nudge &larr;](../jt-2)
 
-[Part 1: Pratical Magic &larr;](../jt-1)
+[Part 1: Practical Magic &larr;](../jt-1)

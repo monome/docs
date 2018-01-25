@@ -114,4 +114,4 @@ Part 6: Collaboration
 
 [Part 2: Nudge Nudge &larr;](../jt-2)
 
-[Part 1: Pratical Magic &larr;](../jt-1)
+[Part 1: Practical Magic &larr;](../jt-1)

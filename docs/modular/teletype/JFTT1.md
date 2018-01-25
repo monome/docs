@@ -3,13 +3,13 @@ layout: page
 permalink: /docs/modular/teletype/jt-1/
 ---
 
-## Trent's Ingress
+## Whimsical Prelude
 
 *monome's Teletype excites us. Writing simple scripts away from a computer; executing tiny morsels of musical composition. Just Type is a suggestion for how these ideas can be extended & deeply integrated with the elements of synthesis.*
 
 *At its most basic, JT is a set of invisible patch cords. Type a command to create a trigger on your desired channel, in parallel with IRL voltages in JF's TRIGGER ins. RUN mode & voltage can be set directly, not needing a dummy cable or negative-offset capable voltage source.*
 
-*More than a cloaking device, Just Type extends the base functionality of JF into more complex territory. Use Teletype's `N` notation to easily transpose JF in 12-tone musical increments. Every output can be driven with a varying velocity, adding subtlety and movement to sequences. Even the INTONE relationship can be altered away from the default harmonic structure, instead taken in more experimental directions.*
+*More than a cloaking device, Just Type extends the base functionality of JF into more complex territory. Use Teletype's `N` notation to easily transpose JF in 12-tone musical increments. Every output can be driven with a varying velocity, adding subtlety and movement to sequences. Even the INTONE relationship can be altered away from the default harmonic structure and instead taken in more experimental directions.*
 
 *Beyond these general-purpose modifications, Just Type brings two entirely new modalities to JF. Synthesis allows independent polyphonic control over each channel, controlled directly, or dynamically allocated as a 6-voice polysynth. Geode instead pursues rhythmic manipulation of striated repetitions, creating polymetric bursts with dynamic decay.*
 
@@ -21,11 +21,14 @@ Enough! ***Just. Type.***
 
 The commands outlined in this tutorial build on established conventions in the Teletype language. If you’re new to or rusty with Teletype, it’d be best to start with a review of the original [Teletype Studies for 1.x](https://monome.org/docs/modular/teletype/studies-1/).
 
-Just Type comes pre-installed since Just Friends v3 (late 2017). Get the update [here](https://www.whimsicalraps.com/pages/jf-latest-version) if you have an early JF with the silver & green landscape backplate.
+Just Type comes pre-installed since Just Friends v3 (late 2017). Get the update [here](https://www.whimsicalraps.com/pages/jf-latest-version) if you have an early JF with the silver & green landscape backplate.
 
 Just Type also requires [Teletype 2.0+](https://monome.org/docs/modular/update/). Any 2.x+ commands in the accompanying musical examples will be explained and hyperlinked to reference points in the [manual](https://monome.org/docs/modular/teletype/manual/).
 
+And of course you'll need to connect an ii cable between the TT and JF. If you have more than 3 modules on your ii bus you will likely need a TT bus board to ensure the electrical levels are correct. 
+
 ## Practical Magic
+
 Let's start with some old pals: triggers.
 
 In the Teletype language, triggers are controlled with the command `TR` and two parameters: the hardware output (*1* through *4*) and its on/off state (*1* or *0*).
@@ -38,7 +41,7 @@ TR 1 1
 
 You should see the LEDs above each output illuminate as the envelopes blossom in response to the hardware stimulus.
 
-Just Type can create this same response through software, using the ‘invisible cords’ from Trent’s convocation.
+Just Type can create this same response through software, using the ‘invisible cords’ mentioned in the Prelude.
 
 To illustrate, remove the physical patch cable and execute:
 
@@ -174,4 +177,4 @@ CV.SLEW 2 3000
 
 [Part 2: Nudge Nudge&rarr;](../jt-2)
 
-Part 1: Pratical Magic
+Part 1: Practical Magic

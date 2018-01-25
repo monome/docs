@@ -15,7 +15,7 @@ Now, we'll shift into the Teletype-specific modes of Just Type: *Synthesis* and 
 
 Until now, we've only been speaking of modifying or extending the base Just Friends behaviours. It is also possible to change some fundamentals of the JF system, leaning more heavily on the Teletype integration for configuration and control.
 
-These alternate personalities are **Synthesis**, a polyphonic synthesizer; and **Geode**, a rhythm machine. `JF.MODE 1` will take you to these modes respective of the *sound*/*shape* setting. Beware that whilst in JT's alternate modes, things will behave differently to normal & will remain there until power-cycling or exiting with `JF.MODE 0`.
+These alternate personalities are **Synthesis**, a polyphonic synthesizer; and **Geode**, a rhythm machine. `JF.MODE 1` will take you to these modes respective of the *sound/shape* setting. Beware that whilst in JT's alternate modes, things will behave differently to normal & will remain there until power-cycling or exiting with `JF.MODE 0`.
 
 `JF.MODE mode`
 
@@ -43,7 +43,7 @@ JF.SHIFT N -7		<~~~~ retune the engine to F2
 
 This mimics the frequency control that TIME normally has in standard-functionality Just Friends.
 
-By default, *Synthesis* assumes A=440Hz. Want to [align with the universe] (https://attunedvibrations.com/432hz/)?:
+By default, *Synthesis* assumes A=440Hz. Want to [align with the universe](https://attunedvibrations.com/432hz/)?:
 
 `JF.GOD state`
 
@@ -180,4 +180,4 @@ Part 4: Personality Changes
 
 [Part 2: Nudge Nudge &larr;](../jt-2)
 
-[Part 1: Pratical Magic &larr;](../jt-1)
+[Part 1: Practical Magic &larr;](../jt-1)

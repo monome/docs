@@ -259,4 +259,4 @@ See grid-studies-3-5.maxpat for a js implementation of this patch.
 
 This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](monome.org).
 
-Contributions welcome. Submit a pull request to [github.com/monome/grid-studies-max](https://github.com/monome/grid-studies-max) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).

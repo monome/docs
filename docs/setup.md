@@ -9,6 +9,8 @@ permalink: /docs/setup/
 
 serialosc runs in the background and converts serial communication (over USB) into [OSC](/docs/osc). applications can query serialosc to connect to the grid and arc.
 
+**mac: manually install the [FTDI VCP driver](http://www.ftdichip.com/Drivers/VCP/MacOSX/FTDIUSBSerialDriver_v2_4_2.dmg) as the built-in AppleFTDI driver seems broken.**
+
 **windows: manually install the [FTDI VCP driver](http://www.ftdichip.com/Drivers/VCP.htm) (*not* the D2XX driver)**
 
 **linux: see the [linux setup guide](/docs/linux)**
@@ -23,6 +25,8 @@ see the [applications list](/docs/app) for several more.
 
 ## [help!](/docs/help)
 
-if you're using an older version of Mac OS older than 10.9, you will need to manually install the [FTDI VCP driver](http://www.ftdichip.com/Drivers/VCP.htm) (*not* the D2XX driver).
+when seeking setup help be sure to include:
 
-if you have upgraded to Mac OS 10.12 from an earlier version and have the FTDI driver installed, you'll need to remove it. Open a terminal and type `sudo rm -r /Library/Extensions/FTDIUSBSerialDriver.kext` and then reboot.
+- which grid or arc [edition](/docs/editions) you're using
+- which OS and version (ie, mac os 10.13.12)
+- what you've tried, details about what is not working

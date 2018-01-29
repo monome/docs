@@ -55,7 +55,7 @@ The basics of Teletype are quick to learn. The tutorials will get you started an
 
 ## Further
 
-Teletype is [open-source](https://github.com/monome/teletype). Since its initial release Teletype has grown an improved extensively thanks to various contributors including @sam and @scanner_darkly. Additionally the documentation has undergone full reworking.
+Teletype is [open-source](https://github.com/monome/teletype). Since its initial release Teletype has grown an improved extensively thanks to various contributors including @sam, @scanner_darkly, and @sliderule. Additionally the documentation has undergone full reworking.
 
 Discussion happens at [llllllll.co](https://llllllll.co). All contributions are welcome!
 

@@ -3,20 +3,19 @@
 import asyncio
 import monome
 
-class GridStudies(monome.Monome):
+class GridStudies(monome.App):
     def __init__(self):
         super().__init__('/monome')
 
-    def ready(self):
-        self.step = [[0 for col in range(self.width)] for row in range(6)]
+    def on_grid_ready(self):
+        self.step = [[0 for col in range(self.grid.width)] for row in range(6)]
         self.play_position = 0
 
         asyncio.async(self.play())
 
-    @asyncio.coroutine
-    def play(self):
+    async def play(self):
         while True:
-            if self.play_position == self.width - 1:
+            if self.play_position == self.grid.width - 1:
                 self.play_position = 0
             else:
                 self.play_position += 1
@@ -28,16 +27,16 @@ class GridStudies(monome.Monome):
 
             self.draw()
 
-            yield from asyncio.sleep(0.1)
+            await asyncio.sleep(0.1)
 
     def trigger(self, i):
         print("triggered", i)
 
     def draw(self):
-        buffer = monome.LedBuffer(self.width, self.height)
+        buffer = monome.GridBuffer(self.grid.width, self.grid.height)
 
         # display steps
-        for x in range(self.width):
+        for x in range(self.grid.width):
             # highlight the play position
             if x == self.play_position:
                 highlight = 4
@@ -48,7 +47,7 @@ class GridStudies(monome.Monome):
                 buffer.led_level_set(x, y, self.step[y][x] * 11 + highlight)
 
         # draw trigger bar and on-states
-        for x in range(self.width):
+        for x in range(self.grid.width):
             buffer.led_level_set(x, 6, 4)
 
         for y in range(6):
@@ -56,15 +55,17 @@ class GridStudies(monome.Monome):
                 buffer.led_level_set(self.play_position, 6, 15)
 
         # update grid
-        buffer.render(self)
+        buffer.render(self.grid)
 
-    def grid_key(self, x, y, s):
+    def on_grid_key(self, x, y, s):
         # toggle steps
         if s == 1 and y < 6:
             self.step[y][x] ^= 1
             self.draw()
 
 if __name__ == '__main__':
+    grid_studies = GridStudies()
+
     loop = asyncio.get_event_loop()
-    asyncio.async(monome.create_serialosc_connection(GridStudies))
+    asyncio.async(monome.SerialOsc.create(loop=loop, autoconnect_app=grid_studies))
     loop.run_forever()

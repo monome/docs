@@ -11,3 +11,4 @@ permalink: /docs/libraries/
 * [monome-processing](https://github.com/monome/monome-processing) -- Processing
 * [monom](https://github.com/catfact/monom) -- SuperCollider
 * [monome-grid](https://www.npmjs.com/package/monome-grid) -- node.js
+* [pymonome](https://github.com/artfwo/pymonome) -- Python

@@ -11,9 +11,7 @@ permalink: /docs/modular/meadowphysics/
 
 ---
 
-### WARNING: monome modules require high +5v current
-
-Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our very affordable [offworld-1](https://market.monome.org/collections/other) is required.
+*Note: this manual is for version 2 (which also runs on Ansible). Version 1 is [available here](https://monome.org/docs/modular/meadowphysics/v1/).*
 
 ## Introduction
 

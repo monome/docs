@@ -25,7 +25,7 @@ Just Type comes pre-installed since Just Friends v3 (late 2017). Get the update 
 
 Just Type also requires [Teletype 2.0+](https://monome.org/docs/modular/update/). Any 2.x+ commands in the accompanying musical examples will be explained and hyperlinked to reference points in the [manual](https://monome.org/docs/modular/teletype/manual/).
 
-And of course you'll need to connect an [ii cable] (https://market.monome.org/collections/other/products/ii-cable) between the TT and JF. If you have more than 3 modules on your ii bus you will likely need a [TT bus board] (https://market.monome.org/collections/other/products/tt-busboard) to ensure the electrical levels are correct. 
+And of course you'll need to connect an [ii cable](https://market.monome.org/collections/other/products/ii-cable) between the TT and JF. If you have more than 3 modules on your ii bus you will likely need a [TT bus board](https://market.monome.org/collections/other/products/tt-busboard) to ensure the electrical levels are correct. 
 
 ## Practical Magic
 

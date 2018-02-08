@@ -5,9 +5,9 @@ permalink: /docs/modular/teletype/jt-1/
 
 ## Whimsical Prelude
 
-*monome's Teletype excites us. Writing simple scripts away from a computer; executing tiny morsels of musical composition. Just Type is a suggestion for how these ideas can be extended & deeply integrated with the elements of synthesis.*
+*monome's Teletype excites us. Writing simple scripts away from a computer; executing tiny morsels of musical composition. Just Type is a suggestion for how these ideas can be extended & deeply integrated with the elements of synthesis, using our Just Friends module.*
 
-*At its most basic, JT is a set of invisible patch cords. Type a command to create a trigger on your desired channel, in parallel with IRL voltages in JF's TRIGGER ins. RUN mode & voltage can be set directly, not needing a dummy cable or negative-offset capable voltage source.*
+*At its most basic, Just Type (JT) is a set of invisible patch cords. Type a command to create a trigger on your desired channel, in parallel with IRL voltages in Just Friends (JF)'s TRIGGER ins. RUN mode & voltage can be set directly, not needing a dummy cable or negative-offset capable voltage source.*
 
 *More than a cloaking device, Just Type extends the base functionality of JF into more complex territory. Use Teletype's `N` notation to easily transpose JF in 12-tone musical increments. Every output can be driven with a varying velocity, adding subtlety and movement to sequences. Even the INTONE relationship can be altered away from the default harmonic structure and instead taken in more experimental directions.*
 

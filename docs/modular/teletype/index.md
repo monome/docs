@@ -47,6 +47,8 @@ The basics of Teletype are quick to learn. The tutorials will get you started an
 
 * [Teletype Manual](/docs/modular/teletype/manual) - full manual, also available as a [pdf](manual.pdf)
 
+* [Just Type Studies](/docs/modular/teletype/jt-1) - a guided series of tutorials on integrating Teletype with Just Friends
+
 * [PDF command reference](TT_commands_2.1.pdf)
 * [PDF key reference](TT_keys_card_1.3.pdf)
 * [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)

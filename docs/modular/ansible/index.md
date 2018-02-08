@@ -252,7 +252,7 @@ Scales are shared between Kria and Meadowphysics, and are saved to flash wheneve
 
 ### Patterns
 
-Patterns are shown along the top row, with 16 available total.
+Patterns are shown along the top row, with 16 available total. Push a pattern key momentarily to load that pattern. *Hold* a pattern key to store the current pattern into it; it will pulse when the pattern is stored. Remember that loading an 'empty' pattern will effectively clear the current pattern.
 
 ### Time
 

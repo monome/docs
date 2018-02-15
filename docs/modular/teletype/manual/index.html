@@ -50,6 +50,7 @@
                 <ul>
                 <li><a href="#introduction">Introduction</a></li>
                 <li><a href="#whats-new">What's new?</a><ul>
+                <li><a href="#version-2.2">Version 2.2</a></li>
                 <li><a href="#version-2.1">Version 2.1</a></li>
                 <li><a href="#version-2.0">Version 2.0</a></li>
                 </ul></li>
@@ -101,7 +102,7 @@
                 <li><a href="#alphabetical-list-of-ops-and-mods">Alphabetical list of OPs and MODs</a></li>
                 <li><a href="#missing-documentation">Missing documentation</a></li>
                 <li><a href="#changelog">Changelog</a><ul>
-                <li><a href="#vnext">vNEXT</a></li>
+                <li><a href="#v2.2">v2.2</a></li>
                 <li><a href="#v2.1">v2.1</a></li>
                 <li><a href="#v2.0.1">v2.0.1</a></li>
                 <li><a href="#v2.0">v2.0</a></li>
@@ -155,9 +156,29 @@
 <li><p>Current version: 2.1.0 — <a href="https://monome.org/docs/modular/update/">Firmware update procedure</a></p></li>
 </ul>
 <h1 id="whats-new">What's new?</h1>
+<h2 id="version-2.2">Version 2.2</h2>
+<p>Teletype version 2.2 introduces Chaos and Bitwise operators, Live mode view of variables, INIT operator, ability to calibrate CV In and Param knob and set Min/Max scale values for both, a screensaver, Random Number Generator, and a number of fixes and improvements.</p>
+<h3 id="major-new-features">Major new features</h3>
+<h4 id="chaos-operators">Chaos Operators</h4>
+<p>The <code>CHAOS</code> operator provides a new source of uncertainty to the Teletype via chaotic yet deterministic systems. This operator relies on various chaotic maps for the creation of randomized musical events. Chaotic maps are conducive to creating music because fractals contain a symmetry of repetition that diverges just enough to create beautiful visual structures that at times also apply to audio. In mathematics a map is considered an evolution function that uses polynomials to drive iterative procedures. The output from these functions can be assigned to control voltages. This works because chaotic maps tend to repeat with slight variations offering useful oscillations between uncertainty and predictability.</p>
+<h4 id="bitwise-operators">Bitwise Operators</h4>
+<p>Bitwise operators have been added to compliment the logic functions and offer the ability to maximize the use of variables available on the Teletype.</p>
+<p>Typically, when a variable is assigned a value it fully occupies that variable space; should you want to set another you’ll have to use the next available variable. In conditions where a state of on, off, or a bitwise mathematical operation can provide the data required, the inclusion of these operators give users far more choices. Each variable normally contains 16 bits and Bitwise allows you to <code>BSET</code>, <code>BGET</code>, and <code>BCLR</code> a value from a particular bit location among its 16 positions, thus supplying 16 potential flags in the same variable space.</p>
+<h4 id="init">INIT</h4>
+<p>The new op family <code>INIT</code> features operator syntax for clearing various states from the unforgiving INIT with no parameters that clears ALL state data (be careful as there is no undo) to the ability to clear CV, variable data, patterns, scenes, scripts, time, ranges, and triggers.</p>
+<h4 id="live-mode-variable-display">Live Mode Variable Display</h4>
+<p>This helps the user to quickly check and monitor variables across the Teletype. Instead of single command line parameter checks the user is now able to simply press the <code>~ key</code> (Tilde) and have a persistent display of eight system variables.</p>
+<h4 id="screensaver">Screensaver</h4>
+<p>Screen saver engages after 90 minutes of inactivity</p>
+<h4 id="new-operators">New Operators</h4>
+<p>• <code>IN.SCALE min max</code> sets the min/max values of the CV Input jack • <code>PARAM.SCALE min max</code> set the min/max scale of the Parameter Knob • <code>IN.CAL.MIN</code> sets the zero point when calibrating the CV Input jack • <code>IN.CAL.MAX</code> sets the max point (16383) when calibrating the CV Input jack • <code>PARAM.CAL.MIN</code> sets the zero point when calibrating the Parameter Kob • <code>PARAM.CAL.MAX</code> sets the max point (16383) when calibrating the Parameter Kob • <code>R</code> generate a random number • <code>R.MIN</code> set the low end of the random number generator • <code>R.MAX</code> set the upper end of the random number generator</p>
+<h4 id="fixes">Fixes</h4>
+<p>• Multiply now saturates at limits (-32768 / 32767) while previous behavior returned 0 at overflow • Entered values now saturate at Int16 limits which are -32768 / 32767 • Reduced flash memory consumption by not storing TEMP script • I now carries across <code>DEL</code> commands • Corrected functionality of <code>JI</code> (Just Intonation) op for 1V/Oct tuning • Reduced latency of <code>IN</code> op</p>
+<h4 id="improvements">Improvements</h4>
+<p>• Profiling code (optional developer feature) • Screen now redraws only lines that have changed</p>
 <h2 id="version-2.1">Version 2.1</h2>
 <p>Teletype version 2.1 introduces new operators that mature the syntax and capability of the Teletype, as well as several bug fixes and enhancement features.</p>
-<h3 id="major-new-features">Major new features</h3>
+<h3 id="major-new-features-1">Major new features</h3>
 <h4 id="tracker-data-entry-improvements">Tracker Data Entry Improvements</h4>
 <p>Data entry in the tracker screen is now <em>buffered</em>, requiring an <code>ENTER</code> keystroke to commit changes, or <code>SHIFT-ENTER</code> to insert the value. All other navigation keystrokes will abandon data entry. The increment / decrement keystrokes (<code>]</code> and <code>[</code>), as well as the negate keystroke (<code>-</code>) function immediately if not in data entry mode, but modify the currently buffered value in edit mode (again, requiring a commit).</p>
 <h4 id="turtle-operator">Turtle Operator</h4>
@@ -171,7 +192,7 @@
 <p>Finally, SYNC X will set each EVERY and SKIP counter to X without modifying its divisor value. Using a negative number will set it to that number of steps before the step. Using SYNC -1 will cause each EVERY to execute on its next call, and each SKIP will not execute.</p>
 <h4 id="script-line-commenting">Script Line &quot;Commenting&quot;</h4>
 <p>Individual lines in scripts can now be disabled from execution by highlighting the line and pressing <code>ALT-/</code>. Disabled lines will appear dim. This status will persist through save/load from flash, but will not carry over to scenes saved to USB drive.</p>
-<h3 id="new-operators">New Operators</h3>
+<h3 id="new-operators-1">New Operators</h3>
 <p><code>W [condition]:</code> is a new mod that operates as a while loop. The <code>BREAK</code> operator stops executing the current script <code>BPM [bpm]</code> returns the number of milliseconds per beat in a given BPM, great for setting <code>M</code>. <code>LAST [script]</code> returns the number of milliseconds since <code>script</code> was last called.</p>
 <h3 id="new-operator-behaviour">New Operator Behaviour</h3>
 <p><code>SCRIPT</code> with no argument now returns the current script number. <code>I</code> is now local to its corresponding <code>L</code> statement. <code>IF/ELSE</code> is now local to its script.</p>
@@ -183,7 +204,7 @@
 <p>As <code>I</code> is now local to <code>L</code> loops, it is no longer usable across scripts or as a general-purpose variable. As <code>IF/ELSE</code> is now local to a script, scenes that relied on IF in one script and ELSE in another will be functionally broken.</p>
 <h2 id="version-2.0">Version 2.0</h2>
 <p>Teletype version 2.0 represents a large rewrite of the Teletype code base. There are many new language additions, some small breaking changes and a lot of under the hood enhancements.</p>
-<h3 id="major-new-features-1">Major new features</h3>
+<h3 id="major-new-features-2">Major new features</h3>
 <h4 id="sub-commands">Sub commands</h4>
 <p>Several commands on one line, separated by semicolons.</p>
 <p>e.g. <code>CV 1 N 60; TR.PULSE 1</code></p>
@@ -409,7 +430,7 @@ CV X 0</code></pre>
 <td>clear delays, stack and slews</td>
 </tr>
 <tr class="odd">
-<td><code>&lt;alt&gt;-?</code></td>
+<td><code>shift-alt-?</code></td>
 <td>help text, or return to last mode</td>
 </tr>
 <tr class="even">
@@ -541,6 +562,10 @@ CV X 0</code></pre>
 <td>execute command</td>
 </tr>
 <tr class="even">
+<td><code>~</code></td>
+<td>toggle variables</td>
+</tr>
+<tr class="odd">
 <td><code>[</code> / <code>]</code></td>
 <td>switch to edit mode</td>
 </tr>
@@ -1012,7 +1037,13 @@ make sure that the description column is long!
 Pandoc uses the size of the header column to calculate the absolute column widths
 (as Latex requires explict column sizes)
 -->
-<table>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 25%"></col>
+<col style="width: 23%"></col>
+<col style="width: 11%"></col>
+<col style="width: 39%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th>OP</th>
@@ -1053,10 +1084,46 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td>Get the value of IN jack (0-16383)</td>
 </tr>
 <tr class="even">
+<td><strong><code>IN.SCALE min max</code></strong></td>
+<td></td>
+<td></td>
+<td>Set static scaling of the <code>IN</code> CV to between <code>min</code> and <code>max</code>.</td>
+</tr>
+<tr class="odd">
 <td><strong><code>PARAM</code></strong></td>
 <td></td>
 <td><strong><code>PRM</code></strong></td>
 <td>Get the value of PARAM knob (0-16383)</td>
+</tr>
+<tr class="even">
+<td><strong><code>PARAM.SCALE min max</code></strong></td>
+<td></td>
+<td></td>
+<td>Set static scaling of the PARAM knob to between <code>min</code> and <code>max</code>.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>IN.CAL.MIN</code></strong></td>
+<td></td>
+<td></td>
+<td>Reads the input CV and assigns the voltage to the zero point</td>
+</tr>
+<tr class="even">
+<td><strong><code>IN.CAL.MAX</code></strong></td>
+<td></td>
+<td></td>
+<td>Reads the input CV and assigns the voltage to the max point</td>
+</tr>
+<tr class="odd">
+<td><strong><code>PARAM.CAL.MIN</code></strong></td>
+<td></td>
+<td></td>
+<td>Reads the Parameter Knob minimum position and assigns a zero value</td>
+</tr>
+<tr class="even">
+<td><strong><code>PARAM.CAL.MAX</code></strong></td>
+<td></td>
+<td></td>
+<td>Reads the Paramter Knob maximum position and assigns the maximum point</td>
 </tr>
 <tr class="odd">
 <td><strong><code>TR x</code></strong></td>
@@ -1133,6 +1200,43 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <li><em>alias</em>: <strong><code>PRM</code></strong></li>
 </ul>
 <p>Get the value of the PARAM knob. This returns a valuue in the range 0-16383.</p>
+<h3 id="in.cal.min"><code>IN.CAL.MIN</code></h3>
+<ul>
+<li><p><strong><code>IN.CAL.MIN</code></strong></p>
+<ol type="1">
+<li>Connect a patch cable from a calibrated voltage source</li>
+<li>Set the voltage source to 0 volts</li>
+<li>Execute IN.CAL.MIN from the live terminal</li>
+<li>Call IN and confirm the 0 result</li>
+</ol></li>
+</ul>
+<h3 id="in.cal.max"><code>IN.CAL.MAX</code></h3>
+<ul>
+<li><p><strong><code>IN.CAL.MAX</code></strong></p>
+<ol start="5" type="1">
+<li>Set the voltage source to target maximum voltage (10V)</li>
+<li>Execute IN.CAL.MAX from the live terminal</li>
+<li>Call IN and confirm that the result is 16383</li>
+</ol></li>
+</ul>
+<h3 id="param.cal.min"><code>PARAM.CAL.MIN</code></h3>
+<ul>
+<li><p><strong><code>PARAM.CAL.MIN</code></strong></p>
+<ol type="1">
+<li>Turn the PARAM knob all the way to the left</li>
+<li>Execute PARAM.CAL.MIN from the live terminal</li>
+<li>Call PARAM and confirm the 0 result</li>
+</ol></li>
+</ul>
+<h3 id="param.cal.max"><code>PARAM.CAL.MAX</code></h3>
+<ul>
+<li><p><strong><code>PARAM.CAL.MAX</code></strong></p>
+<ol start="4" type="1">
+<li>Turn the knob all the way to the right</li>
+<li>Execute PARAM.CAL.MAX from the live terminal</li>
+<li>Call PARAM and verify that the result is 16383</li>
+</ol></li>
+</ul>
 <h3 id="tr"><code>TR</code></h3>
 <ul>
 <li><strong><code>TR x</code></strong> / <strong><code>TR x y</code></strong></li>
@@ -1515,6 +1619,78 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td><strong><code>BRK</code></strong></td>
 <td>halts execution of the current script</td>
 </tr>
+<tr class="odd">
+<td><strong><code>INIT</code></strong></td>
+<td></td>
+<td></td>
+<td>clears all state data</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.CV x</code></strong></td>
+<td></td>
+<td></td>
+<td>clears all parameters on CV associated with output x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT.CV.ALL</code></strong></td>
+<td></td>
+<td></td>
+<td>clears all parameters on all CV's</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.DATA</code></strong></td>
+<td></td>
+<td></td>
+<td>clears all data held in all variables</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT.P x</code></strong></td>
+<td></td>
+<td></td>
+<td>clears pattern associated with pattern number x</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.P.ALL</code></strong></td>
+<td></td>
+<td></td>
+<td>clears all patterns</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT.SCENE</code></strong></td>
+<td></td>
+<td></td>
+<td>loads a blank scene</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.SCRIPT x</code></strong></td>
+<td></td>
+<td></td>
+<td>clear script number x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT.SCRIPT.ALL</code></strong></td>
+<td></td>
+<td></td>
+<td>clear all scripts</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.TIME x</code></strong></td>
+<td></td>
+<td></td>
+<td>clear time on trigger x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT.TR x</code></strong></td>
+<td></td>
+<td></td>
+<td>clear all parameters on trigger associated with TR x</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.TR.ALL</code></strong></td>
+<td></td>
+<td></td>
+<td>clear all triggers</td>
+</tr>
 </tbody>
 </table>
 <h3 id="if"><code>IF</code></h3>
@@ -1607,6 +1783,16 @@ OTHER: TR.P 2</code></pre>
 <p>Load scene <code>x</code> (0-31).</p>
 <p>Does <em>not</em> execute the <code>I</code> script. Will <em>not</em> execute from the <code>I</code> script on scene load. Will execute on subsequent calls to the <code>I</code> script.</p>
 <p><strong>WARNING</strong>: You will lose any unsaved changes to your scene.</p>
+<h3 id="init-1"><code>INIT</code></h3>
+<ul>
+<li><strong><code>INIT</code></strong></li>
+</ul>
+<p><strong>WARNING</strong>: You will lose all settings when you initialize using <code>INIT</code> - there is NO undo!</p>
+<h3 id="init.data"><code>INIT.DATA</code></h3>
+<ul>
+<li><strong><code>INIT.DATA</code></strong></li>
+</ul>
+<p>Clears the following variables and resets them to default values: A, B, C, D, CV slew, Drunk min/max, M, O, Q, R, T, TR, CV input, and the Paramter knob</p>
 
 <h2 id="maths">Maths</h2>
 <p>Logical operators such as <code>EQ</code>, <code>OR</code> and <code>LT</code> return <code>1</code> for true, and <code>0</code> for false.</p>
@@ -1776,73 +1962,157 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td>right shift <code>x</code> by <code>y</code> bits, in effect divide by <code>2</code> to the power of <code>x</code></td>
 </tr>
 <tr class="odd">
+<td><strong><code>| x y</code></strong></td>
+<td></td>
+<td></td>
+<td>bitwise or <code>x</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>&amp; x y</code></strong></td>
+<td></td>
+<td></td>
+<td>bitwise and <code>x</code> &amp; <code>y</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>^ x y</code></strong></td>
+<td></td>
+<td></td>
+<td>bitwise xor <code>x</code> ^ <code>y</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>~ x</code></strong></td>
+<td></td>
+<td></td>
+<td>bitwise not, i.e.: inversion of <code>x</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>BSET x y</code></strong></td>
+<td></td>
+<td></td>
+<td>set bit <code>y</code> in value <code>x</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>BGET x y</code></strong></td>
+<td></td>
+<td></td>
+<td>get bit <code>y</code> in value <code>x</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>BCLR x y</code></strong></td>
+<td></td>
+<td></td>
+<td>clear bit <code>y</code> in value <code>x</code></td>
+</tr>
+<tr class="even">
 <td><strong><code>ABS x</code></strong></td>
 <td></td>
 <td></td>
 <td>absolute value of <code>x</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>AND x y</code></strong></td>
 <td></td>
 <td><strong><code>&amp;&amp;</code></strong></td>
 <td>logical AND of <code>x</code> and <code>y</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>OR x y</code></strong></td>
 <td></td>
 <td><strong><code>||</code></strong></td>
 <td>logical OR of <code>x</code> and <code>y</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>JI x y</code></strong></td>
 <td></td>
 <td></td>
 <td>just intonation helper, precision ratio divider normalised to 1V</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>SCALE a b x y i</code></strong></td>
 <td></td>
 <td></td>
 <td>scale <code>i</code> from range <code>a</code> to <code>b</code> to range <code>x</code> to <code>y</code>, i.e. <code>i * (y - x) / (b - a)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ER f l i</code></strong></td>
 <td></td>
 <td></td>
 <td>Euclidean rhythm, <code>f</code> is fill (<code>1-32</code>), <code>l</code> is length (<code>1-32</code>) and <code>i</code> is step (any value), returns <code>0</code> or <code>1</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>BPM x</code></strong></td>
 <td></td>
 <td></td>
 <td>milliseconds per beat in BPM <code>x</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>N x</code></strong></td>
 <td></td>
 <td></td>
 <td>converts an equal temperament note number to a value usable by the CV outputs (<code>x</code> in the range <code>-127</code> to <code>127</code>)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>V x</code></strong></td>
 <td></td>
 <td></td>
 <td>converts a voltage to a value usable by the CV outputs (<code>x</code> between <code>0</code> and <code>10</code>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>VV x</code></strong></td>
 <td></td>
 <td></td>
 <td>converts a voltage to a value usable by the CV outputs (<code>x</code> between <code>0</code> and <code>1000</code>, <code>100</code> represents 1V)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>EXP x</code></strong></td>
 <td></td>
 <td></td>
 <td>exponentiation table lookup. <code>0-16383</code> range (V <code>0-10</code>)</td>
 </tr>
+<tr class="odd">
+<td><strong><code>CHAOS x</code></strong></td>
+<td></td>
+<td></td>
+<td>get next value from chaos generator, or set the current value</td>
+</tr>
+<tr class="even">
+<td><strong><code>CHAOS.R x</code></strong></td>
+<td></td>
+<td></td>
+<td>get or set the <code>R</code> parameter for the <code>CHAOS</code> generator</td>
+</tr>
+<tr class="odd">
+<td><strong><code>CHAOS.ALG x</code></strong></td>
+<td></td>
+<td></td>
+<td>get or set the algorithm for the <code>CHAOS</code> generator. 0 = LOGISTIC, 1 = CUBIC, 2 = HENON, 3 = CELLULAR</td>
+</tr>
+<tr class="even">
+<td><strong><code>R</code></strong></td>
+<td></td>
+<td></td>
+<td>generate a random number</td>
+</tr>
+<tr class="odd">
+<td><strong><code>R.MIN x</code></strong></td>
+<td></td>
+<td></td>
+<td>set the lower end of the range from 0 – 32767</td>
+</tr>
+<tr class="even">
+<td><strong><code>R.MAX x</code></strong></td>
+<td></td>
+<td></td>
+<td>set the upper end of the range from 0 – 32767</td>
+</tr>
 </tbody>
 </table>
+<h3 id="mul"><code>MUL</code></h3>
+<ul>
+<li><strong><code>MUL x y</code></strong></li>
+<li><em>alias</em>: <strong><code>*</code></strong></li>
+</ul>
+<p>returns <code>x</code> times <code>y</code>, bounded to integer limits</p>
 <h3 id="and"><code>AND</code></h3>
 <ul>
 <li><strong><code>AND x y</code></strong></li>
@@ -4071,220 +4341,244 @@ Pandoc uses the size of the header column to calculate the absolute column width
 </thead>
 <tbody>
 <tr class="odd">
+<td><strong><code>&amp; x y</code></strong></td>
+<td></td>
+<td></td>
+<td>bitwise and <code>x</code> &amp; <code>y</code></td>
+</tr>
+<tr class="even">
 <td><strong><code>@</code></strong></td>
 <td><strong><code>@ x</code></strong></td>
 <td></td>
 <td>get or set the current pattern value under the turtle</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>@BOUNCE</code></strong></td>
 <td><strong><code>@BOUNCE 1</code></strong></td>
 <td></td>
 <td>get whether the turtle fence mode is BOUNCE, or set it to BOUNCE with 1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>@BUMP</code></strong></td>
 <td><strong><code>@BUMP 1</code></strong></td>
 <td></td>
 <td>get whether the turtle fence mode is BUMP, or set it to BUMP with 1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>@DIR</code></strong></td>
 <td><strong><code>@DIR x</code></strong></td>
 <td></td>
 <td>get the direction of the turtle's <span class="citation" data-cites="STEP">@STEP</span> in degrees or set it to x</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>@F x1 y1 x2 y2</code></strong></td>
 <td></td>
 <td></td>
 <td>set the turtle's fence to corners x1,y1 and x2,y2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>@FX1</code></strong></td>
 <td><strong><code>@FX1 x</code></strong></td>
 <td></td>
 <td>get the left fence line or set it to x</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>@FX2</code></strong></td>
 <td><strong><code>@FX2 x</code></strong></td>
 <td></td>
 <td>get the right fence line or set it to x</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>@FY1</code></strong></td>
 <td><strong><code>@FY1 x</code></strong></td>
 <td></td>
 <td>get the top fence line or set it to x</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>@FY2</code></strong></td>
 <td><strong><code>@FY2 x</code></strong></td>
 <td></td>
 <td>get the bottom fence line or set it to x</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>@MOVE x y</code></strong></td>
 <td></td>
 <td></td>
 <td>move the turtle x cells in the X axis and y cells in the Y axis</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>@SCRIPT</code></strong></td>
 <td><strong><code>@SCRIPT x</code></strong></td>
 <td></td>
 <td>get which script runs when the turtle changes cells, or set it to x</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>@SHOW</code></strong></td>
 <td><strong><code>@SHOW 0/1</code></strong></td>
 <td></td>
 <td>get whether the turtle is displayed on the TRACKER screen, or turn it on or off</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>@SPEED</code></strong></td>
 <td><strong><code>@SPEED x</code></strong></td>
 <td></td>
 <td>get the speed of the turtle's <span class="citation" data-cites="STEP">@STEP</span> in cells per step or set it to x</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>@STEP</code></strong></td>
 <td></td>
 <td></td>
 <td>move <code>@SPEED</code>/100 cells forward in <code>@DIR</code>, triggering <code>@SCRIPT</code> on cell change</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>@WRAP</code></strong></td>
 <td><strong><code>@WRAP 1</code></strong></td>
 <td></td>
 <td>get whether the turtle fence mode is WRAP, or set it to WRAP with 1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>@X</code></strong></td>
 <td><strong><code>@X x</code></strong></td>
 <td></td>
 <td>get the turtle X coordinate, or set it to x</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>@Y</code></strong></td>
 <td><strong><code>@Y x</code></strong></td>
 <td></td>
 <td>get the turtle Y coordinate, or set it to x</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>A</code></strong></td>
 <td><strong><code>A x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>A</code>, default <code>1</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ABS x</code></strong></td>
 <td></td>
 <td></td>
 <td>absolute value of <code>x</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ADD x y</code></strong></td>
 <td></td>
 <td><strong><code>+</code></strong></td>
 <td>add <code>x</code> and <code>y</code> together</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>AND x y</code></strong></td>
 <td></td>
 <td><strong><code>&amp;&amp;</code></strong></td>
 <td>logical AND of <code>x</code> and <code>y</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.DIV v d</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice clock divisor (euclidean length), range [1-32]</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.ER v f d r</code></strong></td>
 <td></td>
 <td></td>
 <td>set all euclidean rhythm</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.FIL v f</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice euclidean fill, use 1 for straight clock division, range [1-32]</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.GT v g</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice gate length [0-127], scaled/synced to course divisions of voice clock</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.HLD h</code></strong></td>
 <td></td>
 <td></td>
 <td><code>0</code> disables key hold mode, other values enable</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.RES v</code></strong></td>
 <td></td>
 <td></td>
 <td>reset voice clock/pattern on next base clock tick</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.ROT v r</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice euclidean rotation, range [-32, 32]</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.RPT v n s</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice pattern repeat, <code>n</code> times [0-8], shifted by <code>s</code> semitones [-24, 24]</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.SHIFT v o</code></strong></td>
 <td></td>
 <td></td>
 <td>shift voice cv by standard tt pitch value (e.g. N 6, V -1, etc)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ARP.SLEW v t</code></strong></td>
 <td></td>
 <td></td>
 <td>set voice slew time in ms</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ARP.STY y</code></strong></td>
 <td></td>
 <td></td>
 <td>set base arp style [0-7]</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>AVG x y</code></strong></td>
 <td></td>
 <td></td>
 <td>the average of <code>x</code> and <code>y</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>B</code></strong></td>
 <td><strong><code>B x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>B</code>, default <code>2</code></td>
 </tr>
+<tr class="even">
+<td><strong><code>BCLR x y</code></strong></td>
+<td></td>
+<td></td>
+<td>clear bit <code>y</code> in value <code>x</code></td>
+</tr>
 <tr class="odd">
+<td><strong><code>BGET x y</code></strong></td>
+<td></td>
+<td></td>
+<td>get bit <code>y</code> in value <code>x</code></td>
+</tr>
+<tr class="even">
 <td><strong><code>BPM x</code></strong></td>
 <td></td>
 <td></td>
 <td>milliseconds per beat in BPM <code>x</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>BREAK</code></strong></td>
 <td></td>
 <td><strong><code>BRK</code></strong></td>
 <td>halts execution of the current script</td>
+</tr>
+<tr class="even">
+<td><strong><code>BSET x y</code></strong></td>
+<td></td>
+<td></td>
+<td>set bit <code>y</code> in value <code>x</code></td>
 </tr>
 <tr class="odd">
 <td><strong><code>C</code></strong></td>
@@ -4293,238 +4587,346 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td>get / set the variable <code>C</code>, default <code>3</code></td>
 </tr>
 <tr class="even">
+<td><strong><code>CHAOS x</code></strong></td>
+<td></td>
+<td></td>
+<td>get next value from chaos generator, or set the current value</td>
+</tr>
+<tr class="odd">
+<td><strong><code>CHAOS.ALG x</code></strong></td>
+<td></td>
+<td></td>
+<td>get or set the algorithm for the <code>CHAOS</code> generator. 0 = LOGISTIC, 1 = CUBIC, 2 = HENON, 3 = CELLULAR</td>
+</tr>
+<tr class="even">
+<td><strong><code>CHAOS.R x</code></strong></td>
+<td></td>
+<td></td>
+<td>get or set the <code>R</code> parameter for the <code>CHAOS</code> generator</td>
+</tr>
+<tr class="odd">
 <td><strong><code>CV x</code></strong></td>
 <td><strong><code>CV x y</code></strong></td>
 <td></td>
 <td>CV target value</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>CV.OFF x</code></strong></td>
 <td><strong><code>CV.OFF x y</code></strong></td>
 <td></td>
 <td>CV offset added to output</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>CV.SET x</code></strong></td>
 <td></td>
 <td></td>
 <td>Set CV value</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>CV.SLEW x</code></strong></td>
 <td><strong><code>CV.SLEW x y</code></strong></td>
 <td></td>
 <td>Get/set the CV slew time in ms</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>CY.CV x</code></strong></td>
 <td></td>
 <td></td>
 <td>get the current CV value for channel <code>x</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>CY.POS x</code></strong></td>
 <td><strong><code>CY.POS x y</code></strong></td>
 <td></td>
 <td>get / set position of channel <code>x</code> (<code>x = 0</code> to set all), position between <code>0-255</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>CY.PRE</code></strong></td>
 <td><strong><code>CY.PRE x</code></strong></td>
 <td></td>
 <td>return current preset / load preset <code>x</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>CY.RES x</code></strong></td>
 <td></td>
 <td></td>
 <td>reset channel <code>x</code> (<code>0</code> = all)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>CY.REV x</code></strong></td>
 <td></td>
 <td></td>
 <td>reverse channel <code>x</code> (<code>0</code> = all)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>D</code></strong></td>
 <td><strong><code>D x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>D</code>, default <code>4</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>DEL x: ...</code></strong></td>
 <td></td>
 <td></td>
 <td>Delay command by <code>x</code> ms</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>DEL.CLR</code></strong></td>
 <td></td>
 <td></td>
 <td>Clear the delay buffer</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>DIV x y</code></strong></td>
 <td></td>
 <td><strong><code>/</code></strong></td>
 <td>divide <code>x</code> by <code>y</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>DRUNK</code></strong></td>
 <td><strong><code>DRUNK x</code></strong></td>
 <td></td>
 <td>changes by <code>-1</code>, <code>0</code>, or <code>1</code> upon each read saving its state, setting will give it a new value for the next read</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>DRUNK.MAX</code></strong></td>
 <td><strong><code>DRUNK.MAX x</code></strong></td>
 <td></td>
 <td>set the upper bound for <code>DRUNK</code>, default <code>255</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>DRUNK.MIN</code></strong></td>
 <td><strong><code>DRUNK.MIN x</code></strong></td>
 <td></td>
 <td>set the lower bound for <code>DRUNK</code>, default <code>0</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>DRUNK.WRAP</code></strong></td>
 <td><strong><code>DRUNK.WRAP x</code></strong></td>
 <td></td>
 <td>should <code>DRUNK</code> wrap around when it reaches it's bounds, default <code>0</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ELIF x: ...</code></strong></td>
 <td></td>
 <td></td>
 <td>if all previous <code>IF</code> / <code>ELIF</code> fail, and <code>x</code> is not zero, execute command</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ELSE: ...</code></strong></td>
 <td></td>
 <td></td>
 <td>if all previous <code>IF</code> / <code>ELIF</code> fail, excute command</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>EQ x y</code></strong></td>
 <td></td>
 <td><strong><code>==</code></strong></td>
 <td>does <code>x</code> equal <code>y</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ER f l i</code></strong></td>
 <td></td>
 <td></td>
 <td>Euclidean rhythm, <code>f</code> is fill (<code>1-32</code>), <code>l</code> is length (<code>1-32</code>) and <code>i</code> is step (any value), returns <code>0</code> or <code>1</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ES.CLOCK x</code></strong></td>
 <td></td>
 <td></td>
 <td>If II clocked, next pattern event</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ES.MAGIC x</code></strong></td>
 <td></td>
 <td></td>
 <td>Magic shape (1= halfspeed, 2=doublespeed, 3=linearize)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ES.MODE x</code></strong></td>
 <td></td>
 <td></td>
 <td>Set pattern clock mode. (0=normal, 1=II clock)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ES.PATTERN x</code></strong></td>
 <td></td>
 <td></td>
 <td>Select playing pattern (0-15)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ES.PRESET x</code></strong></td>
 <td></td>
 <td></td>
 <td>Recall preset <code>x</code> (0-7)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ES.RESET x</code></strong></td>
 <td></td>
 <td></td>
 <td>Reset pattern to start (and start playing)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ES.STOP x</code></strong></td>
 <td></td>
 <td></td>
 <td>Stop pattern playback.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>ES.TRANS x</code></strong></td>
 <td></td>
 <td></td>
 <td>Transpose the current pattern</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>ES.TRIPLE x</code></strong></td>
 <td></td>
 <td></td>
 <td>Recall triple shape (1-4)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>EVERY x: ...</code></strong></td>
 <td></td>
 <td></td>
 <td>run the command every <code>x</code> times the command is called</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>EXP x</code></strong></td>
 <td></td>
 <td></td>
 <td>exponentiation table lookup. <code>0-16383</code> range (V <code>0-10</code>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>EZ x</code></strong></td>
 <td></td>
 <td><strong><code>!</code></strong></td>
 <td><code>x</code> is <code>0</code>, equivalent to logical NOT</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>FLIP</code></strong></td>
 <td><strong><code>FLIP x</code></strong></td>
 <td></td>
 <td>returns inverted state (<code>0</code> or <code>1</code>) on each read (also settable)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>GT x y</code></strong></td>
 <td></td>
 <td><strong><code>&gt;</code></strong></td>
 <td><code>x</code> is greater than <code>y</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>GTE x y</code></strong></td>
 <td></td>
 <td><strong><code>&gt;=</code></strong></td>
 <td><code>x</code> is greater than or equal to <code>y</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>I</code></strong></td>
 <td><strong><code>I x</code></strong></td>
 <td></td>
 <td>get / set the variable <code>I</code>, this variable is overwritten by <code>L</code>, but can be used freely outside an <code>L</code> loop</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>IF x: ...</code></strong></td>
 <td></td>
 <td></td>
 <td>if <code>x</code> is not zero execute command</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>IN</code></strong></td>
 <td></td>
 <td></td>
 <td>Get the value of IN jack (0-16383)</td>
+</tr>
+<tr class="even">
+<td><strong><code>IN.CAL.MAX</code></strong></td>
+<td></td>
+<td></td>
+<td>Reads the input CV and assigns the voltage to the max point</td>
+</tr>
+<tr class="odd">
+<td><strong><code>IN.CAL.MIN</code></strong></td>
+<td></td>
+<td></td>
+<td>Reads the input CV and assigns the voltage to the zero point</td>
+</tr>
+<tr class="even">
+<td><strong><code>IN.SCALE min max</code></strong></td>
+<td></td>
+<td></td>
+<td>Set static scaling of the <code>IN</code> CV to between <code>min</code> and <code>max</code>.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT</code></strong></td>
+<td></td>
+<td></td>
+<td>clears all state data</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.CV x</code></strong></td>
+<td></td>
+<td></td>
+<td>clears all parameters on CV associated with output x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT.CV.ALL</code></strong></td>
+<td></td>
+<td></td>
+<td>clears all parameters on all CV's</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.DATA</code></strong></td>
+<td></td>
+<td></td>
+<td>clears all data held in all variables</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT.P x</code></strong></td>
+<td></td>
+<td></td>
+<td>clears pattern associated with pattern number x</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.P.ALL</code></strong></td>
+<td></td>
+<td></td>
+<td>clears all patterns</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT.SCENE</code></strong></td>
+<td></td>
+<td></td>
+<td>loads a blank scene</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.SCRIPT x</code></strong></td>
+<td></td>
+<td></td>
+<td>clear script number x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT.SCRIPT.ALL</code></strong></td>
+<td></td>
+<td></td>
+<td>clear all scripts</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.TIME x</code></strong></td>
+<td></td>
+<td></td>
+<td>clear time on trigger x</td>
+</tr>
+<tr class="odd">
+<td><strong><code>INIT.TR x</code></strong></td>
+<td></td>
+<td></td>
+<td>clear all parameters on trigger associated with TR x</td>
+</tr>
+<tr class="even">
+<td><strong><code>INIT.TR.ALL</code></strong></td>
+<td></td>
+<td></td>
+<td>clear all triggers</td>
 </tr>
 <tr class="odd">
 <td><strong><code>JF.GOD x</code></strong></td>
@@ -5097,112 +5499,148 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td>Get the value of PARAM knob (0-16383)</td>
 </tr>
 <tr class="even">
+<td><strong><code>PARAM.CAL.MAX</code></strong></td>
+<td></td>
+<td></td>
+<td>Reads the Paramter Knob maximum position and assigns the maximum point</td>
+</tr>
+<tr class="odd">
+<td><strong><code>PARAM.CAL.MIN</code></strong></td>
+<td></td>
+<td></td>
+<td>Reads the Parameter Knob minimum position and assigns a zero value</td>
+</tr>
+<tr class="even">
+<td><strong><code>PARAM.SCALE min max</code></strong></td>
+<td></td>
+<td></td>
+<td>Set static scaling of the PARAM knob to between <code>min</code> and <code>max</code>.</td>
+</tr>
+<tr class="odd">
 <td><strong><code>PN x y</code></strong></td>
 <td><strong><code>PN x y z</code></strong></td>
 <td></td>
 <td>get/set the value of pattern <code>x</code> at index <code>y</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>PN.END x</code></strong></td>
 <td><strong><code>PN.END x y</code></strong></td>
 <td></td>
 <td>get/set the end location of the pattern <code>x</code>, default <code>63</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>PN.HERE x</code></strong></td>
 <td><strong><code>PN.HERE x y</code></strong></td>
 <td></td>
 <td>get/set value at current index of pattern <code>x</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>PN.I x</code></strong></td>
 <td><strong><code>PN.I x y</code></strong></td>
 <td></td>
 <td>get/set index position for pattern <code>x</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>PN.INS x y z</code></strong></td>
 <td></td>
 <td></td>
 <td>insert value <code>z</code> at index <code>y</code> of pattern <code>x</code>, shift later values down, destructive to loop length</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>PN.L x</code></strong></td>
 <td><strong><code>PN.L x y</code></strong></td>
 <td></td>
 <td>get/set pattern length of pattern x. non-destructive to data</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>PN.NEXT x</code></strong></td>
 <td><strong><code>PN.NEXT x y</code></strong></td>
 <td></td>
 <td>increment index of pattern <code>x</code> then get/set value</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>PN.POP x</code></strong></td>
 <td></td>
 <td></td>
 <td>return and remove the value from the end of pattern <code>x</code> (like a stack), destructive to loop length</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>PN.PREV x</code></strong></td>
 <td><strong><code>PN.PREV x y</code></strong></td>
 <td></td>
 <td>decrement index of pattern <code>x</code> then get/set value</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>PN.PUSH x y</code></strong></td>
 <td></td>
 <td></td>
 <td>insert value <code>y</code> to the end of pattern <code>x</code> (like a stack), destructive to loop length</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>PN.RM x y</code></strong></td>
 <td></td>
 <td></td>
 <td>delete index <code>y</code> of pattern <code>x</code>, shift later values up, destructive to loop length</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>PN.START x</code></strong></td>
 <td><strong><code>PN.START x y</code></strong></td>
 <td></td>
 <td>get/set the start location of pattern <code>x</code>, default <code>0</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>PN.WRAP x</code></strong></td>
 <td><strong><code>PN.WRAP x y</code></strong></td>
 <td></td>
 <td>when pattern <code>x</code> reaches its bounds does it wrap (<code>0/1</code>), default <code>1</code> (enabled)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>PROB x: ...</code></strong></td>
 <td></td>
 <td></td>
 <td>potentially execute command with probability <code>x</code> (0-100)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>Q</code></strong></td>
 <td><strong><code>Q x</code></strong></td>
 <td></td>
 <td>Modify the queue entries</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>Q.AVG</code></strong></td>
 <td><strong><code>Q.AVG x</code></strong></td>
 <td></td>
 <td>Return the average of the queue</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong><code>Q.N</code></strong></td>
 <td><strong><code>Q.N x</code></strong></td>
 <td></td>
 <td>The queue length</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong><code>QT x y</code></strong></td>
 <td></td>
 <td></td>
 <td>round <code>x</code> to the closest multiple of <code>y</code> (quantise)</td>
+</tr>
+<tr class="odd">
+<td><strong><code>R</code></strong></td>
+<td></td>
+<td></td>
+<td>generate a random number</td>
+</tr>
+<tr class="even">
+<td><strong><code>R.MAX x</code></strong></td>
+<td></td>
+<td></td>
+<td>set the upper end of the range from 0 – 32767</td>
+</tr>
+<tr class="odd">
+<td><strong><code>R.MIN x</code></strong></td>
+<td></td>
+<td></td>
+<td>set the lower end of the range from 0 – 32767</td>
 </tr>
 <tr class="even">
 <td><strong><code>RAND x</code></strong></td>
@@ -6044,13 +6482,47 @@ Pandoc uses the size of the header column to calculate the absolute column width
 <td></td>
 <td>get / set the variable <code>Z</code>, default <code>0</code></td>
 </tr>
+<tr class="even">
+<td><strong><code>^ x y</code></strong></td>
+<td></td>
+<td></td>
+<td>bitwise xor <code>x</code> ^ <code>y</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>| x y</code></strong></td>
+<td></td>
+<td></td>
+<td>bitwise or <code>x</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>~ x</code></strong></td>
+<td></td>
+<td></td>
+<td>bitwise not, i.e.: inversion of <code>x</code></td>
+</tr>
 </tbody>
 </table>
 <h1 id="missing-documentation">Missing documentation</h1>
+<p><code>BIT.AND</code>, <code>BIT.NOT</code>, <code>BIT.OR</code>, <code>BIT.XOR</code>, <code>IN.CAL.RESET</code>, <code>PARAM.CAL.RESET</code></p>
 <h1 id="changelog">Changelog</h1>
-<h2 id="vnext">vNEXT</h2>
+<h2 id="v2.2">v2.2</h2>
 <ul>
 <li><strong>NEW</strong>: added a cheat sheet PDF</li>
+<li><strong>NEW</strong>: new bitwise ops: &amp;, |, ^, ~, BSET, BCLR, BGET</li>
+<li><strong>NEW</strong>: new ops <code>PARAM.SCALE min max</code> and <code>IN.SCALE min max</code> to add static scaling to inputs</li>
+<li><strong>NEW</strong>: blanking screensaver after 90 minutes of keyboard inactivity, any key to wake</li>
+<li><strong>NEW</strong>: new op: CHAOS chaotic sequence generator. Control with CHAOS.ALG and CHAOS.R</li>
+<li><strong>NEW</strong>: new op family: <code>INIT</code>, to clear device state</li>
+<li><strong>NEW</strong>: new ops: <code>R</code>, <code>R.MIN</code>, <code>R.MAX</code> programmable RNG</li>
+<li><strong>IMP</strong>: profiling code (optional, dev feature)</li>
+<li><strong>IMP</strong>: screen now redraws only lines that have changed</li>
+<li><strong>FIX</strong>: multiply now saturates at limits, previous behaviour returned 0 at overflow</li>
+<li><strong>FIX</strong>: entered values now saturate at int16 limits</li>
+<li><strong>FIX</strong>: reduced flash memory consumption by not storing TEMP script</li>
+<li><strong>FIX</strong>: <code>I</code> now carries across <code>DEL</code> commands</li>
+<li><strong>FIX</strong>: removed TEMP script allocation in flash</li>
+<li><strong>FIX</strong>: corrected functionality of JI op for 1volt/octave tuning and removed octave-wrapping behaviour (now returns exactly the entered ratio)</li>
+<li><strong>FIX</strong>: reduced latency of <code>IN</code> op</li>
 </ul>
 <h2 id="v2.1">v2.1</h2>
 <ul>

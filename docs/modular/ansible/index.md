@@ -15,6 +15,7 @@ Connects to Grids, Arcs, and MIDI devices, integrating external controllers into
 
 * Kria (Grid) live step sequencer, polyphasic parameters, emergent patterns.
 * Meadowphysics (Grid) rhizomatic cascading counter.
+* Æarthsea (grid) polyphonic pattern instrument
 * Levels (Arc) rotational pattern instrument.
 * Cycles (Arc) physically manipulated waves.
 * Reach (Teletype) further ecosystem output and input.
@@ -426,6 +427,171 @@ To read a preset, press the position to select, and then press again to read.
 To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
+
+## Æarthsea (Grid)
+
+*Polyphonic pattern instrument*
+
+Æarthsea is somewhat updated from [the original Earthsea module](https://monome.org/docs/modular/earthsea/). It no longer supports the two- and three-finger shape memories of the original module. However, it now supports a form of polyphonic/round-robin output.
+
+The version for Ansible has a few changes from the [version 2](https://vimeo.com/146731772) (which is an update from [version 1](http://monome.org/docs/modular/meadowphysics/))-- primarily in that this new version can map a scale of notes to the individual row triggers. Those linked docs will give some additional insight (though perhaps also some confusion) prior to the completion of the material below.
+
+### Interface
+
+(pic)
+
+* `Key 1` previous pattern
+* `Key 2` next pattern
+* `In 1` Clock (rising edge)
+* `In 2` Start/reset pattern (rising edge)
+
+### Basic
+
+The far left column of the grid is reserved for special functions:
+
+![](images/grid_AE_special.png)
+
+* START/STOP playback
+* PATTERN select
+* ARM record
+* LOOP mode
+* ARP mode
+* GATE mode
+* RUNES
+* Voice allocation
+
+The remainder of the grid is referred to in Æarthsea as the *keymap*. Press keys to change the CV at the outputs of Ansible. Each press of a key on the keymap will output a voltage at a trigger output of ansible according to the settings of the _Gate mode_ page. The specific CV and trigger outputs used will depend on voice allocation settings.
+
+### Keymap
+
+The CV output of Æarthsea is controlled by playing notes on the grid as a sort of extended keyboard. The CV output is calibrated, 1Volt per octave, and designed to be attached to an oscillator to play melodies. 
+
+The ‘pitch’ output by *Pos* is lowest at the lower-left of the grid, and higher at the upper-right corner. The current output value is displayed on the grid as a bright led.
+
+- Horizontal: Semitone increase from left to right
+- Vertical: Fourths (5 semitones) from bottom to top.
+
+For those familiar with guitar or bass these intervals should feel familiar and common harmonic shapes will reveal themselves.
+
+### Voice allocation
+
+Æarthsea offers fine control over voice allocation. Holding the bottom-left function key - _voice allocation_ - offers the option to adjust voice allocation.
+
+The left column represents voices used by the playback recorder. The right column represents voices used by playing the keymap live.
+
+Focus on the right, 'live' column. When all four keys are lit, Æarthsea is in four-voice polyphony mode. Each key pressed will output a control voltage from the next available CV output on Ansible. You can hold up to four keys at one time; if you try to hold a fifth, the first key you pushed will go out, and the CV of the fifth will come out of the next available CV output. Similarly, each keypress will also apply a gate out of the matching gate output according to the _gate mode_ page.
+
+One obvious application of this is playing chords on multiple identically tuned VCOs.
+
+Note that if you don't have every CV output connected, playing notes on the keygrid will have the effect of "skipping" outputs. You should set "voice allocation" to match the number of CV outputs connected. For instance, to control a single voice, you should connect a single CV and trigger out to the appropriate inputs in your synthesizer, and select only that CV and trigger out on the _voice allocation_ page of Æarthsea.
+
+It is possible to use different outputs for playback of recorded phrases and 'live' keypresses of the keygrid. The first column of lights on the *voice allocation* page represents recorded playback; the second 'live' playback. If both are lit for a row, this means that notes from the note recorder will be played out of that CV output, as will notes played into the keygrid - the most recent information taking priority. 
+
+This feature makes It is possible to configure Æarthsea such that one or more CV/trigger output will play back previously recorded information, whilst further live playback will come out of a different CV and trigger output.
+
+### Patterns
+
+Performances across the keymap can be recorded live. There are 16 available pattern slots (per *Preset*, see below).
+
+Once recorded, patterns can be manipulated: looped, transposed & time modulated. Each pattern can include up to 64 notes or shapes, with no limit on length in time.
+
+![](https://monome.org/docs/modular/earthsea/images/es_patterns.png)
+
+### Record
+
+To make a pattern, press the ARM key (left column, third row down). The recording will begin at the first press of your performance. Play your pattern and press ARM again to end recording.
+
+The START/STOP key (top left) will be lit to show that a pattern is present. Press START/STOP to begin playback, and again to stop the pattern midway. The pattern will play through to the end and then stop.
+
+### Loop Mode
+
+Each pattern can be set to loop by pressing the LOOP MODE key (left column, fourth row down) which will light. Now playback will start again when reaching the end of the recording.
+
+### Auto-Loop Record
+
+![](https://monome.org/docs/modular/earthsea/images/es_autoloop.png)
+
+If you wish to loop a pattern directly, end your recording by pressing START/STOP rather than ARM. The pattern will instantly begin playback and the LOOP MODE toggle (left column, fourth row down) will be set.
+
+### Retrigger
+
+![](https://monome.org/docs/modular/earthsea/images/es_retrigger.png)
+
+Patterns can be restarted while already playing, by holding ARM then pressing START/STOP.
+
+### Pattern Select
+
+![Pattern bank](https://monome.org/docs/modular/earthsea/images/es_bank_web2.png)
+
+To access all 16 patterns, hold the PATTERN SELECT button and pick a pattern from the lit 4×4 grid. The current pattern is displayed at full-brightness, existing patterns are mid-brightness, and empty slots are low-brightness.
+
+### Pattern Bank Performance
+
+The pattern bank itself can be performed directly, juggling between different patterns.
+
+To enter, hold P.SELECT, then press START/STOP to lock onto the pattern bank. Now when you press a pattern slot it will playback instantly. Note that you can also set the LOOP mode for the selected pattern from within this mode.
+
+### Switch patterns from front panel
+
+KEY 1 and KEY 2 on the front of Ansible can be used to move to the next or previous pattern in the group. They do not "loop" around - you cannot go to a previous pattern from pattern 1, or to a next pattern from pattern 16.
+
+### Arp Mode
+
+In addition to playback and looping, patterns can also be transposed on the grid using Arpeggio, or ARP, mode. This functionality is greatly inspired by Stretta’s [polygomé](https://github.com/stretta/BEAP) max patch.
+
+![Arp mode](https://monome.org/docs/modular/earthsea/images/es_arpmode.png)
+
+After recording a pattern, activate the ARP MODE button from the left column (left column, fifth key down). You will see a lit key showing the pattern’s ‘root’ position. Press this key to playback the pattern as normal (including looping if set).
+
+Pressing elsewhere in the keymap will transpose and playback the pattern, restarting the playback on press. This transposition is ‘destructive’ so leaving ARP mode will retain the last selected transposition.
+
+> Note: It is recommended to record patterns in the middle of the grid so they can be transposed in all directions. When a pattern tries to go ‘outside’ of the playing grid, it is clamped to the maximum value for that row or column.
+
+
+
+### Gate mode
+
+The default behaviour of the gate outputs is a traditional **HOLD** output. When holding a note down, gate is high and stays high throughout a legato phrase, until all keys are lifted.
+
+Using the GATE MODE key (left column, 3rd from bottom) this behaviour can be changed to **FIXED** and **DRONE** modes. Hold GATE MODE and press within the 4×4 glyphs to select the different modes. The current selection will be brighter than the rest.
+
+![Edge Mode](https://monome.org/docs/modular/earthsea/images/es_edge_web2.png)
+
+**FIXED** mode creates a fixed length gate at the appropriate Gate output. After selecting **FIXED** mode the bottom row will be activated displaying the *gate time*. Press a key in the bottom row to choose a gate time. When performing rapid presses in **FIXED** mode the timer is restarted at each new press, so legato phrases are still possible. Length can be very long for extended gates, particularly well matched to long-attack envelope generators.
+
+**DRONE** mode allows easy latching of the appropriate Gate output. Pressing any key will cause the appropriate gate output to go high, and it will remain high until that same position is pressed again, toggling off the lit key. **DRONE** is an 'infinite legato' mode where phrases can be performed in a smooth gesture without worrying about press/release technique.
+
+### Runes
+
+The RUNES page offers several large icons that can be selected by pushing anywhere within them. From left to right:
+
+* *Linearize*: This *Rune* destructively edits the current pattern’s timing, particularly useful for making arpeggio patterns and riffs.
+
+  The time between each note and shape is set to the same time interval as the first two notes or shapes. A pattern of 7 notes will thus become a rigid 7-beat sequence.
+
+* *Previous pattern, Next Pattern*
+  These *runes* allow navigating through the pattern bank without having to use the bank selector, nor stop playback. If a pattern is currently playing when this rune is pressed, the newly recalled pattern will begin playing immediately.
+
+* *Double speed, half speed*
+  These *runes* destructively edit the playback speed of a pattern, even while it is currently playing. Press double-speed a couple times to make rapid arpeggios, or even Gameboy-esque chords when taken to the limit. Half speed opens up the possibility for long evolving chord sequences, especially when applied to a linearized pattern.
+
+### Presets
+
+Presets for Æarthsea work like the other grid modes of Ansible.
+
+A short press of the `preset` key will enter preset mode.
+
+There are 8 preset slots available, indicated in the first column of the grid. The current preset is lit.
+
+To read a preset, press the position to select, and then press again to read.
+
+To write a preset, press and hold the position to write to.
+
+A “glyph” can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
+
+
+
+
 
 
 ## MIDI/voice

@@ -59,13 +59,13 @@ Firmware update information [instructions are available](http://monome.org/docs/
 
 Output and input functionality vary according to which application is running.
 
-Applications are determined by which USB device is plugged in. For example, when you plug in a Grid it will be running Kria. Hold the preset key (next to the USB port) to switch to Meadowphysics. Ansible will remember which application you were last running between power-ups.
+Applications are determined by which USB device is plugged in. For example, when you plug in a Grid it will be running Kria. Hold the preset key (next to the USB port) to switch to Meadowphysics; push it again to switch to Æarthsea. Ansible will remember which application you were last running between power-ups.
 
 Unplugging the Grid and plugging an Arc will change to Levels.
 
 With nothing plugged in the Ansible works as a Teletype input/output extender.
 
-Modes are indicated with a white or orange LED near the mode key.
+Modes are indicated with a white or orange LED near the mode key. (Æarthsea is indicated with a "whitish-orange" colour)
 
 ## Levels (Arc)
 
@@ -193,7 +193,7 @@ Presets are written to flash, and the most recently used preset will be loaded u
 
 ## Kria (Grid)
 
-This is an updated version of Kria which began as a White Whale alt-firmware. While some functionality has changed, a general overview could be understood by viewing the [alt-WW Kria tutorial video](https://vimeo.com/153923660).
+This is an updated version of Kria which began as a White Whale alt-firmware. While some functionality has changed, a general overview could be understood by viewing the [alt-WW Kria tutorial video](https://vimeo.com/153923660). The mode LED will show orange whilst Kria is running.
 
 ### Interface
 
@@ -304,7 +304,7 @@ A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the 
 
 *Rhizomatic cascading counter*
 
-The version for Ansible has a few changes from the [version 2](https://vimeo.com/146731772) (which is an update from [version 1](http://monome.org/docs/modular/meadowphysics/))-- primarily in that this new version can map a scale of notes to the individual row triggers. Those linked docs will give some additional insight (though perhaps also some confusion) prior to the completion of the material below.
+The version for Ansible has a few changes from the [version 2](https://vimeo.com/146731772) (which is an update from [version 1](http://monome.org/docs/modular/meadowphysics/))-- primarily in that this new version can map a scale of notes to the individual row triggers. Those linked docs will give some additional insight (though perhaps also some confusion) prior to the completion of the material below. The mode LED will show white whil Meadowphysics is running
 
 ### Interface
 
@@ -432,9 +432,7 @@ A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the 
 
 *Polyphonic pattern instrument*
 
-Æarthsea is somewhat updated from [the original Earthsea module](https://monome.org/docs/modular/earthsea/). It no longer supports the two- and three-finger shape memories of the original module. However, it now supports a form of polyphonic/round-robin output.
-
-The version for Ansible has a few changes from the [version 2](https://vimeo.com/146731772) (which is an update from [version 1](http://monome.org/docs/modular/meadowphysics/))-- primarily in that this new version can map a scale of notes to the individual row triggers. Those linked docs will give some additional insight (though perhaps also some confusion) prior to the completion of the material below.
+Æarthsea is somewhat updated from [the original Earthsea module](https://monome.org/docs/modular/earthsea/). It no longer supports the two- and three-finger shape memories of the original module. However, it now supports a form of polyphonic/round-robin output. The mode LED will show whitish-orange whilst Æarthsea is running.
 
 ### Interface
 

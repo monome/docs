@@ -432,7 +432,7 @@ A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the 
 
 *Polyphonic pattern instrument*
 
-Æarthsea is somewhat updated from [the original Earthsea module](https://monome.org/docs/modular/earthsea/). It no longer supports the two- and three-finger shape memories of the original module. However, it now supports a form of polyphonic/round-robin output. The mode LED will show whitish-orange whilst Æarthsea is running.
+Æarthsea is somewhat updated from [the original Earthsea module](https://monome.org/docs/modular/earthsea/). It now supports polyphony across up to four CV and gate outputs. However, it no longer supports the two- and three-finger shape memories of the original module. The mode LED will show whitish-orange whilst Æarthsea is running.
 
 ### Interface
 
@@ -442,6 +442,10 @@ A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the 
 * `Key 2` next pattern
 * `In 1` Clock (rising edge)
 * `In 2` Start/reset pattern (rising edge)
+
+### Clocking Æarthsea 
+
+Æarthsea does not require an external clock; it will play back recorded patterns in the manner you played them without one. However, it can be clocked external. If a clock source is connected to `In 1`, Æarthsea will be synchronised to that clock. Note that if a jack is connected at `In 1`, Æarthsea will not play _without_ a clock source.
 
 ### Basic
 
@@ -473,19 +477,25 @@ For those familiar with guitar or bass these intervals should feel familiar and 
 
 ### Voice allocation
 
-Æarthsea offers fine control over voice allocation. Holding the bottom-left function key - _voice allocation_ - offers the option to adjust voice allocation.
+Æarthsea can be used polyphonically, for up to four simultaneous outputs. It offers fine control over voice allocation. Holding the bottom-left function key - _voice allocation_ - offers configuration options.
 
 The left column represents voices used by the playback recorder. The right column represents voices used by playing the keymap live.
 
-Focus on the right, 'live' column. When all four keys are lit, Æarthsea is in four-voice polyphony mode. Each key pressed will output a control voltage from the next available CV output on Ansible. You can hold up to four keys at one time; if you try to hold a fifth, the first key you pushed will go out, and the CV of the fifth will come out of the next available CV output. Similarly, each keypress will also apply a gate out of the matching gate output according to the _gate mode_ page.
+![](images/grid_AE_voice_allocation.png)
 
-One obvious application of this is playing chords on multiple identically tuned VCOs.
+Focus on the right, 'live' column. When all four keys are lit, Æarthsea is in four-voice polyphony mode. Each key pressed will output a control voltage from the first available CV output on Ansible. If you press buttons in a staccato manner - with a slight gap between them - corresponding voltages will all be output of CV output 1, with corresponding gate outputs output from Gate output 1. 
 
-Note that if you don't have every CV output connected, playing notes on the keygrid will have the effect of "skipping" outputs. You should set "voice allocation" to match the number of CV outputs connected. For instance, to control a single voice, you should connect a single CV and trigger out to the appropriate inputs in your synthesizer, and select only that CV and trigger out on the _voice allocation_ page of Æarthsea.
+However, if you hold more than one button at a time, voltage will be output from the *next available* CV output. For instance, if you play a succession of three-note chords, with gaps between each chord, they will always be output from CV outputs 1-3. If you release one note, CV output 3 would drop to 0V; re-holding that same note would emit voltage from CV output 3 again.
+
+Voices are allocated via what is known as _voice stealing_: you can hold up to four keys at one time; if you try to hold a fifth, the earliest button you pushed will stop being lit, the new button you've pressed will light, and the CV of the new - fifth - button will come out of the  CV output previously used for the first.
+
+One obvious application of this feature is playing chords on multiple identically tuned VCOs.
+
+Note that if you don't have every CV output connected, playing legato notes on the keygrid may have the effect of "skipping" outputs. To avoid this, set "voice allocation" to match the number of CV outputs connected. For instance, to control a single voice and ensure there are no missed notes, connect a single CV and trigger out to the appropriate inputs in your synthesizer, and select only that CV and trigger out on the _voice allocation_ page of Æarthsea.
 
 It is possible to use different outputs for playback of recorded phrases and 'live' keypresses of the keygrid. The first column of lights on the *voice allocation* page represents recorded playback; the second 'live' playback. If both are lit for a row, this means that notes from the note recorder will be played out of that CV output, as will notes played into the keygrid - the most recent information taking priority. 
 
-This feature makes It is possible to configure Æarthsea such that one or more CV/trigger output will play back previously recorded information, whilst further live playback will come out of a different CV and trigger output.
+This feature makes It is possible to configure Æarthsea such that one or more CV/trigger output will play back previously recorded information, whilst further live playback will come out of a different CV and trigger output. This is useful to 'reserve' a channel for live playback - for instance, so that you can record a pattern of three-note chords, and play another melody over the top on the fourth output - or to output recorded notes to one module, but live playback to another.
 
 ### Patterns
 

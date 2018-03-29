@@ -573,15 +573,15 @@ Using the GATE MODE key (left column, 3rd from bottom) this behaviour can be cha
 
 The RUNES page offers several large icons that can be selected by pushing anywhere within them. From left to right:
 
-* *Linearize*: This *Rune* destructively edits the current pattern’s timing, particularly useful for making arpeggio patterns and riffs.
+* *Linearize*: This rune destructively edits the current pattern’s timing, particularly useful for making arpeggio patterns and riffs.
 
   The time between each note and shape is set to the same time interval as the first two notes or shapes. A pattern of 7 notes will thus become a rigid 7-beat sequence.
 
 * *Reverse playback, Regular playback*
-  These *runes* control the direction of playback: the right rune represents the order the pattern was recorded in; the left rune represents reverse playback.
+  These runes control the direction of playback: the right rune represents the order the pattern was recorded in; the left rune represents reverse playback.
 
 * *Double speed, half speed*
-  These *runes* destructively edit the playback speed of a pattern, even while it is currently playing. Press double-speed a couple times to make rapid arpeggios, or even Gameboy-esque chords when taken to the limit. Half speed opens up the possibility for long evolving chord sequences, especially when applied to a linearized pattern.
+  These runes destructively edit the playback speed of a pattern, even while it is currently playing. Press double-speed a couple times to make rapid arpeggios, or even Gameboy-esque chords when taken to the limit. Half speed opens up the possibility for long evolving chord sequences, especially when applied to a linearized pattern.
 
 ### Presets
 

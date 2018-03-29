@@ -436,7 +436,7 @@ A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the 
 
 ### Interface
 
-(pic)
+![](images/ansible_EA_overview.png)
 
 * `Key 1` previous pattern
 * `Key 2` next pattern

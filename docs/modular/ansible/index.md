@@ -432,7 +432,7 @@ A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the 
 
 *Polyphonic pattern instrument*
 
-Æarthsea is somewhat updated from [the original Earthsea module](https://monome.org/docs/modular/earthsea/). It now supports polyphony across up to four CV and gate outputs. However, it no longer supports the two- and three-finger shape memories of the original module. The mode LED will show whitish-orange whilst Æarthsea is running.
+Æarthsea is a new, polyphonic version of the [the original Earthsea module](https://monome.org/docs/modular/earthsea/). It now supports polyphony across up to four CV and gate outputs. However, it no longer supports the two- and three-finger shape memories of the original module. The mode LED will show whitish-orange whilst Æarthsea is running.
 
 ### Interface
 
@@ -479,7 +479,7 @@ For those familiar with guitar or bass these intervals should feel familiar and 
 
 Æarthsea can be used polyphonically, for up to four simultaneous outputs. It offers fine control over voice allocation. Holding the bottom-left function key - _voice allocation_ - offers configuration options.
 
-The left column represents voices used by the playback recorder. The right column represents voices used by playing the keymap live.
+The left column represents voices used by the recorded pattern. The right column represents voices used by playing the keymap live.
 
 ![](images/grid_AE_voice_allocation.png)
 
@@ -493,11 +493,11 @@ One obvious application of this feature is playing chords on multiple identicall
 
 Note that if you don't have every CV output connected, playing legato notes on the keygrid may have the effect of "skipping" outputs. To avoid this, set "voice allocation" to match the number of CV outputs connected. For instance, to control a single voice and ensure there are no missed notes, connect a single CV and trigger out to the appropriate inputs in your synthesizer, and select only that CV and trigger out on the _voice allocation_ page of Æarthsea.
 
-It is possible to use different outputs for playback of recorded phrases and 'live' keypresses of the keygrid. The first column of lights on the *voice allocation* page represents recorded playback; the second 'live' playback. If both are lit for a row, this means that notes from the note recorder will be played out of that CV output, as will notes played into the keygrid - the most recent information taking priority. 
+It is possible to use different outputs for playback of recorded patterns and 'live' keypresses of the keygrid. The first column of lights on the *voice allocation* page represents outputs for the recorded pattern; the second column represents outputs for live playing of the keygrid. If both are lit for a row, this means that notes from the playing pattern will be played out of that CV output, as will notes played into the keygrid - the most recent information taking priority. 
 
 This feature makes It is possible to configure Æarthsea such that one or more CV/trigger output will play back previously recorded information, whilst further live playback will come out of a different CV and trigger output. This is useful to 'reserve' a channel for live playback - for instance, so that you can record a pattern of three-note chords, and play another melody over the top on the fourth output - or to output recorded notes to one module, but live playback to another.
 
-### Patterns
+### Pattern recording
 
 Performances across the keymap can be recorded live. There are 16 available pattern slots (per *Preset*, see below).
 
@@ -577,8 +577,8 @@ The RUNES page offers several large icons that can be selected by pushing anywhe
 
   The time between each note and shape is set to the same time interval as the first two notes or shapes. A pattern of 7 notes will thus become a rigid 7-beat sequence.
 
-* *Previous pattern, Next Pattern*
-  These *runes* allow navigating through the pattern bank without having to use the bank selector, nor stop playback. If a pattern is currently playing when this rune is pressed, the newly recalled pattern will begin playing immediately.
+* *Reverse playback, Regular playback*
+  These *runes* control the direction of playback: the right rune represents the order the pattern was recorded in; the left rune represents reverse playback.
 
 * *Double speed, half speed*
   These *runes* destructively edit the playback speed of a pattern, even while it is currently playing. Press double-speed a couple times to make rapid arpeggios, or even Gameboy-esque chords when taken to the limit. Half speed opens up the possibility for long evolving chord sequences, especially when applied to a linearized pattern.

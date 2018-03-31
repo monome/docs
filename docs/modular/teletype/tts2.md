@@ -112,7 +112,7 @@ CV.OFF 1 N 5
 
 The first two scripts change the CV value, and the second two change the CV offset.
 
-*THIS* &rarr; Trigger a script from the keyboard by holding **WIN** (aka meta) and pressing **1-8** (for example, **WIN-1** to trigger script 1.) This is great for trying things out while writing scripts without having to patch inputs into Teletype.
+*THIS* &rarr; Trigger a script from the keyboard by pressing one of **F1**-**F8** (for example, **F1** to trigger script 1.) This is great for trying things out while writing scripts without having to patch inputs into Teletype.
 
 Try triggering scripts 1-4 in various ways. Yeah?
 

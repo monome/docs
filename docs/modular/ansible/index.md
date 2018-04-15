@@ -263,11 +263,7 @@ To enter the alternate note page, press the note parameter key a second time whe
 
 The alternate note parameter screen is functionally identical to the main note screen, with its own probability, clock, division, and loop. 
 
-<<<<<<< HEAD
 Both note pages - main and alternate - are *additive*. When a note from each screen is played simultaneously, the indices of the keys within the scale are added together, and then mapped to the current scale. 
-=======
-Ratcheting uses rows 3-6 to determine the number of sub triggers that will fire for each trigger column. Selecting row 6 will cause no extra triggers to fire for that step. Selecting row 5 causes 1 extra trigger to fire, effectively turning an 8th note into two 16th notes. Row 4 will cause 2 extra triggers, for a total of 3, turning the single trigger into a triplet. Finally row 3 will cause 3 extra triggers to fire, turning an 8th note into 4 32nd notes.
->>>>>>> Udates based on discussion
 
 For example: if a note from each page is triggered and both are in the bottom row of the scale - "note 0" - then the CV output is for `0 + 0 = 0`, ie, note zero, the root of the scale. If the current main note is the 4th  key up (index *3* of the scale) and the alt-note is the 3rd key up (index *2*). This step in the sequence will output `3+2 = 5` index 5 of the scale, ie, the 6th note.
 

@@ -264,7 +264,7 @@ Like the other parameter extensions, you enter the glide page by tapping the oct
 
 The glide view screen allows the user to slew the currently playing note into the next triggered note, this is controlled by setting a slider on each step column. Row 7 has a slew of 0ms, effectively a pass through. from here up each row increases the slew time to the note in the current column. Row 6 is 20ms row 5 is 40ms all the way to 120ms in row 1.
 
-![](images\grid_KR_Glide-01.png)
+![](images\grid_KR_Glide.png)
 
 ### Modifiers
 
@@ -293,6 +293,17 @@ Scales are shared between Kria and Meadowphysics, and are saved to flash wheneve
 ### Patterns
 
 Patterns are shown along the top row, with 16 available total. Push a pattern key momentarily to load that pattern. *Hold* a pattern key to store the current pattern into it; it will pulse when the pattern is stored. Remember that loading an 'empty' pattern will effectively clear the current pattern.
+
+#### Pattern Cueing
+Pattern cueing allows the user to select the next pattern to be played, based off of pattern clock timing. To cue a pattern hold the *Pattern* button while pushing the next pattern to play. The top row will indicate which pattern is cued to play next
+
+The second row on the pattern pages represents the *Cue* clock. Pushing a key in this row to set the number of steps for the cue clock.
+
+A cued pattern is activated when the cue clock returns to zero. This clock represents a global quantize for pattern cueing.
+
+This clock setting can be modified by the *Time* modifier, allowing you to get extremely long pattern cue time quantization.
+![](images\grid_KR_CUEDPattern.png)
+
 
 ### Time
 

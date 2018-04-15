@@ -245,7 +245,7 @@ The *trigger* view sub page is where you can control the amount of ratcheting pe
 
 To enter the ratcheting page, press the trigger parameter button a second time when you are in the trigger view.
 
-Ratcheting uses rows 3-6 to determine the amount of sub triggers that will fire for each trigger column. Selecting row 6 will cause no extra triggers to fire for that step. Selecting row 5 causes 1 extra trigger to fire, effectively turning an 8th note into two 16th notes. Row 4 will cause 2 extra triggers, for a total of 3, turning the single trigger into a triplet. Finally row 3 will cause 3 extra triggers to fire, turning an 8th note into 4 32nd notes.
+Ratcheting uses rows 3-6 to determine the number of sub triggers that will fire for each trigger column. Selecting row 6 will cause no extra triggers to fire for that step. Selecting row 5 causes 1 extra trigger to fire, effectively turning an 8th note into two 16th notes. Row 4 will cause 2 extra triggers, for a total of 3, turning the single trigger into a triplet. Finally row 3 will cause 3 extra triggers to fire, turning an 8th note into 4 32nd notes.
 
 ![](images\grid_KR_triggerRatcheting.png)
 

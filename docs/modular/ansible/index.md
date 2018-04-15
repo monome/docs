@@ -219,13 +219,53 @@ The main grid view uses the bottom row for navigation, which are dimly lit into 
 
 ![](images/grid_KR_NAVIGATION_1.2.png)
 
-Each *track* has parameters *Trigger, Note, Octave,* and *Duration*. These parameters comprise of the sequence loop.
+### Parameters
+
+Each *track* has four parameters *Trigger, Note, Octave,* and *Duration*. These parameters work together to form the sequence loop.
 
 A *note* will occur only when a *trigger* is set. This note will be the pitch specified by *note* in *octave* of a specified *duration*.
 
 The *trigger* view shows all four tracks at once, whereas all other parameter views display the track selected.
 
 The *duration* view has downward sliders (lower is longer) and a master duration multiplier at the top.
+
+#### Parameter extensions
+
+Many of the parameter views have sub pages that extend or augment their functionality. To enter into each sub page, switch to the parameter using buttons 5-8, then tap the parameter button again. When you are in the parameter extension page, the parameter button will blink, to assist with navigation.
+
+All of the subpages have their own probability, clock division and loop controls, allowing for some very complex phrasing to be built.
+
+* *Trigger* view becomes *Trigger Ratcheting*
+* *Note* view becomes *Alternate Note*
+* *Octave* view becomes *Glide*
+* *Duration* does not currently have a sub page
+
+
+##### Trigger Ratcheting
+The *trigger* view sub page is where you can control the amount of ratcheting per trigger.
+
+To enter the ratcheting page, press the trigger parameter button a second time when you are in the trigger view.
+
+Ratcheting uses rows 3-6 to determine the amount of sub triggers that will fire for each trigger column. Selecting row 6 will cause no extra triggers to fire for that step. Selecting row 5 causes 1 extra trigger to fire, effectively turning an 8th note into two 16th notes. Row 4 will cause 2 extra triggers, for a total of 3, turning the single trigger into a triplet. Finally row 3 will cause 3 extra triggers to fire, turning an 8th note into 4 32nd notes.
+
+![](images\grid_KR_triggerRatcheting.png)
+
+
+##### Alternate Note
+The *note* view sub page allows you to effectively create a second note sequence for the track.
+
+Entering the alternate note page works the same as the ratcheting page. In the main note page press the note button a second time to enter the note page.
+
+The alternate note parameter screen is functionally identical to the main note screen, with its own probability, clock, division, and loop. Both note pages are additive. When 2 notes land on top of each other their notes are added and then mapped to the current scale. Changing the modifiers on these screens can allow for very complex interaction between set notes.
+
+##### Glide
+The *octave* views sub page supports up to 120 milliseconds of glide time between trigged notes.
+
+Like the other parameter extensions, you enter the glide page by tapping the octave button a second time, while in the main octave view.
+
+The glide view screen allows the user to slew the currently playing note into the next triggered note, this is controlled by setting a slider on each step column. Row 7 has a slew of 0ms, effectively a pass through. from here up each row increases the slew time to the note in the current column. Row 6 is 20ms row 5 is 40ms all the way to 120ms in row 1.
+
+![](images\grid_KR_Glide-01.png)
 
 ### Modifiers
 

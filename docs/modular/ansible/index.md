@@ -223,25 +223,13 @@ The main grid view uses the bottom row for navigation, which are dimly lit into 
 
 Each *track* has four parameters *Trigger, Note, Octave,* and *Duration*. These parameters work together to form the sequence loop. 
 
-Select a parameter to adjust by pressing its key in the bottom row of the grid.
+Select a parameter to adjust by pressing its key in the bottom row of the grid (keys 6-9).
 
 A *note* will occur only when a *trigger* is set. This note will be the pitch specified by *note* in *octave* of a specified *duration*.
 
 The *trigger* view shows all four tracks at once, whereas all other parameter views display the track selected.
 
 The *duration* view has downward sliders (lower is longer) and a master duration multiplier at the top.
-
-There are also 'sub-pages' for more advanced extensions to each of these main parameters; see "**extended parameters**" for details.
-
-### Modifiers
-
-Change the loop position by holding the *loop* modifier and pressing a new position. Change the loop length by pushing and holding a start position while selecting an end position. Press and release the start position to set the loop length to 1.
-
-The *time* view shows the current clock divider.
-
-The *probability* view is a per-step probability for each parameter. There are four levels which specify likelihood of execution by percentage: 100, 75, 50, and 0. By default all are at 100%. 0% serves as a step mute of the specified parameter.
-
-Loops and time dividers are per parameter, per track, and so the phasing of parameters a fundamental feature of Kria.
 
 ### Extended parameters
 
@@ -265,7 +253,6 @@ To enter the ratcheting page, press the trigger parameter key a second time when
 Ratcheting uses rows 3-6 to determine the number of sub-triggers that will fire for each trigger column. Selecting row 6 will cause no extra triggers to fire for that step. Selecting row 5 causes 1 extra trigger to fire, effectively turning an 8th note into two 16th notes. Row 4 will cause 2 extra triggers, for a total of 3, turning the single trigger into a triplet. Finally row 3 will cause 3 extra triggers to fire - effectively turning an 8th note into 4 32nd notes.
 
 ![](images/grid_KR_triggerRatcheting.png)
-
 
 
 #### Alternate Note
@@ -293,6 +280,18 @@ To enter the glide page, press the octave parameter key a second time when you a
 The glide view screen allows the user to slew the currently playing note into the next triggered note. This is controlled by setting a slider on each step column. Row 7 has a slew of 0ms, effectively a pass through. from here up each row increases the slew time to the note in the current column. Row 6 is 20ms row 5 is 40ms all the way to 120ms in row 1.
 
 ![](images/grid_KR_Glide.png)
+
+
+### Modifiers
+
+Change the loop position by holding the *loop* modifier and pressing a new position. Change the loop length by pushing and holding a start position while selecting an end position. Press and release the start position to set the loop length to 1.
+
+The *time* view shows the current clock divider.
+
+The *probability* view is a per-step probability for each parameter. There are four levels which specify likelihood of execution by percentage: 100, 75, 50, and 0. By default all are at 100%. 0% serves as a step mute of the specified parameter.
+
+Loops and time dividers are per parameter, per track, and so the phasing of parameters a fundamental feature of Kria.
+
 
 ### Quick track muting
 

@@ -361,7 +361,12 @@ If you hold the *pattern* button down and select a sequence step in row 3-6 the 
 
 Last, but not least you can edit your patterns live while the *meta-pattern* is running. This can be slightly off putting with quickly changing patterns, but is a great way to live edit your patterns within the context of a larger sequence.
 
-n-So has created a very informative [video](https://www.youtube.com/watch?v=ZWBXLsbxWlw) that covers all of this in a mere 6 minutes.
+![](images\grid_KR_METAPattern.png)
+
+For an even more comprehensive overview, grids user n-SO has created an excellent video fully detailing the *Meta-Pattern* mode.
+
+<div class="vid"><iframe src="https://www.youtube.com/watch?v=ZWBXLsbxWlw" width="860" height="483" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+
 
 ### Time
 

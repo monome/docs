@@ -344,7 +344,8 @@ Last, but not least you can edit your patterns live while the *meta-pattern* is 
 
 For an even more comprehensive overview, grids user n-SO has created an excellent video fully detailing the *Meta-Pattern* mode.
 
-![](https://www.youtube.com/watch?v=ZWBXLsbxWlw)
+<div class="vid"><iframe src="https://www.youtube.com/watch?v=ZWBXLsbxWlw" width="860" height="483" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+
 
 ### Time
 

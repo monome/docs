@@ -264,7 +264,7 @@ Like the other parameter extensions, you enter the glide page by tapping the oct
 
 The glide view screen allows the user to slew the currently playing note into the next triggered note, this is controlled by setting a slider on each step column. Row 7 has a slew of 0ms, effectively a pass through. from here up each row increases the slew time to the note in the current column. Row 6 is 20ms row 5 is 40ms all the way to 120ms in row 1.
 
-![](images\grid_KR_Glide-01.png)
+![](images\grid_KR_Glide.png)
 
 ### Modifiers
 

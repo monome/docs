@@ -250,6 +250,7 @@ Ratcheting uses rows 3-6 to determine the number of sub triggers that will fire 
 ![](images\grid_KR_triggerRatcheting.png)
 
 
+
 ##### Alternate Note
 The *note* view sub page allows you to effectively create a second note sequence for the track.
 
@@ -304,6 +305,45 @@ A cued pattern is activated when the cue clock returns to zero. This clock repre
 This clock setting can be modified by the *Time* modifier, allowing you to get extremely long pattern cue time quantization.
 ![](images\grid_KR_CUEDPattern.png)
 
+#### Meta Patterns
+The *Meta-Pattern* mode allows you to create sequences of patterns, with control over the number of times a pattern loops before moving on to the next one.
+
+To enter the *Meta-Pattern* mode, hold down the pattern button and select any button on row 7.
+
+When *Meta-Pattern* is activated the rows on your grid are:
+
+|Row|Function|
+|---|---|
+|1| This is your normal pattern row|
+|2| Is a clock divider that determines the length between each step of the *meta-sequencer*. Think of it like a clock for row 7. This is a global setting|
+|3| Pattern steps 1 - 16|
+|4| Pattern steps 17 - 32|
+|5| Pattern steps 33 - 48|
+|6| Pattern steps 49 - 64|
+|7| The *meta-sequencer* row. This hold the duration for your selected pattern|
+|8|Normal navigation row|
+
+Rows 3 through 6 are where you store your patterns. Each button in this row can have 2 pieces of data associated with it, a pattern and a duration.
+
+To edit the data just select the pattern step button you want. It will glow at the maximum brightness. Selecting a pattern from row 1 will now change the pattern in the currently selected step.
+
+You can also change the duration the pattern is played by selecting the end step of the *meta-sequencer* on row 7. Visually the *meta-sequencer* will show you the sequence length for the current step **and** the end point of the selected patterns duration at maximum brightness.
+
+The *meta-sequencer* is clocked by the divider in row 2. Row 2 itself is clocked by the current tempo (either internal or external), however if you hold the *Duration* modifier you can subdivide the current tempo driving the row 2 clock divider.
+
+The *meta-sequencer* controls how long the current pattern will play before it moves on to the next pattern, and is stored per pattern step in rows 3-6.
+
+The *loop* modifier can effect the length and start position of the pattern sequence in rows 3-6. The same multi touch gestures while holding the *loop* modifier work in these rows. This loop can wrap around the end. And like other views, you can push the same position twice to create a single-slot loop.
+
+If you hold the *pattern* button down and select a sequence step in row 3-6 the meta-pattern will jump to that position the next time the pattern advances.
+
+Last, but not least you can edit your patterns live while the *meta-pattern* is running. This can be slightly off putting with quickly changing patterns, but is a great way to live edit your patterns within the context of a larger sequence.
+
+![](images\grid_KR_METAPattern.png)
+
+For an even more comprehensive overview, grids user n-SO has created an excellent video fully detailing the *Meta-Pattern* mode.
+
+![](https://www.youtube.com/watch?v=ZWBXLsbxWlw)
 
 ### Time
 

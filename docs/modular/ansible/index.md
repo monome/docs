@@ -250,6 +250,7 @@ Ratcheting uses rows 3-6 to determine the number of sub triggers that will fire 
 ![](images\grid_KR_triggerRatcheting.png)
 
 
+
 ##### Alternate Note
 The *note* view sub page allows you to effectively create a second note sequence for the track.
 
@@ -293,6 +294,52 @@ Scales are shared between Kria and Meadowphysics, and are saved to flash wheneve
 ### Patterns
 
 Patterns are shown along the top row, with 16 available total. Push a pattern key momentarily to load that pattern. *Hold* a pattern key to store the current pattern into it; it will pulse when the pattern is stored. Remember that loading an 'empty' pattern will effectively clear the current pattern.
+
+#### Pattern Cueing
+Pattern cueing allows the user to select the next pattern to be played, based off of pattern clock timing. To cue a pattern hold the *Pattern* button while pushing the next pattern to play. The top row will indicate which pattern is cued to play next
+
+The second row on the pattern pages represents the *Cue* clock. Pushing a key in this row to set the number of steps for the cue clock.
+
+A cued pattern is activated when the cue clock returns to zero. This clock represents a global quantize for pattern cueing.
+
+This clock setting can be modified by the *Time* modifier, allowing you to get extremely long pattern cue time quantization.
+![](images\grid_KR_CUEDPattern.png)
+
+#### Meta Patterns
+The *Meta-Pattern* mode allows you to create sequences of patterns, with control over the number of times a pattern loops before moving on to the next one.
+
+To enter the *Meta-Pattern* mode, hold down the pattern button and select any button on row 7.
+
+When *Meta-Pattern* is activated the rows on your grid are:
+
+|Row|Function|
+|---|---|
+|1| This is your normal pattern row|
+|2| Is a clock divider that determines the length between each step of the *meta-sequencer*. Think of it like a clock for row 7. This is a global setting|
+|3| Pattern steps 1 - 16|
+|4| Pattern steps 17 - 32|
+|5| Pattern steps 33 - 48|
+|6| Pattern steps 49 - 64|
+|7| The *meta-sequencer* row. This hold the duration for your selected pattern|
+|8|Normal navigation row|
+
+Rows 3 through 6 are where you store your patterns in a *Pattern Sequence*. Each button in this row can have 2 pieces of data associated with it, a pattern and a duration.
+
+![](images\grid_KR_METAPattern.png)
+
+To edit the data just select the *pattern sequence* button you wish to change. It will glow at the maximum brightness. Selecting a pattern from row 1 will now change the pattern in the currently selected step.
+
+You can also change the duration the pattern is played by selecting the end step of the *meta-sequencer* on row 7. Visually the *meta-sequencer* will show you the sequence length for the current step **and** the end point of the selected patterns duration at maximum brightness.
+
+The *meta-sequencer* is clocked by the divider in row 2 and controls how long the current pattern will play before moving on to the next pattern. Row 2 itself is clocked by the current tempo (either internal or external), however if you hold the *Duration* modifier you can subdivide the current tempo driving the row 2 clock divider, for extremely long step times.
+
+The *loop* modifier can effect the length and start position of the *pattern sequence* in rows 3-6. The same multi touch gestures while holding the *loop* modifier work in these rows. This loop will wrap around the end. And like other views, you can push the same position twice to create a single-slot loop. Pushing a *pattern sequence* once while holding the *loop* modifier will cause the current loop to start at the new position.
+
+If you hold the *pattern* button down and select a sequence step in row 3-6 the meta-pattern will jump to that position the next time the pattern advances.
+
+Last, but not least you can edit your patterns live while the *meta-pattern* is running. This can be slightly off putting with quickly changing patterns, but is a great way to live edit your patterns within the context of a larger sequence.
+
+n-So has created a very informative [video](https://www.youtube.com/watch?v=ZWBXLsbxWlw) that covers all of this in a mere 6 minutes.
 
 ### Time
 

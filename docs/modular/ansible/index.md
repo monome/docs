@@ -323,28 +323,21 @@ When *Meta-Pattern* is activated the rows on your grid are:
 |7| The *meta-sequencer* row. This hold the duration for your selected pattern|
 |8|Normal navigation row|
 
-Rows 3 through 6 are where you store your patterns. Each button in this row can have 2 pieces of data associated with it, a pattern and a duration.
+Rows 3 through 6 are where you store your patterns in a *Pattern Sequence*. Each button in this row can have 2 pieces of data associated with it, a pattern and a duration.
 
-To edit the data just select the pattern step button you want. It will glow at the maximum brightness. Selecting a pattern from row 1 will now change the pattern in the currently selected step.
+![](images\grid_KR_METAPattern.png)
+
+To edit the data just select the *pattern sequence* button you wish to change. It will glow at the maximum brightness. Selecting a pattern from row 1 will now change the pattern in the currently selected step.
 
 You can also change the duration the pattern is played by selecting the end step of the *meta-sequencer* on row 7. Visually the *meta-sequencer* will show you the sequence length for the current step **and** the end point of the selected patterns duration at maximum brightness.
 
-The *meta-sequencer* is clocked by the divider in row 2. Row 2 itself is clocked by the current tempo (either internal or external), however if you hold the *Duration* modifier you can subdivide the current tempo driving the row 2 clock divider.
+The *meta-sequencer* is clocked by the divider in row 2 and controls how long the current pattern will play before moving on to the next pattern. Row 2 itself is clocked by the current tempo (either internal or external), however if you hold the *Duration* modifier you can subdivide the current tempo driving the row 2 clock divider, for extremely long step times.
 
-The *meta-sequencer* controls how long the current pattern will play before it moves on to the next pattern, and is stored per pattern step in rows 3-6.
-
-The *loop* modifier can effect the length and start position of the pattern sequence in rows 3-6. The same multi touch gestures while holding the *loop* modifier work in these rows. This loop can wrap around the end. And like other views, you can push the same position twice to create a single-slot loop.
+The *loop* modifier can effect the length and start position of the *pattern sequence* in rows 3-6. The same multi touch gestures while holding the *loop* modifier work in these rows. This loop will wrap around the end. And like other views, you can push the same position twice to create a single-slot loop. Pushing a *pattern sequence* once while holding the *loop* modifier will cause the current loop to start at the new position.
 
 If you hold the *pattern* button down and select a sequence step in row 3-6 the meta-pattern will jump to that position the next time the pattern advances.
 
 Last, but not least you can edit your patterns live while the *meta-pattern* is running. This can be slightly off putting with quickly changing patterns, but is a great way to live edit your patterns within the context of a larger sequence.
-
-![](images\grid_KR_METAPattern.png)
-
-For an even more comprehensive overview, grids user n-SO has created an excellent video fully detailing the *Meta-Pattern* mode.
-
-<div class="vid"><iframe src="https://www.youtube.com/watch?v=ZWBXLsbxWlw" width="860" height="483" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
-
 
 ### Time
 

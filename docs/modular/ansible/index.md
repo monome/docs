@@ -339,6 +339,8 @@ If you hold the *pattern* button down and select a sequence step in row 3-6 the 
 
 Last, but not least you can edit your patterns live while the *meta-pattern* is running. This can be slightly off putting with quickly changing patterns, but is a great way to live edit your patterns within the context of a larger sequence.
 
+n-So has created a very informative [video](https://www.youtube.com/watch?v=ZWBXLsbxWlw) that covers all of this in a mere 6 minutes.
+
 ### Time
 
 Hold `Key 1` to change the timing.

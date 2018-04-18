@@ -285,7 +285,9 @@ The glide view screen allows the user to slew the currently playing note into th
 
 ![](images/grid_KR_Glide.png)
 
-### 
+### Quick track muting
+
+Holding the *loop* modifer and pressing a track button will mute it; pressing again will unmute.
 
 ### Scale
 
@@ -394,6 +396,12 @@ To read a preset, press the position to select, and then press again to read.
 To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
+
+### Teletype Clocking
+
+A channel of Kria can be set to be clocked from the Teletype command `KR.CLK x` (see below).
+
+To do so, hold down the pattern key, and `TODO DO SOMETHING`
 
 
 ## Meadowphysics (Grid)
@@ -734,6 +742,11 @@ KR.L.ST x y     return loop start of track x parameter y
 KR.L.LEN x y z  set length to z for track x parameter y
 KR.L.LEN x y    return loop length of track x parameter y
 KR.RES x y      set position to loop start for track x parameter y
+KR.CV x         current CV value of output x
+KR.MUTE x y     set the mute of track x to y (where y=1 is muted, y=0 is not.) if x is 0, set all				mutes to state y
+KR.TMUTE x      toggle mute for Kria track x, where x is 1-4. If x is 0, toggle all.
+			   toggle will _invert current state_.
+KR.CLK x        send to clock track x (or to all tracks if x==0) IF track is enabled to be clocked				 by Teletype (see above)
 ```
 
 ### Meadowphysics
@@ -747,6 +760,7 @@ MP.PERIOD x     set internal clock period to x
 MP.PERIOD       return current internal clock period
 MP.OFF x        stop channel x (0 = all)
 MP.RES x        reset channel x (0 = all) (also used as "start")
+MP.CV x 	    get current CV value of output x
 ```
 
 ### Levels

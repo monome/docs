@@ -211,7 +211,7 @@ Four tracks of sequencers. Each track outputs to its respective CV/TR pair as pi
 The main grid view uses the bottom row for navigation, which are dimly lit into blocks and highlight the current setting:
 
  * 1-4: Track
- * 5-9: Trigger, Note, Octave, Duration
+ * 6-9: Trigger, Note, Octave, Duration
  * 11-13: MODIFIERS: Loop, Time, Probability
  * 15: Scale
  * 16: Pattern

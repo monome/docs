@@ -303,6 +303,8 @@ For example, a whole tone scale (2 semitones per note) would be constructed by s
 
 Scales are shared between Kria and Meadowphysics, and are saved to flash whenever a preset of either is saved.
 
+The top-left four keys on the *scale* page are used to toggle Teletype clocking for a given channel; see below for more details.
+
 ### Patterns
 
 Patterns are shown along the top row, with 16 available total. Push a pattern key momentarily to load that pattern. *Hold* a pattern key to store the current pattern into it; it will pulse when the pattern is stored. Remember that loading an 'empty' pattern will effectively clear the current pattern.
@@ -401,7 +403,7 @@ A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the 
 
 A channel of Kria can be set to be clocked from the Teletype command `KR.CLK x` (see below).
 
-To do so, hold down the pattern key, and `TODO DO SOMETHING`
+To do so, hold down the *scale* key; the four leftmost keys in the top row will enable or disable Teletype clocking for the relevant channel.
 
 
 ## Meadowphysics (Grid)
@@ -744,9 +746,9 @@ KR.L.LEN x y    return loop length of track x parameter y
 KR.RES x y      set position to loop start for track x parameter y
 KR.CV x         current CV value of output x
 KR.MUTE x y     set the mute of track x to y (where y=1 is muted, y=0 is not.) if x is 0, set all				mutes to state y
-KR.TMUTE x      toggle mute for Kria track x, where x is 1-4. If x is 0, toggle all.
+KR.TMUTE x      toggle mute for Kria track x (0 = all)
 			   toggle will _invert current state_.
-KR.CLK x        send to clock track x (or to all tracks if x==0) IF track is enabled to be clocked				 by Teletype (see above)
+KR.CLK x        send to clock track x (0 == all) IF track is enabled to be clocked							   by Teletype (see above)
 ```
 
 ### Meadowphysics

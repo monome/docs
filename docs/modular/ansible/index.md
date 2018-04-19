@@ -410,7 +410,7 @@ A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the 
 
 A channel of Kria can be set to be clocked from the Teletype command `KR.CLK x` (see below).
 
-To do so, hold down the *scale* key; the four leftmost keys in the top row will enable or disable Teletype clocking for the relevant channel.
+To do so, press the *scale* key to enter scale view. The four leftmost keys in the top row will enable or disable Teletype clocking for the relevant channel. When a channel is clocked by Teletype, it no longer responds to the master clock (set either internally or by an external clock connected to the `In 1`).
 
 
 ## Meadowphysics (Grid)

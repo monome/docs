@@ -274,7 +274,13 @@ Ratcheting uses rows 3-6 to determine the number of sub-triggers that will fire 
 
 To enter the alternate note page, press the note parameter key a second time when you are in the note view. The note parameter key will blink.
 
-The alternate note parameter screen is functionally identical to the main note screen, with its own probability, clock, division, and loop. Both note pages are additive. When 2 notes land on top of each other their notes are added and then mapped to the current scale. Changing the modifiers on these screens can allow for very complex interaction between set notes.
+The alternate note parameter screen is functionally identical to the main note screen, with its own probability, clock, division, and loop. 
+
+Both note pages - main and alternate - are *additive*. When a note from each screen is played simultaneously, the indices of the keys within the scale are added together, and then mapped to the current scale. 
+
+For example: if a note from each page is triggered and both are in the bottom row of the scale - "note 0" - then the CV output is for `0 + 0 = 0`, ie, note zero, the root of the scale. If the current main note is the 4th  key up (index *3* of the scale) and the alt-note is the 3rd key up (index *2*). This step in the sequence will output `3+2 = 5` index 5 of the scale, ie, the 6th note.
+
+The possibilities for alternate note become particularly interesting if you alter its probability or clock division, or if its loop points take it out of phase with the main note.
 
 #### Glide
 

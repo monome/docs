@@ -52,6 +52,10 @@ Ansible ships with a strange USB A-A cable. This is used for firmware updates. W
 
 Firmware update information [instructions are available](http://monome.org/docs/modular/update/).
 
+## Firmware Version
+
+This documentation documents firmware version **1.6.0**.
+
 ## Basics
 
 ![Panel Overlay](images/ansible_CLEAN.png)
@@ -753,10 +757,12 @@ KR.L.LEN x y z  set length to z for track x parameter y
 KR.L.LEN x y    return loop length of track x parameter y
 KR.RES x y      set position to loop start for track x parameter y
 KR.CV x         current CV value of output x
-KR.MUTE x y     set the mute of track x to y (where y=1 is muted, y=0 is not.) if x is 0, set all				mutes to state y
+KR.MUTE x y     set the mute of track x to y (where y=1 is muted, y=0 is not.) 
+                if x is 0, set all mutes to state y
 KR.TMUTE x      toggle mute for Kria track x (0 = all)
-			   toggle will _invert current state_.
-KR.CLK x        send to clock track x (0 == all) IF track is enabled to be clocked							   by Teletype (see above)
+                toggle will _invert current state_.
+KR.CLK x        send to clock track x (0 == all) IF track is enabled to be clocked
+                by Teletype (see above)
 ```
 
 ### Meadowphysics
@@ -770,7 +776,7 @@ MP.PERIOD x     set internal clock period to x
 MP.PERIOD       return current internal clock period
 MP.OFF x        stop channel x (0 = all)
 MP.RES x        reset channel x (0 = all) (also used as "start")
-MP.CV x 	    get current CV value of output x
+MP.CV x         get current CV value of output x
 ```
 
 ### Levels

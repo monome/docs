@@ -52,6 +52,10 @@ Ansible ships with a strange USB A-A cable. This is used for firmware updates. W
 
 Firmware update information [instructions are available](http://monome.org/docs/modular/update/).
 
+## Firmware Version
+
+This documentation documents firmware version **1.6.0**.
+
 ## Basics
 
 ![Panel Overlay](images/ansible_CLEAN.png)

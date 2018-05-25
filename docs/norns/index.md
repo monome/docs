@@ -3,6 +3,7 @@ layout: page
 permalink: /docs/norns/
 ---
 
+
 ![](https://monome.org/images/norns-front-small.jpg)
 
 # norns

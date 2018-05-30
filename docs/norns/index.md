@@ -73,6 +73,8 @@ Some scripts may have no parameters.
 
 Like the parameter list, but for the global audio settings. Includes output and input levels, headphone gain, aux send (reverb), and insert (compression).
 
+See the REFERENCE section below for details on the parameters available.
+
 ### SYSTEM / WIFI
 
 The WIFI nub must be inserted before starting.  Here you can set up a hotspot or connect to an existing network.  
@@ -119,7 +121,7 @@ Here you have VUs and mixing capabilities.
 - ENC2 input
 - ENC3 monitor (input to output)
 
-Battery percentage level is indicated in the upper right.
+Battery percentage level is indicated in the upper right. Hold KEY1 to see current consumption.
 
 #### TAPE
 
@@ -138,6 +140,12 @@ PLAY
 - KEY3 loads file.
 - KEY3 to play.
 - ENC3 to toggle PLAY/STOP.
+
+## dust
+
+DUST is the collection of scripts, engines, and sounds on the norns. it is a public repository and contributions are welcome.
+
+See the [dust docs](dust) for documentation on individual engines and scripts.
 
 ## maiden
 
@@ -166,6 +174,45 @@ Where `(tab)` appears hit TAB to autocomplete the serial number. Login is the sa
 
 Check out the [community forum](https://llllllll.co) for various help threads.
 
-### Hardware problems
+If you're experiencing hardware problems contact info@monome.org and we can help right away.
 
-Contact info@monome.org and we can help right away.
+---
+
+## reference
+
+### SYSTEM AUDIO PARAMETERS
+
+Basic:
+
+- output: main level (stereo, affects both main outs and headphones)
+- input: input level (stereo)
+- monitor: monitor level, passing input to output
+- monitor mode: STEREO/MONO. stereo: L input to L output, etc. mono: L to L/R. R to L/R.
+- headphone: gain, 0-64. set according to your headphone preference and impedance.
+
+AUX (Reverb):
+
+- aux fx: on/off
+- aux output level: engine output -> aux input
+- aux input 1 level: input 1 -> aux input
+- aux input 2 level: input 2 -> aux input
+- aux input 1 pan: pan for input 1
+- aux input 2 pan: pan for input 2
+- aux return level: aux output -> main output
+
+- rev in delay: reverb delay time
+- rev lf x: reverb low frequency crossover
+- rev low RT60: reverb low time
+- rev mid RT60: reverb mid time
+- rev hf damping: reverb high frequency damping
+
+INSERT (Compressor):
+
+- insert fx: on/off
+- insert mix: dry/wet (dry = 0.0, wet = 1.0)
+- comp ratio: compressor ratio
+- comp thresh: compressor threshold
+- comp attack: compressor attack time
+- comp release: compressor release time
+- comp makeup: compressor makeup gain 
+

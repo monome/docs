@@ -7,9 +7,9 @@ permalink: /docs/
 
 ## [norns](/docs/norns)
 
-## [grid](/docs/grid) / [arc](/docs/arc)
+## [grid](/docs/grid) -- [arc](/docs/arc)
 
-### [setup and introduction](/docs/setup) -- first steps. start here.
+[setup and introduction](/docs/setup) -- first steps. start here.
 
 #### featured applications
 

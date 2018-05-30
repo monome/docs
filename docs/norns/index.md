@@ -40,7 +40,7 @@ A changing melody will play.
 - ENC2 and ENC3 change sequence lengths.
 - KEY2 resets sequence positions.
 
-- HOLD KEY, then:
+- HOLD KEY1, then:
 - ENC1 changes scale mode.
 - ENC2 changes filter cutoff.
 - ENC3 changes release time.

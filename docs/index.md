@@ -5,6 +5,7 @@ permalink: /docs/
 
 # monome docs
 
+## [norns](/docs/norns)
 
 ## [grid](/docs/grid) / [arc](/docs/arc)
 

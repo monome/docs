@@ -330,7 +330,7 @@ function enc(n,d)
   end
 end
 ```
-:
+
 ## continued
 
 - part 1: many tomorrows

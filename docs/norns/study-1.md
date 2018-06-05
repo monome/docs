@@ -125,7 +125,7 @@ in lua variables don't need to be declared. we just made two variables. the firs
 print(coins)
 ```
 
-this prints just the number. you'll find it helpful when debugging to make more informative prints by using _string concatenation_ which just means gluing strings together (or tying them together, if you prefer a more more expedient metaphor). you do this with the lua operator `..` (two periods):
+this prints just the number. you'll find it helpful when debugging to make more informative prints by using _string concatenation_ which just means gluing strings together (or tying them together, if you prefer a more expedient metaphor). you do this with the lua operator `..` (two periods):
 
 ```
 print("i will cast " .. spell .. " for " .. coins .. " coins.")

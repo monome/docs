@@ -8,7 +8,11 @@ permalink: /docs/norns/
 
 # norns
 
-see the [beginning guide](norns-legend.pdf) for a one-sheet quick introduction.
+**current version: [180603](https://github.com/monome/norns/releases/tag/180603)**
+
+- [beginning guide](norns-legend.pdf) is a one-sheet quick introduction.
+- [dust docs](dust) is documentation on individual engines and scripts.
+- [update](update) instructions.  
 
 ## legend
 
@@ -65,9 +69,15 @@ Explore the collection of scripts.  Selecting a script will show a description. 
 
 ### PARAMETERS
 
-Scripts can define their own parameters.  ENC3 changes parameter values.  HOLD KEY1 and then use KEY2 and KEY3 to save/load parameter sets.  
+Scripts can define their own parameters. ENC2 scrolls and ENC3 changes parameter values.
 
-Some scripts may have no parameters.
+HOLD KEY1 to access parameter set saving and loading:
+
+- ENC3 scrolls set number (0 is default, with 1-99 available)
+- KEY2 loads the selected set
+- KEY3 saves the set to the selected position
+
+Note that some scripts may have no parameters.
 
 ### SYSTEM / AUDIO
 
@@ -149,11 +159,13 @@ See the [dust docs](dust) for documentation on individual engines and scripts.
 
 ## maiden
 
+_note: be sure you've run the system [update](update)_
+
 For a first look at _maiden_ (the web editor) turn on WIFI (connect to your norns via hotspot) and try opening a web browser to:
 
-- `http://norns.local:5000`
+- `http://norns.local`
 
-(if not found, try `http://172.24.1.1:5000` or the appropriate IP address.)
+(if not found, try `http://172.24.1.1` or the appropriate IP address.)
 
 More documentation coming.
 

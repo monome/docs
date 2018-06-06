@@ -203,7 +203,7 @@ end
 above we used `n == 3` as the condition, which checked to see if the key number was equal to 3. other comparison operators include:
 
 - `==` (is equal)
-= `~=` (not equal)
+- `~=` (not equal)
 - `>` (greater than)
 - `<` (less than)
 - `>=` (greater or equal)

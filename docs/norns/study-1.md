@@ -99,7 +99,7 @@ both are float (decimal) values. given the name "TestSine" we can infer that `am
 engine.hz(200)
 ```
 
-now is a good time to point out the UP ARROW on your keyboard. when typing into the command line use the up arrow to see the previous things you typed in. this makes rapid-changing of the frequency much easier. also try modulating the amplitude with `engine.amp(0.8)` (amplitude is 0.0-1.0, but you can certainly give it large values and it'll clip a happily.)
+now is a good time to point out the UP ARROW on your keyboard. when typing into the command line use the up arrow to see the previous things you typed in. this makes rapid-changing of the frequency much easier. also try modulating the amplitude with `engine.amp(0.8)` (amplitude is 0.0-1.0, but you can certainly give it large values and it'll clip happily.)
 
 so back to the script, if we want to have the engine start up with a particular frequency, we add it to the `init` function:
 

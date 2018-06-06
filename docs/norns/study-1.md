@@ -2,6 +2,8 @@
 permalink: /docs/norns/study-1/
 ---
 
+<div class="vid"><iframe src="https://player.vimeo.com/video/273692952?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+
 # many tomorrows
 
 norns studies part 1
@@ -281,7 +283,7 @@ so: be sure to keep an eye on the command line for errors.
 
 ## example: many tomorrows
 
-putting together the concepts above.
+putting together the concepts above. this script is demonstrated in the video up top.
 
 ```
 -- many tomorrows
@@ -331,7 +333,25 @@ function enc(n,d)
 end
 ```
 
+## reference
+
+- `engine.list_commands()` -- list available engine commands (prints to command line)
+
+## further
+
+- [programming in lua (first edition)](https://www.lua.org/pil/contents.html)
+- [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
+- [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)
+- [lua in 15 mins](http://tylerneylon.com/a/learn-lua/)
+
 ## continued
 
 - part 1: many tomorrows
 - part 2: (forthcoming)
+
+## community
+
+ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
+
+edits to this study welcome, see [monome/docs](http://github.com/monome/docs)
+

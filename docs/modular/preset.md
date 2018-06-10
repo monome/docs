@@ -28,7 +28,7 @@ at this point your unit is still in bootloader mode. you are not done. you now w
 - restore an previous preset data file, or
 - start with a fresh, blank preset bank
 
-to re-activate you module:
+to re-activate your module:
 
 	dfu-programmer at32uc3b0256 launch
 
@@ -42,4 +42,4 @@ to restore a "n.hex" file (get into bootloader mode first):
 to clear out the presets and start fresh, simply flash a factory firmware, downloaded from the github. see [firmware update](/docs/modular/update).
 
 
-_note:_ the entire flash is read and written, including the program data, so there is not portability between firmware versions. (ie, presets from WW 1.1 will not work with WW 1.4).
+_note:_ the entire flash is read and written, including the program data, so there is no portability between firmware versions. (ie, presets from WW 1.1 will not work with WW 1.4).

@@ -199,6 +199,8 @@ To quick-save the current memory slot, push and hold the panel key. The grid wil
 
 Each *Preset* has an associated *glyph* available on the right 8x8 quadrant. Press keys here to draw a visual cue to associate with your *Preset*. It is saved with the current data when holding a preset slot.
 
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
+
 
 ## Live Input
 

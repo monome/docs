@@ -137,6 +137,7 @@ The current preset will be shown dimly. Rotate to one of the other slots press e
 
 Presets are written to flash, and the most recently used preset will be loaded upon power-up.
 
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
 
 ## Cycles (Arc)
 
@@ -189,6 +190,7 @@ The current preset will be shown dimly. Rotate to one of the other slots press e
 
 Presets are written to flash, and the most recently used preset will be loaded upon power-up.
 
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
 
 ## Kria (Grid)
 
@@ -297,6 +299,8 @@ To read a preset, press the position to select, and then press again to read.
 To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
+
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
 
 
 ## Meadowphysics (Grid)
@@ -427,6 +431,7 @@ To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
 
 ## MIDI/voice
 
@@ -488,7 +493,7 @@ Holding `Key 2` and a short press on `preset` saves the current value for the fo
   * pitch offset (set via teletype)
   * fixed mapping
 
-Holding `Key 2` and a long press on `preset` will clear the stored configuration and reset back to default vaules (mode light blinks twice).
+Holding `Key 2` and a long press on `preset` will clear the stored configuration and reset back to default values (mode light blinks twice).
 
 The default pitch offset is -2 octaves which is the equivalent of issuing the following Teletype command `MID.SHIFT N -24`.
 

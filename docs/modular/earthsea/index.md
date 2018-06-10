@@ -240,6 +240,8 @@ To access the memory system, push the button next to the USB port on the panel. 
 
 Quick-save to the current memory slot by push and holding the panel key.
 
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
+
 ## Chord Forms & Scales
 
 The fourths & semitones arrangement was chosen to be at once familiar to a broad audience but also present an alternative way to approach harmony and scales in typically keyboard oriented electronic music. Using this arrangement allows melodic progressions over a wide range with relatively minor hand movements. The regular (or isometric) layout means patterns can be shifted around the keymap without alteration to play in different keys.

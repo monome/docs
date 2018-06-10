@@ -141,6 +141,7 @@ The current preset will be shown dimly. Rotate to one of the other slots press e
 
 Presets are written to flash, and the most recently used preset will be loaded upon power-up.
 
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
 
 ## Cycles (Arc)
 
@@ -193,6 +194,7 @@ The current preset will be shown dimly. Rotate to one of the other slots press e
 
 Presets are written to flash, and the most recently used preset will be loaded upon power-up.
 
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
 
 ## Kria (Grid)
 
@@ -411,11 +413,14 @@ To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
+
 ### Teletype Clocking
 
 A channel of Kria can be set to be clocked from the Teletype command `KR.CLK x` (see below).
 
 To do so, press the *scale* key to enter scale view. The four leftmost keys in the top row will enable or disable Teletype clocking for the relevant channel. When a channel is clocked by Teletype, it no longer responds to the master clock (set either internally or by an external clock connected to the `In 1`).
+
 
 
 ## Meadowphysics (Grid)
@@ -546,6 +551,7 @@ To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
 
 ## MIDI/voice
 
@@ -607,7 +613,7 @@ Holding `Key 2` and a short press on `preset` saves the current value for the fo
   * pitch offset (set via teletype)
   * fixed mapping
 
-Holding `Key 2` and a long press on `preset` will clear the stored configuration and reset back to default vaules (mode light blinks twice).
+Holding `Key 2` and a long press on `preset` will clear the stored configuration and reset back to default values (mode light blinks twice).
 
 The default pitch offset is -2 octaves which is the equivalent of issuing the following Teletype command `MID.SHIFT N -24`.
 

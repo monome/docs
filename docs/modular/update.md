@@ -7,8 +7,8 @@ permalink: /docs/modular/update/
 
 new releases are available per module:
 
-- [teletype](https://github.com/monome/teletype/releases) **2.1.0** (october 12 2017)
-- [ansible](https://github.com/monome/ansible/releases) **1.6.0** (april 17 2018)
+- [teletype](https://github.com/monome/teletype/releases) **2.2.0** (february 15 2018)
+- [ansible](https://github.com/monome/ansible/releases) **1.6.1** (april 17 2018)
 - [whitewhale](https://github.com/monome/whitewhale/releases) **1.5.0** (march 27 2017)
 - [meadowphysics](https://github.com/monome/meadowphysics/releases) **2.1.0** (march 25 2017)
 - [earthsea](https://github.com/monome/earthsea/releases) **1.9.4** (june 19 2017)
@@ -72,19 +72,56 @@ get the firmware from the links at the top of the page. remember where these are
 
 connect the USB A-A cable to your computer and the module. on the module, hold down the front panel button while powering up to launch the bootloader. the leds may be lit or not; don't worry.
 
-to run the firmware update command, your user will need to be in the `dialout` or `uucp` group, depending on what your distribution calls it. otherwise you'll need to run it as root/sudo:
+to run the firmware update command, your user will need to be in the `dialout` or `uucp` group, depending on what your distribution calls it. otherwise you'll need to run it as `root` or `sudo`:
 
-```
-$ ./update_firmware.command
-Checking memory from 0x2000 to 0x3FFFF... Not blank at 0x2001.
-Erasing flash... Success
-Checking memory from 0x2000 to 0x3FFFF... Empty.
-Checking memory from 0x2000 to 0xBDFF... Empty.
-Programming 0x9E00 bytes... Success
-Reading 0x3E000 bytes... Success
-Validating... Success
-```
+    $ ./update_firmware.command
 
 the clock led (if present) will flash to show it has successfully installed.
 
 you will need to power-cycle the module to re-enable USB device detection.
+
+# firmware backups
+
+you may wish to backup your module firmware before updating it, particularly if you want to save your presets, patterns, scales, settings. at this time, it is not possible to save or restore _only_ presets; the _entire_ firmware image, including any presets, is backed up from or loaded into the module. this means that restoring a backup may reinstall an older version of the firmware, potentially losing features or bugfixes in newer firmware versions.
+
+to backup your firmware, install [dfu-programmer](http://dfu-programmer.github.io) and power up the module in bootloader mode according to the earlier instructions. then, follow the steps below for your module.
+
+## ansible, meadowphysics, white whale, earthsea
+
+once in bootloader mode, open a terminal and run:
+
+    dfu-programmer at32uc3b0256 read > firmware-name.hex
+
+restart the module before you unplug the USB cable:
+
+    dfu-programmer at32uc3b0256 start
+
+you can restore the backed-up firmware any time by getting back into bootloader mode, opening a terminal in your backup's directory, and running:
+
+```
+dfu-programmer at32uc3b0256 erase
+dfu-programmer at32uc3b0256 flash firmware-name.hex --suppress-bootloader-mem
+dfu-programmer at32uc3b0256 start
+```
+
+> note: these are the same commands that are run by the `update_firmware.command` script included in the official firmware releases.
+
+## teletype
+
+once in bootloader mode, open a terminal and run:
+
+    dfu-programmer at32uc3b0512 read > firmware-name.hex
+
+restart the module before you unplug the USB cable:
+
+    dfu-programmer at32uc3b0512 start
+
+you can restore the backed-up firmware any time by getting back into bootloader mode, opening a terminal in your backup's directory, and running:
+
+```
+dfu-programmer at32uc3b0512 erase
+dfu-programmer at32uc3b0512 flash firmware-name.hex --suppress-bootloader-mem
+dfu-programmer at32uc3b0512 start
+```
+
+> note: these are the same commands that are run by the `update_firmware.command` script included in the official firmware releases.

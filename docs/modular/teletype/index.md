@@ -39,6 +39,8 @@ Secure the module with the four included screws, hiding under the tape in the bo
 
 **[Firmware updates](/docs/modular/update) may be available. The currently installed firmware version is displayed at startup.**
 
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
+
 ## Getting Started
 
 The basics of Teletype are quick to learn. The tutorials will get you started and the manual provides a complete reference.

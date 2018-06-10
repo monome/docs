@@ -115,3 +115,7 @@ Part 6: Collaboration
 [Part 2: Nudge Nudge &larr;](../jt-2)
 
 [Part 1: Practical Magic &larr;](../jt-1)
+
+## Credits
+
+This study was created by [Dan Derks](http://soundandprocess.com).

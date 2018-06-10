@@ -112,7 +112,7 @@ CV.OFF 1 N 5
 
 The first two scripts change the CV value, and the second two change the CV offset.
 
-*THIS* &rarr; Trigger a script from the keyboard by holding **WIN** (aka meta) and pressing **1-8** (for example, **WIN-1** to trigger script 1.) This is great for trying things out while writing scripts without having to patch inputs into Teletype.
+*THIS* &rarr; Trigger a script from the keyboard by pressing one of **F1**-**F8** (for example, **F1** to trigger script 1.) This is great for trying things out while writing scripts without having to patch inputs into Teletype.
 
 Try triggering scripts 1-4 in various ways. Yeah?
 
@@ -187,7 +187,7 @@ We can give `M` a long time, up to 32 seconds. We can also hard-reset the counti
 
 This will reset the count-down before the next execution of the M script.
 
-Like the script 1-8 hot keys, you can manually execute the M script with **WIN-M**, even if the script is disabled with `M.ACT`.
+Like the script 1-8 hot keys, you can manually execute the M script with **F9**, even if the script is disabled with `M.ACT`.
 
 The metronome script is exactly the same as the other scripts-- it's simply triggered internally on a clock.
 
@@ -195,7 +195,7 @@ The metronome script is exactly the same as the other scripts-- it's simply trig
 
 Scenes only store script and pattern data-- the current state of variables (such as `M`) and CV parameters are unchanged. On hardware startup these will be initialized to 0, but when changing scenes whatever values were in memory will remain.
 
-The Initialization script will help make scene startups predictable. Get into *EDIT* mode and navigate to the I script. This is executed on scene recall. You can manually execute it from the keyboard with **WIN-I**.
+The Initialization script will help make scene startups predictable. Get into *EDIT* mode and navigate to the I script. This is executed on scene recall. You can manually execute it from the keyboard with **F10**.
 
 Things that normally go in the `I` script are things like:
 

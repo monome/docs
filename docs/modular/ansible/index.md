@@ -52,6 +52,10 @@ Ansible ships with a strange USB A-A cable. This is used for firmware updates. W
 
 Firmware update information [instructions are available](http://monome.org/docs/modular/update/).
 
+## Firmware Version
+
+This documentation documents firmware version **1.6.0**.
+
 ## Basics
 
 ![Panel Overlay](images/ansible_CLEAN.png)
@@ -213,20 +217,26 @@ Four tracks of sequencers. Each track outputs to its respective CV/TR pair as pi
 The main grid view uses the bottom row for navigation, which are dimly lit into blocks and highlight the current setting:
 
  * 1-4: Track
- * 5-9: Trigger, Note, Octave, Duration
+ * 6-9: Trigger, Note, Octave, Duration
  * 11-13: MODIFIERS: Loop, Time, Probability
  * 15: Scale
  * 16: Pattern
 
 ![](images/grid_KR_NAVIGATION_1.2.png)
 
-Each *track* has parameters *Trigger, Note, Octave,* and *Duration*. These parameters comprise of the sequence loop.
+### Parameters
+
+Each *track* has four parameters *Trigger, Note, Octave,* and *Duration*. These parameters work together to form the sequence loop. 
+
+Select a parameter to adjust by pressing its key in the bottom row of the grid.
 
 A *note* will occur only when a *trigger* is set. This note will be the pitch specified by *note* in *octave* of a specified *duration*.
 
 The *trigger* view shows all four tracks at once, whereas all other parameter views display the track selected.
 
 The *duration* view has downward sliders (lower is longer) and a master duration multiplier at the top.
+
+There are also 'sub-pages' for more advanced extensions to each of these main parameters; see "**extended parameters**" for details.
 
 ### Modifiers
 
@@ -237,6 +247,61 @@ The *time* view shows the current clock divider.
 The *probability* view is a per-step probability for each parameter. There are four levels which specify likelihood of execution by percentage: 100, 75, 50, and 0. By default all are at 100%. 0% serves as a step mute of the specified parameter.
 
 Loops and time dividers are per parameter, per track, and so the phasing of parameters a fundamental feature of Kria.
+
+### Extended parameters
+
+Many of the parameter views have "sub-pages" that extend or augment their functionality. To enter into each sub-page, switch to the parameter using keys 6-9, then tap the parameter key again. When you are in the sub-page for a parameter, its paramater key will be blinking. Press the parameter again to return to the main parameter view.
+
+| Parameter | Extended Parameter |
+| --------- | ------------------ |
+| Trigger   | Trigger Ratcheting |
+| Note      | "Alternate Note"   |
+| Octave    | Glide              |
+| Duration  | *none*             |
+
+Just like the primary parameter pages, each of the extended parameter subpages have their own probability, clock division and loop controls. This allows for some very complex phrasing to be built.
+
+#### Trigger Ratcheting
+
+*Trigger ratcheting* allows multiple, regularly-spaced gates to be emitted for a single trigger in the grid.
+
+To enter the ratcheting page, press the trigger parameter key a second time when you are in the trigger view. The trigger parameter key will blink.
+
+Ratcheting uses rows 3-6 to determine the number of sub-triggers that will fire for each trigger column. Selecting row 6 will cause no extra triggers to fire for that step. Selecting row 5 causes 1 extra trigger to fire, effectively turning an 8th note into two 16th notes. Row 4 will cause 2 extra triggers, for a total of 3, turning the single trigger into a triplet. Finally row 3 will cause 3 extra triggers to fire - effectively turning an 8th note into 4 32nd notes.
+
+![](images/grid_KR_triggerRatcheting.png)
+
+
+
+#### Alternate Note
+
+*Alternate note* effectively allows a second note sequence to be specified for a track.
+
+To enter the alternate note page, press the note parameter key a second time when you are in the note view. The note parameter key will blink.
+
+The alternate note parameter screen is functionally identical to the main note screen, with its own probability, clock, division, and loop. 
+
+Both note pages - main and alternate - are *additive*. When a note from each screen is played simultaneously, the indices of the keys within the scale are added together, and then mapped to the current scale. 
+
+For example: if a note from each page is triggered and both are in the bottom row of the scale - "note 0" - then the CV output is for `0 + 0 = 0`, ie, note zero, the root of the scale. If the current main note is the 4th  key up (index *3* of the scale) and the alt-note is the 3rd key up (index *2*). This step in the sequence will output `3+2 = 5` index 5 of the scale, ie, the 6th note.
+
+Note that if the combined index is above 6, the final index will be `index modulo 6`. Or, in less mathematical terms, it will 'wrap around' to the bottom of the scale again: if the main note is the note 5 (index 4) and the alternate note is note 6 (index 5), the final index would not be `4+5 = 9` but `(4+5) % 6 = 3` - index 3, or the *fourth* note of the scale.
+
+The possibilities for alternate note become particularly interesting if you alter its probability or clock division, or if its loop points take it out of phase with the main note.
+
+#### Glide
+
+*Glide* allows up to 120ms of glide time to be added between triggered notes.
+
+To enter the glide page, press the octave parameter key a second time when you are in the octave view. The octave parameter key will blink.
+
+The glide view screen allows the user to slew the currently playing note into the next triggered note. This is controlled by setting a slider on each step column. Row 7 has a slew of 0ms, effectively a pass through. from here up each row increases the slew time to the note in the current column. Row 6 is 20ms row 5 is 40ms all the way to 120ms in row 1.
+
+![](images/grid_KR_Glide.png)
+
+### Quick track muting
+
+Holding the *loop* modifer and pressing a track button will mute it; pressing again will unmute.
 
 ### Scale
 
@@ -252,9 +317,57 @@ For example, a whole tone scale (2 semitones per note) would be constructed by s
 
 Scales are shared between Kria and Meadowphysics, and are saved to flash whenever a preset of either is saved.
 
+The top-left four keys on the *scale* page are used to toggle Teletype clocking for a given channel; see below for more details.
+
 ### Patterns
 
 Patterns are shown along the top row, with 16 available total. Push a pattern key momentarily to load that pattern. *Hold* a pattern key to store the current pattern into it; it will pulse when the pattern is stored. Remember that loading an 'empty' pattern will effectively clear the current pattern.
+
+#### Pattern Cueing
+Pattern cueing allows the user to select the next pattern to be played, based off of pattern clock timing. To cue a pattern hold the *Pattern* button while pushing the next pattern to play. The top row will indicate which pattern is cued to play next
+
+The second row on the pattern pages represents the *Cue* clock. Pushing a key in this row to set the number of steps for the cue clock.
+
+A cued pattern is activated when the cue clock returns to zero. This clock represents a global quantize for pattern cueing.
+
+This clock setting can be modified by the *Time* modifier, allowing you to get extremely long pattern cue time quantization.
+![](images\grid_KR_CUEDPattern.png)
+
+#### Meta Patterns
+The *Meta-Pattern* mode allows you to create sequences of patterns, with control over the number of times a pattern loops before moving on to the next one.
+
+To enter the *Meta-Pattern* mode, hold down the pattern button and select any button on row 7.
+
+When *Meta-Pattern* is activated the rows on your grid are:
+
+|Row|Function|
+|---|---|
+|1| This is your normal pattern row|
+|2| Is a clock divider that determines the length between each step of the *meta-sequencer*. Think of it like a clock for row 7. This is a global setting|
+|3| Pattern steps 1 - 16|
+|4| Pattern steps 17 - 32|
+|5| Pattern steps 33 - 48|
+|6| Pattern steps 49 - 64|
+|7| The *meta-sequencer* row. This hold the duration for your selected pattern|
+|8|Normal navigation row|
+
+Rows 3 through 6 are where you store your patterns in a *Pattern Sequence*. Each button in this row can have 2 pieces of data associated with it, a pattern and a duration.
+
+![](images\grid_KR_METAPattern.png)
+
+To edit the data just select the *pattern sequence* button you wish to change. It will glow at the maximum brightness. Selecting a pattern from row 1 will now change the pattern in the currently selected step.
+
+You can also change the duration the pattern is played by selecting the end step of the *meta-sequencer* on row 7. Visually the *meta-sequencer* will show you the sequence length for the current step **and** the end point of the selected patterns duration at maximum brightness.
+
+The *meta-sequencer* is clocked by the divider in row 2 and controls how long the current pattern will play before moving on to the next pattern. Row 2 itself is clocked by the current tempo (either internal or external), however if you hold the *Duration* modifier you can subdivide the current tempo driving the row 2 clock divider, for extremely long step times.
+
+The *loop* modifier can effect the length and start position of the *pattern sequence* in rows 3-6. The same multi touch gestures while holding the *loop* modifier work in these rows. This loop will wrap around the end. And like other views, you can push the same position twice to create a single-slot loop. Pushing a *pattern sequence* once while holding the *loop* modifier will cause the current loop to start at the new position.
+
+If you hold the *pattern* button down and select a sequence step in row 3-6 the meta-pattern will jump to that position the next time the pattern advances.
+
+Last, but not least you can edit your patterns live while the *meta-pattern* is running. This can be slightly off putting with quickly changing patterns, but is a great way to live edit your patterns within the context of a larger sequence.
+
+n-So has created a very informative [video](https://www.youtube.com/watch?v=ZWBXLsbxWlw) that covers all of this in a mere 6 minutes.
 
 ### Time
 
@@ -301,6 +414,13 @@ To write a preset, press and hold the position to write to.
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
 It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
+
+### Teletype Clocking
+
+A channel of Kria can be set to be clocked from the Teletype command `KR.CLK x` (see below).
+
+To do so, press the *scale* key to enter scale view. The four leftmost keys in the top row will enable or disable Teletype clocking for the relevant channel. When a channel is clocked by Teletype, it no longer responds to the master clock (set either internally or by an external clock connected to the `In 1`).
+
 
 
 ## Meadowphysics (Grid)
@@ -642,6 +762,13 @@ KR.L.ST x y     return loop start of track x parameter y
 KR.L.LEN x y z  set length to z for track x parameter y
 KR.L.LEN x y    return loop length of track x parameter y
 KR.RES x y      set position to loop start for track x parameter y
+KR.CV x         current CV value of output x
+KR.MUTE x y     set the mute of track x to y (where y=1 is muted, y=0 is not.) 
+                if x is 0, set all mutes to state y
+KR.TMUTE x      toggle mute for Kria track x (0 = all)
+                toggle will _invert current state_.
+KR.CLK x        send to clock track x (0 == all) IF track is enabled to be clocked
+                by Teletype (see above)
 ```
 
 ### Meadowphysics
@@ -655,6 +782,7 @@ MP.PERIOD x     set internal clock period to x
 MP.PERIOD       return current internal clock period
 MP.OFF x        stop channel x (0 = all)
 MP.RES x        reset channel x (0 = all) (also used as "start")
+MP.CV x         get current CV value of output x
 ```
 
 ### Levels

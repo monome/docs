@@ -24,7 +24,7 @@ engine.name = "PolySub"
 
 function redraw()
   screen.clear()
-  screen.move(10,40)
+  screen.move(0,40)
   screen.level(15)
   screen.text("The relationship between what we see and what we know")
   screen.update()
@@ -43,7 +43,7 @@ let's step through:
 ![](../study-image/coordinate_system.gif)
 
 - `screen.level(15)` sets the brightness. 0 = black, 15 = white. in between you get grays.
-- `screen.text("hello")` prints "hello".
+- `screen.text("The relationship between what we see and what we know")` prints some words.
 - `screen.update()` refreshes the screen, updating the contents.
 
 this is a pretty typical (despite being simple) drawing function. we set some attributes (such as level), set a position (with move) and then draw something (in this case, text). and don't forget `update` or nothing will happen!
@@ -81,7 +81,7 @@ end
 
 we're calling `redraw()` when we get encoder or key data in order to display the newest information. you can call `redraw()` conditionally whenever the screen needs to be updated: this may be on a keypress or a metro or on grid input or midi notes.
 
-and `redraw()` can itself have much more logic involved. for example, we may want to different modes or pages, such as:
+and `redraw()` can itself have much more logic involved. for example, we may want to use different modes or pages, such as:
 
 ```
 function init()
@@ -103,7 +103,7 @@ function redraw()
     screen.clear()
     screen.move(0,20)
     screen.text("WILD")
-    screen.update() 
+    screen.update()
   end
 end
 
@@ -131,7 +131,7 @@ a few new commands found their way in as well:
 
 ## so many commands
 
-what in the world is font 10? how am i going to remember all of these commands?
+what in the world is `font_face 10`? how am i going to remember all of these commands?
 
 this is a moment when you'll appreciate the reference docs. they live on norns and you can load them up right alongside maiden:
 
@@ -163,7 +163,7 @@ that's one wild smooth triangle.
 - `screen.close()` closes the path (makes a line to the start position)
 - `screen.stroke()` renders the path (also check out `screen.fill()`)
 
-check out the rest of the reference doc for more drawing bliss and get out your code paintbrush.
+check out the rest of the reference docs for more drawing bliss and get out your code paintbrush.
 
 ## procedural
 
@@ -429,7 +429,7 @@ function redraw()
   end
   screen.move(10,60)
   screen.text(number)
-  screen.update() 
+  screen.update()
 end
 
 function key(n,z)
@@ -443,8 +443,8 @@ function key(n,z)
     -- choose new random notes
     for i=1,number do
       selected[math.random(5)][math.random(5)] = 1
-    end 
-  elseif n == 3 then 
+    end
+  elseif n == 3 then
     -- find notes to play
     if z == 1 then
       for x=1,5 do
@@ -483,4 +483,3 @@ end
 ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 
 edits to this study welcome, see [monome/docs](http://github.com/monome/docs)
-

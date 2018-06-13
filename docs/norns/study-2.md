@@ -259,7 +259,7 @@ screen.update()
 
 ## tables everywhere
 
-in lua, tables are associative arrays. think spreadsheets. (when making music myself i get pretty psuched about spreadsheets.)
+in lua, tables are associative arrays. think spreadsheets. (when making music myself i get pretty psyched about spreadsheets.)
 
 it's a way of storing, looking up, and manipulating a lot of data.
 
@@ -387,7 +387,7 @@ end
 screen.update()
 ```
 
-## exampe: patterning
+## example: patterning
 
 putting together concepts above. this script is demonstrated in the video up top.
 

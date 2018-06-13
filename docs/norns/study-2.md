@@ -38,7 +38,7 @@ the familiar bits: start with some comments which are displayed in the menu sele
 let's step through:
 
 - `screen.clear()` erases the screen
-- `screen.move(0,40)` moves the current position to (x,y) = (0,40) in pixels. the top right of the screen is (0,0). as you move right x is increasing, and as you move down y is increasing.
+- `screen.move(0,40)` moves the current position to (x,y) = (0,40) in pixels. the top left of the screen is (0,0). as you move right x is increasing, and as you move down y is increasing.
 
 ![](../study-image/coordinate_system.gif)
 

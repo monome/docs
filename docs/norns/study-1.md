@@ -121,7 +121,7 @@ coins = 4
 spell = "heal party"
 ```
 
-in lua variables don't need to be declared. we just made two variables. the first assigned the number 4, the second a string. you can easily confirm that it worked with:
+we just made two variables. the first assigned the number 4, the second a string. you can easily confirm that it worked with:
 
 ```
 print(coins)
@@ -133,7 +133,9 @@ this prints just the number. you'll find it helpful when debugging to make more 
 print("i will cast " .. spell .. " for " .. coins .. " coins.")
 ```
 
-(lua has a huge string library, many resources are on the web).
+(lua has a huge string library, many resources are on the web.)
+
+(also, see addendum on local vs. global variables.)
 
 ## maths
 
@@ -333,6 +335,24 @@ function enc(n,d)
 end
 ```
 
+## addendum
+
+variables in lua are global by default. this means they are visible in any script and in the REPL. use the local keyword to make a variable visible only to the script that declared it:
+
+```
+local hidden_spell = "foobarbaz"
+```
+
+notice that you can’t access hidden_spell in the REPL:
+
+```
+>> print(hidden_spell)
+```
+
+produces the output: `nil`
+
+its OK to use global variables while you’re experimenting with a script, but it’s a good idea to add the local keyword when you’re done, because global variables can cause problems with other scripts and with the norns system. we're putting together a list of reserved variable names.
+
 ## reference
 
 - `engine.list_commands()` -- list available engine commands (prints to command line)
@@ -347,11 +367,10 @@ end
 ## continued
 
 - part 1: many tomorrows
-- part 2: (forthcoming)
+- part 2: [patterning](../study-2/)
 
 ## community
 
 ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 
-edits to this study welcome, see [monome/docs](http://github.com/monome/docs)
-
+edits to this study welcome, see [monome/docs](http://github.com/monome/docs) 

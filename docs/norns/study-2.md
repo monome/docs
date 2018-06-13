@@ -26,7 +26,7 @@ function redraw()
   screen.clear()
   screen.move(0,40)
   screen.level(15)
-  screen.text("hello")
+  screen.text("The relationship between what we see and what we know")
   screen.update()
 end
 ```
@@ -40,10 +40,10 @@ let's step through:
 - `screen.clear()` erases the screen
 - `screen.move(0,40)` moves the current position to (x,y) = (0,40) in pixels. the top left of the screen is (0,0). as you move right x is increasing, and as you move down y is increasing.
 
-![](study-image/coordinate_system.gif)
+![](../study-image/coordinate_system.gif)
 
 - `screen.level(15)` sets the brightness. 0 = black, 15 = white. in between you get grays.
-- `screen.text("hello")` prints "hello".
+- `screen.text("The relationship between what we see and what we know")` prints some words.
 - `screen.update()` refreshes the screen, updating the contents.
 
 this is a pretty typical (despite being simple) drawing function. we set some attributes (such as level), set a position (with move) and then draw something (in this case, text). and don't forget `update` or nothing will happen!

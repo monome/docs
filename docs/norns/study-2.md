@@ -211,7 +211,7 @@ you'll notice in the previous examples we've been adding a value modifier on eac
 
 ```
 for i=1,3 do
-  print("believe!" .. i)
+  print("believe! " .. i)
 end
 ```
 

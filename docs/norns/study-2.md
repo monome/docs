@@ -432,6 +432,15 @@ function redraw()
   screen.update()
 end
 
+function selectNote(selected, x, y) 
+  if selected[x][y] == 1 then
+    -- note already selected, try again
+    selectNote(selected, math.random(5), math.random(5))
+  else
+    selected[x][y] = 1
+  end
+end
+
 function key(n,z)
   if n == 2 and z == 1 then
     -- clear selected
@@ -442,7 +451,7 @@ function key(n,z)
     end
     -- choose new random notes
     for i=1,number do
-      selected[math.random(5)][math.random(5)] = 1
+      selectNote(selected, math.random(5), math.random(5))
     end
   elseif n == 3 then
     -- find notes to play

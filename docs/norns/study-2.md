@@ -476,7 +476,7 @@ end
 
 - part 1: [many tomorrows](../study-1/)
 - part 2: patterning
-- part 3: (forthcoming)
+- part 3: [spacetime](../study-3/)
 
 ## community
 

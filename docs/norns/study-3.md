@@ -364,6 +364,7 @@ in addition to using keys and encoders to trigger functions, we can also make ti
 
 ```
 function init()
+  position = 0
   counter = metro.alloc()
   counter.time = 1
   counter.count = -1

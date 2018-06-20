@@ -460,10 +460,20 @@ note = 40
 position = 1
 step = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 STEPS = 16
-label = {"+", "-", "<", ">", "*", "M", "m", "#"}
+edit = 1
+
+function inc() note = util.clamp(note + 5, 40, 120) end
+function dec() note = util.clamp(note - 5, 40, 120) end
+function bottom() note = 40 end
+function top() note = 120 end
+function rand() note = math.random(80) + 40 end
+function metrofast() counter.time = 0.125 end
+function metroslow() counter.time = 0.25 end
+function positionrand() position = math.random(8) end
+
 act = {inc, dec, bottom, top, rand, metrofast, metroslow, positionrand}
 COMMANDS = 8
-edit = 1
+label = {"+", "-", "<", ">", "*", "M", "m", "#"} 
 
 function init()
   params:add_control("cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
@@ -515,20 +525,12 @@ function midi_to_hz(note)
   return (440 / 32) * (2 ^ ((note - 9) / 12))
 end
 
-function inc() note = util.clamp(note + 5, 40, 120) end
-function dec() note = util.clamp(note - 5, 40, 120) end
-function bottom() note = 40 end
-function top() note = 120 end
-function rand() note = math.random(80) + 40 end
-function metrofast() counter.time = 0.125 end
-function metroslow() counter.time = 0.25 end
-function positionrand() position = math.random(8) end
 
 function randomize_steps()
   for i=1,16 do
     step[i] = math.random(COMMANDS)
   end
-end
+end 
 ```
 
 ## continued

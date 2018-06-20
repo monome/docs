@@ -183,7 +183,7 @@ function key(n,z)
 end
 ```
 
-the trick happens in the `key` function. see how `redraw` is getting reassigned to one of the other ffunctions? for the puzzle lovers let's make it even more complicated:
+the trick happens in the `key` function. see how `redraw` is getting reassigned to one of the other functions? for the puzzle lovers let's make it even more complicated:
 
 ```
 feelings = {sad,happy}
@@ -221,13 +221,13 @@ pause. really consider the possibilities, and i hope your mind explodes a tiny b
 
 ## parameters
 
-managing numbers is of primary concern. we usually want them to stay in a certain range and behave a certain way, and this means typically making a lot of repetetive code. but we've created some structures to help you keep your numbers together and scripts looking clean:
+managing numbers is of primary concern. we usually want them to stay in a certain range and behave a certain way, and this means typically making a lot of repetitive code. but we've created some structures to help you keep your numbers together and scripts looking clean:
 
 ```
 params:add_number("tempo",20,240,88)
 ```
 
-we just created an entry to the default _parameter set_ which is called `params`. this is the parameter set that you see in the system menu under `PARAMETERS`. go there now and you'll see "tempo" which you can change with the menu interface. here's what we did:
+we just created an entry in the default _parameter set_ which is called `params`. this is the parameter set that you see in the system menu under `PARAMETERS`. go there now and you'll see "tempo" which you can change with the menu interface. here's what we did:
 
 - parameter name = "tempo"
 - minimum = 20
@@ -245,7 +245,7 @@ params:delta("tempo", -100)
 print("tempo is now " .. params:get("tempo")
 ```
 
-note the colon (:) for the parameter functions (these are class functions). the lines above did some pretty handy things:
+note the colon (`:`) for the parameter functions (these are class functions). the lines above did some pretty handy things:
 
 - `set` the value
 - `get` the value
@@ -320,7 +320,7 @@ params:read("later.pset")
 params:bang()
 ```
 
-after a read you'll want to call `params:bang()` which will activate every parameters `action` function.
+after a read you'll want to call `params:bang()` which will activate every parameter's `action` function.
 
 lastly, we've been using the default parameter set throughout, but we can create as many of our own parameter sets as desired. they won't be hooked up to the system menu, but we can manipulate them in all of the same ways. here's how to create one:
 
@@ -524,7 +524,6 @@ end
 function midi_to_hz(note)
   return (440 / 32) * (2 ^ ((note - 9) / 12))
 end
-
 
 function randomize_steps()
   for i=1,16 do

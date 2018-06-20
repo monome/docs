@@ -532,6 +532,11 @@ function randomize_steps()
 end 
 ```
 
+## reference
+
+- `metro` class is in (norns/docs)[norns.local/docs] (must be connected to norns)
+- `util` (also in the docs) includes many other helper functions, such as `util.clamp`
+
 ## continued
 
 - part 1: [many tomorrows](../study-1/)

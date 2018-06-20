@@ -183,7 +183,7 @@ function key(n,z)
 end
 ```
 
-the trick happens in the `key` function. see how `redraw` is getting reassigned to one of the other ffunctions? for the puzzle lovers let's make it even more complicated:
+the trick happens in the `key` function. see how `redraw` is getting reassigned to one of the other functions? for the puzzle lovers let's make it even more complicated:
 
 ```
 feelings = {sad,happy}

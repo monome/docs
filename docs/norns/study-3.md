@@ -470,7 +470,7 @@ function top() note = 120 end
 function rand() note = math.random(80) + 40 end
 function metrofast() counter.time = 0.125 end
 function metroslow() counter.time = 0.25 end
-function positionrand() position = math.random(8) end
+function positionrand() position = math.random(STEPS) end
 
 act = {inc, dec, bottom, top, rand, metrofast, metroslow, positionrand}
 COMMANDS = 8

@@ -58,7 +58,7 @@ but where do you put the function definition? check this out:
 -- spacetime
 -- norns study 3
 
-engine.name = PolyPerc
+engine.name = "PolyPerc"
 
 function init()
   engine.amp(0.5)

@@ -245,7 +245,7 @@ params:delta("tempo", -100)
 print("tempo is now " .. params:get("tempo")
 ```
 
-note the colon (:) for the parameter functions (these are class functions). the lines above did some pretty handy things:
+note the colon (`:`) for the parameter functions (these are class functions). the lines above did some pretty handy things:
 
 - `set` the value
 - `get` the value

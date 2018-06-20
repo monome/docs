@@ -368,7 +368,7 @@ its OK to use global variables while you’re experimenting with a script, but i
 
 - part 1: many tomorrows
 - part 2: [patterning](../study-2/)
-- part 2: [spacetime](../study-3/)
+- part 3: [spacetime](../study-3/)
 
 ## community
 

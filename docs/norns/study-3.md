@@ -183,7 +183,7 @@ function key(n,z)
 end
 ```
 
-the trick happens in the `key` function. see how `redraw` is getting reassigned to one of the other functions? for the puzzle lovers let's make it even more complicated:
+the trick happens in the `key` function. see how `go` is getting reassigned to one of the other functions? for the puzzle lovers let's make it even more complicated:
 
 ```
 feelings = {sad,happy}
@@ -240,9 +240,9 @@ besides editing in the menu, let's do some things with code:
 
 ```
 params:set("tempo", 110)
-print("tempo is " .. params:get("tempo")
+print("tempo is " .. params:get("tempo"))
 params:delta("tempo", -100)
-print("tempo is now " .. params:get("tempo")
+print("tempo is now " .. params:get("tempo"))
 ```
 
 note the colon (`:`) for the parameter functions (these are class functions). the lines above did some pretty handy things:
@@ -251,13 +251,13 @@ note the colon (`:`) for the parameter functions (these are class functions). th
 - `get` the value
 - `delta` the value
 
-that last delta we did was clamped into the range, so you'll that the final `tempo` value is 40 (which is the minimum we specified above).
+that last delta we did was clamped into the range, so you'll that the final `tempo` value is 20 (which is the minimum we specified above).
 
 usually when a parameter changes we want something to happen. what if we could automatically call a function whenever a parameter changed, via `set` or `delta`?
 
 ```
 function print_bpm_to_ms(bpm)
-  print(x .. " bpm is a " 60/x .. "second interval.")
+  print(bpm .. " bpm is a " .. 60/bpm .. "second interval.")
 end
 
 params:set_action("tempo", function(x) print_bpm_to_ms(x) end)

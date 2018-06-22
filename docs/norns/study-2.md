@@ -311,7 +311,7 @@ table.remove(drumzzz, 1)
 - next we insert `-1` at the beginning (at position 1), shifting the existing elements ahead. `{-1,1,0,0,0,1,0,1,0,11}`
 - last we remove the element at position 1, shifting the remaining elements back. `{1,0,0,0,1,0,1,0,11}`
 
-## make data fun again
+## the joy of data
 
 we can get the length of a table using the `#` operator:
 

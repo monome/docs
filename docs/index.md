@@ -7,6 +7,8 @@ permalink: /docs/
 
 ## [norns](/docs/norns)
 
+[norns studies](/docs/norns/study-1/) -- series of tutorials for creating scripts
+
 ## [grid](/docs/grid) -- [arc](/docs/arc)
 
 [setup and introduction](/docs/setup) -- first steps. start here.

@@ -13,6 +13,7 @@ permalink: /docs/norns/
 - [beginning guide](norns-legend.pdf) is a one-sheet quick introduction.
 - [dust docs](dust) is documentation on individual engines and scripts.
 - [update](update) instructions.  
+- [studies](/docs/norns/study-1/) -- series of tutorials for creating scripts
 
 ## legend
 

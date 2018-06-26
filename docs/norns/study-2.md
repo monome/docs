@@ -249,8 +249,8 @@ screen.level(15)
 screen.line_width(0.5)
 for upper = 0,4 do
   for lower = 0,4 do
-    screen.move(upper*32, 0)
-    screen.line(lower*32, 60)
+    screen.move(upper*31, 0)
+    screen.line(lower*31, 60)
     screen.stroke()
   end
 end
@@ -419,7 +419,7 @@ function redraw()
   for m = 1,5 do
     for n = 1,5 do
       screen.rect(0.5+m*9,0.5+n*9,6,6)
-      l = 1
+      l = 2
       if selected[m][n] == 1 then
         l = l + 3 + light
       end

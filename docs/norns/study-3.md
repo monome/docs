@@ -432,7 +432,7 @@ we use a shortcut for allocating the metro by putting the callback function, int
 
 putting together concepts above. this script is demonstrated in the video up top.
 
-```
+```lua
 -- spacetime
 -- norns study 3
 --

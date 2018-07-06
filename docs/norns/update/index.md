@@ -14,8 +14,9 @@ _note: if you're actively developing the norns codebase be sure to push any chan
 - insert the thumbdrive into norns and boot up.
 - in the menu, go to `SYSTEM > UPDATE`.
 - the file is now being copied and prepared.
-- you'll be presented with a version number, push KEY3 to confirm and install.
-- reboot the machine.
+- you'll be asked to reboot. use SLEEP.
+- on next boot the update will install, then the device will shut down.
+- start the machine.
 
 ## confirming
 

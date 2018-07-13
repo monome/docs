@@ -135,7 +135,7 @@ what in the world is `font_face 10`? how am i going to remember all of these com
 
 this is a moment when you'll appreciate the reference docs. they live on norns and you can load them up right alongside maiden:
 
-[http://norns.local/doc](norns.local/doc)
+[http://norns.local/doc](http://norns.local/doc)
 
 navigate to `screen` and then `font_face`. behold, a list of the available fonts!
 

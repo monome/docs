@@ -8,11 +8,11 @@ permalink: /docs/norns/
 
 # norns
 
-**current version: [180603](https://github.com/monome/norns/releases/tag/180603)**
+**current version: [180707](https://github.com/monome/norns/releases)**
 
 - [beginning guide](norns-legend.pdf) is a one-sheet quick introduction.
 - [dust docs](dust) is documentation on individual engines and scripts.
-- [update](update) instructions.  
+- [update](update) instructions.
 - [studies](/docs/norns/study-1/) -- series of tutorials for creating scripts
 
 ## legend
@@ -88,7 +88,7 @@ See the REFERENCE section below for details on the parameters available.
 
 ### SYSTEM / WIFI
 
-The WIFI nub must be inserted before starting.  Here you can set up a hotspot or connect to an existing network.  
+The WIFI nub must be inserted before starting.  Here you can set up a hotspot or connect to an existing network.
 
 Hotspot will create a network:
 
@@ -140,11 +140,11 @@ Within LEVELS you can record and play directly to and from disk.
 
 HOLD KEY2 for all. ENC3 toggles REC/PLAY.
 
-REC		
+REC
 
-- KEY3 to arm recording.	
-- KEY3 again to start.	
-- KEY3 again to stop.	
+- KEY3 to arm recording.
+- KEY3 again to start.
+- KEY3 again to stop.
 
 PLAY
 
@@ -227,5 +227,5 @@ INSERT (Compressor):
 - comp thresh: compressor threshold
 - comp attack: compressor attack time
 - comp release: compressor release time
-- comp makeup: compressor makeup gain 
+- comp makeup: compressor makeup gain
 

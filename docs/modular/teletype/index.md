@@ -19,7 +19,7 @@ Edit scripts with a USB keyboard which plugs into the front panel. Syntax is sim
 
 * Eurorack
 * 18hp width
-* 26mm depth 
+* 26mm depth
 
 ## Installation
 
@@ -51,8 +51,7 @@ The basics of Teletype are quick to learn. The tutorials will get you started an
 
 * [Just Type Studies](/docs/modular/teletype/jt-1) - a guided series of tutorials on integrating Teletype with Just Friends
 
-* [PDF command reference](TT_commands_2.1.pdf)
-* [PDF key reference](TT_keys_card_1.3.pdf)
+* [PDF command reference](TT_commands_3.0.pdf)
 * [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
 
 * [Default scenes](http://monome.org/docs/modular/teletype/scenes-1.0/)

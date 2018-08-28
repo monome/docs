@@ -88,7 +88,7 @@ Just Type simply ignores this hardware normalization because every channel *is* 
 
 ## Enemy of the state
 
-*sustain* is the only mode that will respond to (indeed, requires) a 'low' trigger. In *sustain*, every `JF.TR channel 1` command must have an accompanying `JF.TR channel 0` to release the envleope.
+*sustain* is the only mode that will respond to (indeed, requires) a 'low' trigger. In *sustain*, every `JF.TR channel 1` command must have an accompanying `JF.TR channel 0` to release the envelope.
 
 Implementation is up to the synthesist, but here are some starting points:
 

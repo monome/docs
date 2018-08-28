@@ -60,7 +60,7 @@ Just Friends is set to *sound/sustain* for *PLUME*. INTONE is turned fully CW. *
 
 The first script begins by cycling through a simple six note sequence. The cascading `JF.TUNE` modulations that follow provide unique translations and transpositions of the sequence. A semi-contrapuntal choir is born from only a few lines of code and three modules.
 
-`M` provides TRIGGERS to all channels, as well as a variable release (`DEL / M X: JF.TR 0 0`). Adjust `X` to taste or map it to the paramater knob.
+`M` provides TRIGGERS to all channels, as well as a variable release (`DEL / M X: JF.TR 0 0`). Adjust `X` to taste or map it to the parameter knob.
 
 Expansions on this scene could include RUN modulation through `JF.RUN state`, volume automation with `JF.VTR channel velocity`, or more adventurous tuning ratios.
 

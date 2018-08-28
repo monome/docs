@@ -7,7 +7,7 @@ permalink: /docs/modular/teletype/jt-6/
 
 ## Less is more
 
-There's something fulfilling about digging in deep with smaller toolkits. Just Type allows for a wide range of styles and intentions -- from sprawling modulation to straightfoward composition.
+There's something fulfilling about digging in deep with smaller toolkits. Just Type allows for a wide range of styles and intentions -- from sprawling modulation to straightforward composition.
 
 The commands and examples covered in this series are simplified starting points, begging to be chained together toward complex goals. Interacting with Just Type through both hardware and software will open even more doors, but much can be explored through coding alone.
 

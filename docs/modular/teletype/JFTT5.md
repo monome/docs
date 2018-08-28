@@ -28,21 +28,21 @@ The timebase for *Geode* can be established through two different uses of one co
 
 (These movie title references are almost over.)
 
-Cut from the same cloth as *Synthesis*, *Geode* also utilizes `JF.VOX` and `JF.NOTE` in its own tongue. Instead of lush grumbles and glassy tones, *Geode* speaks in streams of rhythmic envelopes on a named channel, dutifully repeating at a rhythm defined by a divison of the clock's measure.
+Cut from the same cloth as *Synthesis*, *Geode* also utilizes `JF.VOX` and `JF.NOTE` in its own tongue. Instead of lush grumbles and glassy tones, *Geode* speaks in streams of rhythmic envelopes on a named channel, dutifully repeating at a rhythm defined by a division of the clock's measure.
 
-`JF.VOX channel divison repeats`
+`JF.VOX channel division repeats`
 
 Create a stream at the specified channel, of defined rhythm and duration.
 
 - *channel*: select the channel (`1`-`6`) to assign this stream, `0` sets all
-- *divison*: set the rhythmic division of a measure
+- *division*: set the rhythmic division of a measure
 - *repeats*: set the number of repeats in the stream, `-1` repeats indefinitely
 
 `JF.NOTE division repeats`
 
 Dynamic allocation. Assigns the rhythmic stream to the oldest unused channel, or if all channels are busy, the longest running channel.
 
-- *division*: set the rhythmic divison of a measure
+- *division*: set the rhythmic division of a measure
 - *repeats*: set the number of repeats in the stream, `-1` repeats indefinitely
 
 ## Flow
@@ -51,7 +51,7 @@ Though streams use *division* to determine their rhythm, events can be queued an
 
 `JF.QT division`
 
-- *divison*: `1` to `32` sets the subdivision and activates quantization, `0` deactivates
+- *division*: `1` to `32` sets the subdivision and activates quantization, `0` deactivates
 
 Think of `JF.QT` as a performative glue rather than a rigid gridlock. It will slightly affect the timing and 'swing' of events. This is especially wonderful when executing scripts manually or with a fuzz-timed source.
 

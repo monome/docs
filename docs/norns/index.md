@@ -197,7 +197,7 @@ norns is the result of generous contributions by many people, and the ecosystem 
 
 We're also always looking for help with [documentation](https://github.com/monome/docs), if your skills include design, instruction, or proofreading. Collective efforts have created numerous exceptional projects over the years, and there's more to a project than just code!
 
-Found a bug? Let us know. Please file a [github issue](https://github.com/monome/norns/issues) or let us know on (lines)[https://llllllll.co/t/norns-help/14016].
+Found a bug? Let us know. Please file a [github issue](https://github.com/monome/norns/issues) or let us know on [lines](https://llllllll.co/t/norns-help/14016).
 
 ---
 

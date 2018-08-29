@@ -8,7 +8,7 @@ permalink: /docs/norns/
 
 # norns
 
-**current version: [180707](https://github.com/monome/norns/releases)**
+**current version: [180828](https://github.com/monome/norns/releases)**
 
 - [beginning guide](norns-legend.pdf) is a one-sheet quick introduction.
 - [dust docs](dust) is documentation on individual engines and scripts.
@@ -185,9 +185,19 @@ Where `(tab)` appears hit TAB to autocomplete the serial number. Login is the sa
 
 ## help
 
-Check out the [community forum](https://llllllll.co) for various help threads.
+The [community forum](https://llllllll.co/tag/norns) has various informative threads. Please join us!
+
+Check the [known bugs](https://github.com/monome/norns/wiki/known-bugs) list for problems and solutions.
 
 If you're experiencing hardware problems contact info@monome.org and we can help right away.
+
+## contributing
+
+norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. check out the [github repo](https://github.com/monome/norns).
+
+We're also always looking for help with [documentation](https://github.com/monome/docs), if your skills include design, instruction, or proofreading. Collective efforts have created numerous exceptional projects over the years, and there's more to a project than just code!
+
+Found a bug? Let us know. Please file a [github issue](https://github.com/monome/norns/issues) or let us know on (lines)[https://llllllll.co/t/norns-help/14016].
 
 ---
 
@@ -206,17 +216,17 @@ Basic:
 AUX (Reverb):
 
 - aux fx: on/off
-- aux output level: engine output -> aux input
+- aux engine level: engine output -> aux input
 - aux input 1 level: input 1 -> aux input
 - aux input 2 level: input 2 -> aux input
 - aux input 1 pan: pan for input 1
 - aux input 2 pan: pan for input 2
 - aux return level: aux output -> main output
 
-- rev in delay: reverb delay time
+- rev pre delay: reverb delay time
 - rev lf x: reverb low frequency crossover
-- rev low RT60: reverb low time
-- rev mid RT60: reverb mid time
+- rev low time: reverb low time
+- rev mid time: reverb mid time
 - rev hf damping: reverb high frequency damping
 
 INSERT (Compressor):

@@ -19,23 +19,23 @@ Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, wi
 
 3. Open Cyberduck and click the "Open Connection" button in the top left corner.
 
-!(image/sftp1.png)
+![](image/sftp1.png)
 
 4. Select SFTP from the dropdown at the top of the dialog that pops up.
 
-!(image/sftp2.png)
+![](image/sftp2.png)
 
 5. Enter the IP address that is displayed on the second line of the Norns SYSTEM / WIFI screen in the Server field of the dialog in Cyberduck.  Enter "we" in the Username field and "sleep" in the Password field.  The completed dialog should look like this (note that the IP address may be different, use the one given on _your_ Norns screen):
 
-!(image/sftp3.png)
+![](image/sftp3.png)
 
 6. If this is your first time connecting, an "Unknown Fingerprint" dialog will pop up, check "Always" and click Allow.
 
-!(image/sftp4.png)
+![](image/sftp4.png)
 
 The Norns filesystem should be displayed in the Cyberduck window.  You can add, delete, and rename files in this window, just like you would with an external USB flash drive in your computer's file explorer application.
 
-!(image/sftp5.png)
+![](image/sftp5.png)
 
 ### Troubleshooting
 

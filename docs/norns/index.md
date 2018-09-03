@@ -177,6 +177,8 @@ When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM
 - user: `we`
 - password: `sleep`
 
+You can also SFTP into the device to manage the filesystem, as shown in [this guide](./sftp).
+
 Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux do:
 
 `screen /dev/tty.usb(tab) 115200`

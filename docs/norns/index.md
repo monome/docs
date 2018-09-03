@@ -90,14 +90,18 @@ See the REFERENCE section below for details on the parameters available.
 
 The WIFI nub must be inserted before starting.  Here you can set up a hotspot or connect to an existing network.
 
+`OFF` will turn off an existing network connection.
+
 Hotspot will create a network:
 
 - SSID: `norns`
 - password: `nnnnnnnn`
 
-Connecting to an existing network requires a few steps. Upon entering the SYSTEM menu a WIFI scan is initiated. This will take a bit of time. Once entering the WIFI screen and scrolling to NETWORK you'll be able to select a network with ENC3 (indicated on the bottom right). You'll then be prompted for a password. This network and password will be saved for future use.
+On your laptop, connect to this new `norns` network. Then point your web browser at `http://172.24.1.1` to see the maiden interface.
 
-_NOTE:_ Right now only WPA networks appear to work with this setup. We're looking to add WEP/etc networks soon. So you may need to adjust your router settings.
+Connecting to an existing network requires a few steps. Upon entering the SYSTEM menu a WIFI scan is initiated. Once entering the WIFI screen and scrolling to NETWORK, use ENC3 to select among available networks (indicated on the bottom right). If you have WPA networking active on your network, you will be requested to enter a password. Use ENC3 to select between DEL/OK and alphanumeric input; and enter in the password for your network. When completed, use ENC3 to select OK, and the norns will complete the connection. Once connected, you will see information about the network connection as well as the IP address that the device has on the network. Now, you can point a browser to that address (i.e. - 192.168.0.60) to get to the maiden interface.
+
+_NOTE:_ There is a [known bug](https://github.com/monome/norns/wiki/known-bugs) where an initial wifi connection may crash the device.
 
 ### SYSTEM / SYNC
 
@@ -162,11 +166,11 @@ See the [dust docs](dust) for documentation on individual engines and scripts.
 
 _note: be sure you've run the system [update](update)_
 
-For a first look at _maiden_ (the web editor) turn on WIFI (connect to your norns via hotspot) and try opening a web browser to:
+_maiden_ is the web-based editor for norns. first turn on WIFI (connect to your norns via hotspot) and try opening a web browser to:
 
 - `http://norns.local`
 
-(if not found, try `http://172.24.1.1` or the appropriate IP address.)
+(if not found, try `http://172.24.1.1` or the appropriate IP address displayed in your SYSTEM screen.)
 
 More documentation coming.
 

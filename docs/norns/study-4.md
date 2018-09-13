@@ -25,7 +25,7 @@ g.refresh()
 
 you'll see a light at x,y (1,8) go to full brightness. like the norns screen, (1,1) is the top left and numbers increase to the right and downwards.
 
-_NOTE_: if you have a grid plugged in and this didn't work, check **SYSTEM > DEVICES > GRID** and make sure your grid is attached to port 1. (more on this later).
+_NOTE_: if you have a grid plugged in and this didn't work, check **SYSTEM > DEVICES > GRID** and make sure your grid is attached to port 1. (more on this later.)
 
 push a key and you'll see `grid input` printed. let's make it more informative:
 
@@ -169,7 +169,7 @@ push a midi key and you'll see something like:
 
 what? MIDI is a [series of bytes](http://www.gweep.net/~prefect/eng/reference/protocol/midispec.html) which need to be decoded to become useful. we've built some helpers into the library:
 
-```
+```lua
 m.event = function(data) tab.print(midi.to_msg(data)) end
 ```
 
@@ -197,9 +197,9 @@ m.event = function(data)
 end
 ```
 
-we set the engine amplitude to the key velocity (midi is 0-127, so we scale it 0-1), and then trigger a note. that's it! (we'll look at cleaning up that ugly `engine.hz` line later). how do we get cc input? try adding this:
+we set the engine amplitude to the key velocity (midi is 0-127, so we scale it 0-1), and then trigger a note. that's it! (we'll look at cleaning up that ugly `engine.hz` line later.) how do we get cc input? try adding this:
 
-```
+```lua
 if d.type == "cc" then
   print("cc " .. d.cc .. " = " .. d.val)
 end
@@ -288,7 +288,7 @@ the library is imported with the `require` command, whereafter all of the functi
 
 ## midi sync
 
-a often-used feature of midi is the ability to sync devices to a tempo. one device can send clock to another.
+an often-used feature of midi is the ability to sync devices to a tempo. one device can send clock to another.
 
 this is accomplished using a series of bytes: 248 (clock tick), 250 (clock start), 251 (clock continue), and 252 (clock stop).
 

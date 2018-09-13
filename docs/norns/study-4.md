@@ -218,7 +218,7 @@ remember to use `tab.print(midi.to_msg(data))` for decoding any confusing midi i
 sending midi means sending out bytes. we can certainly send raw values:
 
 ```lua
-m.send({144,60,127})
+m.send{144,60,127}
 ```
 
 (this sends note on for note 60 at velocity 127) but it's much easier to use the helper function:

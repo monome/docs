@@ -2,7 +2,7 @@
 permalink: /docs/norns/study-4/
 ---
 
-<div class="vid"><iframe src="https://player.vimeo.com/video/276054881?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="vid"><iframe src="https://player.vimeo.com/video/289755493?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # physical
 

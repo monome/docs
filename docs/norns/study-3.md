@@ -376,7 +376,7 @@ function count(c)
   position = position + 1
   print(c .. "> " .. position)
 end
-  
+
 ```
 
 this `init` function creates a `metro` called `counter`:
@@ -410,10 +410,10 @@ end
 function key(n,z)
   if z == 1 then
     strum:stop()
-    root = 40 + math.random(12) * 2 
+    root = 40 + math.random(12) * 2
     engine.hz(midi_to_hz(root))
     strum:start()
-  end 
+  end
 end
 
 function note(stage)
@@ -474,7 +474,7 @@ function positionrand() position = math.random(STEPS) end
 
 act = {inc, dec, bottom, top, rand, metrofast, metroslow, positionrand}
 COMMANDS = 8
-label = {"+", "-", "<", ">", "*", "M", "m", "#"} 
+label = {"+", "-", "<", ">", "*", "M", "m", "#"}
 
 function init()
   params:add_control("cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
@@ -530,7 +530,7 @@ function randomize_steps()
   for i=1,16 do
     step[i] = math.random(COMMANDS)
   end
-end 
+end
 ```
 
 ## reference
@@ -543,7 +543,7 @@ end
 - part 1: [many tomorrows](../study-1/)
 - part 2: [patterning](../study-2)
 - part 3: spacetime
-- part 4: (forthcoming)
+- part 4: [physical](../study-4)
 
 ## community
 

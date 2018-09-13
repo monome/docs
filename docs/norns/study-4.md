@@ -149,14 +149,14 @@ here the condition is `i==position` which checks if we're drawing the step of th
 
 ## long live (parts of) the 80's
 
-MIDI is still around and it's still fun. plug in and get to the command line:
+MIDI is still around and it's still fun. plug in a usb midi controller and get to the command line:
 
 ```lua
 m = midi.connect()
 m.event = function(data) tab.print(data) end
 ```
 
-push a key and you'll see something like:
+push a midi key and you'll see something like:
 
 ```
 1	144

@@ -221,7 +221,9 @@ sending midi means sending out bytes. we can certainly send raw values:
 m.send{144,60,127}
 ```
 
-(this sends note on for note 60 at velocity 127) but it's much easier to use the helper function:
+note the braces, as this is a syntax we haven't seen yet. it's equivalent to `m.send({144,60,127})`. if an argument is a single table, you can skip typing the parens.
+
+this sends note on for note 60 at velocity 127 but it's much easier to use the helper function:
 
 ```lua
 m.note_on(60,127)

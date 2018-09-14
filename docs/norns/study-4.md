@@ -237,7 +237,7 @@ here's a list of the helper functions for midi out:
 - `.pitchbend(val,ch)`
 - `.aftertouch(note,val,ch)`
 
-in each case, channel will default to 1 if left off. for note on/off, velocity if optional (100 wil be used if none provided).
+in each case, channel will default to 1 if left off. for note on/off, velocity is optional (100 will be used if none provided).
 
 ## keeping track of little boxes
 

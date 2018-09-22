@@ -29,7 +29,7 @@ Be still, and norns will awaken.
 
 There's a small light near the power plug.  ORANGE means power.  WHITE means disk access.
 
-On the bottom of the norns there is a tiny push switch will hard power-off the device. For general shut down use the _sleep_ menu function. This fully turns off the norns with a proper software shutdown. Use the bottom switch is something in software went wrong.
+On the bottom of the norns there is a tiny push switch will hard power-off the device. For general shut down use the _sleep_ menu function. This fully turns off the norns with a proper software shutdown. Use the bottom switch if something in software went wrong.
 
 ## awake
 

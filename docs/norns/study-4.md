@@ -211,7 +211,8 @@ you can also sort data by midi channel, ie `d.ch`. the types of midi that get tu
 - `note_off`
 - `cc`
 - `pitchbend`
-- `aftertouch`
+- `key_pressure`
+- `channel_pressure`
 
 remember to use `tab.print(midi.to_msg(data))` for decoding any confusing midi input.
 
@@ -235,7 +236,8 @@ here's a list of the helper functions for midi out:
 - `.note_off(note,velocity,ch)`
 - `.cc(cc,val,ch)`
 - `.pitchbend(val,ch)`
-- `.aftertouch(note,val,ch)`
+- `.key_pressure(note,val,ch)`
+- `.channel_pressure(val,ch)`
 
 in each case, channel will default to 1 if left off. for note on/off, velocity is optional (100 will be used if none provided).
 

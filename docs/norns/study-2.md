@@ -351,7 +351,7 @@ steps = { {1,0,0,0},
 i've typed this on multiple lines for visualization, but you can write it all in one line. you can now address this table with coordinates:
 
 - `steps[1][1]` is 1 (top left)
-- `steps[4][2]` is 0 (four across, two down)
+- `steps[4][2]` is 0 (four down, two across)
 
 one last table-talking-point. let's make a table with non-indexed elements:
 

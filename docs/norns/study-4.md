@@ -426,7 +426,7 @@ end
 - part 2: [patterning](../study-2)
 - part 3: [spacetime](../study-3)
 - part 4: physical
-- part 5: (forthcoming)
+- part 5: [streams](../study-5/)
 
 ## community
 

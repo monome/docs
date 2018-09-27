@@ -370,6 +370,7 @@ its OK to use global variables while you’re experimenting with a script, but i
 - part 2: [patterning](../study-2/)
 - part 3: [spacetime](../study-3/)
 - part 4: [physical](../study-4/)
+- part 5: [streams](../study-5/)
 
 ## community
 

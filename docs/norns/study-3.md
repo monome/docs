@@ -544,6 +544,7 @@ end
 - part 2: [patterning](../study-2)
 - part 3: spacetime
 - part 4: [physical](../study-4)
+- part 5: [streams](../study-5/)
 
 ## community
 

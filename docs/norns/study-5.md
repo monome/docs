@@ -61,7 +61,7 @@ we can also request a single immediate value from the poll:
 p:update()
 ```
 
-of course instead of just printing out the value of the poll, we should be using it for somethingmore interesting and musical. we'll do that in the example in the end. but first let's smash together even more data.
+of course instead of just printing out the value of the poll, we should be using it for something more interesting and musical. we'll do that in the example in the end. but first let's smash together even more data.
 
 
 ## numbers through air
@@ -247,7 +247,7 @@ function init()
   screen.aa(0)
   screen.line_width(1)
 
-   params:add_control("shape", controlspec.new(0,1,"lin",0,0,""))
+  params:add_control("shape", controlspec.new(0,1,"lin",0,0,""))
   params:set_action("shape", function(x) engine.shape(x) end)
   params:add_control("timbre", controlspec.new(0,1,"lin",0,0.5,""))
   params:set_action("timbre", function(x) engine.timbre(x) end)

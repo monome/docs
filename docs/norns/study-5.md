@@ -303,7 +303,7 @@ function key(n,z)
   end
 end
 
-function osc_in(path, args, from)
+local osc_in = function(path, args, from)
   if path == "/x" then
     params:set_raw("noise",args[1]/127)
   elseif path == "/y" then

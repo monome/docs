@@ -224,12 +224,13 @@ pause. really consider the possibilities, and i hope your mind explodes a tiny b
 managing numbers is of primary concern. we usually want them to stay in a certain range and behave a certain way, and this means typically making a lot of repetitive code. but we've created some structures to help you keep your numbers together and scripts looking clean:
 
 ```
-params:add_number("tempo",20,240,88)
+params:add_number("tempo","tempo",20,240,88)
 ```
 
 we just created an entry in the default _parameter set_ which is called `params`. this is the parameter set that you see in the system menu under `PARAMETERS`. go there now and you'll see "tempo" which you can change with the menu interface. here's what we did:
 
-- parameter name = "tempo"
+- parameter id = "tempo"
+- name = "tempo"
 - minimum = 20
 - maximum = 240
 - default = 88
@@ -265,6 +266,15 @@ params:set_action("tempo", function(x) print_bpm_to_ms(x) end)
 
 indeed indeed! now whenever the value of `tempo` is touched you'll be informed of the interval time. the value `x` is the value of the parameter, and we pass it to the `print_bpm_to_ms()` function.
 
+there's a shortcut to make parameter creation more readable:
+
+```
+params:add{type="number", id="tempo", min=20, max=240, default=88,
+  action=function(x) print_bpm_to_ms(x) end)}
+```
+
+note that we're using a new syntax style with curly brackets. this passes a table to the function which creates the new parameter. we're able to specify the attribute names (ie, `min`, `max` which makes it more readable, in addition to specifying the `action` in the same line. you can use either method, but this way is generally recommended.
+
 ## more sound please
 
 add more parameters with multiple lines of `params:add_number()`, but all parameters are not just basic numbers. there is a _control_ parameter that maps a "control" range (thing 0-100) to a specified min/max, with linear and exponential scaling. we use these frequently with engine parameters:
@@ -286,9 +296,9 @@ if we wanted to define this control spec once and then assign it to many control
 
 ```
 filter_cs = controlspec.new(50,5000,'exp',0,555,'hz')
-params:add_control("f1",filter_cs)
-params:add_control("f2",filter_cs)
-params:add_control("f3",filter_cs)
+params:add_control("f1","f1",filter_cs)
+params:add_control("f2","f2",filter_cs)
+params:add_control("f3","f3",filter_cs)
 ```
 
 it is easy to then directly attach the parameter to an engine parameter:
@@ -326,7 +336,7 @@ lastly, we've been using the default parameter set throughout, but we can create
 
 ```
 others = paramset.new()
-others:add_number("first")
+others:add_number("first","My First Parameter")
 ```
 
 this creates a new parameter set called `others` and adds a number.
@@ -477,7 +487,7 @@ COMMANDS = 8
 label = {"+", "-", "<", ">", "*", "M", "m", "#"}
 
 function init()
-  params:add_control("cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
+  params:add_control("cutoff","cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
   params:set_action("cutoff", function(x) engine.cutoff(x) end)
   counter = metro.alloc(count, 0.125, -1)
   counter:start()

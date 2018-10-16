@@ -317,7 +317,7 @@ this little snippet does quite a lot. it has internal/external clocking and adds
 
 you can see on the third line that the beatclock needs a midi port. here it uses the default (1).
 
-to attach a function to the clock sync, simply redefine `on_step` as shown in `init`. we'll demontrate this below.
+to attach a function to the clock sync, simply redefine `on_step` as shown in `init`. we'll demonstrate this below.
 
 
 ## example: physical

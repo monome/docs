@@ -8,7 +8,7 @@ permalink: /docs/norns/
 
 # norns
 
-**current version: [180828](https://github.com/monome/norns/releases)**
+**current version: [181008](https://github.com/monome/norns/releases)**
 
 - [beginning guide](norns-legend.pdf) is a one-sheet quick introduction.
 - [dust docs](dust) is documentation on individual engines and scripts.

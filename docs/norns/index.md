@@ -8,7 +8,7 @@ permalink: /docs/norns/
 
 # norns
 
-**current version: [181008](https://github.com/monome/norns/releases)**
+**current version: [181101](https://github.com/monome/norns/releases)**
 
 - [beginning guide](norns-legend.pdf) is a one-sheet quick introduction.
 - [dust docs](dust) is documentation on individual engines and scripts.
@@ -86,6 +86,13 @@ Like the parameter list, but for the global audio settings. Includes output and 
 
 See the REFERENCE section below for details on the parameters available.
 
+### SYSTEM / DEVICES
+
+This is a list of connected USB hardware (currently MIDI and grids) with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports.
+
+This menu lets you re-assign connected devices to specific ports.
+
+
 ### SYSTEM / WIFI
 
 The WIFI nub must be inserted before starting.  Here you can set up a hotspot or connect to an existing network.
@@ -101,7 +108,6 @@ On your laptop, connect to this new `norns` network. Then point your web browser
 
 Connecting to an existing network requires a few steps. Upon entering the SYSTEM menu a WIFI scan is initiated. Once entering the WIFI screen and scrolling to NETWORK, use ENC3 to select among available networks (indicated on the bottom right). If you have WPA networking active on your network, you will be requested to enter a password. Use ENC3 to select between DEL/OK and alphanumeric input; and enter in the password for your network. When completed, use ENC3 to select OK, and the norns will complete the connection. Once connected, you will see information about the network connection as well as the IP address that the device has on the network. Now, you can point a browser to that address (i.e. - 192.168.0.60) to get to the maiden interface.
 
-_NOTE:_ There is a [known bug](https://github.com/monome/norns/wiki/known-bugs) where an initial wifi connection may crash the device.
 
 ### SYSTEM / SYNC
 
@@ -117,10 +123,6 @@ This is the current method for getting sound and scripts on and off of the devic
 ### SYSTEM / UPDATE
 
 This searches the USB disk for update files.
-
-### SYSTEM / LOG
-
-Displays the day's news.
 
 ### SLEEP
 
@@ -174,14 +176,19 @@ _maiden_ is the web-based editor for norns. first turn on WIFI (connect to your 
 
 More documentation coming.
 
+## file management
+
+File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via wifi (see above).
+
+See [this guide](./sftp) for further details.
+
+
 ## other access
 
 When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM.
 
 - user: `we`
 - password: `sleep`
-
-You can also SFTP into the device to manage the filesystem, as shown in [this guide](./sftp).
 
 Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux do:
 

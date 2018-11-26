@@ -193,13 +193,17 @@ The takeaway point is that patterns can be used for a variety of tasks. Note seq
 
 ## Hidden workings
 
-Teletype has psychic powers to control other grid-based modules, namely White Whale, Meadowphysics, and Earthsea. (Though actually this requires an [extra ribbon cable](http://monome.org/docs/modular/iiheader) connected behind the modules).
+Teletype has psychic powers to control other grid-based modules, namely Ansible and the original "trilogy": White Whale, Meadowphysics, and Earthsea. (Though actually this requires an [extra ribbon cable](http://monome.org/docs/modular/iiheader) connected behind the modules).
 
-With the `II` command you can remotely control parameters of the the trilogy modules. For example:
+With these commands you can remotely control parameters of Ansible and the trilogy modules. For example:
 
-    II WW.POS 5
+    WW.POS 5
 
-With a White Whale connected, this command will cut to position 5 of the currently playing sequence. All `II` commands are simply a key (such as `WW.POS`) and a secondary argument. Here's the full list:
+With a White Whale connected, this command will cut to position 5 of the currently playing sequence. All commands are simply a key (such as `WW.POS`) and a secondary argument. Here's the full list:
+
+**Ansible**
+
+See the [Ansible docs](/docs/modular/ansible/) for the complete list.
 
 **White Whale**
 
@@ -225,19 +229,15 @@ WW.MUTEB        mute cv B (0 = on, 1 = mute)
 ~~~
 MP.PRESET       recall preset
 MP.RESET        reset positions
-MP.SYNC         reset positions & hard sync (if clocked internally)
-MP.MUTE         mutes the output of a channel (1 - 8)
-MP.UNMUTE       unmutes (enables) the output (1 - 8)
-MP.FREEZE       freezes the advancement of a channel (1 - 8)
-MP.UNFREEZE     unfreezes (enables) advancement of the channel (1 - 8)
+MP.STOP         reset channel x (0 = all, 1-8 = individual channels)
 ~~~
 
 **Earthsea**
 
 ~~~
 ES.PRESET       recall preset
-ES.MODE         set pattern clock mode (0 = normal, 1 = II clock)
-ES.CLOCK        (if II clocked) next pattern event
+ES.MODE         set pattern clock mode (0 = normal, 1 = teletype clock)
+ES.CLOCK        (if teletype clocked) next pattern event
 ES.RESET        reset pattern to start (and start playing)
 ES.PATTERN      set playing pattern
 ES.TRANS        set transposition
@@ -249,14 +249,14 @@ ES.MAGIC        magic shape (1: halfspeed, 2: doublespeed, 3: linearize)
 One highly requested feature was external clocking of the Earthsea. Here's how it works:
 
 * Record a pattern using the grid, as normal.
-* Send TT command `II ES.MODE 1`
+* Send TT command `ES.MODE 1`
 * Now the Earthsea is being clocked via TT.
-* Use `II ES.CLOCK 1` to send a clock pulse, via a script, live, metro, etc.
+* Use `ES.CLOCK 1` to send a clock pulse, via a script, live, metro, etc.
 
 Note that the Earthsea needs a clock event for both note-on and note-off, so you will likely need to double your clock speed. Another possibility is to use a `DEL` to always send two `ES.CLOCK` messages:
 
-    1:  II ES.CLOCK 1
-        DEL 100 : II ES.CLOCK 1
+    1:  ES.CLOCK 1
+        DEL 100 : ES.CLOCK 1
 
 This method has a couple issues. First, note length is always `100`. If you trigger script 1 faster than 100ms, you'll get a weird phase problem and the note on/offs will get unsync'd. There are various other ways of approaching this issue that may require slightly more logic.
 

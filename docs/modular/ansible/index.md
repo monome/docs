@@ -774,15 +774,15 @@ KR.CLK x        send to clock track x (0 == all) IF track is enabled to be clock
 ### Meadowphysics
 
 ```
-MP.PRE x        read preset x
-MP.PRE          return current preset number
-MP.SCALE x      set scale to x
-MP.SCALE        return current scale
-MP.PERIOD x     set internal clock period to x
-MP.PERIOD       return current internal clock period
-MP.OFF x        stop channel x (0 = all)
-MP.RES x        reset channel x (0 = all) (also used as "start")
-MP.CV x         get current CV value of output x
+ME.PRE x        read preset x
+ME.PRE          return current preset number
+ME.SCALE x      set scale to x
+ME.SCALE        return current scale
+ME.PERIOD x     set internal clock period to x
+ME.PERIOD       return current internal clock period
+ME.STOP x       stop channel x (0 = all)
+ME.RES x        reset channel x (0 = all) (also used as "start")
+ME.CV x         get current CV value of channel x
 ```
 
 ### Levels

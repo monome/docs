@@ -147,7 +147,7 @@ This is how we make weird sequencers. Complete, algorithmic control over all of 
 
 ## Show me something
 
-There's been a lot of imagining so far of what these lists look like. I have something to show you. Hit the **tilde** key, next to **1**, under **ESC**.
+There's been a lot of imagining so far of what these lists look like. I have something to show you. Hit the **NUM LOCK** key, beside **F10**. (You can also switch between screens by pressing the **TAB** key, below **1**.)
 
 Why hello, you're now in *TRACKER* mode.
 

@@ -264,7 +264,7 @@
                 <h4 id="script-line-commenting">Script Line &quot;Commenting&quot;</h4>
                 <p>Individual lines in scripts can now be disabled from execution by highlighting the line and pressing <code>ALT-/</code>. Disabled lines will appear dim. This status will persist through save/load from flash, but will not carry over to scenes saved to USB drive.</p>
                 <h3 id="new-operators-2">New Operators</h3>
-                <p><code>W [condition]:</code> is a new mod that operates as a while loop. The <code>BREAK</code> operator stops executing the current script <code>BPM [bpm]</code> returns the number of milliseconds per beat in a given BPM, great for setting <code>M</code>. <code>LAST [script]</code> returns the number of milliseconds since <code>script</code> was last called.</p>
+                <p><code>W [condition]:</code> is a new mod that operates as a <em>while</em> loop. The <code>BREAK</code> operator stops executing the current script <code>BPM [bpm]</code> returns the number of milliseconds per beat in a given BPM, great for setting <code>M</code>. <code>LAST [script]</code> returns the number of milliseconds since <code>script</code> was last called.</p>
                 <h3 id="new-operator-behaviour">New Operator Behaviour</h3>
                 <p><code>SCRIPT</code> with no argument now returns the current script number. <code>I</code> is now local to its corresponding <code>L</code> statement. <code>IF/ELSE</code> is now local to its script.</p>
                 <h3 id="new-keybindings-1">New keybindings</h3>
@@ -1646,13 +1646,13 @@
                 <td><strong><code>L x y: ...</code></strong></td>
                 <td>-</td>
                 <td>-</td>
-                <td>Run the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code>.<br /><br />For example:<br /><br /><code>&lt;br/&gt;L 1 4: TR.PULSE I   =&gt; pulse outputs 1, 2, 3 and 4&lt;br/&gt;L 4 1: TR.PULSE I   =&gt; pulse outputs 4, 3, 2 and 1&lt;br/&gt;</code><br /></td>
+		<td>Run (<em>loop</em>) the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code>.<br /><br />For example:<br /><br /><code>&lt;br/&gt;L 1 4: TR.PULSE I   =&gt; pulse outputs 1, 2, 3 and 4&lt;br/&gt;L 4 1: TR.PULSE I   =&gt; pulse outputs 4, 3, 2 and 1&lt;br/&gt;</code><br /></td>
                 </tr>
                 <tr class="odd">
                 <td><strong><code>W x: ...</code></strong></td>
                 <td>-</td>
                 <td>-</td>
-                <td>Runs the command while the condition <code>x</code> is true or the loop iterations exceed 10000.<br /><br />For example, to find the first iterated power of 2 greater than 100:<br /><br /><code>&lt;br/&gt;A 2&lt;br/&gt;W LT A 100: A * A A &lt;br/&gt;</code><br /><br />A will be 256.<br /></td>
+		<td>Runs the command <em>while</em> the condition <code>x</code> is true or the loop iterations exceed 10000.<br /><br />For example, to find the first iterated power of 2 greater than 100:<br /><br /><code>&lt;br/&gt;A 2&lt;br/&gt;W LT A 100: A * A A &lt;br/&gt;</code><br /><br />A will be 256.<br /></td>
                 </tr>
                 <tr class="even">
                 <td><strong><code>EVERY x: ...</code></strong></td>
@@ -5425,7 +5425,7 @@
                 </tr>
                 <tr class="odd">
                 <td><strong><code>L x y: ...</code></strong></td>
-                <td>run the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code></td>
+		<td>run (<em>loop</em>) the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code></td>
                 </tr>
                 <tr class="even">
                 <td><strong><code>LAST x</code></strong></td>
@@ -6473,7 +6473,7 @@
                 </tr>
                 <tr class="odd">
                 <td><strong><code>W x: ...</code></strong></td>
-                <td>run the command while condition x is true</td>
+		<td>run the command <em>while</em> condition x is true</td>
                 </tr>
                 <tr class="even">
                 <td><strong><code>WRAP x y z</code></strong> <br /> <strong><code>WRP</code></strong></td>
@@ -6653,7 +6653,7 @@
                 <li><strong>NEW</strong>: <code>SCRIPT</code> with no arguments gets the current script number.</li>
                 <li><strong>FIX</strong>: <code>AVG</code> and <code>Q.AVG</code> now round up properly</li>
                 <li><strong>NEW</strong>: new op: <code>BREAK</code> to stop the remainder of the script</li>
-                <li><strong>NEW</strong>: new mod: <code>W [condition]: [statement]</code> will execute <code>statement</code> as long as <code>condition</code> is true (up to an iteration limit).</li>
+                <li><strong>NEW</strong>: new mod: <code>W [condition]:	[statement]</code> will execute <code>statement</code> as long as (<em>while</em>) <code>condition</code> is true (up to an iteration limit).</li>
                 <li><strong>NEW</strong>: new mods: <code>EVERY x:</code>, <code>SKIP x:</code>, <code>OTHER:</code> to alternately execute or not execute a command.</li>
                 <li><strong>NEW</strong>: new op: <code>SYNC x</code> will synchronize all <code>EVERY</code> and <code>SKIP</code> line to the same step.</li>
                 <li><strong>NEW</strong>: new feature: @ - the turtle. Walks around the pattern grid. Many ops, see documentation.</li>

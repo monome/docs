@@ -234,7 +234,7 @@ A *note* will occur only when a *trigger* is set. This note will be the pitch sp
 
 The *trigger* view shows all four tracks at once, whereas all other parameter views display the track selected.
 
-The *duration* view has downward sliders (lower is longer) and a master duration multiplier at the top.
+The *duration* view has downward sliders (lower is longer) and a master duration multiplier at the top. Duration is relative to the clock: when duration is set to max, the pulsewidth of the gate is entirely based on the current clock. This lets you create tied notes.
 
 There are also 'sub-pages' for more advanced extensions to each of these main parameters; see "**extended parameters**" for details.
 

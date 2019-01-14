@@ -8,7 +8,7 @@ permalink: /docs/norns/
 
 # norns
 
-**current version: [180707](https://github.com/monome/norns/releases)**
+**current version: [181101](https://github.com/monome/norns/releases)**
 
 - [beginning guide](norns-legend.pdf) is a one-sheet quick introduction.
 - [dust docs](dust) is documentation on individual engines and scripts.
@@ -29,7 +29,7 @@ Be still, and norns will awaken.
 
 There's a small light near the power plug.  ORANGE means power.  WHITE means disk access.
 
-On the bottom of the norns there is a tiny push switch will hard power-off the device. For general shut down use the _sleep_ menu function. This fully turns off the norns with a proper software shutdown. Use the bottom switch is something in software went wrong.
+On the bottom of the norns there is a tiny push switch will hard power-off the device. For general shut down use the _sleep_ menu function. This fully turns off the norns with a proper software shutdown. Use the bottom switch if something in software went wrong.
 
 ## awake
 
@@ -86,18 +86,28 @@ Like the parameter list, but for the global audio settings. Includes output and 
 
 See the REFERENCE section below for details on the parameters available.
 
+### SYSTEM / DEVICES
+
+This is a list of connected USB hardware (currently MIDI and grids) with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports.
+
+This menu lets you re-assign connected devices to specific ports.
+
+
 ### SYSTEM / WIFI
 
 The WIFI nub must be inserted before starting.  Here you can set up a hotspot or connect to an existing network.
+
+`OFF` will turn off an existing network connection.
 
 Hotspot will create a network:
 
 - SSID: `norns`
 - password: `nnnnnnnn`
 
-Connecting to an existing network requires a few steps. Upon entering the SYSTEM menu a WIFI scan is initiated. This will take a bit of time. Once entering the WIFI screen and scrolling to NETWORK you'll be able to select a network with ENC3 (indicated on the bottom right). You'll then be prompted for a password. This network and password will be saved for future use.
+On your laptop, connect to this new `norns` network. Then point your web browser at `http://172.24.1.1` to see the maiden interface.
 
-_NOTE:_ Right now only WPA networks appear to work with this setup. We're looking to add WEP/etc networks soon. So you may need to adjust your router settings.
+Connecting to an existing network requires a few steps. Upon entering the SYSTEM menu a WIFI scan is initiated. Once entering the WIFI screen and scrolling to NETWORK, use ENC3 to select among available networks (indicated on the bottom right). If you have WPA networking active on your network, you will be requested to enter a password. Use ENC3 to select between DEL/OK and alphanumeric input; and enter in the password for your network. When completed, use ENC3 to select OK, and the norns will complete the connection. Once connected, you will see information about the network connection as well as the IP address that the device has on the network. Now, you can point a browser to that address (i.e. - 192.168.0.60) to get to the maiden interface.
+
 
 ### SYSTEM / SYNC
 
@@ -113,10 +123,6 @@ This is the current method for getting sound and scripts on and off of the devic
 ### SYSTEM / UPDATE
 
 This searches the USB disk for update files.
-
-### SYSTEM / LOG
-
-Displays the day's news.
 
 ### SLEEP
 
@@ -162,13 +168,20 @@ See the [dust docs](dust) for documentation on individual engines and scripts.
 
 _note: be sure you've run the system [update](update)_
 
-For a first look at _maiden_ (the web editor) turn on WIFI (connect to your norns via hotspot) and try opening a web browser to:
+_maiden_ is the web-based editor for norns. first turn on WIFI (connect to your norns via hotspot) and try opening a web browser to:
 
 - `http://norns.local`
 
-(if not found, try `http://172.24.1.1` or the appropriate IP address.)
+(if not found, try `http://172.24.1.1` or the appropriate IP address displayed in your SYSTEM screen.)
 
 More documentation coming.
+
+## file management
+
+File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via wifi (see above).
+
+See [this guide](./sftp) for further details.
+
 
 ## other access
 
@@ -185,9 +198,19 @@ Where `(tab)` appears hit TAB to autocomplete the serial number. Login is the sa
 
 ## help
 
-Check out the [community forum](https://llllllll.co) for various help threads.
+The [community forum](https://llllllll.co/tag/norns) has various informative threads. Please join us!
+
+Check the [known bugs](https://github.com/monome/norns/wiki/known-bugs) list for problems and solutions.
 
 If you're experiencing hardware problems contact info@monome.org and we can help right away.
+
+## contributing
+
+norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. check out the [github repo](https://github.com/monome/norns).
+
+We're also always looking for help with [documentation](https://github.com/monome/docs), if your skills include design, instruction, or proofreading. Collective efforts have created numerous exceptional projects over the years, and there's more to a project than just code!
+
+Found a bug? Let us know. Please file a [github issue](https://github.com/monome/norns/issues) or let us know on [lines](https://llllllll.co/t/norns-help/14016).
 
 ---
 
@@ -206,17 +229,17 @@ Basic:
 AUX (Reverb):
 
 - aux fx: on/off
-- aux output level: engine output -> aux input
+- aux engine level: engine output -> aux input
 - aux input 1 level: input 1 -> aux input
 - aux input 2 level: input 2 -> aux input
 - aux input 1 pan: pan for input 1
 - aux input 2 pan: pan for input 2
 - aux return level: aux output -> main output
 
-- rev in delay: reverb delay time
+- rev pre delay: reverb delay time
 - rev lf x: reverb low frequency crossover
-- rev low RT60: reverb low time
-- rev mid RT60: reverb mid time
+- rev low time: reverb low time
+- rev mid time: reverb mid time
 - rev hf damping: reverb high frequency damping
 
 INSERT (Compressor):

@@ -114,7 +114,7 @@ try it. it works!
 
 ## numbers and strings
 
-back to the command line. let's throw around some variables: 
+back to the command line. let's throw around some variables:
 
 ```
 coins = 4
@@ -328,7 +328,7 @@ function enc(n,d)
     level = math.random(100) / 100
     engine.amp(sound * level)
   elseif n == 3 then
-    position = (position + d) % 11 
+    position = (position + d) % 11
     f = 100 + position * 50
     engine.hz(octave * f)
   end
@@ -369,9 +369,11 @@ its OK to use global variables while you’re experimenting with a script, but i
 - part 1: many tomorrows
 - part 2: [patterning](../study-2/)
 - part 3: [spacetime](../study-3/)
+- part 4: [physical](../study-4/)
+- part 5: [streams](../study-5/)
 
 ## community
 
 ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 
-edits to this study welcome, see [monome/docs](http://github.com/monome/docs) 
+edits to this study welcome, see [monome/docs](http://github.com/monome/docs)

@@ -467,17 +467,17 @@ Press and hold the left column to configure that row:
 ```
 col 3: STOP/START
 col 4: RESET
-    by default, self is toggled on. toggle on other rows for this row to reset those rows
-    way to make one-shots
+    by default, self is toggled on. toggle on other rows for this row to reset those rows. this
+    is a way to make one-shots; rows that only play once.
 col 5: PLAY MODE
     toggles on/off for all rows. send trigger when new count is chosen ("play" trigger on key press)
 col 6-7: RESET ACTION
-    col 6: GATE. toggle state on reset
+    col 6: GATE. toggle state on reset.
     col 7: TRIGGER. pulse output on reset. pulse length is one full clock period.
     one row can gate/trigger other rows, not just itself. or no rows.
 right half of grid: speeds
-    rightwards is slower, as clock division. number of ticks to wait per countdown
-        can specify range of speeds, also by default incrementing
+    rightwards is slower, as clock division. this is the number of ticks to wait per countdown.
+    you can also specify a range of speeds, which increments by default.
 ```
 
 ### Rules

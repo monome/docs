@@ -54,7 +54,7 @@ Firmware update information [instructions are available](http://monome.org/docs/
 
 ## Firmware Version
 
-This documentation documents firmware version **1.6.0**.
+This documentation documents firmware version **1.6.1**.
 
 ## Basics
 

@@ -23,7 +23,7 @@ async function run() {
   setInterval(refresh, 1000 / 60);
 
   // set up key handler
-  grid.key((x, y, s) => console.log(`key received: ${x}, ${y}, $[s}`));
+  grid.key((x, y, s) => console.log(`key received: ${x}, ${y}, ${s}`));
 }
 
 run();

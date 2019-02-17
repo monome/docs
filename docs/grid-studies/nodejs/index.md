@@ -15,7 +15,7 @@ The `monome-grid` library has been designed for the latest stable version of Nod
 
 ## Prerequisites
 
-If you're very new to node.js (or JavaScript) a few tutorials and introduction videos have been provided below: 
+If you're very new to node.js (or JavaScript) a few tutorials and introduction videos have been provided below:
 
 [Code School - Node.js](https://www.codeschool.com/courses/real-time-web-with-node-js)
 
@@ -31,7 +31,7 @@ Download the code examples here: [files/grid-studies-nodejs.zip](files/grid-stud
 
 First install node.js. The [official installers](https://nodejs.org/en/download/) for your platform of choice are recommended. (This guide presumes you're running either Mac OSX or Unix/Linux; whilst it should work on Windows, the examples are given for a Unix shell).
 
-Once installed, open a terminal window and create a new folder:  
+Once installed, open a terminal window and create a new folder:
 
 ```
 $ mkdir grid-studies
@@ -64,7 +64,7 @@ $ node grid_studies_2.js
 
 ## 1. Connect
 
-The `monome-grid` library facilitates easy connection and communication with grids. It uses the modern javascript idiom of 'async/await' to reflect that grid code can't run until the grid has properly been initialised. 
+The `monome-grid` library facilitates easy connection and communication with grids. It uses the modern javascript idiom of 'async/await' to reflect that grid code can't run until the grid has properly been initialised.
 
 First, require the `monome-grid` library:
 
@@ -76,7 +76,7 @@ Then, connect to the grid inside an asynchronous function like so:
 
 ```javascript
 async function run() {
-  let grid = await monomeGrid(); 
+  let grid = await monomeGrid();
 }
 
 run()
@@ -98,7 +98,38 @@ The library communicates with *serialosc* to discover attached devices using OSC
 
 *See grid\_studies\_2.js for this section.*
 
-![](images/grid-studies-nodejs-2.png)
+```javascript
+const monomeGrid = require('monome-grid');
+
+async function run() {
+  let grid = await monomeGrid(); // optionally pass in grid identifier
+
+  // initialize 2-dimensional led array
+  let led = [];
+  for (let y=0;y<8;y++) {
+    led[y] = [];
+    for (let x=0;x<16;x++)
+      led[y][x] = 0;
+  }
+
+  // refresh leds with a pattern
+  let refresh = function() {
+    led[0][0] = 15;
+    led[2][0] = 5;
+    led[0][2] = 5;
+    grid.refresh(led);
+  }
+
+  // call refresh() function 60 times per second
+  setInterval(refresh, 1000 / 60);
+
+  // set up key handler
+  grid.key((x, y, s) => console.log(`key received: ${x}, ${y}, ${s}`));
+}
+
+run();
+```
+
 
 ### 2.1 Key input
 
@@ -167,7 +198,43 @@ The previous code refreshes the grid constantly with every call of `refresh()`, 
 
 Next we'll change the LED state to show which keys are being held, and only redraw when something has changed.
 
-![](images/grid-studies-nodejs-2-3.png)
+```javascript
+const monomeGrid = require('monome-grid');
+
+async function run() {
+  let grid = await monomeGrid(); // optionally pass in grid identifier
+
+
+  // initialize 2-dimensional led array
+  let led = [];
+  for (let y=0;y<8;y++) {
+    led[y] = [];
+    for (let x=0;x<16;x++)
+      led[y][x] = 0;
+  }
+
+  let dirty = true;
+
+  // refresh leds with a pattern
+  let refresh = function() {
+    if(dirty) {
+      grid.refresh(led);
+      dirty = false;
+    }
+  }
+
+  // call refresh() function 60 times per second
+  setInterval(refresh, 1000 / 60);
+
+  // set up key handler
+  grid.key((x, y, s) => {
+    led[y][x] = s * 15;
+    dirty = true;
+  });
+}
+
+run();
+```
 
 We add a boolean variable `dirty` to indicate if the grid needs to be refreshed. We set this to `true` initially so the grid is immediately cleared upon start.
 
@@ -201,7 +268,7 @@ let refresh = function() {
 
 Once we've refreshed the grid, we set the `dirty` flag to `false` so we're not needlessly refreshing.
 
-The `refresh` function is called at 60fps unless you specify a different rate in the `setInterval(refresh, 1000 / 60)` such as `setInterval(refresh, 1000 / 10)` for 10fps. 
+The `refresh` function is called at 60fps unless you specify a different rate in the `setInterval(refresh, 1000 / 60)` such as `setInterval(refresh, 1000 / 10)` for 10fps.
 
 As always, we wrap everything in an `async` function; see `grid_studies_2_3.js` for reference
 
@@ -238,7 +305,7 @@ First we'll create a new array called `step` that can hold 6 rows worth of step 
   // toggle steps
   if(s == 1 && y < 6) {
     step[y][x] ^= 1;
-    dirty = true; 
+    dirty = true;
   }
 ```
 
@@ -261,7 +328,7 @@ let refresh = function() {
     dirty = false;
   }
 }
-```	
+```
 
 That'll get us started.
 
@@ -376,14 +443,14 @@ grid.key((x, y, s) => {
   // toggle steps
   if(s == 1 && y < 6) {
     step[y][x] ^= 1;
-    
-    dirty = true; 
+
+    dirty = true;
   }
   // cut
   else if(y == 7) {
     if(s == 1)
       cutting = true;
-      next_position = x;  
+      next_position = x;
   }
 });
 ```
@@ -396,7 +463,7 @@ if(timer == STEP_TIME) {
     play_position = next_position;
   else if(play_position == 15)
     play_position = 0;
-  else 
+  else
     play_position++;
 
   cutting = false;
@@ -456,7 +523,7 @@ if(timer == STEP_TIME) {
     play_position = 0;
   else if(play_position == loop_end)
     play_position = loop_start;
-  else 
+  else
     play_position++;
 ```
 

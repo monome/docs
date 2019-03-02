@@ -19,8 +19,8 @@ g = grid.connect()
 this creates a device table `g`. let's light it up:
 
 ```lua
-g.led(1,8,15)
-g.refresh()
+g:led(1,8,15)
+g:refresh()
 ```
 
 you'll see a light at x,y (1,8) go to full brightness. like the norns screen, (1,1) is the top left and numbers increase to the right and downwards.
@@ -42,8 +42,8 @@ g = grid.connect()
 
 g.event = function(x,y,z)
   if z==1 then engine.hz(100+x*4+y*64) end
-  g.led(x,y,z*15)
-  g.refresh()
+  g:led(x,y,z*15)
+  g:refresh()
 end
 ```
 
@@ -77,15 +77,15 @@ g.event = function(x,y,z)
 end
 
 function grid_redraw()
-  g.all(0)
+  g:all(0)
   for i=1,16 do
-    g.led(i,steps[i],4)
+    g:led(i,steps[i],4)
   end
-  g.refresh()
+  g:refresh()
 end
 ```
 
-introduced here is `g.all()` which sets every grid light to a set brightness. `g.all(0)` clears the grid.
+introduced here is `g:all()` which sets every grid light to a set brightness. `g:all(0)` clears the grid.
 
 the `grid_redraw` function draws each step on the grid and is called each time we have a key down(in this case, there's no point to refresh on key up). we also call `grid_redraw` on `init` for a nice startup.
 
@@ -96,7 +96,7 @@ engine.name = 'PolyPerc'
 
 steps = {}
 position = 1
-counter = metro.alloc()
+counter = metro.init()
 counter.time = 0.1
 counter.count = -1
 counter.callback = count
@@ -111,7 +111,7 @@ end
 
 g = grid.connect()
 
-g.event = function(x,y,z)
+g.key = function(x,y,z)
   if z == 1 then
     steps[x] = y
     grid_redraw()
@@ -119,11 +119,11 @@ g.event = function(x,y,z)
 end
 
 function grid_redraw()
-  g.all(0)
+  g:all(0)
   for i=1,16 do
-    g.led(i,steps[i],i==position and 15 or 4)
+    g:led(i,steps[i],i==position and 15 or 4)
   end
-  g.refresh()
+  g:refresh()
 end
 
 function count()
@@ -138,7 +138,7 @@ we've added a metro (see study 3). now `grid_redraw` also gets called by the met
 a bonus trick is demonstrated in `grid_redraw`:
 
 ```lua
-g.led(i,steps[i],i==position and 15 or 4)
+g:led(i,steps[i],i==position and 15 or 4)
 ```
 
 see that last part? it takes this form:
@@ -284,11 +284,11 @@ this will return `true` or `false`, based on the physical device being attached 
 in one of the above examples we use a complex transformation to turn a note number into a frequency (something we demonstrated in study 3). it's a pretty standard musical function, so @markeats put it in a library, and here's how we use it:
 
 ```lua
-music = require 'mark_eats/musicutil'
+music = require 'musicutil'
 hz = music.note_num_to_freq(60)
 ```
 
-the library is imported with the `require` command, whereafter all of the functions within the library are available. check out [the dust repo](https://github.com/monome/dust/tree/master/lib/lua) for the current user libraries.
+the library is imported with the `require` command, whereafter all of the functions within the library are available. check out [the we repo](https://github.com/monome/we/tree/master/lib/lua) for the community contributed user libraries.
 
 ## midi sync
 
@@ -335,9 +335,9 @@ putting together concepts above. this script is demonstrated in the video up top
 
 engine.name = 'Passersby'
 
-music = require 'mark_eats/musicutil'
+music = require 'musicutil'
 beatclock = require 'beatclock'
-passersby = require "mark_eats/passersby"
+passersby = require "passersby"
 
 steps = {}
 position = 1
@@ -389,7 +389,7 @@ end
 
 g = grid.connect()
 
-g.event = function(x,y,z)
+g.key = function(x,y,z)
   if z == 1 then
     steps[x] = y
     grid_redraw()
@@ -397,11 +397,11 @@ g.event = function(x,y,z)
 end
 
 function grid_redraw()
-  g.all(0)
+  g:all(0)
   for i=1,16 do
-    g.led(i,steps[i],i==position and 15 or 4)
+    g:led(i,steps[i],i==position and 15 or 4)
   end
-  g.refresh()
+  g:refresh()
 end
 
 function count()

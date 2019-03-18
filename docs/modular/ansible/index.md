@@ -557,7 +557,7 @@ It is possible to backup all your presets as part of the module's firmware; see 
 
 Various MIDI-to-CV tools.
 
-The mode LED will show white when running.
+The mode LED will show orange when running.
 
 ### Interface
 
@@ -621,7 +621,7 @@ The default pitch offset is -2 octaves which is the equivalent of issuing the fo
 
 ## MIDI/arp
 
-The mode LED will show orange when running.
+The mode LED will show white when running.
 
 ### Interface
 

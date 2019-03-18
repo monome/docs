@@ -10,6 +10,8 @@ permalink: /docs/norns/
 
 **current version: [181101](https://github.com/monome/norns/releases)**
 
+**version 2.0 is quickly approaching! (by end of march). many many improvements. arc support will be included in this update.**
+
 - [beginning guide](norns-legend.pdf) is a one-sheet quick introduction.
 - [dust docs](dust) is documentation on individual engines and scripts.
 - [update](update) instructions.
@@ -50,7 +52,10 @@ A changing melody will play.
 - ENC2 changes filter cutoff.
 - ENC3 changes release time.
 
+(bonus: try plugging in a grid.)
+
 TAP KEY1 quickly to enter MENU.
+
 
 ## menu
 

@@ -208,7 +208,7 @@ Here y is 7, the last row. Check out the full OSC spec for more information on t
 
 After we clear the row, we turn on the corresponding LED with a normal single-LED message:
 
-	/monome/grid/led/set $1 0 1
+	/monome/grid/led/set $1 7 1
 
 Now when you turn on the clock, you'll see the playhead moving along the bottom row.
 

@@ -19,8 +19,8 @@ g = grid.connect()
 this creates a device table `g`. let's light it up:
 
 ```lua
-g.led(1,8,15)
-g.refresh()
+g:led(1,8,15)
+g:refresh()
 ```
 
 you'll see a light at x,y (1,8) go to full brightness. like the norns screen, (1,1) is the top left and numbers increase to the right and downwards.
@@ -30,7 +30,7 @@ _NOTE_: if you have a grid plugged in and this didn't work, check **SYSTEM > DEV
 push a key and you'll see `grid input` printed. let's make it more informative:
 
 ```lua
-g.event = function(x,y,z) print(x,y,z) end
+g:key = function(x,y,z) print(x,y,z) end
 ```
 
 you'll now see the x,y,z of each key event, where z is the key press/down (1) and release/up (0). this is how we attach a function with a grid key event. let's put these things together for something slightly more inspiring:
@@ -40,10 +40,10 @@ engine.name = 'PolyPerc'
 
 g = grid.connect()
 
-g.event = function(x,y,z)
+g:key = function(x,y,z)
   if z==1 then engine.hz(100+x*4+y*64) end
-  g.led(x,y,z*15)
-  g.refresh()
+  g:led(x,y,z*15)
+  g:refresh()
 end
 ```
 
@@ -51,7 +51,7 @@ experience the magic of microtonal mashing. try changing the numbers in `engine.
 
 ## expanding
 
-while it's fairly exciting to have made an outer-space instrument with just a couple of lines of code, possibilities are somewhat constrained by only using `g.event` for both sound and grid refreshes. let's decouple key, light, and sound (one of the fundamental design principles of the grid).
+while it's fairly exciting to have made an outer-space instrument with just a couple of lines of code, possibilities are somewhat constrained by only using `g:key` for both sound and grid refreshes. let's decouple key, light, and sound (one of the fundamental design principles of the grid).
 
 first, let's create a separate `grid_redraw` function and maintain a table of steps.
 
@@ -69,7 +69,7 @@ end
 
 g = grid.connect()
 
-g.event = function(x,y,z)
+g:key = function(x,y,z)
   if z == 1 then
     steps[x] = y
     grid_redraw()
@@ -77,15 +77,15 @@ g.event = function(x,y,z)
 end
 
 function grid_redraw()
-  g.all(0)
+  g:all(0)
   for i=1,16 do
-    g.led(i,steps[i],4)
+    g:led(i,steps[i],4)
   end
-  g.refresh()
+  g:refresh()
 end
 ```
 
-introduced here is `g.all()` which sets every grid light to a set brightness. `g.all(0)` clears the grid.
+introduced here is `g:all()` which sets every grid light to a set brightness. `g:all(0)` clears the grid.
 
 the `grid_redraw` function draws each step on the grid and is called each time we have a key down(in this case, there's no point to refresh on key up). we also call `grid_redraw` on `init` for a nice startup.
 
@@ -111,7 +111,7 @@ end
 
 g = grid.connect()
 
-g.event = function(x,y,z)
+g:key = function(x,y,z)
   if z == 1 then
     steps[x] = y
     grid_redraw()
@@ -119,11 +119,11 @@ g.event = function(x,y,z)
 end
 
 function grid_redraw()
-  g.all(0)
+  g:all(0)
   for i=1,16 do
-    g.led(i,steps[i],i==position and 15 or 4)
+    g:led(i,steps[i],i==position and 15 or 4)
   end
-  g.refresh()
+  g:refresh()
 end
 
 function count()
@@ -138,7 +138,7 @@ we've added a metro (see study 3). now `grid_redraw` also gets called by the met
 a bonus trick is demonstrated in `grid_redraw`:
 
 ```lua
-g.led(i,steps[i],i==position and 15 or 4)
+g:led(i,steps[i],i==position and 15 or 4)
 ```
 
 see that last part? it takes this form:
@@ -389,7 +389,7 @@ end
 
 g = grid.connect()
 
-g.event = function(x,y,z)
+g:key = function(x,y,z)
   if z == 1 then
     steps[x] = y
     grid_redraw()
@@ -397,11 +397,11 @@ g.event = function(x,y,z)
 end
 
 function grid_redraw()
-  g.all(0)
+  g:all(0)
   for i=1,16 do
-    g.led(i,steps[i],i==position and 15 or 4)
+    g:led(i,steps[i],i==position and 15 or 4)
   end
-  g.refresh()
+  g:refresh()
 end
 
 function count()

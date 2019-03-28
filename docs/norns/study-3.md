@@ -375,10 +375,10 @@ in addition to using keys and encoders to trigger functions, we can also make ti
 ```
 function init()
   position = 0
-  counter = metro.alloc()
+  counter = metro.init()
   counter.time = 1
   counter.count = -1
-  counter.callback = count
+  counter.event = count
   counter:start()
 end
 
@@ -393,7 +393,7 @@ this `init` function creates a `metro` called `counter`:
 
 - set interval `time` to 1 (second)
 - set count to -1, which means never stop. (we could set this to a target number to auto-stop).
-- set the callback function (like a param action function).
+- set the event function (like a param action function).
 - start the metronome counting. (note this is a class function, use a colon).
 
 on each tick of the `counter`, the `count` function is executed. the value `c` is the stage of the metro. we create a `position` variable which is counted up. try the following one by one on the command line:
@@ -414,7 +414,7 @@ this demonstrates how we're able to manipulate `counter` on the fly. here's a qu
 engine.name = "PolyPerc"
 
 function init()
-  strum = metro.alloc(note, 0.05, 8)
+  strum = metro.init(note, 0.05, 8)
 end
 
 function key(n,z)
@@ -435,7 +435,7 @@ function midi_to_hz(note)
 end
 ```
 
-we use a shortcut for allocating the metro by putting the callback function, interval time, and number of stages in the `metro.alloc()` function arguments. when we push any key down, a random root note is selected and played and then the metro is started. it will trigger 8 times, and on each function call we will sound a new note that is 5 semi-tones above the previous note. try modulating the metro interval, number of stages, and stage multiplier! for example, change 8 to 1 (for a single note) and 5 to 12 (for an octave shift).
+we use a shortcut for initializing the metro by putting the event function, interval time, and number of stages in the `metro.init()` function arguments. when we push any key down, a random root note is selected and played and then the metro is started. it will trigger 8 times, and on each function call we will sound a new note that is 5 semi-tones above the previous note. try modulating the metro interval, number of stages, and stage multiplier! for example, change 8 to 1 (for a single note) and 5 to 12 (for an octave shift).
 
 
 ## example: spacetime
@@ -489,7 +489,7 @@ label = {"+", "-", "<", ">", "*", "M", "m", "#"}
 function init()
   params:add_control("cutoff","cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
   params:set_action("cutoff", function(x) engine.cutoff(x) end)
-  counter = metro.alloc(count, 0.125, -1)
+  counter = metro.init(count, 0.125, -1)
   counter:start()
 end
 

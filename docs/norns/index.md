@@ -94,15 +94,9 @@ Note that some scripts may have no parameters.
 
 ![](image/levels-m.png)
 
-Go BACK from home to see the LEVELS screen.
-
 Here you have VUs and mixing capabilities.
 
-- ENC1 output
-- ENC2 input
-- ENC3 monitor (input to output)
 
-Battery percentage level is indicated in the upper right. Hold KEY1 to see current consumption.
 
 ### TAPE
 
@@ -123,6 +117,42 @@ PLAY
 - K3 loads file.
 - K3 again to start.
 - K3 again to stop.
+
+
+## AUDIO
+
+![](./image/norns-audio-route.png)
+
+### AUDIO PARAMETERS
+
+param |range |description
+---|---|---
+output            |[-inf, 0] db     |output level
+input             |[-inf, 0] db     |input level
+monitor           |[-inf, 0] db     |monitor level (input mix to ouput)
+ext               |[-inf, 0] db     |external application level (ie, supercollider)
+softcut           |[-inf, 0] db     |multivoice sampler level
+tape              |[-inf, 0] db     |tape playback level
+monitor mode      |[MONO, STEREO]   |MONO = mix input 1 and 2 to both channels
+headphone         |[0, 60]          |headphone gain
+reverb            |[ON, OFF]        |reverb state
+rev ext input     |[-inf, 12] db    |external input to reverb
+rev cut input     |[-inf, 12] db    |softcut input to reverb
+rev monitor input |[-inf, 12] db    |monitor input to reverb
+rev return level  |[-inf, 12] db    |reverb return level
+rev pre delay     |[20, 100] ms     |delay before reverberation
+rev lf fc         |[50, 1000] hz    |crossover frequency between low and middle bands
+rev low time      |[1, 32] s        |time to decay by 60dB in low band
+rev mid time      |[1, 32] s        |time to decay by 60dB in mid band
+rev hf damping    |[1500, nyq] hz   |frequency at which high band decay time is 1/2 of mid band decay time
+compressor        |[ON, OFF]        |compressor state
+comp mix          |[0, 1.0]         |dry/wet mix. 0 = dry, 1 = wet
+comp ratio        |[1, 20]          |compression ratio: for each N dB increase in input level above threashold, output level increases by 1dB
+comp threshold    |[-100, 10] dB    |amplitutde above which the signal is compressed
+comp attack       |[1, 1000] ms     |time constant (1/e smoothing time) for compression gain to exponentially approach a new _lower_ target level
+comp release      |[1, 1000] ms     |time constant (1/e smoothing time) for compression gain to exponentially approach a new _higher_ target level
+comp pre gain     |[-inf, 30] db    |gain pre compression
+comp post gain    |[-inf, 30] db    |gain post compression
 
 
 ## SCRIPTINT / ?

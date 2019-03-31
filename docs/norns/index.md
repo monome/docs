@@ -7,12 +7,12 @@ permalink: /docs/norns/
 
 # norns
 
-**current version: [190404](https://github.com/monome/norns/releases)**
+quick links: [begin](#begin) &mdash; [awake](#awake) &mdash; [edit](#edit)
 
 - [first](norns-legend.pdf) see this quick introduction.
 - [studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
+- **current version: [190404](https://github.com/monome/norns/releases)**
 
-quick links: [begin](#begin) &mdash; [awake](#awake) &mdash; [edit](#edit)
 
 ## LEGEND
 

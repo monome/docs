@@ -43,6 +43,7 @@ E1 changes the mode. K1+? means hold K1 then push ?.
 - K3 morphs the current sequence. K1+K3 randomizes.
 
 ### LOOP
+
 - E2/E3 set loop length. K1+E2/E3 set loop start.
 - K2 resets to play to zero. K3 jumps to random position.
 
@@ -82,13 +83,14 @@ At **HOME** press K2 to toggle additional system information display.
 
 ### SELECT
 
-Explore the collection of scripts.  Selecting a script will show a description.  Forward again will run the script.  The play screen will return upon running.  Tap KEY1 to toggle between PLAY and MENU.
+Explore the collection of scripts.  Selecting a script will show a description.  Forward again will run the script.  The play screen will return upon running.  Quickly tap K1 to toggle between PLAY and OTHER.
+
 
 ### SYSTEM
 
-- AUDIO - Like the parameter list, but for the global audio settings. Includes output and input levels, headphone gain, aux send (reverb), and insert (compression). See the REFERENCE section below for details on the parameters available.
-- DEVICES - This is a list of connected USB hardware (currently MIDI and grids) with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports. This menu lets you re-assign connected devices to specific ports.
-- WIFI -
+- AUDIO - Like the parameter list, but for the global audio settings. Includes output and input levels, headphone gain, aux send (reverb), and insert (compression). See the [AUDIO](#audio) section below for details on the parameters available.
+- DEVICES - This is a list of connected USB hardware with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports. This section lets you re-assign connected devices to specific ports.
+- WIFI - Networking settings. Requires USB WIFI interface. See [CONNECT](#connect).
 - UPDATE - Checks for updates. Internet connection required.
 - RESET - Quickly resets the audio system.
 - SLEEP - Powers down.
@@ -218,11 +220,29 @@ _maiden_ is the web-based editor for norns.
 
 ## FILE MANAGEMENT
 
-File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via wifi (see above).
+File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via WIFI. Use an SFTP client (such as Cyberduck) to connect to the IP address shown on the norns screen.
 
 See [this guide](./sftp) for further details.
 
--- TODO file system layout
+### FILE TREE
+
+Upon logging in you'll be in the home folder which is `/home/we/`.
+
+`dust` is the folder which contains everything we need. Here's the layout:
+
+```
+dust/
+  code/           -- contains scripts and engines
+    awake/
+    mlr/
+    ...
+    we/
+  data/           -- contains user data created by scripts
+    awake/            -- for example, pset data
+  audio/          -- audio files
+    common/           -- some sample collections
+    tape/             -- tape recordings
+```
 
 
 ## OTHER ACCESS
@@ -241,8 +261,16 @@ Where `(tab)` appears hit TAB to autocomplete the serial number. Login is the sa
 
 ## GATHERING
 
+Browse the [Library](https://llllllll.co/c/library) to see projects created and contributed by various people.
+
+These project pages have information and a download link. Download a file, unpack into a folder, and then move this folder over to the `dust/code/` folder using SFTP. It'll show up in the SELECT list.
+
 
 ## SHARING
+
+
+
+
 
 
 ## HELP

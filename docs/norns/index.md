@@ -20,7 +20,7 @@ quick links: [begin](#begin) &mdash; [awake](#awake) &mdash; [edit](#edit)
 
 ## BEGIN
 
-The mini-USB plug provides power and charges the internal battery. Use the cable and power supply provided. (The included supply supplies 2A via USB connector).
+The mini-USB plug provides power and charges the internal battery. Use the cable and power supply provided. (The included supply supplies 2A via USB connector.)
 
 Hold **K1** for three seconds.
 
@@ -28,13 +28,13 @@ Be still, and norns will awaken.
 
 There's a small light near the power plug.  ORANGE means power.  WHITE means disk access.
 
-On the bottom of the norns there is a tiny push switch will hard power-off the device. For general shut down use the _sleep_ menu function. This fully turns off the norns with a proper software shutdown. Use the bottom switch only if something in software went wrong.
+On the bottom of the norns there is a tiny push switch that will hard power-off the device. For general shut down use the _sleep_ menu function. This fully turns off the norns with a proper software shutdown. Use the bottom switch only if something in software went wrong.
 
 ## AWAKE
 
 A changing melody will play.
 
-E1 changes the mode. K1+? means hold K1 then push ?
+E1 changes the mode. K1+? means hold K1 then push ?.
 
 ### STEP
 
@@ -107,9 +107,9 @@ Scripts can define their own parameters. Note that some scripts may have no para
 
 HOLD K1 to access parameter set saving and loading:
 
-- E3 scrolls set number (0 is default, with 1-99 available)
-- K2 loads the selected set
-- K3 saves the set to the selected position
+- E3 scrolls set number (0 is default, with 1-99 available).
+- K2 loads the selected set.
+- K3 saves the set to the selected position.
 
 Enable MIDI-mapping with E3 while the MIDI-map item is selected. Release K1 to return to the Parameter list, but now you see MIDI CC assignments. Push K3 to enable MIDI-learn, whereupon the next incoming MIDI CC will be mapped to this value.
 
@@ -179,7 +179,7 @@ rev mid time      |[1, 32] s        |time to decay by 60dB in mid band
 rev hf damping    |[1500, nyq] hz   |frequency at which high band decay time is 1/2 of mid band decay time
 compressor        |[ON, OFF]        |compressor state
 comp mix          |[0, 1.0]         |dry/wet mix. 0 = dry, 1 = wet
-comp ratio        |[1, 20]          |compression ratio: for each N dB increase in input level above threashold, output level increases by 1dB
+comp ratio        |[1, 20]          |compression ratio: for each N dB increase in input level above threshold, output level increases by 1dB
 comp threshold    |[-100, 10] dB    |amplitutde above which the signal is compressed
 comp attack       |[1, 1000] ms     |time constant (1/e smoothing time) for compression gain to exponentially approach a new _lower_ target level
 comp release      |[1, 1000] ms     |time constant (1/e smoothing time) for compression gain to exponentially approach a new _higher_ target level

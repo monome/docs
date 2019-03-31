@@ -66,9 +66,8 @@ Tap K1 quickly to toggle between **PLAY** and **OTHER**.
 
 You are now at **HOME**.
 
-<> ![](image/select-m.png)
+![](image/select-m.png)
 
-<img style="float: center" src="image/select-m.png">
 
 In **OTHER** mode:
 

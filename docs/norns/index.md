@@ -154,7 +154,7 @@ PLAY
 
 Audio routing is shown below:
 
-![](./image/norns-audio-route.png)
+![](image/norns-audio-route.png)
 
 ### AUDIO PARAMETERS
 
@@ -196,7 +196,7 @@ Scripts can be created and edited using a web browser when norns is connected to
 
 The WIFI nub must be inserted before starting.
 
-![]("./image/screen-wifi.png")
+![](image/screen-wifi.png)
 
 To connect to your local network router:
 

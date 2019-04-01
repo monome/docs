@@ -66,7 +66,7 @@ Tap K1 quickly to toggle between **PLAY** and **OTHER**.
 
 You are now at **HOME**.
 
-![](image/select-m.png)
+![](image/screen-home.png)
 
 
 In **OTHER** mode:
@@ -99,14 +99,14 @@ Explore the collection of scripts.  Selecting a script will show a description. 
 
 ### PARAMETERS
 
-![](image/params-m.png)
+![](image/screen-params.png)
 
 Scripts can define their own parameters. Note that some scripts may have no parameters.
 
 - E2 scrolls.
 - E3 changes values. Hold K3 for fine tuning.
 
-![](image/param-alt-m.png)
+![](image/screen-params-alt.png)
 
 HOLD K1 to access parameter set saving and loading:
 
@@ -121,7 +121,7 @@ Get out of MIDI-mapping mode by holding K1 and toggling off.
 
 ### LEVELS
 
-![](image/levels-m.png)
+![](image/screen-levels.png)
 
 Mixing and VU display happens here.
 
@@ -131,7 +131,7 @@ Mixing and VU display happens here.
 
 ### TAPE
 
-![](image/tape-m.png)
+![](image/screen-tape.png)
 
 On this page you can record and play directly to and from disk.
 
@@ -195,6 +195,8 @@ comp post gain    |[-inf, 30] db    |gain post compression
 Scripts can be created and edited using a web browser when norns is connected to a network. These scripts will appear in the **SELECT** list for later play.
 
 The WIFI nub must be inserted before starting.
+
+![]("image/screen-wifi.png")
 
 To connect to your local network router:
 
@@ -269,9 +271,23 @@ These project pages have information and a download link. Download a file, unpac
 
 ## SHARING
 
+The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas.
 
+Create a new thread in the [Library](https://llllllll.co/c/library).
 
+You'll be able to attach a .zip file containing your project folder.
 
+Be sure you include information at the top of your script to help future users:
+
+```
+-- scriptname: short script description
+-- v1.0.0 @author
+-- llllllll.co/t/22222
+```
+
+That last line is a link back to the thread number. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread).
+
+Alternatively you can host your project as a github repository by simply cloning your project into the `dust/code/` folder. We're working on infrastructure to integrate more closely with `git`, but in the meantime we suggest using `ssh` to manage this. In the project thread you can then link to a master download or most recent release.
 
 
 ## HELP
@@ -284,10 +300,16 @@ If you're experiencing hardware problems contact info@monome.org and we can help
 
 ## CONTRIBUTING
 
-norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. check out the [github repo](https://github.com/monome/norns).
+Norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. Check out the [github repo](https://github.com/monome/norns).
 
 We're also always looking for help with [documentation](https://github.com/monome/docs), if your skills include design, instruction, or proofreading. Collective efforts have created numerous exceptional projects over the years, and there's more to a project than just code!
 
 Found a bug? Let us know. Please file a [github issue](https://github.com/monome/norns/issues) or let us know on [lines](https://llllllll.co/t/norns-help/14016).
 
 ## ACKNOWLEDGEMENTS
+
+This project would not have been possible without [linux](https://en.wikipedia.org/wiki/Linux).  Currently we're using [Supercollider](https://supercollider.github.io) for DSP extensibility.
+
+`matron` (control system) and `crone` (audio system) were created by [@catfact](https://github.com/catfact). `maiden` (editor) was created by [@ngwese](https://github.com/ngwese). Each with contributions from [@artfwo](https://github.com/artfwo), [@jah](https://github.com/antonhornquist), [@simon](https://github.com/simonvanderveldt), [@rv](https://github.com/ranch-verdin), [@pq](https://github.com/pq), [@markwheeler](https://github.com/markwheeler), and many others.
+
+norns was initiated by @tehn (monome).

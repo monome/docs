@@ -44,7 +44,7 @@ E1 changes the mode. K1+? means hold K1 then push ?.
 
 ### LOOP
 
-- E2/E3 set loop length. K1+E2/E3 set loop start.
+- E2/E3 set loop length.
 - K2 resets to play to zero. K3 jumps to random position.
 
 ### SOUND
@@ -54,8 +54,7 @@ E1 changes the mode. K1+? means hold K1 then push ?.
 ### OPTION
 
 - E2 adjusts BPM. K1+E2 change division.
-- E3 selects scale. K1+E3 changes root note.
-- K2 holds playback. K3 toggles playback.
+- E3 changes root note. K1+E3 selects scale.
 
 (bonus: try plugging in a grid.)
 

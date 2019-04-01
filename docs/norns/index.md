@@ -284,7 +284,7 @@ Be sure you include information at the top of your script to help future users:
 -- llllllll.co/t/22222
 ```
 
-That last line is a link back to the thread number. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread).
+That last line is a link back to the thread number. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
 
 Alternatively you can host your project as a github repository by simply cloning your project into the `dust/code/` folder. We're working on infrastructure to integrate more closely with `git`, but in the meantime we suggest using `ssh` to manage this. In the project thread you can then link to a master download or most recent release.
 

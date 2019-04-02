@@ -217,8 +217,7 @@ Point your web browser at `norns.local` to see the maiden interface. If the site
 
 _maiden_ is the web-based editor for norns.
 
--- TODO
-
+![](image/maiden-0.12.png)
 
 ## FILE MANAGEMENT
 

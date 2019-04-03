@@ -259,6 +259,18 @@ If you need to reset the matron/crone environment for any reason (ie, the menu s
 This will disconnect maiden, but once matron has restarted you can reconnect.
 
 
+## API REFERENCE
+
+When connected via wifi you can navigate to
+
+```
+norns.local/doc
+```
+
+to see the programming reference.
+
+
+
 ## FILE MANAGEMENT
 
 You can delete and rename files via maiden. But you'll need to copy files between your computer and norns.

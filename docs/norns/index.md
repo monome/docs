@@ -232,7 +232,7 @@ There are top bar there are icons for various actions: **New, Delete, Duplicate,
 
 This is where you can edit the selected script.
 
-To the right there is a bar with two icons: disk is **SAVE** and play **RUNS** the current script.
+To the right there is a bar with two icons: disk is **SAVE** and **PLAY** will run the current script.
 
 The editor can be configured for various modes (default, vim, emacs) in addition to tab size and light/dark mode. Click the gear icon at the bottom left of the screen.
 

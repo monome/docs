@@ -250,10 +250,10 @@ will display the expected message in the window above.
 
 The clear icon to the right will clear the current messages.
 
-If you need to reset the matron/crone environment for any reason (ie, the menu system is not accessible), you can issue a command via the REPL:
+If you need to restart the matron/crone environment for any reason (ie, the menu system is not accessible), you can issue a command via the REPL:
 
 ```
-;reset
+;restart
 ```
 
 This will disconnect maiden, but once matron has restarted you can reconnect.

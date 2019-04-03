@@ -258,17 +258,11 @@ If you need to reset the matron/crone environment for any reason (ie, the menu s
 
 This will disconnect maiden, but once matron has restarted you can reconnect.
 
+### PROGRAMMING REFERENCE
 
-## API REFERENCE
+The bottom left ? icon can be used to navigate to the onboard programming reference.
 
-When connected via wifi you can navigate to
-
-```
-norns.local/doc
-```
-
-to see the programming reference.
-
+You can manually open the reference at `norns.local/doc`.
 
 
 ## FILE MANAGEMENT

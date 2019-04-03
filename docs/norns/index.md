@@ -210,22 +210,64 @@ If you do not have access to a router, you can turn the norns into a WIFI hotspo
 - SSID: `norns`
 - password: `nnnnnnnn`
 
-Point your web browser at `norns.local` to see the maiden interface. If the site is not found, try connecting directly to the IP address shown on the norns screen, for example: `192.168.1.30`.
 
 
 ## MAIDEN
 
 _maiden_ is the web-based editor for norns.
 
+Point your web browser at `norns.local` to see the maiden interface. If the site is not found, try connecting directly to the IP address shown on the norns screen, for example: `192.168.1.30`.
+
 ![](image/maiden-0.12.png)
 
+The interface is arranged into a left sidebar FILE navigator and a right split editor, where the top is the EDITOR and the bottom is the REPL (read-eval-print-loop).
+
+### FILE
+
+This panel lets you select the text you're editing in EDITOR.
+
+There are top bar there are icons for various actions: **New, Delete, Duplicate, New Folder, and Rename.**
+
+### EDITOR
+
+This is where you can edit the selected script.
+
+To the right there is a bar with two icons: disk is **SAVE** and play **RUNS** the current script.
+
+The editor can be configured for various modes (default, vim, emacs) in addition to tab size and light/dark mode. Click the gear icon at the bottom left of the screen.
+
+### REPL
+
+Messages are printed in the bottom panel. There are two tabs: matron is the main lua environment, and sc is supercollider which is the engine environment.
+
+You can use the bottom prompt to type commands which will be interpreted by the system. For example:
+
+```
+print("hello there")
+```
+
+will display the expected message in the window above.
+
+The clear icon to the right will clear the current messages.
+
+If you need to reset the matron/crone environment for any reason (ie, the menu system is not accessible), you can issue a command via the REPL:
+
+```
+;reset
+```
+
+This will disconnect maiden, but once matron has restarted you can reconnect.
+
+
 ## FILE MANAGEMENT
+
+You can delete and rename files via maiden. But you'll need to copy files between your computer and norns.
 
 File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via WIFI. Use an SFTP client (such as Cyberduck) to connect to the IP address shown on the norns screen.
 
 See [this guide](./sftp) for further details.
 
-### FILE TREE
+## FILE TREE
 
 Upon logging in you'll be in the home folder which is `/home/we/`.
 
@@ -233,6 +275,9 @@ Upon logging in you'll be in the home folder which is `/home/we/`.
 
 ```
 dust/
+  audio/          -- audio files
+    tape/             -- tape recordings
+    ...
   code/           -- contains scripts and engines
     awake/
     mlr/
@@ -240,9 +285,6 @@ dust/
     we/
   data/           -- contains user data created by scripts
     awake/            -- for example, pset data
-  audio/          -- audio files
-    common/           -- some sample collections
-    tape/             -- tape recordings
 ```
 
 

@@ -7,7 +7,7 @@ myscript
   mod.lua -- alt version, shows up as MYSCRIPT/MOD
   data/
     myscript.pset  -- default pset, loaded via params:default() or via menu
-    myscript-01.pset  -- some other pset, loaded via params:read(1) or via
+    myscript-01.pset  -- some other pset, loaded via params:read(1) or via menu
   lib/
     somelib.lua  -- arbitrary lib, imported via require 'lib/somelib'
     some-engine.sc  -- engine file

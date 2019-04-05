@@ -7,11 +7,10 @@ permalink: /docs/norns/
 
 # norns
 
-quick links: [begin](#begin) &mdash; [awake](#awake) &mdash; [edit](#edit)
+**Current version: [190404](https://github.com/monome/norns/releases)**
 
-- [first](norns-legend.pdf) see this quick introduction.
-- [studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
-- **current version: [190404](https://github.com/monome/norns/releases)**
+- [Studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
+- [Script reference](/docs/norns/script-reference/)
 
 
 ## LEGEND
@@ -78,22 +77,29 @@ Page layout:
 
 ![](image/norns-pages.png)
 
+
+### HOME
+
+![](image/screen-home.png)
+
 At **HOME** press K2 to toggle additional system information display.
 
+#### SELECT
 
-### SELECT
-
-Explore the collection of scripts.  Selecting a script will show a description.  Forward again will run the script.  The play screen will return upon running.  Quickly tap K1 to toggle between PLAY and OTHER.
+Explore the collection of scripts.  Selecting a script will show a description.  Forward again will run the script.  The play screen will return upon running.  Quickly tap K1 to toggle between **PLAY** and **OTHER**.
 
 
-### SYSTEM
+#### SYSTEM
 
 - AUDIO - Like the parameter list, but for the global audio settings. Includes output and input levels, headphone gain, aux send (reverb), and insert (compression). See the [AUDIO](#audio) section below for details on the parameters available.
 - DEVICES - This is a list of connected USB hardware with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports. This section lets you re-assign connected devices to specific ports.
 - WIFI - Networking settings. Requires USB WIFI interface. See [CONNECT](#connect).
 - UPDATE - Checks for updates. Internet connection required.
 - RESET - Quickly resets the audio system.
-- SLEEP - Powers down.
+
+#### SLEEP
+
+Powers down.
 
 
 ### PARAMETERS
@@ -118,16 +124,6 @@ Enable MIDI-mapping with E3 while the MIDI-map item is selected. Release K1 to r
 Get out of MIDI-mapping mode by holding K1 and toggling off.
 
 
-### LEVELS
-
-![](image/screen-levels.png)
-
-Mixing and VU display happens here.
-
-- K2/K3 to change selection, which is highlighted.
-- E2/E3 modify the respective highlighted levels.
-
-
 ### TAPE
 
 ![](image/screen-tape.png)
@@ -147,6 +143,16 @@ PLAY
 - K3 loads file.
 - K3 again to start.
 - K3 again to stop.
+
+
+### LEVELS
+
+![](image/screen-levels.png)
+
+Mixing and VU display happens here.
+
+- K2/K3 to change selection, which is highlighted.
+- E2/E3 modify the respective highlighted levels.
 
 
 ## AUDIO

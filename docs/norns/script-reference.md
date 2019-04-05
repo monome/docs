@@ -212,10 +212,12 @@ a = arc.connect()
 
 ### midi
 
+TODO
 
 
 ### hid
 
+TODO
 
 
 ### osc
@@ -225,7 +227,7 @@ a = arc.connect()
 
 ## crone
 
-![](image/crone-process-routing.png)
+![](../image/crone-process-routing.png)
 
 [pdf version](crone-process-routing.pdf)
 

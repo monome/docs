@@ -7,7 +7,7 @@ permalink: /docs/norns/
 
 # norns
 
-- [First](norns-legend.pdf) a quick, printable introduction.
+- [First](norns-first.pdf) a quick, printable introduction.
 - [Studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
 - [Script reference](/docs/norns/script-reference/)
 

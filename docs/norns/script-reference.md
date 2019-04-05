@@ -218,6 +218,12 @@ a = arc.connect()
 - `osc.event(path, args, from)` handler function called when an osc event is received.
 - `osc.send(to, path, args)` send osc event.
 
+## crone
+
+![](image/crone-process-routing.png)
+
+[pdf version](crone-process-routing.pdf)
+
 
 ## further
 - [Norns Lua docs](https://monome.github.io/norns/doc/)

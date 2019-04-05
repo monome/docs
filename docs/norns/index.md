@@ -3,192 +3,309 @@ layout: page
 permalink: /docs/norns/
 ---
 
-
 ![](https://monome.org/images/norns-front-small.jpg)
 
 # norns
 
-**current version: [181101](https://github.com/monome/norns/releases)**
+- [First](norns-first.pdf) a quick, printable introduction.
+- [Studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
+- [Script reference](/docs/norns/script-reference/)
 
-**version 2.0 is quickly approaching! (by end of march). many many improvements. arc support will be included in this update.**
+**Current version at [github](https://github.com/monome/norns/releases).**
 
-- [beginning guide](norns-legend.pdf) is a one-sheet quick introduction.
-- [dust docs](dust) is documentation on individual engines and scripts.
-- [update](update) instructions.
-- [studies](/docs/norns/study-1/) -- series of tutorials for creating scripts
+[begin](#begin) &mdash; [awake](#awake) &mdash; [audio](#audio) &mdash; [maiden](#maiden) &mdash; [update](#update) &mdash; [help](#help)
 
-## legend
 
-![](image/norns-legend-primary.png)
+## LEGEND
 
-## begin
+![](image/norns-legend.png)
 
-The mini-USB plug provides power and charges the internal battery. Use the cable and power supply provided. (The included supply supplies 2A via USB connector).
+## BEGIN
 
-Hold KEY1 for three seconds.
+The mini-USB plug provides power and charges the internal battery. Use the cable and power supply provided. (The included supply supplies 2A via USB connector.)
+
+Hold **K1** for three seconds.
 
 Be still, and norns will awaken.
 
 There's a small light near the power plug.  ORANGE means power.  WHITE means disk access.
 
-On the bottom of the norns there is a tiny push switch will hard power-off the device. For general shut down use the _sleep_ menu function. This fully turns off the norns with a proper software shutdown. Use the bottom switch if something in software went wrong.
+On the bottom of the norns there is a tiny push switch that will hard power-off the device. For general shut down use the _sleep_ menu function. This fully turns off the norns with a proper software shutdown. Use the bottom switch only if something in software went wrong.
 
-## awake
+## AWAKE
 
 A changing melody will play.
 
-- ENC1 changes the tempo.
-- ENC2 navigates position, ENC3 changes position.
-- KEY3 toggles the sequence to edit.
-- KEY2 morphs the current sequence.
+E1 changes the mode. K1+? means hold K1 then push ?.
 
-- HOLD KEY3, then:
-- ENC1 changes transposition.
-- ENC2 and ENC3 change sequence lengths.
-- KEY2 resets sequence positions.
+### STEP
 
-- HOLD KEY1, then:
-- ENC1 changes scale mode.
-- ENC2 changes filter cutoff.
-- ENC3 changes release time.
+- E2 navigates position, E3 changes position.
+- K2 toggles the sequence to edit. K1+K2 clears all steps.
+- K3 morphs the current sequence. K1+K3 randomizes.
+
+### LOOP
+
+- E2/E3 set loop length.
+- K2 resets to play to zero. K3 jumps to random position.
+
+### SOUND
+
+- E2/E3 adjust selected parameter. K2/K3 move selector.
+
+### OPTION
+
+- E2 adjusts BPM. K1+E2 change division.
+- E3 changes root note. K1+E3 selects scale.
 
 (bonus: try plugging in a grid.)
 
-TAP KEY1 quickly to enter MENU.
+
+## OTHER
+
+Tap K1 quickly to toggle between **PLAY** and **OTHER**.
+
+You are now at **HOME**.
+
+![](image/screen-home.png)
 
 
-## menu
+In **OTHER** mode:
 
-Tap KEY1 to toggle between PLAY and MENU.
+- E1 moves between pages.
+- E2 scrolls up/down.
+- K2/K3 move back/forward.
 
-In MENU mode:
+Page layout:
 
-- ENC2 scrolls up/down.
-- KEY3 is forward.
-- KEY2 is back.
+![](image/norns-pages.png)
 
-![](image/norns-legend-menu.png)
 
-### SELECT
+### HOME
 
-Explore the collection of scripts.  Selecting a script will show a description.  Forward again will run the script.  The play screen will return upon running.  Tap KEY1 to toggle between PLAY and MENU.
+![](image/screen-home.png)
+
+At **HOME** press K2 to toggle additional system information display.
+
+#### SELECT
+
+Explore the collection of scripts.  Selecting a script will show a description.  Forward again will run the script.  The play screen will return upon running.  Quickly tap K1 to toggle between **PLAY** and **OTHER**.
+
+
+#### SYSTEM
+
+- AUDIO - Like the parameter list, but for the global audio settings. Includes output and input levels, headphone gain, aux send (reverb), and insert (compression). See the [AUDIO](#audio) section below for details on the parameters available.
+- DEVICES - This is a list of connected USB hardware with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports. This section lets you re-assign connected devices to specific ports.
+- WIFI - Networking settings. Requires USB WIFI interface. See [CONNECT](#connect).
+- UPDATE - Checks for updates. Internet connection required. See [UPDATE](#update).
+- RESET - Quickly resets the audio system.
+
+
+#### SLEEP
+
+Powers down cleanly, saving current state.
+
+
 
 ### PARAMETERS
 
-Scripts can define their own parameters. ENC2 scrolls and ENC3 changes parameter values.
+![](image/screen-params.png)
 
-HOLD KEY1 to access parameter set saving and loading:
+Scripts can define their own parameters. Note that some scripts may have no parameters.
 
-- ENC3 scrolls set number (0 is default, with 1-99 available)
-- KEY2 loads the selected set
-- KEY3 saves the set to the selected position
+- E2 scrolls.
+- E3 changes values. Hold K3 for fine tuning.
 
-Note that some scripts may have no parameters.
+![](image/screen-params-alt.png)
 
-### SYSTEM / AUDIO
+HOLD K1 to access parameter set saving and loading:
 
-Like the parameter list, but for the global audio settings. Includes output and input levels, headphone gain, aux send (reverb), and insert (compression).
+- E3 scrolls set number (0 is default, with 1-99 available).
+- K2 loads the selected set.
+- K3 saves the set to the selected position.
 
-See the REFERENCE section below for details on the parameters available.
+Enable MIDI-mapping with E3 while the MIDI-map item is selected. Release K1 to return to the Parameter list, but now you see MIDI CC assignments. Push K3 to enable MIDI-learn, whereupon the next incoming MIDI CC will be mapped to this value.
 
-### SYSTEM / DEVICES
-
-This is a list of connected USB hardware (currently MIDI and grids) with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports.
-
-This menu lets you re-assign connected devices to specific ports.
+Get out of MIDI-mapping mode by holding K1 and toggling off.
 
 
-### SYSTEM / WIFI
+### TAPE
 
-The WIFI nub must be inserted before starting.  Here you can set up a hotspot or connect to an existing network.
+![](image/screen-tape.png)
 
-`OFF` will turn off an existing network connection.
+On this page you can record and play directly to and from disk.
 
-Hotspot will create a network:
+K2 toggles focus between REC and PLAY.
+
+REC
+
+- K3 to arm recording.
+- K3 again to start.
+- K3 again to stop.
+
+PLAY
+
+- K3 loads file.
+- K3 again to start.
+- K3 again to stop.
+
+
+### LEVELS
+
+![](image/screen-levels.png)
+
+Mixing and VU display happens here.
+
+- K2/K3 to change selection, which is highlighted.
+- E2/E3 modify the respective highlighted levels.
+
+
+## AUDIO
+
+Audio routing is shown below:
+
+![](image/norns-audio-route.png)
+
+### AUDIO PARAMETERS
+
+Control of various audio parameters happens in **SYSTEM > AUDIO**. Note that the topmost levels are also controlled via the **LEVELS** page.
+
+param |range |description
+---|---|---
+output            |[-inf, 0] db     |output level
+input             |[-inf, 0] db     |input level
+monitor           |[-inf, 0] db     |monitor level (input mix to ouput)
+engine            |[-inf, 0] db     |engine level (ie, supercollider)
+softcut           |[-inf, 0] db     |multivoice sampler level
+tape              |[-inf, 0] db     |tape playback level
+monitor mode      |[MONO, STEREO]   |MONO = mix input 1 and 2 to both channels
+headphone         |[0, 60]          |headphone gain
+reverb            |[ON, OFF]        |reverb state
+rev engine input  |[-inf, 12] db    |engine input to reverb
+rev cut input     |[-inf, 12] db    |softcut input to reverb
+rev monitor input |[-inf, 12] db    |monitor input to reverb
+rev return level  |[-inf, 12] db    |reverb return level
+rev pre delay     |[20, 100] ms     |delay before reverberation
+rev lf fc         |[50, 1000] hz    |crossover frequency between low and middle bands
+rev low time      |[1, 32] s        |time to decay by 60dB in low band
+rev mid time      |[1, 32] s        |time to decay by 60dB in mid band
+rev hf damping    |[1500, nyq] hz   |frequency at which high band decay time is 1/2 of mid band decay time
+compressor        |[ON, OFF]        |compressor state
+comp mix          |[0, 1.0]         |dry/wet mix. 0 = dry, 1 = wet
+comp ratio        |[1, 20]          |compression ratio: for each N dB increase in input level above threshold, output level increases by 1dB
+comp threshold    |[-100, 10] dB    |amplitutde above which the signal is compressed
+comp attack       |[1, 1000] ms     |time constant (1/e smoothing time) for compression gain to exponentially approach a new _lower_ target level
+comp release      |[1, 1000] ms     |time constant (1/e smoothing time) for compression gain to exponentially approach a new _higher_ target level
+comp pre gain     |[-inf, 30] db    |gain pre compression
+comp post gain    |[-inf, 30] db    |gain post compression
+
+
+## CONNECT
+
+Scripts can be created and edited using a web browser when norns is connected to a network. These scripts will appear in the **SELECT** list for later play.
+
+The WIFI nub must be inserted before starting.
+
+![](image/screen-wifi.png)
+
+To connect to your local network router:
+
+- Navigate to **SYSTEM > WIFI**.
+- Select **ADD**.
+- Choose your network from the list displayed.
+- Enter the password. E2 toggle between top and bottom row, E3 scrolls character, K3 selects character. Select **OK** when complete.
+- With success, you should be assigned an IP address shortly after.
+
+If you do not have access to a router, you can turn the norns into a WIFI hotspot. This will create a new network which you can then connect to with your computer:
 
 - SSID: `norns`
 - password: `nnnnnnnn`
 
-On your laptop, connect to this new `norns` network. Then point your web browser at `http://172.24.1.1` to see the maiden interface.
-
-Connecting to an existing network requires a few steps. Upon entering the SYSTEM menu a WIFI scan is initiated. Once entering the WIFI screen and scrolling to NETWORK, use ENC3 to select among available networks (indicated on the bottom right). If you have WPA networking active on your network, you will be requested to enter a password. Use ENC3 to select between DEL/OK and alphanumeric input; and enter in the password for your network. When completed, use ENC3 to select OK, and the norns will complete the connection. Once connected, you will see information about the network connection as well as the IP address that the device has on the network. Now, you can point a browser to that address (i.e. - 192.168.0.60) to get to the maiden interface.
 
 
-### SYSTEM / SYNC
+## MAIDEN
 
-A USB disk must be connected. Here you can sync your scripts/data/audio to an external disk, or copy scripts/audio/data from an external disk.
+_maiden_ is the web-based editor for norns.
 
-This is the current method for getting sound and scripts on and off of the device.
+Point your web browser at `norns.local` to see the maiden interface. If the site is not found, try connecting directly to the IP address shown on the norns screen, for example: `192.168.1.30`.
 
-- Format a USB drive with a FAT32 file system.
-- Execute `SYSTEM > SYNC > TO DISK` (this may take some time, be patient)
-- Eject the disk and insert it into your computer. You can now retrieve your TAPE files, etc. Copy new audio files into the `dust/audio` folder for use with scripts.
-- Put the disk back into norns and execute `SYSTEM > SYNC > FROM DISK`
+![](image/maiden-0.12.png)
 
-### SYSTEM / UPDATE
+The interface is arranged into a left sidebar FILE navigator and a right split editor, where the top is the EDITOR and the bottom is the REPL (read-eval-print-loop).
 
-This searches the USB disk for update files.
+### FILE
 
-### SLEEP
+This panel lets you select the text you're editing in EDITOR.
 
-Powers down, getting rest for later.
+There are top bar there are icons for various actions: **New, Delete, Duplicate, New Folder, and Rename.**
 
-### LEVELS
+### EDITOR
 
-Go BACK from home to see the LEVELS screen.
+This is where you can edit the selected script.
 
-Here you have VUs and mixing capabilities.
+To the right there is a bar with two icons: disk is **SAVE** and **PLAY** will run the current script.
 
-- ENC1 output
-- ENC2 input
-- ENC3 monitor (input to output)
+The editor can be configured for various modes (default, vim, emacs) in addition to tab size and light/dark mode. Click the gear icon at the bottom left of the screen.
 
-Battery percentage level is indicated in the upper right. Hold KEY1 to see current consumption.
+### REPL
 
-#### TAPE
+Messages are printed in the bottom panel. There are two tabs: matron is the main lua environment, and sc is supercollider which is the engine environment.
 
-Within LEVELS you can record and play directly to and from disk.
+You can use the bottom prompt to type commands which will be interpreted by the system. For example:
 
-HOLD KEY2 for all. ENC3 toggles REC/PLAY.
+```
+print("hello there")
+```
 
-REC
+will display the expected message in the window above.
 
-- KEY3 to arm recording.
-- KEY3 again to start.
-- KEY3 again to stop.
+The clear icon to the right will clear the current messages.
 
-PLAY
+If you need to restart the matron/crone environment for any reason (ie, the menu system is not accessible), you can issue a command via the REPL:
 
-- KEY3 loads file.
-- KEY3 to play.
-- ENC3 to toggle PLAY/STOP.
+```
+;restart
+```
 
-## dust
+This will disconnect maiden, but once matron has restarted you can reconnect.
 
-DUST is the collection of scripts, engines, and sounds on the norns. it is a public repository and contributions are welcome.
+### PROGRAMMING REFERENCE
 
-See the [dust docs](dust) for documentation on individual engines and scripts.
+The bottom left ? icon can be used to navigate to the onboard programming reference.
 
-## maiden
+You can manually open the reference at `norns.local/doc`.
 
-_note: be sure you've run the system [update](update)_
 
-_maiden_ is the web-based editor for norns. first turn on WIFI (connect to your norns via hotspot) and try opening a web browser to:
+## FILE MANAGEMENT
 
-- `http://norns.local`
+You can delete and rename files via maiden. But you'll need to copy files between your computer and norns.
 
-(if not found, try `http://172.24.1.1` or the appropriate IP address displayed in your SYSTEM screen.)
-
-More documentation coming.
-
-## file management
-
-File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via wifi (see above).
+File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via WIFI. Use an SFTP client (such as Cyberduck) to connect to the IP address shown on the norns screen.
 
 See [this guide](./sftp) for further details.
 
+## FILE TREE
 
-## other access
+Upon logging in you'll be in the home folder which is `/home/we/`.
+
+`dust` is the folder which contains everything we need. Here's the layout:
+
+```
+dust/
+  audio/          -- audio files
+    tape/             -- tape recordings
+    ...
+  code/           -- contains scripts and engines
+    awake/
+    mlr/
+    ...
+    we/
+  data/           -- contains user data created by scripts
+    awake/            -- for example, pset data
+```
+
+
+## OTHER ACCESS
 
 When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM.
 
@@ -201,7 +318,65 @@ Without WIFI, you can connect to norns via USB-UART by connecting the power cabl
 
 Where `(tab)` appears hit TAB to autocomplete the serial number. Login is the same as above.
 
-## help
+
+## GATHERING
+
+Browse the [Library](https://llllllll.co/c/library) to see projects created and contributed by various people.
+
+These project pages have information and a download link. Download a file, unpack into a folder, and then move this folder over to the `dust/code/` folder using SFTP. It'll show up in the SELECT list.
+
+
+## SHARING
+
+The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas.
+
+Create a new thread in the [Library](https://llllllll.co/c/library).
+
+You'll be able to attach a .zip file containing your project folder.
+
+Be sure you include information at the top of your script to help future users:
+
+```
+-- scriptname: short script description
+-- v1.0.0 @author
+-- llllllll.co/t/22222
+```
+
+That last line is a link back to the thread number. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
+
+Alternatively you can host your project as a github repository by simply cloning your project into the `dust/code/` folder. We're working on infrastructure to integrate more closely with `git`, but in the meantime we suggest using `ssh` to manage this. In the project thread you can then link to a master download or most recent release.
+
+
+## UPDATE
+
+Updates to the core norns software can be installed easily via the SYSTEM menu. You must first be connected to the internet via wifi and have at least 400M free disk space. If a new version is available you will be prompted to continue installing. Audio will be disabled during this time. Note that the download time may be a few minutes, have patience. Upon completion you'll be notified of success or failure, then the unit will shut down after confirmation.
+
+**If you are running 181101 or earlier you'll need to first upgrade to 190405 using the old system.**
+
+### MANUAL UPDATE
+
+- Download and copy update file to a FAT-formatted USB drive
+- Insert the disk to norns and power up.
+- Connect via serial (see instructions above).
+- Copy file to `~/update/`:
+
+```
+sudo cp /media/usb0/*.tgz ~/udpate/
+```
+
+- Unpack and run update:
+
+```
+cd ~/update
+tar xzvf norns190409.tgz
+cd 190409
+./update.sh
+```
+
+- Upon completion type `sudo shutdown now` to shut down.
+
+
+## HELP
 
 The [community forum](https://llllllll.co/tag/norns) has various informative threads. Please join us!
 
@@ -209,51 +384,18 @@ Check the [known bugs](https://github.com/monome/norns/wiki/known-bugs) list for
 
 If you're experiencing hardware problems contact info@monome.org and we can help right away.
 
-## contributing
+## CONTRIBUTING
 
-norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. check out the [github repo](https://github.com/monome/norns).
+Norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. Check out the [github repo](https://github.com/monome/norns).
 
 We're also always looking for help with [documentation](https://github.com/monome/docs), if your skills include design, instruction, or proofreading. Collective efforts have created numerous exceptional projects over the years, and there's more to a project than just code!
 
 Found a bug? Let us know. Please file a [github issue](https://github.com/monome/norns/issues) or let us know on [lines](https://llllllll.co/t/norns-help/14016).
 
----
+## ACKNOWLEDGEMENTS
 
-## reference
+This project would not have been possible without [linux](https://en.wikipedia.org/wiki/Linux).  Currently we're using [Supercollider](https://supercollider.github.io) for DSP extensibility.
 
-### SYSTEM AUDIO PARAMETERS
+`matron` (control system) and `crone` (audio system) were created by [@catfact](https://github.com/catfact). `maiden` (editor) was created by [@ngwese](https://github.com/ngwese). Each grew with contributions from [@artfwo](https://github.com/artfwo), [@jah](https://github.com/antonhornquist), [@simon](https://github.com/simonvanderveldt), [@rv](https://github.com/ranch-verdin), [@pq](https://github.com/pq), [@markwheeler](https://github.com/markwheeler), and many others.
 
-Basic:
-
-- output: main level (stereo, affects both main outs and headphones)
-- input: input level (stereo)
-- monitor: monitor level, passing input to output
-- monitor mode: STEREO/MONO. stereo: L input to L output, etc. mono: L to L/R. R to L/R.
-- headphone: gain, 0-64. set according to your headphone preference and impedance.
-
-AUX (Reverb):
-
-- aux fx: on/off
-- aux engine level: engine output -> aux input
-- aux input 1 level: input 1 -> aux input
-- aux input 2 level: input 2 -> aux input
-- aux input 1 pan: pan for input 1
-- aux input 2 pan: pan for input 2
-- aux return level: aux output -> main output
-
-- rev pre delay: reverb delay time
-- rev lf x: reverb low frequency crossover
-- rev low time: reverb low time
-- rev mid time: reverb mid time
-- rev hf damping: reverb high frequency damping
-
-INSERT (Compressor):
-
-- insert fx: on/off
-- insert mix: dry/wet (dry = 0.0, wet = 1.0)
-- comp ratio: compressor ratio
-- comp thresh: compressor threshold
-- comp attack: compressor attack time
-- comp release: compressor release time
-- comp makeup: compressor makeup gain
-
+norns was initiated by @tehn (monome).

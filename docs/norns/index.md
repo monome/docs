@@ -7,10 +7,13 @@ permalink: /docs/norns/
 
 # norns
 
-**Current version: [190404](https://github.com/monome/norns/releases)**
-
+- [First](norns-legend.pdf) a quick, printable introduction.
 - [Studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
 - [Script reference](/docs/norns/script-reference/)
+
+**Current version at [github](https://github.com/monome/norns/releases)**.
+
+[begin](#begin) &mdash; [awake](#awake) &mdash; [edit](#edit) &mdash; [update](#update)
 
 
 ## LEGEND
@@ -94,12 +97,14 @@ Explore the collection of scripts.  Selecting a script will show a description. 
 - AUDIO - Like the parameter list, but for the global audio settings. Includes output and input levels, headphone gain, aux send (reverb), and insert (compression). See the [AUDIO](#audio) section below for details on the parameters available.
 - DEVICES - This is a list of connected USB hardware with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports. This section lets you re-assign connected devices to specific ports.
 - WIFI - Networking settings. Requires USB WIFI interface. See [CONNECT](#connect).
-- UPDATE - Checks for updates. Internet connection required.
+- UPDATE - Checks for updates. Internet connection required. See [UPDATING](#updating).
 - RESET - Quickly resets the audio system.
+
 
 #### SLEEP
 
-Powers down.
+Powers down cleanly, saving current state.
+
 
 
 ### PARAMETERS
@@ -170,13 +175,13 @@ param |range |description
 output            |[-inf, 0] db     |output level
 input             |[-inf, 0] db     |input level
 monitor           |[-inf, 0] db     |monitor level (input mix to ouput)
-ext               |[-inf, 0] db     |external application level (ie, supercollider)
+engine            |[-inf, 0] db     |engine level (ie, supercollider)
 softcut           |[-inf, 0] db     |multivoice sampler level
 tape              |[-inf, 0] db     |tape playback level
 monitor mode      |[MONO, STEREO]   |MONO = mix input 1 and 2 to both channels
 headphone         |[0, 60]          |headphone gain
 reverb            |[ON, OFF]        |reverb state
-rev ext input     |[-inf, 12] db    |external input to reverb
+rev engine input  |[-inf, 12] db    |engine input to reverb
 rev cut input     |[-inf, 12] db    |softcut input to reverb
 rev monitor input |[-inf, 12] db    |monitor input to reverb
 rev return level  |[-inf, 12] db    |reverb return level

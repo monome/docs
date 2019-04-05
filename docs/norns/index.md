@@ -13,7 +13,7 @@ permalink: /docs/norns/
 
 **Current version at [github](https://github.com/monome/norns/releases).**
 
-[begin](#begin) &mdash; [awake](#awake) &mdash; [edit](#edit) &mdash; [update](#update)
+[begin](#begin) &mdash; [awake](#awake) &mdash; [audio](#audio) &mdash; [maiden](#maiden) &mdash; [update](#update) &mdash; [help](#help)
 
 
 ## LEGEND

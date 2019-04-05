@@ -1,4 +1,4 @@
-# norns reference 2.0.0
+# norns script reference
 
 ## directory structure
 ```
@@ -220,6 +220,6 @@ a = arc.connect()
 
 
 ## further
-
-https://monome.org/docs/norns
-https://github.com/monome/norns
+- [Norns Lua docs](https://monome.github.io/norns/doc/)
+- https://monome.org/docs/norns
+- https://github.com/monome/norns

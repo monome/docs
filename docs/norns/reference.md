@@ -5,6 +5,7 @@
 myscript
   myscript.lua -- main version, shows up as MYSCRIPT
   mod.lua -- alt version, shows up as MYSCRIPT/MOD
+  README.md -- main docs/readme
   data/
     myscript.pset  -- default pset, loaded via params:default() or via menu
     myscript-01.pset  -- some other pset, loaded via params:read(1) or via menu
@@ -12,6 +13,8 @@ myscript
     somelib.lua  -- arbitrary lib, imported via require 'lib/somelib'
     some-engine.sc  -- engine file
     some-engine.lua  -- engine lib, require lib/some-engine'
+  docs/ -- more documentation, won't be shown in SELECT
+    more-docs.md
 ```
 
 ## basic form

@@ -11,7 +11,7 @@ quick links: [begin](#begin) &mdash; [awake](#awake) &mdash; [edit](#edit)
 
 - [first](norns-legend.pdf) see this quick introduction.
 - [studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
-- **current version at [github](https://github.com/monome/norns/releases)**. see [updating](#updates).
+- **current version at [github](https://github.com/monome/norns/releases)**. see [update](#update) for details.
 
 
 ## LEGEND
@@ -91,7 +91,7 @@ Explore the collection of scripts.  Selecting a script will show a description. 
 - AUDIO - Like the parameter list, but for the global audio settings. Includes output and input levels, headphone gain, aux send (reverb), and insert (compression). See the [AUDIO](#audio) section below for details on the parameters available.
 - DEVICES - This is a list of connected USB hardware with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports. This section lets you re-assign connected devices to specific ports.
 - WIFI - Networking settings. Requires USB WIFI interface. See [CONNECT](#connect).
-- UPDATE - Checks for updates. Internet connection required. See [UPDATING](#updating).
+- UPDATE - Checks for updates. Internet connection required. See [UPDATE](#update).
 - RESET - Quickly resets the audio system.
 - SLEEP - Powers down cleanly, saving current state.
 
@@ -334,6 +334,17 @@ Be sure you include information at the top of your script to help future users:
 That last line is a link back to the thread number. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
 
 Alternatively you can host your project as a github repository by simply cloning your project into the `dust/code/` folder. We're working on infrastructure to integrate more closely with `git`, but in the meantime we suggest using `ssh` to manage this. In the project thread you can then link to a master download or most recent release.
+
+
+## UPDATE
+
+Updates to the core norns software can be installed easily via the SYSTEM menu. You must first be connected to the internet via wifi and have at least 400M free disk space. If a new version is available you will be prompted to continue installing. Audio will be disabled during this time. Note that the download time may be a few minutes, have patience. Upon completion you'll be notified of success or failure, then the unit will shut down after confirmation.
+
+**If you are running 181101 or earlier you'll need to first upgrade to 190405 using the old system.**
+
+### MANUAL UPDATE
+
+
 
 
 ## HELP

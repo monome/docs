@@ -1,3 +1,8 @@
+---
+layout: page
+permalink: /docs/norns/script-reference/
+---
+
 # norns script reference
 
 ## directory structure

@@ -355,7 +355,25 @@ Updates to the core norns software can be installed easily via the SYSTEM menu. 
 
 ### MANUAL UPDATE
 
+- Download and copy update file to a FAT-formatted USB drive
+- Insert the disk to norns and power up.
+- Connect via serial (see instructions above).
+- Copy file to `~/update/`:
 
+```
+sudo cp /media/usb0/*.tgz ~/udpate/
+```
+
+- Unpack and run update:
+
+```
+cd ~/update
+tar xzvf norns190409.tgz
+cd 190409
+./update.sh
+```
+
+- Upon completion type `sudo shutdown now` to shut down.
 
 
 ## HELP

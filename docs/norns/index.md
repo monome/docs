@@ -361,7 +361,7 @@ Updates to the core norns software can be installed easily via the SYSTEM menu. 
 - Copy file to `~/update/`:
 
 ```
-sudo cp /media/usb0/*.tgz ~/udpate/
+sudo cp /media/usb0/*.tgz ~/update/
 ```
 
 - Unpack and run update:

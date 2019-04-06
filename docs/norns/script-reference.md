@@ -5,6 +5,12 @@ permalink: /docs/norns/script-reference/
 
 # norns script reference
 
+Scripts are what make norns do things.
+A script consists of at least a Lua file but can additionally also contain supporting Lua libraries, SuperCollider engines and data.
+Scripts are located in `~/dust/code/`.
+
+Follow the [studies](/docs/norns/study-1/) to learn how to write your own scripts.
+
 ## directory structure
 ```
 myscript
@@ -28,7 +34,7 @@ myscript
 -- v1.0.0 @author
 -- llllllll.co/t/22222
 
-engine.name = 'polysub'
+engine.name = 'PolySub'
 
 function init()
   -- initialization
@@ -98,6 +104,14 @@ end
 Specify an engine at the top of your script, ie:
 ```lua
 engine.name = 'PolySub'
+```
+
+If you want to use an engine from another project make sure to install that project first.
+If the engine comes with an accompanying Lua file make sure to import it, ie:
+```lua
+engine.name = 'R'
+
+local R = require 'r/lib/r'
 ```
 
 `engine.list_commands()` shows the commands.
@@ -190,7 +204,6 @@ g = grid.connect()
 - `g:all(val)`
 - `g:refresh()`
 
-
 - `g.key(x, y, state)`  key event handler function
 
 
@@ -205,7 +218,6 @@ a = arc.connect()
 - `a:all(val)` set state of all LEDs on this arc device.
 - `a:segment(ring, from, to, level)` create an anti-aliased point to point arc - segment/range on a specific LED ring.
 - `a:refresh()` update any dirty quads on this arc device.
-
 
 - `a.enc(n, delta)` encoder event handler function
 

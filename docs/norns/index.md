@@ -273,7 +273,9 @@ This will disconnect maiden, but once matron has restarted you can reconnect.
 
 The bottom left ? icon can be used to navigate to the onboard programming reference.
 
-You can manually open the reference at `norns.local/doc`.
+You can manually open the API reference at `norns.local/doc`.
+
+Also see the [general reference](script-reference/).
 
 
 ## FILE MANAGEMENT

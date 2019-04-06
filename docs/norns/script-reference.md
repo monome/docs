@@ -234,5 +234,5 @@ TODO
 
 ## further
 - [Norns Lua docs](https://monome.github.io/norns/doc/)
-- https://monome.org/docs/norns
-- https://github.com/monome/norns
+- [https://monome.org/docs/norns](https://monome.org/docs/norns)
+- [https://github.com/monome/norns](https://github.com/monome/norns)

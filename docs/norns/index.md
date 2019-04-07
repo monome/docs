@@ -382,6 +382,7 @@ cd 190409
 - Upon completion type `sudo shutdown now` to shut down.
 
 ## HELP
+
 ### ERROR: AUDIO ENGINE
 
 If norns shows `ERROR: AUDIO ENGINE` chances are there's a problem with duplicate SuperCollider classes.

@@ -286,7 +286,7 @@ File management is best achieved via SFTP, so you'll need to first connect norns
 
 See [this guide](./sftp) for further details.
 
-## FILE TREE
+### FILE TREE
 
 Upon logging in you'll be in the home folder which is `/home/we/`.
 
@@ -306,6 +306,10 @@ dust/
     awake/            -- for example, pset data
 ```
 
+### BACKUP
+
+If you want to make a backup of your scripts, psets or other data simply make a copy of the `dust` directory in `/home/we` via SFTP.
+Restoring from this backup is as simple as copying this directory from your computer back to the `/home/we/dust` directory on norns.
 
 ## OTHER ACCESS
 

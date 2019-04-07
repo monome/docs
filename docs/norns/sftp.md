@@ -35,6 +35,9 @@ Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, wi
 
 The Norns filesystem should be displayed in the Cyberduck window.  You can add, delete, and rename files in this window, just like you would with an external USB flash drive in your computer's file explorer application.
 
+Everything you need will be in the `dust` directory.
+See the [file-tree](./#file-tree) overview in the main docs for an overview of what's what.
+
 ![](../image/sftp5.png)
 
 ### Troubleshooting

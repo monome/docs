@@ -251,9 +251,9 @@ replace your encoder function with this one, save and run. upon turning the enco
 ## the robots are mad
 
 ```
-lua: /home/we/dust/scripts/study/study1-manyfutures.lua:19: attempt to perform arithmetic on a nil value (global 'position')
+lua: /home/we/dust/code/study/study1-manyfutures.lua:19: attempt to perform arithmetic on a nil value (global 'position')
 stack traceback:
-/home/we/dust/scripts/study/study1-manyfutures.lua:19: in function 'encoders.callback'
+/home/we/dust/code/study/study1-manyfutures.lua:19: in function 'encoders.callback'
 /home/we/norns/lua/encoders.lua:56: in function 'encoders.process'
 ```
 

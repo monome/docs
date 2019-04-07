@@ -286,7 +286,7 @@ File management is best achieved via SFTP, so you'll need to first connect norns
 
 See [this guide](./sftp) for further details.
 
-## FILE TREE
+### FILE TREE
 
 Upon logging in you'll be in the home folder which is `/home/we/`.
 
@@ -306,6 +306,10 @@ dust/
     awake/            -- for example, pset data
 ```
 
+### BACKUP
+
+If you want to make a backup of your scripts, psets or other data simply make a copy of the `dust` directory in `/home/we` via SFTP.
+Restoring from this backup is as simple as copying this directory from your computer back to the `/home/we/dust` directory on norns.
 
 ## OTHER ACCESS
 
@@ -377,8 +381,21 @@ cd 190409
 
 - Upon completion type `sudo shutdown now` to shut down.
 
-
 ## HELP
+### ERROR: AUDIO ENGINE
+
+If norns shows `ERROR: AUDIO ENGINE` chances are there's a problem with duplicate SuperCollider classes.
+To solves this [connect](#connect) via wifi and open [maiden](#maiden). Go to the SuperCollider REPL tab, type `;restart` and press enter.
+This will restart the audio components and output their logs. If there's a duplicate class an error message like the following will be shown:
+```
+ERROR: duplicate Class found: ‘Engine_Some’
+/home/we/dust/code/somescript1/lib/Engine_Some.sc
+/home/we/dust/code/somescript1-copy/lib/Engine_Some.sc
+ERROR: There is a discrepancy.
+```
+Remove one of the offending scripts/classes and either completely restart norns or execute `;restart` again from maiden and all should be good again.
+
+### SUPPORT
 
 The [community forum](https://llllllll.co/tag/norns) has various informative threads. Please join us!
 

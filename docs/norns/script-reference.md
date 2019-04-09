@@ -12,6 +12,7 @@ Scripts are located in `~/dust/code/`.
 Follow the [studies](/docs/norns/study-1/) to learn how to write your own scripts.
 
 ## directory structure
+
 ```
 myscript
   myscript.lua -- main version, shows up as MYSCRIPT
@@ -102,12 +103,14 @@ end
 ### engine
 
 Specify an engine at the top of your script, ie:
+
 ```lua
 engine.name = 'PolySub'
 ```
 
 If you want to use an engine from another project make sure to install that project first.
 If the engine comes with an accompanying Lua file make sure to import it, ie:
+
 ```lua
 engine.name = 'R'
 
@@ -117,6 +120,7 @@ local R = require 'r/lib/r'
 `engine.list_commands()` shows the commands.
 
 For example to set the command `cutoff` to 500:
+
 ```lua
 engine.cutoff(500)
 ```
@@ -196,6 +200,7 @@ The global `paramset` is named `params`
 ### grid
 
 `grid.connect(n)` to create device, returns object with handler, ie:
+
 ```lua
 g = grid.connect()
 ```
@@ -210,6 +215,7 @@ g = grid.connect()
 ### arc
 
 `arc.connect(n)` to create device, returns object with handler, ie:
+
 ```lua
 a = arc.connect()
 ```

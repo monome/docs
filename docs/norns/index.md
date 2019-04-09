@@ -237,7 +237,7 @@ The interface is arranged into a left sidebar FILE navigator and a right split e
 
 This panel lets you select the text you're editing in EDITOR.
 
-There are top bar there are icons for various actions: **New, Delete, Duplicate, New Folder, and Rename.**
+There are top bar icons for various actions: **New**, **Delete**, **Duplicate**, **New Folder**, and **Rename**.
 
 ### EDITOR
 

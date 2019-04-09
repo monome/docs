@@ -386,14 +386,18 @@ cd 190409
 ### ERROR: AUDIO ENGINE
 
 If norns shows `ERROR: AUDIO ENGINE` chances are there's a problem with duplicate SuperCollider classes.
+
 To solves this [connect](#connect) via wifi and open [maiden](#maiden). Go to the SuperCollider REPL tab, type `;restart` and press enter.
+
 This will restart the audio components and output their logs. If there's a duplicate class an error message like the following will be shown:
+
 ```
 ERROR: duplicate Class found: ‘Engine_Some’
 /home/we/dust/code/somescript1/lib/Engine_Some.sc
 /home/we/dust/code/somescript1-copy/lib/Engine_Some.sc
 ERROR: There is a discrepancy.
 ```
+
 Remove one of the offending scripts/classes and either completely restart norns or execute `;restart` again from maiden and all should be good again.
 
 ### SUPPORT

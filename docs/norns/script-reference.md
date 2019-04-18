@@ -14,7 +14,7 @@ Follow the [studies](/docs/norns/study-1/) to learn how to write your own script
 ## directory structure
 
 ```
-myscript
+myscript/
   myscript.lua -- main version, shows up as MYSCRIPT
   mod.lua -- alt version, shows up as MYSCRIPT/MOD
   README.md -- main docs/readme
@@ -54,6 +54,49 @@ function redraw()
 end
 ```
 
+## using libraries
+
+Lua libraries can be used by using `include("path/to/library")`.
+
+### script local libraries
+
+`include()` will first look in the directory of the current script. This allows using relative paths to use libraries local to the script.
+For example with the following structure:
+
+```
+myscript/
+  myscript.lua
+  lib/
+    somelib.lua
+```
+
+`myscript.lua` can include `somelib.lua` using:
+
+```lua
+include("lib/somelib.lua")
+```
+
+### third party libraries
+
+Third party libraries can be included using their full path starting from the `~/dust/code/` directory.
+For example with the following structure in `~/dust/code/`:
+
+```
+myscript/
+  myscript.lua
+  lib/
+    somelib.lua
+otherscript/
+  otherscript.lua
+  lib/
+    otherlib.lua
+```
+
+`myscript.lua` can include `otherlib.lua` using:
+
+```lua
+include("otherscript/lib/otherlib")
+```
 
 ## functions
 

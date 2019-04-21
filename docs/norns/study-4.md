@@ -288,7 +288,7 @@ music = require 'musicutil'
 hz = music.note_num_to_freq(60)
 ```
 
-the library is imported with the `require` command, whereafter all of the functions within the library are available. check out the [norns function reference](https://norns.local/doc) for the default libraries (the libraries are in upper and lower case like `MusicUtil`. Additional user libraries are also available, but are maintained by individual users. See the lines [Library category](https://llllllll.co/c/library) for more.
+the library is imported with the `require` command, whereafter all of the functions within the library are available. check out the [norns function reference](https://norns.local/doc) for the default libraries (the libraries are in upper and lower case like `MusicUtil`). Additional user libraries are also available, but are maintained by individual users. See the lines [Library category](https://llllllll.co/c/library) for more.
 
 ## midi sync
 

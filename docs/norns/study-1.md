@@ -17,7 +17,7 @@ first, locate yourself such:
 - connect to norns via hotspot or network
 - navigate web browser to http://norns.local (or type in IP address if this fails)
 - you're looking at _maiden_, the editor
-- create a new file: click the + icon in the scripts toolbar
+- create a new file in the `code` directory: click on the `code` directory and then click the + icon in the scripts toolbar
 - rename the file: click the pencil icon in the scripts toolbar
 
 it's blank. full of possibilities. type in the text below:

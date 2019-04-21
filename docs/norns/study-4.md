@@ -96,7 +96,7 @@ engine.name = 'PolyPerc'
 
 steps = {}
 position = 1
-counter = metro.alloc()
+counter = metro.init()
 counter.time = 0.1
 counter.count = -1
 counter.callback = count
@@ -284,11 +284,11 @@ this will return `true` or `false`, based on the physical device being attached 
 in one of the above examples we use a complex transformation to turn a note number into a frequency (something we demonstrated in study 3). it's a pretty standard musical function, so @markeats put it in a library, and here's how we use it:
 
 ```lua
-music = require 'mark_eats/musicutil'
+music = require 'musicutil'
 hz = music.note_num_to_freq(60)
 ```
 
-the library is imported with the `require` command, whereafter all of the functions within the library are available. check out [the dust repo](https://github.com/monome/dust/tree/master/lib/lua) for the current user libraries.
+the library is imported with the `require` command, whereafter all of the functions within the library are available. check out the [norns function reference](https://norns.local/doc) for the default libraries (the libraries are in upper and lower case like `MusicUtil`. Additional user libraries are also available, but are maintained by individual users. See the lines [Library category](https://llllllll.co/c/library) for more.
 
 ## midi sync
 
@@ -333,11 +333,11 @@ putting together concepts above. this script is demonstrated in the video up top
 -- ENC2 = bpm
 -- ENC3 = scale
 
-engine.name = 'Passersby'
+engine.name = 'PolyPerc'
 
-music = require 'mark_eats/musicutil'
+music = require 'musicutil'
 beatclock = require 'beatclock'
-passersby = require "mark_eats/passersby"
+
 
 steps = {}
 position = 1
@@ -362,7 +362,6 @@ function init()
   clk:add_clock_params()
 
   params:add_separator()
-  passersby.add_params()
 
   clk:start()
 end
@@ -389,8 +388,8 @@ end
 
 g = grid.connect()
 
-g:key = function(x,y,z)
-  if z == 1 then
+g.key = function(x,y,z)
+  if z == 1 then  
     steps[x] = y
     grid_redraw()
   end
@@ -406,7 +405,7 @@ end
 
 function count()
   position = (position % 16) + 1
-  engine.noteOn(1,music.note_num_to_freq(scale[steps[position]] + transpose),1)
+  engine.hz(music.note_num_to_freq(scale[steps[position]] + transpose))
   grid_redraw()
 end
 
@@ -417,6 +416,7 @@ m.event = function(data)
     transpose = d.note - 60
   end
 end
+
 ```
 
 

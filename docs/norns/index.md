@@ -149,6 +149,7 @@ PLAY
 - K3 again to start.
 - K3 again to stop.
 
+PLAY expects stereo 48khz files. Most header / sample formats should work (including raw).
 
 ### LEVELS
 

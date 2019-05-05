@@ -149,7 +149,7 @@ PLAY
 - K3 again to start.
 - K3 again to stop.
 
-PLAY expects stereo 48khz files. Most header / sample formats should work (including raw).
+PLAY expects stereo 48khz files. WAV, AIFF and other uncompressed header / sample formats supported by [libsndfile](http://www.mega-nerd.com/libsndfile) will work (including raw). FLAC also.
 
 ### LEVELS
 

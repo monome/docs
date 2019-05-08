@@ -77,6 +77,7 @@ right half of grid: speeds
         can specify range of speeds, also by default incrementing
 ```
 ![Row configuration grid image](images/grid_MP_RESET-OUTPUT-SPEEDS_1.2.png)
+
 ### Count, Position & Clock
 
 *Count* is indicated by the dim bar in each row. It represents the number of clock pulses this row requires before creating its own event. Pressing a key will change the row's *count* and reset the countdown *position* to this new maximum. *Count* moves once per clock pulse, divided by the rows clock division. Set the clock division by holding rows left most button, then pressing any key on the right half of the grid. The further right the clock divider selection is, the slower the count will move for that row.
@@ -116,6 +117,7 @@ Other rules do different things, listed from top to bottom:
 * stop: stop.
 
 ![Grid rules image](images/grid_MP_RULE_GLYPHS_1.2.png)
+
 ## Preset
 
 Entire collections of sixteen patterns can be saved to internal flash. On power-up the most recently saved set will be recalled and will play instantly.

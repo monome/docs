@@ -47,7 +47,7 @@ Now re-run `serialosc`, then plug and unplug your grid to save your config. If y
 If you get a permissions error when running serialosc:
 
 	$ serialosc
-	libmonome: could not open monome device: Permission denied`
+	libmonome: could not open monome device: Permission denied
 
 Add your user to the `uucp` and/or `dialout` groups, so that you can use serial devices. The exact group name will depend on your distribution:
 

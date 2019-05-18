@@ -226,7 +226,7 @@ The main grid view uses the bottom row for navigation, which are dimly lit into 
 
 ### Parameters
 
-Each *track* has four parameters *Trigger, Note, Octave,* and *Duration*. These parameters work together to form the sequence loop. 
+Each *track* has four parameters *Trigger, Note, Octave,* and *Duration*. These parameters work together to form the sequence loop.
 
 Select a parameter to adjust by pressing its key in the bottom row of the grid.
 
@@ -279,9 +279,9 @@ Ratcheting uses rows 3-6 to determine the number of sub-triggers that will fire 
 
 To enter the alternate note page, press the note parameter key a second time when you are in the note view. The note parameter key will blink.
 
-The alternate note parameter screen is functionally identical to the main note screen, with its own probability, clock, division, and loop. 
+The alternate note parameter screen is functionally identical to the main note screen, with its own probability, clock, division, and loop.
 
-Both note pages - main and alternate - are *additive*. When a note from each screen is played simultaneously, the indices of the keys within the scale are added together, and then mapped to the current scale. 
+Both note pages - main and alternate - are *additive*. When a note from each screen is played simultaneously, the indices of the keys within the scale are added together, and then mapped to the current scale.
 
 For example: if a note from each page is triggered and both are in the bottom row of the scale - "note 0" - then the CV output is for `0 + 0 = 0`, ie, note zero, the root of the scale. If the current main note is the 4th  key up (index *3* of the scale) and the alt-note is the 3rd key up (index *2*). This step in the sequence will output `3+2 = 5` index 5 of the scale, ie, the 6th note.
 
@@ -317,7 +317,9 @@ For example, a whole tone scale (2 semitones per note) would be constructed by s
 
 Scales are shared between Kria and Meadowphysics, and are saved to flash whenever a preset of either is saved.
 
-The top-left four keys on the *scale* page are used to toggle Teletype clocking for a given channel; see below for more details.
+The top four keys on the leftmost column of the *scale* page are used to toggle Teletype clocking for a given channel; see below for more details.
+
+The 4x4 group of keys to the right of the Teletype clock enable keys select direction modes for each track. From left to right these are: forward, reverse, triangle (bounce off the ends instead of wrapping) and drunk (randomly move forward or backward each step).
 
 ### Patterns
 
@@ -419,7 +421,7 @@ It is possible to backup all your presets as part of the module's firmware; see 
 
 A channel of Kria can be set to be clocked from the Teletype command `KR.CLK x` (see below).
 
-To do so, press the *scale* key to enter scale view. The four leftmost keys in the top row will enable or disable Teletype clocking for the relevant channel. When a channel is clocked by Teletype, it no longer responds to the master clock (set either internally or by an external clock connected to the `In 1`).
+To do so, press the *scale* key to enter scale view. The four keys at the top of the left column will enable or disable Teletype clocking for the relevant channel. When a channel is clocked by Teletype, it no longer responds to the master clock (set either internally or by an external clock connected to the `In 1`).
 
 
 
@@ -763,7 +765,7 @@ KR.L.LEN x y z  set length to z for track x parameter y
 KR.L.LEN x y    return loop length of track x parameter y
 KR.RES x y      set position to loop start for track x parameter y
 KR.CV x         current CV value of output x
-KR.MUTE x y     set the mute of track x to y (where y=1 is muted, y=0 is not.) 
+KR.MUTE x y     set the mute of track x to y (where y=1 is muted, y=0 is not.)
                 if x is 0, set all mutes to state y
 KR.TMUTE x      toggle mute for Kria track x (0 = all)
                 toggle will _invert current state_.

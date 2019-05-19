@@ -319,7 +319,7 @@ Scales are shared between Kria and Meadowphysics, and are saved to flash wheneve
 
 The top four keys on the leftmost column of the *scale* page are used to toggle Teletype clocking for a given channel; see below for more details.
 
-The 4x4 group of keys to the right of the Teletype clock enable keys select direction modes for each track. From left to right these are: forward, reverse, triangle (bounce off the ends instead of wrapping) and drunk (randomly move forward or backward each step).
+The 4x4 group of keys to the right of the Teletype clock enable keys select direction modes for each track. From left to right these are: forward, reverse, triangle (bounce off the ends instead of wrapping), drunk (randomly move forward or backward each step), and random (any step in the loop may be chosen with equal probability).
 
 ### Patterns
 

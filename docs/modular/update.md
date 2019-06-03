@@ -54,9 +54,9 @@ copy the firmware hex file to your dfu-programmer folder.
 
 run `cmd` as Administrator (not sure it matters but best to anyway), cd to the dfu-programmer folder and execute the following (replace `whitewhale.hex` with whatever firmware you're updating):
 
-	dfu-programmer at32uc3b0256 erase
-	dfu-programmer at32uc3b0256 flash whitewhale.hex --suppress-bootloader-mem
-	dfu-programmer at32uc3b0256 start
+	dfu-programmer at32uc3b0512 erase
+	dfu-programmer at32uc3b0512 flash whitewhale.hex --suppress-bootloader-mem
+	dfu-programmer at32uc3b0512 start
 
 the clock led (if present) will flash to show it has successfully installed.
 

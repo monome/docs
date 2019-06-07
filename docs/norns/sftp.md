@@ -9,7 +9,7 @@ Using cyberduck for SFTP access to Norns (macOS/windows)
 
 This tutorial will help you connect Norns to another mac or windows computer, so that you can add and update scripts manually on the Norns filesystem.  It was written using Cyberduck 6.7.1, macOS 10.13.6, and norns 180828 on September 3, 2018.
 
-Be careful when editing files on Norns.  If you delete files that Norns needs to run, it could corrupt the filesystem wihch would require a complicated reflash of the image to get back up and running. You most likely only want to be updating things in the dust subdirectory.
+Be careful when editing files on Norns.  If you delete files that Norns needs to run, it could corrupt the filesystem which would require a complicated reflash of the image to get back up and running. You most likely only want to be updating things in the dust subdirectory.
 
 Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, windows and linux.  While the screens will be different, the goal is the same, (to connect to Norns over the IP adress provided using SFTP/port 22).
 

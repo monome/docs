@@ -561,8 +561,7 @@ Earthsea is a new, polyphonic version of the [the original Earthsea module](http
 * `In 1` Clock (rising edge)
 * `In 2` Start/reset pattern (rising edge)
 
-
-### Clocking Earthsea 
+### Clocking Earthsea
 
 Earthsea does not require an external clock; it will play back recorded patterns in the manner you played them without one. However, it can be clocked external. If a clock source is connected to `In 1`, Earthsea will be synchronised to that clock. Note that if a jack is connected at `In 1`, Earthsea will not play _without_ a clock source.
 

@@ -561,6 +561,7 @@ Earthsea is a new, polyphonic version of the [the original Earthsea module](http
 * `In 1` Clock (rising edge)
 * `In 2` Start/reset pattern (rising edge)
 
+
 ### Clocking Earthsea 
 
 Earthsea does not require an external clock; it will play back recorded patterns in the manner you played them without one. However, it can be clocked external. If a clock source is connected to `In 1`, Earthsea will be synchronised to that clock. Note that if a jack is connected at `In 1`, Earthsea will not play _without_ a clock source.
@@ -669,7 +670,7 @@ KEY 1 and KEY 2 on the front of Ansible can be used to move to the next or previ
 
 Holding PATTERN SELECT, the right two columns will be illuminated in a 2x8 block. These are scale slots - the exact same scales available to Kria and Meadowphysics. Pressing one will highlight keys that are within that scale across the Earthsea keymap (it will not change the pitches that each key represent). To turn scale highlighting off, press the currently selected scale key again
 
-You can also createyour own key map. It will take the place of the 'default' keymap. To choose which keys to highlight in your scale, press and hold the top right key, and then press keys you want highlighted - two different brightness levels can be chosen from by pressing a key another time. Custom scale highlighting is confined to an individual *preset*, and will be saved along with that preset data.
+You can also create your own key map. It will take the place of the 'default' keymap. To choose which keys to highlight in your scale, press and hold the top right key, and then press keys you want highlighted - two different brightness levels can be chosen from by pressing a key another time. Custom scale highlighting is confined to an individual *preset*, and will be saved along with that preset data.
 
 ### Arp Mode
 

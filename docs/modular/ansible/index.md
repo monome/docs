@@ -627,6 +627,8 @@ Once recorded, patterns can be manipulated: looped, transposed & time modulated.
 
 To make a pattern, press the ARM key (left column, third row down). The recording will begin at the first press of your performance. Play your pattern and press ARM again to end recording.
 
+To enter a rest, press the top right key while recording. Rests will be respected in linearized mode or when using external clock.
+
 The START/STOP key (top left) will be lit to show that a pattern is present. Press START/STOP to begin playback, and again to stop the pattern midway. The pattern will play through to the end and then stop.
 
 ### Loop Mode
@@ -645,6 +647,8 @@ If you wish to loop a pattern directly, end your recording by pressing START/STO
 
 Patterns can be restarted while already playing, by holding ARM then pressing START/STOP.
 
+You can jump to a specific point in the pattern by pressing that key in the 'progress bar' along the top row of your grid.
+
 ### Pattern Select
 
 ![Pattern bank](https://monome.org/docs/modular/earthsea/images/es_bank_web2.png)
@@ -660,6 +664,12 @@ To enter, hold P.SELECT, then press START/STOP to lock onto the pattern bank. No
 ### Switch patterns from front panel
 
 KEY 1 and KEY 2 on the front of Ansible can be used to move to the next or previous pattern in the group. They do not "loop" around - you cannot go to a previous pattern from pattern 1, or to a next pattern from pattern 16.
+
+### Highlighting  scales on the key map
+
+Holding PATTERN SELECT, the right two columns will be illuminated in a 2x8 block. These are scale slots - the exact same scales available to Kria and Meadowphysics. Pressing one will highlight keys that are within that scale across the Earthsea keymap (it will not change the pitches that each key represent). To turn scale highlighting off, press the currently selected scale key again
+
+You can also createyour own key map. It will take the place of the 'default' keymap. To choose which keys to highlight in your scale, press and hold the top right key, and then press keys you want highlighted - two different brightness levels can be chosen from by pressing a key another time. Custom scale highlighting is confined to an individual *preset*, and will be saved along with that preset data.
 
 ### Arp Mode
 

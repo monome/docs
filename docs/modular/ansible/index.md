@@ -947,7 +947,38 @@ MP.PERIOD x     set internal clock period to x
 MP.PERIOD       return current internal clock period
 MP.OFF x        stop channel x (0 = all)
 MP.RES x        reset channel x (0 = all) (also used as "start")
-MP.CV x 	    get current CV value of output x
+MP.CV x 	      get current CV value of output x
+```
+
+### Earthsea
+
+```
+ES.PRESET x     select preset
+
+ES.MODE x       select edge mode
+                0 - drone 
+                1…15 - fixed (value specifies trigger length)
+                -1 - recorded timing
+                (NB: this is different to original Earthsea)
+
+ES.CLOCK x      clock. (you probably want to insert a dummy cable into
+                the clock input to stop the internal clock)
+
+ES.RESET x      reset to position x
+
+ES.PATTERN x    select pattern x
+
+ES.TRANS x      transpose by specified number of semitones (can be negative)
+
+ES.STOP x       stop playback/recording
+
+ES.MAGIC x      runes:
+                1 - half speed
+                2 - double speed
+                3 - linearize on
+                4 - linearize off
+                5 - set forward dir
+                6 - set reverse dir
 ```
 
 ### Levels

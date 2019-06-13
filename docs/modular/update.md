@@ -54,9 +54,9 @@ copy the firmware hex file to your dfu-programmer folder.
 
 run `cmd` as Administrator (not sure it matters but best to anyway), cd to the dfu-programmer folder and execute the following (replace `whitewhale.hex` with whatever firmware you're updating):
 
-	dfu-programmer at32uc3b0256 erase
-	dfu-programmer at32uc3b0256 flash whitewhale.hex --suppress-bootloader-mem
-	dfu-programmer at32uc3b0256 start
+	dfu-programmer at32uc3b0512 erase
+	dfu-programmer at32uc3b0512 flash whitewhale.hex --suppress-bootloader-mem
+	dfu-programmer at32uc3b0512 start
 
 the clock led (if present) will flash to show it has successfully installed.
 
@@ -90,18 +90,18 @@ to backup your firmware, install [dfu-programmer](http://dfu-programmer.github.i
 
 once in bootloader mode, open a terminal and run:
 
-    dfu-programmer at32uc3b0256 read > firmware-name.hex
+    dfu-programmer at32uc3b0512 read > firmware-name.hex
 
 restart the module before you unplug the USB cable:
 
-    dfu-programmer at32uc3b0256 start
+    dfu-programmer at32uc3b0512 start
 
 you can restore the backed-up firmware any time by getting back into bootloader mode, opening a terminal in your backup's directory, and running:
 
 ```
-dfu-programmer at32uc3b0256 erase
-dfu-programmer at32uc3b0256 flash firmware-name.hex --suppress-bootloader-mem
-dfu-programmer at32uc3b0256 start
+dfu-programmer at32uc3b0512 erase
+dfu-programmer at32uc3b0512 flash firmware-name.hex --suppress-bootloader-mem
+dfu-programmer at32uc3b0512 start
 ```
 
 > note: these are the same commands that are run by the `update_firmware.command` script included in the official firmware releases.

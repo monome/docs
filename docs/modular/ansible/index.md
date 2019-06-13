@@ -267,7 +267,7 @@ Just like the primary parameter pages, each of the extended parameter subpages h
 
 To enter the ratcheting page, press the trigger parameter key a second time when you are in the trigger view. The trigger parameter key will blink.
 
-Ratcheting uses rows 3-6 to determine the number of sub-triggers that will fire for each trigger column. Selecting row 6 will cause no extra triggers to fire for that step. Selecting row 5 causes 1 extra trigger to fire, effectively turning an 8th note into two 16th notes. Row 4 will cause 2 extra triggers, for a total of 3, turning the single trigger into a triplet. Finally row 3 will cause 3 extra triggers to fire - effectively turning an 8th note into 4 32nd notes.
+Ratcheting uses rows 2-6 to determine the number of sub-triggers that will fire for each trigger column. Pressing a key in these rows will enable an additional trigger on that step. You can toggle rows back off to turn them into rests, which are highlighted more dimly. Rows 1 and 7 are up/down switches to dial in the number of subdivisions, so you can include rests at the end of the step as well as in the middle or beginning. This allows programming a variety of syncopated patterns by subdividing each note and selecting only the triggers you want active. If you long-press a key in row 7 (at the bottom, just above the track/parameter selection row), the corresponding step will be cleared, going back to the default behavior of a single active trigger for the step with no subdivisions. If you long-press the top row, the subdivision count will be set equal to the position of the last active trigger, so there will be no rests at the end of the step.
 
 ![](images/grid_KR_triggerRatcheting.png)
 
@@ -317,9 +317,15 @@ For example, a whole tone scale (2 semitones per note) would be constructed by s
 
 Scales are shared between Kria and Meadowphysics, and are saved to flash whenever a preset of either is saved.
 
-The top four keys on the leftmost column of the *scale* page are used to toggle Teletype clocking for a given channel; see below for more details.
+The top-left region of the page contains settings for changing how each track advances to the next step:
 
-The 4x4 group of keys to the right of the Teletype clock enable keys select direction modes for each track. From left to right these are: forward, reverse, triangle (bounce off the ends instead of wrapping), drunk (randomly move forward or backward each step), and random (any step in the loop may be chosen with equal probability).
+* The top four keys on the leftmost column of the page are used to toggle Teletype clocking for a given channel; see below for more details.
+
+* The next column over has track toggles for enabling trigger clocking. When trigger clocking is enabled, parameters besides *trigger* and *ratchet* will advance when a trigger fires, instead of on each clock step. This includes individual triggers within a ratchet group, so you can have a triplet quickly change the active note several times within the space of a single trigger step.
+
+* The next column over is currently unused.
+
+* The next 4x5 group of keys to the right lets you select direction modes for each track. From left to right these are: forward, reverse, triangle (bounce off the ends instead of wrapping), drunk (randomly move forward or backward each step), and random (any step in the loop may be chosen with equal probability).
 
 ### Patterns
 
@@ -391,7 +397,7 @@ Kria has two parameters, represented on the left and right quadrants of the grid
 
 When Note Sync is on, *Note* and *Trigger* editing is linked. In Note view, you can now press on a step's current note value to toggle off the Trigger at that step, and this is reflected in the interface. This way you can edit note sequences intuitively with rests without switching between two views.
 
-Note Sync requires that Loop Sync is in Track or All mode, as the sync interface does not make sense if loops are desynchronized between Note and Trigger.
+When Note Sync is on but Loop Sync is off, placing notes will enable corresponding triggers, and updating loop endpoints on the trigger page will update the loop endpoints for the note page and vice-versa.
 
 **Loop Sync** is shown on the right quadrant of the grid. There are three modes:
 

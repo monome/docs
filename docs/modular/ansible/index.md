@@ -54,7 +54,7 @@ Firmware update information [instructions are available](http://monome.org/docs/
 
 ## Firmware Version
 
-This documentation documents firmware version **1.6.1**.
+This documentation documents firmware version **1.6.1**. Changelogs and binaries for previous releases can be found [here](https://github.com/monome/ansible/releases).
 
 ## Basics
 
@@ -141,7 +141,7 @@ The current preset will be shown dimly. Rotate to one of the other slots press e
 
 Presets are written to flash, and the most recently used preset will be loaded upon power-up.
 
-It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see the [USB disk mode](#usb-disk-mode) section.
 
 ## Cycles (Arc)
 
@@ -194,7 +194,7 @@ The current preset will be shown dimly. Rotate to one of the other slots press e
 
 Presets are written to flash, and the most recently used preset will be loaded upon power-up.
 
-It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [below](#usb-disk-mode).
 
 ## Kria (Grid)
 
@@ -230,7 +230,7 @@ Each *track* has four parameters *Trigger, Note, Octave,* and *Duration*. These 
 
 Select a parameter to adjust by pressing its key in the bottom row of the grid.
 
-A *note* will occur only when a *trigger* is set. This note will be the pitch specified by *note* in *octave* of a specified *duration*.
+A *note* will occur only when a *trigger* is set. This note will be the pitch specified by *note* in *octave* of a specified *duration*. The first 6 keys on the top row of the *octave* page allow setting the base frequency of a track between +0 and +5 octaves.
 
 The *trigger* view shows all four tracks at once, whereas all other parameter views display the track selected.
 
@@ -391,9 +391,10 @@ With a cable present in `In 1` the device is externally clocked. The time view n
 
 ### Config
 
-Kria has two parameters, represented on the left and right quadrants of the grid when `Key 2` is held down.
+Kria has two parameters, represented on the left and right quadrants of the grid when `Key 2` is held down, and
+a toggle for alternative sync behavior.
 
-**Note Sync** can be toggled on or off on the left side by touching any key-- the square icon will be lit bright when Note Sync is on.
+**Note Sync** can be toggled on or off on the left side by touching any key in the square -- the square icon will be lit bright when Note Sync is on.
 
 When Note Sync is on, *Note* and *Trigger* editing is linked. In Note view, you can now press on a step's current note value to toggle off the Trigger at that step, and this is reflected in the interface. This way you can edit note sequences intuitively with rests without switching between two views.
 
@@ -405,7 +406,14 @@ When Note Sync is on but Loop Sync is off, placing notes will enable correspondi
 * Track (top single block lit): all parameters within tracks have the same loop, but tracks can differ in their looping
 * All (bottom row of 4 lit): all tracks and parameters have a synchronized loop
 
-By default Note Sync is on and Loop Sync is set to Track.
+**Division Sync** allows cueing of changes to the clock division for a
+parameter, so that the clock division does not change until the
+parameter restarts its loop. When a track's direction mode is set to
+triangle, the clock division may change at either end of the
+loop. When a track's direction mode is drunk or random, this setting
+has no effect.
+
+By default Note Sync is on, Loop Sync is set to Track, and Division Sync is off.
 
 ### Presets
 
@@ -421,7 +429,7 @@ To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
-It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [below](#usb-disk-mode).
 
 ### Teletype Clocking
 
@@ -559,7 +567,7 @@ To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
-It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [below](#usb-disk-mode).
 
 ## MIDI/voice
 
@@ -845,6 +853,61 @@ ARP.RES v       reset voice clock/pattern on next base clock tick
 
 ARP.SHIFT v o   shift voice cv by standard tt pitch value (e.g. N 6, V -1, etc)
 ```
+
+## USB disk mode
+
+If you insert a USB disk into Ansible, you can save presets to a JSON
+file on disk, or restore presets from such a file. In addition to
+archiving or sharing app presets, this can be useful for making backups
+before updating to a new firmware revision, because future versions
+will be able to load files saved by older versions.
+
+To save presets:
+
+* Press KEY 2. the orange LED turns on to indicate that the device is
+  armed for saving.
+
+* Press the MODE key to cancel, or press KEY 2 again to write the
+  presets Ansible has stored in flash to the file
+  `ansible-presets.json` on the root of the drive.
+
+An existing `ansible-presets.json` file will be overwritten. The white
+LED blinks while saving and turns off when done. Wait for this LED and
+any busy indicator on the disk to stop blinking before removing the
+drive, or the file may be corrupted. If an error is encountered during
+writing the backup, both the white and orange LEDs will turn on until
+the drive is removed or the MODE key is pressed. A full save takes
+about 20 seconds.
+
+To load presets:
+
+* Press KEY 1. The ORANGE LED turns on to indicate that the device is
+  armed for loading.
+
+* Press the MODE key to cancel, or press KEY 2 again to read a
+  `ansible-presets.json` file from the disk into Ansible's flash
+  storage.
+
+The orange LED blinks while reading and turns off when done. Wait for
+this LED and any busy indicator on the disk to stop blinking before
+removing the drive. If an error is encountered during loading the
+backup, both the white and orange LEDs will turn on until the drive is
+removed or the MODE key is pressed. Before loading, Ansible makes an
+additional backup of its flash contents in the file
+`ansible-backup.bin`, and will attempt to restore presets from this
+file if they were partially overwritten by a load operation that did
+not complete successfully. If this happens for some unforeseen reason, it may be
+possible to recover your Ansible presets from this file, please post
+on [lines](https://llllllll.co/t/preset-save-to-usb-disk/10113). A
+full load takes about 20 seconds.
+
+To save or load presets for only the currently running app, hold the
+MODE key while inserting the disk. This can take
+considerably less time than saving/loading everything, and for some apps
+is fast enough that the LED won't have time to blink at all.
+
+The JSON files are fairly human-editable, but modifying them with
+out-of-bounds data may result in strange Ansible behavior.
 
 ## Contributions
 

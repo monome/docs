@@ -651,7 +651,7 @@ You can jump to a specific point in the pattern by pressing that key in the 'pro
 
 ### Pattern Select
 
-![Pattern bank](https://monome.org/docs/modular/earthsea/images/es_bank_web2.png)
+![Pattern bank](images/grid_AE_pattern_select.png)
 
 To access all 16 patterns, hold the PATTERN SELECT button and pick a pattern from the lit 4×4 grid. The current pattern is displayed at full-brightness, existing patterns are mid-brightness, and empty slots are low-brightness.
 
@@ -667,7 +667,7 @@ KEY 1 and KEY 2 on the front of Ansible can be used to move to the next or previ
 
 ### Highlighting  scales on the key map
 
-Holding PATTERN SELECT, a 2x8 block will illuminate one the right. These are scale slots - the exact same scales available to Kria and Meadowphysics. Pressing one of these will highlight keys in the keymap that are within that scale. To turn scale highlighting off, press the currently selected scale key again. (Note that this does not affect the pitches each key represents - it just acts as an 'overlay' to highlight notes within a scale).
+Holding PATTERN SELECT, a 2x8 block will illuminate on the right. These are scale slots - the exact same scales available to Kria and Meadowphysics. Pressing one of these will highlight keys in the keymap that are within that scale. To turn scale highlighting off, press the currently selected scale key again. (Note that this does not affect the pitches each key represents - it just acts as an 'overlay' to highlight notes within a scale).
 
 You can also create your own key map. It will take the place of the 'default' keymap. To choose which keys to highlight in your scale, press and hold the top right key, and then press keys you want highlighted - two different brightness levels can be chosen from by pressing a key another time. Custom scale highlighting is confined to an individual *preset*, and will be saved along with that preset data.
 

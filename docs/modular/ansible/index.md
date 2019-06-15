@@ -452,16 +452,26 @@ triangle, the clock division may change at either end of the
 loop. When a track's direction mode is drunk or random, this setting
 has no effect.
 
-**Division Sync** (1-key and 4-key rows on the right) determine which parameters should share the same clock division settings. There are three modes:
-
-* None (nothing lit): all tracks and parameters can have independent clock divisions
-* Track (top single block lit): all parameters within tracks have the same clock divider, but tracks can have different dividers
-* All (bottom row of 4 lit): all tracks and parameters have the same clock divider
+**Division Sync** (1-key and 4-key rows on the right) determine which
+parameters should share the same clock division settings. There are
+three modes, as with Loop Sync: None (nothing lit), Track (top single
+block lit), and All (bottom row of 4 lit).
 
 N.B. that when both Note Division Sync and Division Sync are engaged,
 the Trigger and Note parameters share one clock division (within a
 track or across all tracks depending on the Division Sync setting) and
 all other parameters share another independent clock division setting.
+
+To summarize:
+
+| note div sync (left glyph) | div sync (right glyph) | behavior |
+| --- | --- | --- |
+| OFF | NONE |  default behavior where all clock divisions are independent |
+| ON | NONE | all tracks and parameters have independent divisions, but within a track, trigger & note divisions are always the same
+| OFF | TRACK | every parameter within a track is in sync, but tracks can have different divisions |
+| ON | TRACK | within each track, trigger & note share one division, and the other parameters share a different division |
+| OFF | ALL | every parameter on all tracks uses the same clock division |
+| ON | ALL | all tracks share divisions, but trigger & note share a different division than the division shared by all other parameters |
 
 By default Note Division Sync is off, Division Cueing is off, and Division Sync is set to None.
 

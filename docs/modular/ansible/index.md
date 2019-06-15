@@ -441,6 +441,26 @@ With a cable present in `In 1` the device is externally clocked. The time view n
 
 ![](images/grid_TIME_EXTERNAL_1.2.png)
 
+The bottom half of this clock configuration page is also home to three glyphs. From left to right:
+
+When **Note Division Sync** (hollow square on the left) is enabled, changing the clock division for the Trigger parameter will also update the clock division for the Note parameter and vice versa.
+
+**Division Cueing** (small filled square bottom center) allows cueing of changes to the clock division for a
+parameter, so that the clock division does not change until the
+parameter restarts its loop. When a track's direction mode is set to
+triangle, the clock division may change at either end of the
+loop. When a track's direction mode is drunk or random, this setting
+has no effect.
+
+**Division Sync** (1-key and 4-key rows on the right) determine which parameters should share the same clock division settings. There are three modes:
+
+* None (nothing lit): all tracks and parameters can have independent clock divisions
+* Track (top single block lit): all parameters within tracks have the same clock divider, but tracks can have different dividers
+* All (bottom row of 4 lit): all tracks and parameters have the same clock divider
+
+By default Note Division Sync is off, Division Cueing is off, and Division Sync is set to None.
+
+
 ### Config
 
 Kria has two parameters, represented on the left and right quadrants of the grid when `Key 2` is held down, and
@@ -458,14 +478,8 @@ When Note Sync is on but Loop Sync is off, placing notes will enable correspondi
 * Track (top single block lit): all parameters within tracks have the same loop, but tracks can differ in their looping
 * All (bottom row of 4 lit): all tracks and parameters have a synchronized loop
 
-**Division Sync** allows cueing of changes to the clock division for a
-parameter, so that the clock division does not change until the
-parameter restarts its loop. When a track's direction mode is set to
-triangle, the clock division may change at either end of the
-loop. When a track's direction mode is drunk or random, this setting
-has no effect.
 
-By default Note Sync is on, Loop Sync is set to Track, and Division Sync is off.
+By default Note Sync is on, and Loop Sync is set to Track.
 
 ### Presets
 

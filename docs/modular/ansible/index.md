@@ -1030,6 +1030,7 @@ MP.PERIOD       return current internal clock period
 MP.OFF x        stop channel x (0 = all)
 MP.RES x        reset channel x (0 = all) (also used as "start")
 MP.CV x 	      get current CV value of output x
+```
 
 ### Earthsea
 
@@ -1060,7 +1061,6 @@ ES.MAGIC x      runes:
                 4 - linearize off
                 5 - set forward dir
                 6 - set reverse dir
->>>>>>> d868b2bda2b2de08bd6c6a158940da40f38f0f2c
 ```
 
 ### Levels
@@ -1170,6 +1170,18 @@ is fast enough that the LED won't have time to blink at all.
 
 The JSON files are fairly human-editable, but modifying them with
 out-of-bounds data may result in strange Ansible behavior.
+
+If you are running an Ansible firmware version that does not support
+disk backups (v1.6.1 or lower), or you have an `ansible.hex` file from
+an older firmware, it is possible to convert a direct backup of a
+firmware image (`ansible.hex`) into JSON files that newer Ansible
+firmwares can load, and "carry forward" your existing presets to the
+latest firmware. This conversion is done via the
+[extract](https://github.com/monome/ansible/tree/master/tools/flash_tools)
+Python program. If you need help converting a backup, please post on
+[lines](https://llllllll.co/t/preset-save-to-usb-disk/10113) and
+include the firmware version you are starting from in your post if
+known.
 
 ## Contributions
 

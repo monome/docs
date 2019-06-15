@@ -458,6 +458,11 @@ has no effect.
 * Track (top single block lit): all parameters within tracks have the same clock divider, but tracks can have different dividers
 * All (bottom row of 4 lit): all tracks and parameters have the same clock divider
 
+N.B. that when both Note Division Sync and Division Sync are engaged,
+the Trigger and Note parameters share one clock division (within a
+track or across all tracks depending on the Division Sync setting) and
+all other parameters share another independent clock division setting.
+
 By default Note Division Sync is off, Division Cueing is off, and Division Sync is set to None.
 
 

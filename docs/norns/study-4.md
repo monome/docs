@@ -30,7 +30,7 @@ _NOTE_: if you have a grid plugged in and this didn't work, check **SYSTEM > DEV
 push a key and you'll see `grid input` printed. let's make it more informative:
 
 ```lua
-g:key = function(x,y,z) print(x,y,z) end
+g.key = function(x,y,z) print(x,y,z) end
 ```
 
 you'll now see the x,y,z of each key event, where z is the key press/down (1) and release/up (0). this is how we attach a function with a grid key event. let's put these things together for something slightly more inspiring:
@@ -40,7 +40,7 @@ engine.name = 'PolyPerc'
 
 g = grid.connect()
 
-g:key = function(x,y,z)
+g.key = function(x,y,z)
   if z==1 then engine.hz(100+x*4+y*64) end
   g:led(x,y,z*15)
   g:refresh()
@@ -51,7 +51,7 @@ experience the magic of microtonal mashing. try changing the numbers in `engine.
 
 ## expanding
 
-while it's fairly exciting to have made an outer-space instrument with just a couple of lines of code, possibilities are somewhat constrained by only using `g:key` for both sound and grid refreshes. let's decouple key, light, and sound (one of the fundamental design principles of the grid).
+while it's fairly exciting to have made an outer-space instrument with just a couple of lines of code, possibilities are somewhat constrained by only using `g.key` for both sound and grid refreshes. let's decouple key, light, and sound (one of the fundamental design principles of the grid).
 
 first, let's create a separate `grid_redraw` function and maintain a table of steps.
 
@@ -69,7 +69,7 @@ end
 
 g = grid.connect()
 
-g:key = function(x,y,z)
+g.key = function(x,y,z)
   if z == 1 then
     steps[x] = y
     grid_redraw()
@@ -111,7 +111,7 @@ end
 
 g = grid.connect()
 
-g:key = function(x,y,z)
+g.key = function(x,y,z)
   if z == 1 then
     steps[x] = y
     grid_redraw()

@@ -367,6 +367,8 @@ Moving upwards through the rows, each row specifies a number of semitones to be 
 
 For example, a whole tone scale (2 semitones per note) would be constructed by setting all rows to the second position. (The *zero* position is indicated dimly. Scale notes set to zero will be identical to the previous scale step).
 
+You can perform temporary "live" adjustments to scale steps with a two-key gesture: hold down the active scale step, then press another key on that row of the scale programming section. The second key is highlighted more dimly to indicate that this scale step is adjusted. This adjusts the pitch CV assigned to that scale step without affecting the rest of the scale, which can be a useful performance tool. Pressing the brighter, "primary" scale key, or pressing another key to change the interval, will clear the adjustment. Scale adjustments are not saved to flash. Changing the selected scale will clear all scale adjustments, but changing patterns will not, which can make this useful for introducing live variations in a longer sequence.
+
 Scales are shared between Kria and Meadowphysics, and are saved to flash whenever a preset of either is saved.
 
 The top-left region of the page contains settings for changing how each track advances to the next step:

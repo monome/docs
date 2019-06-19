@@ -73,7 +73,7 @@ myscript/
 `myscript.lua` can include `somelib.lua` using:
 
 ```lua
-include("lib/somelib.lua")
+include("lib/somelib")
 ```
 
 ### third party libraries

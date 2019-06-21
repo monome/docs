@@ -270,7 +270,7 @@ there's a shortcut to make parameter creation more readable:
 
 ```
 params:add{type="number", id="tempo", min=20, max=240, default=88,
-  action=function(x) print_bpm_to_ms(x) end)}
+  action=function(x) print_bpm_to_ms(x) end}
 ```
 
 note that we're using a new syntax style with curly brackets. this passes a table to the function which creates the new parameter. we're able to specify the attribute names (ie, `min`, `max` which makes it more readable, in addition to specifying the `action` in the same line. you can use either method, but this way is generally recommended.

@@ -17,7 +17,7 @@ If you're very new to SuperCollider, it will be very beneficial to work through 
 
 Download SuperCollider: [supercollider.sourceforge.net](http://supercollider.sourceforge.net/)
 
-Download the monome installer: [monome.org/docs/begin](http://monome.org/docs/begin)
+Download the monome installer: [monome.org/docs/setup](http://monome.org/docs/setup)
 
 Download the code examples here: [files/grid-studies-sc.zip](files/grid-studies-sc.zip)
 

@@ -19,7 +19,7 @@ Be sure you have Arduino version 1.6.0 or later. **It is required.**
 
 Download Arduino: [arduino.cc](http://http://arduino.cc/en/Main/Software)
 
-Download the monome installer: [monome.org/docs/begin](http://monome.org/docs/begin)
+Download the monome installer: [monome.org/docs/setup](http://monome.org/docs/setup)
 
 Download the code examples here: [files/grid-studies-arduino.zip](files/grid-studies-arduino.zip)
 

@@ -23,7 +23,7 @@ If you're very new to node.js (or JavaScript) a few tutorials and introduction v
 
 Download Node.js: [nodejs.org](http://nodejs.org/)
 
-Download the monome installer: [monome.org/docs/begin](http://monome.org/docs/begin)
+Download the monome installer: [monome.org/docs/setup](http://monome.org/docs/setup)
 
 Download the code examples here: [files/grid-studies-nodejs.zip](files/grid-studies-nodejs.zip)
 

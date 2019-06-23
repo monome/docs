@@ -319,7 +319,7 @@ Just like the primary parameter pages, each of the extended parameter subpages h
 
 To enter the ratcheting page, press the trigger parameter key a second time when you are in the trigger view. The trigger parameter key will blink.
 
-Ratcheting uses rows 2-6 to determine the number of sub-triggers that will fire for each trigger column. Pressing a key in these rows will enable an additional trigger on that step. You can toggle rows back off to turn them into rests, which are highlighted more dimly. Rows 1 and 7 are up/down switches to dial in the number of subdivisions, so you can include rests at the end of the step as well as in the middle or beginning. This allows programming a variety of syncopated patterns by subdividing each note and selecting only the triggers you want active. If you long-press a key in row 7 (at the bottom, just above the track/parameter selection row), the corresponding step will be cleared, going back to the default behavior of a single active trigger for the step with no subdivisions. If you long-press the top row, the subdivision count will be set equal to the position of the last active trigger, so there will be no rests at the end of the step.
+Ratcheting uses rows 2-6 to determine the number of sub-triggers that will fire for each trigger column. Pressing a key in these rows will enable an additional trigger on that step. You can toggle rows back off to turn them into rests, which are highlighted more dimly. Rows 1 and 7 are up/down switches to dial in the number of subdivisions, so you can include rests at the end of the step as well as in the middle or beginning. This allows programming a variety of syncopated patterns by subdividing each note and selecting only the triggers you want active. If you long-press a key in row 7 (at the bottom, just above the track/parameter selection row), the corresponding step will be cleared, going back to the default behavior of a single active trigger for the step with no subdivisions. If you long-press the top row, the selected range of subdivisions will be "filled" with triggers.
 
 ![](images/grid_KR_triggerRatcheting.png)
 
@@ -497,6 +497,16 @@ When Note Sync is on but Loop Sync is off, placing notes will enable correspondi
 
 
 By default Note Sync is on, and Loop Sync is set to Track.
+
+Some space on this page is also used for some behavior that affects all apps:
+
+* The 3 keys in the top left allow adjusting brightness settings to
+  improve visibility of some features on grids with different numbers
+  of brightness levels.  From left to right this selects a
+  non-varibright, 4-step varibright, or 16-step varibright grid (the default).
+
+* The key in the bottom right, where Kria's scale page key is, accesses tuning mode,
+  described below.
 
 ### Presets
 
@@ -1213,6 +1223,78 @@ Python program. If you need help converting a backup, please post on
 [lines](https://llllllll.co/t/preset-save-to-usb-disk/10113) and
 include the firmware version you are starting from in your post if
 known.
+
+## Tuning
+
+It is possible to correct for mismatches between CV outputs or to
+entirely reprogram Ansible's tuning table. Scales may be loaded from a
+JSON preset file, or may be modified with a Grid interface via the
+tuning page.
+
+First, enter Kria. Hold Key 2 (config). The
+Scale page key from Kria remains highlighted with Key 2 held. Press it
+to enter tuning mode. You can let go of Key 2 now to stay in tuning mode,
+and tap Key 2 again at any time to go back to Kria.
+
+The top four rows, as in Kria’s trigger page, correspond to tracks,
+with the center 12 keys highlighted to represent the 12 note slots in
+the tuning table between two “octaves”.  An *octave* in this section
+will mean a group of 12 note slots, where the first note slot in an
+octave group is the octave's *waypoint*.  The currently selected note
+slot is brightly highlighted, and the currently playing note slots are
+highlighted for all tracks.
+
+All tracks and therefore all trigger outputs are on by default. You
+can toggle trigger outputs off and on with the leftmost column of the
+top 4 rows. Touching the same note slot key that is already selected a
+second time will also toggle the corresponding track's trigger output.
+
+The bottom two rows control the pitch of the selected note slot
+relative to its current value.  The bottom row provides keys for
+increasing (keys on the right) or decreasing (keys on the left) the
+value that will be sent to the DAC to set the pitch CV when the
+currently selected note slot is played. From the center out these are
++/- 1, 2, 4, 8, ... +/- 128 on the outermost keys. Increments which
+would go out of bounds have their corresponding keys unlit, so in
+the initial position the left side of this row is off.
+
+The row above the bottom row displays and sets the absolute DAC value
+of the note slot. As the DAC value increases, the leftmost key will
+get brighter, then it will turn off and the next key over will get
+brighter, etc., with keys that have already been passed staying dimly
+lit, visualizing the full CV range of the track. You can touch a key
+on this row to jump quickly between DAC values.
+
+The 10 keys on the left side of the next row up are for selecting an
+octave -- you can pick one of ten banks of 12 note slots each.
+The right side of this row (third from the bottom) is for load/save functionality.
+
+* The key to the left which is separate from the other two is the
+  panic key – press it to restore your saved tuning table from flash,
+  long-press it to go back to the factory default equal temperament
+  tuning table. This long press does not save anything, so you can
+  quick press the key again to go back to the tuning table you have
+  saved, if that’s different from the factory default.
+
+* The first key on the right is for interpolating the tuning table
+  between octave values. Quick press it to do a piecewise-linear fit
+  between the values programmed for each octave. Long press it to fit
+  between octaves and then save. What this means is that a straight
+  line will be drawn between each waypoint, that is, the first note
+  slot of each octave, and note slots in between will be assigned the
+  values along that line. This makes it possible to define different
+  CV responses for each output, such as one that gets lower in pitch
+  as the note index increases, or one that gets lower in the middle,
+  or an S-curved response that changes frequency more rapidly toward
+  the center of the note range.
+
+* The key furthest to the right can be long-pressed to save all note
+  slots with their tunings exactly as currently programmed.
+
+You can leave the tuning page to experiment with your tuning on other
+Grid apps, but note that tuning changes are not saved to flash until
+you explicitly save them using one of the rightmost keys on the third
+row up of the tuning page.
 
 ## Contributions
 

@@ -113,7 +113,7 @@ engine.name = 'R'
 local R = require 'r/lib/r'
 ```
 
-`engine.list_commands()` shows the commands.
+- `engine.list_commands()`, shows the commands.
 
 For example to set the command `cutoff` to 500:
 
@@ -144,8 +144,10 @@ re.time = 1.0 / 15
 re.event = function()
   redraw()
 end
-re:start()
 ```
+
+- `re:start()`, starts metro.
+- `re:stop()`, stops metro.
 
 ### paramset
 
@@ -157,10 +159,8 @@ A parameter can be installed with the following:
 params:add{type = "number", id = "someparam", name = "Some Param", min = 1, max = 48, default = 4}
 ```
 
-The value stored in the param can be read by the script with:
-
-- `params:set(index, value)`
-- `params:get(index)`
+- `params:set(index, value)`, reads a parameter.
+- `params:get(index)`, writes a parameter.
 
 ## devices
 
@@ -172,9 +172,9 @@ The value stored in the param can be read by the script with:
 g = grid.connect()
 ```
 
-- `g:led(x, y, val)`
-- `g:all(val)`
-- `g:refresh()`
+- `g:led(x, y, val)`, sets state of single LED on this grid device.
+- `g:all(val)`, sets state of all LEDs on this grid device.
+- `g:refresh()`, update any dirty quads on this grid device.
 - `g.key(x, y, state)`, key event handler function.
 
 ### arc
@@ -185,10 +185,10 @@ g = grid.connect()
 a = arc.connect()
 ```
 
-- `a:led(ring, x, val)` set state of single LED on this arc device.
-- `a:all(val)` set state of all LEDs on this arc device.
-- `a:segment(ring, from, to, level)` create an anti-aliased point to point arc - segment/range on a specific LED ring.
-- `a:refresh()` update any dirty quads on this arc device.
+- `a:led(ring, x, val)`, sets state of single LED on this arc device.
+- `a:all(val)`, sets state of all LEDs on this arc device.
+- `a:segment(ring, from, to, level)`, creates an anti-aliased point to point arc - segment/range on a specific LED ring.
+- `a:refresh()`, updates any dirty quads on this arc device.
 - `a.enc(n, delta)`, encoder event handler function.
 
 ### midi
@@ -199,8 +199,8 @@ a = arc.connect()
 m = midi.connect()
 ```
 
-- `m:note_on(value,velocity,channel)`, send `note_on` message.
-- `m:note_off(value,velocity,channel)`, send `note_off` message.
+- `m:note_on(value,velocity,channel)`, sends `note_on` message.
+- `m:note_off(value,velocity,channel)`, sends `note_off` message.
 - `m.event`, midi event handler function.
 
 ### hid
@@ -213,8 +213,8 @@ h = hid.connect()
 
 ### osc
 
+- `osc.send(to, path, args)`, sends osc event.
 - `osc.event(path, args, from)` handler function called when an osc event is received.
-- `osc.send(to, path, args)` send osc event.
 
 ## crone
 

@@ -1187,7 +1187,7 @@ To load presets:
 * Press KEY 1. The ORANGE LED turns on to indicate that the device is
   armed for loading.
 
-* Press the MODE key to cancel, or press KEY 2 again to read a
+* Press the MODE key to cancel, or press KEY 1 again to read a
   `ansible-presets.json` file from the disk into Ansible's flash
   storage.
 

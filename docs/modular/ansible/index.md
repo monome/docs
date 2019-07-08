@@ -258,67 +258,6 @@ Just like the primary parameter pages, each of the extended parameter subpages h
 
 To enter the ratcheting page, press the trigger parameter key a second time when you are in the trigger view. The trigger parameter key will blink.
 
-Ratcheting uses rows 3-6 to determine the number of sub-triggers that will fire for each trigger column. Selecting row 6 will cause no extra triggers to fire for that step. Selecting row 5 causes 1 extra trigger to fire, effectively turning an 8th note into two 16th notes. Row 4 will cause 2 extra triggers, for a total of 3, turning the single trigger into a triplet. Finally row 3 will cause 3 extra triggers to fire - effectively turning an 8th note into 4 32nd notes.
-
-![](images/grid_KR_triggerRatcheting.png)
-
-
-#### Alternate Note
-
-*Alternate note* effectively allows a second note sequence to be specified for a track.
-
-To enter the alternate note page, press the note parameter key a second time when you are in the note view. The note parameter key will blink.
-
-The alternate note parameter screen is functionally identical to the main note screen, with its own probability, clock, division, and loop.
-
-Both note pages - main and alternate - are *additive*. When a note from each screen is played simultaneously, the indices of the keys within the scale are added together, and then mapped to the current scale.
-
-For example: if a note from each page is triggered and both are in the bottom row of the scale - "note 0" - then the CV output is for `0 + 0 = 0`, ie, note zero, the root of the scale. If the current main note is the 4th  key up (index *3* of the scale) and the alt-note is the 3rd key up (index *2*). This step in the sequence will output `3+2 = 5` index 5 of the scale, ie, the 6th note.
-
-Note that if the combined index is above 6, the final index will be `index modulo 6`. Or, in less mathematical terms, it will 'wrap around' to the bottom of the scale again: if the main note is the note 5 (index 4) and the alternate note is note 6 (index 5), the final index would not be `4+5 = 9` but `(4+5) % 6 = 3` - index 3, or the *fourth* note of the scale.
-
-The possibilities for alternate note become particularly interesting if you alter its probability or clock division, or if its loop points take it out of phase with the main note.
-
-#### Glide
-
-*Glide* allows up to 120ms of glide time to be added between triggered notes.
-
-To enter the glide page, press the octave parameter key a second time when you are in the octave view. The octave parameter key will blink.
-
-The glide view screen allows the user to slew the currently playing note into the next triggered note. This is controlled by setting a slider on each step column. Row 7 has a slew of 0ms, effectively a pass through. from here up each row increases the slew time to the note in the current column. Row 6 is 20ms row 5 is 40ms all the way to 120ms in row 1.
-
-![](images/grid_KR_Glide.png)
-
-
-### Modifiers
-
-Change the loop position by holding the *loop* modifier and pressing a new position. Change the loop length by pushing and holding a start position while selecting an end position. Press and release the start position to set the loop length to 1.
-
-The *time* view shows the current clock divider.
-
-The *probability* view is a per-step probability for each parameter. There are four levels which specify likelihood of execution by percentage: 100, 75, 50, and 0. By default all are at 100%. 0% serves as a step mute of the specified parameter.
-
-Loops and time dividers are per parameter, per track, and so the phasing of parameters a fundamental feature of Kria.
-
-### Extended parameters
-
-Many of the parameter views have "sub-pages" that extend or augment their functionality. To enter into each sub-page, switch to the parameter using keys 6-9, then tap the parameter key again. When you are in the sub-page for a parameter, its paramater key will be blinking. Press the parameter again to return to the main parameter view.
-
-| Parameter | Extended Parameter |
-| --------- | ------------------ |
-| Trigger   | Trigger Ratcheting |
-| Note      | "Alternate Note"   |
-| Octave    | Glide              |
-| Duration  | *none*             |
-
-Just like the primary parameter pages, each of the extended parameter subpages have their own probability, clock division and loop controls. This allows for some very complex phrasing to be built.
-
-#### Trigger Ratcheting
-
-*Trigger ratcheting* allows multiple, regularly-spaced gates to be emitted for a single trigger in the grid.
-
-To enter the ratcheting page, press the trigger parameter key a second time when you are in the trigger view. The trigger parameter key will blink.
-
 Ratcheting uses rows 2-6 to determine the number of sub-triggers that will fire for each trigger column. Pressing a key in these rows will enable an additional trigger on that step. You can toggle rows back off to turn them into rests, which are highlighted more dimly. Rows 1 and 7 are up/down switches to dial in the number of subdivisions, so you can include rests at the end of the step as well as in the middle or beginning. This allows programming a variety of syncopated patterns by subdividing each note and selecting only the triggers you want active. If you long-press a key in row 7 (at the bottom, just above the track/parameter selection row), the corresponding step will be cleared, going back to the default behavior of a single active trigger for the step with no subdivisions. If you long-press the top row, the selected range of subdivisions will be "filled" with triggers.
 
 ![](images/grid_KR_triggerRatcheting.png)

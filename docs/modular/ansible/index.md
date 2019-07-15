@@ -1100,9 +1100,15 @@ ARP.SHIFT v o   shift voice cv by standard tt pitch value (e.g. N 6, V -1, etc)
 
 If you insert a USB disk into Ansible, you can save presets to a JSON
 file on disk, or restore presets from such a file. In addition to
-archiving or sharing app presets, this can be useful for making backups
-before updating to a new firmware revision, because future versions
-will be able to load files saved by older versions. Note that Ansible can be a little picky about USB disks it will talk to, it's possible you may need to try a couple for this to work. If you attach an [FTDI cable](/docs/modular/dev), Ansible prints a fair amount of diagnostic information to the UART which may be helpful for troubleshooting loading errors.
+archiving or sharing app presets, this can be useful for making
+backups before updating to a new firmware revision, because future
+versions will be able to load files saved by older versions. The drive
+must be formatted with a FAT filesystem, FAT32 is probably your best
+bet. Note that Ansible can be a little picky about USB disks it will
+talk to, it's possible you may need to try a couple for this to
+work. If you attach an [FTDI cable](/docs/modular/dev), Ansible prints
+a fair amount of diagnostic information to the UART which may be
+helpful for troubleshooting loading errors.
 
 To save presets:
 

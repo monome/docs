@@ -53,6 +53,9 @@ contact [info@monome.org](mailto:info@monome.org) to have your application liste
 
 * [re:mix](https://github.com/el-quinto/mix) -- extended mlr.
 * [grainfields](https://github.com/kasperskov/monome_grainfields_m4l-v1.0) -- granular instrument for grids
+* [gridlab](https://github.com/stretta/gridlab) -- a suite of maxforlive monome devices.
+* [elements](https://github.com/benjaminvanesser/elements) -- a collection of midi controls for grids.
+* [anaphora](https://github.com/AndrewShike/anaphora) -- simple, live-input focused mlr variant.
 
 ## utilities
 

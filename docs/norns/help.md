@@ -53,7 +53,7 @@ This indicates that something is wrong with Supercollider, which could be due to
 
 - Download and copy update file to a FAT-formatted USB drive
 - Insert the disk to norns and power up.
-- Connect via serial (see instructions above).
+- Connect via [serial](../#connect).
 - Copy file to `~/update/`:
 
 ```
@@ -69,7 +69,7 @@ cd 190409
 ./update.sh
 ```
 
-- Upon completion type `sudo shutdown now` to shut down.
+- Upon completion type `sudo shutdown now`.
 
 
 ## fresh install

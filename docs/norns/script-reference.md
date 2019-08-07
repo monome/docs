@@ -189,7 +189,7 @@ a = arc.connect()
 - `a:all(val)`, sets state of all LEDs on this arc device.
 - `a:segment(ring, from, to, level)`, creates an anti-aliased point to point arc - segment/range on a specific LED ring.
 - `a:refresh()`, updates any dirty quads on this arc device.
-- `a.enc(n, delta)`, encoder event handler function.
+- `a.delta(n, delta)`, encoder event handler function.
 
 ### midi
 

@@ -78,7 +78,7 @@ viz., `foo2` inherits the state change from `foo1`, but `bar1` and `bar2` each g
 ---
 
 [^1] you can clear a package from the `require` cache manually. this is a hack:
-	```
+```
 	package.loaded[baz] = nil
 	_G[baz] = nil
-	```
+```

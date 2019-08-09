@@ -10,6 +10,7 @@ permalink: /docs/norns/
 - [first](norns-first.pdf) a quick, printable introduction.
 - [studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
 - [script reference](/docs/norns/script-reference/)
+- [scripting FAQ](/docs/norns/faq/)
 
 - current version: [190801](https://github.com/monome/norns/releases)
 

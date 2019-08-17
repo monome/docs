@@ -277,7 +277,7 @@ note that we're using a new syntax style with curly brackets. this passes a tabl
 
 ## more sound please
 
-add more parameters with multiple lines of `params:add_number()`, but all parameters are not just basic numbers. there is a _control_ parameter that maps a "control" range (thing 0-100) to a specified min/max, with linear and exponential scaling. we use these frequently with engine parameters:
+add more parameters with multiple lines of `params:add_number()`, but all parameters are not just basic numbers. there is a _control_ parameter that maps a "control" range (think 0-100) to a specified min/max, with linear and exponential scaling. we use these frequently with engine parameters:
 
 ```
 params:add_control("cutoff","cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))

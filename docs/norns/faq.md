@@ -1,3 +1,8 @@
+---
+layout: page
+permalink: /docs/norns/faq/
+---
+
 # FAQ
 
 ## what is the difference between `require` and `include`?
@@ -6,7 +11,7 @@
 
 - `require()` looks in more places - see `norns/lua/core/config.lua`
 
-- most importantly, `require()` caches its results, and will not re-run its arguments (unless you use a hack[^1]) the state of a `require`'d module is persisted, and this is significant. consider the following set of files. 
+- most importantly, `require()` caches its results, and will not re-run its arguments (unless you use a hack[^1]) the state of a `require`'d module is persisted, and this is significant. consider the following set of files.
 
 `baz.lua`, a module:
 ```
@@ -62,7 +67,7 @@ dofile('bar2.lua')
 result:
 
 ```
-> lua5.3 test.lua 
+> lua5.3 test.lua
 foo1:baz initial value = 100
 foo1:baz new value = 101
 foo2:baz initial value = 101

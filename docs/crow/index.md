@@ -94,4 +94,15 @@ Short lua example.
 
 ## Help
 
+[llllllll.co](https://llllllll.co)
 
+help@monome.org
+
+
+## Development
+
+https://github.com/monome/crow
+
+link to dev doc
+
+contributions welcome

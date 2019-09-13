@@ -396,7 +396,7 @@ Done!
 	
 ## Credits
 
-*Processing* was written by  James McCartney and is now maintained [as a GPL project by various people](http://supercollider.sourceforge.net).
+*SuperCollider* was written by James McCartney and is now maintained [as a GPL project by various people](http://supercollider.sourceforge.net).
 
 *monom* was written by and is maintained by [Ezra Buchla](http://catfact.net).
 

@@ -7,13 +7,14 @@ permalink: /docs/norns/
 
 # norns
 
-- [First](norns-first.pdf) a quick, printable introduction.
-- [Studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
-- [Script reference](/docs/norns/script-reference/)
+- [first](norns-first.pdf) a quick, printable introduction.
+- [studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
+- [script reference](/docs/norns/script-reference/)
+- [scripting FAQ](/docs/norns/faq/)
 
-**Current version at [github](https://github.com/monome/norns/releases).**
+- current version: [190801](https://github.com/monome/norns/releases)
 
-[begin](#begin) &mdash; [awake](#awake) &mdash; [audio](#audio) &mdash; [maiden](#maiden) &mdash; [update](#update) &mdash; [help](#help)
+- sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [audio](#audio) &mdash; [maiden](#maiden) &mdash; [update](#update) &mdash; [help](#help)
 
 
 ## LEGEND
@@ -358,56 +359,19 @@ Alternatively you can host your project as a github repository by simply cloning
 
 Updates to the core norns software can be installed easily via the SYSTEM menu. You must first be connected to the internet via wifi and have at least 400M free disk space. If a new version is available you will be prompted to continue installing. Audio will be disabled during this time. Note that the download time may be a few minutes, have patience. Upon completion you'll be notified of success or failure, then the unit will shut down after confirmation.
 
-**If you are running 181101 or earlier you'll need to first upgrade to 190405 using the old system.**
+**If you are running 181101 or earlier it's recommended to do a [fresh install](help/).**
 
-### MANUAL UPDATE
-
-- Download and copy update file to a FAT-formatted USB drive
-- Insert the disk to norns and power up.
-- Connect via serial (see instructions above).
-- Copy file to `~/update/`:
-
-```
-sudo cp /media/usb0/*.tgz ~/update/
-```
-
-- Unpack and run update:
-
-```
-cd ~/update
-tar xzvf norns190409.tgz
-cd 190409
-./update.sh
-```
-
-- Upon completion type `sudo shutdown now` to shut down.
 
 ## HELP
 
-### ERROR: AUDIO ENGINE
-
-If norns shows `ERROR: AUDIO ENGINE` chances are there's a problem with duplicate SuperCollider classes.
-
-To solves this [connect](#connect) via wifi and open [maiden](#maiden). Go to the SuperCollider REPL tab, type `;restart` and press enter.
-
-This will restart the audio components and output their logs. If there's a duplicate class an error message like the following will be shown:
-
-```
-ERROR: duplicate Class found: ‘Engine_Some’
-/home/we/dust/code/somescript1/lib/Engine_Some.sc
-/home/we/dust/code/somescript1-copy/lib/Engine_Some.sc
-ERROR: There is a discrepancy.
-```
-
-Remove one of the offending scripts/classes and either completely restart norns or execute `;restart` again from maiden and all should be good again.
-
-### SUPPORT
+See the dedicated [help page](help/) for solutions to common problems.
 
 The [community forum](https://llllllll.co/tag/norns) has various informative threads. Please join us!
 
 Check the [known bugs](https://github.com/monome/norns/wiki/known-bugs) list for problems and solutions.
 
 If you're experiencing hardware problems contact info@monome.org and we can help right away.
+
 
 ## CONTRIBUTING
 

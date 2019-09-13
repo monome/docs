@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/levels
+permalink: /docs/modular/ansible/earthsea
 ---
 
 ## Earthsea (Ansible + Grid)
@@ -182,3 +182,5 @@ To read a preset, press the position to select, and then press again to read.
 To write a preset, press and hold the position to write to.
 
 A “glyph” can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
+
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [here](/docs/modular/ansible#usb-disk-mode).

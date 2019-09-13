@@ -5,7 +5,7 @@ permalink: /docs/modular/ansible/kria
 
 ## Kria (Ansible + Grid)
 
-Kria is an app for the [Ansible](/docs/modular/ansible) Eurorack module that uses the [Grid](/docs/grid) to program a four-track step sequencer. This is an updated version of Kria which began as a [White Whale](/docs/modular/whitewhale) alt-firmware. While some functionality has changed, a general overview could be understood by viewing the [alt-WW Kria tutorial video](https://vimeo.com/153923660). The mode LED will show orange whilst Kria is running.
+Kria is an app for the [Ansible](/docs/modular/ansible) Eurorack module that uses the [Grid](/docs/grid) to program a four-track step sequencer. This is an updated version of Kria which began as a [White Whale](/docs/modular/whitewhale) alt-firmware. While some functionality has changed, a general overview could be understood by viewing the [alt-WW Kria tutorial video](https://vimeo.com/153923660). There is also a MIDI Kria [implementation](https://llllllll.co/t/kria-midi/21255) for [Norns](/docs/norns). The mode LED will show orange whilst Kria is running.
 
 ### Interface
 
@@ -43,11 +43,9 @@ The *trigger* view shows all four tracks at once, whereas all other parameter vi
 
 The *duration* view has downward sliders (lower is longer) and a master duration multiplier at the top. Duration is relative to the clock: when duration is set to max, the pulsewidth of the gate is entirely based on the current clock. This lets you create tied notes.
 
-There are also 'sub-pages' for more advanced extensions to each of these main parameters; see "**extended parameters**" for details.
-
 ### Extended parameters
 
-Many of the parameter views have "sub-pages" that extend or augment their functionality. To enter into each sub-page, switch to the parameter using keys 6-9, then tap the parameter key again. When you are in the sub-page for a parameter, its paramater key will be blinking. Press the parameter again to return to the main parameter view.
+Many of the parameter views have "sub-pages" that extend or augment their functionality. To enter into each sub-page, switch to the parameter using keys 6-9, then tap the parameter key again. When you are in the sub-page for a parameter, its parameter key will be blinking. Press the parameter again to return to the main parameter view.
 
 | Parameter | Extended Parameter |
 | --------- | ------------------ |
@@ -92,7 +90,7 @@ The possibilities for alternate note become particularly interesting if you alte
 
 To enter the glide page, press the octave parameter key a second time when you are in the octave view. The octave parameter key will blink.
 
-The glide view screen allows the user to slew the currently playing note into the next triggered note. This is controlled by setting a slider on each step column. Row 7 has a slew of 0ms, effectively a pass through. from here up each row increases the slew time to the note in the current column. Row 6 is 20ms row 5 is 40ms all the way to 120ms in row 1.
+The glide view screen allows the user to slew the currently playing note into the next triggered note. This is controlled by setting a slider on each step column. Row 7 has a slew of 0ms, effectively a pass through. from here up each row increases the slew time to the note in the current column. Row 6 is 20ms, row 5 is 40ms, all the way to 120ms in row 1.
 
 ![](images/grid_KR_Glide.png)
 
@@ -114,9 +112,11 @@ For example, a whole tone scale (2 semitones per note) would be constructed by s
 
 You can perform temporary "live" adjustments to scale steps with a two-key gesture: hold down the active scale step, then press another key on that row of the scale programming section. The second key is highlighted more dimly to indicate that this scale step is adjusted. This adjusts the pitch CV assigned to that scale step without affecting the rest of the scale, which can be a useful performance tool. Pressing the brighter, "primary" scale key, or pressing another key to change the interval, will clear the adjustment. Scale adjustments are not saved to flash. Changing the selected scale will clear all scale adjustments, but changing patterns will not, which can make this useful for introducing live variations in a longer sequence.
 
-Scales are shared between Kria and Meadowphysics, and are saved to flash whenever a preset of either is saved.
+Scales are shared between Kria, [Meadowphysics](/docs/modular/ansible/meadowphysics), and [Earthsea](/docs/modular/ansible/earthsea), and are saved to flash whenever a preset of either is saved.
 
-The top-left region of the page contains settings for changing how each track advances to the next step:
+**Track step modes**
+
+The top-left region of the scale page contains settings for changing how each track advances to the next step:
 
 * The top four keys on the leftmost column of the page are used to toggle Teletype clocking for a given channel; see below for more details.
 
@@ -188,7 +188,7 @@ With a cable present in `In 1` the device is externally clocked. The time view n
 
 ![](images/grid_TIME_EXTERNAL_1.2.png)
 
-The bottom half of this clock configuration page is also home to three glyphs. From left to right:
+The bottom half of this clock configuration page is also home to three glyphs. These change how certain timing parameters work to allow you to keep different loop elements in sync. Note that the left and right glyphs look the same as glyphs for analogous functions on the Config page, but they are instead placed all the way at the edge of the grid. From left to right, the glyphs control the following options.
 
 When **Note Division Sync** (hollow square on the left) is enabled, changing the clock division for the Trigger parameter will also update the clock division for the Note parameter and vice versa.
 
@@ -241,7 +241,7 @@ When Note Sync is on but Loop Sync is off, placing notes will enable correspondi
 * All (bottom row of 4 lit): all tracks and parameters have a synchronized loop
 
 
-By default Note Sync is on, and Loop Sync is set to Track.
+By default Note Sync is on, and Loop Sync is set to All.
 
 Some space on this page is also used for some behavior that affects all apps:
 
@@ -251,7 +251,7 @@ Some space on this page is also used for some behavior that affects all apps:
   non-varibright, 4-step varibright, or 16-step varibright grid (the default).
 
 * The key in the bottom right, where Kria's scale page key is, accesses tuning mode,
-  described below.
+  described [here](/docs/modular/ansible#tuning).
 
 ### Presets
 
@@ -267,10 +267,10 @@ To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
-It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [below](#usb-disk-mode).
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [here](/docs/modular/ansible#usb-disk-mode).
 
 ### Teletype Clocking
 
-A channel of Kria can be set to be clocked from the Teletype command `KR.CLK x` (see below).
+A channel of Kria can be set to be clocked from the Teletype command `KR.CLK x` (see the Ansible + Teletype manual [here](/docs/modular/ansible/teletype)).
 
 To do so, press the *scale* key to enter scale view. The four keys at the top of the left column will enable or disable Teletype clocking for the relevant channel. When a channel is clocked by Teletype, it no longer responds to the master clock (set either internally or by an external clock connected to the `In 1`).

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/kria
+permalink: /docs/modular/ansible/teletype
 ---
 
 ## Ansible + Teletype
@@ -14,6 +14,8 @@ With no USB device plugged in Ansible continues to run the most recently used ap
 By hitting the `preset` key (next to the USB port) with no device plugged, Ansible will toggle into Teletype mode. In this mode the Ansible's outputs and inputs function as an extender, fitting naturally into the Teletype system.
 
 This requires the Ansible to be on the internal *II* bus, a 6 conductor ribbon behind the panel. This ribbon ships with the Ansible. Be sure to align the red stripe when connecting. For more information about different modules that can be connected to the II bus and how this works, see [here](https://llllllll.co/t/a-users-guide-to-i2c/19219).
+
+The following is a quick reference of Teletype ops that Ansible can process. For more details see the Teletype manual.
 
 ### Output
 
@@ -78,6 +80,8 @@ Teletype can control various parameters for Kria, Meadowphysics, Levels, and Cyc
 
 ### Kria
 
+Kria's tracks can be clocked individually by the `KR.CLK` op, this must be enabled using the toggles on the far top-left column of Kria's scale page.
+
 ```
 KR.PRE x        read preset x
 KR.PRE          return current preset number
@@ -104,6 +108,8 @@ KR.TMUTE x      toggle mute for Kria track x (0 = all)
                 toggle will _invert current state_.
 KR.CLK x        send to clock track x (0 == all) IF track is enabled to be clocked
                 by Teletype (see above)
+KR.CUE p        cue pattern p to play next
+KR.PG  p        show kria UI page p
 ```
 
 ### Meadowphysics
@@ -202,4 +208,17 @@ ARP.ER v f d r  set all euclidean rhythm
 ARP.RES v       reset voice clock/pattern on next base clock tick
 
 ARP.SHIFT v o   shift voice cv by standard tt pitch value (e.g. N 6, V -1, etc)
+```
+
+### General
+
+These ops affect Ansible regardless of what app is running.
+
+```
+ANS.G x y z    simulate setting the state of grid button (x, y) to z (1 = held, 0 = off)
+ANS.G.P x y    simulate pressing grid button (x, y)
+ANS.G.LED x y  read the brightness of grid LED (x, y), 0-15
+ANS.A n d      simulate turning arc encoder n by d ticks (+/-)
+ANS.A.LED n x  read arc encoder n, LED x (0-63 clockwise)
+ANS.APP x      get/set the currently running app
 ```

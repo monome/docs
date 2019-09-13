@@ -18,8 +18,8 @@ Connects to Grids, Arcs, and MIDI devices, integrating external controllers into
 * [Earthsea](/docs/modular/ansible/earthsea) (Grid) polyphonic pattern instrument.
 * [Levels](/docs/modular/ansible/levels) (Arc) rotational pattern instrument.
 * [Cycles](/docs/modular/ansible/cycles) (Arc) physically manipulated waves.
-* [Reach](/docs/modular/ansible/teletype) (Teletype) further ecosystem output and input, and remote control of other apps.
-* [Traffic](/docs/modular/ansible/midi) (MIDI) device voice allocation and various arpeggiation.
+* [Teletype](/docs/modular/ansible/teletype) further ecosystem output and input, and remote control of other apps.
+* [MIDI](/docs/modular/ansible/midi) device voice allocation and various arpeggiation.
 
 **Grid, Arc, MIDI device, or Teletype required.**
 

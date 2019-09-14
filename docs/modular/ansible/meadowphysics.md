@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/meadowphysics
+permalink: /docs/modular/ansible/meadowphysics/
 ---
 
 ## Meadowphysics (Ansible + Grid)
@@ -11,7 +11,7 @@ Meadowphysics is an app for the [Ansible](/docs/modular/ansible) Eurorack module
 
 ### Interface
 
-![](images/ansible_MP_KR_1.1.png)
+![](../images/ansible_MP_KR_1.1.png)
 
  * `Key 1`: Time View
  * `Key 2`: Config View
@@ -21,7 +21,7 @@ Meadowphysics is an app for the [Ansible](/docs/modular/ansible) Eurorack module
 
 ### Basic
 
-![](images/grid_MP_OVERVIEW_1.1.png)
+![](../images/grid_MP_OVERVIEW_1.1.png)
 
 Per row, each position counts down from right to left.
 
@@ -40,7 +40,7 @@ The *count* can also be a range:
 
 ### Reset, Output, and Speeds
 
-![](images/grid_MP_RESET-OUTPUT-SPEEDS_1.2.png)
+![](../images/grid_MP_RESET-OUTPUT-SPEEDS_1.2.png)
 
 Press and hold the left column to configure that row:
 
@@ -62,7 +62,7 @@ right half of grid: speeds
 
 ### Rules
 
-![](images/grid_MP_RULE_GLYPHS_1.2.png)
+![](../images/grid_MP_RULE_GLYPHS_1.2.png)
 
 Hold the left two keys to access rules screen. Parameters are similarly per row:
 
@@ -82,15 +82,15 @@ Hold `Key 1` to change the timing.
 
 With nothing present in `In 1` the device is internally clocked. A pulse indicator is shown in the top row. Row 2 is *rough* and row 3 is *fine*, for jumping time intervals. The four keys in the middle are for incremental time movement, right and leftwards by fine and rough intervals.
 
-![](images/grid_TIME_INTERNAL_1.2.png)
+![](../images/grid_TIME_INTERNAL_1.2.png)
 
 With a cable present in `In 1` the device is externally clocked. The time view now shows a clock division multiplier in row 2.
 
-![](images/grid_TIME_EXTERNAL_1.2.png)
+![](../images/grid_TIME_EXTERNAL_1.2.png)
 
 ### Config
 
-![](images/grid_MP_CONFIG_1.2.png)
+![](../images/grid_MP_CONFIG_1.2.png)
 
 The left selection of shapes specifies the voice mode. They are (from left to right)
 
@@ -119,7 +119,7 @@ Use `In 1` to externally clock. `In 2` will reset all rows back to their *count*
 
 ### Presets
 
-![](images/grid_PRESETS_1.2.png)
+![](../images/grid_PRESETS_1.2.png)
 
 A short press of the `preset` key will enter preset mode.
 

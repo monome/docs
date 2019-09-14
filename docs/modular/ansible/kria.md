@@ -9,7 +9,7 @@ Kria is an app for the [Ansible](/docs/modular/ansible) Eurorack module that use
 
 ### Interface
 
-![](images/ansible_MP_KR_1.1.png)
+![](../images/ansible_MP_KR_1.1.png)
 
  * `Key 1`: Time View
  * `Key 2`: Config View
@@ -29,7 +29,7 @@ The main grid view uses the bottom row for navigation, which are dimly lit into 
  * 15: Scale
  * 16: Pattern
 
-![](images/grid_KR_NAVIGATION_1.2.png)
+![](../images/grid_KR_NAVIGATION_1.2.png)
 
 ### Parameters
 
@@ -64,7 +64,7 @@ To enter the ratcheting page, press the trigger parameter key a second time when
 
 Ratcheting uses rows 2-6 to determine the number of sub-triggers that will fire for each trigger column. Pressing a key in these rows will enable an additional trigger on that step. You can toggle rows back off to turn them into rests, which are highlighted more dimly. Rows 1 and 7 are up/down switches to dial in the number of subdivisions, so you can include rests at the end of the step as well as in the middle or beginning. This allows programming a variety of syncopated patterns by subdividing each note and selecting only the triggers you want active. If you long-press a key in row 7 (at the bottom, just above the track/parameter selection row), the corresponding step will be cleared, going back to the default behavior of a single active trigger for the step with no subdivisions. If you long-press the top row, the selected range of subdivisions will be "filled" with triggers.
 
-![](images/grid_KR_triggerRatcheting.png)
+![](../images/grid_KR_triggerRatcheting.png)
 
 
 
@@ -92,7 +92,7 @@ To enter the glide page, press the octave parameter key a second time when you a
 
 The glide view screen allows the user to slew the currently playing note into the next triggered note. This is controlled by setting a slider on each step column. Row 7 has a slew of 0ms, effectively a pass through. from here up each row increases the slew time to the note in the current column. Row 6 is 20ms, row 5 is 40ms, all the way to 120ms in row 1.
 
-![](images/grid_KR_Glide.png)
+![](../images/grid_KR_Glide.png)
 
 ### Quick track muting
 
@@ -138,7 +138,7 @@ The second row on the pattern pages represents the *Cue* clock. Pushing a key in
 A cued pattern is activated when the cue clock returns to zero. This clock represents a global quantize for pattern cueing.
 
 This clock setting can be modified by the *Time* modifier, allowing you to get extremely long pattern cue time quantization.
-![](images\grid_KR_CUEDPattern.png)
+![](../images\grid_KR_CUEDPattern.png)
 
 #### Meta Patterns
 The *Meta-Pattern* mode allows you to create sequences of patterns, with control over the number of times a pattern loops before moving on to the next one.
@@ -160,7 +160,7 @@ When *Meta-Pattern* is activated the rows on your grid are:
 
 Rows 3 through 6 are where you store your patterns in a *Pattern Sequence*. Each button in this row can have 2 pieces of data associated with it, a pattern and a duration.
 
-![](images\grid_KR_METAPattern.png)
+![](../images\grid_KR_METAPattern.png)
 
 To edit the data just select the *pattern sequence* button you wish to change. It will glow at the maximum brightness. Selecting a pattern from row 1 will now change the pattern in the currently selected step.
 
@@ -182,11 +182,11 @@ Hold `Key 1` to change the timing.
 
 With nothing present in `In 1` the device is internally clocked. A pulse indicator is shown in the top row. Row 2 is *rough* and row 3 is *fine*, for jumping time intervals. The four keys in the middle are for incremental time movement, right and leftwards by fine and rough intervals.
 
-![](images/grid_TIME_INTERNAL_1.2.png)
+![](../images/grid_TIME_INTERNAL_1.2.png)
 
 With a cable present in `In 1` the device is externally clocked. The time view now shows a clock division multiplier in row 2.
 
-![](images/grid_TIME_EXTERNAL_1.2.png)
+![](../images/grid_TIME_EXTERNAL_1.2.png)
 
 The bottom half of this clock configuration page is also home to three glyphs. These change how certain timing parameters work to allow you to keep different loop elements in sync. Note that the left and right glyphs look the same as glyphs for analogous functions on the Config page, but they are instead placed all the way at the edge of the grid. From left to right, the glyphs control the following options.
 
@@ -255,7 +255,7 @@ Some space on this page is also used for some behavior that affects all apps:
 
 ### Presets
 
-![](images/grid_PRESETS_1.2.png)
+![](../images/grid_PRESETS_1.2.png)
 
 A short press of the `preset` key will enter preset mode.
 

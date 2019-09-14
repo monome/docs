@@ -7,9 +7,29 @@ permalink: /docs/crow/
 
 # Crow
 
-(insert poetry.) Scriptable USB-CV-II machine.
+Crow speaks and listens and remembers bits of text. A scriptable USB-CV-II machine.
 
-(WHAT IS IT: satellite vs standalone)
+Crow communicates Lua via USB in clear text:
+
+```
+to crow >     print("caw!")
+crow says >   caw!
+```
+
+Which allows the weaving of musical structure:
+
+```
+to crow >     x = math.random(12)
+              print(x)
+crow says >   3
+to crow >     output[1].slew = 0.9
+              output[1].volts = x
+(CV output 1 ramps to 3 volts over 0.9 seconds)
+```
+
+Crow integrates with norns, and also connects to computers running Max, Max for Live, and other applications which speak serial. We created a simple application called Druid to facilitate conversation. Crow becomes a programmable CV and II interface, in what we call "satellite mode."
+
+Crow also stores a complete script, so that without a USB connection it can continue to run, responding to CV input and II messages.
 
 A collaboration by Whimsical Raps and monome.
 

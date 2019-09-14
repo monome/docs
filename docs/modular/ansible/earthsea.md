@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/earthsea
+permalink: /docs/modular/ansible/earthsea/
 ---
 
 ## Earthsea (Ansible + Grid)
@@ -12,7 +12,7 @@ Earthsea is a new, polyphonic version of the [the original Earthsea module](http
 
 ### Interface
 
-![](images/ansible_EA_overview.png)
+![](../images/ansible_EA_overview.png)
 
 * `Key 1` previous pattern
 * `Key 2` next pattern
@@ -27,7 +27,7 @@ Earthsea does not require an external clock; it will play back recorded patterns
 
 The far left column of the grid is reserved for special functions:
 
-![](images/grid_AE_special.png)
+![](../images/grid_AE_special.png)
 
 * START/STOP playback
 * PATTERN select
@@ -57,7 +57,7 @@ Earthsea can be used polyphonically, for up to four simultaneous outputs. It off
 
 The left column represents voices used by the recorded pattern. The right column represents voices used by playing the keymap live.
 
-![](images/grid_AE_voice_allocation.png)
+![](../images/grid_AE_voice_allocation.png)
 
 Focus on the right, 'live' column. When all four keys are lit, Earthsea is in four-voice polyphony mode. Each key pressed will output a control voltage from the first available CV output on Ansible. If you press buttons in a staccato manner - with a slight gap between them - corresponding voltages will all be output of CV output 1, with corresponding gate outputs output from Gate output 1.
 
@@ -109,7 +109,7 @@ You can jump to a specific point in the pattern by pressing that key in the 'pro
 
 ### Pattern Select
 
-![Pattern bank](images/grid_AE_pattern_select.png)
+![Pattern bank](../images/grid_AE_pattern_select.png)
 
 To access all 16 patterns, hold the PATTERN SELECT button and pick a pattern from the lit 4×4 grid. The current pattern is displayed at full-brightness, existing patterns are mid-brightness, and empty slots are low-brightness.
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/levels
+permalink: /docs/modular/ansible/levels/
 ---
 
 ## Levels (Ansible + Arc)
@@ -11,7 +11,7 @@ The mode LED will show orange when running.
 
 ### Basics
 
-![](images/ansible_LEVELS_1.2.png)
+![](../images/ansible_LEVELS_1.2.png)
 
 Each Arc ring is its own output unit and all encoders have the same capabilities. The leftmost ring (ring 1) uses CV/TR 1, ring 2 use CV/TR 2, and so on.
 
@@ -19,7 +19,7 @@ Turning the ring will change its value, and affect its output CV/TR. By default 
 
 This can be changed to NOTE mode which maps the ring to a semitones, with octave markers. CV output is volt per octave, and TR is used for indicating PATTERN changes (more on this later).
 
-![](images/arc_LEVELS_main_mode_1.2.png)
+![](../images/arc_LEVELS_main_mode_1.2.png)
 
 ### Config
 
@@ -27,7 +27,7 @@ Enter the CONFIG "view" by pushing and holding `KEY 2` on the panel. The Arc dis
 
 Pushing `Key 1` while holding `Key 2` will change the CONFIG parameter, as shown in the following diagram:
 
-![](images/arc_LEVELS_config_ALL_1.4.png)
+![](../images/arc_LEVELS_config_ALL_1.4.png)
 
 **Mode** - VOLT vs EDIT mode, also enable/disable ALL-EDIT mode.
 
@@ -45,7 +45,7 @@ We can cycle to the next pattern with a short press of `Key 1`. On the next patt
 
 We can set the pattern start and length by holding `Key 1` to get into PATTERN mode.
 
-![](images/arc_LEVELS_patterns_1.1.png)
+![](../images/arc_LEVELS_patterns_1.1.png)
 
 Ring 1 and 2 provide read/write functions. The current pattern is shown dimly. If we rotate ring 1 to a new position and release `Key 1` we move to that position. Similarly for ring 2, we move to the given position but overwrite that pattern with whatever our current values are set at. It's a way of copying values between patterns.
 
@@ -66,7 +66,7 @@ You can dynamically change the PATTERN start and length while externally clockin
 
 ### Presets
 
-![](images/arc_LEVELS_saveANDrecall_1.1.png)
+![](../images/arc_LEVELS_saveANDrecall_1.1.png)
 
 A short press to the `preset` key (next to the USB port) will enter PRESET mode.
 

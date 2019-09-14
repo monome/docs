@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/cycles
+permalink: /docs/modular/ansible/cycles/
 ---
 
 ## Cycles (Ansible + Arc)
@@ -11,7 +11,7 @@ The mode LED will show white when running.
 
 ### Basics
 
-![](images/ansible_CYCLES_1.2.png)
+![](../images/ansible_CYCLES_1.2.png)
 
 Each ring has its own rotational momentum: turn the ring to accelerate in either direction. Each ring's current position is mapped to its respective CV and TR output.
 
@@ -19,7 +19,7 @@ The CV value is determined by the ring's Shape which is either Triangle (default
 
 The TR value is a phase indicator. On the right side of a ring TR is low, on the left it is high.
 
-![](images/arc_CYCLES_main_mode_PHASE_1.2.png)
+![](../images/arc_CYCLES_main_mode_PHASE_1.2.png)
 
 Friction can be introduced by pushing and holding `Key 1`.
 
@@ -29,7 +29,7 @@ A short press to `Key 2` will reset all positions to 0 (north).
 
 Enter CONFIG mode by holding down `Key 2`.
 
-![](images/arc_CYCLES_config_1.5.png)
+![](../images/arc_CYCLES_config_1.5.png)
 
  * Ring 1 - Mode: Unsync/Sync
  * Ring 2 - Shape: Tri/Saw
@@ -42,11 +42,11 @@ By default Cycles is in Unsync mode, where each ring is independent.
 
 In Sync mode Ring 1 determines the base speed, and the remaining rings follow by a given multiple. Touching ring 2-4 in Unsync mode changes this multiple.
 
-![](images/arc_CYCLES_main_mode_SPEED_full_1.3.png)
+![](../images/arc_CYCLES_main_mode_SPEED_full_1.3.png)
 
 ### Presets
 
-![](images/arc_LEVELS_saveANDrecall_1.1.png)
+![](../images/arc_LEVELS_saveANDrecall_1.1.png)
 
 A short press to the `preset` key (next to the USB port) will enter PRESET mode.
 

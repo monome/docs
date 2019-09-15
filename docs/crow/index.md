@@ -90,40 +90,48 @@ If you would like to use the II functionality, be sure to observe the orientatio
 
 ## Scripting
 
-Short lua example.
+Short (standalone) lua example.
 
-[lua reference]()
+[scripting](scripting) - standalone examples (mirror "rising")
 
-[crow scripting subpage](scripting)
+[reference](reference) - standalone functions and tables
 
-[crow scripting reference](scripting-reference)
+- [programming in lua (first edition)](https://www.lua.org/pil/contents.html)
+- [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
+- [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)
+- [lua in 15 mins](http://tylerneylon.com/a/learn-lua/)
+
 
 
 ## Updates
 
-(how to show firmware version)
+[current firmware version](https://github.com/monome/crow/releases)
 
-(link to firmware)
+You can check the version of the firmware on a crow several ways:
 
-[bootloader instructions](bootloader)
+- Norns: open maiden and type `crow.version` into the command prompt REPL.
+- Druid: type `^^version`.
+- Max/M4l: **@dndrks** maybe have it printed somewhere on connect??
+
+[bootloader instructions](update) - step by step guide to update the crow firmware.
 
 
-## Calibration
+## Technical
 
-[calibration](calibration)
+[technical](technical) - calibration, ^^ commands?
 
 
 ## Help
 
-[llllllll.co](https://llllllll.co)
+Community discussion happens at [llllllll.co](https://llllllll.co). Come say hello!
 
-help@monome.org
+Contact *help@monome.org* with further questions.
 
 
 ## Development
 
-https://github.com/monome/crow
+Crow continues to evolve and you can follow development on github:
 
-link to dev doc
+[https://github.com/monome/crow](https://github.com/monome/crow)
 
-contributions welcome
+Crow is open-source and is built on the efforts of other open source projects. Contributions are welcome.

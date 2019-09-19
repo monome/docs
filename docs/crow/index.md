@@ -109,7 +109,7 @@ Short (standalone) lua example.
 
 You can check the version of the firmware on a crow several ways:
 
-- Norns: open maiden and type `crow.version` into the command prompt REPL.
+- Norns: open maiden and type `crow.version()` into the command prompt REPL.
 - Druid: type `^^version`.
 - Max/M4l: **@dndrks** maybe have it printed somewhere on connect??
 

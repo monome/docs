@@ -65,16 +65,22 @@ If you would like to use the II functionality, be sure to observe the orientatio
 
 **@dndrks**
 
-(how to install, where to put files)
+To utilize the `crow` object in Max/MSP, you'll want to drop the entire `crow_max` folder into Max's search path. There are two ways to do this: (a.) add the folder to your current User Library or (b.) create your own path directly to the folder. We suggest (a.), since it's a bit cleaner.
 
-(image of a basic max-crow thing)
+a. Open Max > Options > File Preferences > highlight User Library > the rightmost icon in the bottom bar should illuminate. Clicking this icon will open the User Library folder, where you can drop the `crow_max` folder. Restart Max and you should be able to instantiate the `crow` object!
+
+b. Open Max > Options > File Preferences > the leftmost icon in the bottom bar (+) will allow you to define your own user path. You'll see a new entry appear at the bottom of the list. Select 'choose' in the Path column and select your downloaded `crow_max` folder.
+
+(image of a basic max-crow thing. dd: perhaps the i2c/Just Friends tab from the maxhelp file?)
 
 
 ## Max for Live
 
 **@dndrks**
 
-(how to install, where to put files)
+After downloading the `crow_m4l` folder, place it wherever you'd prefer on your harddrive. Open Ableton Live 9 or 10 and drag the folder into Live's browser, under PLACES.
+
+If you are updating a previous installation, just replace the previous `crow_m4l` folder's contents with the new files.
 
 (image of ableton-m4l-crow device)
 

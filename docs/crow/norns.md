@@ -21,7 +21,7 @@ Crow will automatically be detected and interfaced upon connection to norns. Pre
 
 ![](../images/1-output.png)
 
-Run `1-output.lua`.
+Run `1-output.lua`. Connect crow output 1 to an oscillator pitch or similar.
 
 This sets up an knob and screen interface for one very simple command:
 
@@ -34,6 +34,38 @@ This sets output 1 to 3.33v.
 Crow's voltage range is -5.0 to 10.0 for outputs 1 to 4.
 
 ## 2. Input
+
+![](../images/2-input.png)
+
+Run `2-input.lua`.
+
+- Connect an LFO output to crow input 1. K1 will capture the current value. K2 will toggle `stream` mode on an off.
+- Connect the same cable to input 2 which is set up to trigger a `change` function on each transition.
+
+Inputs have several modes:
+
+- `stream`: the input is reported at a fixed interval.
+- `change`: configurable low/high transitions are reported.
+- `none`: inputs are read only with a manual query.
+
+Change modes:
+
+```
+crow.input[1].mode("stream")
+```
+
+#TODO: set interval
+
+Set the function for incoming data:
+
+```
+function process_stream(v)
+  print("input stream: "..v)
+end
+
+crow.input[1].stream = process_stream
+```
+
 
 ## 3. ii
 

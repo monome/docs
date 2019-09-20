@@ -49,15 +49,9 @@ Inputs have several modes:
 - `change`: configurable low/high transitions are reported.
 - `none`: inputs are read only with a manual query.
 
-Change modes:
+### Stream
 
-```
-crow.input[1].mode("stream")
-```
-
-#TODO: set interval
-
-Set the function for incoming data:
+First we set the function for incoming data, and then set the mode:
 
 ```
 function process_stream(v)
@@ -65,11 +59,61 @@ function process_stream(v)
 end
 
 crow.input[1].stream = process_stream
+crow.input[1].mode("stream", 0.25)
 ```
+
+`process_stream` will be called every 0.25 seconds, printing the value of crow input 1.
+
+### Change
+
+Again we create a function to handle the input change, and set the mode:
+
+```
+function process_change(v)
+  print("input change: "..v)
+end
+
+crow.input[1].change = process_change
+crow.input[1].mode("change", 2.0, 0.25, "both")
+```
+
+`process_change` will be called whenever input 1 crosses 2.0 volts with a hysteresis of 0.25.
+
+If the input is rising, the value reported will be 1. If falling, it will be 0.
+
+The last parameter when setting the mode can have three values: `"rising"`, `"falling"`, or "`both"`.
+
+### None
+
+We can still manually query the input with mode set to `"none"`.
+
+```
+function process_stream(v)
+  print("input stream: "..v)
+end
+
+crow.input[1].stream = process_stream
+crow.input[1].mode("none")
+
+crow.input[1].query()
+```
+
+`process_stream` will be called each time `crow.input[1].query()` is called, returning the value of crow input 1.
 
 
 ## 3. ii
 
-## 4. Extended Output (ASL)
+![](../images/3-ii.png)
+
+Run `3-input.lua`.
+
+
+
+## 4. asl
+
+![](../images/4-asl.png)
+
+Run `4-input.lua`.
+
 
 ## Reference

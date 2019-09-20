@@ -107,6 +107,38 @@ crow.input[1].query()
 
 Run `3-input.lua`.
 
+Attach a Just Friends via ii. Be sure to align the GND pins. K2 will play an ascending note, K3 plays a random note.
+
+The ii bus requires pullup resistance, which can be toggled by crow:
+
+```
+crow.ii.pullup(true)
+```
+
+If your ii bus is already pulled up (by Teletype or a powered bus board, for example) disable this:
+
+```
+crow.ii.pullup(true)
+```
+
+To change JF's mode and play a note:
+
+```
+crow.ii.jf.mode(1)
+crow.ii.jf.play_note(3)
+```
+
+Crow can also query values from the ii bus. If you have an Ansible connected running Kria, you can query the current preset like this:
+
+```
+crow.ii.kria.event = function(i,v)
+  print("kria event:",i,v)
+end
+
+crow.ii.kria.get("preset")
+```
+
+See the [reference](#reference) section for a full table of supported ii devices and commands.
 
 
 ## 4. asl

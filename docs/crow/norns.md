@@ -145,7 +145,44 @@ See the [reference](#reference) section for a full table of supported ii devices
 
 ![](images/4-asl.png)
 
-Run `4-input.lua`.
+Run `4-input.lua`. Crow output 1 is an LFO, output 2 is an envelope. K2 will randomize the LFO speed. K3 will trigger the envelope. Voltage output is displayed as meters on the left.
 
+Crow can generate and loop multipoint envelopes:
+
+```
+-- start at 0, rise to 5V over 0.1 seconds, fall to 1V over 2 seconds
+output[1].action = "{ to(0,0}, to{5,0.1}, to{1,2} }"
+```
+
+To start (and restart) this action:
+
+```
+output[1].execute()
+```
+
+Shapes can be repeated:
+
+```
+output[1].action = "times( { to(0,0}, to{5,0.1}, to{1,2} } )"
+```
+
+And also looped:
+
+```
+output[1].action = "loop{ { to(0,0}, to{5,0.1}, to{1,2} } }"
+```
+
+Actions can be interrupted at any time by setting a fixed voltage, for example:
+
+```
+output[1].volts = 0
+```
+
+There are a few predefined shapes, such as LFO:
+
+```
+-- LFO rate of 1, amplitude of 5V
+output[1].action = "lfo(1,5)"
+```
 
 ## Reference

@@ -19,7 +19,7 @@ Crow will automatically be detected and interfaced upon connection to norns. Pre
 
 ## 1. Output
 
-![](../images/1-output.png)
+![](images/1-output.png)
 
 Run `1-output.lua`. Connect crow output 1 to an oscillator pitch or similar.
 
@@ -36,7 +36,7 @@ Crow's voltage range is -5.0 to 10.0 for outputs 1 to 4.
 
 ## 2. Input
 
-![](../images/2-input.png)
+![](images/2-input.png)
 
 Run `2-input.lua`.
 
@@ -103,7 +103,7 @@ crow.input[1].query()
 
 ## 3. ii
 
-![](../images/3-ii.png)
+![](images/3-ii.png)
 
 Run `3-input.lua`.
 
@@ -111,7 +111,7 @@ Run `3-input.lua`.
 
 ## 4. asl
 
-![](../images/4-asl.png)
+![](images/4-asl.png)
 
 Run `4-input.lua`.
 

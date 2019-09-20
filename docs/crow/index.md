@@ -3,7 +3,7 @@ layout: page
 permalink: /docs/crow/
 ---
 
-![](/images/crow.jpg)
+![](images/crow.jpg)
 
 # Crow
 

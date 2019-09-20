@@ -23,13 +23,14 @@ Crow will automatically be detected and interfaced upon connection to norns. Pre
 
 Run `1-output.lua`. Connect crow output 1 to an oscillator pitch or similar.
 
-This sets up an knob and screen interface for one very simple command:
+This sets up an knob and screen interface for two very simple commands:
 
 ```
 crow.output[1].volts = 3.33
+crow.output[1].slew = 0.1
 ```
 
-This sets output 1 to 3.33v.
+This sets output 1 to 3.33v, slewing over 0.1 seconds.
 
 Crow's voltage range is -5.0 to 10.0 for outputs 1 to 4.
 

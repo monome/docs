@@ -56,6 +56,8 @@ If you would like to use the II functionality, be sure to observe the orientatio
 
 **@trentgill** (brief details of the default script)
 
+![](images/crow-legend.png)
+
 
 ## Norns
 

@@ -40,7 +40,7 @@ Crow's voltage range is -5.0 to 10.0 for outputs 1 to 4.
 
 Run `2-input.lua`.
 
-- Connect an LFO output to crow input 1. K1 will capture the current value. K2 will toggle `stream` mode on an off.
+- Connect an LFO output to crow input 1. K1 will capture the current value. K2 will toggle `stream` mode on and off.
 - Connect the same cable to input 2 which is set up to trigger a `change` function on each transition.
 
 Inputs have several modes:

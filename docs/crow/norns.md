@@ -105,7 +105,7 @@ crow.input[1].query()
 
 ![](images/3-ii.png)
 
-Run `3-input.lua`.
+Run `3-ii.lua`.
 
 Attach a Just Friends via ii. Be sure to align the GND pins. K2 will play an ascending note, K3 plays a random note.
 
@@ -141,11 +141,11 @@ crow.ii.kria.get("preset")
 See the [reference](#reference) section for a full table of supported ii devices and commands.
 
 
-## 4. asl
+## 4. shapes
 
-![](images/4-asl.png)
+![](images/4-shapes.png)
 
-Run `4-input.lua`. Crow output 1 is an LFO, output 2 is an envelope. K2 will randomize the LFO speed. K3 will trigger the envelope. Voltage output is displayed as meters on the left.
+Run `4-shapes.lua`. Crow output 1 is an LFO, output 2 is an envelope. K2 will randomize the LFO speed. K3 will trigger the envelope. Voltage output is displayed as meters on the left.
 
 Crow can generate and loop multipoint envelopes:
 
@@ -163,13 +163,13 @@ output[1].execute()
 Shapes can be repeated:
 
 ```
-output[1].action = "times( { to(0,0}, to{5,0.1}, to{1,2} } )"
+output[1].action = "times( 4, { to(0,0), to(5,0.1), to(1,2) } )"
 ```
 
 And also looped:
 
 ```
-output[1].action = "loop{ { to(0,0}, to{5,0.1}, to{1,2} } }"
+output[1].action = "loop( { to(0,0), to(5,0.1), to(1,2) } )"
 ```
 
 Actions can be interrupted at any time by setting a fixed voltage, for example:
@@ -185,4 +185,42 @@ There are a few predefined shapes, such as LFO:
 output[1].action = "lfo(1,5)"
 ```
 
+### Query
+
+It is possible to read the current value of an output using a query:
+
+```
+function out(v)
+  print("crow output: "..v)
+end
+
+crow.output[1].receive = out
+
+crow.output[1].query()
+```
+
+Each time `query` is called, crow will send a value to the function `receive`. The script uses this technique to create a realtime scope of the outputs on the norns screen.
+
+
 ## Reference
+
+### Output
+
+```
+output[x].volts = y         -- set output x (1 to 4) to y (-5.0 to 10.0) volts
+output[x].slew = y          -- set output x slew time to y
+
+output[x].action =
+  "{ to(volt,time), ... , to(volt,time) }"    -- series of segments
+  "times( x, { ... } )"           -- repeat segments x times
+  "loop( { ... } )"               -- loop segments indefinitely
+  "lfo(rate,amplitude)"
+  "pulse(time,level,polarity)"
+  "ar(attack,release)"
+
+output[x].query()           -- query current output x value
+output[x].receive           -- function called by query x
+```
+
+### Input
+

@@ -13,7 +13,7 @@ It may be helpful to first explore the [norns studies](https://monome.org/docs/n
 
 Download: [github.com/monome/crow-studies](https://github.com/monome/crow-studies)
 
-(Note: be sure your norns is [updated](https://monome.org/docs/norns/#update) to version 190920 or later).
+(Note: be sure your norns is [updated](https://monome.org/docs/norns/#update) to version 190920 or later.)
 
 Crow will automatically be detected and interfaced upon connection to norns. Presently only a single crow is supported.
 
@@ -23,7 +23,7 @@ Crow will automatically be detected and interfaced upon connection to norns. Pre
 
 Run `1-output.lua`. Connect crow output 1 to an oscillator pitch or similar.
 
-This sets up an knob and screen interface for two very simple commands:
+This sets up a knob and screen interface for two very simple commands:
 
 ```
 crow.output[1].volts = 3.33

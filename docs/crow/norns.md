@@ -207,20 +207,177 @@ Each time `query` is called, crow will send a value to the function `receive`. T
 ### Output
 
 ```
-output[x].volts = y         -- set output x (1 to 4) to y (-5.0 to 10.0) volts
-output[x].slew = y          -- set output x slew time to y
+crow.output[x].volts = y         -- set output x (1 to 4) to y (-5.0 to 10.0) volts
+crow.output[x].slew = y          -- set output x slew time to y
 
-output[x].action =
+crow.output[x].action =
   "{ to(volt,time), ... , to(volt,time) }"    -- series of segments
-  "times( x, { ... } )"           -- repeat segments x times
-  "loop( { ... } )"               -- loop segments indefinitely
+  "times( x, { ... } )"                       -- repeat segments x times
+  "loop( { ... } )"                           -- loop segments indefinitely
   "lfo(rate,amplitude)"
   "pulse(time,level,polarity)"
   "ar(attack,release)"
 
-output[x].query()           -- query current output x value
-output[x].receive           -- function called by query x
+crow.output[x].query()           -- query current output x value
+crow.output[x].receive           -- function called by query x
 ```
 
 ### Input
 
+```
+crow.input[x].stream             -- function called by "stream" mode and query
+crow.input[x].change             -- function called by "change" mode
+
+crow.input[x].mode("none")       -- set input x to query only
+crow.input[x].mode("stream", rate)      -- set input x to stream mode at specified rate
+crow.input[x].mode("change", thresh, hyst, edge) -- set input x to change mode
+  -- specify threshold, hysteresis, and edge ("rising", "falling", or "both")
+
+crow.input[x].query()            -- queries current value of input x
+```
+
+### ii
+
+```
+crow.ii.pullup(state)       -- enable/disable pullups (true/false)
+
+-- ansible
+-- commands
+crow.ii.ansible.trigger( channel, state )
+crow.ii.ansible.trigger_toggle( channel )
+crow.ii.ansible.trigger_pulse( channel )
+crow.ii.ansible.trigger_time( channel, time )
+crow.ii.ansible.trigger_polarity( channel, polarity )
+crow.ii.ansible.cv( channel, volts )
+crow.ii.ansible.cv_slew( channel, time )
+crow.ii.ansible.cv_offset( channel, volts )
+crow.ii.ansible.cv_set( channel, volts )
+
+-- request params
+crow.ii.ansible.get( 'trigger', channel )
+crow.ii.ansible.get( 'trigger_time', channel )
+crow.ii.ansible.get( 'trigger_polarity', channel )
+crow.ii.ansible.get( 'cv', channel )
+crow.ii.ansible.get( 'cv_slew', channel )
+crow.ii.ansible.get( 'cv_offset', channel )
+
+-- then receive
+crow.ii.ansible.event = function( e, data )
+	if e == 'trigger' then
+		-- handle trigger param here
+	elseif e == 'trigger_time' then
+	elseif e == 'trigger_polarity' then
+	elseif e == 'cv' then
+	elseif e == 'cv_slew' then
+	elseif e == 'cv_offset' then
+	end
+end
+
+
+-- ansible kria
+crow.ii.kria.preset( number )
+crow.ii.kria.pattern( number )
+crow.ii.kria.scale( number )
+crow.ii.kria.period( time )
+crow.ii.kria.position( track, param, pos )
+crow.ii.kria.loop_start( track, param, pos )
+crow.ii.kria.loop_length( track, param, pos )
+crow.ii.kria.reset( track, param )
+crow.ii.kria.mute( track, state )
+crow.ii.kria.toggle_mute( track )
+crow.ii.kria.clock( track )
+
+-- request params
+crow.ii.kria.get( 'preset' )
+crow.ii.kria.get( 'pattern' )
+crow.ii.kria.get( 'scale' )
+crow.ii.kria.get( 'period' )
+crow.ii.kria.get( 'position', track, param )
+crow.ii.kria.get( 'loop_start', track, param )
+crow.ii.kria.get( 'loop_length', track, param )
+crow.ii.kria.get( 'reset', track )
+crow.ii.kria.get( 'mute', track )
+crow.ii.kria.get( 'cv', track )
+
+-- then receive
+crow.ii.kria.event = function( e, data )
+	if e == 'preset' then
+		-- handle preset param here
+	elseif e == 'pattern' then
+	elseif e == 'scale' then
+	elseif e == 'period' then
+	elseif e == 'position' then
+	elseif e == 'loop_start' then
+	elseif e == 'loop_length' then
+	elseif e == 'reset' then
+	elseif e == 'mute' then
+  end
+end
+
+
+-- ansible meadowphysics
+-- commands
+crow.ii.meadowphysics.preset( number )
+crow.ii.meadowphysics.reset( track )
+crow.ii.meadowphysics.stop( track )
+crow.ii.meadowphysics.scale( number )
+crow.ii.meadowphysics.period( time )
+
+-- request params
+crow.ii.meadowphysics.get( 'preset' )
+crow.ii.meadowphysics.get( 'stop' )
+crow.ii.meadowphysics.get( 'scale' )
+crow.ii.meadowphysics.get( 'period' )
+crow.ii.meadowphysics.get( 'cv', track )
+
+-- then receive
+crow.ii.meadowphysics.event = function( e, data )
+	if e == 'preset' then
+		-- handle preset param here
+	elseif e == 'stop' then
+	elseif e == 'scale' then
+	elseif e == 'period' then
+	elseif e == 'cv' then
+	end
+end
+
+
+-- jf
+-- commands
+crow.ii.jf.trigger( channel, state )
+crow.ii.jf.run_mode( mode )
+crow.ii.jf.run( volts )
+crow.ii.jf.transpose( pitch )
+crow.ii.jf.vtrigger( channel, level )
+crow.ii.jf.mode( mode )
+crow.ii.jf.tick( clock-or-bpm )
+crow.ii.jf.play_voice( channel, pitch/divs, level/repeats )
+crow.ii.jf.play_note( pitch/divs, level/repeats )
+crow.ii.jf.god_mode( state )
+crow.ii.jf.retune( channel, numerator, denominator )
+crow.ii.jf.quantize( divisions )
+
+
+-- w/
+-- commands
+crow.ii.wslash.record( active )
+crow.ii.wslash.play( direction )
+crow.ii.wslash.loop( state )
+crow.ii.wslash.cue( destination )
+
+-- request params
+crow.ii.wslash.get( 'record' )
+crow.ii.wslash.get( 'play' )
+crow.ii.wslash.get( 'loop' )
+crow.ii.wslash.get( 'cue' )
+
+-- then receive
+crow.ii.wslash.event = function( e, data )
+	if e == 'record' then
+		-- handle record param here
+	elseif e == 'play' then
+	elseif e == 'loop' then
+	elseif e == 'cue' then
+	end
+end
+```

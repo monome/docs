@@ -12,8 +12,8 @@ permalink: /docs/crow/reference/
 
 ### input queries
 
-`input[n].volts`: gets the current value on input `n`
-`input[n].query`: send input `n`'s value to the host as `^^stream(<channel>,<volts>)`
+    `input[n].volts`: gets the current value on input `n`
+    `input[n].query`: send input `n`'s value to the host as `^^stream(<channel>,<volts>)`
 
 ### input modes
 

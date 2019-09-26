@@ -33,9 +33,8 @@ input[n].mode( 'change', threshold, hysteresis, direction ) -- set input n to:
     -- direction:  'rising', 'falling', or 'both' transitions create events
 ```
 
+table calling the input will set the mode with named parameters:
 ```
--- table calling the input will set the mode with named parameters:
-
 -- set input n to stream every 0.2 seconds
 input[n]{ mode = 'stream'
         , time = 0.2
@@ -48,9 +47,8 @@ the default behaviour is that the modes call a specific event, sending to the ho
 'change' -> ^^change(<channel>,<state>)
 ```
 
+you can customize the event handlers:
 ```
--- customize the event handlers like so
-
 input[1].stream = function(volts) <your_function> end
 input[1].change = function(state) <your_function> end
 ```
@@ -75,9 +73,9 @@ output[n]()              -- start the LFO
 
 output[n]( lfo() )       -- shortcut to set the action and start immediately
 ```
-```
--- available actions are (from asllib.lua):
 
+available actions are (from `asllib.lua`):
+```
 lfo( time, level )             -- low frequency oscillator
 pulse( time, level, polarity ) -- trigger / gate generator
 ramp( time, skew, level )      -- triangle LFO with skew between sawtooth or ramp shapes
@@ -85,12 +83,12 @@ ar( attack, release, level )   -- attack-release envelope, retriggerable
 adsr( attack, decay, sustain, release ) -- ADSR envelope
 ```
 
-actions can take 'directives' to control them. the `adsr` action needs a `false` directive in order to enter the release phase. you send them like so:
-
+actions can take 'directives' to control them. the `adsr` action needs a `false` directive in order to enter the release phase:
 ```
--- send output 1 the false directive (usually to release a sustaining envelope)
-
-output[1]( false )
+output[1].action = adsr()
+output[1]( true )  -- start attack phase and pause at sustain
+output[1]( true )  -- re-start attack phase from the current location
+output[1]( false ) -- enter release phase
 ```
 
 ## ASL
@@ -144,7 +142,7 @@ to aid this, a few common functions are automatically closured if using curly br
 ```
 output[n]( to( math.random(5), 1 ) ) -- gives one random, but unchanging value
 output[n]( to( math.random{5}, 1 ) )
-                          ^ ^ a new random value is calculated each time
+                          ^^^ a new random value is calculated each time
 ```
 
 this functionality is provided for:
@@ -192,7 +190,7 @@ metro[1].event = a_different_function
 
 ```
 ii.help()          -- prints a list of supported ii devices
-ii.<module>.help() -- prints available functions for <module>
+ii.<device>.help() -- prints available functions for <device>
 ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups
 ```
 

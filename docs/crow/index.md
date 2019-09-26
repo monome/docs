@@ -9,6 +9,8 @@ permalink: /docs/crow/
 
 Crow speaks and listens and remembers bits of text. A scriptable USB-CV-II machine.
 
+Crow connects to norns and computers running Max, Max for Live, and other serial-enabled applications. We've created various norns scripts and Max for Live devices which require no programming, and we've also created tutorials and studies to get you started quickly programming your own ideas into this tiny, powerful module.
+
 Crow communicates Lua via USB in clear text:
 
 ```
@@ -28,8 +30,6 @@ to crow >     output[1].slew = 0.9
 (CV output 1 ramps to 3 volts over 0.9 seconds)
 ```
 
-Crow integrates with norns, and also connects to computers running Max, Max for Live, and other applications which speak serial. We created a simple application called Druid to facilitate conversation. Crow becomes a programmable CV and II interface.
-
 Crow also stores a complete script, so that without a USB connection it can continue to run, responding to CV input and II messages.
 
 A collaboration by Whimsical Raps and monome.
@@ -40,8 +40,7 @@ A collaboration by Whimsical Raps and monome.
 - Eurorack, 2hp width, 41mm depth
 - Power consumption: 60mA @ +12v, -15mA @ -12V, no 5V
 - 2 input, 4 output, 16bit [-5V,10V] range
-- Rear II connector with switchable pullups
-- 3.5mm stereo MIDI input on top jack
+- Rear II connector with software-switchable pullups
 - full Lua scripting environment
 
 
@@ -54,14 +53,28 @@ If you would like to use the II functionality, be sure to observe the orientatio
 
 ## First
 
-**@trentgill** (brief details of the default script)
-
 ![](images/crow-legend.png)
+
+**@trentgill** (brief details of the default script)
 
 
 ## Norns
 
-[norns crow subpage](norns)
+Crow integrates seamlessly with norns as a CV and II interface.
+
+First, be sure to [update](https://monome.org/docs/norns/#update) your norns software and then get the newest version of [awake](https://llllllll.co/t/awake/21022) and [ash](https://llllllll.co/t/ash-a-small-collection/21349). These scripts have new crow integration, and watch the [Library](https://llllllll.co/c/library) for more.
+
+Scripting for crow is simple:
+
+```
+crow.output[1].volts = 3.3      -- set output 1 to 3.3V
+
+crow.ii.jf.mode(1)              -- via ii, enable JF mode 1
+crow.ii.jf.play_note(1.0,5.0)   -- via ii, play JF note 1V at 5V amplitude
+```
+
+See the full [crow studies](norns) for a complete guide.
+
 
 ## Max
 

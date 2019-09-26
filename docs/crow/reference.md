@@ -12,66 +12,77 @@ permalink: /docs/crow/reference/
 
 ### input queries
 
-    `input[n].volts`: gets the current value on input `n`
-    `input[n].query`: send input `n`'s value to the host as `^^stream(<channel>,<volts>)`
+```
+    input[n].volts  -- gets the current value on input n
+    input[n].query  -- send input n's value to the host -> ^^stream(<channel>,<volts>)
+```
 
 ### input modes
 
 available modes are: `'none'`, `'stream'`, and `'change'`
 
-    `input[n].mode = 'stream'`: set input `n` to `stream` with default `time`
+```
+    input[n].mode = 'stream' -- set input n to stream with default time
 
-    `input[n].mode( 'none' )`: set input `n` to `'none'` mode
-    `input[n].mode( 'stream', time )`: set input `n` to `'stream'` every `time` seconds
-    `input[n].mode( 'change', threshold, hysteresis, direction )`: set input `n` to:
-        : `'change'`: create an event each time the threshold is crossed
-        : `threshold`: set the voltage around which to change state
-        : `hysteresis`: avoid noise of this size (in volts)
-        : `direction`: `'rising'`, `'falling'`, or `'both'` transitions create events
+    input[n].mode( 'none' )         -- set input n to 'none' mode
+    input[n].mode( 'stream', time ) -- set input n to 'stream' every time seconds
+    input[n].mode( 'change', threshold, hysteresis, direction ) -- set input n to:
+        -- 'change':   create an event each time the threshold is crossed
+        -- threshold:  set the voltage around which to change state
+        -- hysteresis: avoid noise of this size (in volts)
+        -- direction:  'rising', 'falling', or 'both' transitions create events
+```
 
 table calls will set the mode with named parameters:
 ```
+-- set input n to stream every 0.2 seconds
 input[n]{ mode = 'stream'
         , time = 0.2
         }
 ```
-set input `n` to `stream` every `0.2` seconds
 
 the default behaviour is that the modes call a specific event, sending to the host:
-    `'stream'`: `^^stream(<channel>,<volts>)`
-    `'change'`: `^^change(<channel>,<state>)`
-
+```
+'stream' -> ^^stream(<channel>,<volts>)
+'change' -> ^^change(<channel>,<state>)
+```
 these can be customized:
-    `input[1].stream = function(volts) <your function> end`
-    `input[1].change = function(state) <your function> end`
-
+```
+    input[1].stream = function(volts) <your_function> end
+    input[1].change = function(state) <your_function> end
+```
 ## output
 
 ### slewing cv
 
-    `output[n].slew = 0.1`: sets output `n`'s slew time to `0.1` seconds.
-    `output[n].volts = 2.0`: tell output `n` to move toward `2.0` volts, over the slew time
+```
+    output[n].slew  = 0.1 -- sets output n's slew time to 0.1 seconds.
+    output[n].volts = 2.0 -- tell output n to move toward 2.0 volts, over the slew time
 
-    `v = output[n].volts`: set `v` to the instantaneous voltage of output `n`
+    v = output[n].volts   -- set v to the instantaneous voltage of output n
+```
 
 ### actions
 
 outputs can have `actions`, not just voltages and slew times.
+```
+    output[n].action = lfo() -- set output n's action to be a default LFO
+    output[n]()              -- start the LFO
 
-    `output[n].action = lfo()`: set output `n`'s action to be a default LFO
-    `output[n]()`: start the LFO
-
-    `output[n]( lfo() )`: shortcut to set the action and start immediately
-
+    output[n]( lfo() )       -- shortcut to set the action and start immediately
+```
 available actions are (from `asllib.lua`):
-    `lfo( time, level )`: low frequency oscillator
-    `pulse( time, level, polarity )`: trigger / gate generator
-    `ramp( time, skew, level )`: triangle LFO with `skew` toward sawtooth or ramp shapes
-    `ar( attack, release, level )`: attack-release envelope, retriggerable
-    `adsr( attack, decay, sustain, release )`: ADSR envelope
+```
+    lfo( time, level )             -- low frequency oscillator
+    pulse( time, level, polarity ) -- trigger / gate generator
+    ramp( time, skew, level )      -- triangle LFO with skew between sawtooth or ramp shapes
+    ar( attack, release, level )   -- attack-release envelope, retriggerable
+    adsr( attack, decay, sustain, release ) -- ADSR envelope
+```
 
 actions can take 'directives' to control them. the `adsr` action needs a `false` directive in order to enter the release phase. you send them like so:
-    `output[n]( false )`
+
+`output[n]( false )`
 
 ## ASL
 

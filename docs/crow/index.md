@@ -76,28 +76,32 @@ crow.ii.jf.play_note(1.0,5.0)   -- via ii, play JF note 1V at 5V amplitude
 See the full [crow studies](norns) for a complete guide.
 
 
-## Max
+## Max + Max for Live
 
-**@dndrks**
+Please visit crow's [Max and Max for Live repo](https://github.com/monome/crow-max). Press 'Download' to save to your device as a single `crow-max-master` zip file, which can be unzipped to reveal two folders: `crow_max` and `crow_m4l`.
 
-To utilize the `crow` object in Max/MSP, you'll want to drop the entire `crow_max` folder into Max's search path. There are two ways to do this: (a.) add the folder to your current User Library or (b.) create your own path directly to the folder. We suggest (a.), since it's a bit cleaner.
+### Max
 
-a. Open Max > Options > File Preferences > highlight User Library > the rightmost icon in the bottom bar should illuminate. Clicking this icon will open the User Library folder, where you can drop the `crow_max` folder. Restart Max and you should be able to instantiate the `crow` object!
+Place `crow_max` into your User Library.
 
-b. Open Max > Options > File Preferences > the leftmost icon in the bottom bar (+) will allow you to define your own user path. You'll see a new entry appear at the bottom of the list. Select 'choose' in the Path column and select your downloaded `crow_max` folder.
+(Max > Options > File Preferences > (highlight) User Library > the rightmost icon in the bottom bar should illuminate. Clicking this icon will open the User Library folder, where you can drop the `crow_max` folder.)
 
-(image of a basic max-crow thing. dd: perhaps the i2c/Just Friends tab from the maxhelp file?)
+If you are performing an update of an existing installation, you can simply allow the system to replace the existing files. If you somehow have previous crow files in your User Library (or anywhere along your Max search path), please delete them and start fresh.
+
+Restart Max and you should be able to instantiate the `crow` object! Right-click it and select 'Open crow Help' to view a full tutorial:
+
+![](images/crow-max.png)
 
 
-## Max for Live
+### Max for Live
 
-**@dndrks**
-
-After downloading the `crow_m4l` folder, place it wherever you'd prefer on your harddrive. Open Ableton Live 9 or 10 and drag the folder into Live's browser, under PLACES.
+After unzipping the `crow_m4l` folder, place it wherever you'd prefer it living longterm on your hard drive. Open Ableton Live 9 or 10 and drag the folder into Live's browser, under PLACES.
 
 If you are updating a previous installation, just replace the previous `crow_m4l` folder's contents with the new files.
 
-(image of ableton-m4l-crow device)
+For a complete walkthrough of the Max for Live devices, visit the [crow-max repo](https://github.com/monome/crow-max).
+
+![](images/m4l_row.png)
 
 
 ## Druid
@@ -132,7 +136,7 @@ You can check the version of the firmware on a crow several ways:
 
 - Norns: open maiden and type `crow.version()` into the command prompt REPL.
 - Druid: type `^^version`.
-- Max/M4l: **@dndrks** maybe have it printed somewhere on connect??
+- Max/M4l: open `^^bootloader.maxpat` from the `crow_max` folder and select `^^v`
 
 [bootloader instructions](update) - step by step guide to update the crow firmware.
 

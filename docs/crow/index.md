@@ -5,34 +5,15 @@ permalink: /docs/crow/
 
 ![](images/crow.jpg)
 
-# Crow
+# crow
 
 Crow speaks and listens and remembers bits of text. A scriptable USB-CV-II machine.
 
 Crow connects to norns and computers running Max, Max for Live, and other serial-enabled applications. We've created various norns scripts and Max for Live devices which require no programming, and we've also created tutorials and studies to get you started quickly programming your own ideas into this tiny, powerful module.
 
-Crow communicates Lua via USB in clear text:
-
-```
-to crow >     print("caw!")
-crow says >   caw!
-```
-
-Which allows the weaving of musical structure:
-
-```
-to crow >     x = math.random(12)
-              print(x)
-crow says >   3
-to crow >     output[1].slew = 0.9
-              output[1].volts = x
-
-(CV output 1 ramps to 3 volts over 0.9 seconds)
-```
-
 Crow also stores a complete script, so that without a USB connection it can continue to run, responding to CV input and II messages.
 
-A collaboration by Whimsical Raps and monome.
+A collaboration by [Whimsical Raps](https://www.whimsicalraps.com) and monome.
 
 
 ## Specifications
@@ -115,7 +96,26 @@ A text editor alongside Druid provides an interactive platform for designing new
 
 ## Scripting
 
-Here's an simple example. A rising trigger on input 1 will advance a sequence of voltages on output 1.
+Crow communicates Lua via USB in clear text:
+
+```
+to crow >     print("caw!")
+crow says >   caw!
+```
+
+Which allows the weaving of musical structure:
+
+```
+to crow >     x = math.random(12)
+              print(x)
+crow says >   3
+to crow >     output[1].slew = 0.9
+              output[1].volts = x
+
+(CV output 1 ramps to 3 volts over 0.9 seconds)
+```
+
+Crow can also store a complete script, as in the following example:
 
 ```
 notes = {0,7,5,11,12,3}
@@ -128,6 +128,8 @@ input[1].change = function()
   output[1].volts = notes[step]/12
 end
 ```
+
+A rising trigger on input 1 will advance a sequence of voltages on output 1.
 
 See the full [scripting tutorial](scripting) for an exploration of crow in standalone mode.
 

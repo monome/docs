@@ -115,10 +115,10 @@ The ii bus requires pullup resistance, which can be toggled by crow:
 crow.ii.pullup(true)
 ```
 
-If your ii bus is already pulled up (by Teletype or a powered bus board, for example) disable this:
+If your ii bus is already pulled up (by Teletype or a powered bus board, for example), you can erase this line (as pullup is off by default), or explicitly turn off pullups like this:
 
 ```
-crow.ii.pullup(true)
+crow.ii.pullup(false)
 ```
 
 To change JF's mode and play a note:

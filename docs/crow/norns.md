@@ -3,7 +3,7 @@ layout: page
 permalink: /docs/crow/norns/
 ---
 
-(image: norns + eurorack)
+![](../images/crow-norns.png)
 
 # Rising: Crow Studies
 
@@ -19,7 +19,7 @@ Crow will automatically be detected and interfaced upon connection to norns. Pre
 
 ## 1. Output
 
-![](images/1-output.png)
+![](../images/1-output.png)
 
 Run `1-output.lua`. Connect crow output 1 to an oscillator pitch or similar.
 
@@ -36,7 +36,7 @@ Crow's voltage range is -5.0 to 10.0 for outputs 1 to 4.
 
 ## 2. Input
 
-![](images/2-input.png)
+![](../images/2-input.png)
 
 Run `2-input.lua`.
 
@@ -103,7 +103,7 @@ crow.input[1].query()
 
 ## 3. ii
 
-![](images/3-ii.png)
+![](../images/3-ii.png)
 
 Run `3-ii.lua`.
 
@@ -143,7 +143,7 @@ See the [reference](#reference) section for a full table of supported ii devices
 
 ## 4. shapes
 
-![](images/4-shapes.png)
+![](../images/4-shapes.png)
 
 Run `4-shapes.lua`. Crow output 1 is an LFO, output 2 is an envelope. K2 will randomize the LFO speed. K3 will trigger the envelope. Voltage output is displayed as meters on the left.
 

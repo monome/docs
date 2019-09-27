@@ -78,7 +78,7 @@ See the full [crow studies](norns) for a complete guide.
 
 ## Max + Max for Live
 
-Please visit crow's [Max and Max for Live repo](https://github.com/monome/crow-max). Press 'Download' to save to your device as a single `crow-max-master` zip file, which can be unzipped to reveal two folders: `crow_max` and `crow_m4l`.
+Please visit crow's [Max and Max for Live repo](https://github.com/monome/crow-max). Press 'Download' to save a `crow-max-and-m4l-master` zip file to your device, which when unzipped will reveal two folders: `crow_max` and `crow_m4l`.
 
 ### Max
 
@@ -99,7 +99,7 @@ After unzipping the `crow_m4l` folder, place it wherever you'd prefer it living 
 
 If you are updating a previous installation, just replace the previous `crow_m4l` folder's contents with the new files.
 
-For a complete walkthrough of the Max for Live devices, visit the [crow-max repo](https://github.com/monome/crow-max).
+For a complete walkthrough of the Max for Live devices, visit the [crow-max-and-m4l repo](https://github.com/monome/crow-max).
 
 ![](images/m4l_row.png)
 
@@ -148,7 +148,7 @@ You can check the version of the firmware on a crow several ways:
 
 - Norns: open maiden and type `crow.version()` into the command prompt REPL.
 - Druid: type `^^version`.
-- Max/M4l: open `^^bootloader.maxpat` from the `crow_max` folder and select `^^v`
+- Max/M4l: either open `^^bootloader.maxpat` from the `crow_max` folder **or** instantiate a `^^bootloader` object in a new patcher (lock and double click the object) and select `^^v`
 
 Check this against the [newest firmware version](https://github.com/monome/crow/releases).
 

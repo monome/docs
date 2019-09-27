@@ -106,20 +106,34 @@ For a complete walkthrough of the Max for Live devices, visit the [crow-max repo
 
 ## Druid
 
-("livecoding" and script uploading)
+![](images/druid-vim.png)
 
-(how to install, example usage)
+[Druid](https://github.com/monome/druid) is a small utility for communicating with crow, both for realtime interaction and the uploading of full scripts.
 
-(image of editor+druid)
+A text editor alongside Druid provides an interactive platform for designing new patterns in a modular synth.
 
 
 ## Scripting
 
-Short (standalone) lua example.
+Here's an simple example. A rising trigger on input 1 will advance a sequence of voltages on output 1.
 
-[scripting](scripting) - standalone examples (mirror "rising")
+```
+notes = {0,7,5,11,12,3}
+step = 1
 
-[reference](reference) - standalone functions and tables
+input[1].mode("change",2.0,0.5,"rising")
+input[1].change = function()
+  if step > #notes then step = 1
+  else step = step + 1 end
+  output[1].volts = notes[step]/12
+end
+```
+
+See the full [scripting tutorial](scripting) for an exploration of crow in standalone mode.
+
+The [reference guide](reference) provides a table of crow-specific commands.
+
+Additional Lua references:
 
 - [programming in lua (first edition)](https://www.lua.org/pil/contents.html)
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)

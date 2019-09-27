@@ -159,7 +159,7 @@ You can check the version of the firmware on a crow several ways:
 
 - Norns: open maiden and type `crow.version()` into the command prompt REPL.
 - Druid: type `^^version`.
-- Max/M4l: either open `^^bootloader.maxpat` from the `crow_max` folder **or** instantiate a `^^bootloader` object in a new patcher (lock and double click the object) and select `^^v`
+- Max/M4l: either open `^^bootloader.maxpat` from the `crow_max` folder **or** instantiate a `^^bootloader` object in a new patcher (lock and double click the object) and select `^^v`.
 
 Check this against the [newest firmware version](https://github.com/monome/crow/releases).
 

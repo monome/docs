@@ -7,7 +7,7 @@ permalink: /docs/crow/technical/
 
 ## Calibration
 
-crow has an in-built calibration mechansim to allow the inputs and outputs to
+Crow has an in-built calibration mechansim to allow the inputs and outputs to
 accurately follow and output values. This functionality is primarily for use with
 volt-per-octave signals, though of course this accuracy can be used for any number
 of other purposes!
@@ -29,7 +29,7 @@ to default values, in case you're having problems with the calibration process.
 This helper function is just for debugging purposes. Calling it will simply dump
 a list of values showing the scaling & translation of voltages that were measured
 during the calibratin process. If you're really curious try resetting to the defaults
-then printing, followed by a `test()` and `print` to see the difference.
+then printing, followed by a `test()` and `print()` to see the difference.
 
 
 ## Environment Commands
@@ -52,22 +52,20 @@ simply send a 3 char command (eg `^^s`) for brevity & speed
 - `^^printscript`: requests crow to print the current user script saved in flash over usb to the host. prints a warning if no user script exists.
 - `^^bootloader`: jump directly to the bootloader.
 - `^^reset` / `^^restart`: reboots crow (not just lua env). nb: causes usb connection to be reset.
+- `^^kill`: restarts the lua environment
 - `^^identity`: returns serial number.
 - `^^version`: returns current firmware version.
 
 
-
-### recovering from an unresponsive state
+### Recovering from an unresponsive state
 
 It's entirely possible to upload crow scripts that will make crow unresponsive
 and require clearing of the on-board script.
 
-#### Requesting user-script-clear
-
 The gentlest way to deal with this situation is to send the `^^clearscript`
-command over usb. You <will be able to> do this by typing `;c` or `^^c` in the
-crow application<, or pressing a 'clear script' button in maiden?>, or pressing
-the (^^clearscript) message box in max.
+command over usb, which may be followed by `^^reset`
 
+- Druid: `^^c` then `^^r`
+- Norns: `crow.clear()` then `crow.reset()`
 
 

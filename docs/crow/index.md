@@ -130,20 +130,22 @@ Short (standalone) lua example.
 
 ## Updates
 
-[current firmware version](https://github.com/monome/crow/releases)
-
 You can check the version of the firmware on a crow several ways:
 
 - Norns: open maiden and type `crow.version()` into the command prompt REPL.
 - Druid: type `^^version`.
 - Max/M4l: open `^^bootloader.maxpat` from the `crow_max` folder and select `^^v`
 
-[bootloader instructions](update) - step by step guide to update the crow firmware.
+Check this against the [newest firmware version](https://github.com/monome/crow/releases).
+
+To update, see the step by step [bootloader instructions](update) to update the crow firmware.
 
 
 ## Technical
 
-[technical](technical) - calibration, ^^ commands?
+Crow ships pre-calibrated, but it is possible to re-run the automatic calibration. There are also a subset of commands for managing the state of the device and contents of flash memory.
+
+See the [technical](technical) page for further details.
 
 
 ## Help

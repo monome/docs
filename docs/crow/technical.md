@@ -7,7 +7,7 @@ permalink: /docs/crow/technical/
 
 ## Calibration
 
-Crow has an in-built calibration mechansim to allow the inputs and outputs to
+Crow has an in-built calibration mechanism to allow the inputs and outputs to
 accurately follow and output values. This functionality is primarily for use with
 volt-per-octave signals, though of course this accuracy can be used for any number
 of other purposes!
@@ -21,14 +21,14 @@ The `cal.test()` function causes crow to re-run the calibration process.
 
 **You must remove all patch cables from the jacks for this process to work correctly!**
 Calling `test` without any arguments runs the calibration as per normal, while
-runing `test('default')` will not run the calibration process, but instead return
+running `test('default')` will not run the calibration process, but instead return
 to default values, in case you're having problems with the calibration process.
 
 ### cal.print()
 
 This helper function is just for debugging purposes. Calling it will simply dump
 a list of values showing the scaling & translation of voltages that were measured
-during the calibratin process. If you're really curious try resetting to the defaults
+during the calibration process. If you're really curious try resetting to the defaults
 then printing, followed by a `test()` and `print()` to see the difference.
 
 
@@ -41,7 +41,7 @@ commands & split up larger code pieces automatically.
 
 The following commands are parsed directly from usb, so should work even if the lua
 environment has crashed. nb: start/end script won't work correctly if the env is
-down though. Use clearscript first.
+down though. Use `^^clearscript` first.
 
 nb: only the first char after the `^^` symbol matters, so the host can
 simply send a 3 char command (eg `^^s`) for brevity & speed
@@ -67,5 +67,3 @@ command over usb, which may be followed by `^^reset`
 
 - Druid: `^^c` then `^^r`
 - Norns: `crow.clear()` then `crow.reset()`
-
-

@@ -29,7 +29,7 @@ A collaboration by [Whimsical Raps](https://www.whimsicalraps.com) and monome.
 
 Align the 10-pin ribbon cable so the red stripe corresponds to the white indicator on the rear of the module’s circuit board. This is toward the lower edge of the module.
 
-If you would like to use the ii functionality, be sure to observe the orientation of the connector. The white stripe indicates GND.
+If you would like to use the [ii](/docs/modular/ii) functionality, be sure to observe the orientation of the connector. The white stripe indicates GND.
 
 
 ## First
@@ -50,7 +50,7 @@ For the code-curious, see the implementation [on github](https://github.com/mono
 
 ## Norns
 
-Crow integrates seamlessly with norns as a CV and ii interface.
+Crow integrates seamlessly with norns as a CV and [ii](/docs/modular/ii) interface.
 
 First, be sure to [update](https://monome.org/docs/norns/#update) your norns software and then get the newest version of [awake](https://llllllll.co/t/awake/21022) and [ash](https://llllllll.co/t/ash-a-small-collection/21349). These scripts have new crow integration, and watch the [Library](https://llllllll.co/c/library) for more.
 

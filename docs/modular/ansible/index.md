@@ -35,7 +35,7 @@ Align the 10-pin ribbon cable so the red stripe corresponds to the white indicat
 
 Be careful not to misalign the connector left-to-right either - while Ansible is protected against incorrect connection, doing so may damage other modules in your Eurorack case.
 
-If you wish Ansible to communicate with Teletype you will need to attach the II ribbon cable behind the panel. Be sure to align the red stripe on the cable with the white line on the board.
+If you wish Ansible to communicate with Teletype you will need to attach the [ii](/docs/modular/ii) ribbon cable behind the panel. Be sure to align the red stripe on the cable with the white line on the board.
 
 Secure the module with the two included screws.
 

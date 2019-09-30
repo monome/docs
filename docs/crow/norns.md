@@ -107,7 +107,7 @@ crow.input[1].query()
 
 Run `3-ii.lua`.
 
-Attach a Just Friends via ii. Be sure to align the GND pins. K2 will play an ascending note, K3 plays a random note.
+Attach a Just Friends via [ii](/docs/modular/ii). Be sure to align the GND pins. K2 will play an ascending note, K3 plays a random note.
 
 The ii bus requires pullup resistance, which can be toggled by crow:
 

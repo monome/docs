@@ -25,7 +25,7 @@ Just Type comes pre-installed since Just Friends v3 (late 2017). Get the update 
 
 Just Type also requires [Teletype 2.0+](https://monome.org/docs/modular/update/). Any 2.x+ commands in the accompanying musical examples will be explained and hyperlinked to reference points in the [manual](https://monome.org/docs/modular/teletype/manual/).
 
-And of course you'll need to connect an [ii cable](https://market.monome.org/collections/other/products/ii-cable) between the TT and JF. If you have more than 3 modules on your ii bus you will likely need a [TT bus board](https://market.monome.org/collections/other/products/tt-busboard) to ensure the electrical levels are correct. 
+And of course you'll need to connect an [ii cable](https://market.monome.org/collections/other/products/ii-cable) between the TT and JF. If you have more than 3 modules on your [ii bus](/docs/modular/ii) you will likely need a [TT bus board](https://market.monome.org/collections/other/products/tt-busboard) to ensure the electrical levels are correct.
 
 ## Practical Magic
 
@@ -102,7 +102,7 @@ Featured in the banner video above.
 
 Just Friends is set to *shape/sustain*. Mangrove's *FORMANT* is sent through *6N* while its *SQUARE* is providing subtle FM.
 
-This scene makes heavy use of two features from Teletype 2.x, [EVERY](https://monome.org/docs/modular/teletype/manual/#every) and [Turtle (@)](https://monome.org/docs/modular/teletype/manual/#turtle). 
+This scene makes heavy use of two features from Teletype 2.x, [EVERY](https://monome.org/docs/modular/teletype/manual/#every) and [Turtle (@)](https://monome.org/docs/modular/teletype/manual/#turtle).
 
 - `EVERY x:` is a control flow mod that runs a command every `x` times it’s called.
 - `@` is a two-dimensional movable index of pattern values on the *TRACKER* screen.
@@ -116,12 +116,12 @@ The `M` script:
 
 - clocks Turtle's steps (`@STEP`)
 - randomizes Turtle's direction (`@DIR RRAND -180 180`)
-- passes the value in Turtle’s current position to CV 1 (`CV 1 N @`) 
-- executes `SCRIPT 1`, which sends high triggers/resets to a number of JF channels. 
+- passes the value in Turtle’s current position to CV 1 (`CV 1 N @`)
+- executes `SCRIPT 1`, which sends high triggers/resets to a number of JF channels.
 
 Toggle Turtle visualizer on/off with `@SHOW 1`/`@SHOW 0` in *LIVE* mode.
 
-The scene is pretty minimal, using only one numbered script.  
+The scene is pretty minimal, using only one numbered script.
 `M` and `I` feature [subcommands](https://monome.org/docs/modular/teletype/manual/#sub-commands-1) tied together with a `;`, condensing commands into a single line.
 
 Lots of room for expansion!

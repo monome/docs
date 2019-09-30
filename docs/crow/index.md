@@ -56,7 +56,7 @@ First, be sure to [update](https://monome.org/docs/norns/#update) your norns sof
 
 Scripting for crow is simple:
 
-```
+```lua
 crow.output[1].volts = 3.3      -- set output 1 to 3.3V
 
 crow.ii.jf.mode(1)              -- via ii, enable JF mode 1
@@ -107,14 +107,14 @@ A text editor alongside Druid provides an interactive platform for designing new
 
 Crow communicates Lua via USB in clear text:
 
-```
+```console
 to crow >     print("caw!")
 crow says >   caw!
 ```
 
 Which allows the weaving of musical structure:
 
-```
+```console
 to crow >     x = math.random(12)
               print(x)
 crow says >   3
@@ -126,7 +126,7 @@ to crow >     output[1].slew = 0.9
 
 Crow can also store a complete script, as in the following example:
 
-```
+```lua
 notes = {0,7,5,11,12,3}
 step = 1
 

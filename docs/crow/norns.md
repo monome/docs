@@ -53,7 +53,7 @@ Inputs have several modes:
 
 First we set the function for incoming data, and then set the mode:
 
-```
+```lua
 function process_stream(v)
   print("input stream: "..v)
 end
@@ -68,7 +68,7 @@ crow.input[1].mode("stream", 0.25)
 
 Again we create a function to handle the input change, and set the mode:
 
-```
+```lua
 function process_change(v)
   print("input change: "..v)
 end
@@ -87,7 +87,7 @@ The last parameter when setting the mode can have three values: `"rising"`, `"fa
 
 We can still manually query the input with mode set to `"none"`.
 
-```
+```lua
 function process_stream(v)
   print("input stream: "..v)
 end
@@ -111,26 +111,26 @@ Attach a Just Friends via [ii](/docs/modular/ii). Be sure to align the GND pins.
 
 The ii bus requires pullup resistance, which can be toggled by crow:
 
-```
+```lua
 crow.ii.pullup(true)
 ```
 
 If your ii bus is already pulled up (by Teletype or a powered bus board, for example), you can erase this line (as pullup is off by default), or explicitly turn off pullups like this:
 
-```
+```lua
 crow.ii.pullup(false)
 ```
 
 To change JF's mode and play a note:
 
-```
+```lua
 crow.ii.jf.mode(1)
 crow.ii.jf.play_note(3)
 ```
 
 Crow can also query values from the ii bus. If you have an Ansible connected running Kria, you can query the current preset like this:
 
-```
+```lua
 crow.ii.kria.event = function(i,v)
   print("kria event:",i,v)
 end
@@ -149,38 +149,38 @@ Run `4-shapes.lua`. Crow output 1 is an LFO, output 2 is an envelope. K2 will ra
 
 Crow can generate and loop multipoint envelopes:
 
-```
+```lua
 -- start at 0, rise to 5V over 0.1 seconds, fall to 1V over 2 seconds
 output[1].action = "{ to(0,0}, to{5,0.1}, to{1,2} }"
 ```
 
 To start (and restart) this action:
 
-```
+```lua
 output[1].execute()
 ```
 
 Shapes can be repeated:
 
-```
+```lua
 output[1].action = "times( 4, { to(0,0), to(5,0.1), to(1,2) } )"
 ```
 
 And also looped:
 
-```
+```lua
 output[1].action = "loop( { to(0,0), to(5,0.1), to(1,2) } )"
 ```
 
 Actions can be interrupted at any time by setting a fixed voltage, for example:
 
-```
+```lua
 output[1].volts = 0
 ```
 
 There are a few predefined shapes, such as LFO:
 
-```
+```lua
 -- LFO rate of 1, amplitude of 5V
 output[1].action = "lfo(1,5)"
 ```
@@ -189,7 +189,7 @@ output[1].action = "lfo(1,5)"
 
 It is possible to read the current value of an output using a query:
 
-```
+```lua
 function out(v)
   print("crow output: "..v)
 end
@@ -206,7 +206,7 @@ Each time `query` is called, crow will send a value to the function `receive`. T
 
 ### Output
 
-```
+```lua
 crow.output[x].volts = y         -- set output x (1 to 4) to y (-5.0 to 10.0) volts
 crow.output[x].slew = y          -- set output x slew time to y
 
@@ -224,7 +224,7 @@ crow.output[x].receive           -- function called by query x
 
 ### Input
 
-```
+```lua
 crow.input[x].stream             -- function called by "stream" mode and query
 crow.input[x].change             -- function called by "change" mode
 
@@ -238,7 +238,7 @@ crow.input[x].query()            -- queries current value of input x
 
 ### ii
 
-```
+```lua
 crow.ii.pullup(state)       -- enable/disable pullups (true/false)
 
 -- ansible

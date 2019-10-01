@@ -43,14 +43,14 @@ Execute the `flash.sh` command which is included in the release .zip file. The a
 
 For example if your file was extracted to `~/Downloads/crow-1.1.0` type this on the command line:
 
-```
+```console
 cd ~/Downloads/crow-1.1.0
 ./flash.sh
 ```
 
 You'll see something like:
 
-```
+```console
 dfu-util 0.9
 
 Copyright 2005-2009 Weston Schmidt, Harald Welte and OpenMoko Inc.

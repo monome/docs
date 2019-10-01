@@ -7,7 +7,7 @@ permalink: /docs/crow/scripting/
 
 ## Scripting
 
-###Almost here! We're still preparing this section.
+### Almost here! We're still preparing this section.
 
 Crow communicates Lua via USB in clear text:
 

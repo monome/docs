@@ -44,8 +44,6 @@ end
 
 A rising trigger on input 1 will advance a sequence of voltages on output 1.
 
-See the full [scripting tutorial](scripting) for an exploration of crow in standalone mode.
-
 The [reference guide](reference) provides a table of crow-specific commands.
 
 Additional Lua references:

@@ -54,7 +54,7 @@ For the code-curious, see the implementation [on github](https://github.com/mono
 
 ## Next steps
 
-While *First* is a compelling instrument on its own, crow speaks to all manner of objects: other Eurorack synthesizer modules, computers, and norns.
+While *First* is a compelling instrument on its own, crow collects all manner of objects: other Eurorack synthesizer modules, computers, and norns.
 
 We don't want to box in your creativity, but here are a few (second, third, fourth) ways to approach crow:
 
@@ -73,6 +73,8 @@ Here are some possible configurations for crow to settle in happily among your o
 - use the updated Awake script on norns to send CV and triggers to a VCO/VCA combo
 
 - connect crow to your computer through USB and fire up Druid in a browser to live code triggers, random voltages, or even full-fledged interactions which will save directly on the crow module -- then leave the house and play your script outside!
+
+Though it is still in progress, please feel free to peruse our [scripting tutorial](https://monome.org/docs/crow/scripting/).
 
 ## Updates
 

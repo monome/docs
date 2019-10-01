@@ -21,7 +21,7 @@ A collaboration by [Whimsical Raps](https://www.whimsicalraps.com) and monome.
 - Eurorack, 2hp width, 41mm depth
 - Power consumption: 60mA @ +12v, -15mA @ -12V, no 5V
 - 2 input, 4 output, 16bit [-5V,10V] range
-- Rear ii connector with software-switchable pullups
+- Rear panel digital communication bus (ii)
 - full Lua scripting environment
 
 

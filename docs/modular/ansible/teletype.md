@@ -13,7 +13,7 @@ With no USB device plugged in Ansible continues to run the most recently used ap
 
 By hitting the `preset` key (next to the USB port) with no device plugged, Ansible will toggle into Teletype mode. In this mode the Ansible's outputs and inputs function as an extender, fitting naturally into the Teletype system.
 
-This requires the Ansible to be on the internal *II* bus, a 6 conductor ribbon behind the panel. This ribbon ships with the Ansible. Be sure to align the red stripe when connecting. For more information about different modules that can be connected to the II bus and how this works, see [here](https://llllllll.co/t/a-users-guide-to-i2c/19219).
+This requires the Ansible to be on the internal [ii](/docs/modular/ii) bus, a 6 conductor ribbon behind the panel. Be sure to align the red stripe when connecting. For more information about different modules that can be connected to the ii bus and how this works, see [here](https://llllllll.co/t/a-users-guide-to-i2c/19219).
 
 The following is a quick reference of Teletype ops that Ansible can process. For more details see the Teletype manual.
 

@@ -9,7 +9,7 @@ permalink: /docs/modular/iiheader/
 
 ---
 
-In order for the monome trilogy modules to interact with teletype, they use a communication bus called `II`. This is a simple I2C bus implemented over a 3 or 6 pin ribbon cable. While Teletype ships with the required header already populated, older trilogy modules need to have a small 3pin header attached to the circuit board.
+In order for the monome trilogy modules to interact with teletype, they use a communication bus called [ii](/docs/modular/ii). This is a simple I2C bus implemented over a 3 or 6 pin ribbon cable. While Teletype ships with the required header already populated, older trilogy modules need to have a small 3pin header attached to the circuit board.
 
 The three required 3-pin headers are included with teletype, inserted into the II ribbon cable in the box. You will only need to use as many headers as you have trilogy modules, up to a maximum of three. *Remove any remaining headers from the ribbon cable before installation*.
 

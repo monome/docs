@@ -27,7 +27,7 @@ Align the 10-pin ribbon cable so the red stripe corresponds to the white indicat
 
 Be careful not to misalign the connector left-to-right either – while Teletype is protected against incorrect connection, doing so may damage other modules in your Eurorack case.
 
-If you wish Teletype to communicate with Ansible or other modules with II, you will need to attach the II ribbon cable as outlined in the [II Communication](http://monome.org/docs/modular/iiheader/) page.
+If you wish Teletype to communicate with Ansible or other modules with [ii](/docs/modular/ii), you will need to attach the II ribbon cable as outlined in the [II Communication](http://monome.org/docs/modular/iiheader/) page.
 
 Secure the module with the four included screws, hiding under the tape in the box lid.
 
@@ -61,5 +61,3 @@ The basics of Teletype are quick to learn. The tutorials will get you started an
 Teletype is [open-source](https://github.com/monome/teletype). Since its initial release Teletype has grown an improved extensively thanks to various contributors including @sam, @scanner_darkly, and @sliderule. Additionally the documentation has undergone full reworking.
 
 Discussion happens at [llllllll.co](https://llllllll.co). All contributions are welcome!
-
-

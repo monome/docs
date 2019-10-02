@@ -92,7 +92,9 @@ See the [technical](technical) page for further details.
 
 ## Help
 
-Community discussion happens at [llllllll.co](https://llllllll.co). Come say hello!
+Answers to frequently asked questions can be found in the [FAQ](https://github.com/monome/crow/wiki/FAQ); do chime in if something is left unanswered!
+
+Community discussion happens at [llllllll.co](https://llllllll.co) with a thread about crow user documentation in particular [here](https://llllllll.co/t/crow-end-user-documentation/25893). Come say hello!
 
 Contact *help@monome.org* with further questions.
 

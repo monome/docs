@@ -7,11 +7,11 @@ permalink: /docs/crow/
 
 # crow
 
-Crow speaks and listens and remembers bits of text. A scriptable USB-CV-ii machine.
+crow speaks and listens and remembers bits of text. A scriptable USB-CV-ii machine.
 
-Crow connects to norns and computers running Max, Max for Live, and other serial-enabled applications. We've created various norns scripts and Max for Live devices which require no programming, and we've also created tutorials and studies to get you started quickly programming your own ideas into this tiny, powerful module.
+crow connects to norns and computers running Max, Max for Live, and other serial-enabled applications. We've created various norns scripts and Max for Live devices which require no programming, and we've also created tutorials and studies to get you started quickly programming your own ideas into this tiny, powerful module.
 
-Crow also stores a complete script, so that without a USB connection it can continue to run, responding to CV input and ii messages.
+crow also stores a complete script, so that without a USB connection it can continue to run, responding to CV input and ii messages.
 
 A collaboration by [Whimsical Raps](https://www.whimsicalraps.com) and monome.
 
@@ -36,11 +36,11 @@ If you would like to use the [ii](/docs/modular/ii) functionality, be sure to ob
 
 *First* is the default script that runs on a new crow. It's a phasing rhythm & harmony sequencer. Each crow generates its own unique set of musical content to be scanned and played with voltage control.
 
-It only requires an oscillator and a VCA as company.
+It requires an oscillator, VCA, and some sort of control voltage generator (for clocks, LFOs, random voltage, etc) as company.
 
 ![](images/crow-first.png)
 
-Start by patching Crow's outputs into your synthesizer. Outputs 1+2 and 3+4 are pitch+volume pairs, each representing one voice of the sequence. Outputs 1+3 are volt-per-octave melodies, and outputs 2+4 are attack-release envelope outputs.
+Start by patching crow's outputs into your synthesizer. Outputs 1+2 and 3+4 are pitch+volume pairs, each representing one voice of the sequence. Outputs 1+3 are volt-per-octave melodies, and outputs 2+4 are attack-release envelope outputs.
 
 Example patch:  
 - Output 1+2 -> Mangrove v8 & air  
@@ -85,7 +85,7 @@ To update, see the step by step [bootloader instructions](update) to update the 
 
 ## Technical
 
-Crow ships pre-calibrated, but it is possible to re-run the automatic calibration. There are also a subset of commands for managing the state of the device and contents of flash memory.
+crow ships pre-calibrated, but it is possible to re-run the automatic calibration. There are also a subset of commands for managing the state of the device and contents of flash memory.
 
 See the [technical](technical) page for further details.
 
@@ -99,8 +99,8 @@ Contact *help@monome.org* with further questions.
 
 ## Development
 
-Crow continues to evolve and you can follow development on github:
+crow continues to evolve and you can follow development on github:
 
 [https://github.com/monome/crow](https://github.com/monome/crow)
 
-Crow is open-source and is built on the efforts of other open source projects. Contributions are welcome.
+crow is open-source and is built on the efforts of other open source projects. Contributions are welcome.

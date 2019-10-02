@@ -18,3 +18,5 @@ note: there is an unpopulated UART header which allows for proper debugging. we 
 note: there is also an unpopulated reset switch, which allows for faster development.
 
 note: after uploading a new image, the firmware will start immediately, but an additional reset is needed to re-enable USB host (ie, grids).
+
+for developing crow firmware, see [here](https://github.com/monome/crow/blob/master/readme-development.md).

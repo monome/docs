@@ -12,6 +12,7 @@ new releases are available per module:
 - [whitewhale](https://github.com/monome/whitewhale/releases) **1.5.0** (march 27 2017)
 - [meadowphysics](https://github.com/monome/meadowphysics/releases) **2.1.0** (march 25 2017)
 - [earthsea](https://github.com/monome/earthsea/releases) **1.9.4** (june 19 2017)
+- [crow](https://github.com/monome/crow/releases) - for update procedure see [here](/docs/crow/update)
 
 firmware is updated by connecting a USB A-A cable to your computer and using the utility [dfu programmer](http://dfu-programmer.github.io).
 

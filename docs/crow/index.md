@@ -92,6 +92,8 @@ See the [technical](technical) page for further details.
 
 ## Help
 
+Answers to frequently asked questions can be found in the [FAQ](https://github.com/monome/crow/wiki/FAQ).
+
 Community discussion happens at [llllllll.co](https://llllllll.co). Come say hello!
 
 Contact *help@monome.org* with further questions.

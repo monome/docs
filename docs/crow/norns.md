@@ -151,7 +151,7 @@ Crow can generate and loop multipoint envelopes:
 
 ```lua
 -- start at 0, rise to 5V over 0.1 seconds, fall to 1V over 2 seconds
-output[1].action = "{ to(0,0}, to{5,0.1}, to{1,2} }"
+output[1].action = "{ to(0,0), to(5,0.1), to(1,2) }"
 ```
 
 To start (and restart) this action:

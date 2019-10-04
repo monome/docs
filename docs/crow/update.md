@@ -31,7 +31,7 @@ In case both of the above don't work, you can manually force the bootloader to
 run by placing a jumper on the i2c header and restarting (power-cycling) crow.
 
 The jumper should bridge between either of the centre pins to either of the
-ground pins (ie the pins closest to the power connector, indicated by the
+ground pins (i.e. the pins closest to the power connector, indicated by the
 white stripe on the pcb). In a pinch you can hold a (!disconnected!) patch cable
 to bridge the pins while powering on the case.
 
@@ -39,7 +39,7 @@ to bridge the pins while powering on the case.
 
 ## Flashing the update
 
-Execute the `flash.sh` command which is included in the release .zip file. The actual firmware file that is uploaded is`crow.bin`.
+Execute the `flash.sh` command which is included in the release .zip file. The actual firmware file that is uploaded is `crow.bin`.
 
 For example if your file was extracted to `~/Downloads/crow-1.1.0` type this on the command line:
 

@@ -114,7 +114,7 @@ end
 everything is built on the primitive `to( destination, time )` which takes a destination and time pair, sending the output along a gradient. ASL is just some syntax to tie these short trips into a journey.
 
 ```lua
--- an ASL is a composed of a sequence of 'to' calls in a table
+-- an ASL is composed of a sequence of 'to' calls in a table
 myjourney = { to(1,1), to(2,2), to(3,3) }
 
 -- often clearer as a vertical sequence

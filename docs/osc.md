@@ -239,7 +239,7 @@ set all leds on encoder n (0-1 or 0-3) to 64 member array l[64]
 
     /ring/range n x1 x2 l
 
-set leds on encoder n (0-1 or 0-3) between (inclusive) x1 and x3 to level l (0-15). direction of set is always clockwise, with wrapping.
+set leds on encoder n (0-1 or 0-3) between (inclusive) x1 and x2 to level l (0-15). direction of set is always clockwise, with wrapping.
 
 ## from device
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/crow/faq
+permalink: /docs/crow/faq/
 ---
 
 A collection of FAQ, to supplement the existing documentation.

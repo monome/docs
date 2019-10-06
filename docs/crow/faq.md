@@ -3,19 +3,24 @@ layout: page
 permalink: /docs/crow/faq/
 ---
 
-A collection of FAQ, to supplement the existing documentation.
+# crow questions
 
-### Terms used in relation to crow
-#### i2c
+## Dictionary of crow terms
+
+### i2c
+
 i2c is a communication protocol - it’s a way for devices to talk to each other, like MIDI or USB. In the monome ecosystem (where i2c is sometimes also referred to as “ii”), i2c provides a convenient way to send commands/data between modules. In some situations reducing what could be many patch-cable connections down to a single i2c cable hidden behind the module. For example, crow can use i2c to send unique synthesis commands to Just Friends.
 
-#### Druid
+### Druid
+
 [Druid](https://github.com/monome/druid) is a utility for communicating with crow, both for realtime interaction and the uploading of full scripts. It requires Python to be installed on your computer.
 
-#### Lua
+### Lua
+
 Lua is a programming language known for its flexibility to be embedded in applications. [norns](https://monome.org/norns/) uses Lua to allow the creation of scripts to express musical + artistic ideas. crow also speaks Lua, so it extends the norns ecosystem. Using Druid, you could upload a Lua script to crow -- in turn, crow would save this and perform the script without a computer attached.
 
-#### asl (like a/s/l)
+### asl (like a/s/l)
+
 A Slope Language -- the unique syntax developed for crow to describe voltage control events. For example, a sawtooth ramp could be described as starting at 5.0 V and falling to 0.0 V over a period of a second, then looping:
 
 ```lua
@@ -27,7 +32,7 @@ output[1].action =
 
 [Learn more here](https://github.com/monome/crow#output-library--asl).
 
-### What does it mean that crow is "event-based"?
+## What does it mean that crow is "event-based"?
 
 crow is a blank slate, so it requires instructions to know what you’d like it to do at any given moment. Let's say you want to send voltage from crow's first output to a filter's cutoff frequency. You can automate this instruction by telling crow “please emit 3.33 volts from your first output.” crow is designed to listen to a specific scripting syntax.
 
@@ -45,7 +50,7 @@ Using one of these tools, though, you could:
 - write a norns app that tells crow to wait for triggers at its inputs to create different types of LFOs
 - you can upload a full script to crow so that it knows what it’s meant to do when it's not connected to a computer or norns, and it would just await external triggers (like control voltage at its inputs)
 
-### Can I use [x thing] to control crow?
+## Can I use [x thing] to control crow?
 
 Since crow uses a specific communication syntax, it requires some sort of layer between the thing you want to use to control crow and crow itself. Right now, you can use any of these to have immediate fun with crow:
 - norns
@@ -63,15 +68,15 @@ Searching `tags:crow+norns` at llllllll.co (or [click here](https://llllllll.co/
 
 Not currently. You *can* tell it to run very fast LFO's from its outlets, into audio rate, but this creates instability. For the best experience with crow, consider its outputs to be control-rate generators.
 
-### What is crow's sample rate?
+## What is crow's sample rate?
 
 crow internally generates signals at 48kHz (though the user doesn’t have direct access to these samples). crow reads inputs at 1.5kHz.
 
-### Can I control two or more crows at the same time from norns or M4L?
+## Can I control two or more crows at the same time from norns or M4L?
 
 Not currently, though it is being actively explored. Both norns and the M4L toolkit communicate with one crow at a time, though you *can* read the two inputs, transmit data over i2c, **and** control all four outputs on a single crow simultaneously.
 
-### What the heck are pull-ups + i2c and what do I need to know about them in order to use crow?
+## What the heck are pull-ups + i2c and what do I need to know about them in order to use crow?
 
 Pull-ups are resistors on [i2c-enabled](https://llllllll.co/t/a-users-guide-to-i2c/19219) (or, ii) devices (like crow, Teletype, Ansible, Just Friends, w/). They help control the flow of data as well as direct a bit of power. A "bus" requires only one device to have it's pull-ups enabled in order for data and power to flow correctly. crow's pull-ups are off by default.
 
@@ -90,10 +95,12 @@ If you accidentally enable crow's pull-ups, they will remain that way until you 
 
 nb. There is no real damage risked by enabling pull-ups when you don't need to. You'd need 4+ crows chained together in order to make a potential mess of things. Messages simply will not pass between devices, which will lead to frustration.
 
-### Is crow's status as an [i2c leader or follower](https://github.com/monome/crow#leading-the-i2c-bus) automatic or configurable?
+## Is crow's status as an [i2c leader or follower](https://github.com/monome/crow#leading-the-i2c-bus) automatic or configurable?
+
 It’s automatic, but only leader is currently working. Basically crow is always following (ie listening), until it executes a leader-command, at which point it attempts to lead the bus. Once that command / query is complete, it returns to follower mode.
 
-### How large a script can I store on crow in standalone?
+## How large a script can I store on crow in standalone?
+
 Currently, 8kB =~400 lines of Lua.
 
 From Trent:
@@ -107,7 +114,8 @@ input[1].change = function(s) output[1](s) end
 input[1].mode = 'change'
 ```
 
-### How large a script can I build in Druid?
+## How large a script can I build in Druid?
+
 Currently, 2kB.
 
 This PR https://github.com/monome/crow/pull/193 would bring the maximum "run" size to be 8kB in line with the maximum upload size.

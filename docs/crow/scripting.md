@@ -3,8 +3,6 @@ layout: page
 permalink: /docs/crow/scripting/
 ---
 
-(image)
-
 ## Scripting
 
 Scripts are the little programs crow runs to take on different roles in your synthesizer. They are written in (Lua)[https://www.lua.org] and typically run between 10 and 100 lines. You don't need to write them from scratch though! There's examples to upload directly, and modifying existing scripts is a nice soft entry into writing your own.
@@ -101,10 +99,12 @@ Speaking of tools, your coding terminal doesn't need to be a squinty struggle ei
 
 Now load both these tools up and, resize the windows so you have them side-by-side, something like these examples:
 
-![](images/druid-sublime.jpg)
+![](../images/druid-sublime.jpg)
+
 druid & sublime text
 
-![](images/druid-vim.jpg)
+![](../images/druid-vim.jpg)
+
 druid & vim
 
 You'll want to learn the hotkey that allows you to switch focus between the two programs.
@@ -312,7 +312,7 @@ Notice how the input voltage is saved in a variable `v` then send to output 2.
 
 This short script is already a nice sample & hold. It creates a random value and a sampled input value every time a clock is received. But there is so much more to be done! There's an example of further possibilities in `examples/samplehold.lua` using quantization, and adding some randomness to the input sample, but there are so many more options!
 
-Try adding some *slew* to the outputs, 
+Try adding some *slew* to the outputs,
 
 One great source of inspiration when it comes to sample & hold and other forms of randomness is the Buchla 'Source of Uncertainty' module, but for now that's up to you to explore!
 

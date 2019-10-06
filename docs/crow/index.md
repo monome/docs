@@ -58,13 +58,15 @@ While *First* is a compelling instrument on its own, crow collects all manner of
 
 We don't want to box in your creativity, but here are a few (second, third, fourth) ways to approach crow:
 
-- If you have a **norns**, crow integrates seamlessly as a CV and [ii](/docs/modular/ii) interface. On October 1st 2019, we released an [update](https://monome.org/docs/norns/#update) that allows scripts to communicate with crow. See the full [crow studies](norns) for a complete guide.
+- **norns**: crow integrates seamlessly as a CV and [ii](/docs/modular/ii) interface. On October 1st 2019, we released an [update](https://monome.org/docs/norns/#update) that allows scripts to communicate with crow. See the full [crow studies](norns) for a complete guide.
 
-- If you have a **computer**, you can use your terminal to access [Druid](https://github.com/monome/druid), a small utility for communicating with crow. Druid helps you engage crow in realtime interaction and also upload full scripts (coded in Lua), providing an interactive platform for designing new patterns in a modular synth.
+- **computer**: you can use your terminal to access [Druid](https://github.com/monome/druid), a small utility for communicating with crow. Druid helps you engage crow in realtime interaction and also upload full scripts (coded in Lua), providing an interactive platform for designing new patterns in a modular synth.
 
-- If you have a **computer** with **Max 8** or **Ableton Live 9 or 10 Suite (w/ Max for Live)**, we've built a toolkit that helps crow interact deeply with these programs. Please visit the [Max and Max for Live repo](https://github.com/monome/crow-max) to download the tools and learn more.
+- **Max 8** or **Ableton Live 9 or 10 Suite (w/ Max for Live)**: we've built a toolkit that helps crow interact deeply with these programs. Please visit the [Max and Max for Live repo](https://github.com/monome/crow-max) to download the tools and learn more.
 
 ## Coming home to roost
+
+Though it is still in progress, please feel free to peruse our [scripting tutorial](https://monome.org/docs/crow/scripting/) and crow's command [reference page](https://monome.org/docs/crow/reference/).
 
 Here are some possible configurations for crow to settle in happily among your other modular synth modules:
 
@@ -73,8 +75,6 @@ Here are some possible configurations for crow to settle in happily among your o
 - use the updated Awake script on norns to send CV and triggers to a VCO/VCA combo
 
 - connect crow to your computer through USB and fire up Druid in a terminal to live code triggers, random voltages, or even full-fledged interactions which will save directly on the crow module -- then leave the house and play your script outside!
-
-Though it is still in progress, please feel free to peruse our [scripting tutorial](https://monome.org/docs/crow/scripting/).
 
 ## Updates
 

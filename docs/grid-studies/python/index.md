@@ -29,7 +29,7 @@ Download the code examples here: [github.com/monome/grid-studies-python/releases
 import asyncio
 import monome
 
-class GridStudies(monome.App):
+class GridStudies(monome.GridApp):
     def __init__(self):
         super().__init__('/monome')
 
@@ -38,33 +38,55 @@ class GridStudies(monome.App):
         self.grid.led_level_set(x, y, s*15)
 
 if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
     grid_studies = GridStudies()
 
-    loop = asyncio.get_event_loop()
-    asyncio.async(monome.SerialOsc.create(loop=loop, autoconnect_app=grid_studies))
+    def serialosc_device_added(id, type, port):
+        print('connecting to {} ({})'.format(id, type))
+        asyncio.ensure_future(grid_studies.grid.connect('127.0.0.1', port))
+
+    serialosc = monome.SerialOsc()
+    serialosc.device_added_event.add_handler(serialosc_device_added)
+
+    loop.run_until_complete(serialosc.connect())
     loop.run_forever()
 ```
 
 The `pymonome` library simplifies communication with the grid.
 
-Note that the example here consists of two parts. First, we describe the class `GridStudies` that inherits `monome.App`. This class defines the behavior and properties of our grid-based application. Next, we setup the *serialosc* client, instantiate the application and start the main loop.
+Note that the example here consists of two parts. First, we describe the class `GridStudies` that inherits `monome.GridApp`. This class defines the behavior and properties of our grid-based application. Next, we setup the *serialosc* client, instantiate the application and start the main loop.
 
-Creating application instance is actually the first step our program takes:
-
-```python
-grid_studies = GridStudies()
-```
-
-Next, we create the event loop:
+Python programs using `asyncio` require explicitly starting the event loop, so creating the loop is actually the first step our program takes:
 
 ```python
 loop = asyncio.get_event_loop()
 ```
 
-The next line is a bit tricky. We're creating a *serialosc* client by calling a special method `monome.SerialOsc.create` passing it our event loop and the app via `autoconnect_app` argument. The latter instructs `SerialOsc` to connect the given application to a grid as soon as the grid is plugged in. Also note that creating *serialosc* client is an asynchronous operation. `SerialOsc.create` method returns a _coroutine_, so we can't call it directly. Thus, we also schedule the coroutine execution using `asyncio.async()`.
+Next, we are creating the application instance:
 
 ```python
-asyncio.async(monome.SerialOsc.create(loop=loop, autoconnect_app=grid_studies))
+grid_studies = GridStudies()
+```
+
+In the next lines we define a callback to execute when serialosc detects a monome device. In this example the callback prints the device type and connects the grid port of the application to the newly discovered device. Note that opening a connection to the grid is an asynchronous operation. The `grid.connect` method returns a _coroutine_, so we can't call it directly. Instead, we schedule the coroutine execution using `asyncio.ensure_future()`:
+
+```python
+def serialosc_device_added(id, type, port):
+    print('connecting to {} ({})'.format(id, type))
+    asyncio.ensure_future(grid_studies.grid.connect('127.0.0.1', port))
+```
+
+The next step is to create a serialosc client and attach the callback for new devices:
+
+```python
+serialosc = monome.SerialOsc()
+serialosc.device_added_event.add_handler(serialosc_device_added)
+```
+
+The next line establishes a connection to serialosc, also an asynchronous operation. It can either be scheduled using `asyncio.ensure_future` as above or wrapped in `loop.run_until_complete` which will cause the loop to run until connection is established:
+
+```python
+loop.run_until_complete(serialosc.connect())
 ```
 
 Finally, we start our main loop with the last line:
@@ -73,19 +95,19 @@ Finally, we start our main loop with the last line:
 loop.run_forever()
 ```
 
-After the loop is started, the library creates a *serialosc* client and connects the first discovered device to our `GridStudies` app which is the primary definition of this application.
+After the loop is started, the library connects the first discovered device to our `GridStudies` object which is the primary definition of this application.
 
 For a detailed description of how the *serialosc* mechanism and protocol work, see [monome.org/docs/tech:osc](http://monome.org/docs/tech:osc).
 
 Let's take a look at our application class:
 
 ```python
-class GridStudies(monome.App):
+class GridStudies(monome.GridApp):
     def __init__(self):
-        super().__init__('/monome')
+        super().__init__()
 ```
 
-The constructor here simply calls the parent constructor and its only argument specifies the *prefix* (in this case, `/monome`) which is attached to all OSC messages exchanged with serialosc. For most cases we simply use `/monome` as a default.
+The constructor here simply calls the parent constructor without arguments. Because there is no additional code in the constructor, it can be omitted entirely, but we still have it declared in case we'll want to add some additional initialization logic to the application later.
 
 ### 1.1 Key input
 
@@ -104,10 +126,10 @@ def on_grid_key(self, x, y, s):
 
 ### 1.2 LED output
 
-`GridStudies` is inherited from `monome.App` which is a base class for grid-based applications. It exposes the grid via the `grid` property so we can actually do something with the grid, for example set a an LED value by calling `self.grid.led_level_set()`.
+`GridStudies` is inherited from `monome.GridApp` which is a base class for grid-based applications. It exposes the grid via the `grid` property so we can actually do something with the grid, for example set a an LED value by calling `self.grid.led_level_set()`.
 
 ```python
-self.grid.led_level_set(x, y, s*15)
+self.grid.led_level_set(x, y, s * 15)
 ```
 
 Here we send a new LED update per key event. Since `s` is either 0 or 1, when we multiply it by 15 we get off or full brightness. We set the LED location according to the position incoming key press, x and y.
@@ -368,13 +390,13 @@ Done!
 
 ### Suggested Excercises
 
+- Implement an `on_grid_disconnect` method to stop playback when the grid is disconnected.
 - "Record" keypresses in the "trigger" row to the toggle matrix.
 - Display the loop range on the bottom row of the grid.
 - Use the rightmost key in the "trigger" row as an "alt" key.
     - If "alt" is held while pressing a toggle, clear the entire row.
     - If "alt" is held while pressing the play row, reverse the direction of play.
 
-    
 ## Credits
 
 Python was designed by Guido van Rossum and is maintained by the [Python Software Foundation](python.org).

@@ -3,9 +3,9 @@
 import asyncio
 import monome
 
-class GridStudies(monome.App):
+class GridStudies(monome.GridApp):
     def __init__(self):
-        super().__init__('/monome')
+        super().__init__()
 
     def on_grid_ready(self):
         self.step = [[0 for col in range(self.grid.width)] for row in range(6)]
@@ -79,8 +79,15 @@ class GridStudies(monome.App):
                 self.key_last = x
 
 if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
     grid_studies = GridStudies()
 
-    loop = asyncio.get_event_loop()
-    asyncio.async(monome.SerialOsc.create(loop=loop, autoconnect_app=grid_studies))
+    def serialosc_device_added(id, type, port):
+        print('connecting to {} ({})'.format(id, type))
+        asyncio.ensure_future(grid_studies.grid.connect('127.0.0.1', port))
+
+    serialosc = monome.SerialOsc()
+    serialosc.device_added_event.add_handler(serialosc_device_added)
+
+    loop.run_until_complete(serialosc.connect())
     loop.run_forever()

@@ -5,7 +5,7 @@ permalink: /docs/crow/scripting/
 
 ## Scripting
 
-Scripts are the little programs crow runs to take on different roles in your synthesizer. They are written in (Lua)[https://www.lua.org] and typically run between 10 and 100 lines. You don't need to write them from scratch though! There's examples to upload directly, and modifying existing scripts is a nice soft entry into writing your own.
+Scripts are the little programs crow runs to take on different roles in your synthesizer. They are written in [Lua](https://www.lua.org) and typically run between 10 and 100 lines. You don't need to write them from scratch though! There's examples to upload directly, and modifying existing scripts is a nice soft entry into writing your own.
 
 crow stores a single script in memory at any given time, and it will automatically start it whenever you turn on your synth. When you first turned on crow it was running *First* which is a script too! We'll be uploading new scripts that stop *First* from running, but never fear it's easy to return if you desire (read on!).
 
@@ -21,7 +21,7 @@ To communicate with crow we'll use `druid` which is a command-line tool that let
 
 First we'll collect & install a few tools, starting with `Python` which is the environment that runs `druid`. We need version 3.5+, but let's get the most recent version:
 
-- Mac & Windows: (download from the Python website)[https://www.python.org/downloads/]
+- Mac & Windows: [download from the Python website](https://www.python.org/downloads/)
 - Linux: in a terminal run `sudo apt-get install python3 python3-pip`
 
 Now load up a terminal so we can check Python is installed and get the next pieces:
@@ -30,18 +30,21 @@ Now load up a terminal so we can check Python is installed and get the next piec
 - Linux: Your choice! `gnome-terminal` is likely your default
 
 Check Python is installed and working:
+
 ```
 > python3 -V
 ```
 
-Which should print `Python 3.6.5` or something similar. If this doesn't work for you, try removing the `3` and just run `> python -V`. No luck? Post to the (lines thread)[https://llllllll.co/t/crow-help-druid/25864] & we'll figure it out (and update this doc).
+Which should print `Python 3.6.5` or something similar. If this doesn't work for you, try removing the `3` and just run `> python -V`. No luck? Post to the [lines thread](https://llllllll.co/t/crow-help-druid/25864) & we'll figure it out (and update this doc).
 
 Now we need some Python libraries which we collect with pip:
+
 ```
 > pip3 install pyserial asyncio prompt_toolkit
 ```
 
 All going well, it's time to download `druid`. If you don't know `git` don't worry, you don't need to touch it!
+
 - Navigate to the (`druid` repository)[https://github.com/monome/druid]
 - Click the green button to the right that says 'Clone or download'
 - Click 'Download ZIP'
@@ -49,6 +52,7 @@ All going well, it's time to download `druid`. If you don't know `git` don't wor
 Now decide where you want to put `druid` and unzip the folder to that location. This document will assume `~/druid` which means in your user directory.
 
 For the command-line savvy:
+
 ```
 cd ~
 git clone https://github.com/monome/druid.git
@@ -57,6 +61,7 @@ git clone https://github.com/monome/druid.git
 ### Uploading
 
 Let's load up `druid` so we can talk to crow. We need to enter the druid folder, then run it with python:
+
 ```
 cd ~/druid
 python3 druid.py
@@ -65,6 +70,7 @@ python3 druid.py
 `druid` will start and your cursor will be at the bottom of the screen after `>` awaiting your input. The large empty window above the `////`s is the 'console' and this is where we'll see responses from crow.
 
 Upload the clock divider example by typing `u examples/clockdiv.lua` and you'll see:
+
 ```
 > u examples/clockdiv.lua
  uploading examples/clockdiv.lua
@@ -93,7 +99,7 @@ This is all you need to work with existing scripts! Plenty of fun is to be had p
 
 Onward! It's time to start working with scripts, and see how they work with `druid`.
 
-Enter the *text editor*! Use whatever works for you, but something with syntax highlighting will help you avoid typos & syntactic errors. (Atom)[https://atom.io] is a good open-source option that runs on all major platforms.
+Enter the *text editor*! Use whatever works for you, but something with syntax highlighting will help you avoid typos & syntactic errors. [Atom](https://atom.io) is a good open-source option that runs on all major platforms.
 
 Speaking of tools, your coding terminal doesn't need to be a squinty struggle either. Take a moment to explore the preferences of your terminal application and adjust the font / colours so your eyes aren't bleeding!
 
@@ -112,16 +118,19 @@ You'll want to learn the hotkey that allows you to switch focus between the two 
 ### Say hello
 
 Before trying to do anything fancy, we'll need a blank slate to work with. To do that, we'll upload a script that stops all the default behaviour:
+
 ```
 > u examples/stop.lua
 ```
 
 Now ask crow to say hello:
+
 ```
 > print('hello')
 ```
 
 You should see your request, along with crow's response in the console:
+
 ```
 > print('hello')
 hello
@@ -130,17 +139,20 @@ hello
 The quotes around `'hello'` tell crow that this is a *string* and not a *variable*. *Strings* are like text: what-you-see-is-what-you-get. *Variables* on the other hand, are names that have *data* associated.
 
 Create a variable `value` and make it equal to 3:
+
 ```
 > value = 3
 ```
 
 To make sure crow understood, ask it to print the value of `value`:
+
 ```
 > print(value)
 3
 ```
 
 crow remembered our number! Now we can *do things* with it. How about some arithmetic:
+
 ```
 > print(value + 1)
 4
@@ -155,8 +167,10 @@ This pattern of using `print` to query crow's memory will be central to understa
 ### Pushing around the volts
 
 Let's make a quick patch:
+
 - Plug an oscillator into your speakers and tune it to a bassy tone
 - Patch crow's output 1 into the pitch/frequency input of the oscillator
+
 ```
 > output[1].volts = 1
 ```
@@ -169,6 +183,7 @@ The oscillator will jump up an octave in pitch. Here's what's happening:
 - `volts = 1` sets the static voltage of the output to be `1` which means 1 volt in crow.
 
 Set it back to zero by changing the last number to `0`:
+
 ```
 > output[1].volts = 0
 ```
@@ -176,6 +191,7 @@ Set it back to zero by changing the last number to `0`:
 That's a lot to type out! Instead, you can press the up-arrow in `druid` and the previous command will appear after the prompt so you can make small changes like changing that last number. Keep pressing up-arrow to explore your previous commands.
 
 Give the output some movement by using slew, then up-arrow to go back to 1 volt:
+
 ```
 > output[1].slew = 0.5
 
@@ -189,6 +205,7 @@ The pitch will glide up to 1 volt again, smoothly fading for half a second.
 Let's make a basic sample and hold script which takes a clock on input 1, which then outputs a random voltage on output 1.
 
 In your text editor, load up `sketch.lua` from the druid/ folder. It should look like:
+
 ```
 --- sketch name
 -- description
@@ -203,6 +220,7 @@ end
 - The keyword `end` completes the function definition.
 
 We can now *run* the script in `druid` using the `r` command:
+
 ```
 > r sketch.lua
  running sketch.lua
@@ -211,6 +229,7 @@ We can now *run* the script in `druid` using the `r` command:
 In fact we can just type `r` as `sketch.lua` is used by default.
 
 You'll notice nothing happened though, and that's because our script doesn't do anything yet! Let's update the comments at top to describe our desired behaviour - this is a great way to map out a script & can help find the solution:
+
 ```
 --- sample & hold
 -- in1: sampling clock
@@ -218,6 +237,7 @@ You'll notice nothing happened though, and that's because our script doesn't do 
 ```
 
 Start by setting input 1 to accept a clock signal. For this we set the input to have a special *mode* called 'change'. This mode waits for the input signal to pass above or below a threshold voltage, and generates an *event* whenever this happens. We'll put it inside the `init` function so that it happens whenever the script begins:
+
 ```
 function init()
     input[1].mode('change',1.0,0.1,'rising')
@@ -234,6 +254,7 @@ end
 These values for *threshold* and *hysteresis* are good defaults, so don't worry too much about them. `'rising'` is good for detecting triggers or clocks, but you can also use `'falling'`, or `'both'` which is especially useful for gate inputs.
 
 Our input is setup, but we currently aren't doing anything when a *change* event is triggered by the input cable. When this event occurs, a *function* will be called allowing us to respond to the input. It looks like this:
+
 ```
 input[1].change = function(state)
     -- do things
@@ -241,6 +262,7 @@ end
 ```
 
 Copy this to the bottom of the script, and replace the comment with the `print` function to make sure the clock is being detected:
+
 ```
 input[1].change = function(state)
     print('BANG!')
@@ -248,6 +270,7 @@ end
 ```
 
 Patch a clock source to input 1, then save the script and run it:
+
 ```
 > r
  running ./sketch.lua
@@ -258,6 +281,7 @@ BANG!
 ```
 
 Those *BANG!*s tell us the input is correctly setup and detecting the clock signal. Now rather than having crow shout at us, let's create the elusive random voltage.
+
 ```
 input[1].change = function(state)
     output[1].volts = math.random() * 10 - 5
@@ -276,6 +300,7 @@ If you're having trouble, you can look at the file `examples/samplehold-basic.lu
 ### Make it a conversation
 
 While building the above script, we just zipped through implementation and were only using `druid` to send our script to crow. It can be super useful to have crow send us some information while we work, or to try out commands as we go. For example, let's add a *variable* and debug print to our change event to see what's going on:
+
 ```
 input[1].change = function(state)
     r = math.random() * 10 - 5
@@ -289,6 +314,7 @@ Note how we first calculate the random voltage and assign it to the *variable* n
 When you're confident the script is working as you please, it's good practice to remove the `print` function as it creates a lot of noisy messages in the console. Do this now, and save & run as before.
 
 We can also use druid to find out information about the inputs. The current voltage on input 2 can be printed with:
+
 ```
 > print(input[2].volts)
 1.175299
@@ -297,6 +323,7 @@ We can also use druid to find out information about the inputs. The current volt
 Patch a voltage source to input 2, then up-arrow + enter in druid a few times to see the value update to show the voltage changing.
 
 This call to `input[2].volts` can be included in our sample & hold script too. For now the script just outputs a random value on output 1, but why not sample input 2 and send that to output 2:
+
 ```
 input[1].change = function(state)
     r = math.random() * 10 - 5

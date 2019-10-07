@@ -45,7 +45,7 @@ Now we need some Python libraries which we collect with pip:
 
 All going well, it's time to download `druid`. If you don't know `git` don't worry, you don't need to touch it!
 
-- Navigate to the (`druid` repository)[https://github.com/monome/druid]
+- Navigate to the [`druid` repository](https://github.com/monome/druid)
 - Click the green button to the right that says 'Clone or download'
 - Click 'Download ZIP'
 
@@ -179,7 +179,7 @@ The oscillator will jump up an octave in pitch. Here's what's happening:
 
 - `output` means we're controlling an output channel.
 - `[1]` says we're going to talk to the first output. Those square brackets are used to select an item in a list. Here you could change it from 1 through 4, selecting crow's different outputs.
-- `.` this dot means we're going to access something that is an element of `output[1]`. In our case..
+- `.` this dot means we're going to access something that is an element of `output[1]`. In our case...
 - `volts = 1` sets the static voltage of the output to be `1` which means 1 volt in crow.
 
 Set it back to zero by changing the last number to `0`:
@@ -216,7 +216,7 @@ end
 ```
 
 - The first 2 lines are comments just for reference (as are any lines starting with 2 or more dashes).
-- Next we see a *function* called `init` which currently only contains a comment, ie. it does nothing for now.
+- Next we see a *function* called `init` which currently only contains a comment, i.e. it does nothing for now.
 - The keyword `end` completes the function definition.
 
 We can now *run* the script in `druid` using the `r` command:
@@ -289,8 +289,8 @@ end
 ```
 
 - `output[1].volts = ...` means we're setting output 1's voltage to whatever is on the right of the equals sign
-- `math.random()` is a Lua function that returns us a random number between 0 and 1 (eg: 0.32347)
-- `* 10` multiples the random value by 10, so we have a 10V range (0-10)
+- `math.random()` is a Lua function that returns us a random number between 0 and 1 (e.g.: 0.32347)
+- `* 10` multiplies the random value by 10, so we have a 10V range (0-10)
 - `- 5` subtracts five from our random value, so the range is (-5,5) volts
 
 Save the script & run it in druid with `r`. Patch output 1 to the pitch of an oscillator and listen to the entropic melody...
@@ -333,13 +333,13 @@ input[1].change = function(state)
 end
 ```
 
-Notice how the input voltage is saved in a variable `v` then send to output 2.
+Notice how the input voltage is saved in a variable `v` then sent to output 2.
 
 ### All the possibilities
 
 This short script is already a nice sample & hold. It creates a random value and a sampled input value every time a clock is received. But there is so much more to be done! There's an example of further possibilities in `examples/samplehold.lua` using quantization, and adding some randomness to the input sample, but there are so many more options!
 
-Try adding some *slew* to the outputs,
+(Try adding some *slew* to the outputs?)
 
 One great source of inspiration when it comes to sample & hold and other forms of randomness is the Buchla 'Source of Uncertainty' module, but for now that's up to you to explore!
 

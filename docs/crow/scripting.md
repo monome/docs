@@ -25,6 +25,7 @@ First we'll collect & install a few tools, starting with `Python` which is the e
 - Linux: in a terminal run `sudo apt-get install python3 python3-pip`
 
 Now load up a terminal so we can check Python is installed and get the next pieces:
+
 - Mac: Open `terminal`
 - Windows: Use `PowerShell` and open by right-clicking and `Run as administrator`
 - Linux: Your choice! `gnome-terminal` is likely your default

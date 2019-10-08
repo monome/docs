@@ -56,7 +56,7 @@ For the code-curious, see the implementation [on github](https://github.com/mono
 
 While *First* is a compelling instrument on its own, crow collects all manner of objects: other Eurorack synthesizer modules, computers, and norns.
 
-We have helped train crow to fly through the following landscapes, but you can also script your own behaviors for crow! Please feel free to peruse the [scripting tutorial](https://monome.org/docs/crow/scripting/) and crow's command [reference page](https://monome.org/docs/crow/reference/).
+We have trained crow to navigate through the following landscapes, but you can also script your own flight patterns! Please feel free to peruse the [scripting tutorial](https://monome.org/docs/crow/scripting/) and crow's command [reference page](https://monome.org/docs/crow/reference/).
 
 ### norns
 

@@ -22,7 +22,7 @@ To communicate with crow we'll use `druid` which is a command-line tool that let
 First we'll collect & install a few tools, starting with `Python` which is the environment that runs `druid`. We need version 3.5+, but let's get the most recent version:
 
 - Mac & Windows: [download from the Python website](https://www.python.org/downloads/)
-- Linux: in a terminal run `sudo apt-get install python3 python3-pip`
+- Linux: in a terminal run `sudo apt-get install python3 python3-pip` or equivalent
 
 Now load up a terminal so we can check Python is installed and get the next pieces:
 
@@ -30,42 +30,59 @@ Now load up a terminal so we can check Python is installed and get the next piec
 - Windows: Use `PowerShell` and open by right-clicking and `Run as administrator`
 - Linux: Your choice! `gnome-terminal` is likely your default
 
-Check Python is installed and working:
+Check if Python is installed and working:
 
 ```
-> python3 -V
+python3 -V
 ```
 
-Which should print `Python 3.6.5` or something similar. If this doesn't work for you, try removing the `3` and just run `> python -V`. No luck? Post to the [lines thread](https://llllllll.co/t/crow-help-druid/25864) & we'll figure it out (and update this doc).
+Which should print `Python 3.6.5` or something similar. If this doesn't work for you, try removing the `3` and just run `python -V`. No luck? Post to the [lines thread](https://llllllll.co/t/crow-help-druid/25864) & we'll figure it out (and update this doc).
 
 Now we need some Python libraries which we collect with pip:
 
 ```
-> pip3 install pyserial asyncio prompt_toolkit
+pip3 install --upgrade setuptools
 ```
 
-All going well, it's time to download `druid`. If you don't know `git` don't worry, you don't need to touch it!
-
-- Navigate to the [`druid` repository](https://github.com/monome/druid)
-- Click the green button to the right that says 'Clone or download'
-- Click 'Download ZIP'
-
-Now decide where you want to put `druid` and unzip the folder to that location. This document will assume `~/druid` which means in your user directory.
-
-For the command-line savvy:
+All going well, it's time to install `druid`
 
 ```
-cd ~
-git clone https://github.com/monome/druid.git
+pip3 install monome-druid
 ```
+
+Now druid should be ready to use, you might need to close and reopen the terminal to get access to it.
+
+Let's load up `druid` to test if everything works as expected
+
+```
+druid
+```
+
+If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device.
+To remedy this add yourself to the correct group, which can be determined by running
+
+```
+ls -l /dev/ttyACM0
+crw-rw---- 1 root dialout 166, 0 Oct  9 20:28 /dev/ttyACM0
+```
+
+In this case the group is called `dialout` but it's sometimes also called `uucp`.
+
+To add yourself to the `dialout` group run
+
+```
+sudo gpasswd -a <your username> <the group name found above>
+```
+
+After this logout and login again or simply restart.
+
 
 ### Uploading
 
-Let's load up `druid` so we can talk to crow. We need to enter the druid folder, then run it with python:
+Let's load up `druid` so we can talk to crow.
 
 ```
-cd ~/druid
-python3 druid.py
+druid
 ```
 
 `druid` will start and your cursor will be at the bottom of the screen after `>` awaiting your input. The large empty window above the `////`s is the 'console' and this is where we'll see responses from crow.

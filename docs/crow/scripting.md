@@ -58,40 +58,33 @@ Let's load up `druid` to test if everything works as expected
 druid
 ```
 
-If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device.
-To remedy this add yourself to the correct group, which can be determined by running
+If `druid` responds with `can't find crow device`, make sure crow is connected with the included USB cable & the synthesizer is turned on.
 
-```
-ls -l /dev/ttyACM0
-crw-rw---- 1 root dialout 166, 0 Oct  9 20:28 /dev/ttyACM0
-```
+If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device. See [below](#Permissions) for a fix.
 
-In this case the group is called `dialout` but it's sometimes also called `uucp`.
 
-To add yourself to the `dialout` group run
+#### Bowery
 
-```
-sudo gpasswd -a <your username> <the group name found above>
-```
+Before we can upload a script, we need some scripts to upload! There's a set of examples, and a growing collection of user-provided scripts availabe in the *bowery* repository.
 
-After this logout and login again or simply restart.
+Navigate to [bowery](https://github.com/monome/bowery/releases/latest) and download the .zip file under *Assets*.
 
+Unzip it wherever you'd like to keep your crow scripts, and change-directory (or `cd`) in your terminal to locate them. If you unzip within your Documents folder it would be `cd ~/Documents/bowery`.
 
 ### Uploading
 
-Let's load up `druid` so we can talk to crow.
-
+From the bowery folder, load up `druid` so we can talk to crow.
 ```
 druid
 ```
 
-`druid` will start and your cursor will be at the bottom of the screen after `>` awaiting your input. The large empty window above the `////`s is the 'console' and this is where we'll see responses from crow.
+Your cursor will be at the bottom of the screen after `>` awaiting your input. The large empty window above the `////`s is the 'console' and this is where we'll see responses from crow.
 
-Upload the clock divider example by typing `u examples/clockdiv.lua` and you'll see:
+Upload the clock divider example by typing `u clockdiv.lua` and you'll see:
 
 ```
-> u examples/clockdiv.lua
- uploading examples/clockdiv.lua
+> u clockdiv.lua
+ uploading clockdiv.lua
 lua bootstrapped
 input loaded
 asl loaded
@@ -135,10 +128,10 @@ You'll want to learn the hotkey that allows you to switch focus between the two 
 
 ### Say hello
 
-Before trying to do anything fancy, we'll need a blank slate to work with. To do that, we'll upload a script that stops all the default behaviour:
+Before trying to do anything fancy, we'll need a blank slate to work with. To do that, we'll call crow's reset function to return to the default state:
 
 ```
-> u examples/stop.lua
+> crow.reset()
 ```
 
 Now ask crow to say hello:
@@ -222,7 +215,7 @@ The pitch will glide up to 1 volt again, smoothly fading for half a second.
 
 Let's make a basic sample and hold script which takes a clock on input 1, which then outputs a random voltage on output 1.
 
-In your text editor, load up `sketch.lua` from the druid/ folder. It should look like:
+In your text editor, save a file called `sketch.lua` to the bowery/ folder. Copy and paste the following default layout:
 
 ```
 --- sketch name
@@ -243,8 +236,6 @@ We can now *run* the script in `druid` using the `r` command:
 > r sketch.lua
  running sketch.lua
 ```
-
-In fact we can just type `r` as `sketch.lua` is used by default.
 
 You'll notice nothing happened though, and that's because our script doesn't do anything yet! Let's update the comments at top to describe our desired behaviour - this is a great way to map out a script & can help find the solution:
 
@@ -290,8 +281,8 @@ end
 Patch a clock source to input 1, then save the script and run it:
 
 ```
-> r
- running ./sketch.lua
+> r sketch.lua
+ running sketch.lua
 ...
 BANG!
 BANG!
@@ -311,9 +302,9 @@ end
 - `* 10` multiplies the random value by 10, so we have a 10V range (0-10)
 - `- 5` subtracts five from our random value, so the range is (-5,5) volts
 
-Save the script & run it in druid with `r`. Patch output 1 to the pitch of an oscillator and listen to the entropic melody...
+Save the script & run it in druid with `r sketch.lua`. Patch output 1 to the pitch of an oscillator and listen to the entropic melody...
 
-If you're having trouble, you can look at the file `examples/samplehold-basic.lua` which replicates the work above.
+If you're having trouble, you can look at the file `samplehold-basic.lua` in *bowery* which replicates the work above.
 
 ### Make it a conversation
 
@@ -321,13 +312,13 @@ While building the above script, we just zipped through implementation and were 
 
 ```
 input[1].change = function(state)
-    r = math.random() * 10 - 5
-    print(r)
-    output[1].volts = r
+    rand = math.random() * 10 - 5
+    print(rand)
+    output[1].volts = rand
 end
 ```
 
-Note how we first calculate the random voltage and assign it to the *variable* named `r` (short for random). This means we can look at it with the `print(r)` call before sending it to the output. Now when you save & run the script, you'll see the random voltage printed in the console on every trigger.
+Note how we first calculate the random voltage and assign it to the *variable* named `rand` (short for random). This means we can look at it with the `print(rand)` call before sending it to the output. Now when you save & run the script, you'll see the random voltage printed in the console on every trigger.
 
 When you're confident the script is working as you please, it's good practice to remove the `print` function as it creates a lot of noisy messages in the console. Do this now, and save & run as before.
 
@@ -344,14 +335,14 @@ This call to `input[2].volts` can be included in our sample & hold script too. F
 
 ```
 input[1].change = function(state)
-    r = math.random() * 10 - 5
-    v = input[2].volts
-    output[1].volts = r
-    output[2].volts = v
+    rand = math.random() * 10 - 5
+    volt = input[2].volts
+    output[1].volts = rand
+    output[2].volts = volt
 end
 ```
 
-Notice how the input voltage is saved in a variable `v` then sent to output 2.
+Notice how the input voltage is saved in a variable `volt` then sent to output 2.
 
 ### All the possibilities
 
@@ -383,3 +374,23 @@ Additional Lua references:
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
 - [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)
 - [lua in 15 mins](http://tylerneylon.com/a/learn-lua/)
+
+### Permissions
+
+If `druid` says `can't open serial port` you probably don't have the required permissions to open the device. To remedy this add yourself to the correct group, which can be determined by running (on linux):
+
+```
+ls -l /dev/ttyACM0
+crw-rw---- 1 root dialout 166, 0 Oct  9 20:28 /dev/ttyACM0
+#                  ^ the group
+```
+
+In this case the group is called `dialout` but it's sometimes also called `uucp`.
+
+To add yourself to the `dialout` group run
+
+```
+sudo gpasswd -a <your username> <the group name found above>
+```
+
+After this logout and login again or simply restart.

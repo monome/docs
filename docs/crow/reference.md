@@ -215,11 +215,14 @@ cal.print()   -- prints the current calibration scalers for debugging
 
 ## crow
 
-Accessed with `_c`:
+Accessed with `crow` or `_c`:
 
 ```lua
 -- send a formatted message to host
-_c.tell( name, <args> ) -> ^^name(arg1,arg2)
+crow.tell( name, <args> ) -> ^^name(arg1,arg2)
+
+-- deactivate input modes, zero outputs and slews, and free all metros
+crow.reset()
 ```
 
 ## globals
@@ -227,6 +230,7 @@ _c.tell( name, <args> ) -> ^^name(arg1,arg2)
 These will likely be deprecated / pulled into `_c` or their respective libs
 
 ```lua
+time() -- returns a count of milliseconds since crow was turned on
 get_out( channel ) -- send the current output voltage to host
 get_cv( channel )  -- send the current input voltage to host
 ```

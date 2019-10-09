@@ -56,25 +56,27 @@ For the code-curious, see the implementation [on github](https://github.com/mono
 
 While *First* is a compelling instrument on its own, crow collects all manner of objects: other Eurorack synthesizer modules, computers, and norns.
 
-We don't want to box in your creativity, but here are a few (second, third, fourth) ways to approach crow:
+We have trained crow to navigate the following landscapes, but you can also script your own flight patterns. Please feel free to peruse the [scripting tutorial](https://monome.org/docs/crow/scripting/) and crow's command [reference page](https://monome.org/docs/crow/reference/).
 
-- **norns**: crow integrates seamlessly as a CV and [ii](/docs/modular/ii) interface. On October 1st 2019, we released an [update](https://monome.org/docs/norns/#update) that allows scripts to communicate with crow. See the full [crow studies](norns) for a complete guide.
+### norns
 
-- **computer**: you can use your terminal to access [Druid](https://github.com/monome/druid), a small utility for communicating with crow. Druid helps you engage crow in realtime interaction and also upload full scripts (coded in Lua), providing an interactive platform for designing new patterns in a modular synth.
+- crow integrates seamlessly as a CV and [ii](/docs/modular/ii) interface
+- on October 1st 2019, we released an [update](https://monome.org/docs/norns/#update) that allows scripts to communicate with crow
+- [click to view community-made norns apps with crow integration on lines](https://llllllll.co/search?expanded=true&q=tags%3Acrow%2Bnorns%20order%3Alatest)
+- want to script on your own? See the full [crow studies](norns) for a complete guide
 
-- **Max 8** or **Ableton Live 9 or 10 Suite (w/ Max for Live)**: we've built a toolkit that helps crow interact deeply with these programs. Please visit the [Max and Max for Live repo](https://github.com/monome/crow-max) to download the tools and learn more.
+### computer + Druid
 
-## Coming home to roost
+- you can use your terminal to access [Druid](https://github.com/monome/druid), a small utility for communicating with crow
+- Druid helps you engage crow in realtime interaction and also upload full scripts (coded in Lua), providing an interactive platform for designing new patterns in a modular synth
+- [click to view community-made Druid scripts on lines](https://llllllll.co/t/crow-druid-scripts/25974)
 
-Though it is still in progress, please feel free to peruse our [scripting tutorial](https://monome.org/docs/crow/scripting/) and crow's command [reference page](https://monome.org/docs/crow/reference/).
+### computer + Max 8 / Max for (Ableton) Live
 
-Here are some possible configurations for crow to settle in happily among your other modular synth modules:
-
-- link crow to Just Friends (Whimsical Raps) through an i2c cable (or powered bus) and use the `^^jf_synth` Max for Live device to play Just Friends as a 6-voice polysynth
-
-- use the updated Awake script on norns to send CV and triggers to a VCO/VCA combo
-
-- connect crow to your computer through USB and fire up Druid in a terminal to live code triggers, random voltages, or even full-fledged interactions which will save directly on the crow module -- then leave the house and play your script outside!
+- crow can speak with Max, a powerful visual coding language that has integrations with Ableton Live
+- we have created Max for Live devices to integrate crow with Live, including: Live-synced clocks, MIDI-to-v/8, CC-to-Voltage, and LFO's
+- using the [crow] object in Max 8, create your own Live-controllable devices or standalone utilities
+- [click to visit the Max and Max for Live repo on GitHub](https://github.com/monome/crow-max)
 
 ## Updates
 
@@ -92,7 +94,7 @@ See the [technical](technical) page for further details.
 
 ## Help
 
-Answers to frequently asked questions can be found in the [FAQ](https://github.com/monome/crow/wiki/FAQ).
+Answers to frequently asked questions can be found in the [FAQ](https://monome.org/docs/crow/faq/).
 
 Community discussion happens at [llllllll.co](https://llllllll.co). Come say hello!
 

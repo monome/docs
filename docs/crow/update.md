@@ -15,9 +15,11 @@ Flashing the crow requires setting up `dfu-util` on your laptop, downloading the
 
 ## Get new firmware
 
-*(image)*
+![](../images/crow-releases.png)
 
 [https://github.com/monome/crow/releases](https://github.com/monome/crow/releases)
+
+Download the `crow-vx.x.x.zip` file.
 
 
 ## Activate bootloader

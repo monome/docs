@@ -74,7 +74,6 @@ Unzip it wherever you'd like to keep your crow scripts, and change-directory (or
 ### Uploading
 
 From the bowery folder, load up `druid` so we can talk to crow.
-
 ```
 druid
 ```

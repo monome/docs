@@ -65,7 +65,7 @@ If `druid` responds with `can't open serial port` you probably don't have the re
 
 #### Bowery
 
-Before we can upload a script, we need some scripts to upload! There's a set of examples, and a growing collection of user-provided scripts availabe in the *bowery* repository.
+Before we can upload a script, we need some scripts to upload! There's a set of examples, and a growing collection of user-provided scripts available in the *bowery* repository.
 
 Navigate to [bowery](https://github.com/monome/bowery/releases/latest) and download the .zip file under *Assets*. It will be named `bowery-X`, where X is the release number. Unzip it wherever you'd like to keep your crow scripts.
 

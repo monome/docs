@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/crow/faq/
+permalink: /crow/faq/
 ---
 
 # crow questions

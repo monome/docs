@@ -60,23 +60,23 @@ We have trained crow to navigate the following landscapes, but you can also scri
 
 ### norns
 
-- crow integrates seamlessly as a CV and [ii](/docs/modular/ii) interface
-- on October 1st 2019, we released an [update](https://monome.org/docs/norns/#update) that allows scripts to communicate with crow
-- [click to view community-made norns apps with crow integration on lines](https://llllllll.co/search?expanded=true&q=tags%3Acrow%2Bnorns%20order%3Alatest)
-- want to script on your own? See the full [crow studies](norns) for a complete guide
+- crow integrates seamlessly as a CV and [**ii**](/docs/modular/ii) interface
+- on October 1st 2019, we released an [**update**](https://monome.org/docs/norns/#update) that allows scripts to communicate with crow
+- [**community-made norns apps with crow integration**](https://llllllll.co/search?expanded=true&q=tags%3Acrow%2Bnorns%20order%3Alatest) on lines
+- want to script on your own? See the full [**crow studies**](norns) for a complete guide
 
-### computer + Druid
+### computer + druid
 
-- you can use your terminal to access [Druid](https://github.com/monome/druid), a small utility for communicating with crow
-- Druid helps you engage crow in realtime interaction and also upload full scripts (coded in Lua), providing an interactive platform for designing new patterns in a modular synth
-- [click to view community-made Druid scripts on lines](https://llllllll.co/t/crow-druid-scripts/25974)
+- you can use your terminal to access [**druid**](https://github.com/monome/druid), a small utility for communicating with crow
+- druid helps you engage crow in realtime interaction and also upload full scripts (coded in Lua), providing an interactive platform for designing new patterns in a modular synth
+- want to see what others have scripted? visit [**bowery**](https://github.com/monome/bowery), the druid script collection
 
 ### computer + Max 8 / Max for (Ableton) Live
 
 - crow can speak with Max, a powerful visual coding language that has integrations with Ableton Live
-- we have created Max for Live devices to integrate crow with Live, including: Live-synced clocks, MIDI-to-v/8, CC-to-Voltage, and LFO's
+- we have created Max for Live devices to integrate crow with Live, including: Live-synced clocks, MIDI-to-v/8, CC-to-Voltage, LFO's, executing Lua code directly in Live, parameter mapping your crow scripts, and triggering Lua chunks with MIDI
 - using the [crow] object in Max 8, create your own Live-controllable devices or standalone utilities
-- [click to visit the Max and Max for Live repo on GitHub](https://github.com/monome/crow-max)
+- visit the [**Max and Max for Live repo on GitHub**](https://github.com/monome/crow-max)
 
 ## Updates
 

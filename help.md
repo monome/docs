@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/help/
+permalink: /help/
 ---
 
 # help

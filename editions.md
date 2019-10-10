@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/editions/
+permalink: /editions/
 ---
 
 # editions

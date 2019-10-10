@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/arc/
+permalink: /arc/
 ---
 
 ![](/images/arc-hands.jpg)

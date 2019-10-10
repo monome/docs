@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/setup/
+permalink: /setup/
 ---
 
 # grid and arc basic setup

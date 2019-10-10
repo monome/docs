@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/norns/help/
+permalink: /norns/help/
 ---
 
 # norns: help

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/osc/
+permalink: /osc/
 ---
 
 # osc : opensound control / serialosc protocol

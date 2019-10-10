@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/
+permalink: /modular/
 ---
 
 ## modular

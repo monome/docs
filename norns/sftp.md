@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/norns/sftp/
+permalink: /norns/sftp/
 ---
 
 ## sftp howto

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/libraries/
+permalink: /libraries/
 ---
 
 # libraries

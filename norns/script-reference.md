@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/norns/script-reference/
+permalink: /norns/script-reference/
 ---
 
 # norns script reference

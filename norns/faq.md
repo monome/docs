@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/norns/faq/
+permalink: /norns/faq/
 ---
 
 # FAQ

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/buspowerupgrade/
+permalink: /buspowerupgrade/
 ---
 
 # bus power upgrade
@@ -34,13 +34,13 @@ this will certainly make you uncomfortable. the DCDC is the part indicated by th
 
 ![](/docs/images/tech-hardware-upgrade02.jpg)
 
-## remove diode 
+## remove diode
 
 indicated by white arrow. you could use your soldering iron, or you can simply use your pliers (give it a twist to remove-- it'll probably break apart).
 
 ![](/docs/images/tech-hardware-upgrade04.jpg)
 
-## install capacitor 
+## install capacitor
 
 bend the legs straight.
 
@@ -52,7 +52,7 @@ this capacitor has a polarity (indicated by the black bar on top). **do not put 
 
 ![](/docs/images/tech-hardware-upgrade07.jpg)
 
-## jumper wire 
+## jumper wire
 
 connects between usb power and logic board power. ensure a solid, clean connection. add solder to each point, don't simply try to heat up and stab the wire in.
 
@@ -60,7 +60,7 @@ connects between usb power and logic board power. ensure a solid, clean connecti
 
 ![](/docs/images/tech-hardware-upgrade09.jpg)
 
-## complete 
+## complete
 
 bus power upgrade finished!
 

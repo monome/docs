@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/linux/
+permalink: /linux/
 ---
 
 # Linux setup

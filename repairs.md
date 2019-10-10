@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/repairs/
+permalink: /repairs/
 ---
 
 ## repairs

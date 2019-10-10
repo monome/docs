@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/care/
+permalink: /care/
 ---
 
 # care

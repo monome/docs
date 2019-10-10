@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/grid/
+permalink: /grid/
 ---
 
 ![](/images/grid-stone-1800.jpg)

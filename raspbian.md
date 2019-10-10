@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/raspbian/
+permalink: /raspbian/
 ---
 
 # raspbian

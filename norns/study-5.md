@@ -1,5 +1,5 @@
 ---
-permalink: /docs/norns/study-5/
+permalink: /norns/study-5/
 ---
 
 <div class="vid"><iframe src="https://player.vimeo.com/video/292401792?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>

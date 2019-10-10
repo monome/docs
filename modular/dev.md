@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/dev/
+permalink: /modular/dev/
 ---
 
 # development

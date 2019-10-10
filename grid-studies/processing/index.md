@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/grid-studies/processing/
+permalink: /grid-studies/processing/
 ---
 
 # Grid Studies: Processing
@@ -25,7 +25,7 @@ Download the monome-processing library:
 
 [github.com/monome/monome-processing/releases/latest](https://github.com/monome/monome-processing/releases/latest)
 
-Download the oscP5 library: 
+Download the oscP5 library:
 
 [sojamo.de/libraries/oscp5](http://www.sojamo.de/libraries/oscp5)
 
@@ -34,7 +34,7 @@ These libraries must be copied to the `libraries` folder of your sketchbook, whi
 For example, proper installation of `oscP5` on the Mac would look like:
 
 	~/Documents/Processing/libraries/oscP5/library/oscP5.jar
-	
+
 You'll need to restart Processing if it's running while you installed these libraries.
 
 ## 1. Connect
@@ -44,9 +44,9 @@ The monome-processing library facilitates easy connection and communication with
 ```java
 import org.monome.Monome;
 import oscP5.*;
-	
+
 Monome m;
-	
+
 public void setup() {
 	m = new Monome(this);
 }
@@ -133,7 +133,7 @@ Now we change the grid display upon incoming key data:
 ```java
 public void key(int x, int y, int s) {
   led[y][x] = s * 15;
-  dirty = true;  
+  dirty = true;
 }
 ```
 
@@ -158,7 +158,7 @@ public void draw() {
 
 Once we've refreshed the grid, we set the `dirty` flag to `false` so we're not needlessly refreshing.
 
-The `draw()` function is called at 60fps unless you specify a different rate in `setup()` such as `frameRate(10);`. 
+The `draw()` function is called at 60fps unless you specify a different rate in `setup()` such as `frameRate(10);`.
 
 ### 2.4 Decoupled interaction
 
@@ -193,8 +193,8 @@ First we'll create a new array called `step` that can hold 6 rows worth of step 
   // toggle steps
   if(s == 1 && y < 6) {
     step[y][x] ^= 1;
-    
-    dirty = true; 
+
+    dirty = true;
   }
 ```
 
@@ -205,17 +205,17 @@ We will "build" the LED display from scratch each time we need to refresh. This 
 ```java
 if(dirty) {
 	int[][] led = new int[8][16];
-	    
+
 	// display steps
 	for(int x=0;x<16;x++)
 		for(int y=0;y<6;y++)
 			led[y][x] = step[y][x] * 15;
-	    
+
 	// update grid
 	m.refresh(led);
 	dirty = false;
 }
-```	
+```
 
 That'll get us started.
 
@@ -236,14 +236,14 @@ public void draw() {
   if(timer == STEP_TIME) {
     if(play_position == 15)
       play_position = 0;
-    else 
+    else
       play_position++;
-    
+
     timer = 0;
     dirty = true;
   }
   else timer++;
-  
+
   // ...
 ```
 
@@ -261,9 +261,9 @@ for(int x=0;x<16;x++) {
 	// highlight the play position
  	if(x == play_position)
    		highlight = 4;
-	else 
+	else
    		highlight = 0;
-   
+
  	for(int y=0;y<6;y++)
    		led[y][x] = step[y][x] * 11 + highlight;
 }
@@ -282,7 +282,7 @@ Drawing the trigger row happens entirely in the `draw()`:
 ```java
 // draw trigger bar and on-states
 for(int x=0;x<16;x++)
-	led[6][x] = 4;    
+	led[6][x] = 4;
 for(int y=0;y<6;y++)
 	if(step[y][play_position] == 1)
 		led[6][y] = 15;
@@ -326,14 +326,14 @@ public void key(int x, int y, int s) {
   // toggle steps
   if(s == 1 && y < 6) {
     step[y][x] ^= 1;
-    
-    dirty = true; 
+
+    dirty = true;
   }
   // cut
   else if(y == 7) {
     if(s == 1)
       cutting = true;
-      next_position = x;  
+      next_position = x;
   }
 }
 ```
@@ -346,9 +346,9 @@ if(timer == STEP_TIME) {
 		play_position = next_position;
 	else if(play_position == 15)
 		play_position = 0;
-	else 
+	else
 		play_position++;
-		
+
 	cutting = false;
 // ...
 ```
@@ -388,7 +388,7 @@ We'll then use the `keys_held` counter to do different actions:
 else if(y == 7) {
 	// track number of keys held
 	keys_held = keys_held + (s*2) - 1;
-	    
+
 	// cut
 	if(s == 1 && keys_held == 1) {
 		cutting = true;
@@ -413,7 +413,7 @@ if(timer == STEP_TIME) {
 		play_position = 0;
 	else if(play_position == loop_end)
 		play_position = loop_start;
-	else 
+	else
 		play_position++;
 ```
 
@@ -430,7 +430,7 @@ Done!
 	- If "alt" is held while pressing a toggle, clear the entire row.
 	- If "alt" is held while pressing the play row, reverse the direction of play.
 
-	
+
 ## Credits
 
 *Processing* was designed by Ben Fry and Casey Reas and is maintained by the [Processing Foundation](processing).

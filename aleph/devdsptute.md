@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/dev/tutorial/
+permalink: /aleph/dev/tutorial/
 ---
 
 # Aleph: DSP Dev Tutorial

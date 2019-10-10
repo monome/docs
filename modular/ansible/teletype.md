@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/teletype/
+permalink: /modular/ansible/teletype/
 ---
 
 ## Ansible + Teletype

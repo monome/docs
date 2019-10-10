@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/grid-studies/max/
+permalink: /grid-studies/max/
 ---
 
 # Grid Studies: Max

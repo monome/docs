@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/crow/reference/
+permalink: /crow/reference/
 ---
 
 

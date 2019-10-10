@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/grid-studies/pd/
+permalink: /grid-studies/pd/
 ---
 
 # Grid Studies: Pure Data
@@ -117,9 +117,9 @@ Remove the connection between routeOSC and the LED-driving message box.
 To respond to the 0,0 position, we can use two `route` objects to filter the x, then y location of the press. Then we can respond only to key down by looking for values of 1 with a `sel` object.
 
 	route 0
-	
+
 	route 0
-	
+
 	sel 1
 
 Connect the output from the sel into a toggle box (control/command + shift + T). You can now see the toggle reflect the toggle state by pressing the upper-left key on the grid.
@@ -150,7 +150,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 Before we can make our bank of toggles, we need a way to look at the top six rows only, as the last two rows are not part of our toggle bank. First we'll use a message box to switch around our key input to place the row number first, then route off the last two rows for use later.
 
 	$2 $1 $3
-	
+
 	route 6 7
 
 By switching the first and second elements and then putting them into the route object, rows 0-5 are passed to the right outlet.
@@ -168,13 +168,13 @@ The toggles sub-patch can be broken down into a number of small steps to underst
 In order to save the state of the bank of toggles we create a table called 'grid' with 128 values.
 
 	table grid 128
-	
+
 Rearranging the input key press information we can ignore key-ups as before. Inline comments track the current order of our input message.
 
 	$3 $2 $1
-	
+
 	route 1
-	
+
 In order to put our 2-dimensional grid into a table, we have to 'flatten' it into a long list. We do so by multiplying the y value by 16, and adding the result to our x value. The grid is thus read like a book, from left to right, starting at the top and working downward.
 
 	unpack
@@ -182,7 +182,7 @@ In order to put our 2-dimensional grid into a table, we have to 'flatten' it int
 	|	* 16
 	| /
 	+
-	
+
 This index value is then used to set two values before toggling that state. The index is converted back to the x,y coordinate for LED feedback, plus we save the index to update the table with our new toggle state.
 
 Finally we use the index to find the current state of the table, then invert that state with '== 0'. This works because our state is always a 0 or 1. This value is then sent to update the grid LED and is stored back in the table.

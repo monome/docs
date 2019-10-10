@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/dev/app/
+permalink: /aleph/dev/app/
 ---
 
 # Aleph: Standalone App Overview

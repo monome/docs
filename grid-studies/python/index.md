@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/grid-studies/python/
+permalink: /grid-studies/python/
 ---
 
 # Grid Studies: Python

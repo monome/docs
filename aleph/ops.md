@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/ops/
+permalink: /aleph/ops/
 ---
 
 # Aleph: Operators
@@ -34,7 +34,7 @@ Accumulates input values to a stored number. Can be set to wrap the count around
 
 ### ADD
 
-Adds input A and input B. outputs the sum. 
+Adds input A and input B. outputs the sum.
 
 #### Inputs
 
@@ -48,7 +48,7 @@ Adds input A and input B. outputs the sum.
 
 ### ARC
 
-Allows input from monome arc devices. Provides rudimentary led feedback for further expansion. All outputs occur for any arc movement. 
+Allows input from monome arc devices. Provides rudimentary led feedback for further expansion. All outputs occur for any arc movement.
 
 #### Inputs
 
@@ -66,7 +66,7 @@ Allows input from monome arc devices. Provides rudimentary led feedback for furt
 
 ### BARS
 
-Display four horizontal bar graphs in PLAY mode 
+Display four horizontal bar graphs in PLAY mode
 Values are from 0-127, so some pre-scaling (using MUL or DIV) may be necessary.
 
 #### Inputs
@@ -80,10 +80,10 @@ Values are from 0-127, so some pre-scaling (using MUL or DIV) may be necessary.
 
 (none)
 
- 
+
 ### BIGNUM
 
-Display a large number in PLAY mode 
+Display a large number in PLAY mode
 
 #### Inputs
 
@@ -98,7 +98,7 @@ Display a large number in PLAY mode
 
 ### BITS
 
-Convert a single decimal to many bits, and many bits to one decimal 
+Convert a single decimal to many bits, and many bits to one decimal
 
 #### Inputs
 
@@ -110,11 +110,11 @@ Convert a single decimal to many bits, and many bits to one decimal
 - OUT: decimal from input bits
 - O0-O7: bits from decimal input
 
-This op is useful for using decimal numbers as “storage” for many binary numbers (on/off) which could be considered triggers, ie. for drums. So decimal 3 is binary 00000011, which could mean play note 0 and note 1– decimal 13 is binary 00001101… note 0,2,3. etc. 
+This op is useful for using decimal numbers as “storage” for many binary numbers (on/off) which could be considered triggers, ie. for drums. So decimal 3 is binary 00000011, which could mean play note 0 and note 1– decimal 13 is binary 00001101… note 0,2,3. etc.
 
 ### CV-IN
 
-Receives control input from the CV input jacks. 
+Receives control input from the CV input jacks.
 
 #### Inputs
 
@@ -128,7 +128,7 @@ Receives control input from the CV input jacks.
 
 ### DELAY
 
-Delay a value by a specified time. Each input is sent to the output after TIME (ms). If an input arrives while another input is being delayed, this old value will be overwritten and the delay restarted. 
+Delay a value by a specified time. Each input is sent to the output after TIME (ms). If an input arrives while another input is being delayed, this old value will be overwritten and the delay restarted.
 
 #### Inputs
 
@@ -142,7 +142,7 @@ Delay a value by a specified time. Each input is sent to the output after TIME (
 
 ### DIV
 
-Divides input A by input B. Outputs the quotient. 
+Divides input A by input B. Outputs the quotient.
 
 #### Inputs
 
@@ -171,7 +171,7 @@ Divides input A with input B. outputs the quotient and remainder. A combination 
 
 ### ENC
 
-Allows the aleph's encoders to be routed in the bees network. 
+Allows the aleph's encoders to be routed in the bees network.
 
 #### Inputs
 
@@ -187,7 +187,7 @@ Allows the aleph's encoders to be routed in the bees network.
 
 ### FADE
 
-Crossfades between inputs A and B according to input X using a linear curve. All inputs cause output to be updated. 
+Crossfades between inputs A and B according to input X using a linear curve. All inputs cause output to be updated.
 
 #### Inputs
 
@@ -201,7 +201,7 @@ Crossfades between inputs A and B according to input X using a linear curve. All
 
 ### FS [1-2]
 
-Allows the footswitch inputs to be routed in the control network. 
+Allows the footswitch inputs to be routed in the control network.
 
 #### Inputs
 
@@ -214,7 +214,7 @@ Allows the footswitch inputs to be routed in the control network.
 
 ### GATE
 
-Pass or block the input value to the output. 
+Pass or block the input value to the output.
 
 #### Inputs
 
@@ -244,7 +244,7 @@ Receives key data from a monome grid. Displays the current state on the device.
 
 ### HID
 
-Connect a Human Interface Device over USB. Multiple operators are required to monitor different bytes. Connect a gamepad, shnth or manta. 
+Connect a Human Interface Device over USB. Multiple operators are required to monitor different bytes. Connect a gamepad, shnth or manta.
 
 #### Inputs
 
@@ -257,7 +257,7 @@ Connect a Human Interface Device over USB. Multiple operators are required to mo
 
 ### HISTORY
 
-Stores a running list of the last 8 values input, provides the average. 
+Stores a running list of the last 8 values input, provides the average.
 
 #### Inputs
 
@@ -270,7 +270,7 @@ Stores a running list of the last 8 values input, provides the average.
 
 ### IS
 
-Comparisons. Equals, not equals, greater than, less than. 
+Comparisons. Equals, not equals, greater than, less than.
 
 #### Inputs
 
@@ -288,7 +288,7 @@ Comparisons. Equals, not equals, greater than, less than.
 
 ### LIFE
 
-Conway's game of life. With monome grid support. 
+Conway's game of life. With monome grid support.
 
 #### Inputs
 
@@ -349,7 +349,7 @@ Storage for sixteen values, recallable by index.
 
 ### LOGIC
 
-Logic comparisons. Takes binary input and outputs binary values. 
+Logic comparisons. Takes binary input and outputs binary values.
 
 #### Inputs
 
@@ -381,7 +381,7 @@ Meadowphysics, for grid. See [meadowphysics](http://monome.org/docs/modular/mead
 
 ### METRO
 
-Outputs a given value at a regular interval. 
+Outputs a given value at a regular interval.
 
 #### Inputs
 
@@ -395,7 +395,7 @@ Outputs a given value at a regular interval.
 
 ### MIDICC
 
-Receives MIDI cc events from a USB connected device. 
+Receives MIDI cc events from a USB connected device.
 
 #### Inputs
 
@@ -408,7 +408,7 @@ Receives MIDI cc events from a USB connected device.
 
 ### MIDINOTE
 
-Receives MIDI note events from a USB connected device. 
+Receives MIDI note events from a USB connected device.
 
 #### Inputs
 
@@ -421,7 +421,7 @@ Receives MIDI note events from a USB connected device.
 
 ### MOUT_NOTE (MOUT_N)
 
-Send MIDI note events to a USB connected device. 
+Send MIDI note events to a USB connected device.
 
 #### Inputs
 
@@ -435,7 +435,7 @@ Send MIDI note events to a USB connected device.
 
 ### MOD
 
-Divides input A by input B, outputs the remainder. 
+Divides input A by input B, outputs the remainder.
 
 #### Inputs
 
@@ -449,7 +449,7 @@ Divides input A by input B, outputs the remainder.
 
 ### MUL
 
-Multiplies input A by input B. Outputs their product. 
+Multiplies input A by input B. Outputs their product.
 
 #### Inputs
 
@@ -463,7 +463,7 @@ Multiplies input A by input B. Outputs their product.
 
 ### PRESET
 
-Presets can be read or written in response to received input. Values and routings need to be 'included' in the preset system before they will be recalled. 
+Presets can be read or written in response to received input. Values and routings need to be 'included' in the preset system before they will be recalled.
 
 #### Inputs
 
@@ -472,7 +472,7 @@ Presets can be read or written in response to received input. Values and routing
 
 ### RANDOM
 
-Generates a random number after receiving any input. 
+Generates a random number after receiving any input.
 
 #### Inputs
 
@@ -486,7 +486,7 @@ Generates a random number after receiving any input.
 
 ### ROUTE (ROUTE4)
 
-Direct an input to one of four outputs. 
+Direct an input to one of four outputs.
 
 #### Inputs
 
@@ -499,7 +499,7 @@ Direct an input to one of four outputs.
 
 ### ROUTE8
 
-Direct input to one of eight outputs. 
+Direct input to one of eight outputs.
 
 #### Inputs
 
@@ -512,7 +512,7 @@ Direct input to one of eight outputs.
 
 ### SCREEN
 
-Draw pixels on PLAY screen. 
+Draw pixels on PLAY screen.
 
 #### Inputs
 
@@ -528,7 +528,7 @@ Draw pixels on PLAY screen.
 
 ### SPLIT (Y)
 
-Receives one input and echoes it to two outputs. 
+Receives one input and echoes it to two outputs.
 
 #### Inputs
 
@@ -541,7 +541,7 @@ Receives one input and echoes it to two outputs.
 
 #### SPLIT4 (Y4)
 
-Receives one input and echoes it to four outputs. 
+Receives one input and echoes it to four outputs.
 
 #### Inputs
 
@@ -588,11 +588,11 @@ A step sequencer for monome grids.
 - row 5 = 2
 - row 6 = 4
 - row 7 = 8
-e.g. to get the value 5 you would have row 4 and row 6 active, to get the value 9 you would have row 4 and row 7 active, and so on and so forth. it's a binary-to-decimal conversion with row 4-7 being bits 0-3 of the number. 
+e.g. to get the value 5 you would have row 4 and row 6 active, to get the value 9 you would have row 4 and row 7 active, and so on and so forth. it's a binary-to-decimal conversion with row 4-7 being bits 0-3 of the number.
 
 ### SUB
 
-Subtracts input B from input A. outputs the difference. 
+Subtracts input B from input A. outputs the difference.
 
 #### Inputs
 
@@ -606,7 +606,7 @@ Subtracts input B from input A. outputs the difference.
 
 ### SW [1-4]
 
-Allows the aleph's keys to be routed in the control network. 
+Allows the aleph's keys to be routed in the control network.
 
 #### Inputs
 

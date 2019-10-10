@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/midi/
+permalink: /modular/ansible/midi/
 ---
 
 ## MIDI/voice

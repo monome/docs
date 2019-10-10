@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/modules/
+permalink: /aleph/modules/
 ---
 
 # Aleph: Modules

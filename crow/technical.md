@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/crow/technical/
+permalink: /crow/technical/
 ---
 
 # Technical

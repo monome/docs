@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/tutorial-7/
+permalink: /aleph/tutorial-7/
 ---
 
 # Aleph Tutorial 7

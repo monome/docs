@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/hardware/
+permalink: /aleph/hardware/
 ---
 
 # Aleph Hardware Build

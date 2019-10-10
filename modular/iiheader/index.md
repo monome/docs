@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/iiheader/
+permalink: /modular/iiheader/
 ---
 
 # II Communication Upgrade

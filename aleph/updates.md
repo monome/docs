@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/updates/
+permalink: /aleph/updates/
 ---
 
 # Aleph Updates

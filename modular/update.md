@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/update/
+permalink: /modular/update/
 ---
 
 # modular firmware updates

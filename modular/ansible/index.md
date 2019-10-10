@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/
+permalink: /modular/ansible/
 ---
 
 <div class="vid"><iframe src="https://player.vimeo.com/video/182119406?color=ff7700&title=0&byline=0&portrait=0" width="860" height="483" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>

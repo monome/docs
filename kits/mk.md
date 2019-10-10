@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/mk/
+permalink: /mk/
 ---
 
 # mk: monome kit
@@ -359,7 +359,7 @@ included components shown above:
 - ribbon
 - 2 x ribbon connectors
 
-### capacitors 
+### capacitors
 
 ![](/docs/kits/images/tech-mk-aux-enc-kit02.jpg)
 
@@ -433,14 +433,14 @@ most LEDs fall into this range.
 
 **color:** your choice.
 
-### sources 
+### sources
 
 - http://jameco.com
 - http://digikey.com
 - http://mouser.com
 - http://farnell.com
 
-### part numbers 
+### part numbers
 
 jameco:
 - [yellow](https://www.jameco.com/webapp/wcs/stores/servlet/ProductDisplay?langId=-1&productId=333307&catalogId=10001&storeId=10001&krypto=9x3mj8umRTrJxBvnUjFLCEHwwfqEcCu0785jSS9FO%2FOcGKdPLDgN7YhW5Vt4JwfZGooXAwwlC2Rp%0D%0A%2B%2Fj%2BTznKdvMAuGBvvz28&ddkey=http:StoreCatalogDrillDownView)

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/forking/
+permalink: /aleph/forking/
 ---
 
 # Aleph: Forking
@@ -11,33 +11,33 @@ Create a fork of tehn/aleph on github by clicking the “fork” button on the u
 
 Now, the terminal commands go something like this:
 
-### 1: Clone a local copy of your new repo and go into it 
+### 1: Clone a local copy of your new repo and go into it
 
 ~~~
 git clone https://github.com/user/aleph.git aleph_user
 cd aleph_user
 ~~~
 
-### 2: Create a local dev branch tracking your remote dev branch 
+### 2: Create a local dev branch tracking your remote dev branch
 
 ~~~
 git checkout -b dev origin/dev
 ~~~
 
-### 3: Add another remote pointed at the upstream repo 
+### 3: Add another remote pointed at the upstream repo
 
 ~~~
 git remote add upstream https://github.com/tehn/aleph.git
 ~~~
 
-### 4: Fetch and merge any upstream changes 
+### 4: Fetch and merge any upstream changes
 
 ~~~
 git fetch upstream dev
 git merge upstream/dev
 ~~~
 
-### 5: Do some work… 
+### 5: Do some work…
 
 It's optional, but prudent, to make a new local branch for your work in progress:
 
@@ -47,15 +47,15 @@ echo what > newthing.txt
 git add newthing.txt
 ~~~
 
-### 6: Commit your work locally and merge it back to into dev 
+### 6: Commit your work locally and merge it back to into dev
 
 ~~~
 git commit -m “added newthing”
-git checkout dev 
-git merge newstuff 
+git checkout dev
+git merge newstuff
 ~~~
 
-### 7: Push changes to your forked repo 
+### 7: Push changes to your forked repo
 
 ~~~
 git push origin dev
@@ -65,9 +65,9 @@ Here it's a good idea to check again for upstream changes by performing `step 4`
 
 ## Now submit a pull request
 
-- visit the page for your fork 
-- select your dev branch from the dropdown menu 
-- click the big green button that says “compare and pull request” 
-- enter your comments and verify that the basis for comparison is tehn:dev … user:dev (it should be) 
+- visit the page for your fork
+- select your dev branch from the dropdown menu
+- click the big green button that says “compare and pull request”
+- enter your comments and verify that the basis for comparison is tehn:dev … user:dev (it should be)
 
 Click `send` and you are done!

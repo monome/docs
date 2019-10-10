@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/param-scaling/
+permalink: /aleph/param-scaling/
 ---
 
 # Aleph Parameter Scaling

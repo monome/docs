@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/tutorial-1/
+permalink: /aleph/tutorial-1/
 ---
 
 # Aleph Tutorial 1
@@ -114,7 +114,7 @@ Bees will say it’s writing the scene, then tell you it has finished. Now your 
 
 ### Further Explorations
 
-To practice making connections in the network try this example: 
+To practice making connections in the network try this example:
 
 *Use ENC1 to control the sensitivity of ENC0:*
 

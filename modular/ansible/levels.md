@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/levels/
+permalink: /modular/ansible/levels/
 ---
 
 ## Levels (Ansible + Arc)

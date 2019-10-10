@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/disassembly/
+permalink: /disassembly/
 ---
 
 ## disassembly

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/disassembly/grid-gs/
+permalink: /disassembly/grid-gs/
 ---
 
 # grid disassembly: greyscale edition

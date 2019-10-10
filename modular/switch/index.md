@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/switch/
+permalink: /modular/switch/
 ---
 
 # Switch

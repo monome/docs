@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/earthsea/
+permalink: /modular/earthsea/
 ---
 
 <div class="vid"><iframe src="//player.vimeo.com/video/113231441?color=FF7700&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
@@ -227,7 +227,7 @@ These *runes* allow navigating through the pattern bank without having to use th
 These *runes* destructively edit the playback speed of a pattern, even while it is currently playing. Press double-speed a couple times to make rapid arpeggios, or even Gameboy-esque chords when taken to the limit. Half speed opens up the possibility for long evolving chord sequences, especially when applied to a linearized pattern.
 
 > Note: Doubling the speed too many times will gradually degrade the timing between notes. At the extreme this can mean patterns are not able to be returned to normal speed with the Half speed rune.
-> 
+>
 > Maximum time between events is over 60 seconds so a few Half Speed gestures can easily create 15+ minutes of playback.
 
 ## Presets

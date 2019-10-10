@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/meadowphysics/
+permalink: /modular/ansible/meadowphysics/
 ---
 
 ## Meadowphysics (Ansible + Grid)

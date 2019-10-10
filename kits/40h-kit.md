@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/40h-kit/
+permalink: /40h-kit/
 ---
 
 # 40h kit
@@ -158,7 +158,7 @@ solder on the headers last, otherwise they’ll make assembly more difficult.
 ## 4x4x4 wiring
 
 **Note: LEDY/KEYY wiring should be connected 1-8 to the logic board from right (1) to left (8). **
-  
+
 ![](/docs/kits/images/tech-kits-4x4x4grid.jpg)
 ![](/docs/kits/images/tech-kits-4x4x4logic.jpg)
 

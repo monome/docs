@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/lines/
+permalink: /aleph/lines/
 ---
 
 # lines
@@ -47,151 +47,151 @@ A final note on implementation: these delay lines are currently uninterpolated. 
 
 #### delayN
 
-Delay time in seconds 
-Setting this moves the read position to the specified offset behind the write position. 
+Delay time in seconds
+Setting this moves the read position to the specified offset behind the write position.
 
-- Param type: Fix 
+- Param type: Fix
 - Range: [0, 32]
 
 #### loopN
 
-Position, in seconds, at which read/write positions will wrap. 
-Use this for looping applications, or for weird stuff if you set loop < delay. 
+Position, in seconds, at which read/write positions will wrap.
+Use this for looping applications, or for weird stuff if you set loop < delay.
 
-- Param type: Fix 
+- Param type: Fix
 - Range: [0, 32]
 
 #### rMulN
 
-Multiplies the speed of the read phasor, for a sort of lo-fi upwards pitch shift. 
+Multiplies the speed of the read phasor, for a sort of lo-fi upwards pitch shift.
 
-- Param type: Fix 
-- Range: [1, 8] (integers only) 
+- Param type: Fix
+- Range: [1, 8] (integers only)
 
 #### rDivN
 
-Multiplies the speed of the read phasor, for a sort of lo-fi downwards pitch shift. 
+Multiplies the speed of the read phasor, for a sort of lo-fi downwards pitch shift.
 
-- Param type: Fix 
-- Range: [1, 8] (integers only) 
+- Param type: Fix
+- Range: [1, 8] (integers only)
 
 #### writeN
 
-Amplitude at which new data is written to the delay line at the write position. 
-- Param type: Amp 
-- Range: [0, 1] (bees displays decibels) 
+Amplitude at which new data is written to the delay line at the write position.
+- Param type: Amp
+- Range: [0, 1] (bees displays decibels)
 
 #### preN
 
-Amplitude at which old data is preserved in the delay line at the write position. 
+Amplitude at which old data is preserved in the delay line at the write position.
 
-- Param type: Amp 
+- Param type: Amp
 - Range: [0, 1] (bees displays decibels)
 
 #### pos_writeN
 
-Sets the position (in seconds) of the write head. 
-- Param type: Fix 
+Sets the position (in seconds) of the write head.
+- Param type: Fix
 - Range: [0, 32]
 
 #### pos_readN
 
-Sets the position (in seconds) of the read head. 
+Sets the position (in seconds) of the read head.
 
-- Param type: Fix 
+- Param type: Fix
 - Range: [0, 32]
 
 #### run_writeN
 
-Flag to enable/disable writing to the delay line. 
+Flag to enable/disable writing to the delay line.
 
-- Param type: Bool 
+- Param type: Bool
 - Range: [0, 1]
 
 #### run_readN
 
-Flag to enable/disable reading from the delay line. 
+Flag to enable/disable reading from the delay line.
 
-- Param type: Bool 
+- Param type: Bool
 - Range: [0, 1]
 
 ### Parameters: per Filter
 
 #### cutN
 
-Filter cutoff frequency for filter N 
+Filter cutoff frequency for filter N
 
-- Parameter type: SvfFreq 
+- Parameter type: SvfFreq
 - Range: [ ~8hz, ~16000hz ]
 
 #### rqN
 
-Reciprocal of Q for filter N 
-Zero equals full resonance 
+Reciprocal of Q for filter N
+Zero equals full resonance
 
 - Parameter type: Fixed
 - Range: [0, 2]
 
 #### lowN
 
-Lowpass output amplitude for filter N 
+Lowpass output amplitude for filter N
 
-- Parameter type: Amp 
+- Parameter type: Amp
 - Range: [0, 1.0] (bees will display dB)
 
 #### highN
-Highpass output amplitude for filter N 
+Highpass output amplitude for filter N
 
-- Parameter type: Amp 
+- Parameter type: Amp
 - Range: [0, 1.0] (bees will display dB)
 
 #### bandN
 
-Bandpass output amplitude for filter N 
+Bandpass output amplitude for filter N
 
-- Parameter type: Amp 
+- Parameter type: Amp
 - Range: [0, 1.0] (bees will display dB)
 
 #### notchN
 
-Notch output amplitude for filter N 
+Notch output amplitude for filter N
 
-- Parameter type: Amp 
+- Parameter type: Amp
 - Range: [0, 1.0] (bees will display dB)
 
 ### Paramaters: per Input -> Delay Pair
 
 #### adcX_delY
 
-Amplitude of mix point between hardware input channel X and delay input Y 
+Amplitude of mix point between hardware input channel X and delay input Y
 
-- Param type: Amp 
+- Param type: Amp
 - Range: [0, 1] (bees displays decibels)
 
 ### Parameters: per Input -> Output Pair
 
 #### adcX_dacY
 
-Amplitude of mix point between hardware input channel X and output channel Y 
+Amplitude of mix point between hardware input channel X and output channel Y
 
-- Param type: Amp 
+- Param type: Amp
 - Range: [0, 1] (bees displays decibels)
 
 ### Parameters: per Delay -> Delay Pair
 
 #### delX_delY
 
-Amplitude of mix point between delay output X and delay input Y 
-X and Y can be equal for feedback. 
+Amplitude of mix point between delay output X and delay input Y
+X and Y can be equal for feedback.
 
-- Param type: Amp 
+- Param type: Amp
 - Range: [0, 1] (bees displays decibels)
 
 ### Parameters: per Delay -> Output Pair
 
 #### delX_dacY
 
-Amplitude of mix point between delay output X and hardware output channel Y 
+Amplitude of mix point between delay output X and hardware output channel Y
 
-- Param type: Amp 
+- Param type: Amp
 - Range: [0, 1] (bees displays decibels)

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/bees/
+permalink: /aleph/bees/
 ---
 
 # Aleph: Bees

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/dsyn/
+permalink: /aleph/dsyn/
 ---
 
 # dsyn
@@ -25,25 +25,25 @@ Each voice has 29 parameters:
 
 #### Gate
 
-- Type: Boolean 
+- Type: Boolean
 
 If trig == 0, setting gate > 0 opens all envelopes and gate ⇐0 closes them. sustain durations are ignored. If trig == 1, setting gate > 0 initiates 1-shot envelopes, with sustain duration applied. Setting gate ⇐ 0 is ignored.
 
 #### Trig
 
-- Type: Boolean 
+- Type: Boolean
 
 Sets the trigger mode as described above.
 
 #### Amp
 
-- Type: Amplitude 
+- Type: Amplitude
 
 Set the peak value of the amplitude envelope (end of attack section / beginning of decay.) Unit is decibels.
 
 #### AmpSus
 
-- Type: Amplitude 
+- Type: Amplitude
 
 Set the sustain value of the amplitude envelope. unit is decibels.
 
@@ -51,31 +51,31 @@ Set the sustain value of the amplitude envelope. unit is decibels.
 #### AmpDecSlew
 #### AmpRelSlew
 
-- Type: Integrator 
+- Type: Integrator
 
 Slew parameters for attack, decay, and release sections of amplitude envelope. Unit is seconds for (theoretical) -40dB convergence.
 
 #### AmpSusDur
 
-- Type: Short 
+- Type: Short
 
 Set duration of sustain section. unit is samples.
 
 #### FreOff
 
-- Type: SvfFreq 
+- Type: SvfFreq
 
 Cutoff frequency for filter in the filter envelope's “off” state. Unit is Hz.
 
 #### FreqOn
 
-- Type: SvfFreq 
+- Type: SvfFreq
 
 Peak value of filter cutoff envelope. unit is hz. If the “FreqEnv” parameter is zero, this sets the filter cutoff directly.
 
 #### FreSus
 
-- Type: SvfFreq 
+- Type: SvfFreq
 
 Sustain level for filter cutoff envelope. unit is hz.
 
@@ -101,25 +101,25 @@ Parameters for resonance envelope. These behave exactly like the frequency envel
 #### Band
 #### Notch
 
-- Type: Amplitude 
+- Type: Amplitude
 
 Levels for each output mode of the state variable filter. Unit is dB. Note that mixing arbitrary modes can have weird effects on phase, which is sometimes good, and sometimes not.
 
 #### SvfPre
 
-- Type: Boolean 
+- Type: Boolean
 
 This toggles the routing of the state variable filter with respect to the amplitude envelope. If SvfPre == 0, the filter is applied first, followed by the amp envelope. If SvfPre > 0, the filter is applied last, which allows for different “ringing” effects.
 
 #### FreqEnv
 
-- Type: Boolean 
+- Type: Boolean
 
 This toggles the filter cutoff envelope on and off. If FreqEnv == 0, the FreqOn value is applied directly to the filter cutoff.
 
 #### RqEnv
 
-- Type: Boolean 
+- Type: Boolean
 
 This toggles the filter resonance envelope on and off. If RqEnv == 0, the RqOn value is applied directly to the filter resonance.
 

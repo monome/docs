@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/grid-studies/nodejs/
+permalink: /grid-studies/nodejs/
 ---
 
 # Grid Studies: node.js

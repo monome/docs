@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/kits/
+permalink: /kits/
 ---
 
 ## kits

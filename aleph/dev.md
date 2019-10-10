@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/dev/
+permalink: /aleph/dev/
 ---
 
 # Aleph Development

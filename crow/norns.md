@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/crow/norns/
+permalink: /crow/norns/
 ---
 
 ![](../images/crow-norns.png)

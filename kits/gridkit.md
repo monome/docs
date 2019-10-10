@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/grid-kit/
+permalink: /grid-kit/
 ---
 # grid kit
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/waves/
+permalink: /aleph/waves/
 ---
 
 # waves
@@ -54,88 +54,88 @@ adcX ---> * adcX_dacY ---> dacY
 
 #### hzN
 
-Oscillator N, base frequency 
+Oscillator N, base frequency
 
-- Parameter type: Note 
-- Range: [~8 Hz, ~16000 Hz] 
+- Parameter type: Note
+- Range: [~8 Hz, ~16000 Hz]
 
 #### tuneN
 
-Oscillator N, tuning ratio 
-Actual base frequency is hz * tune 
+Oscillator N, tuning ratio
+Actual base frequency is hz * tune
 
-- Parameter type: Fixed 
+- Parameter type: Fixed
 - Range: [0.25, 4.0]
 
 #### ampN
 
-Oscillator N, amplitude (post-filter) 
+Oscillator N, amplitude (post-filter)
 
-- Parameter type: Amp 
-- Range: [0, 1.0] (bees will display dB) 
+- Parameter type: Amp
+- Range: [0, 1.0] (bees will display dB)
 
 #### pmXY
 
-Phase-modulation amount from oscX &rarr; oscY 
+Phase-modulation amount from oscX &rarr; oscY
 
-- Parameter type: Fixed 
-- Range: [0, 1] 
+- Parameter type: Fixed
+- Range: [0, 1]
 
 #### wmXY
 
-Waveshape-modulation amount from oscX &rarr; oscY 
+Waveshape-modulation amount from oscX &rarr; oscY
 
-- Parameter type: Fixed 
+- Parameter type: Fixed
 - Range: [0, 1]
 
 #### waveN
 
-Base waveshape for oscillator N 
+Base waveshape for oscillator N
 
-- Parameter type: Fixed 
+- Parameter type: Fixed
 - Range: [0, 1]
 
 #### cutN
 
-Filter cutoff frequency for filter N 
+Filter cutoff frequency for filter N
 
-- Parameter type: SvfFreq 
+- Parameter type: SvfFreq
 - Range: [ ~8hz, ~16000hz ]
 
 #### rqN
 
-Reciprocal of Q for filter N 
-Zero equals full resonance 
+Reciprocal of Q for filter N
+Zero equals full resonance
 
-- Parameter type: Fixed 
+- Parameter type: Fixed
 - Range: [0, 2]
 
 #### modeN
 
-Filter mode selection. 0=low, 1=band, 2=high, 3=notch 
+Filter mode selection. 0=low, 1=band, 2=high, 3=notch
 
-- Parameter type: Fixed 
+- Parameter type: Fixed
 - Range: [0, 3.0]
 
 #### fwetN
 
-Volume of filtered signal from filter N 
+Volume of filtered signal from filter N
 
-- Parameter type: Amp 
+- Parameter type: Amp
 - Range: [0, 1.0] (bees will display dB)
 
 #### fdryN
 
-Volume of dry signal from filter 1 
+Volume of dry signal from filter 1
 
-- Parameter type: Amp 
+- Parameter type: Amp
 - Range: [0, 1.0] (bees will display dB)
 
 #### oscN_dacN
 
-Delay, in seconds, applied to modulation input signals. 
+Delay, in seconds, applied to modulation input signals.
 
-- Parameter type: Fixed 
+- Parameter type: Fixed
 - Range: [0, 1.0) (an arbitrary scale, 1.0 == 0x10000 samples)
 
 #### Slew
@@ -154,19 +154,19 @@ Delay, in seconds, applied to modulation input signals.
 - dacSlew2
 - dacSlew3
 
-Slew times for corresponding parameters 
+Slew times for corresponding parameters
 
-- Parameter type: Integrator 
-- Range: [0, 32] in seconds, convergence to -120dB 
+- Parameter type: Integrator
+- Range: [0, 32] in seconds, convergence to -120dB
 
 #### Output Routing
 
 - adcX_dacY
 - oscX_dacY
 
-Hardware output routing for given output busses 
+Hardware output routing for given output busses
 
-- Parameter type: Boolean 
+- Parameter type: Boolean
 - Range: 0 or 1
 
 #### CV Output
@@ -176,10 +176,10 @@ Hardware output routing for given output busses
 - dac2
 - dac3
 
-CV output value for each channel 
+CV output value for each channel
 
-- Parameter type: Fixed 
-- Range: [0, 1] 
+- Parameter type: Fixed
+- Range: [0, 1]
 
 ### In Use
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/preset/
+permalink: /modular/preset/
 ---
 
 # preset management
@@ -11,7 +11,7 @@ WARNING. while we're confident with this procedure, it is an advanced use and co
 
 have dfu-programmer installed, as described in the [firmware update](/docs/modular/update) section.
 
-- open a terminal. 
+- open a terminal.
 - get into a folder where you want to store your files.
 - power up the module while holding the PRESET key. this starts the WW in bootloader mode.
 - connect a USB A-A cable to the computer.

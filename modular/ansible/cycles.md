@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/cycles/
+permalink: /modular/ansible/cycles/
 ---
 
 ## Cycles (Ansible + Arc)

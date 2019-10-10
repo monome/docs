@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/earthsea/
+permalink: /modular/ansible/earthsea/
 ---
 
 ## Earthsea (Ansible + Grid)

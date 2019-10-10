@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/crow/update/
+permalink: /crow/update/
 ---
 
 # Firmware Update

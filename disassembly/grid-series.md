@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/disassembly/grid-series/
+permalink: /disassembly/grid-series/
 ---
 
 # grid disassembly: series edition

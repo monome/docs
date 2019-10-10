@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/videos/
+permalink: /aleph/videos/
 ---
 
 # Aleph: Video Tutorials

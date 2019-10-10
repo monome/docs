@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/crow/scripting/
+permalink: /crow/scripting/
 ---
 
 ## Scripting

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/dev/bees/
+permalink: /aleph/dev/bees/
 ---
 
 # Aleph: Bees OP Dev Guide

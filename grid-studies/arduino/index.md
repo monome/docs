@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/grid-studies/arduino/
+permalink: /grid-studies/arduino/
 ---
 
 # Grid Studies: Arduino
@@ -9,7 +9,7 @@ By design the monome grid does nothing on its own. You the user assign it purpos
 
 Arduino is an open-source electronics platform based on easy-to-use hardware and software. It is intended for anyone making interactive projects.
 
-We'll be using the Ardunio's USB Host capabilities to run grid code without a computer, with easy access to physical hardware: sensors, motors, other actuators, wireless bits, everything. 
+We'll be using the Ardunio's USB Host capabilities to run grid code without a computer, with easy access to physical hardware: sensors, motors, other actuators, wireless bits, everything.
 
 ## Prerequisites
 
@@ -73,7 +73,7 @@ We're ready to go.
 The MonomeHost library facilitates easy connection and communication with grids. First, two headers must be included, and then we initialize our grid:
 
 ```cpp
-#include <Usb.h>  
+#include <Usb.h>
 #include "MonomeController.h"
 
 USBHost usb;
@@ -83,9 +83,9 @@ MonomeController monome(usb);
 Next the `setup()` function is run, as is usual with Arduino:
 
 ```cpp
-void setup() { 
+void setup() {
   monome.SetConnectCallback(&ConnectCallback);
-  
+
   Serial.begin(115200);
   Serial.print("\r\ninitialized.\r\n");
   delay(200);
@@ -115,7 +115,7 @@ It prints out a bunch of device parameters, so you know it's connected.
 And finally the main loop:
 
 ```cpp
-void loop() { 
+void loop() {
   usb.Task();
 }
 ```
@@ -141,7 +141,7 @@ monome.SetGridKeyCallback(&GridKeyCallback);
 And then the function itself:
 
 ```cpp
-void GridKeyCallback(byte x, byte y, byte z) { 
+void GridKeyCallback(byte x, byte y, byte z) {
   Serial.print("\r\ngrid key: ");
   Serial.print(x);
   Serial.print(" , ");
@@ -208,7 +208,7 @@ First we'll create a new array called `step` that can hold 6 rows worth of step 
 // toggle steps
 if(z == 1 && y < 6) {
 	step[y][x] ^= 1;
-	dirty = true; 
+	dirty = true;
 }
 ```
 
@@ -233,7 +233,7 @@ void redraw() {
 		for(int x=0;x<16;x++)
 			monome.led_set(x,y,step[y][x] * 11);
 }
-```	
+```
 
 First `led_clear()` completely clears the grid, and then we iterate through the array, copying `step` data to the grid.
 
@@ -272,9 +272,9 @@ Inside `next()` we update `play_position`:
 void next() {
   if(play_position == 15)
       play_position = 0;
-  else 
+  else
       play_position++;
-    
+
   dirty = true;
 }
 ```
@@ -288,7 +288,7 @@ for(byte x=0;x<16;x++) {
 		highlight = 4;
 	else
 		highlight = 0;
- 
+
 	for(byte y=0;y<6;y++)
  		monome.led_set(x,y,step[y][x] * 11 + highlight);
 }
@@ -351,13 +351,13 @@ Now we look for key presses in the last row, in the `GridKeyCallback()` function
 // toggle steps
 if(z == 1 && y < 6) {
 	step[y][x] ^= 1;
-	dirty = true; 
+	dirty = true;
 }
 // cut
 else if(y == 7) {
 	if(z == 1)
 		cutting = true;
-		next_position = x;  
+		next_position = x;
 	}
 }
 ```
@@ -369,9 +369,9 @@ if(cutting)
 	play_position = next_position;
 else if(play_position == 15)
 	play_position = 0;
-else 
+else
 	play_position++;
-	
+
 cutting = false;
 ```
 
@@ -403,7 +403,7 @@ We'll then use the `keys_held` counter to do different actions:
 else if(y == 7) {
 	// track number of keys held
 	keys_held = keys_held + (z*2) - 1;
-	    
+
 	// cut
 	if(z == 1 && keys_held == 1) {
 		cutting = true;
@@ -427,7 +427,7 @@ else if(play_position == 15)
 	play_position = 0;
 else if(play_position == loop_end)
 	play_position = loop_start;
-else 
+else
 	play_position++;
 ```
 
@@ -444,7 +444,7 @@ Done!
 	- If "alt" is held while pressing a toggle, clear the entire row.
 	- If "alt" is held while pressing the play row, reverse the direction of play.
 
-	
+
 ## Credits
 
 *Arduino* was founded by Massimo Banzi, David Cuartielles, Tom Igoe, Gianluca Martino, and David Mellis. [Arduino](http://arduino.cc).

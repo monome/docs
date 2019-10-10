@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/scenes/
+permalink: /aleph/scenes/
 ---
 
 # Bees: Included Scenes

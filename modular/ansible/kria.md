@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/ansible/kria/
+permalink: /modular/ansible/kria/
 ---
 
 ## Kria (Ansible + Grid)

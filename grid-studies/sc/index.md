@@ -1,7 +1,7 @@
 ---
 layout: page
 title: grid studies supercollider
-permalink: /docs/grid-studies/sc/
+permalink: /grid-studies/sc/
 published: true
 ---
 
@@ -263,7 +263,7 @@ And then trigger a sound, if the toggle is on, inside `t`:
 // TRIGGER SOMETHING
 for(0,5, {arg t;
 	if(~step[(t*16) + ~play_position] == 1,
-			{Synth(\singrain, [freq: (5-t)*100+300, 
+			{Synth(\singrain, [freq: (5-t)*100+300,
 				amp: rrand(0.1, 0.5), sustain: interval * 0.8]);}
 	)
 });
@@ -393,7 +393,7 @@ Done!
 	- If "alt" is held while pressing a toggle, clear the entire row.
 	- If "alt" is held while pressing the play row, reverse the direction of play.
 
-	
+
 ## Credits
 
 *SuperCollider* was written by James McCartney and is now maintained [as a GPL project by various people](http://supercollider.sourceforge.net).

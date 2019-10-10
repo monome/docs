@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/meadowphysics/v1/
+permalink: /modular/meadowphysics/v1/
 ---
 
 <div class="vid"><iframe src="//player.vimeo.com/video/107582557?color=FF7700&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>

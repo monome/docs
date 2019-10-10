@@ -1,7 +1,7 @@
 ---
 layout: page
 title: grid studies
-permalink: /docs/grid-studies/
+permalink: /grid-studies/
 ---
 
 # Grid Studies

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/debug/
+permalink: /aleph/debug/
 ---
 
 # Debugging Aleph
@@ -11,24 +11,24 @@ If you encounter a problem, you can help us debug it:
 - Open a terminal connection to Aleph's USB device port. For Ubuntu:
 
 ~~~
-sudo apt-get install minicom 
+sudo apt-get install minicom
 sudo minicom -b 500000 -D /dev/ttyACM0
 ~~~
 
-*NB: In Bees 0.5+ baudrate is 115200 (this is probably temporary), so for now use:* 
+*NB: In Bees 0.5+ baudrate is 115200 (this is probably temporary), so for now use:*
 
 `sudo minicom -b 115200 -D /dev/ttyACM0`
 
-*NB: On ubuntu 10.04 the above instructions did not work for me. I successfully used:* 
+*NB: On ubuntu 10.04 the above instructions did not work for me. I successfully used:*
 
 `cu -l /dev/ttyACM0 -s 115200`
 
 For other systems, something similar applies: Aleph should show up as a peripheral modem of some kind. Connect to it with a terminal at 115200 baud and standard settings otherwise.
 
-Flash `aleph-bees-n.n.n-dbg.hex` to Aleph and observe terminal output. 
+Flash `aleph-bees-n.n.n-dbg.hex` to Aleph and observe terminal output.
 
-Contact us directly: help@monome.org 
-IRC: catfact, tehn in #monome-aleph on freenode.net 
+Contact us directly: help@monome.org
+IRC: catfact, tehn in #monome-aleph on freenode.net
 
 Attach the output of the debug process above .
 

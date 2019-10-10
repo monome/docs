@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/aleph/reference/
+permalink: /aleph/reference/
 ---
 
 # Aleph Reference

@@ -12,4 +12,4 @@ permalink: /disassembly/
 * [2007-2010 "series" grids](/docs/disassembly/grid-series)
 * [40h](/docs/disassembly/grid-40h)
 
-* [aleph](/docs/disassembly/aleph)
+* [aleph](/docs/aleph/hardware)

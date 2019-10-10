@@ -1,3 +1,5 @@
+_site
+.sass-cache
 .DS_Store
 resources/monome_diagrams/__MACOSX/monome_diagrams/._ansible_CLEAN.ai
 resources/monome_diagrams/__MACOSX/monome_diagrams/._ansible_LEVELS_1.2.ai

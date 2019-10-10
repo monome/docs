@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/norns/
+permalink: /norns/
 ---
 
 ![](https://monome.org/images/norns-front-small.jpg)

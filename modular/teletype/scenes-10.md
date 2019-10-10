@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/teletype/scenes-1.0/
+permalink: /modular/teletype/scenes-1.0/
 ---
 
 # Teletype 1.0 Scenes
@@ -26,7 +26,7 @@ CV 1 TO OSC FREQ
 * 3: SHORTEN LOOP
 * 4: TOGGLE FORWARD/REVERSE
 * 5: THROW CV 2 A NEW NOTE
-* 6: RANDOMIZE LOOP LENGTH 
+* 6: RANDOMIZE LOOP LENGTH
 * 7: SET ROOT TO CV IN
 * 8: ADD 1 SEMI TO CV 4
 
@@ -41,7 +41,7 @@ TRY PATCHING CV4 TO CV IN FOR AUTOMATIC TRANSPOSITION.
 
 2:  P.N WRAP ADD P.N 1 0 3
     P.I P.END
-    
+
 3:  P.END WRAP SUB P.END 1 1 7
 
 4:  X EZ X
@@ -55,7 +55,7 @@ TRY PATCHING CV4 TO CV IN FOR AUTOMATIC TRANSPOSITION.
 
 8:  CV 4 N WRAP 0 0 11
 
-M:  IF X : P.PREV 
+M:  IF X : P.PREV
     ELSE : P.NEXT
     CV 1 ADD N P.HERE Z
     M SUB 320 RSH PARAM 6
@@ -63,9 +63,9 @@ M:  IF X : P.PREV
     TR. PULSE A
 
 I:  L A B : TR.TIME I 40
-    RE 4 1 
+    RE 4 1
 ~~~
- 
+
 ## 1 RANDOMS
 
 INS CORRESPOND TO OUTPUT JACKS BENEATH:
@@ -224,7 +224,7 @@ I:  L A D : TR.TIME 30
 ~~~
 
 ## 4   MOOD RING
-     
+
 3 VOICE JAZZ BOX GENERATOR
 
 CV 1-3 TO VCO PITCH
@@ -336,7 +336,7 @@ FOR KNOB SCRIPTS, TRY CHANGING PARAM TO IN,
 FOR CV CONTROL!
 
 ~~~
-1:  X 0 
+1:  X 0
     II WW.PRESET X
 
 2:  X WRAP ADD X 1 0 7
@@ -440,7 +440,7 @@ MUST CONNECT VIA CABLE
 
 8:  II ES.CLOCK 1
 
-M:  
+M:
 
 I:
 ~~~

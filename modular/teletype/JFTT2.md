@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/teletype/jt-2/
+permalink: /modular/teletype/jt-2/
 ---
 
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/SczDW9WMDTA?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
@@ -54,7 +54,7 @@ When RUN behavior is enabled with `JF.RMODE 1`, Just Type can simulate voltage t
 
 `JF.RUN state`
 
-- *state*: standard Teletype voltage maths, eg `JF.RUN V -2`or `JF.RUN vv 350` 
+- *state*: standard Teletype voltage maths, eg `JF.RUN V -2`or `JF.RUN vv 350`
 
 Expected range is `V -5` to `V 5`.
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/teletype/jt-1/
+permalink: /modular/teletype/jt-1/
 ---
 
 ## Whimsical Prelude
@@ -13,7 +13,7 @@ permalink: /docs/modular/teletype/jt-1/
 
 *Beyond these general-purpose modifications, Just Type brings two entirely new modalities to JF. Synthesis allows independent polyphonic control over each channel, controlled directly, or dynamically allocated as a 6-voice polysynth. Geode instead pursues rhythmic manipulation of striated repetitions, creating polymetric bursts with dynamic decay.*
 
-Enough! ***Just. Type.***
+Enough! *_Just. Type._*
 --
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/DfPADIGjATg?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 

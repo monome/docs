@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/teletype/jt-4/
+permalink: /modular/teletype/jt-4/
 ---
 
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/5IoiERamfb8?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
@@ -68,7 +68,7 @@ Polyphonically allocated notes of defined *pitch* and *velocity*. Free channels 
 - *pitch*: set the pitch, relative to C3
 - *velocity*: set the volume, as with `JF.VTR`
 
-The `JF.VOX` and `JF.NOTE` commands are designed to create complete notes in the General MIDI sense. They simultaneously set the pitch of a voice & begin / end an envelope cycle. 
+The `JF.VOX` and `JF.NOTE` commands are designed to create complete notes in the General MIDI sense. They simultaneously set the pitch of a voice & begin / end an envelope cycle.
 
 Physical TRIGGERS will only trigger the envelope, using whatever pitch & velocity are currently set for that voice, encouraging combinations of digital & voltage control.
 

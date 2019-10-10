@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/teletype/studies-6/
+permalink: /modular/teletype/studies-6/
 ---
 
 <div class="vid"><iframe src="https://player.vimeo.com/video/139376775" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>

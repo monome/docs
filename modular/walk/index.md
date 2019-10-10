@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/walk/
+permalink: /modular/walk/
 ---
 
 # Walk

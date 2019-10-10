@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/teletype/studies-7/
+permalink: /modular/teletype/studies-7/
 ---
 
 <div class="vid"><iframe src="https://player.vimeo.com/video/139730521?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
@@ -50,7 +50,7 @@ This can be used as a smoother.
     Q PARAM
     CV 1 Q.AVG
 
-Try putting this in a metro script. Each time the script is executed the "history" is pushed along and the average is an overall smoothing of the input. Given a short queue length `Q.N 3` smoothing would be minor, or you can do extreme smoothing with `Q.N 16`. The queue can be up to 16 stages in length.   
+Try putting this in a metro script. Each time the script is executed the "history" is pushed along and the average is an overall smoothing of the input. Given a short queue length `Q.N 3` smoothing would be minor, or you can do extreme smoothing with `Q.N 16`. The queue can be up to 16 stages in length.
 
 ## We do this all the time
 

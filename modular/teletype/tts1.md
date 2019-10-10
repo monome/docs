@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/teletype/studies-1/
+permalink: /modular/teletype/studies-1/
 ---
 
 <div class="vid"><iframe src="https://player.vimeo.com/video/135080129?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
@@ -41,7 +41,7 @@ There are a few other ways to use the TR outputs. If you want to switch the stat
 
     TR.TOG B
 
-The TR output B will flip to on if previously off, or off if previously on. 
+The TR output B will flip to on if previously off, or off if previously on.
 
 *THIS* &rarr; Push the **UP ARROW**. Your last command will be recalled. Hit enter to execute it. Hit up several times to go through the command history. You can also push down (after going up) to navigate through previous commands.
 

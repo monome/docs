@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/whitewhale/
+permalink: /modular/whitewhale/
 ---
 
 <div class="vid"><iframe src="//player.vimeo.com/video/104881064?color=FF7700&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
@@ -136,7 +136,7 @@ As above, the range of the randomization is set by the *param* knob. The *param*
 
 ![Step Mutes](images/mutes.png)
 
-Row four display per-step mutes. *Triggers* and both *CV* channels have independent mutes. *Trigger* mutes affect all four trigger outputs, and can be used to selectively mute certain rhythmic elements in a patch. When muted, a step will not send a trigger out.                                                                  
+Row four display per-step mutes. *Triggers* and both *CV* channels have independent mutes. *Trigger* mutes affect all four trigger outputs, and can be used to selectively mute certain rhythmic elements in a patch. When muted, a step will not send a trigger out.
 
 *CV* mutes cause the output value not to change when a muted step is reached, instead the previously held voltage is maintained. This CV mute behaviour is particularly useful when sustaining notes in a sequence, rather than having to copy the same CV value to subsequent steps.
 

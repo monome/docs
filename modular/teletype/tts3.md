@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/teletype/studies-3/
+permalink: /modular/teletype/studies-3/
 ---
 
 <div class="vid">

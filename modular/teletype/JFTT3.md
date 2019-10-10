@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/modular/teletype/jt-3/
+permalink: /modular/teletype/jt-3/
 ---
 
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/PQ4xUgWUlQQ?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
@@ -31,11 +31,11 @@ Just Type allows the synthesist to free these voices from their metropolitan ass
 
 Following this convention, the defaults for each channel are:
 
-*IDENTITY*: `JF.TUNE 1 1 1`  
-*2N*: `JF.TUNE 2 2 1`  
-*3N*: `JF.TUNE 3 3 1`   
-*4N*: `JF.TUNE 4 4 1`  
-*5N*: `JF.TUNE 5 5 1`  
+*IDENTITY*: `JF.TUNE 1 1 1`
+*2N*: `JF.TUNE 2 2 1`
+*3N*: `JF.TUNE 3 3 1`
+*4N*: `JF.TUNE 4 4 1`
+*5N*: `JF.TUNE 5 5 1`
 *6N*: `JF.TUNE 6 6 1`
 
 If things get too weird, you can quickly recall these defaults with: `JF.TUNE 0 0 0`.

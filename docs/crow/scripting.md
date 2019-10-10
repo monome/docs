@@ -60,7 +60,7 @@ druid
 
 If `druid` responds with `can't find crow device`, make sure crow is connected with the included USB cable & the synthesizer is turned on.
 
-If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device. See [below](#Permissions) for a fix.
+If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device. See [below](#permissions) for a fix.
 
 
 #### Bowery

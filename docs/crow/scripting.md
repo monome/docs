@@ -67,13 +67,14 @@ If `druid` responds with `can't open serial port` you probably don't have the re
 
 Before we can upload a script, we need some scripts to upload! There's a set of examples, and a growing collection of user-provided scripts availabe in the *bowery* repository.
 
-Navigate to [bowery](https://github.com/monome/bowery/releases/latest) and download the .zip file under *Assets*.
+Navigate to [bowery](https://github.com/monome/bowery/releases/latest) and download the .zip file under *Assets*. It will be named `bowery-X`, where X is the release number.
 
-Unzip it wherever you'd like to keep your crow scripts, and change-directory (or `cd`) in your terminal to locate them. If you unzip within your Documents folder it would be `cd ~/Documents/bowery`.
+Unzip it wherever you'd like to keep your crow scripts, and **close any open terminal windows**. Then, open a new terminal window and change-directory (or `cd`) to enter the bowery folder. If you unzip within your Documents folder it would be `cd ~/Documents/bowery-X`.
 
 ### Uploading
 
-From the bowery folder, load up `druid` so we can talk to crow.
+From the *bowery-X* folder, load up a fresh `druid` session so we can talk to crow.
+
 ```
 druid
 ```
@@ -98,11 +99,11 @@ You just uploaded your first crow script! All the `_ loaded` prints let you know
 
 Patch a trigger or LFO into input 1 and crow will now be sending clock divided gates to all 4 outputs. Try patching crow's outputs to anything expecting triggers. Make some envelopes with Just Friends' *trigger* inputs in *shape/transient* mode, or ping Three Sisters' filters by patching crow's outputs directly to Three Sisters' 4 input jacks and turn *quality* up to 3:00 on the dial.
 
-A voltage into input 2 will select between different sets of divisions as you sweep from -5V to +5v. Open `examples/clockdiv.lua` in a text editor and edit the table called `divs` which represents the clock-divisions per output, with 5 different sets to choose from.
+A voltage into input 2 will select between different sets of divisions as you sweep from -5V to +5v. Open `bowery-X/clockdiv.lua` in a text editor and edit the table called `divs` which represents the clock-divisions per output, with 5 different sets to choose from.
 
-Any time you make changes to `clockdiv.lua` you'll need to run the script again with `r examples/clockdiv.lua`. If you want your changes to stick around when you restart crow change `r` (run) to `u` (upload) like this; `u examples/clockdiv.lua`. We recommend you use `r` most of the time as it's faster, then once you settle on something you like use `u` to save it into crow's longterm memory.
+Any time you make changes to `clockdiv.lua` you'll need to run the script again with `r clockdiv.lua`. If you want your changes to stick around when you restart crow change `r` (run) to `u` (upload) like this; `u clockdiv.lua`. We recommend you use `r` most of the time as it's faster, then once you settle on something you like use `u` to save it into crow's longterm memory.
 
-This is all you need to work with existing scripts! Plenty of fun is to be had playing with the files in the examples/ folder alone. If you want to use a script you see online, you'll need to save it as a text file in the druid/ folder, then run it as before with `r a-cool-script-i-found.lua`. We'll be adding more examples, and accept community contributions into the official druid/examples folder.
+This is all you need to work with existing scripts! Plenty of fun is to be had playing with the files in the *bowery/* folder alone. If you want to use a script you see online, you'll need to save it as a text file in a folder of your choosing, `cd` to that folder, open druid and then run it as before with `r a-cool-script-i-found.lua`. We'll be adding more examples, and accept community contributions into the official *bowery* repo.
 
 *Note: Occasionally you might see `druid` complain about errors after calling `r`. Wait a couple seconds & try again. If you still have problems, enter `^^kill` to reset crow, then `r` again.*
 
@@ -127,6 +128,8 @@ druid & vim
 You'll want to learn the hotkey that allows you to switch focus between the two programs.
 
 ### Say hello
+
+*nb: From here on, whenever you see the `>` symbol, that means you'll be entering it into `druid`, and the lines that follow are what you'll see returned from crow.*
 
 Before trying to do anything fancy, we'll need a blank slate to work with. To do that, we'll call crow's reset function to return to the default state:
 
@@ -173,8 +176,6 @@ A calculator!
 
 This pattern of using `print` to query crow's memory will be central to understanding things as you progress. If you get stuck, try `print`ing your variable names and see what values you get. If you see `nil` then you've likely made a typo somewhere.
 
-*nb: From here on, whenever you see the `>` symbol, that means you'll be entering it into `druid`, and the lines that follow are what you'll see returned from crow.*
-
 ### Pushing around the volts
 
 Let's make a quick patch:
@@ -215,7 +216,7 @@ The pitch will glide up to 1 volt again, smoothly fading for half a second.
 
 Let's make a basic sample and hold script which takes a clock on input 1, which then outputs a random voltage on output 1.
 
-In your text editor, save a file called `sketch.lua` to the bowery/ folder. Copy and paste the following default layout:
+In your text editor, save a file called `sketch.lua` to the *bowery/* folder. Copy and paste the following default layout:
 
 ```
 --- sketch name
@@ -304,7 +305,7 @@ end
 
 Save the script & run it in druid with `r sketch.lua`. Patch output 1 to the pitch of an oscillator and listen to the entropic melody...
 
-If you're having trouble, you can look at the file `samplehold-basic.lua` in *bowery* which replicates the work above.
+If you're having trouble, you can look at the file `samplehold-basic.lua` in *bowery/* which replicates the work above.
 
 ### Make it a conversation
 
@@ -346,7 +347,7 @@ Notice how the input voltage is saved in a variable `volt` then sent to output 2
 
 ### All the possibilities
 
-This short script is already a nice sample & hold. It creates a random value and a sampled input value every time a clock is received. But there is so much more to be done! There's an example of further possibilities in `examples/samplehold.lua` using quantization, and adding some randomness to the input sample, but there are so many more options!
+This short script is already a nice sample & hold. It creates a random value and a sampled input value every time a clock is received. But there is so much more to be done! There's an example of further possibilities in `bowery/samplehold.lua` using quantization, and adding some randomness to the input sample, but there are so many more options!
 
 (Try adding some *slew* to the outputs?)
 

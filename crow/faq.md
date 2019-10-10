@@ -104,7 +104,7 @@ Visit [crow studies](https://monome.org/docs/crow/norns/) to learn how to integr
 
 Visit [bowery](https://github.com/monome/bowery), a collection of druid scripts which hosts community contributions.
 
-#### writing crow scriots in druid
+#### writing crow scripts in druid
 
 Visit the [scripting reference](https://monome.org/docs/crow/scripting/) to learn how to use Lua to livecode and create standalone scripts for crow.
 

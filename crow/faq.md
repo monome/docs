@@ -10,7 +10,7 @@ permalink: /crow/faq/
 - [dictionary](#dictionary)
 - [scripts](#scripts)
 - [hardware](#hardware)
-- [i2c](#i2c)
+- [i2c](#i2c-head)
 
 ## a short story from Sam
 
@@ -159,7 +159,7 @@ crow internally generates signals at 48kHz (though the user doesn’t have direc
 | UI | requires some other device, typically a computer, to send scripts or instructions to it. This can be really convenient, since you can use whatever editor / other tools you like on your computer, and paste chunks of code or whole scripts to Crow as needed. [druid](https://github.com/monome/druid) can be used on any computer to interact with Crow over the serial port. Norns, Max, and Max4Live can also send bits of code to Crow. | has a screen and directly connects to a keyboard so you can write code right on the module with nothing else |
 | CV output | very flexible at producing gates and CV. LFOs and envelopes can be arbitrarily specified using the [ASL](https://github.com/monome/crow#output-library--asl) mini-lanugage | can produce both gates and CV. CV can slew on its way to a new value, but can't loop on its own - a script has to initiate each change |
 
-## i2c<a name="i2c"></a>
+## i2c<a name="i2c-head"></a>
 
 ### what the heck are pull-ups + i2c and what do I need to know about them in order to use crow?
 

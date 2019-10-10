@@ -2,6 +2,7 @@
 title: monome
 email: help@monome.org
 baseurl: /docs/ # the subpath of your site, e.g. /blog/
+site.url: monome.org
 
 # Build settings
 markdown: kramdown

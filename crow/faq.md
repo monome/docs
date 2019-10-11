@@ -127,7 +127,7 @@ input[1].mode = 'change'
 
 #### what are the formatting differences between druid + Max syntax?
 
-In Max, you use the exact same command as you would in druid - the only difference is you wrap them in quotes to make sure they are a single symbol, and prepend that symbol with “tell_crow”
+In Max, you use the exact same commands as you would in druid -- the only difference is you need to wrap them in quotes to make sure they are a single chunk, and prepend that chunk with `tell_crow`.
 
 In druid:
 `output[1].volts = 3`
@@ -145,7 +145,7 @@ The `[sprintf]` object is the easiest way to format messages to crow. Using the 
 
 ![](images/max-faq-1.png)
 
-- `[sprintf symout "output[%i].volts = %.2f"]` creates a string that accepts an integer (output ID) through its first inlet and a 2-decimal float (voltage) through its second inlet.
+- `[sprintf symout "output[%i].volts = %.2f"]` creates a string that accepts an integer (output ID) through its first inlet and a 2-decimal float (voltage) through its second inlet
 - since `[sprintf]`'s second inlet is *cold*, we use `[t b f]` to send a bang to `[sprintf]`'s first inlet to force the output whenever the float (voltage) changes
 - we send the string to `[prepend tell_crow]` to format the instruction
 - and finally, we send that formatted message to `[crow]`!

@@ -8,7 +8,7 @@ permalink: /crow/faq/
 <img src="https://cdn.theatlantic.com/assets/media/img/2019/01/31/0319_WEL_Andersen_lead/1920.jpg?1549576567">
 
 - [dictionary](#dictionary)
-- [scripts](#scripts)
+- [scripting](#scripting)
 - [hardware](#hardware)
 - [i2c](#i2c-head)
 
@@ -86,7 +86,7 @@ Using one of these tools, you could:
 - write a norns app that tells crow to wait for triggers at its inputs to create different types of envelopes
 - you can upload a full script to crow so that it knows what it’s meant to do when it's not connected to a computer or norns, and it would just await external triggers or control voltage at its inputs
 
-## scripts<a name="scripts"></a>
+## scripting<a name="scripting"></a>
 
 ### norns
 
@@ -122,6 +122,33 @@ output[1].action = adsr()
 input[1].change = function(s) output[1](s) end
 input[1].mode = 'change'
 ```
+
+### Max
+
+#### what are the formatting differences between druid + Max syntax?
+
+In Max, you use the exact same commands as you would in druid -- the only difference is you need to wrap them in quotes to make sure they are a single chunk, and prepend that chunk with `tell_crow`.
+
+In druid:
+`output[1].volts = 3`
+
+In Max:
+`tell_crow “output[1].volts = 3”`
+
+The quotes are crucial because they make sure the Lua command is treated a single chunk.
+
+#### best practices
+
+The `[sprintf]` object is the easiest way to format messages to crow. Using the `symout` argument, the `[sprintf]` object outputs a string as a single symbol -- ideal for sending to crow as a Lua chunk.
+
+*Example: control the voltage of an assignable output*
+
+![](images/max-faq-1.png)
+
+- `[sprintf symout "output[%i].volts = %.2f"]` creates a string that accepts an integer (output ID) through its first inlet and a 2-decimal float (voltage) through its second inlet
+- since `[sprintf]`'s second inlet is *cold*, we use `[t b f]` to send a bang to `[sprintf]`'s first inlet to force the output whenever the float (voltage) changes
+- we send the string to `[prepend tell_crow]` to format the instruction
+- and finally, we send that formatted message to `[crow]`!
 
 ## hardware<a name="hardware"></a>
 
@@ -168,6 +195,7 @@ crow internally generates signals at 48kHz (though the user doesn’t have direc
 Pull-ups are resistors on [i2c-enabled](https://llllllll.co/t/a-users-guide-to-i2c/19219) (or, ii) devices (like crow, Teletype, Ansible, Just Friends, W/). They are required to ensure integrity of the data on the i2c bus. A "bus" requires only one device to have it's pull-ups enabled in order for data and power to flow correctly. crow's pull-ups are off by default.
 
 If you are connecting crow to another i2c-enabled device *without* a powered-bus between them (eg. if you're connecting crow directly to the i2c connector on Just Friends), then you need to enable crow's pull-ups in order for messages to pass between the two. You can do this through a variety of methods:
+
 - in your norns script, specify: `crow.ii.pullup(true)`
 - in druid, execute: `ii.pullup(true)`
 - in Max, send the [crow] object a `tell_crow ii.pullup(true)` message
@@ -175,6 +203,7 @@ If you are connecting crow to another i2c-enabled device *without* a powered-bus
 If you are connecting crow to a device which already supplies power through the ii bus (like a Teletype or a powered busboard), then you do not need to enable crow's pull-ups. It will happily piggyback onto the existing bus.
 
 If you accidentally enable crow's pull-ups, they will remain that way until you disable them through any of these methods:
+
 - power-cycle your modular synth (as crow's default is pull-ups disabled)
 - in your norns script, specify: `crow.ii.pullup(false)`
 - in druid, execute: `ii.pullup(false)`

@@ -29,7 +29,7 @@ A collaboration by [Whimsical Raps](https://www.whimsicalraps.com) and monome.
 
 Align the 10-pin ribbon cable so the red stripe corresponds to the white indicator on the rear of the module’s circuit board. This is toward the lower edge of the module.
 
-If you would like to use the [ii](/docs/modular/ii) functionality, be sure to observe the orientation of the connector. The white stripe indicates GND.
+If you would like to use the [ii](http://monome.org/docs/modular/ii/) functionality, be sure to observe the orientation of the connector. The white stripe indicates GND.
 
 
 ## First
@@ -60,10 +60,10 @@ We have trained crow to navigate the following landscapes, but you can also scri
 
 ### norns
 
-- crow integrates seamlessly as a CV and [**ii**](/docs/modular/ii) interface
+- crow integrates seamlessly as a CV and [**ii**](http://monome.org/docs/modular/ii/) interface
 - on October 1st 2019, we released an [**update**](https://monome.org/docs/norns/#update) that allows scripts to communicate with crow
 - [**community-made norns apps with crow integration**](https://llllllll.co/search?expanded=true&q=tags%3Acrow%2Bnorns%20order%3Alatest) on lines
-- want to script on your own? See the full [**crow studies**](norns) for a complete guide
+- want to script on your own? See the full [**crow studies**](http://monome.org/docs/crow/norns) for a complete guide
 
 ### computer + druid
 
@@ -82,14 +82,14 @@ We have trained crow to navigate the following landscapes, but you can also scri
 
 We are working all the time. Check out the [newest firmware version](https://github.com/monome/crow/releases).
 
-To update, see the step by step [bootloader instructions](update) to update the crow firmware.
+To update, see the step by step [bootloader instructions](https://monome.org/docs/crow/update/) to update the crow firmware.
 
 
 ## Technical
 
 crow ships pre-calibrated, but it is possible to re-run the automatic calibration. There are also a subset of commands for managing the state of the device and contents of flash memory.
 
-See the [technical](technical) page for further details.
+See the [technical](http://monome.org/docs/crow/technical/) page for further details.
 
 
 ## Help

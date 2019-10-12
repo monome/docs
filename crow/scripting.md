@@ -367,7 +367,7 @@ But for now...
 
 ### Further
 
-The [reference guide](reference) provides a table of crow-specific commands.
+The [reference guide](../reference) provides a table of crow-specific commands.
 
 Additional Lua references:
 

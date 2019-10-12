@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% include head.html %}
+<body>
+  <div class="site-restraint">
+
+    <div class="site-container">
+      {% include mobile-header.html %}
+      {% include docs-header.html %}
+      <div class="center-wrapper page-content">
+
+            <div class="col-flex site-content page-container">
+              
+                {{ content }}
+            </div><!--.site-content-->
+
+        </div>
+     {% include docs-footer.html %}
+    </div><!--.site-container-->
+
+  </div><!--.site-restraint-->
+  {% include scripts.html %}
+</body>
+</html>

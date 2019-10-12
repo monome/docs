@@ -24,7 +24,7 @@ Download the `crow-vx.x.x.zip` file.
 
 ## Activate bootloader
 
-With the crow connected to druid (or a similar utility) you can enter the bootloader with a `^^b` message, which will instantly reset the module and take you to the bootloader.
+With the crow connected to druid (or a similar utility) you can enter the bootloader with a `^^b` message, which will instantly reset the module and take you to the bootloader. `druid` will start printing `<lost connection>` at which point crow is ready to bootload, and you should quit `druid` with `q`.
 
 
 ## Forcing the bootloader
@@ -41,7 +41,7 @@ to bridge the pins while powering on the case.
 
 ## Flashing the update
 
-Execute the `flash.sh` command which is included in the release .zip file. The actual firmware file that is uploaded is `crow.bin`.
+From the Terminal (make sure you've quit `druid`), execute the `flash.sh` command which is included in the release .zip file. The actual firmware file that is uploaded is `crow.bin`.
 
 For example if your file was extracted to `~/Downloads/crow-1.1.0` type this on the command line:
 

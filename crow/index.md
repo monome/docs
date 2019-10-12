@@ -50,7 +50,7 @@ Start the sequence by patching a clock or LFO into input 1. Each time the voltag
 
 To influence the melodic content, attach a control voltage to input 2. As voltages rise up from 0V, the melodies will spread out to take up more harmonic space. Positive voltages play a pentatonic scale, while below 0V two notes are added to enter the ionian mode, similarly widening the melody toward -5V.
 
-For the code-curious, see the implementation [on github](https://github.com/monome/crow/blob/master/lua/default.lua).
+For the code-curious, see the implementation [on github](https://github.com/monome/crow/blob/master/lua/First.lua).
 
 ## Next steps
 

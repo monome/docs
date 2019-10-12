@@ -77,7 +77,7 @@ Or on norns: `crow.output[1].volts = 3.33`
 
 This command tells crow “please emit 3.33 volts from your first output”. There are currently a few things that know how to talk to crow (norns, druid, and the Max/M4L toolkit), but this list will hopefully grow.
 
-[Documentation of this syntax](https://monome.org/docs/crow/reference/).
+[Documentation of this syntax](../reference).
 
 Using one of these tools, you could:
 
@@ -96,7 +96,7 @@ Search `tags:crow+norns` at llllllll.co (or [click here](https://llllllll.co/sea
 
 #### writing norns + crow scripts
 
-Visit [crow studies](https://monome.org/docs/crow/norns/) to learn how to integrate crow within scripts on norns.
+Visit [crow studies](../norns) to learn how to integrate crow within scripts on norns.
 
 ### druid
 
@@ -106,7 +106,7 @@ Visit [bowery](https://github.com/monome/bowery), a collection of druid scripts 
 
 #### writing crow scripts in druid
 
-Visit the [scripting reference](https://monome.org/docs/crow/scripting/) to learn how to use Lua to livecode and create standalone scripts for crow.
+Visit the [scripting reference](../scripting) to learn how to use Lua to livecode and create standalone scripts for crow.
 
 #### how large a script can I run or store on crow in standalone?
 

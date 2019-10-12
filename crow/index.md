@@ -56,12 +56,12 @@ For the code-curious, see the implementation [on github](https://github.com/mono
 
 While *First* is a compelling instrument on its own, crow collects all manner of objects: other Eurorack synthesizer modules, computers, and norns.
 
-We have trained crow to navigate the following landscapes, but you can also script your own flight patterns. Please feel free to peruse the [scripting tutorial](https://monome.org/docs/crow/scripting/) and crow's command [reference page](https://monome.org/docs/crow/reference/).
+We have trained crow to navigate the following landscapes, but you can also script your own flight patterns. Please feel free to peruse the [scripting tutorial](scripting) and crow's command [reference page](reference).
 
 ### norns
 
 - crow integrates seamlessly as a CV and [**ii**](/docs/modular/ii) interface
-- on October 1st 2019, we released an [**update**](https://monome.org/docs/norns/#update) that allows scripts to communicate with crow
+- on October 1st 2019, we released an [**update**](../norns/#update) that allows scripts to communicate with crow
 - [**community-made norns apps with crow integration**](https://llllllll.co/search?expanded=true&q=tags%3Acrow%2Bnorns%20order%3Alatest) on lines
 - want to script on your own? See the full [**crow studies**](norns) for a complete guide
 
@@ -94,7 +94,7 @@ See the [technical](technical) page for further details.
 
 ## Help
 
-Answers to frequently asked questions can be found in the [FAQ](https://monome.org/docs/crow/faq/).
+Answers to frequently asked questions can be found in the [FAQ](faq).
 
 Community discussion happens at [llllllll.co](https://llllllll.co). Come say hello!
 

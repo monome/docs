@@ -9,11 +9,11 @@ permalink: /crow/norns/
 
 Crow serves as a CV and ii interface for norns.
 
-It may be helpful to first explore the [norns studies](https://monome.org/docs/norns/study-1/) to provide context for how to integrate crow's new functionality.
+It may be helpful to first explore the [norns studies](../../norns/study-1) to provide context for how to integrate crow's new functionality.
 
 Download: [github.com/monome/crow-studies](https://github.com/monome/crow-studies)
 
-(Note: be sure your norns is [updated](https://monome.org/docs/norns/#update) to version 190920 or later.)
+(Note: be sure your norns is [updated](../../norns/#update) to version 190920 or later.)
 
 Crow will automatically be detected and interfaced upon connection to norns. Presently only a single crow is supported.
 

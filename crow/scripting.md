@@ -131,7 +131,7 @@ Any time you make changes to `clockdiv.lua` you'll need to run the script again 
 In review:
 
 | command       | meaning |
-| ---           | ---      |
+| :---:           | :---:      |
 | r *filename*.lua | run *filename*.lua |
 | u *filename*.lua | upload *filename*.lua to crow's longterm memory |
 | p | print currently running script |

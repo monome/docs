@@ -3,23 +3,40 @@ layout: page
 permalink: /crow/scripting/
 ---
 
-## Scripting
+![](../images/druid-start.jpg)
+
+# Scripting
 
 Scripts are the little programs crow runs to take on different roles in your synthesizer. They are written in [Lua](https://www.lua.org) and typically run between 10 and 100 lines. You don't need to write them from scratch though! There's examples to upload directly, and modifying existing scripts is a nice soft entry into writing your own.
 
-crow stores a single script in memory at any given time, and it will automatically start it whenever you turn on your synth. When you first turned on crow it was running *First* which is a script too! We'll be uploading new scripts that stop *First* from running, but never fear it's easy to return if you desire (read on!).
+crow stores a single script in memory at any given time, and it will automatically start it whenever you turn on your synth. When you first turned on crow it was running *First*, which is a script too! We'll be uploading new scripts that stop *First* from running, but never fear it's easy to return if you desire (read on!).
 
-This tutorial has two stages:
+**This tutorial has three stages:**
 
-First we'll cover setting up `druid` and learning how to run & upload scripts to crow. This is all you'll need if you don't want to write your own scripts!
+*Stage One* covers:
 
-Second it covers a typical workflow for writing scripts, sending crow messages directly from `druid`, and a brief introduction into writing & modifying crow scripts.
+-  [setting up `druid`](#toolkit)
+-  [where to find new scripts for crow](#bowery)
+-  [learning how to upload & run scripts on crow](#uploading)
 
-### Setup
+**That is all you'll need if you don't want to write your own scripts!**
+
+If you wish to venture on from there, *Stage Two* demonstrates:
+
+- [a typical scripting workflow](#split-screen)
+- [sending crow messages directly from `druid`](#say-hello)
+
+And *Stage Three* concludes with [a brief introduction into writing & modifying crow scripts](#sample-and-hold).
+
+## Stage One: Setup
+
+### Toolkit
 
 To communicate with crow we'll use `druid` which is a command-line tool that lets you send & receive text, as well as run & upload scripts.
 
-First we'll collect & install a few tools, starting with `Python` which is the environment that runs `druid`. We need version 3.5+, but let's get the most recent version:
+First we'll collect & install a few tools, starting with `Python` which is the environment that runs `druid`. Don't worry, you don't ever have to type any Python code into `druid`.
+
+We need version 3.5+, but let's get the most recent version:
 
 - Mac & Windows: [download from the Python website](https://www.python.org/downloads/)
 - Linux: in a terminal run `sudo apt-get install python3 python3-pip` or equivalent
@@ -63,7 +80,7 @@ If `druid` responds with `can't find crow device`, make sure crow is connected w
 If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device. See [below](#permissions) for a fix.
 
 
-#### Bowery
+### Bowery
 
 Before we can upload a script, we need some scripts to upload! There's a set of examples, and a growing collection of user-provided scripts available in the *bowery* repository.
 
@@ -103,9 +120,13 @@ A voltage into input 2 will select between different sets of divisions as you sw
 
 Any time you make changes to `clockdiv.lua` you'll need to run the script again with `r clockdiv.lua`. If you want your changes to stick around when you restart crow change `r` (run) to `u` (upload) like this; `u clockdiv.lua`. We recommend you use `r` most of the time as it's faster, then once you settle on something you like use `u` to save it into crow's longterm memory.
 
-This is all you need to work with existing scripts! Plenty of fun is to be had playing with the files in the *bowery/* folder alone. If you want to use a script you see online, you'll need to save it as a text file in a folder of your choosing, `cd` to that folder, open druid and then run it as before with `r a-cool-script-i-found.lua`. We'll be adding more examples, and accept community contributions into the official *bowery* repo.
+**This is all you need to work with existing scripts!** Plenty of fun is to be had playing with the files in the *bowery/* folder alone.
+
+If you want to use a script you see online, you'll need to save it as a text file in a folder of your choosing, `cd` to that folder, open druid and then run it as before with `r a-cool-script-i-found.lua`. We'll be adding more examples, and accept community contributions into the official *bowery* repo.
 
 *Note: Occasionally you might see `druid` complain about errors after calling `r`. Wait a couple seconds & try again. If you still have problems, enter `^^kill` to reset crow, then `r` again.*
+
+## Stage Two: Commands
 
 ### Split screen
 
@@ -211,6 +232,8 @@ Give the output some movement by using slew, then up-arrow to go back to 1 volt:
 ```
 
 The pitch will glide up to 1 volt again, smoothly fading for half a second.
+
+## Stage Three: Writing Scripts
 
 ### Sample and hold
 
@@ -353,7 +376,7 @@ This short script is already a nice sample & hold. It creates a random value and
 
 One great source of inspiration when it comes to sample & hold and other forms of randomness is the Buchla 'Source of Uncertainty' module, but for now that's up to you to explore!
 
-### The neverending story
+## The neverending story
 
 More explorations will be here or around soon:
 
@@ -368,6 +391,8 @@ But for now...
 ### Further
 
 The [reference guide](../reference) provides a table of crow-specific commands.
+
+The [FAQ](../faq) holds a number of crow questions and answers.
 
 Additional Lua references:
 

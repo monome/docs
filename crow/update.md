@@ -29,8 +29,7 @@ With the crow connected to druid (or a similar utility) you can enter the bootlo
 
 ## Forcing the bootloader
 
-In case both of the above don't work, you can manually force the bootloader to
-run by placing a jumper on the i2c header and restarting (power-cycling) crow.
+In case both the above doesn't work, you can manually force the bootloader to run by placing a jumper on the i2c header and restarting (power-cycling) crow.
 
 The jumper should bridge between either of the centre pins to either of the
 ground pins (i.e. the pins closest to the power connector, indicated by the
@@ -50,7 +49,13 @@ cd ~/Downloads/crow-1.1.0
 ./flash.sh
 ```
 
-You'll see something like:
+**Having trouble using the `cd` command?**
+  
+- Mac: right click the unzipped `crow-vx.x.x` folder and then press the OPTION key. This will reveal a **Copy "crow-vx.x.x" as Pathname** action. Select it and then paste into terminal after `cd [spacebar]`.
+- Windows: hold the SHIFT key and right click the unzipped `crow-vx.x.x` folder. This will reveal a **Copy as path** action. Select it and then paste into terminal after `cd [spacebar]`.
+- Linux: right click the unzipped `crow-vx.x.x` folder and select "**Copy**". Then, simply **Paste** into terminal after `cd [spacebar]`.
+
+After executing `./flash.sh`, you'll see something like:
 
 ```console
 dfu-util 0.9

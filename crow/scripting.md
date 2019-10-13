@@ -88,6 +88,12 @@ Navigate to [bowery](https://github.com/monome/bowery/releases/latest) and downl
 
 Return to your terminal & quit `druid` by typing `q` then `<enter>`. Now in terminal, change-directory (or `cd`) to enter the bowery folder. If you unzip within your Documents folder it would be `cd ~/Documents/bowery-X`.
 
+**Having trouble using the `cd` command?**
+  
+- Mac: right click the unzipped `crow-vx.x.x` folder and then press the OPTION key. This will reveal a **Copy "crow-vx.x.x" as Pathname** action. Select it and then paste into terminal after `cd [spacebar]`.
+- Windows: hold the SHIFT key and right click the unzipped `crow-vx.x.x` folder. This will reveal a **Copy as path** action. Select it and then paste into terminal after `cd [spacebar]`.
+- Linux: right click the unzipped `crow-vx.x.x` folder and select "**Copy**". Then, simply **Paste** into terminal after `cd [spacebar]`.
+
 ### Uploading
 
 From the *bowery-X* folder, load up a fresh `druid` session so we can talk to crow.
@@ -122,11 +128,21 @@ Any time you make changes to `clockdiv.lua` you'll need to run the script again 
 
 **This is all you need to work with existing scripts!** Plenty of fun is to be had playing with the files in the *bowery/* folder alone.
 
+In review:
+
+| command       | meaning |
+| ---           | ---      |
+| r *filename*.lua | run *filename*.lua |
+| u *filename*.lua | upload *filename*.lua to crow's longterm memory |
+| p | print currently running script |
+| h | access help menu |
+| q | quit druid |
+
 If you want to use a script you see online, you'll need to save it as a text file in a folder of your choosing, `cd` to that folder, open druid and then run it as before with `r a-cool-script-i-found.lua`. We'll be adding more examples, and accept community contributions into the official *bowery* repo.
 
-*Note: Occasionally you might see `druid` complain about errors after calling `r`. Wait a couple seconds & try again. If you still have problems, enter `^^kill` to reset crow, then `r` again.*
+*Note: Occasionally you might see `druid` complain about errors after calling `r`. Wait a couple seconds & try again. If you still have problems, enter `^^kill` to reset crow, then `r` again. [Learn more about Environment Commands here](technical/#environment-commands)*
 
-## Stage Two: Commands
+## Stage Two: Executing
 
 ### Split screen
 
@@ -138,12 +154,10 @@ Speaking of tools, your coding terminal doesn't need to be a squinty struggle ei
 
 Now load both these tools up and, resize the windows so you have them side-by-side, something like these examples:
 
-![](../images/druid-sublime.jpg)
-
+![](../images/druid-sublime.jpg)  
 druid & sublime text
 
-![](../images/druid-vim.jpg)
-
+![](../images/druid-vim.jpg)  
 druid & vim
 
 You'll want to learn the hotkey that allows you to switch focus between the two programs.

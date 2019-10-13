@@ -90,9 +90,9 @@ Return to your terminal & quit `druid` by typing `q` then `<enter>`. Now in term
 
 **Having trouble using the `cd` command?**
   
-- Mac: right click the unzipped `crow-vx.x.x` folder and then press the OPTION key. This will reveal a **Copy "crow-vx.x.x" as Pathname** action. Select it and then paste into terminal after `cd [spacebar]`.
-- Windows: hold the SHIFT key and right click the unzipped `crow-vx.x.x` folder. This will reveal a **Copy as path** action. Select it and then paste into terminal after `cd [spacebar]`.
-- Linux: right click the unzipped `crow-vx.x.x` folder and select "**Copy**". Then, simply **Paste** into terminal after `cd [spacebar]`.
+- Mac: right click the unzipped `bowery-X` folder and then press the OPTION key. This will reveal a **Copy "crow-vx.x.x" as Pathname** action. Select it and then paste into terminal after `cd [spacebar]`.
+- Windows: hold the SHIFT key and right click the unzipped `bowery-X` folder. This will reveal a **Copy as path** action. Select it and then paste into terminal after `cd [spacebar]`.
+- Linux: right click the unzipped `bowery-X` folder and select "**Copy**". Then, simply **Paste** into terminal after `cd [spacebar]`.
 
 ### Uploading
 

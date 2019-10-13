@@ -130,13 +130,13 @@ Any time you make changes to `clockdiv.lua` you'll need to run the script again 
 
 In review:
 
-| command       | meaning |
-| :---:           | :---:      |
-| r *filename*.lua | run *filename*.lua |
-| u *filename*.lua | upload *filename*.lua to crow's longterm memory |
-| p | print currently running script |
-| h | access help menu |
-| q | quit druid |
+| command | ~> | meaning |
+| :--- | :---: | :--- |
+| r *filename*.lua | | run *filename*.lua |
+| u *filename*.lua | | upload *filename*.lua to crow's longterm memory |
+| p | | print currently running script |
+| h | | access help menu |
+| q | | quit druid |
 
 If you want to use a script you see online, you'll need to save it as a text file in a folder of your choosing, `cd` to that folder, open druid and then run it as before with `r a-cool-script-i-found.lua`. We'll be adding more examples, and accept community contributions into the official *bowery* repo.
 

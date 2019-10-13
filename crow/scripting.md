@@ -3,7 +3,7 @@ layout: page
 permalink: /crow/scripting/
 ---
 
-![](../images/druid-start.jpg)
+![](images/druid-start.png)
 
 # Scripting
 

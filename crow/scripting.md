@@ -128,7 +128,7 @@ Any time you make changes to `clockdiv.lua` you'll need to run the script again 
 
 **This is all you need to work with existing scripts!** Plenty of fun is to be had playing with the files in the *bowery/* folder alone.
 
-In review:
+### In review:
 
 | command | ~> | meaning |
 | :--- | :---: | :--- |

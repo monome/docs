@@ -56,7 +56,7 @@ For the code-curious, see the implementation [on github](https://github.com/mono
 
 While *First* is a compelling instrument on its own, crow collects all manner of objects: other Eurorack synthesizer modules, computers, and norns.
 
-We have trained crow to navigate the following landscapes, but you can also script your own flight patterns. Please feel free to peruse the [scripting tutorial](scripting) and crow's command [reference page](reference).
+We have trained crow to navigate the following landscapes:
 
 ### norns
 
@@ -69,7 +69,8 @@ We have trained crow to navigate the following landscapes, but you can also scri
 
 - you can use your terminal to access [**druid**](https://github.com/monome/druid), a small utility for communicating with crow
 - druid helps you engage crow in realtime interaction and also upload full scripts (coded in Lua), providing an interactive platform for designing new patterns in a modular synth
-- want to see what others have scripted? visit [**bowery**](https://github.com/monome/bowery), the druid script collection
+- want to see what others have scripted? visit [**bowery**](https://github.com/monome/bowery), the druid script collection, and complete *stage one* of the [**scripting tutorial**](scripting) to learn how to upload scripts
+- learn to map your own flight paths with *stage two* and *stage three* of the [**scripting tutorial**](scripting)
 
 ### computer + Max 8 / Max for (Ableton) Live
 
@@ -77,6 +78,11 @@ We have trained crow to navigate the following landscapes, but you can also scri
 - we have created Max for Live devices to integrate crow with Live, including: Live-synced clocks, MIDI-to-v/8, CC-to-Voltage, LFO's, executing Lua code directly in Live, parameter mapping your crow scripts, and triggering Lua chunks with MIDI
 - using the [crow] object in Max 8, create your own Live-controllable devices or standalone utilities
 - visit the [**Max and Max for Live repo on GitHub**](https://github.com/monome/crow-max)
+
+### birdsong (reference)
+
+- if you are writing or modifying norn apps, standalone scripts, or Max patches, you will want to become fluent in the language of the birds...
+- visit the [**scripting reference**](reference) to become a crow whisperer 
 
 ## Updates
 

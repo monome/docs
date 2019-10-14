@@ -102,11 +102,11 @@ Visit [crow studies](../norns) to learn how to integrate crow within scripts on 
 
 #### finding community scripts
 
-Visit [bowery](https://github.com/monome/bowery), a collection of druid scripts which hosts community contributions.
+Visit *stage one* of the [scripting tutorial](scripting) to learn how to upload scripts; to find new scripts to upload, visit [bowery](https://github.com/monome/bowery), a collection of druid scripts which hosts community contributions.
 
 #### writing crow scripts in druid
 
-Visit the [scripting reference](../scripting) to learn how to use Lua to livecode and create standalone scripts for crow.
+Visit *stage one* and *stage two* of the [scripting tutorial](../scripting) to learn how to use Lua to livecode and create standalone scripts for crow.  The [scripting reference](reference) provides additional documentation of the scripting language.
 
 #### how large a script can I run or store on crow in standalone?
 

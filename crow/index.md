@@ -84,6 +84,10 @@ We have trained crow to navigate the following landscapes:
 - if you are writing or modifying norn apps, standalone scripts, or Max patches, you will want to become fluent in the language of the birds...
 - visit the [**scripting reference**](reference) to become a crow whisperer 
 
+## Resources
+
+Please visit the [resources](resources) page for a bullet-point overview of currently available crow resources.
+
 ## Updates
 
 We are working all the time. Check out the [newest firmware version](https://github.com/monome/crow/releases).

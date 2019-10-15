@@ -24,13 +24,12 @@ Download the `crow-vx.x.x.zip` file.
 
 ## Activate bootloader
 
-With the crow connected to druid (or a similar utility) you can enter the bootloader with a `^^b` message, which will instantly reset the module and take you to the bootloader.
+With the crow connected to druid (or a similar utility) you can enter the bootloader with a `^^b` message, which will instantly reset the module and take you to the bootloader. `druid` will start printing `<lost connection>` at which point crow is ready to bootload, and you should quit `druid` with `q`.
 
 
 ## Forcing the bootloader
 
-In case both of the above don't work, you can manually force the bootloader to
-run by placing a jumper on the i2c header and restarting (power-cycling) crow.
+In case both the above doesn't work, you can manually force the bootloader to run by placing a jumper on the i2c header and restarting (power-cycling) crow.
 
 The jumper should bridge between either of the centre pins to either of the
 ground pins (i.e. the pins closest to the power connector, indicated by the
@@ -41,7 +40,7 @@ to bridge the pins while powering on the case.
 
 ## Flashing the update
 
-Execute the `flash.sh` command which is included in the release .zip file. The actual firmware file that is uploaded is `crow.bin`.
+From the Terminal (make sure you've quit `druid`), execute the `flash.sh` command which is included in the release .zip file. The actual firmware file that is uploaded is `crow.bin`.
 
 For example if your file was extracted to `~/Downloads/crow-1.1.0` type this on the command line:
 
@@ -50,7 +49,13 @@ cd ~/Downloads/crow-1.1.0
 ./flash.sh
 ```
 
-You'll see something like:
+**Having trouble using the `cd` command?**
+  
+- Mac: right click the unzipped `crow-vx.x.x` folder and then press the OPTION key. This will reveal a **Copy "crow-vx.x.x" as Pathname** action. Select it and then paste into terminal after `cd [spacebar]`.
+- Windows: hold the SHIFT key and right click the unzipped `crow-vx.x.x` folder. This will reveal a **Copy as path** action. Select it and then paste into terminal after `cd [spacebar]`.
+- Linux: right click the unzipped `crow-vx.x.x` folder and select "**Copy**". Then, simply **Paste** into terminal after `cd [spacebar]`.
+
+After executing `./flash.sh`, you'll see something like:
 
 ```console
 dfu-util 0.9

@@ -9,11 +9,11 @@ permalink: /crow/norns/
 
 Crow serves as a CV and ii interface for norns.
 
-It may be helpful to first explore the [norns studies](https://monome.org/docs/norns/study-1/) to provide context for how to integrate crow's new functionality.
+It may be helpful to first explore the [norns studies](../../norns/study-1) to provide context for how to integrate crow's new functionality.
 
 Download: [github.com/monome/crow-studies](https://github.com/monome/crow-studies)
 
-(Note: be sure your norns is [updated](https://monome.org/docs/norns/#update) to version 190920 or later.)
+(Note: be sure your norns is [updated](../../norns/#update) to version 190920 or later.)
 
 Crow will automatically be detected and interfaced upon connection to norns. Presently only a single crow is supported.
 
@@ -151,38 +151,38 @@ Crow can generate and loop multipoint envelopes:
 
 ```lua
 -- start at 0, rise to 5V over 0.1 seconds, fall to 1V over 2 seconds
-output[1].action = "{ to(0,0), to(5,0.1), to(1,2) }"
+crow.output[1].action = "{ to(0,0), to(5,0.1), to(1,2) }"
 ```
 
 To start (and restart) this action:
 
 ```lua
-output[1].execute()
+crow.output[1].execute()
 ```
 
 Shapes can be repeated:
 
 ```lua
-output[1].action = "times( 4, { to(0,0), to(5,0.1), to(1,2) } )"
+crow.output[1].action = "times( 4, { to(0,0), to(5,0.1), to(1,2) } )"
 ```
 
 And also looped:
 
 ```lua
-output[1].action = "loop( { to(0,0), to(5,0.1), to(1,2) } )"
+crow.output[1].action = "loop( { to(0,0), to(5,0.1), to(1,2) } )"
 ```
 
 Actions can be interrupted at any time by setting a fixed voltage, for example:
 
 ```lua
-output[1].volts = 0
+crow.output[1].volts = 0
 ```
 
 There are a few predefined shapes, such as LFO:
 
 ```lua
 -- LFO rate of 1, amplitude of 5V
-output[1].action = "lfo(1,5)"
+crow.output[1].action = "lfo(1,5)"
 ```
 
 ### Query

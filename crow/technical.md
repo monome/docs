@@ -56,6 +56,6 @@ The gentlest way to deal with this situation is to send the `^^clearscript` comm
 If your crow is connected to your computer through usb + properly powered, but it druid reports it `can't find crow device`:
 
 - download the [most recent firmware](https://github.com/monome/crow/releases)
-- [enter the bootloader manually](../update)
+- [force the bootloader](../update/#forcing-the-bootloader)
 - open terminal and use `cd` to change directory to the downloaded firmware folder
 - execute `./erase_userscript.sh`

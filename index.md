@@ -48,6 +48,6 @@ permalink: /
 
 ## [help](/docs/help) -- [repairs](/docs/repairs)
 
-## [community](llllllll.co)
+## [community](https://llllllll.co)
 
 looking for the old forum? it's read-only, at [archive.monome.org/community](http://archive.monome.org/community/index.html)

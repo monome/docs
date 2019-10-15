@@ -52,4 +52,3 @@ If you do not know how to make a PR, you can also file an issue: click [here](ht
 
 - [github](https://github.com/monome/crow)
 - [community discussion](https://llllllll.co/t/crow-1-0-0/26142)
-

@@ -4,6 +4,7 @@ email: help@monome.org
 baseurl: /docs/ # the subpath of your site, e.g. /blog/
 
 # Build settings
+permalink: pretty
 markdown: kramdown
 highlighter: rouge
 kramdown:

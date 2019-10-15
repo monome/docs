@@ -50,7 +50,12 @@ It's entirely possible to upload crow scripts that will make crow unresponsive a
 
 The gentlest way to deal with this situation is to send the `^^clearscript` command over usb
 
-- Druid: `^^c`
-- Norns: `crow.clear()`
+- druid: `^^c`
+- norns: `crow.clear()`
 
-If crow stays unresponsive, or doesn't appear to be connected to your host, you'll need to enter the bootloader and run `erase_userscript.sh`.
+If your crow is connected to your computer through usb + properly powered, but druid reports it `can't find crow device`:
+
+- download the [most recent firmware](https://github.com/monome/crow/releases)
+- [force the bootloader](../update/#forcing-the-bootloader)
+- open terminal and use `cd` to change directory to the downloaded firmware folder
+- execute `./erase_userscript.sh`

@@ -53,7 +53,7 @@ The gentlest way to deal with this situation is to send the `^^clearscript` comm
 - druid: `^^c`
 - norns: `crow.clear()`
 
-If your crow is connected to your computer through usb + properly powered, but it druid reports it `can't find crow device`:
+If your crow is connected to your computer through usb + properly powered, but druid reports it `can't find crow device`:
 
 - download the [most recent firmware](https://github.com/monome/crow/releases)
 - [force the bootloader](../update/#forcing-the-bootloader)

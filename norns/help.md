@@ -6,7 +6,7 @@ permalink: /norns/help/
 # norns: help
 
 ## wifi troubleshooting
-_nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. it uses a lot of power, draining both battery and system resources._
+_nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources._
 
 If you are consistently unable to connect your norns to wifi through the ['Connect' steps outlined here](/docs/norns/index/#connect), please perform the following steps:
 

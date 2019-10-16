@@ -8,18 +8,18 @@ permalink: /norns/help/
 ## wifi troubleshooting
 _nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources._
 
-If you are consistently unable to connect your norns to wifi through the ['Connect' steps outlined here](/docs/norns/index/#connect), please perform the following steps:
+If you are consistently unable to connect your norns to wifi through the ['Connect' steps outlined here](/docs/norns/#connect), please perform the following steps:
 
 1. Try plugging the wifi nub into a different USB slot on norns and perform a standard reboot.
 
-2. Plug the wifi nub into a non-norns computer (laptop/desktop | MacOS/Windows/Linux) and confirm that the nub functions as expected.  
+2. Plug the wifi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected.  
 
 	- If your nub is defective, please email help@monome.org for a replacement
 	- If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a $10 (shipping incl.) replacement
 
 3. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
 
-4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](/docs/norns/index/#other-access). Once you perform this serial login, try running `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network.
+4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](/docs/norns/#other-access). Once you perform this serial login, try running `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network.
 
 5. If you are still unable to connect, please email help@monome.org with the following information:
 
@@ -27,15 +27,15 @@ If you are consistently unable to connect your norns to wifi through the ['Conne
 	- Screenshots of the terminal screens in step 4
 	- Your router config (WPA, WEP, etc)
 
-## how do I add/update apps on my norns?
+## help: how do I add/update apps on my norns?
 
-### how do I find apps for my norns?
+### finding apps for norns
 Browse the [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns%20order%3Alatest) for projects tagged `norns`. Applications for norns are built and maintained through the lines community, so any questions/trouble with a specific project should be directed to its dedicated thread.
 
-### how do I install/update an app onto my norns?
+### installing/updating apps on norns
 1. Download the app you wish to install onto your computer by visiting the app's Library page and clicking the hyperlink under `Download`. Alternatively, you can visit the project's GitHub page and click the green `Clone or download` button, then select `Download ZIP`.
 
-2. Locate (and un-zip) the folder and remove the `-master` from it's name. eg. If you download [Reels](https://llllllll.co/t/reels/21030), the folder will be named `reels-master`. Please rename it to `reels`. do this for any application you download.
+2. Locate (and un-zip) the folder and **remove** `-master` from it's name. eg. If you download [Reels](https://llllllll.co/t/reels/21030), the folder will be named `reels-master`. Please rename it to `reels`. do this for any application you download.
 
 3. Connect your norns to the same wifi network as your computer or [turn norns into a hotspot](/docs/norns/#connect). [Having wifi trouble?](#wifi-troubleshooting)
 

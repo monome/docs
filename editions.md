@@ -1,5 +1,7 @@
 ---
 layout: page
+title: editions
+nav_order: 2
 permalink: /editions/
 ---
 

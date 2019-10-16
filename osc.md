@@ -1,5 +1,7 @@
 ---
 layout: page
+title: osc
+nav_order: 13
 permalink: /osc/
 ---
 

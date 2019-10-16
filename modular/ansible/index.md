@@ -1,5 +1,8 @@
 ---
+nav_exclude: true
 layout: page
+title: ansible
+has_children: true
 permalink: /modular/ansible/
 ---
 

@@ -1,7 +1,9 @@
 ---
+nav_exclude: true
 layout: page
 title: grid studies
 permalink: /grid-studies/
+has_children: true
 ---
 
 # Grid Studies

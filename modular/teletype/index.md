@@ -1,5 +1,8 @@
 ---
+nav_exclude: true
 layout: page
+title: teletype
+has_children: true
 permalink: /modular/teletype/
 ---
 

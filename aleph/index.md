@@ -1,6 +1,9 @@
 ---
+nav_exclude: true
 layout: page
-permalink: /aleph/
+title: aleph
+permalink: /aleph
+has_children: true
 ---
 
 # Aleph

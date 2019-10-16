@@ -1,5 +1,7 @@
 ---
+nav_exclude: true
 layout: page
+title: modular presets
 permalink: /modular/preset/
 ---
 

@@ -1,5 +1,7 @@
 ---
 layout: page
+nav_order: 6
+title: modular
 permalink: /modular/
 ---
 

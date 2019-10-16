@@ -1,5 +1,7 @@
 ---
+nav_exclude: true
 layout: page
+title: ii header
 permalink: /modular/iiheader/
 ---
 

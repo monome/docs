@@ -1,6 +1,10 @@
 ---
+nav_exclude: true
 layout: page
 permalink: /aleph/reference/
+title: Aleph Reference
+parent: aleph
+nav_order: 1
 ---
 
 # Aleph Reference

@@ -1,6 +1,9 @@
 ---
+nav_exclude: true
 layout: page
-permalink: /kits/
+title: kits
+permalink: /kits
+has_children: true
 ---
 
 ## kits

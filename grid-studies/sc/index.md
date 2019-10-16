@@ -1,4 +1,5 @@
 ---
+nav_exclude: true
 layout: page
 title: grid studies supercollider
 permalink: /grid-studies/sc/

@@ -1,5 +1,7 @@
 ---
 layout: page
+title: repairs
+nav_order: 12
 permalink: /repairs/
 ---
 

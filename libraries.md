@@ -1,5 +1,7 @@
 ---
 layout: page
+nav_order: 4
+title: libraries
 permalink: /libraries/
 ---
 

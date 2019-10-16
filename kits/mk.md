@@ -1,6 +1,9 @@
 ---
+nav_exclude: true
 layout: page
-permalink: /mk/
+title: mk
+nav_order: 3
+permalink: /mk
 ---
 
 # mk: monome kit

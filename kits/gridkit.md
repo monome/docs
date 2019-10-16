@@ -1,6 +1,9 @@
 ---
+nav_exclude: true
 layout: page
-permalink: /grid-kit/
+title: 40h kit
+nav_order: 1
+permalink: /grid-kit
 ---
 # grid kit
 

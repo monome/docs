@@ -1,5 +1,7 @@
 ---
 layout: page
+nav_order: 9
+title: help
 permalink: /help/
 ---
 

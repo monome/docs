@@ -1,5 +1,7 @@
 ---
 layout: page
+nav_order: 5
+title: linux
 permalink: /linux/
 ---
 

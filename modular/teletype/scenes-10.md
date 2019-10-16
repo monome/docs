@@ -1,4 +1,5 @@
 ---
+nav_exclude: true
 layout: page
 permalink: /modular/teletype/scenes-1.0/
 ---

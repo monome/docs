@@ -1,5 +1,7 @@
 ---
+nav_exclude: true
 layout: page
+title: grid-40h disassembly
 permalink: /disassembly/grid-40h/
 ---
 # grid disassembly: 40h edition

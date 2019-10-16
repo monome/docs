@@ -1,5 +1,7 @@
 ---
 layout: page
+title: raspbian
+nav_order: 14
 permalink: /raspbian/
 ---
 

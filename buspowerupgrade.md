@@ -1,6 +1,8 @@
 ---
 layout: page
-permalink: /buspowerupgrade/
+nav_order: 7
+title: bus power upgrade
+permalink: /buspowerupgrade
 ---
 
 # bus power upgrade

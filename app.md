@@ -1,5 +1,7 @@
 ---
 layout: page
+title: applications
+nav_order: 11
 permalink: /app/
 ---
 

@@ -1,5 +1,8 @@
 ---
+nav_exclude: true
 layout: page
+title: 40h kit
+nav_order: 2
 permalink: /40h-kit/
 ---
 

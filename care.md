@@ -1,5 +1,7 @@
 ---
 layout: page
+title: care
+nav_order: 10
 permalink: /care/
 ---
 

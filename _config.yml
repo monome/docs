@@ -1,23 +1,41 @@
-# Site settings
-title: monome
-email: help@monome.org
-baseurl: /docs/ # the subpath of your site, e.g. /blog/
+title: monome docs
+baseurl: "/docs/" # the subpath of your site, e.g. /blog
+#url: "https://pmarsceill.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
-# Build settings
 permalink: pretty
-markdown: kramdown
-highlighter: rouge
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    default_lang: lua
-    css_class: 'highlight'
+exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"]
 
-# Defaults
-defaults:
-  -
-    scope:
-      path: "" # an empty string here means all files in the project
-    values:
-      layout: "page"
+# Set a path/url to a logo that will be displayed instead of the title
+#logo: "/assets/images/just-the-docs.png"
+
+# Enable or disable the site search
+search_enabled: true
+
+heading_anchors: true
+
+# Set the search token separator for hyphenated-word search:
+search_tokenizer_separator: /[\s/]+/
+
+# Enable or disable heading anchors
+heading_anchors: true
+
+# Aux links for the upper right navigation
+aux_links:
+  "monome docs on GitHub":
+    - "//github.com/monome/docs"
+
+# Footer content appears at the bottom of every page's main content
+footer_content: "monome.org, 2019"
+# Color scheme currently only supports "dark" or nil (default)
+color_scheme: nil
+
+plugins:
+  - jekyll-seo-tag
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false

@@ -1,5 +1,7 @@
 ---
 layout: page
+nav_order: 3
+title: grid
 permalink: /grid/
 ---
 

@@ -1,6 +1,8 @@
 ---
+nav_exclude: true
 layout: page
-permalink: /crow/
+title: crow
+permalink: /crow
 ---
 
 ![](images/crow.jpg)

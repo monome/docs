@@ -329,9 +329,9 @@ Where `(tab)` appears hit TAB to autocomplete the serial number. Login is the sa
 
 ## GATHERING
 
-Browse the [Library](https://llllllll.co/c/library) to see projects created and contributed by various people.
+Browse the [norns Library](https://llllllll.co/search?expanded=true&q=%23library%20tags%3Anorns%20order%3Alatest) to see projects created and contributed by various people.
 
-These project pages have information and a download link. Download a file, unpack into a folder, and then move this folder over to the `dust/code/` folder using SFTP. It'll show up in the SELECT list.
+These project pages have information and a download link. Download a .zip file, unpack into a folder, (IMPORTANT!) rename the folder by removing `-master` from its name, and then move this folder over to the `dust/code/` folder using SFTP. It'll show up in the SELECT list.
 
 
 ## SHARING

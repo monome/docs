@@ -159,16 +159,14 @@ If you prefer the command line see [this guide](https://github.com/monome/norns-
 
 ## additional a's to faq's
 
-- imported audio must be 48khz, bit depth is irrelevant
+- Imported audio must be 48khz, bit depth is irrelevant.
 
-- line noise while usb charge + audio input are both coming from the same laptop (ground loop) can be defeated with [an isolator](https://llllllll.co/t/external-grid-power-ext5v-alternative/3260).
+- Line noise while usb charge + audio input are both coming from the same laptop (ground loop) can be defeated with [an isolator](https://llllllll.co/t/external-grid-power-ext5v-alternative/3260).
 
-- if a connected MIDI controller is not functioning as expected, it may be due to a known limitation in scripts that do not explicitly allow for MIDI control from channels other than channel 1. either reassign your MIDI controller to channel 1 or insert this [bit of code](https://llllllll.co/t/norns-scripting-best-practices/23606/2) into a script.
+- If a connected MIDI controller is not functioning as expected, it may be due to a known limitation in scripts that do not explicitly allow for MIDI control from channels other than channel 1. Either reassign your MIDI controller to channel 1 or insert this [bit of code](https://llllllll.co/t/norns-scripting-best-practices/23606/2) into a script.
 
-- if a renamed script throws a `file not found` error in maiden, it is likely because the system has not registered the name change (even though you see the new name in the UI). perform a hard refresh on your browser.
+- norns is not able to send MIDI to a VST or DAW directly over USB. You will need either two USB MIDI dongles or [2host](https://llllllll.co/t/2host-a-diy-usbmidi-host-to-host-adapter/23472).
 
-- norns is not able to send MIDI to a VST or DAW directly over USB. you will need either two USB MIDI dongles or [2host](https://llllllll.co/t/2host-a-diy-usbmidi-host-to-host-adapter/23472).
-
-- all grid editions will work with norns, but some apps may be coded for varibright levels that your hardware may not support.
+- All grid editions will work with norns, but some apps may be coded for varibright levels that your hardware may not support.
 
 - norns does not have built-in bluetooth + the OS is not designed to take advantage of bluetooth.

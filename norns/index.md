@@ -13,7 +13,7 @@ permalink: /norns/
 - [script reference](/docs/norns/script-reference/) contains lists of functions.
 - [scripting FAQ](/docs/norns/faq/) for frequently asked questions.
 
-current version: [190930](https://github.com/monome/norns/releases)
+current version: [191016](https://github.com/monome/norns/releases)
 
 - sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [audio](#audio) &mdash; [maiden](#maiden) &mdash; [update](#update) &mdash; [help](#help)
 

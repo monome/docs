@@ -9,11 +9,11 @@ permalink: /norns/
 
 - [first](norns-first.pdf) a quick, printable introduction.
 - [studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
-- [script reference](/docs/norns/script-reference/)
 - [tutorial](https://github.com/neauoire/tutorial) is a minimal scripting introduction.
-- [scripting FAQ](/docs/norns/faq/)
+- [script reference](/docs/norns/script-reference/) contains lists of functions.
+- [scripting FAQ](/docs/norns/faq/) for frequently asked questions.
 
-- current version: [190930](https://github.com/monome/norns/releases)
+current version: [190930](https://github.com/monome/norns/releases)
 
 - sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [audio](#audio) &mdash; [maiden](#maiden) &mdash; [update](#update) &mdash; [help](#help)
 

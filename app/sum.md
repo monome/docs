@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/app/sum/
+permalink: /app/sum/
 ---
 
 <div class="vid"><html><iframe src="//player.vimeo.com/video/91524122" width="570" height="321" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></html></div>
@@ -13,7 +13,7 @@ permalink: /docs/app/sum/
 
 ## Download
 
-Get the latest version of [monome sum](https://github.com/monome/monome_sum/releases/latest). 
+Get the latest version of [monome sum](https://github.com/monome/monome_sum/releases/latest).
 
 ## Getting Started
 
@@ -75,7 +75,7 @@ A gravity-influenced modulator for affecting the timbre of *sum's* synthesizer. 
 - 'Reflections' can be disabled in app to allow the puck to wrap edge-to-edge.
 - Friction & Gravity can be set to change the acceleration and attractor strength.
 
-Moving the puck upward on the grid makes the synthesizer sounds more aggressive, and resonant, while more subtle sounds are available downward. Panning around the horizontal space will shift the filter parameters to create changes in the spectrum of the synthesizer elements, where left sounds are bassier, while right sounds are brighter. 
+Moving the puck upward on the grid makes the synthesizer sounds more aggressive, and resonant, while more subtle sounds are available downward. Panning around the horizontal space will shift the filter parameters to create changes in the spectrum of the synthesizer elements, where left sounds are bassier, while right sounds are brighter.
 
 
 ### step
@@ -129,7 +129,7 @@ A bank of virtual faders for controlling application wide parameters. Each fader
   - Hold a key briefly to add inertia causing the fader to slide around the destination value before settling.
   - Hold a key for 1second and the fader will oscillate slowly around the destination value.
 
-  
+
 ## Synthesizer
 
 ![Synthesizer](images/synth.png)
@@ -196,7 +196,7 @@ In order to synchronize other devices or applications to *sum*, a MIDI clock out
 
 ### MIDI Clock In aka Clocksource
 
-Since v1.3 *sum* now supports slaving to an external MIDI clock. This can be a DAW (over Rewire or internal MIDI) or external hardware. 
+Since v1.3 *sum* now supports slaving to an external MIDI clock. This can be a DAW (over Rewire or internal MIDI) or external hardware.
 
   - In the menu bar select: `Preferences -> MIDI Clock`.
   - Under `clocksource` you will see a dropdown with a list of options.
@@ -240,7 +240,7 @@ Whenever you edit the settings of the current preset, via the app or the grid, t
 These save files are complete collections of sounds that can be shared between users, though audio samples are not saved within the file and will need to be included alongside the save file.
 
 
-    
+
 ## Credits
 
 *monome sum* was created by [monome.org](monome.org) using Max 6.

@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/app/package/
+permalink: /app/package/
 ---
 
 # monome package for max 7

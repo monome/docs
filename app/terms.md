@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: /docs/app/terms/
+permalink: /app/terms/
 ---
 
 
@@ -174,7 +174,7 @@ The bottom-right key is a special *nav* (read: navigation) key for moving throug
 - While still holding, press the lower of the two buttons to move down through the Scenes.
 - Alternatively press the higher of the two lit keys to move back upward through the set.
 
-  
+
 ## Terms Synth
 
 ![Synthesizer](images/synth.png)
@@ -236,7 +236,7 @@ As there can be many grid-capable devices available in a single Live Set, the **
 
 **Auto-focus** can be disabled from the dropdown, or can be set to `Device` mode where focus will only change when explicitly selecting the *Terms* Device inside a Track's Device strip.
 
-	
+
 ## Credits
 
 *Terms* was created by [monome.org](http://monome.org) using Max 7 & Ableton Live 9.

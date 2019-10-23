@@ -17,7 +17,7 @@ Each ring has its own rotational momentum: turn the ring to accelerate in either
 
 The CV value is determined by the ring's Shape which is either Triangle (default) or Saw. A Tri shape has the CV output high towards to north side of a ring, and low towards the south side. A Saw shape is a gradual increase from low to high when rotating clockwise from north.
 
-The TR value is a phase indicator. On the right side of a ring TR is low, on the left it is high.
+The TR value is a phase indicator. At the lowest division setting, on the right side of a ring TR is low, on the left it is high. 
 
 ![](../images/arc_CYCLES_main_mode_PHASE_1.2.png)
 
@@ -27,7 +27,7 @@ A short press to `Key 2` will reset all positions to 0 (north).
 
 ### Config
 
-Enter CONFIG mode by holding down `Key 2`.
+Enter CONFIG mode by holding down `Key 2`. In the main CONFIG view, the four rings control parameters that affect all rings:
 
 ![](../images/arc_CYCLES_config_1.5.png)
 
@@ -35,6 +35,8 @@ Enter CONFIG mode by holding down `Key 2`.
  * Ring 2 - Shape: Tri/Saw
  * Ring 3 - Force: ring sensitivity
  * Ring 4 - Friction: constant friction amount
+ 
+While holding down `Key 2`, tap `Key 1` to switch to the RANGE view, where you can attenuate the CV output of each ring. Tap `Key 1` again to enter the `DIVISIONS` view, where you can increase the frequency of TR gates from the default of one high/low cycle per rotation to 2, 4, or 8 cycles. Tap `Key 1` a third time to return to the main CONFIG view, or release `Key 2` to leave CONFIG.
 
 ### Sync mode
 

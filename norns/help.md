@@ -5,6 +5,16 @@ permalink: /norns/help/
 
 # norns: help
 
+### contents
+- [wifi troubleshooting](#wifi-troubleshooting)
+- [updating + managing apps](#update-apps)
+- [restoring deleted system folders](#code-folder)
+- [error messages](#error-messages)
+- updating norns
+	- [without WiFi](#manual-update)
+	- [fresh install](#fresh-install)
+- [additional q's](#faq)
+
 ## wifi troubleshooting
 _nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources._
 
@@ -27,7 +37,7 @@ If you are consistently unable to connect your norns to wifi through the ['Conne
 	- Screenshots of the terminal screens in step 4
 	- Your router config (WPA, WEP, etc)
 
-## help: how do I add/update apps on my norns?
+## help: how do I add/update apps on my norns? <a name="update-apps"></a>
 
 ### finding apps for norns
 Browse the [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns%20order%3Alatest) for projects tagged `norns`. Applications for norns are built and maintained through the lines community, so any questions/trouble with a specific project should be directed to its dedicated thread.
@@ -51,7 +61,7 @@ If you have a previously-installed version of the same app on your norns, Cyberd
 
 You should now be able to load the app directly from the norns UI.
 
-## help: I've deleted the `code` folder!
+## help: I've deleted the `code` folder! <a name="code-folder"></a>
 
 ### getting the `code` folder back
 
@@ -115,7 +125,7 @@ This indicates that something is wrong with Supercollider, which could be due to
 
 If a newly-renamed script throws a `file not found` error in maiden, it is likely because the system has not registered the name change -- even though you see the new name in the UI. Perform a hard refresh on your browser ([how?](https://fabricdigital.co.nz/assets/How-to-hard-refresh-browser-infographic.jpg)).
 
-## manual update
+## manual / offline update <a name="manual-update"></a>
 
 - Download and copy update file to a FAT-formatted USB drive
 - Insert the disk to norns and power up.
@@ -144,7 +154,7 @@ cd 190409
 
 By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows.
 
-**WARNING** - flashing a disk completely erases the contents and replaces it with a clean install. Be sure to first back up any data you have in `dust`.
+**WARNING**: flashing a disk completely erases the contents and replaces it with a clean install. Be sure to first back up any data you have in `dust`.
 
 Steps:
 
@@ -157,7 +167,7 @@ Steps:
 
 If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
 
-## additional a's to faq's
+## additional a's to faq's <a name="faq"></a>
 
 - Imported audio must be 48khz, bit depth is irrelevant.
 

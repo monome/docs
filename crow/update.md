@@ -7,7 +7,7 @@ permalink: /crow/update/
 
 Flashing the crow requires setting up `dfu-util` on your laptop, downloading the new firmware, and getting crow connected in bootloader mode.
 
-## Setup dfu-util
+## Setup dfu-util<a name="setup"></a>
 
 - Linux: `apt-get install dfu-util` (or similar)
 - MacOS: install [homebrew](https://brew.sh) and then run `brew install dfu-util` from the command line.
@@ -24,7 +24,7 @@ Download the `crow-vx.x.x.zip` file.
 
 ## Activate bootloader
 
-With the crow connected to druid (or a similar utility) you can enter the bootloader with a `^^b` message, which will instantly reset the module and take you to the bootloader. `druid` will start printing `<lost connection>` at which point crow is ready to bootload, and you should quit `druid` with `q`.
+With the crow connected to druid (or a similar utility) you can enter the bootloader with a `^^b` message, which will instantly reset the module and take you to the bootloader. `druid` will start printing `<crow disconnected>` at which point crow is ready to bootload, and you should quit `druid` with `q`.
 
 
 ## Forcing the bootloader
@@ -40,22 +40,34 @@ to bridge the pins while powering on the case.
 
 ## Flashing the update
 
-From the Terminal (make sure you've quit `druid`), execute the `flash.sh` command which is included in the release .zip file. The actual firmware file that is uploaded is `crow.bin`.
+You can run the firmware update from either a file browser, or within the terminal, whichever you find more convenient.
 
-For example if your file was extracted to `~/Downloads/crow-1.1.0` type this on the command line:
+### Finder / File Explorer
+
+Locate the release .zip file you downloaded above and extract it.
+
+On Mac, you'll double-click the command file called `osx_linux-update_firmware.command`.
+
+On Windows, you'll double-click the batch file called `windows-update_firmware.bat`.
+
+### Command Line
+
+From the Terminal:
+
+* Make sure you've quit `druid`
+* `cd` to the folder where you downloaded the firmware update
+* Depending on your operating system you'll run one of:
+  * Mac/Linux: `./osx_linux-update_firmware.command`
+  * Windows: `.\windows-update_firmware.bat`
+
+For example if your file was extracted to `~/Downloads/crow-1.0.1` type this on the command line for Mac:
 
 ```console
 cd ~/Downloads/crow-1.1.0
-./flash.sh
+./osx_linux-update_firmware.command
 ```
 
-**Having trouble using the `cd` command?**
-  
-- Mac: right click the unzipped `crow-vx.x.x` folder and then press the OPTION key. This will reveal a **Copy "crow-vx.x.x" as Pathname** action. Select it and then paste into terminal after `cd [spacebar]`.
-- Windows: hold the SHIFT key and right click the unzipped `crow-vx.x.x` folder. This will reveal a **Copy as path** action. Select it and then paste into terminal after `cd [spacebar]`.
-- Linux: right click the unzipped `crow-vx.x.x` folder and select "**Copy**". Then, simply **Paste** into terminal after `cd [spacebar]`.
-
-After executing `./flash.sh`, you'll see something like:
+After executing the `update_firmware` command, you'll see something like:
 
 ```console
 dfu-util 0.9
@@ -86,6 +98,8 @@ File downloaded successfully
 
 ## Troubleshooting
 
-If you get an error: `dfu-util: No DFU capable USB device available` this means the bootloader is not running and connected to the laptop.
+If you get an error: `dfu-util: No DFU capable USB device available` this means crow is not in the bootloader or is not connected to the laptop.
 
 You can type `dfu-util -l` to list the connected bootloader devices.
+
+If you get an error: `'dfu-util' is not recognized as an internal or external command, operable program or batch file.` you haven't correctly installed dfu-util, or need to add it to your PATH. Try the [setup](#setup) section again.

@@ -110,7 +110,7 @@ Visit *stage two* and *stage three* of the [scripting tutorial](../scripting) to
 
 #### how large a script can I run or store on crow in standalone?
 
-Currently, 8kB =~400 lines of Lua.
+Currently, 8kB = ~400 lines of Lua.
 
 From Trent:
 >I’ve found most scripts I’ve created so far are <100 lines. Lua may be less terse than Teletype, but it has far greater capacity for abstraction. The crow library leverages this to provide many complex features with terse syntax.

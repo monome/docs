@@ -90,15 +90,14 @@ Please visit the [resources](resources) page for a bullet-point overview of curr
 
 ## Updates
 
-We are working all the time. Check out the [newest firmware version](https://github.com/monome/crow/releases).
+We are working all the time. Check out the [newest firmware version](https://github.com/monome/crow/releases/latest).
 
 To update, see the step by step [bootloader instructions](update) to update the crow firmware.
 
 
 ## Technical
 
-crow ships pre-calibrated, but it is possible to re-run the automatic calibration. There are also a subset of commands for managing the state of the device and contents of flash memory.
-
+There are also a subset of commands for managing the state of the device and contents of flash memory. crow ships pre-calibrated, but it is possible to re-run the automatic calibration.
 See the [technical](technical) page for further details.
 
 

@@ -97,6 +97,16 @@ output[1]( true )  -- re-start attack phase from the current location
 output[1]( false ) -- enter release phase
 ```
 
+you can query whether there is an action currently taking place:
+```lua
+output[1].running
+```
+
+or set an event to be called whenever the action ends:
+```lua
+output[1].done = function() <do something when the actions done> end
+```
+
 ## ASL
 
 actions above are implemented using the `ASL` mini-language.
@@ -160,6 +170,25 @@ this functionality is provided for:
 math.random
 math.min
 math.max
+```
+
+### asl.runtime
+
+you can use the `asl.runtime()` function to capture a function to be executed at runtime, each time it's called within an ASL action. this means you can do simple calculations like grabbing a random value, or complex operations on a runtime variable.
+
+check out lua/asllib.lua in the crow repo for some examples of how to use it. the `n2v` function is a simple example that divides the value by 12 at runtime.
+
+```lua
+--- convert a note number to a voltage at runtime
+-- the 'n' argument can be a function that returns a note number when called
+-- we wrap the division by twelve in a function to be applied to n at runtime
+
+function n2v(n)
+    return asl.runtime( function(a) return a/12 end
+                      , n
+                      )
+    end
+end
 ```
 
 ## metro

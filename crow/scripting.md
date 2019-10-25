@@ -55,16 +55,17 @@ python3 -V
 
 Which should print `Python 3.6.5` or something similar. If this doesn't work for you, try removing the `3` and just run `python -V`. No luck? Post to the [lines thread](https://llllllll.co/t/crow-help-druid/25864) & we'll figure it out (and update this doc).
 
-Now we need some Python libraries which we collect with pip:
-
-```
-pip3 install --upgrade setuptools
-```
-
-All going well, it's time to install `druid`
+Now it's time to install `druid`
 
 ```
 pip3 install monome-druid
+```
+
+NB: If you see an error like "ERROR: Could not install packages due to an EnvironmentError...", try running the command with `sudo` to gain the required privileges:
+
+```bash
+# you'll be asked to enter your password after typing this:
+sudo pip3 install monome-druid
 ```
 
 Now druid should be ready to use, you might need to close and reopen the terminal to get access to it.
@@ -75,7 +76,14 @@ Let's load up `druid` to test if everything works as expected
 druid
 ```
 
-If `druid` responds with `can't find crow device`, make sure crow is connected with the included USB cable & the synthesizer is turned on.
+You should see druid open with the following message up top:
+```
+//// druid. q to quit. h for help
+
+<crow connected>
+```
+
+If you see `<crow disconnected>` instead, make sure your modular case with crow is turned on, and the USB cable is connected.
 
 If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device. See [below](#permissions) for a fix.
 
@@ -89,7 +97,7 @@ Navigate to [bowery](https://github.com/monome/bowery/releases/latest) and downl
 Return to your terminal & quit `druid` by typing `q` then `<enter>`. Now in terminal, change-directory (or `cd`) to enter the bowery folder. If you unzip within your Documents folder it would be `cd ~/Documents/bowery-X`.
 
 **Having trouble using the `cd` command?**
-  
+
 - Mac: right click the unzipped `bowery-X` folder and then press the OPTION key. This will reveal a **Copy "bowery-X" as Pathname** action. Select it and then paste into terminal after `cd [spacebar]`.
 - Windows: hold the SHIFT key and right click the unzipped `bowery-X` folder. This will reveal a **Copy as path** action. Select it and then paste into terminal after `cd [spacebar]`.
 - Linux: right click the unzipped `bowery-X` folder and select "**Copy**". Then, simply **Paste** into terminal after `cd [spacebar]`.
@@ -109,16 +117,11 @@ Upload the clock divider example by typing `u clockdiv.lua` and you'll see:
 ```
 > u clockdiv.lua
  uploading clockdiv.lua
-lua bootstrapped
-input loaded
-asl loaded
-asllib loaded
-metro loaded
-ii loaded
-crowlib loaded
+User script updated.
+Running: clock divider
 ```
 
-You just uploaded your first crow script! All the `_ loaded` prints let you know that crow's special capabilities are ready to be used.
+You just uploaded your first crow script!
 
 Patch a trigger or LFO into input 1 and crow will now be sending clock divided gates to all 4 outputs. Try patching crow's outputs to anything expecting triggers. Make some envelopes with Just Friends' *trigger* inputs in *shape/transient* mode, or ping Three Sisters' filters by patching crow's outputs directly to Three Sisters' 4 input jacks and turn *quality* up to 3:00 on the dial.
 
@@ -137,6 +140,8 @@ Any time you make changes to `clockdiv.lua` you'll need to run the script again 
 | p | | print currently running script |
 | h | | access help menu |
 | q | | quit druid |
+
+Using the `h` command in `druid` will print the above list anytime you need a refresher!
 
 If you want to use a script you see online, you'll need to save it as a text file in a folder of your choosing, `cd` to that folder, open druid and then run it as before with `r a-cool-script-i-found.lua`. We'll be adding more examples, and accept community contributions into the official *bowery* repo.
 
@@ -166,7 +171,7 @@ You'll want to learn the hotkey that allows you to switch focus between the two 
 
 *nb: From here on, whenever you see the `>` symbol, that means you'll be entering it into `druid`, and the lines that follow are what you'll see returned from crow.*
 
-Before trying to do anything fancy, we'll need a blank slate to work with. To do that, we'll call crow's reset function to return to the default state:
+Before trying to do anything fancy, we'll need a blank slate to work with. To do that, call crow's reset function to return to the default state:
 
 ```
 > crow.reset()
@@ -264,7 +269,8 @@ function init()
 end
 ```
 
-- The first 2 lines are comments just for reference (as are any lines starting with 2 or more dashes).
+- The first line is a special comment. When you run your script crow will read this line to tell the user what script it's running.
+- The following line is a comment just for reference (as are any lines starting with 2 or more dashes).
 - Next we see a *function* called `init` which currently only contains a comment, i.e. it does nothing for now.
 - The keyword `end` completes the function definition.
 
@@ -273,6 +279,7 @@ We can now *run* the script in `druid` using the `r` command:
 ```
 > r sketch.lua
  running sketch.lua
+Running: sketch name
 ```
 
 You'll notice nothing happened though, and that's because our script doesn't do anything yet! Let's update the comments at top to describe our desired behaviour - this is a great way to map out a script & can help find the solution:
@@ -321,6 +328,7 @@ Patch a clock source to input 1, then save the script and run it:
 ```
 > r sketch.lua
  running sketch.lua
+Running: sample & hold
 ...
 BANG!
 BANG!

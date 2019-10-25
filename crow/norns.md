@@ -13,7 +13,7 @@ It may be helpful to first explore the [norns studies](../../norns/study-1) to p
 
 Download: [github.com/monome/crow-studies](https://github.com/monome/crow-studies)
 
-(Note: be sure your norns is [updated](../../norns/#update) to version 190920 or later.)
+(Note: be sure your norns is [updated](../../norns/#update) to version 191016 or later.)
 
 Crow will automatically be detected and interfaced upon connection to norns. Presently only a single crow is supported.
 
@@ -98,7 +98,7 @@ crow.input[1].mode("none")
 crow.input[1].query()
 ```
 
-`process_stream` will be called each time `crow.input[1].query()` is called, returning the value of crow input 1.
+`process_stream` will be called each time `crow.input[1].query()` is called, returning the voltage at crow input 1.
 
 
 ## 3. ii
@@ -157,7 +157,7 @@ crow.output[1].action = "{ to(0,0), to(5,0.1), to(1,2) }"
 To start (and restart) this action:
 
 ```lua
-crow.output[1].execute()
+crow.output[1]()
 ```
 
 Shapes can be repeated:
@@ -220,6 +220,7 @@ crow.output[x].action =
 
 crow.output[x].query()           -- query current output x value
 crow.output[x].receive           -- function called by query x
+crow.output[x]()                 -- run the current action
 ```
 
 ### Input

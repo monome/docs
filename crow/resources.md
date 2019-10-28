@@ -22,7 +22,7 @@ If you do not know how to make a PR, you can also file an issue: click [here](ht
 
 ## text
 
-- [how to upload upload scripts](../scripting/#stage-one-setup)
+- [how to upload scripts](../scripting/#stage-one-setup)
 - [crow standalone scripting tutorial](../scripting)
 - [crow & norns scripting tutorial](../norns)
 - [crow & max/max for (ableton) live](https://github.com/monome/crow-max-and-m4l)

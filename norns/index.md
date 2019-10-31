@@ -232,15 +232,25 @@ _maiden_ is the web-based editor for norns.
 
 Point your web browser at `norns.local` to see the maiden interface. If the site is not found, try connecting directly to the IP address shown on the norns screen, for example: `192.168.1.30`.
 
-![](image/maiden-0.12.png)
+![](image/maiden-1.0.png)
 
-The interface is arranged into a left sidebar FILE navigator and a right split editor, where the top is the EDITOR and the bottom is the REPL (read-eval-print-loop).
+The interface includes a meta-navigator in the far-left sidebar, which allows you to:
 
-### FILE
+- toggle the *file viewer*, where you can view and select scripts to edit
+- toggle the *repl* (read-eval-print-loop), where your scripts + the system both print useful information
+- access the *project manager*, where you can manage the scripts that are installed on your norns
+
+The bulk of the *file viewer* is dedicated to the EDITOR, where you can view and edit the code of a selected script.
+
+### FILE VIEWER
 
 This panel lets you select the text you're editing in EDITOR.
 
 There are top bar icons for various actions: **New**, **Delete**, **Duplicate**, **New Folder**, and **Rename**.
+
+The `>`'s can be expanded to reveal a file hierarchy. When you select a file, it will show in the EDITOR:
+
+![](image/maiden-carrot.png)
 
 ### EDITOR
 

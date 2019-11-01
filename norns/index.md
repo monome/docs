@@ -327,7 +327,7 @@ Also see the [general reference](script-reference/).
 
 ## FILE MANAGEMENT
 
-You can delete and rename files via maiden. But you'll need to copy files between your computer and norns.
+You can manage projects and delete/rename files via maiden. But sometimes you'll need to copy files between your computer and norns, like audio.
 
 File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via WIFI. Use an SFTP client (such as Cyberduck) to connect to the IP address shown on the norns screen.
 

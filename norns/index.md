@@ -316,6 +316,22 @@ Each entry has an **INSTALL** action, which can be used to install the selected 
 
 If you have already installed a project and attempt to install it again, you will receive an error message letting you know that the project is already installed in your `code` folder.
 
+#### CONTRIBUTIONS
+
+To add to the [community project repo](https://github.com/monome/norns-community/blob/master/community.json), please submit a pull request with the following information:
+
+```
+{
+      "project_name": "NAME",
+      "project_url": "URL",
+      "author": "NAME",
+      "description": "WORDS",
+      "discussion_url": "LINES_LINK",
+      "tags": ["TAG", "TAG", "TAG"],
+      "origin": "IF_APPLICABLE: lines"
+    },
+```
+
 ### PROGRAMMING REFERENCE
 
 The bottom left ? icon can be used to navigate to the onboard programming reference.

@@ -248,7 +248,7 @@ This panel lets you select the text you're editing in EDITOR.
 
 There are top bar icons for various actions: **New**, **Delete**, **Duplicate**, **New Folder**, and **Rename**.
 
-The `>`'s can be expanded to reveal a file hierarchy. When you select a file, it will show in the EDITOR:
+The `>`'s can be expanded to reveal a file tree. When you select a file, it will show in the EDITOR:
 
 ![](image/maiden-carrot.png)
 
@@ -281,6 +281,40 @@ If you need to restart the matron/crone environment for any reason (ie, the menu
 ```
 
 This will disconnect maiden, but once matron has restarted you can reconnect.
+
+### PROJECT MANAGER
+
+As of 10.28.2019, maiden features a project manager to help you discover and download new projects. Projects contain both engines and scripts.
+
+You can access both the *base* (projects from monome) and *community* (projects from other artists) repositories via the books icon in the left-sidebar:
+
+![](image/maiden-available.png)
+
+#### INSTALLED
+
+This tab shows which projects are currently installed on your norns.
+
+![](image/maiden-installed.png)
+
+Each entry has two actions: **UPDATE** and **REMOVE**.
+
+If you choose to update a project that currently lives on your norns, please note that local modifications you have made will be overwritten. If you wish to retain multiple versions of a project, please reference the [FILE MANAGEMENT](#file-management) section.
+
+Once you update a project through PROJECT MANAGER, you'll see a commit number listed on the right of the project's tile (like *34d225b*). Click a project's commit number to be brought to the project's GitHub page, where you can learn more about the project and verify that the version you have is the latest.
+
+#### AVAILABLE
+
+This tab shows which projects are available through the *base* and *community* repositories.
+
+Use the refresh button next to each header to update the catalog and pull in the latest versions:
+
+![](image/maiden-update-catalog.png)
+
+Many projects will have informational tags like **crow**, **drum**, **looper**, as well as a project description. Please note that the **lib** tag is specifically used to indicate that a project includes both a script *and* an engine, which will require a device restart.
+
+Each entry has an **INSTALL** action, which can be used to install the selected script.
+
+If you have already installed a project and attempt to install it again, you will receive an error message letting you know that the project is already installed in your `code` folder.
 
 ### PROGRAMMING REFERENCE
 

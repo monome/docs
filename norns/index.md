@@ -306,7 +306,7 @@ Once you update a project through the PROJECT MANAGER, you'll see a commit numbe
 
 This tab shows which projects are available through the *base* and *community* repositories.
 
-Use the refresh button next to each header to update the catalog and pull in the latest versions:
+Use the refresh button next to each header to update the catalog and pull in the latest versions. Using the refresh action on each catalog is the only way to download them as they do not yet auto-update:
 
 ![](image/maiden-update-catalog.png)
 

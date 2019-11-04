@@ -11,7 +11,7 @@ Algorithmic ecosystem: a dynamic, musical event triggering platform.
 
 Scripts are assigned to each of the eight trigger inputs. Herein you can set CV values (four outputs) and trigger gates (four outputs) with extended functionality for pattern manipulation, slews, randomness, sequences, basic arithmetic, stacks, delays, and much more.
 
-Edit scripts with a USB keyboard which plugs into the front panel. Syntax is simple and easy to learn with the provided tutorials, video, and reference pages. Teletype runs without the keyboard attached: you might treat editing as precomposition, or leave the keyboard plugged in for live coding.
+Edit scripts with a [USB keyboard](https://market.monome.org/collections/other/products/usb-keyboard) (included with module) which plugs into the front panel. Syntax is simple and easy to learn with the provided tutorials, video, and reference pages. Teletype runs without the keyboard attached: you might treat editing as precomposition, or leave the keyboard plugged in for live coding.
 
 ![](/images/tt.jpg)
 
@@ -27,7 +27,7 @@ Align the 10-pin ribbon cable so the red stripe corresponds to the white indicat
 
 Be careful not to misalign the connector left-to-right either – while Teletype is protected against incorrect connection, doing so may damage other modules in your Eurorack case.
 
-If you wish Teletype to communicate with Ansible or other modules with [ii](/docs/modular/ii), you will need to attach the II ribbon cable as outlined in the [II Communication](http://monome.org/docs/modular/iiheader/) page.
+If you wish Teletype to communicate with Ansible or other modules with [ii](/docs/modular/ii), you will need to attach an ii cable (not included, but DIY'able [here](https://www.adafruit.com/product/1950)) as outlined in the [ii Communication](/docs/modular/iiheader/index/#connecting-the-trilogy) page. Teletype can also connect to a world of other [i2c-capable devices](https://llllllll.co/t/a-users-guide-to-i2c/19219). If your Teletype has a green circuit board, it can support 2 direct ii/i2c connections. If it has a black circuit board (Dec 2018 revision), it can support 4 direct ii/i2c connections.
 
 Secure the module with the four included screws, hiding under the tape in the box lid.
 

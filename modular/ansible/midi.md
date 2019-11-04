@@ -5,7 +5,7 @@ permalink: /modular/ansible/midi/
 
 ## MIDI/voice
 
-By plugging a USB MIDI device into the [Ansible](/docs/modular/ansible) Eurorack module, you can access various MIDI-to-CV tools. These tools are available with a standalone Ansible, as well as through [dedicated Teletype commands](/docs/modular/ansible/teletype/#midi).
+By plugging a USB MIDI device into the [Ansible](/docs/modular/ansible) Eurorack module, you can access various MIDI-to-CV tools. These tools are available with a standalone Ansible, as well as an Ansible paired with Teletype through [dedicated Teletype commands](/docs/modular/ansible/teletype/#midi).
 
 The mode LED will show orange when running.
 
@@ -114,6 +114,6 @@ Holding `Key 2` and a short press on `preset` saves the current value for the fo
   * pitch slew values
   * pitch shift values
   * pattern repeat values
-  * euclidean rhythm parameters
+  * euclidean rhythm parameters ([accessible through Teletype](/docs/modular/ansible/teletype/#midi))
 
 Holding `Key 2` and a long press on `preset` will clear the stored configuration and reset back to default vaules (the mode light blinks twice).

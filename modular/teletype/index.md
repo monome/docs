@@ -11,7 +11,7 @@ Algorithmic ecosystem: a dynamic, musical event triggering platform.
 
 Scripts are assigned to each of the eight trigger inputs. Herein you can set CV values (four outputs) and trigger gates (four outputs) with extended functionality for pattern manipulation, slews, randomness, sequences, basic arithmetic, stacks, delays, and much more.
 
-Edit scripts with a [USB keyboard](https://market.monome.org/collections/other/products/usb-keyboard) (included with module) which plugs into the front panel. Syntax is simple and easy to learn with the provided tutorials, video, and reference pages. Teletype runs without the keyboard attached: you might treat editing as precomposition, or leave the keyboard plugged in for live coding.
+Edit scripts with a USB keyboard (included with new modules + [replacements available](https://market.monome.org/collections/other/products/usb-keyboard)) which plugs into the front panel. Syntax is simple and easy to learn with the provided tutorials, video, and reference pages. Teletype runs without the keyboard attached: you might treat editing as precomposition, or leave the keyboard plugged in for live coding.
 
 ![](/images/tt.jpg)
 

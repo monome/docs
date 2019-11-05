@@ -39,27 +39,9 @@ If you are consistently unable to connect your norns to wifi through the ['Conne
 
 ## help: how do I add/update apps on my norns? <a name="update-apps"></a>
 
-### finding apps for norns
-Browse the [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns%20order%3Alatest) for projects tagged `norns`. Applications for norns are built and maintained through the lines community, so any questions/trouble with a specific project should be directed to its dedicated thread.
+As of 10.28.2019, maiden (the web-based editor built into norns) now features a [project manager](/docs/norns/#project-manager) to help facilitate project discovery, installation, and upgrades.
 
-### installing/updating apps on norns
-1. Download the app you wish to install onto your computer by visiting the app's Library page and clicking the hyperlink under `Download`. Alternatively, you can visit the project's GitHub page and click the green `Clone or download` button, then select `Download ZIP`.
-
-2. Locate (and un-zip) the folder and **remove** `-master` from it's name. eg. If you download [Reels](https://llllllll.co/t/reels/21030), the folder will be named `reels-master`. Please rename it to `reels`. do this for any application you download.
-
-3. Connect your norns to the same wifi network as your computer or [turn norns into a hotspot](/docs/norns/#connect). [Having wifi trouble?](#wifi-troubleshooting)
-
-4. Sharing files between norns and your computer is best achieved through SFTP. See [this guide](/docs/norns/sftp/) for a full walkthrough.
-
-5. Once you connect your norns to your computer through SFTP, expand the `dust` folder and drag the folder you renamed in step 2 right over the `code` folder in Cyberduck:
-
-![](image/sftp_drag.png)
-
-If you have a previously-installed version of the same app on your norns, Cyberduck will ask if you'd like to Overwrite. if you wish to replace the version on your norns with this new version, select Continue:
-
-![](image/sftp_overwrite.png)
-
-You should now be able to load the app directly from the norns UI.
+lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns%20order%3Alatest) for projects tagged `norns`. In each project's thread, you'll find in-depth conversation as well as performance examples and tutorials. Projects for norns are primarily built and maintained by the lines community, so any questions/trouble with a specific project should be directed to its thread.
 
 ## help: I've deleted the `code` folder! <a name="code-folder"></a>
 

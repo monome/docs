@@ -64,9 +64,9 @@ lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20t
 
 ### DUPLICATE ENGINES
 
-Supercollider fails to load if you have multiple copies of the same engine inside of `dust`.
+Supercollider fails to load if you have multiple copies of the same engine (`.sc` files) inside of `dust` (the parent folder for the projects installed on norns).
 
-To solves this [connect](../#connect) via wifi and open [maiden](../#maiden). Type `;restart` into the maiden REPL at the bottom (the `>>` prompt).
+To solve this, [connect](../#connect) via wifi and open [maiden](../#maiden). Type `;restart` into the maiden REPL at the bottom (the `>>` prompt).
 
 This will restart the audio components and output their logs. If there's a duplicate class an error message like the following will be shown:
 
@@ -77,7 +77,7 @@ DUPLICATE ENGINES:
 ### SCRIPT ERROR: DUPLICATE ENGINES
 ```
 
-Remove one of the offending scripts/classes and execute `SYSTEM > RESTART` from the norns menu.
+In this example, the `Engine_Ack.sc` engine is duplicated in two projects: `ack` and `we`. Using maiden, you would expand each project's `lib` folder to reveal the duplicated `Engine_Ack.sc`. After you remove one of the offending engines, execute `SYSTEM > RESTART` from the norns menu.
 
 ### LOAD FAIL
 

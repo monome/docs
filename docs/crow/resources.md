@@ -1,5 +1,9 @@
 ---
 layout: page
+layout: default
+parent: crow
+title: resources
+nav_order: 3
 permalink: /crow/resources/
 ---
 

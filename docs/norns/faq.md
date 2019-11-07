@@ -1,6 +1,8 @@
 ---
-layout: page
-permalink: /norns/faq/
+layout: default
+parent: norns
+title: faq
+nav_order: 2
 ---
 
 # FAQ

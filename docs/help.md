@@ -1,6 +1,7 @@
 ---
-layout: page
+layout: default
 permalink: /help/
+nav_exclude: true
 ---
 
 # help
@@ -17,4 +18,15 @@ hardware issues and problems getting setup should be addressed to [help@monome.o
 
 please include as much information as possible: OS version, specific grid model, and software versions. and of course, the issue, what you've tried, and steps to repeat the issue. if relevant, include a screenshot or photo of the hardware.
 
-### [repairs](/docs/repairs)
+
+## repairs
+
+### [contact help@monome.org](mailto:help@monome.org)
+
+modules damaged by power handling are not warrantied, but we can certainly still fix them. other problems we can assess individually.
+
+please be very specific about your grid or arc edition. see the [editions description](/docs/grid/editions) if you need help identifying the generation of your device. include a photo if needed.
+
+please include your mailing address so we can estimate shipping costs.
+
+when shipping anything to us, be sure to include a printed sheet inside the box with your contact information, mailing address, and the problem. please insure your package when shipping.

@@ -1,6 +1,9 @@
 ---
-layout: page
-permalink: /crow/
+layout: default
+title: crow
+nav_order: 2
+has_children: true
+has_toc: false
 ---
 
 ![](images/crow.jpg)
@@ -82,7 +85,7 @@ We have trained crow to navigate the following landscapes:
 ### birdsong (reference)
 
 - if you are writing or modifying norn apps, standalone scripts, or Max patches, you will want to become fluent in the language of the birds...
-- visit the [**scripting reference**](reference) to become a crow whisperer 
+- visit the [**scripting reference**](reference) to become a crow whisperer
 
 ## Resources
 

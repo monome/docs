@@ -1,6 +1,9 @@
 ---
-layout: page
-permalink: /norns/
+layout: default
+title: norns
+nav_order: 1
+has_children: true
+has_toc: false
 ---
 
 ![](https://monome.org/images/norns-front-small.jpg)

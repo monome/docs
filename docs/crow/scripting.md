@@ -1,5 +1,8 @@
 ---
-layout: page
+layout: default
+parent: crow
+title: scripting
+nav_order: 4
 permalink: /crow/scripting/
 ---
 
@@ -159,10 +162,10 @@ Speaking of tools, your coding terminal doesn't need to be a squinty struggle ei
 
 Now load both these tools up and, resize the windows so you have them side-by-side, something like these examples:
 
-![](../images/druid-sublime.jpg)  
+![](../images/druid-sublime.jpg)
 druid & sublime text
 
-![](../images/druid-vim.jpg)  
+![](../images/druid-vim.jpg)
 druid & vim
 
 You'll want to learn the hotkey that allows you to switch focus between the two programs.

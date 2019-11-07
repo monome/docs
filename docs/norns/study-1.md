@@ -1,5 +1,9 @@
 ---
-permalink: /norns/study-1/
+layout: default
+parent: norns
+title: studies
+nav_order: 5
+permalink: /docs/norns/study-1/
 ---
 
 <div class="vid"><iframe src="https://player.vimeo.com/video/273692952?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>

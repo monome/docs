@@ -15,8 +15,8 @@
 # in the templates via {{ site.myvariable }}.
 title: monome docs
 description: monome docs
-baseurl: "/docs" # the subpath of your site, e.g. /blog
-url: "https://tehn.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://monome.org" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"]

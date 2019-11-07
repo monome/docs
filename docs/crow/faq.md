@@ -1,5 +1,8 @@
 ---
-layout: page
+layout: default
+parent: crow
+title: faq
+nav_order: 1
 permalink: /crow/faq/
 ---
 

@@ -434,7 +434,7 @@ The [community forum](https://llllllll.co/tag/norns) has various informative thr
 
 Check the [known bugs](https://github.com/monome/norns/wiki/known-bugs) list for problems and solutions.
 
-If you're experiencing hardware problems contact info@monome.org and we can help right away.
+If you're experiencing hardware problems contact `help@monome.org` and we can help right away.
 
 
 ## CONTRIBUTING

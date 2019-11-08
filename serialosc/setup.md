@@ -28,7 +28,7 @@ If you have performed all the above steps and your grid or arc is not being dete
 
 1. On your Mac, open Activity Monitor and search `serialosc`. You should see entries for `serialosc-detector` and `serialoscd`. If you do not, then serialosc is not installed.
 
-    ![](images/activity-monitor.png)
+    <center>![](images/activity-monitor.png)
 
 2. Once you confirm serialosc is installed, please connect your grid/arc and open Terminal.  
     - Execute `ls -lrt /dev/tty.usb*`  
@@ -47,13 +47,15 @@ If you have performed all the above steps and your grid or arc is not being dete
 	rm -r FTDIUSBSerialDriver.kext
 		```
 
-Now, reboot and try step 2 again. If things are still not working, open Terminal and execute:
+4. Now, reboot and try step 2 again. If things are still not working, open Terminal and execute:
 
-```
-launchctl unload /Library/LaunchAgents/org.monome.serialosc.plist
-launchctl load /Library/LaunchAgents/org.monome.serialosc.plist
-```
+	```
+	launchctl unload /Library/LaunchAgents/	org.monome.serialosc.plist
+	launchctl load /Library/LaunchAgents/	org.monome.serialosc.plist
+	```
 	
-In Max, open either `grid-test.maxpat` or `arc-test.maxpat`(depending on the monome device). If you can't find the patchers, use CMD+B to open Max's file browser and search either `package:monome grid-test.maxpat` or `package:monome arc-test.maxpat`. Plug in your grid/arc and you should see your grid/arc autoconnect!
+	In Max, open either grid-test.maxpat or arc-test.maxpat (depending on the monome device). If you can't find the patchers, use CMD+B to open Max's file browser and search either `package:monome grid-test.maxpat` or `package:monome arc-test.maxpat`. Plug in your grid/arc and you should see your grid/arc autoconnect!
 
-If you've reached this point and things still aren't working, please contact [help@monome.org](mailto:help@monome.org) with screenshots of what you see in steps 1-3, what you see in the Max console (CMD+B), and your Mac's OS version.
+	<center>![](images/arc-test-connect.png)
+
+If you've reached this point and things still aren't working, please contact [help@monome.org](mailto:help@monome.org) with screenshots of what you see in steps 1-4, what you see in the Max console (CMD+B), and your Mac's OS version.

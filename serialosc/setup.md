@@ -26,9 +26,7 @@ see the [applications list](/docs/grid/app) for several more.
 ### macOS
 if you have performed all the above steps and your grid or arc is not being detected when you plug into your Mac (but it is showing the light burst indicating its receiving power over USB), here are a few things to try.
 
-1. on your Mac, open Activity Monitor and search `serialosc`. you should see entries for `serialosc-detector` and `serialoscd`. if you do not, then serialosc is not installed.
-
-	![](images/activity-monitor.png)
+1. on your Mac, open Activity Monitor and search `serialosc`. you should see entries for both `serialosc-detector` and `serialoscd`. if you do not, then serialosc is not installed.
 
 2. once you confirm serialosc is installed, please connect your grid/arc and open Terminal.  
     - execute `ls -lrt /dev/tty.usb*`  

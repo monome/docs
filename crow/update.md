@@ -1,5 +1,8 @@
 ---
-layout: page
+layout: default
+parent: crow
+title: update
+nav_order: 5
 permalink: /crow/update/
 ---
 

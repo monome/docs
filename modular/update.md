@@ -1,6 +1,7 @@
 ---
-layout: page
-permalink: /modular/update/
+layout: default
+nav_exclude: true
+permalink: /modular/update
 ---
 
 # modular firmware updates

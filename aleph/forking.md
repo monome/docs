@@ -1,13 +1,14 @@
 ---
-layout: page
+layout: default
+nav_exclude: true
 permalink: /aleph/forking/
 ---
 
 # Aleph: Forking
 
-This is an example of how to fork the Aleph repo, change something, and submit a request for your changes to be pulled upstream to tehn/aleph. Some naming and workflow conventions are to taste, and `user` is your own github username.
+This is an example of how to fork the Aleph repo, change something, and submit a request for your changes to be pulled upstream to monome/aleph. Some naming and workflow conventions are to taste, and `user` is your own github username.
 
-Create a fork of tehn/aleph on github by clicking the “fork” button on the upper right of the repo page. There should now be a new repo on your github page called user/aleph.
+Create a fork of monome/aleph on github by clicking the “fork” button on the upper right of the repo page. There should now be a new repo on your github page called user/aleph.
 
 Now, the terminal commands go something like this:
 
@@ -27,7 +28,7 @@ git checkout -b dev origin/dev
 ### 3: Add another remote pointed at the upstream repo
 
 ~~~
-git remote add upstream https://github.com/tehn/aleph.git
+git remote add upstream https://github.com/monome/aleph.git
 ~~~
 
 ### 4: Fetch and merge any upstream changes
@@ -68,6 +69,6 @@ Here it's a good idea to check again for upstream changes by performing `step 4`
 - visit the page for your fork
 - select your dev branch from the dropdown menu
 - click the big green button that says “compare and pull request”
-- enter your comments and verify that the basis for comparison is tehn:dev … user:dev (it should be)
+- enter your comments and verify that the basis for comparison is monome:dev … user:dev (it should be)
 
 Click `send` and you are done!

@@ -1,6 +1,7 @@
 ---
-layout: page
-permalink: /modular/dev/
+layout: default
+nav_exclude: true
+permalink: /modular/dev
 ---
 
 # development

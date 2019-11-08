@@ -1,6 +1,8 @@
 ---
-layout: page
-permalink: /norns/script-reference/
+layout: default
+parent: norns
+title: script reference
+nav_order: 3
 ---
 
 # norns script reference

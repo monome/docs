@@ -1,5 +1,8 @@
 ---
-layout: page
+layout: default
+parent: crow
+title: norns
+nav_order: 2
 permalink: /crow/norns/
 ---
 

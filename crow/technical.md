@@ -1,5 +1,8 @@
 ---
-layout: page
+layout: default
+parent: crow
+title: technical
+nav_order: 7
 permalink: /crow/technical/
 ---
 

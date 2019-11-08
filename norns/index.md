@@ -1,6 +1,9 @@
 ---
-layout: page
-permalink: /norns/
+layout: default
+title: norns
+nav_order: 1
+has_children: true
+has_toc: false
 ---
 
 ![](https://monome.org/images/norns-front-small.jpg)
@@ -431,7 +434,7 @@ The [community forum](https://llllllll.co/tag/norns) has various informative thr
 
 Check the [known bugs](https://github.com/monome/norns/wiki/known-bugs) list for problems and solutions.
 
-If you're experiencing hardware problems contact info@monome.org and we can help right away.
+If you're experiencing hardware problems contact `help@monome.org` and we can help right away.
 
 
 ## CONTRIBUTING

@@ -1,6 +1,9 @@
 ---
-layout: page
-permalink: /aleph/dev/
+layout: default
+title: development
+parent: aleph
+nav_order: 2
+permalink: /aleph/development/
 ---
 
 # Aleph Development
@@ -29,7 +32,7 @@ This guide walks through the process of building and modifying the DSP programs 
 
 ## Repository
 
-[github.com/tehn/aleph](https://github.com/tehn/aleph)
+[github.com/monome/aleph](https://github.com/monome/aleph)
 
 The README contains extensive notes on code layout and toolchain setup.
 
@@ -55,7 +58,7 @@ To contribute to the codebase:
 
 Pretty often, I'll make a release tag. This is a datestamped git tag pointed at a commit in the master branch. (Why datestamped? See 'Versions' section below.)
 
-[github.com/tehn/aleph/releases](https://github.com/tehn/aleph/releases)
+[github.com/monome/aleph/releases](https://github.com/monome/aleph/releases)
 
 Making a release entails doing these things:
 

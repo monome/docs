@@ -1,6 +1,8 @@
 ---
-layout: page
-permalink: /norns/sftp/
+layout: default
+parent: norns
+title: sftp
+nav_order: 4
 ---
 
 ## sftp howto

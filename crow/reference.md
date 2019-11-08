@@ -1,5 +1,8 @@
 ---
-layout: page
+layout: default
+parent: crow
+title: reference
+nav_order: 6
 permalink: /crow/reference/
 ---
 

@@ -2,6 +2,7 @@
 layout: default
 nav_exclude: true
 permalink: /docs/norns/study-2/
+redirect_from: /norns/study-2/
 ---
 
 <div class="vid"><iframe src="https://player.vimeo.com/video/274939031?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>

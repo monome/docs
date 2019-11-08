@@ -15,11 +15,11 @@ The DSP runs at 500Mhz with 16b/32b fixed-point arithmetic and 24b fixed-point a
 
 ## Git Project
 
-The Aleph source can be downloaded from [github.com/tehn/aleph.git](https://github.com/tehn/aleph.git)
+The Aleph source can be downloaded from [github.com/monome/aleph.git](https://github.com/monome/aleph.git)
 
 ~~~
 cd ~ (to install in your user directory)
-git clone https://github.com/tehn/aleph.git
+git clone https://github.com/monome/aleph.git
 ~~~
 
 For more information on forking the repository to track your changes independently see [Forking](/docs/aleph/forking. If you plan on contributing to the project you will need to follow these steps.

@@ -12,7 +12,7 @@ nav_order: 8
 
 ---
 
-*Note: this manual is for version 2 (which also runs on Ansible). Version 1 is [available here](https://monome.org/docs/modular/meadowphysics/v1/).*
+*Note: this manual is for version 2 (which also runs on Ansible). Version 1 is [available here](/docs/meadowphysics/v1/).*
 
 ## Introduction
 

@@ -14,7 +14,7 @@ nav_order: 7
 
 #### WARNING: monome modules require high +5v current
 
-Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [SWITCH](http://monome.org/modular/) is required. Available very affordably from our [retailers](http://monome.org/order/).
+Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [Switch](/docs/switch) is required.
 
 ## Introduction
 
@@ -84,7 +84,7 @@ Loop length can also be set from the second row. Press and hold your start posit
 
 The overall rate for White Whale is controlled by the *Clock* section at the bottom of the module's panel. By default an internal clock is generated which drives the sequencer at a rate set by the *clock* knob. Rate can be very slow for slow chord changes, up to very fast for arpeggio like note flurries.
 
-Attach a signal to clock *in* to disable the internal clock and follow the signal attached. This input could be a clock from another sequencer or LFO for a regular output. Non-regular input signals can also be used to manually move through steps, or create irregular rhythmic patterns, eg. being triggered by [Meadowphysics](http://monome.org/modular). The pulsewidth of the clock *in* sets the trigger time for individual *trigger* outs. The sequencer can be stopped altogether by inserting an unconnected patch cable to clock *in*.
+Attach a signal to clock *in* to disable the internal clock and follow the signal attached. This input could be a clock from another sequencer or LFO for a regular output. Non-regular input signals can also be used to manually move through steps, or create irregular rhythmic patterns, eg. being triggered by [Meadowphysics](/docs/meadowphysics). The pulsewidth of the clock *in* sets the trigger time for individual *trigger* outs. The sequencer can be stopped altogether by inserting an unconnected patch cable to clock *in*.
 
 The clock *out* jack sends a gate signal out according to the current *clock* following the internal or external clock as appropriate. This output is ideal for linking multiple sequencers, or for a regular rhythmic pulse in your system.
 

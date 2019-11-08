@@ -6,9 +6,11 @@ has_children: true
 has_toc: false
 ---
 
+![](https://monome.org/images/aleph-1p.png)
+
 # Aleph
 
-* [Information](/aleph) -- Details about Aleph sound computer.
-* [Reference](/docs/aleph/reference) -- Information about Bees, modules and applications.
-* [Tutorial](/docs/aleph/tutorial-0) -- Introduction to using the Aleph.
-* [Development](/docs/aleph/dev) -- Guides for creating your own modules, applications, and Bees operators.
+* [Information](https://monome.org/aleph) -- Details about Aleph sound computer.
+* [Reference](reference) -- Information about Bees, modules and applications.
+* [Tutorial](tutorial-0) -- Introduction to using the Aleph.
+* [Development](dev) -- Guides for creating your own modules, applications, and Bees operators.

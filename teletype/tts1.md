@@ -3,6 +3,7 @@ layout: default
 title: studies
 parent: teletype
 nav_order: 2
+permalink: /teletype/studies-1/
 ---
 
 <div class="vid"><iframe src="https://player.vimeo.com/video/135080129?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>

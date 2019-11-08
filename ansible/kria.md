@@ -2,12 +2,12 @@
 layout: default
 title: kria
 parent: ansible
-nav_order: 3
+nav_order: 1
 ---
 
 ## Kria (Ansible + Grid)
 
-Kria is an app for the [Ansible](/docs/modular/ansible) Eurorack module that uses the [Grid](/docs/grid) to program a four-track step sequencer. This is an updated version of Kria which began as a [White Whale](/docs/modular/whitewhale) alt-firmware. While some functionality has changed, a general overview could be understood by viewing the [alt-WW Kria tutorial video](https://vimeo.com/153923660). There is also a MIDI Kria [implementation](https://llllllll.co/t/kria-midi/21255) for [Norns](/docs/norns). The mode LED will show orange whilst Kria is running.
+Kria is an app for the [Ansible](/docs/ansible) Eurorack module that uses the [Grid](/docs/grid) to program a four-track step sequencer. This is an updated version of Kria which began as a [White Whale](/docs/whitewhale) alt-firmware. While some functionality has changed, a general overview could be understood by viewing the [alt-WW Kria tutorial video](https://vimeo.com/153923660). There is also a MIDI Kria [implementation](https://llllllll.co/t/kria-midi/21255) for [Norns](/docs/norns). The mode LED will show orange whilst Kria is running.
 
 ### Interface
 
@@ -114,7 +114,7 @@ For example, a whole tone scale (2 semitones per note) would be constructed by s
 
 You can perform temporary "live" adjustments to scale steps with a two-key gesture: hold down the active scale step, then press another key on that row of the scale programming section. The second key is highlighted more dimly to indicate that this scale step is adjusted. This adjusts the pitch CV assigned to that scale step without affecting the rest of the scale, which can be a useful performance tool. Pressing the brighter, "primary" scale key, or pressing another key to change the interval, will clear the adjustment. Scale adjustments are not saved to flash. Changing the selected scale will clear all scale adjustments, but changing patterns will not, which can make this useful for introducing live variations in a longer sequence.
 
-Scales are shared between Kria, [Meadowphysics](/docs/modular/ansible/meadowphysics), and [Earthsea](/docs/modular/ansible/earthsea), and are saved to flash whenever a preset of either is saved.
+Scales are shared between Kria, [Meadowphysics](/docs/ansible/meadowphysics), and [Earthsea](/docs/ansible/earthsea), and are saved to flash whenever a preset of either is saved.
 
 **Track step modes**
 
@@ -253,7 +253,7 @@ Some space on this page is also used for some behavior that affects all apps:
   non-varibright, 4-step varibright, or 16-step varibright grid (the default).
 
 * The key in the bottom right, where Kria's scale page key is, accesses tuning mode,
-  described [here](/docs/modular/ansible#tuning).
+  described [here](/docs/ansible#tuning).
 
 ### Presets
 
@@ -269,10 +269,10 @@ To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
-It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [here](/docs/modular/ansible#usb-disk-mode).
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [here](/docs/ansible#usb-disk-mode).
 
 ### Teletype Clocking
 
-A channel of Kria can be set to be clocked from the Teletype command `KR.CLK x` (see the Ansible + Teletype manual [here](/docs/modular/ansible/teletype)).
+A channel of Kria can be set to be clocked from the Teletype command `KR.CLK x` (see the Ansible + Teletype manual [here](/docs/ansible/teletype)).
 
 To do so, press the *scale* key to enter scale view. The four keys at the top of the left column will enable or disable Teletype clocking for the relevant channel. When a channel is clocked by Teletype, it no longer responds to the master clock (set either internally or by an external clock connected to the `In 1`).

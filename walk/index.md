@@ -33,7 +33,7 @@ Once you've powered up the module press the footswitches to see the lights chang
 
 The panel is arranged with two identical blocks, one for each footswitch, plus a unifying middle section responding to the state of both switches in tandem. The independent blocks have *Momentary* and *Toggle* outs, while the central section performs *Logic* functions based on the switch states. Walk is particularly powerful because all six outputs are available simultaneously, allowing the simple gesture of *on/off* to impart a great deal of change.
 
-Walk was developed as an ideal companion to [Teletype](http://monome.org/docs/modular/teletype), though also pairs well with [White Whale](http://monome.org/docs/modular/whitewhale) for manually stepping through sequences, becoming a 16-stage memory bank.
+Walk was developed as an ideal companion to [Teletype](http://monome.org/docs/teletype), though also pairs well with [White Whale](http://monome.org/docs/whitewhale) for manually stepping through sequences, becoming a 16-stage memory bank.
 
 
 ## Momentary

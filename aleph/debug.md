@@ -29,13 +29,12 @@ For other systems, something similar applies: Aleph should show up as a peripher
 Flash `aleph-bees-n.n.n-dbg.hex` to Aleph and observe terminal output.
 
 Contact us directly: help@monome.org
-IRC: catfact, tehn in #monome-aleph on freenode.net
 
 Attach the output of the debug process above .
 
 ## Tracking Issues
 
-Known issues are logged and tracked via the [Aleph github page](https://github.com/tehn/aleph/issues).
+Known issues are logged and tracked via the [Aleph github page](https://github.com/monome/aleph/issues).
 
 See here for a list of known issues and requested improvements.
 

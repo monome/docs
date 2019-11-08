@@ -41,7 +41,7 @@ Secure the module with the four included screws, hiding under the tape in the bo
 
 ### ii/i2c
 
-If you wish Teletype to communicate with Ansible or other modules with [ii](/docs/modular/ii), you will need to attach an ii cable (not included, but DIY'able [here](https://www.adafruit.com/product/1950)) as outlined in the [ii Communication](/docs/modular/iiheader/index/#connecting-the-trilogy) page. Teletype can also connect to a world of other [i2c-capable devices](https://llllllll.co/t/a-users-guide-to-i2c/19219). If your Teletype has a green circuit board, it can support 2 direct ii/i2c connections. If it has a black circuit board (Dec 2018 revision), it can support 4 direct ii/i2c connections.
+If you wish Teletype to communicate with Ansible or other modules with [ii](/docs/modular/ii), you will need to attach an ii cable (not included, but DIY'able [here](https://www.adafruit.com/product/1950)) as outlined in the [ii Communication](/docs/modular/iiheader/#connecting-the-trilogy) page. Teletype can also connect to a world of other [i2c-capable devices](https://llllllll.co/t/a-users-guide-to-i2c/19219). If your Teletype has a green circuit board, it can support 2 direct ii/i2c connections. If it has a black circuit board (Dec 2018 revision), it can support 4 direct ii/i2c connections.
 
 ### Firmware
 
@@ -53,16 +53,16 @@ It is possible to backup all your presets as part of the module's firmware; see 
 
 The basics of Teletype are quick to learn. The tutorials will get you started and the manual provides a complete reference.
 
-* [Teletype Studies](/docs/modular/teletype/studies-1) - guided series of tutorials
+* [Teletype Studies](studies-1) - guided series of tutorials
 
-* [Teletype Manual](/docs/modular/teletype/manual) - full manual, also available as a [pdf](manual.pdf)
+* [Teletype Manual](manual) - full manual, also available as a [pdf](manual.pdf)
 
-* [Just Type Studies](/docs/modular/teletype/jt-1) - a guided series of tutorials on integrating Teletype with Just Friends
+* [Just Type Studies](jt-1) - a guided series of tutorials on integrating Teletype with Just Friends
 
 * [PDF command reference](TT_commands_3.0.pdf)
 * [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
 
-* [Default scenes](http://monome.org/docs/modular/teletype/scenes-1.0/)
+* [Default scenes](scenes-1.0/)
 
 ## Further
 

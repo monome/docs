@@ -16,13 +16,13 @@ has_toc: false
 
 Connects to Grids, Arcs, and MIDI devices, integrating external controllers into the modular environment. Also extends Teletype. Many modes are available, activated by connecting different USB devices and a preset key:
 
-* [Kria](/docs/modular/ansible/kria) (Grid) live step sequencer, polyphasic parameters, emergent patterns.
-* [Meadowphysics](/docs/modular/ansible/meadowphysics) (Grid) rhizomatic cascading counter.
-* [Earthsea](/docs/modular/ansible/earthsea) (Grid) polyphonic pattern instrument.
-* [Levels](/docs/modular/ansible/levels) (Arc) rotational pattern instrument.
-* [Cycles](/docs/modular/ansible/cycles) (Arc) physically manipulated waves.
-* [(Teletype)](/docs/modular/ansible/teletype) further ecosystem output and input, and remote control of other apps.
-* [(MIDI)](/docs/modular/ansible/midi) device voice allocation and various arpeggiation.
+* [Kria](/docs/ansible/kria) (Grid) live step sequencer, polyphasic parameters, emergent patterns.
+* [Meadowphysics](/docs/ansible/meadowphysics) (Grid) rhizomatic cascading counter.
+* [Earthsea](/docs/ansible/earthsea) (Grid) polyphonic pattern instrument.
+* [Levels](/docs/ansible/levels) (Arc) rotational pattern instrument.
+* [Cycles](/docs/ansible/cycles) (Arc) physically manipulated waves.
+* [(Teletype)](/docs/ansible/teletype) further ecosystem output and input, and remote control of other apps.
+* [(MIDI)](/docs/ansible/midi) device voice allocation and various arpeggiation.
 
 **Grid, Arc, MIDI device, or Teletype required.**
 
@@ -30,7 +30,7 @@ Connects to Grids, Arcs, and MIDI devices, integrating external controllers into
 * 6hp width
 * 39mm depth
 
-![](/images/ansible.jpg)
+![](images/ansible.jpg)
 
 ## Installation
 
@@ -44,7 +44,7 @@ Secure the module with the two included screws.
 
 *Power consumption:*
 
-These are maximums. Power consumption varies greatly based on which USB controller is attached and how many LEDs are being lit. You can drastically lower your +12V consumption by using a [Switch](/docs/modular/switch/) (discontinued), [Offworld](https://github.com/monome/offworld-1) (DIY), or some commercial adapter cables (see [here](https://llllllll.co/t/usb-power-ground-management/20386)) with your USB controller.
+These are maximums. Power consumption varies greatly based on which USB controller is attached and how many LEDs are being lit. You can drastically lower your +12V consumption by using a [Switch](/docs/switch/) (discontinued), [Offworld](https://github.com/monome/offworld-1) (DIY), or some commercial adapter cables (see [here](https://llllllll.co/t/usb-power-ground-management/20386)) with your USB controller.
 
 - 200mA @ +12V
 - 19ma @ -12V
@@ -54,7 +54,7 @@ These are maximums. Power consumption varies greatly based on which USB controll
 
 Ansible ships with a strange USB A-A cable. This is used for firmware updates. We expect to be adding features from time to time, and the Ansible is a good candidate for community hacking. It's suggested to update your firmware to ensure you're running the newest version-- so the following documentation will be applicable rather than confusing.
 
-Firmware update information [instructions are available](http://monome.org/docs/modular/update/). Be warned that updating your firmware will erase all presets from the module's internal storage! To preserve your work, you can back up Ansible's presets to a USB disk and restore this file after reflashing the module's firmware.
+Firmware update information [instructions are available](/docs/modular/update/). Be warned that updating your firmware will erase all presets from the module's internal storage! To preserve your work, you can back up Ansible's presets to a USB disk and restore this file after reflashing the module's firmware.
 
 ## Firmware Version
 

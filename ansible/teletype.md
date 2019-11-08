@@ -7,7 +7,7 @@ nav_order: 7
 
 ## Ansible + Teletype
 
-The [Ansible](/docs/modular/ansible) and [Teletype](/docs/modular/teletype) Eurorack modules can be connected via pin headers on the back of these modules, making remote control of Ansible possible from Teletype scripts.
+The [Ansible](/docs/ansible) and [Teletype](/docs/teletype) Eurorack modules can be connected via pin headers on the back of these modules, making remote control of Ansible possible from Teletype scripts.
 
 Teletype firmware 1.3 or newer is required for Ansible support.
 

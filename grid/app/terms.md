@@ -243,4 +243,4 @@ As there can be many grid-capable devices available in a single Live Set, the **
 
 This manual was created by [Trent Gill](http://www.whimsicalraps.com) for [monome.org](http://monome.org).
 
-Contributions welcome. Submit a pull request to [github.com/monome/terms](https://github.com/monome/terms) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/terms](https://github.com/monome/terms) or e-mail `help@monome.org`.

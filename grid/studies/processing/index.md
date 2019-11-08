@@ -15,7 +15,7 @@ If you're very new to Processing (or Java), it will be very beneficial to work t
 
 Download Processing: [processing.org](http://processing.org)
 
-Download the monome installer: [monome.org/docs/setup](http://monome.org/docs/setup)
+Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
 
 Download the code examples here: [files/grid-studies-processing.zip](files/grid-studies-processing.zip)
 

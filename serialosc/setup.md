@@ -17,14 +17,8 @@ serialosc runs in the background and converts serial communication (over USB) in
 
 ## getting started
 
-the [max 7 monome package](/docs/app/package) is a collection of applications and tools for Max 7 which can be used with the free runtime.
+the [max 7 monome package](/docs/grid/app/package) is a collection of applications and tools for Max 7 which can be used with the free runtime.
 
-see the [applications list](/docs/app) for several more.
+see the [applications list](/docs/grid/app) for several more.
 
 ## [help!](/docs/help)
-
-when seeking setup help be sure to include:
-
-- which grid or arc [edition](/docs/editions) you're using
-- which OS and version (ie, mac os 10.13.12)
-- what you've tried, details about what is not working

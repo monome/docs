@@ -100,7 +100,7 @@ Scripts 5 through 8 create sustained tones, picking pitches randomly from a patt
 
 Scripts 1 through 4 release the envelopes moments after a new pitch is assigned, allowing the physical TRIGGERS from Kria to ping the notes.
 
-As of Teletype 2.x+, `I` can be a [local variable](https://monome.org/docs/modular/teletype/manual/#new-operator-behaviour). Here, it's used as a way to accomplish an impossibility: `JF.VOX 1 N PN 0 RAND 9 V RRAND 4 8`.
+As of Teletype 2.x+, `I` can be a [local variable](https://monome.org/docs/teletype/manual/#new-operator-behaviour). Here, it's used as a way to accomplish an impossibility: `JF.VOX 1 N PN 0 RAND 9 V RRAND 4 8`.
 
 (fwiw, the banner video is not sped up. I wondered the same when I watched the first time and it's weird.)
 

@@ -247,4 +247,4 @@ These save files are complete collections of sounds that can be shared between u
 
 This manual was created by [Trent Gill](http://www.whimsicalraps.com) for [monome.org](monome.org).
 
-Contributions welcome. Submit a pull request to [github.com/monome/monome_sum](https://github.com/monome/monome_sum) or e-mail [helo@monome.org](mailto:help@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/monome_sum](https://github.com/monome/monome_sum) or e-mail `help@monome.org`.

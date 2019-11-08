@@ -2,15 +2,15 @@
 layout: default
 title: earthsea
 parent: ansible
-nav_order: 5
+nav_order: 3
 ---
 
 ## Earthsea (Ansible + Grid)
 
 *Polyphonic pattern instrument*
 
-Earthsea is an app for the [Ansible](/docs/modular/ansible) Eurorack module that uses the [Grid](/docs/grid) as an isomorphic keyboard to perform, record, and play back patterns for up to four CV/gate voices.
-Earthsea is a new, polyphonic version of the [the original Earthsea module](https://monome.org/docs/modular/earthsea/). It now supports polyphony across up to four CV and gate outputs. However, it no longer supports the two- and three-finger shape memories of the original module. The mode LED will show whitish-orange whilst Earthsea is running.
+Earthsea is an app for the [Ansible](/docs/ansible) Eurorack module that uses the [Grid](/docs/grid) as an isomorphic keyboard to perform, record, and play back patterns for up to four CV/gate voices.
+Earthsea is a new, polyphonic version of the [the original Earthsea module](/docs/earthsea/). It now supports polyphony across up to four CV and gate outputs. However, it no longer supports the two- and three-finger shape memories of the original module. The mode LED will show whitish-orange whilst Earthsea is running.
 
 ### Interface
 
@@ -81,7 +81,7 @@ Performances across the keymap can be recorded live. There are 16 available patt
 
 Once recorded, patterns can be manipulated: looped, transposed & time modulated. Each pattern can include up to 64 notes or shapes, with no limit on length in time.
 
-![](https://monome.org/docs/modular/earthsea/images/es_patterns.png)
+![](/docs/earthsea/images/es_patterns.png)
 
 ### Record
 
@@ -97,13 +97,13 @@ Each pattern can be set to loop by pressing the LOOP MODE key (left column, four
 
 ### Auto-Loop Record
 
-![](https://monome.org/docs/modular/earthsea/images/es_autoloop.png)
+![](/docs/earthsea/images/es_autoloop.png)
 
 If you wish to loop a pattern directly, end your recording by pressing START/STOP rather than ARM. The pattern will instantly begin playback and the LOOP MODE toggle (left column, fourth row down) will be set.
 
 ### Retrigger
 
-![](https://monome.org/docs/modular/earthsea/images/es_retrigger.png)
+![](/docs/earthsea/images/es_retrigger.png)
 
 Patterns can be restarted while already playing, by holding ARM then pressing START/STOP.
 
@@ -135,7 +135,7 @@ You can also create your own key map. It will take the place of the 'default' ke
 
 In addition to playback and looping, patterns can also be transposed on the grid using Arpeggio, or ARP, mode. This functionality is greatly inspired by Stretta’s [polygomé](https://github.com/stretta/BEAP) max patch.
 
-![Arp mode](https://monome.org/docs/modular/earthsea/images/es_arpmode.png)
+![Arp mode](/docs/earthsea/images/es_arpmode.png)
 
 After recording a pattern, activate the ARP MODE button from the left column (left column, fifth key down). You will see a lit key showing the pattern’s ‘root’ position. Press this key to playback the pattern as normal (including looping if set).
 
@@ -151,7 +151,7 @@ The default behaviour of the gate outputs is a traditional **HOLD** output. When
 
 Using the GATE MODE key (left column, 3rd from bottom) this behaviour can be changed to **FIXED** and **DRONE** modes. Hold GATE MODE and press within the 4×4 glyphs to select the different modes. The current selection will be brighter than the rest.
 
-![Edge Mode](https://monome.org/docs/modular/earthsea/images/es_edge_web2.png)
+![Edge Mode](/docs/earthsea/images/es_edge_web2.png)
 
 **FIXED** mode creates a fixed length gate at the appropriate Gate output. After selecting **FIXED** mode the bottom row will be activated displaying the *gate time*. Press a key in the bottom row to choose a gate time. When performing rapid presses in **FIXED** mode the timer is restarted at each new press, so legato phrases are still possible. Length can be very long for extended gates, particularly well matched to long-attack envelope generators.
 
@@ -185,4 +185,4 @@ To write a preset, press and hold the position to write to.
 
 A “glyph” can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
-It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [here](/docs/modular/ansible#usb-disk-mode).
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [here](/docs/ansible#usb-disk-mode).

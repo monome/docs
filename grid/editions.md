@@ -1,6 +1,7 @@
 ---
 layout: default
 nav_exclude: true
+permalink: /docs/grid/editions
 ---
 
 # editions

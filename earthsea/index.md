@@ -16,7 +16,7 @@ nav_order: 9
 
 ### WARNING: monome modules require high +5v current
 
-Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [SWITCH](www.http://monome.org/modular/) is required. Available very affordably from our [retailers](http://monome.org/order/).
+Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [Switch](/docs/switch) is required.
 
 
 ## Introduction

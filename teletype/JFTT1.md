@@ -22,11 +22,11 @@ Enough! Just. Type.
 
 ## Don't burn the locals
 
-The commands outlined in this tutorial build on established conventions in the Teletype language. If you’re new to or rusty with Teletype, it’d be best to start with a review of the original [Teletype Studies for 1.x](https://monome.org/docs/modular/teletype/studies-1/).
+The commands outlined in this tutorial build on established conventions in the Teletype language. If you’re new to or rusty with Teletype, it’d be best to start with a review of the original [Teletype Studies for 1.x](https://monome.org/docs/teletype/studies-1/).
 
 Just Type comes pre-installed since Just Friends v3 (late 2017). Get the update [here](https://www.whimsicalraps.com/pages/jf-latest-version) if you have an early JF with the silver & green landscape backplate.
 
-Just Type also requires [Teletype 2.0+](https://monome.org/docs/modular/update/). Any 2.x+ commands in the accompanying musical examples will be explained and hyperlinked to reference points in the [manual](https://monome.org/docs/modular/teletype/manual/).
+Just Type also requires [Teletype 2.0+](https://monome.org/docs/modular/update/). Any 2.x+ commands in the accompanying musical examples will be explained and hyperlinked to reference points in the [manual](https://monome.org/docs/teletype/manual/).
 
 And of course you'll need to connect an [ii cable](https://market.monome.org/collections/other/products/ii-cable) between the TT and JF. If you have more than 3 modules on your [ii bus](/docs/modular/ii) you will likely need a [TT bus board](https://market.monome.org/collections/other/products/tt-busboard) to ensure the electrical levels are correct.
 
@@ -105,7 +105,7 @@ Featured in the banner video above.
 
 Just Friends is set to *shape/sustain*. Mangrove's *FORMANT* is sent through *6N* while its *SQUARE* is providing subtle FM.
 
-This scene makes heavy use of two features from Teletype 2.x, [EVERY](https://monome.org/docs/modular/teletype/manual/#every) and [Turtle (@)](https://monome.org/docs/modular/teletype/manual/#turtle).
+This scene makes heavy use of two features from Teletype 2.x, [EVERY](https://monome.org/docs/teletype/manual/#every) and [Turtle (@)](https://monome.org/docs/teletype/manual/#turtle).
 
 - `EVERY x:` is a control flow mod that runs a command every `x` times it’s called.
 - `@` is a two-dimensional movable index of pattern values on the *TRACKER* screen.
@@ -125,7 +125,7 @@ The `M` script:
 Toggle Turtle visualizer on/off with `@SHOW 1`/`@SHOW 0` in *LIVE* mode.
 
 The scene is pretty minimal, using only one numbered script.
-`M` and `I` feature [subcommands](https://monome.org/docs/modular/teletype/manual/#sub-commands-1) tied together with a `;`, condensing commands into a single line.
+`M` and `I` feature [subcommands](https://monome.org/docs/teletype/manual/#sub-commands-1) tied together with a `;`, condensing commands into a single line.
 
 Lots of room for expansion!
 

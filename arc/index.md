@@ -8,6 +8,6 @@ nav_order: 4
 
 ### [setup and introduction](/docs/serialosc/setup) -- first steps. start here.
 
-### [applications](/docs/app) -- the complete collection.
+### [applications](/docs/grid/app#arc)
 
-### technical -- [osc](/docs/osc) and [serial](/docs/serial.txt) reference information. [libraries](/docs/libraries).
+### technical -- [osc](/docs/serialosc/osc) and [serial](/docs/serialosc/serial.txt) reference information. [libraries](/docs/grid/libraries).

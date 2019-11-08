@@ -24,21 +24,21 @@ or, if this process looks like it's not for you, we can do it for you (at a grea
 
 ## remove logic board
 
-all modifications happen to the logic board. remove it according to [howto - disassemble the two fifty six](/docs/disassemble/series). (disassembly is identical for monome 128).
+all modifications happen to the logic board. remove it according to [howto - disassemble the two fifty six](/docs/grid/disassembly/series). (disassembly is identical for monome 128).
 
 ## remove DCDC converter
 
 this will certainly make you uncomfortable. the DCDC is the part indicated by the arrow in the photo below-- a bunch of small parts mounted to another circuit board. pry a set of pliers underneath and pull it off. this will require a bit of force. if traces come up with the pads, don't worry, just cut them before they run too far.
 
-![](/docs/images/tech-hardware-upgrade01.jpg)
+![](../images/tech-hardware-upgrade01.jpg)
 
-![](/docs/images/tech-hardware-upgrade02.jpg)
+![](../images/tech-hardware-upgrade02.jpg)
 
 ## remove diode
 
 indicated by white arrow. you could use your soldering iron, or you can simply use your pliers (give it a twist to remove-- it'll probably break apart).
 
-![](/docs/images/tech-hardware-upgrade04.jpg)
+![](../images/tech-hardware-upgrade04.jpg)
 
 ## install capacitor
 
@@ -46,19 +46,19 @@ bend the legs straight.
 
 this capacitor has a polarity (indicated by the black bar on top). **do not put this in backwards!**
 
-![](/docs/images/tech-hardware-upgrade05.jpg)
+![](../images/tech-hardware-upgrade05.jpg)
 
-![](/docs/images/tech-hardware-upgrade06.jpg)
+![](../images/tech-hardware-upgrade06.jpg)
 
-![](/docs/images/tech-hardware-upgrade07.jpg)
+![](../images/tech-hardware-upgrade07.jpg)
 
 ## jumper wire
 
 connects between usb power and logic board power. ensure a solid, clean connection. add solder to each point, don't simply try to heat up and stab the wire in.
 
-![](/docs/images/tech-hardware-upgrade08.jpg)
+![](../images/tech-hardware-upgrade08.jpg)
 
-![](/docs/images/tech-hardware-upgrade09.jpg)
+![](../images/tech-hardware-upgrade09.jpg)
 
 ## complete
 

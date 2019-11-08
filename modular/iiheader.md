@@ -25,7 +25,7 @@ Insert the short end of the header into these three holes and make sure the head
 
 Solder the three pins.
 
-![Header Soldered](images/header.jpg)
+![Header Soldered](../images/header.jpg)
 
 Repeat this process for all of your monome trilogy modules.
 
@@ -37,20 +37,20 @@ First connect the cable to teletype, using the connector with the opposite orien
 
 Next, folding the II cable back over itself, connect it to the newly attached header on your trilogy module. Which row of pins in the cable you attach to does not matter, so long as you make sure the red stripe is facing toward the the top of the trilogy module, noted as `gnd` on the circuit board.
 
-![Single module](images/single.jpg)
+![Single module](../images/single.jpg)
 
 If using only one or two trilogy modules, use the furthest connectors on the cable so the II ribbon folds underneath teletype allowing the most slack in the cable.
 
 If connecting all three trilogy modules there is a small juggling act to holding the modules together as you insert them into the case. It is generally easiest to attach the power ribbon cables before adding the II cable.
 
-![Trilogy connected](images/trilogy.jpg)
+![Trilogy connected](../images/trilogy.jpg)
 
 ## Firmware
 
 The trilogy modules will likely needed newest firmwares installed-- the II functionality was introduced after most trilogy modules shipped.
 
-See the [firmware updates](http://monome.org/docs/modular/update/) page for a walkthrough on updating.
+See the [firmware updates](../update/) page for a walkthrough on updating.
 
 ## In Use
 
-Now your trilogy modules are prepared to receive commands from Teletype. There is a scene demonstrating some of the `II` commands included with Teletype, but much much more to be explored by looking at the full documentation on the [Teletype page](http://monome.org/docs/modular/teletype).
+Now your trilogy modules are prepared to receive commands from Teletype. There is a scene demonstrating some of the `II` commands included with Teletype, but much much more to be explored by looking at the full documentation on the [Teletype page](/docs/teletype).

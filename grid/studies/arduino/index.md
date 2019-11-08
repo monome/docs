@@ -19,7 +19,7 @@ Be sure you have Arduino version 1.6.0 or later. **It is required.**
 
 Download Arduino: [arduino.cc](http://http://arduino.cc/en/Main/Software)
 
-Download the monome installer: [monome.org/docs/setup](http://monome.org/docs/setup)
+Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
 
 Download the code examples here: [files/grid-studies-arduino.zip](files/grid-studies-arduino.zip)
 
@@ -453,4 +453,4 @@ Done!
 
 This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](monome.org).
 
-Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

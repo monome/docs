@@ -17,7 +17,7 @@ This lesson assumes a basic understanding of the Max patching interface. If you'
 
 Download Max 7: [cycling74.com/downloads](https://cycling74.com/downloads/)
 
-Download the monome installer: [monome.org/docs/setup](http://monome.org/docs/setup)
+Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
 
 Download the code examples here: [files/grid-studies-max.zip](files/grid-studies-max.zip)
 
@@ -259,4 +259,4 @@ See grid-studies-3-5.maxpat for a js implementation of this patch.
 
 This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](monome.org).
 
-Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

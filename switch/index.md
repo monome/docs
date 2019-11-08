@@ -56,6 +56,4 @@ While designed for switching focus between modules, the switch can also be used 
 We have found much success using a computer for processing the audio output from a Eurorack synthesizer with a grid-based application like [mlrv](https://github.com/trentgill/mlrv2/releases/latest), while switching to monome modules in the case. With this setup it's usually easiest using Switch to change context between computer (**A**) and modular (**B**), and then hot-swapping the **B** cable to different modules.
 
 
-## Closing
 
-For further documentation and examples see [docs/modular](/docs/modular).

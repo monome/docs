@@ -17,7 +17,7 @@ If you're new to Pd, spend a few moments with these introductory tutorials from 
 
 Download Pd Extended: [puredata.info/](http://puredata.info/downloads/pd-extended)
 
-Download the monome installer: [monome.org/docs/setup](http://monome.org/docs/setup)
+Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
 
 Download the code examples here: [files/grid-studies-pd.zip](files/grid-studies-pd.zip)
 

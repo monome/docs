@@ -6,7 +6,7 @@ permalink: /aleph/dev/app/
 
 # Aleph: Standalone App Overview
 
-An example application called “mix” showing how to make a customized application to take the place of Bees for the Aleph. The majority of information is written in comments in the referenced code: [github.com/tehn/aleph/tree/master/apps/mix/src](https://github.com/tehn/aleph/tree/master/apps/mix/src).
+An example application called “mix” showing how to make a customized application to take the place of Bees for the Aleph. The majority of information is written in comments in the referenced code: [github.com/monome/aleph/tree/master/apps/mix/src](https://github.com/monome/aleph/tree/master/apps/mix/src).
 
 This document is largely a reference to point you to the right piece of code.
 

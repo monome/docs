@@ -2,14 +2,14 @@
 layout: default
 title: meadowphysics
 parent: ansible
-nav_order: 4
+nav_order: 2
 ---
 
 ## Meadowphysics (Ansible + Grid)
 
 *Rhizomatic cascading counter*
 
-Meadowphysics is an app for the [Ansible](/docs/modular/ansible) Eurorack module that uses the [Grid](/docs/grid) to program a trigger or CV/gate sequencer. The version for Ansible has a few changes from the [version 2](https://vimeo.com/146731772) (which is an update from [version 1](http://monome.org/docs/modular/meadowphysics/))-- primarily in that this new version can map a scale of notes to the individual row triggers. Those linked docs will give some additional insight (though perhaps also some confusion) prior to the completion of the material below. Meadowphysics has also been [ported](https://llllllll.co/t/meadowphysics-norns/21185) to [Norns](/docs/norns). The mode LED will show white whil Meadowphysics is running.
+Meadowphysics is an app for the [Ansible](/docs/ansible) Eurorack module that uses the [Grid](/docs/grid) to program a trigger or CV/gate sequencer. The version for Ansible has a few changes from the [version 2](https://vimeo.com/146731772) (which is an update from [version 1](/docs/meadowphysics/))-- primarily in that this new version can map a scale of notes to the individual row triggers. Those linked docs will give some additional insight (though perhaps also some confusion) prior to the completion of the material below. Meadowphysics has also been [ported](https://llllllll.co/t/meadowphysics-norns/21185) to [Norns](/docs/norns). The mode LED will show white whil Meadowphysics is running.
 
 ### Interface
 
@@ -113,7 +113,7 @@ Moving upwards through the rows, each row specifies a number of semitones to be 
 
 For example, a whole tone scale (2 semitones per note) would be constructed by setting all rows to the second position. (The *zero* position is indicated dimly. Scale notes set to zero will be identical to the previous scale step).
 
-Scales are shared between Kria, [Meadowphysics](/docs/modular/ansible/meadowphysics), and [Earthsea](/docs/modular/ansible/earthsea), and are saved to flash whenever a preset of either is saved.
+Scales are shared between Kria, [Meadowphysics](/docs/ansible/meadowphysics), and [Earthsea](/docs/ansible/earthsea), and are saved to flash whenever a preset of either is saved.
 
 ### Clocking and Reset
 
@@ -133,4 +133,4 @@ To write a preset, press and hold the position to write to.
 
 A "glyph" can be drawn in the right 8x8 quadrant as a visual cue as to what the preset is all about. This will be displayed when presets are selected for reading.
 
-It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [here](/docs/modular/ansible#usb-disk-mode).
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [here](/docs/ansible#usb-disk-mode).

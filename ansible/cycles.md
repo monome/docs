@@ -2,12 +2,12 @@
 layout: default
 title: cycles
 parent: ansible
-nav_order: 1
+nav_order: 4
 ---
 
 ## Cycles (Ansible + Arc)
 
-Cycles is an app for the [Ansible](/docs/modular/ansible) Eurorack module that converts [Arc](/docs/arc) gestures into rotational energy mapped to CV and TR outputs, with control for friction and force.
+Cycles is an app for the [Ansible](/docs/ansible) Eurorack module that converts [Arc](/docs/arc) gestures into rotational energy mapped to CV and TR outputs, with control for friction and force.
 
 The mode LED will show white when running.
 
@@ -58,4 +58,4 @@ The current preset will be shown dimly. Rotate to one of the other slots press e
 
 Presets are written to flash, and the most recently used preset will be loaded upon power-up.
 
-It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [here](/docs/modular/ansible#usb-disk-mode).
+It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/). Ansible can also save and load presets directly to a USB disk, see [here](/docs/ansible#usb-disk-mode).

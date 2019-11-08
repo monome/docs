@@ -30,3 +30,10 @@ please be very specific about your grid or arc edition. see the [editions descri
 please include your mailing address so we can estimate shipping costs.
 
 when shipping anything to us, be sure to include a printed sheet inside the box with your contact information, mailing address, and the problem. please insure your package when shipping.
+
+
+## end
+
+looking for the old forum? it's read-only, at [archive.monome.org/community](http://archive.monome.org/community/index.html)
+
+and, the elusive [isms](/isms) -- a vision of modular, collaboration with [whimsical raps](http://whimsicalraps.com).

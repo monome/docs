@@ -6,7 +6,7 @@ nav_order: 4
 permalink: /crow/scripting/
 ---
 
-![](images/druid-start.png)
+![](../images/druid-start.png)
 
 # Scripting
 

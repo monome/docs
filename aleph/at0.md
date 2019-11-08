@@ -1,5 +1,8 @@
 ---
-layout: page
+layout: default
+title: tutorial
+parent: aleph
+nav_order: 3
 permalink: /aleph/tutorial-0/
 ---
 

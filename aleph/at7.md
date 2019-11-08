@@ -1,5 +1,6 @@
 ---
-layout: page
+layout: default
+nav_exclude: true
 permalink: /aleph/tutorial-7/
 ---
 

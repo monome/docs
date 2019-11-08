@@ -1,6 +1,8 @@
 ---
-layout: page
-permalink: /aleph/reference/
+layout: default
+title: reference
+parent: aleph
+nav_order: 1
 ---
 
 # Aleph Reference

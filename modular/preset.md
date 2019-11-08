@@ -1,6 +1,7 @@
 ---
-layout: page
-permalink: /modular/preset/
+layout: default
+nav_exclude: true
+permalink: /modular/preset
 ---
 
 # preset management

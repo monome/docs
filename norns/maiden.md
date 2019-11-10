@@ -2,7 +2,7 @@
 layout: default
 parent: norns
 has_children: true
-title: maiden + file management
+title: maiden
 nav_order: 1
 ---
 

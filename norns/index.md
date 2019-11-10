@@ -13,7 +13,7 @@ has_toc: false
 ### resources:
 - [first](norns-first.pdf) a quick, printable introduction.
 - [play](../play) is a longer introduction and a great starting point.
-- [maiden](../maiden/ is how to manage projects and import scripts.
+- [maiden](../maiden/) is how to manage projects and import scripts.
 - [studies](../study-1) is a series of tutorials for creating scripts.
 - [tutorial](https://github.com/neauoire/tutorial) is a minimal scripting introduction.
 - [script reference](../script-reference) contains lists of functions.

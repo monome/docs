@@ -25,7 +25,7 @@ You can launch individual patchers directly from this screen. Click the dropdown
 
 ![MP](images/package-mp.png)
 
-Your grid will be auto-detected and selected when plugged in. (Provided you've already installed [serialosc](../../serialosc/setup)).
+Your grid will be auto-detected and selected when plugged in. (Provided you've already installed [serialosc](../docs/serialosc/setup)).
 
 Meadowphysics generates notes. To get sound you'll need to click the *plugin* dropdown to select an internal synth plugin. You can likewise change the *output* to MIDI and change the *midi* dropdown to either an external or internal MIDI device (for example, on Mac the AU DLS Synth will make piano sounds.)
 

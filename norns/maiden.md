@@ -3,7 +3,7 @@ layout: default
 parent: norns
 has_children: true
 title: maiden
-nav_order: 1
+nav_order: 2
 has_toc: false
 ---
 

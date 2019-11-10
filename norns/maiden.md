@@ -4,6 +4,7 @@ parent: norns
 has_children: true
 title: maiden
 nav_order: 1
+has_toc: false
 ---
 
 # maiden

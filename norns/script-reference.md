@@ -4,6 +4,7 @@ parent: norns
 has_children: true
 title: script reference
 nav_order: 3
+has_toc: false
 ---
 
 # norns script reference

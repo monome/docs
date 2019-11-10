@@ -8,7 +8,7 @@ nav_order: 1
 
 # sftp
 
-You can manage projects and delete/rename files via [maiden](/docs/norns/maiden). But sometimes you'll need to copy files between your computer and norns, like audio.
+You can manage projects and delete/rename files via [maiden](../maiden). But sometimes you'll need to copy files between your computer and norns, like audio.
 
 File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via WIFI. Use an SFTP client (such as Cyberduck) to connect to the IP address shown on the norns screen.
 
@@ -22,7 +22,7 @@ Be careful when editing files on Norns.  If you delete files that Norns needs to
 
 Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, windows and linux.  While the screens will be different, the goal is the same, (to connect to Norns over the IP adress provided using SFTP/port 22).
 
-1. If not already, start up Norns.  Navigate to SYSTEM / WIFI.  You can either use Norns in HOTSPOT mode, or by connecting to the same NETWORK that the computer you'll be downloading the SFTP client to is on. See the [norns docs](/docs/norns) for more information about WIFI setup.
+1. If not already, start up Norns.  Navigate to SYSTEM / WIFI.  You can either use Norns in HOTSPOT mode, or by connecting to the same NETWORK that the computer you'll be downloading the SFTP client to is on. See the [connect docs](../play/#connect) for more information about WIFI setup.
 
 2. Download Cyberduck.  You can find direct package installation for free from Cyberduck's website on the [changelog](https://cyberduck.io/changelog/) page.
 

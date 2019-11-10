@@ -222,12 +222,12 @@ If you do not have access to a router, you can turn the norns into a WIFI hotspo
 
 Updates to the core norns software can be installed easily via the SYSTEM menu. You must first be connected to the internet via wifi and have at least 400M free disk space. If a new version is available you will be prompted to continue installing. Audio will be disabled during this time. Note that the download time may be a few minutes, have patience. Upon completion you'll be notified of success or failure, then the unit will shut down after confirmation.
 
-**If you are running 181101 or earlier it's recommended to do a [fresh install](help/#fresh-install).**
+**If you are running 181101 or earlier it's recommended to do a [fresh install](../help/#fresh-install).**
 
 
 ## HELP
 
-See the dedicated [help page](help/) for solutions to common problems.
+See the dedicated [help page](../help/) for solutions to common problems.
 
 The [community forum](https://llllllll.co/tag/norns) has various informative threads. Please join us!
 

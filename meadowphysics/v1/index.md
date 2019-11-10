@@ -3,7 +3,7 @@ layout: default
 nav_exclude: true
 permalink: /past/meadowphysics/v1/
 ---
-
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/107582557?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 <div class="vid"><iframe src="//player.vimeo.com/video/107582557?color=FF7700&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # Meadowphysics
@@ -14,7 +14,7 @@ permalink: /past/meadowphysics/v1/
 
 ### WARNING: monome modules require high +5v current
 
-Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [SWITCH](www.http://monome.org/modular/) is required. Available very affordably from our [retailers](http://monome.org/order/).
+Please make certain to check your case’s +5v power supply capacity (600ma minimum).
 
 ## Introduction
 

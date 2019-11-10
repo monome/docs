@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: norns
+has_children: true
 title: script reference
 nav_order: 3
 ---

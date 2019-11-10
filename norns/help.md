@@ -2,12 +2,12 @@
 layout: default
 parent: norns
 title: help
-nav_order: 1
+nav_order: 4
 ---
 
 # norns: help
 
-### contents
+### sections
 - [wifi troubleshooting](#wifi-troubleshooting)
 - [updating + managing apps](#update-apps)
 - [restoring deleted system folders](#code-folder)

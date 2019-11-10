@@ -234,12 +234,3 @@ The [community forum](https://llllllll.co/tag/norns) has various informative thr
 Check the [known bugs](https://github.com/monome/norns/wiki/known-bugs) list for problems and solutions.
 
 If you're experiencing hardware problems contact `help@monome.org` and we can help right away.
-
-
-## CONTRIBUTING
-
-Norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. Check out the [github repo](https://github.com/monome/norns).
-
-We're also always looking for help with [documentation](https://github.com/monome/docs), if your skills include design, instruction, or proofreading. Collective efforts have created numerous exceptional projects over the years, and there's more to a project than just code!
-
-Found a bug? Let us know. Please file a [github issue](https://github.com/monome/norns/issues) or let us know on [lines](https://llllllll.co/t/norns-help/14016).

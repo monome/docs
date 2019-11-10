@@ -1,8 +1,9 @@
 ---
 layout: default
-parent: norns
-title: faq
-nav_order: 2
+parent: script reference
+grand_parent: norns
+title: scripting faq
+nav_order: 1
 ---
 
 # FAQ

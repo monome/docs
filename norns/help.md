@@ -2,12 +2,12 @@
 layout: default
 parent: norns
 title: help
-nav_order: 1
+nav_order: 5
 ---
 
 # norns: help
 
-### contents
+### sections
 - [wifi troubleshooting](#wifi-troubleshooting)
 - [updating + managing apps](#update-apps)
 - [restoring deleted system folders](#code-folder)
@@ -20,7 +20,7 @@ nav_order: 1
 ## wifi troubleshooting
 _nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources._
 
-If you are consistently unable to connect your norns to wifi through the ['Connect' steps outlined here](/docs/norns/#connect), please perform the following steps:
+If you are consistently unable to connect your norns to wifi through the ['Connect' steps outlined here](../norns/play/#connect), please perform the following steps:
 
 1. Try plugging the wifi nub into a different USB slot on norns and perform a standard reboot.
 
@@ -31,7 +31,7 @@ If you are consistently unable to connect your norns to wifi through the ['Conne
 
 3. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
 
-4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](/docs/norns/#other-access). Once you perform this serial login, try running `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network.
+4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../norns/maiden/#other-access). Once you perform this serial login, try running `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network.
 
 5. If you are still unable to connect, please email help@monome.org with the following information:
 
@@ -41,7 +41,7 @@ If you are consistently unable to connect your norns to wifi through the ['Conne
 
 ## help: how do I add/update apps on my norns? <a name="update-apps"></a>
 
-As of 10.28.2019, maiden (the web-based editor built into norns) now features a [project manager](/docs/norns/#project-manager) to help facilitate project discovery, installation, and upgrades.
+As of 10.28.2019, maiden (the web-based editor built into norns) now features a [project manager](../norns/maiden/#project-manager) to help facilitate project discovery, installation, and upgrades.
 
 lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns%20order%3Alatest) for projects tagged `norns`. In each project's thread, you'll find in-depth conversation as well as performance examples and tutorials. Projects for norns are primarily built and maintained by the lines community, so any questions/trouble with a specific project should be directed to its thread.
 
@@ -50,7 +50,7 @@ lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20t
 ### getting the `code` folder back
 
 1. Download [Cyberduck](http://cyberduck.io) -- this is an app that will connect to your norns and show its file system like it's a standard computer.
-2. [Follow these instructions to connect to norns through Cyberduck](/docs/norns/sftp/).
+2. [Follow these instructions to connect to norns through Cyberduck](../norns/sftp/).
 3. After you connect to norns through Cyberduck, double click the `dust`​ folder and you should see `audio`​ and `data`.
 4. In Cyberduck, click 'Action' and 'New Folder'. This will create a new folder alongside the other two. Name this folder `code`​.
 5. Keep this window open for the next phase!
@@ -68,7 +68,7 @@ lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20t
 
 Supercollider fails to load if you have multiple copies of the same engine (`.sc` files) inside of `dust` (the parent folder for the projects installed on norns).
 
-To solve this, [connect](../#connect) via wifi and open [maiden](../#maiden). Type `;restart` into the maiden REPL at the bottom (the `>>` prompt).
+To solve this, [connect](../norns/play/#connect) via wifi and open [maiden](../norns/maiden). Type `;restart` into the maiden REPL at the bottom (the `>>` prompt).
 
 This will restart the audio components and output their logs. If there's a duplicate class an error message like the following will be shown:
 
@@ -113,7 +113,7 @@ If a newly-renamed script throws a `file not found` error in maiden, it is likel
 
 - Download and copy [update file](https://github.com/monome/norns/releases/download/v2.2.1/norns191016.tgz) to a FAT-formatted USB drive
 - Insert the disk to norns and power up.
-- Connect via [serial](../#connect).
+- Connect via [serial](../norns/maiden/#other-access).
 - Copy file to `~/update/`:
 
 ```

@@ -1,11 +1,18 @@
 ---
 layout: default
-parent: norns
+parent: maiden
+grand_parent: norns
 title: sftp
-nav_order: 4
+nav_order: 1
 ---
 
-## sftp howto
+# sftp
+
+You can manage projects and delete/rename files via [maiden](/docs/norns/maiden). But sometimes you'll need to copy files between your computer and norns, like audio.
+
+File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via WIFI. Use an SFTP client (such as Cyberduck) to connect to the IP address shown on the norns screen.
+
+## connect
 
 Using cyberduck for SFTP access to Norns (macOS/windows)
 
@@ -21,19 +28,19 @@ Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, wi
 
 3. Open Cyberduck and click the "Open Connection" button in the top left corner.
 
-![](../image/sftp1.png)
+	![](../image/sftp1.png)
 
 4. Select SFTP from the dropdown at the top of the dialog that pops up.
 
-![](../image/sftp2.png)
+	![](../image/sftp2.png)
 
 5. Enter the IP address that is displayed on the second line of the Norns SYSTEM / WIFI screen in the Server field of the dialog in Cyberduck.  Enter "we" in the Username field and "sleep" in the Password field.  The completed dialog should look like this (note that the IP address may be different, use the one given on _your_ Norns screen):
 
-![](../image/sftp3.png)
+	![](../image/sftp3.png)
 
 6. If this is your first time connecting, an "Unknown Fingerprint" dialog will pop up, check "Always" and click Allow.
 
-![](../image/sftp4.png)
+	![](../image/sftp4.png)
 
 The Norns filesystem should be displayed in the Cyberduck window.  You can add, delete, and rename files in this window, just like you would with an external USB flash drive in your computer's file explorer application.
 
@@ -42,11 +49,35 @@ See the [file-tree](./#file-tree) overview in the main docs for an overview of w
 
 ![](../image/sftp5.png)
 
-### Troubleshooting
+## file tree
+
+Upon logging in you'll be in the home folder which is `/home/we/`.
+
+`dust` is the folder which contains everything we need. Here's the layout:
+
+```
+dust/
+  audio/          -- audio files
+    tape/             -- tape recordings
+    ...
+  code/           -- contains scripts and engines
+    awake/
+    mlr/
+    ...
+    we/
+  data/           -- contains user data created by scripts
+    awake/            -- for example, pset data
+```
+
+## backup
+
+If you want to make a backup of your scripts, psets or other data simply make a copy of the `dust` directory in `/home/we` via SFTP.
+Restoring from this backup is as simple as copying this directory from your computer back to the `/home/we/dust` directory on norns.
+
+## troubleshooting
 
 If things hang and do not connect, try to connect again after restarting Norns (and reconnecting on the SYSTEM / WIFI screen), as well as restarting Cyberduck.
 
-
-### Credits
+## credits
 
 Thanks for jlmitch5 for this guide!

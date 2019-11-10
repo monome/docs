@@ -1,8 +1,10 @@
 ---
 layout: default
 parent: norns
+has_children: true
 title: script reference
-nav_order: 3
+nav_order: 4
+has_toc: false
 ---
 
 # norns script reference

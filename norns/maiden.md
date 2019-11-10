@@ -115,6 +115,31 @@ To add to the [community project repo](https://github.com/monome/norns-community
     },
 ```
 
+#### GATHERING
+
+While many projects are held in the community repository, it can be hard to engage with a project's creator through GitHub. To facilitate discussion, many projects are also shared through the [norns Library on lines](https://llllllll.co/search?expanded=true&q=%23library%20tags%3Anorns%20order%3Alatest).
+
+These project pages have information and a download link (in addition to being available on the community repository). To install a project found through lines, download the .zip file, unpack into a folder, (IMPORTANT!) rename the folder by removing `-master` from its name, and then move this folder over to the `dust/code/` folder using [SFTP](../norns/sftp). It'll show up in the SELECT list.
+
+#### SHARING
+
+The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas.
+
+Create a new thread in the [Library](https://llllllll.co/c/library).
+
+You'll be able to attach a .zip file containing your project folder, or if you wish to host your project on GitHub then link to a master download or most recent release.
+
+Be sure you include information at the top of your script to help future users:
+
+```
+-- scriptname: short script description
+-- v1.0.0 @author
+-- llllllll.co/t/22222
+```
+
+That last line is a link back to the thread number. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
+
+
 ### PROGRAMMING REFERENCE
 
 The bottom left ? icon can be used to navigate to the onboard programming reference.
@@ -135,31 +160,3 @@ Without WIFI, you can connect to norns via USB-UART by connecting the power cabl
 `screen /dev/tty.usb(tab) 115200`
 
 Where `(tab)` appears hit TAB to autocomplete the serial number. Login is the same as above.
-
-
-## GATHERING
-
-Browse the [norns Library](https://llllllll.co/search?expanded=true&q=%23library%20tags%3Anorns%20order%3Alatest) to see projects created and contributed by various people.
-
-These project pages have information and a download link. Download a .zip file, unpack into a folder, (IMPORTANT!) rename the folder by removing `-master` from its name, and then move this folder over to the `dust/code/` folder using SFTP. It'll show up in the SELECT list.
-
-
-## SHARING
-
-The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas.
-
-Create a new thread in the [Library](https://llllllll.co/c/library).
-
-You'll be able to attach a .zip file containing your project folder.
-
-Be sure you include information at the top of your script to help future users:
-
-```
--- scriptname: short script description
--- v1.0.0 @author
--- llllllll.co/t/22222
-```
-
-That last line is a link back to the thread number. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
-
-Alternatively you can host your project as a github repository by simply cloning your project into the `dust/code/` folder. We're working on infrastructure to integrate more closely with `git`, but in the meantime we suggest using `ssh` to manage this. In the project thread you can then link to a master download or most recent release.

@@ -81,7 +81,7 @@ This tab shows which projects are currently installed on your norns.
 
 Each entry has two actions: **UPDATE** and **REMOVE**.
 
-If you choose to update a project that currently lives on your norns, please note that local modifications you have made will be overwritten. If you wish to retain multiple versions of a project, please reference the [FILE MANAGEMENT](#file-management) section.
+If you choose to update a project that currently lives on your norns, please note that local modifications you have made will be overwritten. If you wish to retain multiple versions of a project, please reference the [SFTP](../sftp/) guide.
 
 Once you update a project through the PROJECT MANAGER, you'll see a commit number listed on the right of the project's tile (like *34d225b*). Click a project's commit number to be brought to the project's GitHub page, where you can learn more about the project and verify that the version you have is the latest.
 
@@ -119,7 +119,7 @@ To add to the [community project repo](https://github.com/monome/norns-community
 
 While many projects are held in the community repository, it can be hard to engage with a project's creator through GitHub. To facilitate discussion, many projects are also shared through the [norns Library on lines](https://llllllll.co/search?expanded=true&q=%23library%20tags%3Anorns%20order%3Alatest).
 
-These project pages have information and a download link (in addition to being available on the community repository). To install a project found through lines, download the .zip file, unpack into a folder, (IMPORTANT!) rename the folder by removing `-master` from its name, and then move this folder over to the `dust/code/` folder using [SFTP](../norns/sftp). It'll show up in the SELECT list.
+These project pages have information and a download link (in addition to being available on the community repository). To install a project found through lines, download the .zip file, unpack into a folder, (IMPORTANT!) rename the folder by removing `-master` from its name, and then move this folder over to the `dust/code/` folder using [SFTP](../sftp/). It'll show up in the SELECT list.
 
 #### SHARING
 
@@ -146,7 +146,7 @@ The bottom left ? icon can be used to navigate to the onboard programming refere
 
 You can manually open the API reference at `norns.local/doc`.
 
-Also see the [general reference](script-reference/).
+Also see the [scripting reference](../script-reference/).
 
 ## OTHER ACCESS
 

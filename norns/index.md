@@ -12,12 +12,12 @@ has_toc: false
 
 ### resources:
 - [first](norns-first.pdf) a quick, printable introduction.
-- [play](/docs/norns/play/) is a longer introduction and a great starting point.
-- [maiden](/docs/norns/maiden/) is how to manage projects and import scripts.
-- [studies](/docs/norns/study-1/) is a series of tutorials for creating scripts.
+- [play](../play) is a longer introduction and a great starting point.
+- [maiden](../maiden/ is how to manage projects and import scripts.
+- [studies](../study-1) is a series of tutorials for creating scripts.
 - [tutorial](https://github.com/neauoire/tutorial) is a minimal scripting introduction.
-- [script reference](/docs/norns/script-reference/) contains lists of functions.
-- [help](/docs/norns/help) for deeper device and system troubleshooting.
+- [script reference](../script-reference) contains lists of functions.
+- [help](../help) for deeper device and system troubleshooting.
 
 current version: [191028](https://github.com/monome/norns/releases) (Oct 28 2019)
 

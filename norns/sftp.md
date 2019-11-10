@@ -1,6 +1,6 @@
 ---
 layout: default
-parent: maiden
+parent: maiden + file management
 grand_parent: norns
 title: sftp
 nav_order: 1

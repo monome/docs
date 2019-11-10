@@ -1,6 +1,6 @@
 ---
 layout: default
-parent: script-reference
+parent: script reference
 grand_parent: norns
 title: scripting faq
 nav_order: 1

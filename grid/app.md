@@ -58,6 +58,9 @@ contact `help@monome.org` to have your application listed. we suggest [github](h
 * [gridlab](https://github.com/stretta/gridlab) -- a suite of maxforlive monome devices.
 * [elements](https://github.com/benjaminvanesser/elements) -- a collection of midi controls for grids.
 * [anaphora](https://github.com/AndrewShike/anaphora) -- simple, live-input focused mlr variant.
+* [anachronism](https://github.com/AndrewShike/anachronism) -- asynchronous digital tape looping interface
+* [prosody](https://github.com/AndrewShike/prosody) -- a modular collection of effects for grids & no grids
+
 
 ## utilities
 

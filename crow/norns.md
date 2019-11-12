@@ -1,8 +1,8 @@
 ---
 layout: default
 parent: crow
-title: norns
-nav_order: 2
+title: scripting with norns
+nav_order: 5
 permalink: /crow/norns/
 ---
 

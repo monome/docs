@@ -70,7 +70,7 @@ We have trained crow to navigate the following landscapes:
 
 ### computer + druid
 
-- you can use your terminal to access [**druid**](https://github.com/monome/druid), a small utility for communicating with crow
+- you can use your terminal to access [**druid**](druid), a small utility for communicating with crow
 - druid helps you engage crow in realtime interaction and also upload full scripts (coded in Lua), providing an interactive platform for designing new patterns in a modular synth
 - want to see what others have scripted? visit [**bowery**](https://github.com/monome/bowery), the druid script collection, and complete *stage one* of the [**scripting tutorial**](scripting) to learn how to upload scripts
 - learn to map your own flight paths with *stage two* and *stage three* of the [**scripting tutorial**](scripting)

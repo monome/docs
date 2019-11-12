@@ -2,7 +2,7 @@
 layout: default
 parent: crow
 title: update
-nav_order: 5
+nav_order: 3
 permalink: /crow/update/
 ---
 
@@ -13,12 +13,19 @@ Flashing the crow requires setting up `dfu-util` on your laptop, downloading the
 ## Setup dfu-util<a name="setup"></a>
 
 - Linux: `apt-get install dfu-util` (or similar)
-- MacOS: install [homebrew](https://brew.sh) and then run `brew install dfu-util` from the command line.
-- Windows: get a [win32 binary](http://dfu-util.sourceforge.net)
+- macOS: install [homebrew](https://brew.sh) and then run `brew install dfu-util` from the command line
+- Windows: [download here](http://dfu-util.sourceforge.net/releases/dfu-util-0.9-win64.zip)
+	- you may need to add the location of the unzipped `dfu-util-0.9-win64` folder [to your Path](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/) in order to run `dfu-util`
+
+To confirm a successful setup close terminal, open a fresh session, and execute:
+
+```
+dfu-util -V
+```
 
 ## Get new firmware
 
-![](../images/crow-releases.png)
+![](../images/crow-release.png)
 
 [https://github.com/monome/crow/releases](https://github.com/monome/crow/releases)
 
@@ -106,3 +113,15 @@ If you get an error: `dfu-util: No DFU capable USB device available` this means 
 You can type `dfu-util -l` to list the connected bootloader devices.
 
 If you get an error: `'dfu-util' is not recognized as an internal or external command, operable program or batch file.` you haven't correctly installed dfu-util, or need to add it to your PATH. Try the [setup](#setup) section again.
+
+### Windows
+
+If you get an error:  `Cannot open DFU device 0483:df11`, this means that your crow's driver needs to be replaced.
+
+- download [Zadig](https://zadig.akeo.ie) and put crow into [bootloader mode](#activate-bootloader)
+- open Zadig and from Options check "List All Devices"
+- select `crow: dfu bootloader` from the list (if you see `crow: telephone line` then crow is not in bootloader)
+- for the current driver, you should have `STTub30 (v3.0.4.0)`
+- to the right of the green arrow, you should have `WinUSB (v6.1.7600.16385)` (if you don't, please select it)
+- click the Replace Driver button and wait a few minutes for the process to complete
+- re-attempt [flashing the update](#flashing-the-update)

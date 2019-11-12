@@ -1,8 +1,8 @@
 ---
 layout: default
 parent: crow
-title: faq
-nav_order: 1
+title: help
+nav_order: 8
 permalink: /crow/faq/
 ---
 

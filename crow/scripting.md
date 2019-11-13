@@ -12,7 +12,7 @@ Scripts are the little programs crow runs to take on different roles in your syn
 
 crow stores a single script in memory at any given time, and it will automatically start it whenever you turn on your synth. When you first turned on crow it was running *First*, which is a script too! We'll be uploading new scripts that stop *First* from running, but never fear it's easy to return if you desire (read on!).
 
-If you haven't already, please install `druid` on your machine using [these docs](../crow/druid/).
+If you haven't already, please install `druid` on your machine using [these docs](../druid).
 
 **This tutorial has three stages:**
 
@@ -103,10 +103,10 @@ Speaking of tools, your coding terminal doesn't need to be a squinty struggle ei
 
 Now load both these tools up and, resize the windows so you have them side-by-side, something like these examples:
 
-(druid & sublime text)  
+(druid & sublime text)
 ![](../images/druid-sublime.jpg)
 
-(druid & vim)  
+(druid & vim)
 ![](../images/druid-vim.jpg)
 
 You'll want to learn the hotkey that allows you to switch focus between the two programs.

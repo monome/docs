@@ -150,10 +150,14 @@ Also see the [scripting reference](../script-reference/).
 
 ## OTHER ACCESS
 
+### SSH
+
 When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM.
 
 - user: `we`
 - password: `sleep`
+
+### SERIAL (NO WIFI)
 
 Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux do:
 

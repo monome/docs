@@ -15,6 +15,7 @@ nav_order: 5
 - updating norns
 	- [without WiFi](#manual-update)
 	- [fresh install](#fresh-install)
+- [backing up norns to USB](#backup-no-wifi)
 - [additional q's](#faq)
 
 ## wifi troubleshooting
@@ -111,7 +112,7 @@ If a newly-renamed script throws a `file not found` error in maiden, it is likel
 
 ## manual / offline update <a name="manual-update"></a>
 
-- Download and copy [update file](https://github.com/monome/norns/releases/download/v2.2.1/norns191016.tgz) to a FAT-formatted USB drive
+- Download and copy [update file](https://github.com/monome/norns/releases/download/v2.2.2/norns191028.tgz) to a FAT-formatted USB drive
 - Insert the disk to norns and power up.
 - Connect via [serial](../maiden/#other-access).
 - Copy file to `~/update/`:
@@ -124,8 +125,8 @@ sudo cp /media/usb0/*.tgz ~/update/
 
 ```
 cd ~/update
-tar xzvf norns191016.tgz
-cd 191016
+tar xzvf norns191028.tgz
+cd 191028
 ./update.sh
 ```
 
@@ -150,6 +151,16 @@ Steps:
 6. Disconnect USB. Flip the switch back to RUN. Put the bottom back on.
 
 If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
+
+## back up norns to USB <a name="backup-no-wifi"></a>
+
+nb. [SFTP through Cyberduck](../sftp/) is the most straightfoward way to back up your norns. These instructions are provided for times when you are unable to connect norns to WiFi (no dongle, no network, etc).
+
+First, connect via [serial](../maiden/#other-access) and then insert a USB stick into norns.
+
+- Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
+- If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
+- Shutdown with `sudo shutdown now`
 
 ## additional a's to faq's <a name="faq"></a>
 

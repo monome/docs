@@ -8,6 +8,7 @@ nav_order: 5
 # norns: help
 
 ### sections
+- [replacing parts](#replacing-parts)
 - [wifi troubleshooting](#wifi-troubleshooting)
 - [updating + managing apps](#update-apps)
 - [restoring deleted system folders](#code-folder)
@@ -18,6 +19,37 @@ nav_order: 5
 - [backing up norns to USB](#backup-no-wifi)
 - [additional q's](#faq)
 
+## replacing parts
+### wifi nub
+
+If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a replacement (10 USD, shipping included, only US).
+
+If you have experienced signal strength issues and wish to replace your WiFi dongle completely, you may wish to purchase a [high gain antenna adapter](https://www.amazon.com/Panda-Wireless-PAU06-300Mbps-Adapter/dp/B00JDVRCI0).
+
+### charger
+
+The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 5.25V. A direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/1994).
+
+### battery
+
+Before you purchase a new battery, please consider that your norns may not be reporting battery performance accurately. To test, fully drain the battery and then charge it fully.
+
+If performance does not improve, then a direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/2011) or by emailing help@monome.org for a replacement (15 USD, shipping included, only US).
+
+### encoders
+
+On early batches of norns, some users have reported that the encoder values are "jumpy". To verify that your encoders are affected, please perform this simple test:
+
+- navigate to the LEVELS page
+- turn a level all the way up and continue to turn the encoder
+- if the level jumps and does not remain at maximum, then you might want to replace that encoder
+
+We are still working to identify if this is related to our assembly house or if the actual OEM parts are flawed. The fix is *incredibly* straightforward if you have access to a soldering iron. While we can provide fixes in-house, shipping back and forth has a great deal of environmental impact that we'd love to help avoid. So, please consider DIY'ing and email us at help@monome.org if you have any questions or trepidations about the DIY process.
+
+Replacement encoders can be purchased [from Octopart](https://octopart.com/pec11r-4015f-n0024-bourns-26648251).
+
+Please reference this [step-by-step video](https://vimeo.com/373181868/f58ea21a31) detailing the fix.
+
 ## wifi troubleshooting
 _nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources._
 
@@ -25,10 +57,7 @@ If you are consistently unable to connect your norns to wifi through the ['Conne
 
 1. Try plugging the wifi nub into a different USB slot on norns and perform a standard reboot.
 
-2. Plug the wifi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected.
-
-	- If your nub is defective, please email help@monome.org for a replacement
-	- If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a $10 (shipping incl.) replacement
+2. Plug the wifi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected. If your nub is defective, please email help@monome.org for a replacement
 
 3. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
 

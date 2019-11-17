@@ -16,6 +16,8 @@ Using the `[crow]` object, we have also created a suite of Max for Live devices 
 
 Before we begin: [download the latest Max and Max for Live releases](https://github.com/monome/crow-max-and-m4l/archive/master.zip).
 
+If any of the devices or objects are crashing Max or Ableton Live upon load, please follow the [clean install](https://cycling74.com/support/faq-maxcrash) steps from Cycling '74.
+
 ## Max
 
 ### Install

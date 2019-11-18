@@ -34,7 +34,7 @@ Restart Max and you should be able to instantiate the `crow` object!
 
 Right-click the [crow] object and select `Open crow Help`, which will reveal:
 
-![](../images/crow-max-help.png)
+![](../images/max-help.png)
 
 - **anatomy**: demonstration of the necessary signal flow to start patching with crow in Max.
 - **cv input**: showcases reading CV through crow's 2 hardware inputs either on-demand, as a stream, or when a signal crosses a specified threshold.

@@ -32,8 +32,8 @@ While *First* is a compelling instrument on its own, crow collects all manner of
 
 We have trained crow to navigate the following landscapes:
 
-- [norns](norns)
-- [computer terminal](druid)
-- [Max 8 + Max for Live](https://github.com/monome/crow-max)
+- [norns](../norns)
+- [computer terminal](../druid)
+- [Max 8 + Max for Live](../max-m4l)
 
 If you wish for crow to return to First, you can simply execute `^^First` or `^^F` in any of the aforementioned environments.

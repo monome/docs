@@ -167,9 +167,9 @@ Since crow uses a specific communication syntax, it requires some sort of layer 
 For example, if you like to use a specific app on your laptop for live-coding, plugging crow into your laptop while running the app will not suddenly translate MIDI to CV. crow won't even show up as a "MIDI device." However, you *could* use the [crow] Max object's help file to package a translator between them. Or you could route the MIDI from your live-coding app into Ableton Live 9/10 Suite and use the Max for Live toolkit to perform this translation.
 
 
-### can I control two or more crows at the same time from norns or M4L?
+### can I control two or more crows at the same time from norns?
 
-Not currently, though it is being actively explored. Both norns and the M4L toolkit communicate with one crow at a time, though you *can* read the two inputs, transmit data over i2c, **and** control all four outputs on a single crow simultaneously.
+Not currently, though it is being actively explored.
 
 ### can crow make sound on its own?
 

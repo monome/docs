@@ -6,7 +6,7 @@ nav_order: 1
 permalink: /crow/first/
 ---
 
-#First
+# First
 
 *First* is the default script that runs on a new crow. It's a phasing rhythm & harmony sequencer. Each crow generates its own unique set of musical content to be scanned and played with voltage control.
 

@@ -1,12 +1,10 @@
 ---
 layout: default
 parent: crow
-title: scripting
+title: scripting with druid
 nav_order: 4
 permalink: /crow/scripting/
 ---
-
-![](../images/druid-start.png)
 
 # Scripting
 
@@ -14,11 +12,12 @@ Scripts are the little programs crow runs to take on different roles in your syn
 
 crow stores a single script in memory at any given time, and it will automatically start it whenever you turn on your synth. When you first turned on crow it was running *First*, which is a script too! We'll be uploading new scripts that stop *First* from running, but never fear it's easy to return if you desire (read on!).
 
+If you haven't already, please install `druid` on your machine using [these docs](../druid).
+
 **This tutorial has three stages:**
 
 *Stage One* covers:
 
--  [setting up `druid`](#toolkit)
 -  [where to find new scripts for crow](#bowery)
 -  [learning how to upload & run scripts on crow](#uploading)
 
@@ -31,65 +30,7 @@ If you wish to venture on from there, *Stage Two* demonstrates:
 
 And *Stage Three* concludes with [a brief introduction into writing & modifying crow scripts](#sample-and-hold).
 
-## Stage One: Setup
-
-### Toolkit
-
-To communicate with crow we'll use `druid` which is a command-line tool that lets you send & receive text, as well as run & upload scripts.
-
-First we'll collect & install a few tools, starting with `Python` which is the environment that runs `druid`. Don't worry, you don't ever have to type any Python code into `druid`.
-
-We need version 3.5+, but let's get the most recent version:
-
-- Mac & Windows: [download from the Python website](https://www.python.org/downloads/)
-- Linux: in a terminal run `sudo apt-get install python3 python3-pip` or equivalent
-
-Now load up a terminal so we can check Python is installed and get the next pieces:
-
-- Mac: Open `terminal`
-- Windows: Use `PowerShell` and open by right-clicking and `Run as administrator`
-- Linux: Your choice! `gnome-terminal` is likely your default
-
-Check if Python is installed and working:
-
-```
-python3 -V
-```
-
-Which should print `Python 3.6.5` or something similar. If this doesn't work for you, try removing the `3` and just run `python -V`. No luck? Post to the [lines thread](https://llllllll.co/t/crow-help-druid/25864) & we'll figure it out (and update this doc).
-
-Now it's time to install `druid`
-
-```
-pip3 install monome-druid
-```
-
-NB: If you see an error like "ERROR: Could not install packages due to an EnvironmentError...", try running the command with `sudo` to gain the required privileges:
-
-```bash
-# you'll be asked to enter your password after typing this:
-sudo pip3 install monome-druid
-```
-
-Now druid should be ready to use, you might need to close and reopen the terminal to get access to it.
-
-Let's load up `druid` to test if everything works as expected
-
-```
-druid
-```
-
-You should see druid open with the following message up top:
-```
-//// druid. q to quit. h for help
-
-<crow connected>
-```
-
-If you see `<crow disconnected>` instead, make sure your modular case with crow is turned on, and the USB cable is connected.
-
-If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device. See [below](#permissions) for a fix.
-
+## Stage One: Upload
 
 ### Bowery
 
@@ -150,7 +91,7 @@ If you want to use a script you see online, you'll need to save it as a text fil
 
 *Note: Occasionally you might see `druid` complain about errors after calling `r`. Wait a couple seconds & try again. If you still have problems, enter `^^kill` to reset crow, then `r` again. [Learn more about Environment Commands here](technical/#environment-commands)*
 
-## Stage Two: Executing
+## Stage Two: Execute
 
 ### Split screen
 
@@ -162,11 +103,11 @@ Speaking of tools, your coding terminal doesn't need to be a squinty struggle ei
 
 Now load both these tools up and, resize the windows so you have them side-by-side, something like these examples:
 
+(druid & sublime text)
 ![](../images/druid-sublime.jpg)
-druid & sublime text
 
+(druid & vim)
 ![](../images/druid-vim.jpg)
-druid & vim
 
 You'll want to learn the hotkey that allows you to switch focus between the two programs.
 
@@ -255,7 +196,7 @@ Give the output some movement by using slew, then up-arrow to go back to 1 volt:
 
 The pitch will glide up to 1 volt again, smoothly fading for half a second.
 
-## Stage Three: Writing Scripts
+## Stage Three: Write
 
 ### Sample and hold
 
@@ -425,23 +366,3 @@ Additional Lua references:
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
 - [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)
 - [lua in 15 mins](http://tylerneylon.com/a/learn-lua/)
-
-### Permissions
-
-If `druid` says `can't open serial port` you probably don't have the required permissions to open the device. To remedy this add yourself to the correct group, which can be determined by running (on linux):
-
-```
-ls -l /dev/ttyACM0
-crw-rw---- 1 root dialout 166, 0 Oct  9 20:28 /dev/ttyACM0
-#                  ^ the group
-```
-
-In this case the group is called `dialout` but it's sometimes also called `uucp`.
-
-To add yourself to the `dialout` group run
-
-```
-sudo gpasswd -a <your username> <the group name found above>
-```
-
-After this logout and login again or simply restart.

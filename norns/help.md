@@ -8,6 +8,7 @@ nav_order: 5
 # norns: help
 
 ### sections
+- [replacing parts](#replacing-parts)
 - [wifi troubleshooting](#wifi-troubleshooting)
 - [updating + managing apps](#update-apps)
 - [restoring deleted system folders](#code-folder)
@@ -15,23 +16,52 @@ nav_order: 5
 - updating norns
 	- [without WiFi](#manual-update)
 	- [fresh install](#fresh-install)
+- [backing up norns to USB](#backup-no-wifi)
 - [additional q's](#faq)
+
+## replacing parts
+### wifi nub
+
+If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a replacement (10 USD, shipping included, only US).
+
+If you have experienced signal strength issues and wish to replace your WiFi dongle completely, you may wish to purchase a [high gain antenna adapter](https://www.amazon.com/Panda-Wireless-PAU06-300Mbps-Adapter/dp/B00JDVRCI0).
+
+### charger
+
+The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 5.25V. A direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/1994).
+
+### battery
+
+Before you purchase a new battery, please consider that your norns may not be reporting battery performance accurately. To test, fully drain the battery and then charge it fully.
+
+If performance does not improve, then a direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/2011) or by emailing help@monome.org for a replacement (15 USD, shipping included, only US).
+
+### encoders
+
+On early batches of norns, some users have reported that the encoder values are "jumpy". To verify that your encoders are affected, please perform this simple test:
+
+- navigate to the LEVELS page
+- turn a level all the way up and continue to turn the encoder
+- if the level jumps and does not remain at maximum, then you might want to replace that encoder
+
+We are still working to identify if this is related to our assembly house or if the actual OEM parts are flawed. The fix is *incredibly* straightforward if you have access to a soldering iron. While we can provide fixes in-house, shipping back and forth has a great deal of environmental impact that we'd love to help avoid. So, please consider DIY'ing and email us at help@monome.org if you have any questions or trepidations about the DIY process.
+
+Replacement encoders can be purchased [from Octopart](https://octopart.com/pec11r-4015f-n0024-bourns-26648251).
+
+Please reference this [step-by-step video](https://vimeo.com/373181868/f58ea21a31) detailing the fix.
 
 ## wifi troubleshooting
 _nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources._
 
-If you are consistently unable to connect your norns to wifi through the ['Connect' steps outlined here](../norns/play/#connect), please perform the following steps:
+If you are consistently unable to connect your norns to wifi through the ['Connect' steps outlined here](../play/#connect), please perform the following steps:
 
 1. Try plugging the wifi nub into a different USB slot on norns and perform a standard reboot.
 
-2. Plug the wifi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected.
-
-	- If your nub is defective, please email help@monome.org for a replacement
-	- If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a $10 (shipping incl.) replacement
+2. Plug the wifi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected. If your nub is defective, please email help@monome.org for a replacement
 
 3. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
 
-4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../norns/maiden/#other-access). Once you perform this serial login, try running `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network.
+4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../maiden/#other-access). Once you perform this serial login, try running `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network.
 
 5. If you are still unable to connect, please email help@monome.org with the following information:
 
@@ -41,7 +71,7 @@ If you are consistently unable to connect your norns to wifi through the ['Conne
 
 ## help: how do I add/update apps on my norns? <a name="update-apps"></a>
 
-As of 10.28.2019, maiden (the web-based editor built into norns) now features a [project manager](../norns/maiden/#project-manager) to help facilitate project discovery, installation, and upgrades.
+As of 10.28.2019, maiden (the web-based editor built into norns) now features a [project manager](../maiden/#project-manager) to help facilitate project discovery, installation, and upgrades.
 
 lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns%20order%3Alatest) for projects tagged `norns`. In each project's thread, you'll find in-depth conversation as well as performance examples and tutorials. Projects for norns are primarily built and maintained by the lines community, so any questions/trouble with a specific project should be directed to its thread.
 
@@ -50,7 +80,7 @@ lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20t
 ### getting the `code` folder back
 
 1. Download [Cyberduck](http://cyberduck.io) -- this is an app that will connect to your norns and show its file system like it's a standard computer.
-2. [Follow these instructions to connect to norns through Cyberduck](../norns/sftp/).
+2. [Follow these instructions to connect to norns through Cyberduck](../sftp/).
 3. After you connect to norns through Cyberduck, double click the `dust`​ folder and you should see `audio`​ and `data`.
 4. In Cyberduck, click 'Action' and 'New Folder'. This will create a new folder alongside the other two. Name this folder `code`​.
 5. Keep this window open for the next phase!
@@ -68,7 +98,7 @@ lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20t
 
 Supercollider fails to load if you have multiple copies of the same engine (`.sc` files) inside of `dust` (the parent folder for the projects installed on norns).
 
-To solve this, [connect](../norns/play/#connect) via wifi and open [maiden](../norns/maiden). Type `;restart` into the maiden REPL at the bottom (the `>>` prompt).
+To solve this, [connect](../play/#connect) via wifi and open [maiden](../maiden). Type `;restart` into the maiden REPL at the bottom (the `>>` prompt).
 
 This will restart the audio components and output their logs. If there's a duplicate class an error message like the following will be shown:
 
@@ -111,9 +141,9 @@ If a newly-renamed script throws a `file not found` error in maiden, it is likel
 
 ## manual / offline update <a name="manual-update"></a>
 
-- Download and copy [update file](https://github.com/monome/norns/releases/download/v2.2.1/norns191016.tgz) to a FAT-formatted USB drive
+- Download and copy [update file](https://github.com/monome/norns/releases/download/v2.2.2/norns191028.tgz) to a FAT-formatted USB drive
 - Insert the disk to norns and power up.
-- Connect via [serial](../norns/maiden/#other-access).
+- Connect via [serial](../maiden/#other-access).
 - Copy file to `~/update/`:
 
 ```
@@ -124,8 +154,8 @@ sudo cp /media/usb0/*.tgz ~/update/
 
 ```
 cd ~/update
-tar xzvf norns191016.tgz
-cd 191016
+tar xzvf norns191028.tgz
+cd 191028
 ./update.sh
 ```
 
@@ -150,6 +180,16 @@ Steps:
 6. Disconnect USB. Flip the switch back to RUN. Put the bottom back on.
 
 If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
+
+## back up norns to USB <a name="backup-no-wifi"></a>
+
+nb. [SFTP through Cyberduck](../sftp/) is the most straightfoward way to back up your norns. These instructions are provided for times when you are unable to connect norns to WiFi (no dongle, no network, etc).
+
+First, connect via [serial](../maiden/#other-access) and then insert a USB stick into norns.
+
+- Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
+- If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
+- Shutdown with `sudo shutdown now`
 
 ## additional a's to faq's <a name="faq"></a>
 

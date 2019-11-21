@@ -2,7 +2,7 @@
 layout: default
 parent: crow
 title: technical
-nav_order: 7
+nav_order: 8
 permalink: /crow/technical/
 ---
 
@@ -60,5 +60,5 @@ If your crow is connected to your computer through usb + properly powered, but d
 
 - download the [most recent firmware](https://github.com/monome/crow/releases)
 - [force the bootloader](../update/#forcing-the-bootloader)
-- open terminal and use `cd` to change directory to the downloaded firmware folder
-- execute `./erase_userscript.sh`
+- **macOS + Linux**: open `osx_linux-erase_userscript.command`
+- **Windows**: open `windows-erase_userscript.bat`

@@ -2,7 +2,7 @@
 layout: default
 parent: norns
 title: studies
-nav_order: 5
+nav_order: 3
 permalink: /norns/study-1/
 ---
 

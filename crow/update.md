@@ -32,14 +32,15 @@ dfu-util -V
 Download the `crow-vx.x.x.zip` file.
 
 
-## Activate bootloader
+## Entering the bootloader
+
+### Activate
 
 With the crow connected to druid (or a similar utility) you can enter the bootloader with a `^^b` message, which will instantly reset the module and take you to the bootloader. `druid` will start printing `<crow disconnected>` at which point crow is ready to bootload, and you should quit `druid` with `q`.
 
+### Force
 
-## Forcing the bootloader
-
-In case both the above doesn't work, you can manually force the bootloader to run by placing a jumper on the i2c header and restarting (power-cycling) crow.
+In case the above doesn't work, you can manually force the bootloader to run by placing a jumper on the i2c header and restarting (power-cycling) crow.
 
 The jumper should bridge between either of the centre pins to either of the
 ground pins (i.e. the pins closest to the power connector, indicated by the
@@ -113,6 +114,12 @@ If you get an error: `dfu-util: No DFU capable USB device available` this means 
 You can type `dfu-util -l` to list the connected bootloader devices.
 
 If you get an error: `'dfu-util' is not recognized as an internal or external command, operable program or batch file.` you haven't correctly installed dfu-util, or need to add it to your PATH. Try the [setup](#setup) section again.
+
+### macOS
+
+If you get an error that your system will not open `osx_linux-update_firmware.command` because it is from an unidentified developer, you'll need to manually allow the updater to run. Navigate to System Preferences > Security & Privacy and you'll see a message about `osx_linux-update_firmware.command` being blocked, with the option to Open Anyway. Click this button and the updater will run.
+
+If the updater asks you for a password, please enter the admin password you use to log into your Mac.
 
 ### Windows
 

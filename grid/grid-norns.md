@@ -13,9 +13,9 @@ All editions of grid are compatible with norns. Playability is dictated by two f
 
 ### size
 
-Most norns apps are built with 128 grids in mind, which means that critical actions may extend the full 16x8 range of keys.
+Most norns apps are built with 128 grids in mind, which means that critical actions may utilize the full 16x8 range of keys.
 
-Since 256 is a 16x16 grid, it will be able to interact with any app built for a 128 grid. There will be a lot of unused real-estate.
+Since 256 is a 16x16 grid, it will be able to interact with any app built for a 128 grid. However, there will be a lot of unused real-estate.
 
 Since 64 is a 8x8 grid, an app's critical functions may not be displayed or executable.
 
@@ -38,5 +38,8 @@ If you want to adapt a script's LED brightness, [norns study 4](../norns/study-4
 After you [learn how to import apps into your norns](../norns/maiden), here are a few starting points for exploring grid + norns.
 
 - [mlr](https://llllllll.co/t/mlr-norns/21145): The original live sample-cutting platform. Load samples or record live audio, then re-pitch + chop + record gestures.
-
-## troubleshooting
+- [loom](https://llllllll.co/t/loom/21091): Surprisingly controllable generative sequencer. Think flin-meets-snake; notes are played when threads moving across the X and Y axis collide.
+- [takt](https://llllllll.co/t/takt/21032): Elektron-inspired parameter locking step sequencer. Independent lengths / time dividers per track, step retriggers, song sequencing.
+- [zellen](https://llllllll.co/t/zellen/21107): A generative sequencer based on Conway's Game of Life. Uses a standard norns synth engine to make sound on its own, but can also speak MIDI and CV.
+- [boingg](https://llllllll.co/t/boingg/26536): Bouncing ball sequencer, with probability. Speaks to an internal synth engine, speaks to Just Friends through crow.
+- [less concepts](https://llllllll.co/t/less-concepts/21109): 1-d cellular automata generative sequencing playground, with built-in sequence-able varispeed delay (`~r e f r a i n`).

@@ -22,7 +22,7 @@ before we made other instruments, it was referred to as "a monome". as we made o
 
 grid connects through USB to personal computers(LINK), Eurorack modules(LINK), and sound computers like norns(LINK). it is a highly flexible interface for applications within each of these environments.
 
-through serialosc(LINK), grid communicates with applications to do a wide range of things: control MIDI devices, sequence modular synthesizers, cut samples, become an isometric keyboard, change faders, visualize streams of data, etc etc.
+grid communicates with applications to do a wide range of things: control MIDI devices, sequence modular synthesizers, cut samples, become an isometric keyboard, change faders, visualize streams of data, etc etc.
 
 this core flexibility makes it hard to point to one use case and say "it does this." also, grid doesn't do things on its own. it's inherently modeless, adapting to the immediate needs of the artist. through one application, it can do traditional MIDI controller things. through another, it can facilitate + visualize realtime buffer manipulation.
 

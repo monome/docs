@@ -21,6 +21,7 @@ First we'll collect & install a few tools, starting with `Python` which is the e
 
 - macOS: [download from the Python website](https://www.python.org/downloads/)
 - Windows: search `Python 3.8` in the Microsoft Store (it's free)
+	- the Microsoft Store is the most straightforward way to install Python on Windows, but if you choose to install from the Python website directly then please follow [these instructions](https://docs.google.com/document/d/11Bnly-JOBh4_mWSyIGmEIpE_YO-6VH179KSHEWTZr2M/edit)
 - Linux: in a terminal run `sudo apt-get install python3 python3-pip` or equivalent
 
 Now load up a terminal so we can check Python is installed and get the next pieces:
@@ -35,11 +36,15 @@ Check if Python is installed and working:
 python3 -V
 ```
 
-Which should print `Python 3.8` or something similar. If this doesn't work for you, try removing the `3` and just run `python -V`. No luck? Post to the [lines thread](https://llllllll.co/t/crow-help-druid/25864) & we'll figure it out (and update this doc).
+Which should print `Python 3.8` or something similar. If this doesn't work for you, try removing the `3` and just run `python -V`.
+
+No luck? Post to the [lines thread](https://llllllll.co/t/crow-help-druid/25864) & we'll figure it out (and update this doc).
 
 Now it's time to install `druid`!
 
-## install druid on macOS + Linux
+## install druid
+
+### install druid on macOS + Linux
 
 In a terminal, execute:
 
@@ -56,7 +61,7 @@ sudo pip3 install monome-druid
 
 Now druid should be ready to use, you might need to close and reopen the terminal to get access to it.
 
-## install druid on Windows
+### install druid on Windows
 
 In PowerShell, execute:
 
@@ -76,7 +81,7 @@ Finally:
 pip3 install monome-druid
 ```
 
-### Windows errors
+#### Windows errors
 
 After the installation is complete, you may see a message like this one:
 

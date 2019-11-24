@@ -41,5 +41,5 @@ After you [learn how to import apps into your norns](../norns/maiden), here are 
 - [loom](https://llllllll.co/t/loom/21091): Surprisingly controllable generative sequencer. Think flin-meets-snake; notes are played when threads moving across the X and Y axis collide.
 - [takt](https://llllllll.co/t/takt/21032): Elektron-inspired parameter locking step sequencer. Independent lengths / time dividers per track, step retriggers, song sequencing.
 - [zellen](https://llllllll.co/t/zellen/21107): A generative sequencer based on Conway's Game of Life. Uses a standard norns synth engine to make sound on its own, but can also speak MIDI and CV.
-- [boingg](https://llllllll.co/t/boingg/26536): Bouncing ball sequencer, with probability. Speaks to an internal synth engine, speaks to Just Friends through crow.
-- [less concepts](https://llllllll.co/t/less-concepts/21109): 1-d cellular automata generative sequencing playground, with built-in sequence-able varispeed delay (`~r e f r a i n`).
+- [boingg](https://llllllll.co/t/boingg/26536): Bouncing balls make notes, with probability. Speaks to an internal synth engine, speaks to Just Friends through crow.
+- [less concepts](https://llllllll.co/t/less-concepts/21109): 1-d cellular automata generative playground, with built-in sequence-able varispeed delay (`~r e f r a i n`).

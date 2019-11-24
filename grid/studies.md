@@ -1,8 +1,7 @@
 ---
 layout: default
-parent: grid
 title: grid studies
-nav_order: 3
+nav_exclude: true
 ---
 
 # Grid Studies

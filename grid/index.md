@@ -20,7 +20,7 @@ Before we made other instruments, it was referred to as "a monome". As we made o
 
 ## what does it do?
 
-grid connects through USB to personal computers(LINK), Eurorack modules(LINK), and sound computers like norns(LINK). It is a highly flexible interface for applications within each of these environments.
+grid connects through USB to personal computers, Eurorack modules, and sound computers like norns. It is a highly flexible interface for applications within each of these environments.
 
 grid communicates with applications to do a wide range of things: control MIDI devices, sequence modular synthesizers, cut samples, become an isometric keyboard, change faders, visualize streams of data, etc etc.
 
@@ -30,7 +30,7 @@ This core flexibility makes it hard to point to one use case and say "it does th
 
 Most artists approach grid through two doors, often simultaneously: as an instrumentalist (using applications made by others) or as a designer (creating applications for others).
 
-Over the last 15 years, grid has connected instrumentalists + designers to create an ecosystem of applications(LINK). This exchange of ideas and energy has, in turn, created a community(LINK).
+Over the last 15 years, grid has connected instrumentalists + designers to create an ecosystem of applications. This exchange of ideas and energy has, in turn, created a [community](https://llllllll.co).
 
 However you choose to approach it, grid is lasting -- both in construction and in response to your needs. It has no obsolescence because it has no preconceptions. As your needs / context / musical goals change, grid remains useful.
 

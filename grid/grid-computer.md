@@ -2,7 +2,8 @@
 layout: default
 parent: grid
 title: + computer
-nav_order: 3
+nav_order: 2
+has_children: yes
 ---
 
 # grid + computer
@@ -13,6 +14,12 @@ grid uses serialosc to communicate back and forth with applications on your comp
 [&rarr; download serialosc](https://github.com/monome/serialosc/releases/latest)
 
 Running into trouble? [Check out the serialosc docs](../serialosc/setup).
+
+## scripting
+
+The grid is *intended* to be reimagined. You give it purpose and meaning that's all your own: instrument, experiment, tool, toy... choose your own adventure!
+
+To start with some introductory knowledge, please visit [grid studies](../studies).
 
 ## applications
 
@@ -78,27 +85,3 @@ Contact `help@monome.org` to have your application listed. We suggest [github](h
 ### archives
 
 [collected](https://github.com/monome-community/collected) is a large unsorted repository of applications contributed over the years. We've also collected numerous [old monomeserial applications](https://github.com/monome-community/collected-ms) which are basically obsolete, but could be updated easily given some small ambition.
-
-## scripting
-
-The grid is *intended* to be reimagined. You give it purpose and meaning that's all your own: instrument, experiment, tool, toy... choose your own adventure! Let's start with some introductory knowledge: potential energy for radical creative freedom.
-
-The following tutorials show how to use different languages and environments to achieve the same goal: a playable step sequencer which interfaces with the grid.
-
-- [Max](/docs/grid/studies/max) -- a highly refined graphical patching environment.
-- [Arduino](/docs/grid/studies/arduino) -- embedded programming to connect grids to external hardware.
-- [Processing](/docs/grid/studies/processing) -- integrated development environment for visual experimentation.
-- [Puredata](/docs/grid/studies/pd) -- open-source graphical patching for audio processing.
-- [SuperCollider](/docs/grid/studies/sc) -- synthesis engine and programming environment.
-- [Python](/docs/grid/studies/python) -- general purpose programming language.
-- [Node.js](/docs/grid/studies/nodejs) -- web-centric script programming platform.
-
-### libraries
-
-* [libmonome](https://github.com/monome/libmonome) -- C
-* [serialosc.maxpat](https://github.com/monome/serialosc.maxpat) -- Max
-* [monomehost](https://github.com/monome/MonomeHost) -- Arduino Due
-* [monome-processing](https://github.com/monome/monome-processing) -- Processing
-* [monom](https://github.com/catfact/monom) -- SuperCollider
-* [monome-grid](https://www.npmjs.com/package/monome-grid) -- node.js
-* [pymonome](https://github.com/artfwo/pymonome) -- Python

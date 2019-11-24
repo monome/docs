@@ -34,7 +34,7 @@ over the last 15 years, grid has connected instrumentalists + designers to creat
 
 however you choose to approach it, grid is lasting -- both in construction and in response to your needs. it has no obsolescence because it has no preconceptions. as your needs / context / musical goals change, grid remains useful.
 
-## further resources
+## further info
 
 - [editions](editions) - information about different device generations
 - [disassembly](disassembly) - guides for disassembling the hardware

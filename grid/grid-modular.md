@@ -11,7 +11,7 @@ nav_order: 3
 
 In the early days of Trilogy modules (White Whale, Meadowphysics, and Earthsea), connected grids pulled power from the +5v rail on Eurorack power supplies -- often, up to 600mA. The power supplies in the market at that time often didn't provide enough power, so we used to offer external 5v solutions. These are no longer sold as robust +5v rails are more common, though we always recommend keeping an eye on your consumption by calculating your power draw against your power supply with [modulargrid](https://modulargrid.com).
 
-If you wish to DIY an external power solution for grid, please check out [Offworld-2](https://llllllll.co/t/offworld-2-usb-power-utility/7923).
+If you wish to DIY an external power solution for grid, please check out [Offworld](https://llllllll.co/t/offworld-1-usb-power-utility/9578).
 
 With Ansible, the +5v rail is no longer used -- instead, grid pulls from the common +12V rail (200mA maximum).
 

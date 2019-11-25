@@ -3,6 +3,7 @@ layout: default
 parent: grid
 title: + norns
 nav_order: 1
+has_toc: false
 ---
 
 # grid + norns

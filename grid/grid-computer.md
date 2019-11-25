@@ -3,7 +3,8 @@ layout: default
 parent: grid
 title: + computer
 nav_order: 2
-has_children: yes
+has_children: true
+has_toc: false
 ---
 
 # grid + computer

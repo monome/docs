@@ -1,6 +1,8 @@
 ---
 layout: default
-nav_exclude: true
+title: max
+parent: + computer
+nav_order: 3
 ---
 
 # monome package for max

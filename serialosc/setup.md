@@ -1,7 +1,8 @@
 ---
 layout: default
 title: setup
-nav_exclude: true
+parent: + computer
+nav_order: 1
 ---
 
 

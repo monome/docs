@@ -2,7 +2,7 @@
 layout: default
 title: grid studies
 parent: + computer
-nav_order: 1
+nav_order: 2
 ---
 
 # grid studies

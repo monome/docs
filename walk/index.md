@@ -2,6 +2,7 @@
 layout: default
 title: walk
 nav_order: 10
+redirect_from: /modular/walk/
 ---
 
 # Walk

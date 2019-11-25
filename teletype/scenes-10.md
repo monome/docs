@@ -3,6 +3,7 @@ layout: default
 title: scenes
 parent: teletype
 nav_order: 3
+redirect_from: /modular/teletype/scenes-10
 ---
 
 # Teletype 1.0 Scenes

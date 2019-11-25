@@ -3,6 +3,7 @@ layout: default
 title: kria
 parent: ansible
 nav_order: 1
+redirect_from: /modular/ansible/kria/
 ---
 
 ## Kria (Ansible + Grid)

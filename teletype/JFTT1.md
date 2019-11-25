@@ -4,6 +4,7 @@ parent: teletype
 title: just type studies
 nav_order: 4
 permalink: /teletype/jt-1/
+redirect_from: /modular/teletype/jt-1/
 ---
 
 ## Whimsical Prelude

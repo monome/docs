@@ -5,6 +5,8 @@ nav_exclude: true
 
 # Grid Studies: node.js
 
+By design the monome grid does nothing on its own. You the user assign it purpose and meaning: instrument, experiment, tool, toy... choose your own adventure. This grid is *intended* to be reimagined. Here we set forth to impart some introductory knowledge: potential energy for radical creative freedom.
+
 Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
 
 Node.js is generally used to build web servers but can also be used to interface with monome devices, send and receive MIDI messages, or work with raw audio stream using the many modules available on [NPM](http://npmjs.org).

@@ -1,13 +1,13 @@
 ---
 layout: default
+parent: grid
 title: grid studies
-parent: + computer
-nav_order: 1
+nav_order: 3
 ---
 
-# grid studies
+# Grid Studies
 
-The grid is *intended* to be reimagined. You give it purpose and meaning that's all your own: instrument, experiment, tool, toy... choose your own adventure! Let's start with some introductory knowledge: potential energy for radical creative freedom.
+By design the monome grid does nothing on its own. You the user assign it purpose and meaning: instrument, experiment, tool, toy... choose your own adventure. This grid is *intended* to be reimagined. Here we set forth to impart some introductory knowledge: potential energy for radical creative freedom.
 
 The following tutorials show how to use different languages and environments to achieve the same goal: a playable step sequencer which interfaces with the grid.
 
@@ -19,12 +19,8 @@ The following tutorials show how to use different languages and environments to 
 - [Python](/docs/grid/studies/python) -- general purpose programming language.
 - [Node.js](/docs/grid/studies/nodejs) -- web-centric script programming platform.
 
-# grid libraries
+## Grids in Education
 
-* [libmonome](https://github.com/monome/libmonome) -- C
-* [serialosc.maxpat](https://github.com/monome/serialosc.maxpat) -- Max
-* [monomehost](https://github.com/monome/MonomeHost) -- Arduino Due
-* [monome-processing](https://github.com/monome/monome-processing) -- Processing
-* [monom](https://github.com/catfact/monom) -- SuperCollider
-* [monome-grid](https://www.npmjs.com/package/monome-grid) -- node.js
-* [pymonome](https://github.com/artfwo/pymonome) -- Python
+We now offer an educational discount to currently enrolled college and university students. The discount is 10%, limited to a single grid which we sell directly. Contact `help@monome.org` with school and government IDs attached.
+
+In addition we also offer institutional package pricing and workshops extending from the Grid Studies series of tutorials. Please contact `help@monome.org` for further details and to discuss how we can best introduce the grids to your students.

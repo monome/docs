@@ -2,7 +2,7 @@
 layout: default
 parent: grid
 title: libraries
-nav_exclude: true
+nav_order: 6
 ---
 
 # libraries

@@ -14,7 +14,7 @@ grid uses serialosc to communicate back and forth with applications on your comp
 
 [&rarr; download serialosc](https://github.com/monome/serialosc/releases/latest)
 
-Running into trouble? [Check out the serialosc docs](../serialosc/setup).
+Running into trouble? [Check out the serialosc docs](/docs/serialosc/setup).
 
 ## scripting
 

@@ -3,6 +3,7 @@ layout: default
 title: levels
 parent: ansible
 nav_order: 5
+redirect_from: /modular/ansible/levels/
 ---
 
 ## Levels (Ansible + Arc)

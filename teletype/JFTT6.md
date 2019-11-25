@@ -2,6 +2,7 @@
 layout: default
 nav_exclude: true
 permalink: /teletype/jt-6/
+redirect_from: /modular/teletype/jt-6/
 ---
 
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/cFkbs5Q57fc?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>

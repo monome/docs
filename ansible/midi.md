@@ -3,6 +3,7 @@ layout: default
 title: midi
 parent: ansible
 nav_order: 6
+redirect_from: /modular/ansible/midi/
 ---
 
 ## MIDI/voice

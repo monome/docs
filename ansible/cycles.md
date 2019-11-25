@@ -3,6 +3,7 @@ layout: default
 title: cycles
 parent: ansible
 nav_order: 4
+redirect_from: /modular/ansible/cycles/
 ---
 
 ## Cycles (Ansible + Arc)

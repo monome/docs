@@ -1,6 +1,5 @@
 ---
 layout: default
-parent: grid
 title: libraries
 nav_exclude: true
 ---

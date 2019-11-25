@@ -1,8 +1,7 @@
 ---
 layout: default
-parent: grid
 title: applications
-nav_order: 2
+nav_exclude: true
 ---
 
 # applications

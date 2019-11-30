@@ -1,6 +1,6 @@
 ---
 layout: default
-title: setup
+title: serialosc setup
 parent: + computer
 nav_order: 1
 ---
@@ -15,6 +15,8 @@ serialosc runs in the background and converts serial communication (over USB) in
 **linux: see the [linux setup guide](/docs/serialosc/linux)**
 
 **raspberry pi: see the [raspbian setup guide](/docs/serialosc/raspbian)**
+
+**technical: [grid serial references](/docs/serialosc/serial)**
 
 ## troubleshooting
 

@@ -10,7 +10,10 @@ Various Monome Eurorack modules can communicate with each other by sending digit
 
 A few quick ii tips:
 
-* Pins on each module will be labeled GND (ground), SDA (data), and SCL (clock). These should be connected GND <-> GND, SDA <-> SDA, SCL <-> SCL, and you can connect them with any sort of 2.54mm pitch jumper cable.
+* Pins on each module will be labeled GND (ground), SCL (clock), and SDA (clock). These should be connected GND <-> GND, SCL <-> SCL, SDA <-> SDA,
+and you can connect them with any sort of 2.54mm pitch jumper cable. On all monome and Whimsical Raps modules, and the [TELEX expanders](https://github.com/bpcmusic/telex/),
+the pins are in this order: gnd, scl, sda. The order is the same from ground whether all pins are labeled on the board or not.
+Take care as other manufacturers may have different pin orderings. You won't damage anything by getting these wired wrong, but modules might crash.
 * Trilogy modules support ii, but may need a pin header soldered on. See [here](/docs/modular/iiheader).
 * I2C needs power to operate. This is achieved by "pulling up" the clock and data lines to 5V, meaning connecting an appropriate "pullup resistor" between SCL and 5V and between SDA and 5V. Some devices (generally those meant to act as leader devices) have pullup resistors wired, others (generally followers) do not -- some such as Crow make this controllable in software. The right choice of pullup value may depend on the number of devices attached, but in many cases you should probably only have one device pulling the lines up.
 * Each device on the bus has an address, which the leader uses to indicate which device it wants to talk to. Some devices support choosing between multiple addresses, others use a fixed address. Generally all followers sharing the same address will respond identically to messages sent to that address.

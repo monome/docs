@@ -67,6 +67,8 @@ The basics of Teletype are quick to learn. The tutorials will get you started an
 
 * [Default scenes](scenes-1.0/)
 
+You can also access in-module help any time by using ALT-H to toggle help mode.
+
 ## Further
 
 Teletype is [open-source](https://github.com/monome/teletype). Since its initial release Teletype has grown an improved extensively thanks to various contributors including @sam, @scanner_darkly, and @sliderule. Additionally the documentation has undergone full reworking.

@@ -221,9 +221,9 @@ AVG x y         average x and y
 
 [Full Command Chart](../TT_commands_card.pdf)
 
-### Keys
+[Teletype Key Reference](../manual/#keys)
 
-[Teletype Key Chart](../TT_keys_card.pdf)
+You can also browse help within Teletype by using ALT-H to toggle help mode.
 
 
 ## Teletype Studies Continued

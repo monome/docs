@@ -131,7 +131,7 @@ The script `playfair` requires `ack`, so go find it in the Library and add the f
 
 This indicates that something is wrong with Supercollider, which could be due to various issues.
 
-- If an update was recently applied, it may be necessary to manually re-apply it.
+- If an update was recently applied, it may be necessary to [manually re-apply it](#manual-update).
 - If this doesn't help, you may need to re-flash your norns with a clean image (after backing up any of your data).
 - If this doesn't fix it, there may be a hardware issue: e-mail help@monome.org.
 
@@ -141,7 +141,7 @@ If a newly-renamed script throws a `file not found` error in maiden, it is likel
 
 ## manual / offline update <a name="manual-update"></a>
 
-- Download and copy [update file](https://github.com/monome/norns/releases/download/v2.2.2/norns191028.tgz) to a FAT-formatted USB drive
+- Download and copy [update file (12/01/2019)](https://github.com/monome/norns/releases/download/v2.2.4/norns191201.tgz) to a FAT-formatted USB drive
 - Insert the disk to norns and power up.
 - Connect via [serial](../maiden/#other-access).
 - Copy file to `~/update/`:

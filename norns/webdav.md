@@ -35,7 +35,7 @@ Login as a Registered User with the following credentials:
 
 Once connected, you can freely navigate through files on norns:
 
-![](..image/webdav-mac-tree.png)
+![](../image/webdav-mac-tree.png)
 
 ## file tree
 

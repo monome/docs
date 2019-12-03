@@ -3,14 +3,14 @@ layout: default
 parent: maiden
 grand_parent: norns
 title: sftp
-nav_order: 1
+nav_order: 2
 ---
 
 # sftp
 
 You can manage projects and delete/rename files via [maiden](../maiden). But sometimes you'll need to copy files between your computer and norns, like audio.
 
-File management is best achieved via SFTP, so you'll need to first connect norns to your laptop via WIFI. Use an SFTP client (such as Cyberduck) to connect to the IP address shown on the norns screen.
+File management on macOS is best achieved via [WebDAV](webdav), but we have not yet sorted out the best solution for Windows. While we do that, we suggest using SFTP to connect norns to your laptop via WIFI. An SFTP client (such as Cyberduck) can connect to the IP address shown on the norns screen.
 
 ## connect
 

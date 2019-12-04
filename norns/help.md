@@ -117,20 +117,22 @@ This simply means there is an error in the script you're trying to load.
 
 Connect via wifi and open maiden to see the error message when you again try to load the script.
 
-A common problem may be a MISSING INCLUDE. Check the output for something like:
+A common problem may be a missing engine. Check the output for something like:
 
 ```
-### MISSING INCLUDE: ack/lib/ack
-### SCRIPT ERROR: load fail
-/home/we/dust/code/ash/playfair.lua:21: MISSING INCLUDE: ack/lib/ack
+### SCRIPT ERROR: missing Timber
 ```
 
-The script `playfair` requires `ack`, so go find it in the Library and add the file to `dust/code/`.
+In this example, the script requires `Timber`, so go find it in the Project Manager and install it. If you had just recently installed `Timber`, you need to restart your norns through SLEEP or entering `;restart` in the matron REPL.
 
 ### SUPERCOLLIDER FAIL
 
 This indicates that something is wrong with Supercollider, which could be due to various issues.
 
+If you're able to load maiden, there are two tabs in the main REPL area (above the `>>` prompt at the bottom of your screen). The first tab is for `matron`, the control program that runs scripts -- the other is `sc` for SuperCollider. Click into the `sc` tab and type `;restart` into the REPL. That should show you what is going on inside of SuperCollider.
+
+- You might have a [duplicate engine](#duplicate-engines).
+- You might be [missing a required engine](#load-fail).
 - If an update was recently applied, it may be necessary to [manually re-apply it](#manual-update).
 - If this doesn't help, you may need to re-flash your norns with a clean image (after backing up any of your data).
 - If this doesn't fix it, there may be a hardware issue: e-mail help@monome.org.

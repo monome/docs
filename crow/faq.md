@@ -197,22 +197,7 @@ crow internally generates signals at 48kHz (though the user doesn’t have direc
 
 Pull-ups are resistors on [i2c-enabled](https://llllllll.co/t/a-users-guide-to-i2c/19219) (or, ii) devices (like crow, Teletype, Ansible, Just Friends, W/). They are required to ensure integrity of the data on the i2c bus. A "bus" requires only one device to have it's pull-ups enabled in order for data and power to flow correctly. crow's pull-ups are off by default.
 
-If you are connecting crow to another i2c-enabled device *without* a powered-bus between them (eg. if you're connecting crow directly to the i2c connector on Just Friends), then you need to enable crow's pull-ups in order for messages to pass between the two. You can do this through a variety of methods:
-
-- in your norns script, specify: `crow.ii.pullup(true)`
-- in druid, execute: `ii.pullup(true)`
-- in Max, send the [crow] object a `tell_crow ii.pullup(true)` message
-
-If you are connecting crow to a device which already supplies power through the ii bus (like a Teletype or a powered busboard), then you do not need to enable crow's pull-ups. It will happily piggyback onto the existing bus.
-
-If you accidentally enable crow's pull-ups, they will remain that way until you disable them through any of these methods:
-
-- power-cycle your modular synth (as crow's default is pull-ups disabled)
-- in your norns script, specify: `crow.ii.pullup(false)`
-- in druid, execute: `ii.pullup(false)`
-- in Max, send the [crow] object a `tell_crow ii.pullup(false)` message
-
-nb. There is no real damage risked by enabling pull-ups when you don't need to. You'd need 4+ crows chained together in order to make a potential mess of things. Messages simply will not pass between devices, which will lead to frustration.
+Since *crow v1.0.2* crow's pullups are enabled by default - that's what you want! If for some specific reason you need to turn them off, crow provides the function `ii.pullup(state)` where you can turn them on (`true`) or off (`false`).
 
 ### is crow's status as an [i2c leader or follower](https://github.com/monome/crow#leading-the-i2c-bus) automatic or configurable?
 

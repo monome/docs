@@ -263,6 +263,21 @@ ii.<device>.help() -- prints available functions for <device>
 ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups
 ```
 
+for devices that support multiple addresses (eg: txi, er301, faders)
+```lua
+ii.txi[1].get('param',1) -- get the first param of the first device
+ii.txi[2].get('param',1) -- get the first param of the second device
+
+-- results in an event with an additional argument for 'device'
+-- this number is the index after the device name
+--    ie. 1 or 2 in txi[1] and txi[2] above
+ii.txi.event( event, data, device )
+    -- handle all connected txi device events here
+end
+```
+
+nb: don't mix and match multiple-address style with regular style!
+
 ## cal
 
 ```lua

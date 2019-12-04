@@ -11,7 +11,7 @@ norns is uniquely oriented toward sharing. In the early days of monome, creating
 
 While this is not a comprehensive list of what's available (or even all of our favorites!), these projects are a wonderful starting point for those looking to play, adapt, and develop. [Click here to view the complete library](https://llllllll.co/search?expanded=true&q=%23library%20tags%3Anorns%20order%3Alatest_topic).
 
-All of the projects in this section are available for download in maiden's [project manager](maiden/#project-manager). Each name links back to its discussion thread on lines.
+All of the projects in this section are available for download in maiden's [project manager](/docs/norns/maiden/#project-manager). Each name links back to its discussion thread on lines.
 
 ## sampling + looping
 
@@ -27,7 +27,7 @@ All of the projects in this section are available for download in maiden's [proj
 
 ## synth engines + sequencers
 
-*Many sequencers rely on synth engines which must be installed beforehand. To help keep this front-of-mind, we will list the synth engine and then the sequencers which utilize it. Unless otherwise noted, all engines can be downloaded through maiden's [project manager](../norns/maiden/#project-manager), under `community`. Remember that after installing a new synth engine, you need to restart norns (SYSTEM > RESET) in order for SuperCollider to register it.*
+*Many sequencers rely on synth engines which must be installed beforehand. To help keep this front-of-mind, we will list the synth engine and then the sequencers which utilize it. Unless otherwise noted, all engines can be downloaded through maiden's [project manager](/docs/norns/maiden/#project-manager), under `community`. Remember that after installing a new synth engine, you need to restart norns (SYSTEM > RESET) in order for SuperCollider to register it.*
 
 *When applicable, engines are hyperlinked to their lines discussion thread.*
 

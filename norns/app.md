@@ -9,9 +9,9 @@ nav_order: 5
 
 norns is uniquely oriented toward sharing. In the early days of monome, creating apps for grid and arc was relatively straightforward but there were also a lot of dependencies -- the biggest being operating systems. norns successfully navigates around this by decoupling its dependence on Windows or Mac OS. Additionally, the scripting syntax at its heart is pliable and it's incredibly easy to adapt chunks of code from others to create your dream instruments.
 
-While this is not a comprehensive list of what's available (or even all of our favorites!), these projects are a wonderful starting point for those looking to play, adapt, and develop.
+While this is not a comprehensive list of what's available (or even all of our favorites!), these projects are a wonderful starting point for those looking to play, adapt, and develop. [Click here to view the complete library](https://llllllll.co/search?expanded=true&q=%23library%20tags%3Anorns%20order%3Alatest_topic).
 
-All are available for download in maiden's [project manager](maiden/#project-manager). Each app name links back to its discussion thread on lines.
+All of the projects in this section are available for download in maiden's [project manager](maiden/#project-manager). Each name links back to its discussion thread on lines.
 
 ## sampling + looping
 

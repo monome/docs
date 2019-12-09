@@ -159,8 +159,14 @@ When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM
 
 ### SERIAL (NO WIFI)
 
-Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux do:
+Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux, open a terminal and type:
 
-`screen /dev/tty.usb(tab) 115200`
+- `screen /dev/tty.usb`
+- then, press TAB to autocomplete your serial number
+- then type `115200`
 
-Where `(tab)` appears hit TAB to autocomplete the serial number. Login is the same as above.
+So, in total: `screen /dev/tty.usb[TAB KEY] 115200`
+
+If you see a blank screen, press ENTER.
+
+You'll be asked for login credentials. Login is the same as SSH above.

@@ -3,6 +3,7 @@ layout: default
 title: serialosc setup
 parent: + computer
 nav_order: 1
+redirect_from: /docs/serial.txt
 ---
 
 

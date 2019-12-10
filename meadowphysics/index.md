@@ -13,7 +13,7 @@ redirect_from: /modular/meadowphysics/
 
 ---
 
-*Note: this manual is for version 2 (which also runs on Ansible). Version 1 is [available here](/docs/meadowphysics/v1/).*
+*Note: this manual is for version 2 (which also runs on Ansible). Version 1 is [available here](/docs/past/meadowphysics/v1/).*
 
 ## Introduction
 

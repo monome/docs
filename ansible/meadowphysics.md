@@ -3,6 +3,7 @@ layout: default
 title: meadowphysics
 parent: ansible
 nav_order: 2
+redirect_from: /modular/ansible/meadowphysics/
 ---
 
 ## Meadowphysics (Ansible + Grid)

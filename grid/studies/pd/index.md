@@ -5,10 +5,7 @@ nav_exclude: true
 
 # Grid Studies: Pure Data
 
-By design the monome grid does nothing on its own. You the user assign it purpose and meaning: instrument, experiment, tool, toy... choose your own adventure. This grid is *intended* to be reimagined. Here we set forth to impart some introductory knowledge: potential energy for radical creative freedom.
-
 Pure Data (Pd) is a visual programming language developed by Miller Puckette in the 1990s for creating interactive computer music and multimedia works. While Puckette is the main author of the program, Pd is an open source project with a large developer base working on new extensions. (from [Wikipedia](http://en.wikipedia.org/wiki/Pure_Data)).
-
 
 
 ## Prerequisites

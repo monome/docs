@@ -3,6 +3,7 @@ layout: default
 title: teletype
 parent: ansible
 nav_order: 7
+redirect_from: /modular/ansible/teletype/
 ---
 
 ## Ansible + Teletype

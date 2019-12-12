@@ -2,6 +2,7 @@
 layout: default
 nav_exclude: true
 permalink: /teletype/jt-4/
+redirect_from: /modular/teletype/jt-4/
 ---
 
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/5IoiERamfb8?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
@@ -32,7 +33,7 @@ Internally, each voice contains a linked sinewave oscillator providing frequency
 
 ## Changes
 
-When first activated, *Synthesis* begins on C3. All pitch programming is relative to C3, by default, but this can be adjusted with `JF.SHIFT pitch`. *pitch* is the number of semitones up or down from the reference C3.
+When first activated, *Synthesis* rings out notes from all six channels -- this is just a friendly confirmation that you're in *Synthesis* versus standard functionality. All pitches begin on C3. All pitch programming is relative to C3, by default, but this can be adjusted with `JF.SHIFT pitch`. *pitch* is the number of semitones up or down from the reference C3.
 
 eg:
 

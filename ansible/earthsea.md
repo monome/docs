@@ -3,6 +3,7 @@ layout: default
 title: earthsea
 parent: ansible
 nav_order: 3
+redirect_from: /modular/ansible/earthsea/
 ---
 
 ## Earthsea (Ansible + Grid)

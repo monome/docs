@@ -1,16 +1,34 @@
 ---
 layout: default
-title: applications
-nav_exclude: true
+parent: grid
+title: + computer
+nav_order: 2
+has_children: true
+has_toc: false
 ---
 
-# applications
+# grid + computer
 
-open source! many of the applications require [Max](http://cycling74.com) which includes a free runtime.
+## serialosc
+grid uses serialosc to communicate back and forth with applications on your computer. Once you install it, it runs in the background and converts serial communication (over USB) into [OSC](/docs/serialosc/osc). Applications can query serialosc to connect to grid and arc.
 
-contact `help@monome.org` to have your application listed. we suggest [github](http://github.com) for hosting your project.
+[&rarr; download serialosc](https://github.com/monome/serialosc/releases/latest)
 
-## featured applications
+Running into trouble? [Check out the serialosc docs](/docs/serialosc/setup).
+
+## scripting
+
+The grid is *intended* to be reimagined. You give it purpose and meaning that's all your own: instrument, experiment, tool, toy... choose your own adventure!
+
+To start with some introductory knowledge, please visit [grid studies](../studies).
+
+## applications
+
+Here are open source applications others have scripted using the above environments. Many of the applications require [Max](http://cycling74.com) which includes a free runtime.
+
+Contact `help@monome.org` to have your application listed. We suggest [github](http://github.com) for hosting your project.
+
+### featured applications
 
 * [max package](/docs/grid/app/package) -- several patchers and tools for use within Max.
 * [mark eats sequencer](http://markeats.com/sequencer) -- rapid performance sequencer.
@@ -23,8 +41,7 @@ contact `help@monome.org` to have your application listed. we suggest [github](h
 * [terms](/docs/grid/app/terms) -- sum, pulled apart, as max for live plugins for ableton
 * [capstarc](https://github.com/mhetrick/capstarc) -- tactile sample scrubbing for arc
 
-
-## audio
+### audio
 
 * [mlr](https://github.com/monome-community/mlr) -- the original live sample-cutting platform.
 * [meadowphysics](https://github.com/monome/meadowphysics) -- rhizomatic cascading counter.
@@ -32,7 +49,7 @@ contact `help@monome.org` to have your application listed. we suggest [github](h
 * [inkblot](https://github.com/monome-community/inkblot) -- additive synthesis with rorschach patterns.
 * [life](https://github.com/monome-community/life) -- conway's game of life.
 
-## midi
+### midi
 
 * [flin](https://github.com/monome-community/flin) -- a cyclic poly-rhythm music box.
 * [polygome](https://github.com/monome-community/polygome) -- arpeggiating pattern instrument.
@@ -50,7 +67,7 @@ contact `help@monome.org` to have your application listed. we suggest [github](h
 * [quantum](https://github.com/monome-community/quantum) -- generative sequencer based on siteswap, a juggling notation.
 
 
-## max for live
+### max for live
 
 * [re:mix](https://github.com/el-quinto/mix) -- extended mlr.
 * [grainfields](https://github.com/kasperskov/monome_grainfields_m4l-v1.0) -- granular instrument for grids
@@ -61,21 +78,11 @@ contact `help@monome.org` to have your application listed. we suggest [github](h
 * [prosody](https://github.com/AndrewShike/prosody) -- a modular collection of effects for grids & no grids
 
 
-## utilities
+### utilities
 
 * [pages](https://code.google.com/p/monome-pages) -- extremely in-depth java-based multi-instrument, with integration with ableton live.
 * [mesh](https://github.com/monome/mesh) -- inter-app meta-gesture recorder.
 
-## arc
+### archives
 
-* [max package](/docs/app/package) -- several patchers and tools for use within Max
-* [returns](https://github.com/monome-community/returns) -- simple yet versatile cc output. lfo and sensitivity control.
-* [capstarc](https://github.com/mhetrick/capstarc) -- tactile sample scrubbing for arc.
-* [arc mapper](http://www.maxforlive.com/library/device/2438/arc4-mapper) - max for live arc mapping utility
-* [grainstorm](https://github.com/monome-community/grainstorm) -- four voice granular synthesizer.
-* [electric dharma wheels](https://github.com/monome-community/edw) -- FM synthesizer.
-* [lpr](https://github.com/monome-community/lpr) -- loop recorder.
-
-## archives
-
-[collected](https://github.com/monome-community/collected) is a large unsorted repository of applications contributed over the years. we've also collected numerous [old monomeserial applications](https://github.com/monome-community/collected-ms) which are basically obsolete, but could be updated easily given some small ambition.
+[collected](https://github.com/monome-community/collected) is a large unsorted repository of applications contributed over the years. We've also collected numerous [old monomeserial applications](https://github.com/monome-community/collected-ms) which are basically obsolete, but could be updated easily given some small ambition.

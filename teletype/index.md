@@ -5,7 +5,9 @@ nav_order: 5
 has_children: true
 has_toc: false
 redirect_from: /modular/teletype/
+permalink: /teletype/
 ---
+
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/129271731?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
@@ -64,6 +66,8 @@ The basics of Teletype are quick to learn. The tutorials will get you started an
 * [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
 
 * [Default scenes](scenes-1.0/)
+
+You can also access in-module help any time by using ALT-H to toggle help mode.
 
 ## Further
 

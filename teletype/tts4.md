@@ -2,6 +2,7 @@
 layout: default
 nav_exclude: true
 permalink: /teletype/studies-4/
+redirect_from: /modular/teletype/studies-4/
 ---
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/137005129?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
@@ -220,9 +221,9 @@ AVG x y         average x and y
 
 [Full Command Chart](../TT_commands_card.pdf)
 
-### Keys
+[Teletype Key Reference](../manual/#keys)
 
-[Teletype Key Chart](../TT_keys_card.pdf)
+You can also browse help within Teletype by using ALT-H to toggle help mode.
 
 
 ## Teletype Studies Continued

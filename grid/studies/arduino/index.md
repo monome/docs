@@ -5,8 +5,6 @@ nav_exclude: true
 
 # Grid Studies: Arduino
 
-By design the monome grid does nothing on its own. You the user assign it purpose and meaning: instrument, experiment, tool, toy... choose your own adventure. This grid is *intended* to be reimagined. Here we set forth to impart some introductory knowledge: potential energy for radical creative freedom.
-
 Arduino is an open-source electronics platform based on easy-to-use hardware and software. It is intended for anyone making interactive projects.
 
 We'll be using the Ardunio's USB Host capabilities to run grid code without a computer, with easy access to physical hardware: sensors, motors, other actuators, wireless bits, everything.

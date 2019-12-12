@@ -51,7 +51,7 @@ to bridge the pins while powering on the case.
 
 ## Flashing the update
 
-You can run the firmware update from either a file browser, or within the terminal, whichever you find more convenient.
+Once you enter the bootloader, you can run the firmware update from either a file browser or within the terminal -- whichever you find more convenient.
 
 ### Finder / File Explorer
 
@@ -117,9 +117,9 @@ If you get an error: `'dfu-util' is not recognized as an internal or external co
 
 ### macOS
 
-If you get an error that your system will not open `osx_linux-update_firmware.command` because it is from an unidentified developer, you'll need to manually allow the updater to run. Navigate to System Preferences > Security & Privacy and you'll see a message about `osx_linux-update_firmware.command` being blocked, with the option to Open Anyway. Click this button and the updater will run.
+If you get an error that your system will not open `osx_linux-update_firmware.command` because it is from an unidentified developer, right-click the file and select Open and you'll be able to manually allow the updater to run. If for some reason this doesn't work, please navigate to System Preferences > Security & Privacy and you'll see a message about `osx_linux-update_firmware.command` being blocked, with the option to Open Anyway. Click this button and the updater will run.
 
-If the updater asks you for a password, please enter the admin password you use to log into your Mac.
+If the updater asks you for a password in Terminal, simply enter the admin password you use to log into your Mac. It is not being stored or transmitted, it's just an authorization.
 
 ### Windows
 

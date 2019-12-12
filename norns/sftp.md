@@ -10,7 +10,7 @@ nav_order: 2
 
 You can manage projects and delete/rename files via [maiden](../maiden). But sometimes you'll need to copy files between your computer and norns, like audio.
 
-File management on macOS is best achieved via [WebDAV](../webdav), but we have not yet sorted out the best solution for Windows. While we do that, we suggest using SFTP to connect norns to your laptop via WIFI. An SFTP client (such as Cyberduck) can connect to the IP address shown on the norns screen.
+File management between norns and macOS is best achieved via [WebDAV](../webdav), but we suggest using SFTP to connect norns to your Windows laptop via WIFI. An SFTP client (such as Cyberduck) can connect to the IP address shown on the norns screen.
 
 ## connect
 
@@ -68,6 +68,14 @@ dust/
   data/           -- contains user data created by scripts
     awake/            -- for example, pset data
 ```
+
+## audio
+
+You can use Cyberduck to share audio files between norns and your computer. On norns, these files are stored under `dust/audio` -- depending on which scripts you have installed, you may see many folders under `audio` or just a few.
+
+`tape` is where the TAPE function stores recordings made on your norns.
+
+Feel free to make folders inside `audio` to store various samples, field recordings, single cycle waveforms, etc. Each of those folders can also store subfolders, but please note that you cannot nest more than ten folder layers.
 
 ## backup
 

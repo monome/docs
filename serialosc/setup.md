@@ -16,7 +16,7 @@ serialosc runs in the background and converts serial communication (over USB) in
 
 **raspberry pi: see the [raspbian setup guide](/docs/serialosc/raspbian)**
 
-**technical: [grid serial references](/docs/serialosc/serial.txt)**
+**technical: [grid serial references](/docs/serialosc/serial.txt) + [osc references](/docs/serialosc/osc/)**
 
 ## troubleshooting
 

@@ -85,6 +85,8 @@ If you choose to update a project that currently lives on your norns, please not
 
 Once you update a project through the PROJECT MANAGER, you'll see a commit number listed on the right of the project's tile (like *34d225b*). Click a project's commit number to be brought to the project's GitHub page, where you can learn more about the project and verify that the version you have is the latest.
 
+*nb. If you are updating a project through the PROJECT MANAGER that was not installed by using the PROJECT MANAGER, you will receive an error that the project cannot be found in the catalog. Please delete the previously installed version and reinstall through PROJECT MANAGER, which establishes the necessary git files for future updates.*
+
 #### AVAILABLE
 
 This tab shows which projects are available through the *base* and *community* repositories.

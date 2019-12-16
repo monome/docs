@@ -80,7 +80,20 @@ Page layout:
 
 ![](image/screen-home.png)
 
-At **HOME** press K2 to toggle additional system information display.
+At **HOME** press K2 to toggle additional system information display:
+
+![](image/screen-info.png)
+
+From top-left:
+
+- BAT: current battery %
+- mA: battery's current power draw; negative values indicate discharging
+- DISK: available disk storage
+- CPU: current CPU utilization
+- c: current internal temperature
+- IP: current IP address if connected to a network
+
+The installed software version will be listed under the script's name (eg. 191101). The format is YY-MM-DD.
 
 #### SELECT
 

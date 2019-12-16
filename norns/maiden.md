@@ -1,9 +1,10 @@
 ---
 layout: default
-parent: norns
-has_children: true
+parent: manage
+grand_parent: norns
+has_children: false
 title: maiden
-nav_order: 2
+nav_order: 1
 has_toc: false
 ---
 

@@ -215,6 +215,8 @@ comp post gain    |[-inf, 30] db    |gain post compression
 
 Scripts can be created and edited using a web browser when norns is connected to a network. These scripts will appear in the **SELECT** list for later play.
 
+### WIFI
+
 The WIFI nub must be inserted before starting.
 
 ![](image/screen-wifi.png)
@@ -232,6 +234,26 @@ If you do not have access to a router, you can turn the norns into a WIFI hotspo
 - SSID: `norns`
 - password: `nnnnnnnn`
 
+### SSH
+
+When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM.
+
+- user: `we`
+- password: `sleep`
+
+### SERIAL (NO WIFI)
+
+Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux, open a terminal and type:
+
+- `screen /dev/tty.usb`
+- then, press TAB to autocomplete your serial number
+- then type `115200`
+
+So, in total: `screen /dev/tty.usb[TAB KEY] 115200`
+
+If you see a blank screen, press ENTER.
+
+You'll be asked for login credentials. Login is the same as SSH above.
 
 ## UPDATE
 

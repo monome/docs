@@ -1,16 +1,17 @@
 ---
 layout: default
-parent: maiden
+parent: manage
 grand_parent: norns
 title: webDAV
-nav_order: 1
+nav_order: 2
+has_toc: false
 ---
 
-# WebDAV
+# webDAV
 
 You can manage projects and delete/rename files via [maiden](../maiden). But sometimes you'll need to copy files between your computer and norns, like audio.
 
-This type of file management is best achieved via WebDAV, a protocol that allows you to directly connect your computer's file browser to norns. If you haven't already, please connect your norns and your computer to the same WIFI network and read on!
+This type of file management is best achieved via webDAV, a protocol that allows you to directly connect your computer's file browser to norns. If you haven't already, please connect your norns and your computer to the same WIFI network and read on!
 
 ## macOS
 

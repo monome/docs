@@ -15,7 +15,7 @@ redirect_from: /modular/earthsea/
 ---
 
 
-### WARNING: monome modules require high +5v current
+### WARNING: Earthsea requires high +5v current
 
 Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [Switch](/docs/switch) is required.
 
@@ -36,7 +36,7 @@ Patterns of notes and shapes can be recorded into a bank of sixteen slots. Gate,
 
 Additional magic shapes for pattern modulations allow the resequencing of your performances on the fly.
 
-
+[Image of Earthsea panel]
 
 ## Installation
 
@@ -52,6 +52,15 @@ Power consumption:
 - 18mA @ +12V
 - 17mA @ -12V
 - 42mA @ +5V (no grid connected), **up to 600mA (with grid)**
+
+## Panel details
+
+- 3 *shape* knobs
+- 3 *shape* CV outputs (*1, 2 & 3*, voltage range, slew, sample & bit rate)
+- 1 *edge* CV output (voltage range, sample rate)
+- 1 *pos* CV output (voltage range, slew, sample, and bit rate)
+- 1 USB-A port
+- 1 *preset* button
 
 ## Getting Started
 

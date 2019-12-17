@@ -12,7 +12,7 @@ redirect_from: /modular/whitewhale/
 
 ---
 
-#### WARNING: monome modules require high +5v current
+#### WARNING: White Whale requires high +5v current
 
 Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [Switch](/docs/switch) is required.
 
@@ -30,6 +30,8 @@ Sixteen *patterns* (each containing 16 steps) are directly accessible, with inst
 
 Timing can be internal (controlled via *clock* knob) or externally triggered.
 
+[Image of White Whale panel]
+
 ## Installation
 
 **Align the ribbon cable so the red stripe corresponds to the white indicator on the rear of the module's circuit board.**
@@ -44,6 +46,17 @@ Power consumption:
 - 18mA @ +12V
 - 17mA @ -12V
 - 42mA @ +5V (no grid connected), **up to 600mA (with grid)**
+
+## Panel details
+
+- 1 *param* knob
+- 2 continuous CV outputs (*A* and *B*, 0-10V, slew, sample & bit rate)
+- 4 Trigger outputs (*1-4*, voltage range, slew rate, sample rate, bit rate?)
+- 1 *clock* knob
+- 1 clock CV *in*
+- 1 clock CV *out*
+- 1 USB-A port
+- 1 *preset* button
 
 ## Getting Started
 

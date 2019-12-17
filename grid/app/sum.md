@@ -1,6 +1,7 @@
 ---
 layout: default
 nav_exclude: true
+redirect_from: /app/sum/
 ---
 
 <div class="vid"><html><iframe src="//player.vimeo.com/video/91524122" width="570" height="321" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></html></div>

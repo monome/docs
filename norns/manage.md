@@ -11,14 +11,14 @@ has_toc: false
 
 There are a few types of data that you will collect on norns: projects / apps, sound files, and presets. All of these live inside of **dust**, a special folder in norns.
 
-In the [maiden](/maiden) section, we reviewed how to write scripts of your own and how to download scripts from the community. These changes all commit to `dust`, but maiden is not the best way to exchange files between your computer and norns.
+In the [maiden](../maiden) section, we reviewed how to write scripts of your own and how to download scripts from the community. These changes all commit to `dust`, but maiden is not the best way to exchange files between your computer and norns.
 
 ### wifi-powered file transfers
 
 These tools can help you confidently add, change, transfer, and remove files from norns:
 
-- [webDAV](/webdav): A protocol which allows you to connect norns to a Mac (via WIFI) and browse the contents of norns like you would a thumb drive. Use this to import/export audio files or to back up your scripts and presets.
-- [SFTP](/sftp): A client which allows you to connect norns to a PC or Mac (via WIFI) and browse the contents of norns like you would a thumb drive. Same uses as webDAV.
+- [webDAV](../webdav): A protocol which allows you to connect norns to a Mac (via WIFI) and browse the contents of norns like you would a thumb drive. Use this to import/export audio files or to back up your scripts and presets.
+- [SFTP](../sftp): A client which allows you to connect norns to a PC or Mac (via WIFI) and browse the contents of norns like you would a thumb drive. Same uses as webDAV.
 
 Please click either link above to learn more about each method.
 

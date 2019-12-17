@@ -1,9 +1,9 @@
 ---
 layout: default
 parent: norns
-has_children: true
+has_children: false
 title: maiden
-nav_order: 2
+nav_order: 3
 has_toc: false
 ---
 

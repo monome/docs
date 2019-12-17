@@ -2,7 +2,7 @@
 layout: default
 parent: scripting
 grand_parent: norns
-title: scripting faq
+title: faq
 nav_order: 3
 ---
 

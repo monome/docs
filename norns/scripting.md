@@ -17,17 +17,17 @@ If you wish to dig deeper into the capabilities of norns, this is where to start
 
 Written by @tehn (monome)
 
-- part 1: [many tomorrows](/study-1/) // variables, simple maths, keys + encoders
-- part 2: [patterning](/study-2/) // screen drawing, for/while loops, tables
-- part 3: [spacetime](/study-3/) // functions, parameters, time
-- part 4: [physical](/study-4/) // grids + midi
-- part 5: [streams](/study-5/) // system polls, osc, file storage
+- part 1: [many tomorrows](../study-1/) // variables, simple maths, keys + encoders
+- part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
+- part 3: [spacetime](../study-3/) // functions, parameters, time
+- part 4: [physical](../study-4/) // grids + midi
+- part 5: [streams](../study-5/) // system polls, osc, file storage
 - additional: [softcut studies](https://llllllll.co/t/norns-softcut-studies/23585) // a multi-voice sample playback and recording system built into norns
 
 ## further
 
-- [norns script reference](/script-reference)
-- [norns scripting faq](/faq)
+- [norns script reference](../script-reference)
+- [norns scripting faq](../faq)
 - [programming in lua (first edition)](https://www.lua.org/pil/contents.html)
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
 - [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)

@@ -28,11 +28,23 @@ For times when you are unable to connect norns to WiFi (no dongle, no network, e
 
 First, connect norns to your computer via its power cable. Then, open a terminal and type:
 
-- on **macOS**: `screen /dev/tty.usb` | on **linux**: `screen /dev/ttyUSB`
+**macOS**:
+
+- `screen /dev/tty.usb`
 - then, press TAB to autocomplete your serial number
 - then type `115200`
 
-So, in total: **macOS**: `screen /dev/tty.usb[TAB KEY] 115200` | **linux**: `screen /dev/ttyUSB[TAB KEY] 115200`
+Have doubts? The line should read: `screen /dev/tty.usb[TAB KEY] 115200`
+
+**linux**:
+
+- `dmesg` to see what device name your system gave norns
+- you'll get something like this: `FTDI USB Serial Device converter now attached to ttyUSB0`
+- then, type: `screen /dev/ttyUSB0` (or whatever ID was given)
+- then, press TAB to autocomplete your serial number
+- then type `115200`
+
+Have doubts? The line should read: `screen /dev/ttyUSB0[TAB KEY] 115200`
 
 If you see a blank screen, press ENTER. Then, you’ll be asked for login credentials:
 

@@ -22,17 +22,17 @@ These tools can help you confidently add, change, transfer, and remove files fro
 
 Please click either link above to learn more about each method.
 
-### no wifi? (mac/linux)
+### no wifi? (mac + linux)
 
 For times when you are unable to connect norns to WiFi (no dongle, no network, etc), you can back up **dust** to a USB drive. **dust** includes your scripts, sound files, and presets.
 
 First, connect norns to your computer via its power cable. Then, open a terminal and type:
 
-- `screen /dev/tty.usb`
+- on **macOS**: `screen /dev/tty.usb` | on **linux**: `screen /dev/ttyUSB`
 - then, press TAB to autocomplete your serial number
 - then type `115200`
 
-eg: `screen /dev/tty.usb[TAB KEY] 115200`
+So, in total: **macOS**: `screen /dev/tty.usb[TAB KEY] 115200` | **linux**: `screen /dev/ttyUSB[TAB KEY] 115200`
 
 If you see a blank screen, press ENTER. Then, you’ll be asked for login credentials:
 

@@ -62,10 +62,10 @@
                 </div>
                 <nav class="NavigationArea-linkContainer" id="TOC">
                     <ul>
-                    <li><a href="#teletype-v3.0.0-documentation">Teletype v3.0.0 Documentation</a></li>
+                    <li><a href="#teletype-v3.1.0">Teletype v3.1.0</a></li>
                     <li><a href="#introduction">Introduction</a></li>
                     <li><a href="#updates">Updates</a><ul>
-                    <li><a href="#version-3.x">Version 3.x</a></li>
+                    <li><a href="#version-3.1">Version 3.1</a></li>
                     <li><a href="#version-3.0">Version 3.0</a></li>
                     <li><a href="#version-2.2">Version 2.2</a></li>
                     <li><a href="#version-2.1">Version 2.1</a></li>
@@ -91,6 +91,7 @@
                     <li><a href="#delay">Delay</a></li>
                     <li><a href="#stack">Stack</a></li>
                     <li><a href="#queue">Queue</a></li>
+                    <li><a href="#seed">Seed</a></li>
                     <li><a href="#turtle">Turtle</a></li>
                     <li><a href="#grid">Grid</a></li>
                     <li><a href="#ansible">Ansible</a></li>
@@ -116,8 +117,8 @@
                     <li><a href="#alphabetical-list-of-ops-and-mods">Alphabetical list of OPs and MODs</a></li>
                     <li><a href="#missing-documentation">Missing documentation</a></li>
                     <li><a href="#changelog">Changelog</a><ul>
-                    <li><a href="#v3.x">v3.x</a></li>
-                    <li><a href="#v3.0">v3.0</a></li>
+                    <li><a href="#v3.1.0">v3.1.0</a></li>
+                    <li><a href="#v3.0.0">v3.0.0</a></li>
                     <li><a href="#v2.2">v2.2</a></li>
                     <li><a href="#v2.1">v2.1</a></li>
                     <li><a href="#v2.0.1">v2.0.1</a></li>
@@ -133,18 +134,36 @@
             </div>
                 <div class="Content">
             <div class="Content-inner Content-inner--hidden">
-                <h1 id="teletype-v3.0.0-documentation">Teletype v3.0.0 Documentation</h1>
+                <h1 id="teletype-v3.1.0">Teletype v3.1.0</h1>
+                <p>Documentation</p>
                 <h1 id="introduction">Introduction</h1>
                 <p>Teletype is a dynamic, musical event triggering platform.</p>
                 <ul>
                 <li><a href="https://monome.org/docs/modular/teletype/studies-1">Teletype Studies</a> - guided series of tutorials</li>
                 <li><p><a href="https://monome.org/docs/modular/teletype/TT_commands_3.0.pdf">PDF command reference chart</a> — <a href="https://monome.org/docs/modular/teletype/TT_scene_RECALL_sheet.pdf">PDF scene recall sheet</a> — <a href="http://monome.org/docs/modular/teletype/scenes-1.0/">Default scenes</a></p></li>
-                <li><p>Current version: <em>3.0.0</em> — <a href="https://monome.org/docs/modular/update/">Firmware update procedure</a></p></li>
+                <li><p>Current version: <em>3.1.0 </em> — <a href="https://monome.org/docs/modular/update/">Firmware update procedure</a></p></li>
                 </ul>
                 <h1 id="updates">Updates</h1>
-                <h2 id="version-3.x">Version 3.x</h2>
+                <h2 id="version-3.1">Version 3.1</h2>
+                <h3 id="new-operators">New operators</h3>
+                <p><code>DEVICE.FLIP</code> - change how screen is displayed and how I/O are numbered to let you mount the module upside down</p>
+                <p><code>DEL.X</code>, <code>DEL.R</code> - repeat an action multiple times, separated by a delay</p>
+                <p><code>J</code> &amp; <code>K</code> local script variables</p>
+                <p><code>SEED</code>, <code>R.SEED</code>, <code>TOSS.SEED</code>, <code>DRUNK.SEED</code>, <code>P.SEED</code>, <code>PROB.SEED</code> - get/set seed for different random ops</p>
+                <p><code>SCENE.G</code> - load another scene but keep the current grid configuration</p>
+                <p><code>SCRIPT.POL</code> / <code>$.POL</code> - get / set script polarity. 1 to fire on rising edges as usual, 2 for falling edges, 3 for both. indicated on live mode w/ mutes icon.</p>
+                <h4 id="new-ansible-ops">New Ansible ops</h4>
+                <p><code>ANS.G</code> / <code>ANS.G.P</code> - simulate ansible receiving a grid key press</p>
+                <p><code>ANS.A</code> - simulate ansible receiving an arc encoder turn</p>
+                <p><code>ANS.G.LED</code> / <code>ANS.A.LED</code> - read LED brightness of ansible grid / arc</p>
+                <h4 id="new-kria-ops">New Kria ops</h4>
+                <p><code>KR.CUE</code> - get / set the cued Kria pattern</p>
+                <p><code>KR.PG</code> - switch to Kria parameter page</p>
+                <h3 id="changes">Changes</h3>
+                <p>DELAY_SIZE increased to 16 from 8</p>
                 <h3 id="bug-fixes">Bug fixes</h3>
                 <p><a href="https://github.com/monome/teletype/issues/156">some keyboards losing keystrokes</a></p>
+                <p><a href="https://github.com/monome/teletype/issues/174">metro rate not updated after <code>INIT.SCENE</code></a></p>
                 <h2 id="version-3.0">Version 3.0</h2>
                 <h3 id="major-new-features">Major new features</h3>
                 <h4 id="grid-integration">Grid Integration</h4>
@@ -160,7 +179,7 @@
                 <p>The SSSR Labs SM010 Matrixarchate is a 16x8 IO Sequenceable Matrix Signal Router. Teletype integration allows you to switch programs and control connections. For a complete list of available ops refer to the manual. Information on how to connect the module can be found <a href="https://www.sssrlabs.com/store/sm010/">in the SM010 manual</a>.</p>
                 <h4 id="support-for-w-via-i2c">Support for W/ via i2c</h4>
                 <p>Support for controlling Whimsical Raps W/ module via i2c. See the respective section for a complete list of available ops and refer to https://www.whimsicalraps.com/pages/w-type for more details.</p>
-                <h3 id="new-operators">New operators</h3>
+                <h3 id="new-operators-1">New operators</h3>
                 <p><code>? x y z</code> is a ternary &quot;if&quot; operator, it will select between <code>y</code> and <code>z</code> based on the condition <code>x</code>.</p>
                 <h4 id="new-pattern-ops">New pattern ops</h4>
                 <p><code>P.MIN</code> <code>PN.MIN</code> <code>P.MAX</code> <code>PN.MAX</code> return the position for the first smallest/largest value in a pattern between the <code>START</code> and <code>END</code> points.</p>
@@ -170,7 +189,7 @@
                 <h4 id="new-telex-ops">New Telex ops</h4>
                 <p><code>TO.CV.CALIB</code> allows you to lock-in an offset across power cycles to calibrate your TELEX CV output (<code>TO.CV.RESET</code> removes the calibration).</p>
                 <p><code>TO.ENV</code> now accepts gate values (1/0) to trigger the attack and decay.</p>
-                <h4 id="new-kria-ops">New Kria ops</h4>
+                <h4 id="new-kria-ops-1">New Kria ops</h4>
                 <p><code>KR.CV x</code> get the current CV value for channel <code>x</code></p>
                 <p><code>KR.MUTE x</code> <code>KR.MUTE x y</code> get/set mute state for channel <code>x</code></p>
                 <p><code>KR.TMUTE x</code> toggle mute state for channel <code>x</code></p>
@@ -221,7 +240,7 @@
                 <p>This helps the user to quickly check and monitor variables across the Teletype. Instead of single command line parameter checks the user is now able to simply press the <code>~ key</code> (Tilde) and have a persistent display of eight system variables.</p>
                 <h4 id="screensaver">Screensaver</h4>
                 <p>Screen saver engages after 90 minutes of inactivity</p>
-                <h4 id="new-operators-1">New Operators</h4>
+                <h4 id="new-operators-2">New Operators</h4>
                 <ul>
                 <li><code>IN.SCALE min max</code> sets the min/max values of the CV Input jack</li>
                 <li><code>PARAM.SCALE min max</code> set the min/max scale of the Parameter Knob</li>
@@ -263,8 +282,8 @@
                 <p>Finally, SYNC X will set each EVERY and SKIP counter to X without modifying its divisor value. Using a negative number will set it to that number of steps before the step. Using SYNC -1 will cause each EVERY to execute on its next call, and each SKIP will not execute.</p>
                 <h4 id="script-line-commenting">Script Line &quot;Commenting&quot;</h4>
                 <p>Individual lines in scripts can now be disabled from execution by highlighting the line and pressing <code>ALT-/</code>. Disabled lines will appear dim. This status will persist through save/load from flash, but will not carry over to scenes saved to USB drive.</p>
-                <h3 id="new-operators-2">New Operators</h3>
-                <p><code>W [condition]:</code> is a new mod that operates as a <em>while</em> loop. The <code>BREAK</code> operator stops executing the current script <code>BPM [bpm]</code> returns the number of milliseconds per beat in a given BPM, great for setting <code>M</code>. <code>LAST [script]</code> returns the number of milliseconds since <code>script</code> was last called.</p>
+                <h3 id="new-operators-3">New Operators</h3>
+                <p><code>W [condition]:</code> is a new mod that operates as a while loop. The <code>BREAK</code> operator stops executing the current script <code>BPM [bpm]</code> returns the number of milliseconds per beat in a given BPM, great for setting <code>M</code>. <code>LAST [script]</code> returns the number of milliseconds since <code>script</code> was last called.</p>
                 <h3 id="new-operator-behaviour">New Operator Behaviour</h3>
                 <p><code>SCRIPT</code> with no argument now returns the current script number. <code>I</code> is now local to its corresponding <code>L</code> statement. <code>IF/ELSE</code> is now local to its script.</p>
                 <h3 id="new-keybindings-1">New keybindings</h3>
@@ -1361,7 +1380,7 @@
                 <td><strong><code>P x</code></strong></td>
                 <td><strong><code>P x y</code></strong></td>
                 <td>-</td>
-                <td>get/set the value of the working pattern at index <code>x</code>. All positive values (<code>0-63</code>) can be set or returned while index values greater than 63 clip to 63. Negative <code>x</code> values are indexed backwards from the end of the pattern length of the working pattern.<br /><br />Example:<br /><br />with a pattern length of 6 for the working pattern:<br /><br /><code>P 10</code> <br />retrieves the working pattern value at index 6<br /><br /><code>P.I -2</code><br />retrieves the working pattern value at index 4<br /><br />This applies to <code>PN</code> as well, except the pattern number is the first variable and a second variable specifies the index.<br /></td>
+                <td>get/set the value of the working pattern at index <code>x</code>. All positive values (<code>0-63</code>) can be set or returned while index values greater than 63 clip to 63. Negative <code>x</code> values are indexed backwards from the end of the pattern length of the working pattern.<br /><br />Example:<br /><br />with a pattern length of 6 for the working pattern:<br /><br /><code>P 10</code><br />retrieves the working pattern value at index 6<br /><br /><code>P.I -2</code><br />retrieves the working pattern value at index 4<br /><br />This applies to <code>PN</code> as well, except the pattern number is the first variable and a second variable specifies the index.<br /></td>
                 </tr>
                 <tr class="odd">
                 <td><strong><code>PN x y</code></strong></td>
@@ -1385,7 +1404,7 @@
                 <td><strong><code>P.WRAP</code></strong></td>
                 <td><strong><code>P.WRAP x</code></strong></td>
                 <td>-</td>
-                <td>when the working pattern reaches its bounds does it wrap (<code>0/1</code>). With <code>PN.WRAP</code> enabled (<code>1</code>), when an index reaches its upper or lower bound using <code>P.NEXT</code> or <code>P.PREV</code> it will wrap to the other end of the pattern and you can continue advancing. The bounds of P.WRAP are defined through <code>P.L</code>, <code>P.START</code>, and <code>P.END</code>.<br /><br />If wrap is enabled (<code>P.WRAP 1</code>) a pattern will begin at its start location and advance to the lesser index of either its end location or the end of its pattern length<br /><br />Examples:<br /><br />With wrap enabled, a pattern length of 6, a start location of 2 , and an end location of 8. <br /><br /><code>P.WRAP 1; P.L 6; P.START 2; P.END 8</code><br /><br />The pattern will wrap between the indexes <code>2</code> and <code>5</code>. <br /><br />With wrap enabled, a pattern length of 10, a start location of 3, and an end location of 6. <br /><br /><code>P.WRAP 1; P.L 10; P.START 3; P.END 6</code><br /><br />The pattern will wrap between the indexes <code>3</code> and <code>6</code>.<br /><br />If wrap is disabled (<code>P.WRAP 0</code>) a pattern will run between its start and end locations and halt at either bound.<br /><br />This applies to <code>PN.WRAP</code> as well, except the pattern number is the first variable and a second variable specifies the wrap behavior (<code>0/1</code>).<br /></td>
+                <td>when the working pattern reaches its bounds does it wrap (<code>0/1</code>). With <code>PN.WRAP</code> enabled (<code>1</code>), when an index reaches its upper or lower bound using <code>P.NEXT</code> or <code>P.PREV</code> it will wrap to the other end of the pattern and you can continue advancing. The bounds of P.WRAP are defined through <code>P.L</code>, <code>P.START</code>, and <code>P.END</code>.<br /><br />If wrap is enabled (<code>P.WRAP 1</code>) a pattern will begin at its start location and advance to the lesser index of either its end location or the end of its pattern length<br /><br />Examples:<br /><br />With wrap enabled, a pattern length of 6, a start location of 2 , and an end location of 8.<br /><br /><code>P.WRAP 1; P.L 6; P.START 2; P.END 8</code><br /><br />The pattern will wrap between the indexes <code>2</code> and <code>5</code>.<br /><br />With wrap enabled, a pattern length of 10, a start location of 3, and an end location of 6.<br /><br /><code>P.WRAP 1; P.L 10; P.START 3; P.END 6</code><br /><br />The pattern will wrap between the indexes <code>3</code> and <code>6</code>.<br /><br />If wrap is disabled (<code>P.WRAP 0</code>) a pattern will run between its start and end locations and halt at either bound.<br /><br />This applies to <code>PN.WRAP</code> as well, except the pattern number is the first variable and a second variable specifies the wrap behavior (<code>0/1</code>).<br /></td>
                 </tr>
                 <tr class="odd">
                 <td><strong><code>PN.WRAP x</code></strong></td>
@@ -1421,7 +1440,7 @@
                 <td><strong><code>P.I</code></strong></td>
                 <td><strong><code>P.I x</code></strong></td>
                 <td>-</td>
-                <td>get/set index position for the working pattern. all values greater than pattern length return the first step beyond the pattern length. negative values are indexed backwards from the end of the pattern length.<br /><br />Example: <br /><br />With a pattern length of <code>6</code> (<code>P.L 6</code>), yielding an index range of <code>0-5</code>: <br /><br /><code>P.I 3</code><br /><br />moves the index of the working pattern to <code>3</code> <br /><br /><code>P.I 10</code><br /><br />moves the index of the working pattern to <code>6</code><br /><br /><code>P.I -2</code><br /><br />moves the index of the working pattern to <code>4</code><br /><br />This applies to <code>PN.I</code>, except the pattern number is the first variable and a second variable specifics the index.<br /></td>
+                <td>get/set index position for the working pattern. all values greater than pattern length return the first step beyond the pattern length. negative values are indexed backwards from the end of the pattern length.<br /><br />Example:<br /><br />With a pattern length of <code>6</code> (<code>P.L 6</code>), yielding an index range of <code>0-5</code>:<br /><br /><code>P.I 3</code><br /><br />moves the index of the working pattern to <code>3</code><br /><br /><code>P.I 10</code><br /><br />moves the index of the working pattern to <code>6</code><br /><br /><code>P.I -2</code><br /><br />moves the index of the working pattern to <code>4</code><br /><br />This applies to <code>PN.I</code>, except the pattern number is the first variable and a second variable specifics the index.<br /></td>
                 </tr>
                 <tr class="odd">
                 <td><strong><code>PN.I x</code></strong></td>
@@ -1646,13 +1665,13 @@
                 <td><strong><code>L x y: ...</code></strong></td>
                 <td>-</td>
                 <td>-</td>
-		<td>Run (<em>loop</em>) the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code>.<br /><br />For example:<br /><br /><code>&lt;br/&gt;L 1 4: TR.PULSE I   =&gt; pulse outputs 1, 2, 3 and 4&lt;br/&gt;L 4 1: TR.PULSE I   =&gt; pulse outputs 4, 3, 2 and 1&lt;br/&gt;</code><br /></td>
+                <td>Run the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code>.<br /><br />For example:<br /><br /><code>&lt;br/&gt;L 1 4: TR.PULSE I   =&gt; pulse outputs 1, 2, 3 and 4&lt;br/&gt;L 4 1: TR.PULSE I   =&gt; pulse outputs 4, 3, 2 and 1&lt;br/&gt;</code><br /></td>
                 </tr>
                 <tr class="odd">
                 <td><strong><code>W x: ...</code></strong></td>
                 <td>-</td>
                 <td>-</td>
-		<td>Runs the command <em>while</em> the condition <code>x</code> is true or the loop iterations exceed 10000.<br /><br />For example, to find the first iterated power of 2 greater than 100:<br /><br /><code>&lt;br/&gt;A 2&lt;br/&gt;W LT A 100: A * A A &lt;br/&gt;</code><br /><br />A will be 256.<br /></td>
+                <td>Runs the command while the condition <code>x</code> is true or the loop iterations exceed 10000.<br /><br />For example, to find the first iterated power of 2 greater than 100:<br /><br /><code>&lt;br/&gt;A 2&lt;br/&gt;W LT A 100: A * A A&lt;br/&gt;</code><br /><br />A will be 256.<br /></td>
                 </tr>
                 <tr class="even">
                 <td><strong><code>EVERY x: ...</code></strong></td>
@@ -1691,10 +1710,22 @@
                 <td>Execute script <code>x</code> (1-8), recursion allowed.<br /><br />There is a limit of 8 for the maximum number of nested calls to <code>SCRIPT</code> to stop infinite loops from locking up the Teletype.<br /></td>
                 </tr>
                 <tr class="even">
+                <td><strong><code>SCRIPT.POL x</code></strong></td>
+                <td><strong><code>SCRIPT.POL x p</code></strong></td>
+                <td><strong><code>$.POL</code></strong></td>
+                <td>Get or set the trigger polarity of script <code>x</code>, determining which trigger edges the script will fire on.<br /><br />1: rising edge (default)<br />2: falling edge<br />3: either edge<br /></td>
+                </tr>
+                <tr class="odd">
                 <td><strong><code>SCENE</code></strong></td>
                 <td><strong><code>SCENE x</code></strong></td>
                 <td>-</td>
                 <td>Load scene <code>x</code> (0-31).<br /><br />Does <em>not</em> execute the <code>I</code> script.<br />Will <em>not</em> execute from the <code>I</code> script on scene load. Will execute on subsequent calls to the <code>I</code> script.<br /><br /><strong>WARNING</strong>: You will lose any unsaved changes to your scene.<br /></td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>SCENE.G x</code></strong></td>
+                <td>-</td>
+                <td>-</td>
+                <td>Load scene <code>x</code> (0-31) without loading grid button and fader states.<br /><br /><strong>WARNING</strong>: You will lose any unsaved changes to your scene.<br /></td>
                 </tr>
                 <tr class="odd">
                 <td><strong><code>KILL</code></strong></td>
@@ -1730,7 +1761,7 @@
                 <td><strong><code>INIT.DATA</code></strong></td>
                 <td>-</td>
                 <td>-</td>
-                <td><br />Clears the following variables and resets them to default values: A, B, C, D, CV slew, Drunk min/max, M, O, Q, R, T, TR. <br />Does not affect the CV input (IN) or the Parameter knob (PARAM) values.<br /></td>
+                <td><br />Clears the following variables and resets them to default values: A, B, C, D, CV slew, Drunk min/max, M, O, Q, R, T, TR.<br />Does not affect the CV input (IN) or the Parameter knob (PARAM) values.<br /></td>
                 </tr>
                 <tr class="odd">
                 <td><strong><code>INIT.P x</code></strong></td>
@@ -2160,7 +2191,7 @@
                 </div>
                 
                 <h2 id="delay">Delay</h2>
-                <p>The <code>DEL</code> delay op allow commands to be sheduled for execution after a defined interval by placing them into a buffer which can hold up to 8 commands. Commands can be delayed by up to 16 seconds</p>
+                <p>The <code>DEL</code> delay op allow commands to be sheduled for execution after a defined interval by placing them into a buffer which can hold up to 16 commands. Commands can be delayed by up to 16 seconds</p>
                 <p>In LIVE mode, the second icon (an upside-down U) will be lit up when there is a command in the <code>DEL</code> buffer.</p>
                 <!--
                 make sure that the description column is long!
@@ -2311,6 +2342,69 @@
                 <td><strong><code>Q.AVG x</code></strong></td>
                 <td>-</td>
                 <td>Getting the value the average of the values in the queue. Setting <code>x</code> sets the<br />value of each entry in the queue to <code>x</code>.<br /></td>
+                </tr>
+                </tbody>
+                </table>
+                </div>
+                
+                <h2 id="seed">Seed</h2>
+                <!--
+                make sure that the description column is long!
+                Pandoc uses the size of the header column to calculate the absolute column widths
+                (as Latex requires explict column sizes)
+                -->
+                <div class="OpList">
+                <table style="width:100%;">
+                <colgroup>
+                <col style="width: 25%"></col>
+                <col style="width: 23%"></col>
+                <col style="width: 11%"></col>
+                <col style="width: 39%"></col>
+                </colgroup>
+                <thead>
+                <tr class="header">
+                <th><code>OP</code></th>
+                <th><code>OP (set)</code></th>
+                <th><code>Alias</code></th>
+                <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="odd">
+                <td><strong><code>SEED</code></strong></td>
+                <td><strong><code>SEED x</code></strong></td>
+                <td>-</td>
+                <td>get / set the random number generator seed for all <code>SEED</code> ops</td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>RAND.SEED</code></strong></td>
+                <td><strong><code>RAND.SEED x</code></strong></td>
+                <td><strong><code>RAND.SD</code></strong> , <strong><code>R.SD</code></strong></td>
+                <td>get / set the random number generator seed for <code>R</code>, <code>RRAND</code>, and <code>RAND</code> ops</td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>TOSS.SEED</code></strong></td>
+                <td><strong><code>TOSS.SEED x</code></strong></td>
+                <td><strong><code>TOSS.SD</code></strong></td>
+                <td>get / set the random number generator seed for the <code>TOSS</code> op</td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>PROB.SEED</code></strong></td>
+                <td><strong><code>PROB.SEED x</code></strong></td>
+                <td><strong><code>PROB.SD</code></strong></td>
+                <td>get / set the random number generator seed for the <code>PROB</code> mod</td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>DRUNK.SEED</code></strong></td>
+                <td><strong><code>DRUNK.SEED x</code></strong></td>
+                <td><strong><code>DRUNK.SD</code></strong></td>
+                <td>get / set the random number generator seed for the <code>DRUNK</code> op</td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>P.SEED</code></strong></td>
+                <td><strong><code>P.SEED x</code></strong></td>
+                <td><strong><code>P.SD</code></strong></td>
+                <td>get / set the random number generator seed for the <code>P.RND</code> and <code>PN.RND</code> ops</td>
                 </tr>
                 </tbody>
                 </table>
@@ -2882,6 +2976,42 @@
                 </thead>
                 <tbody>
                 <tr class="odd">
+                <td><strong><code>ANS.G.LED x y</code></strong></td>
+                <td>-</td>
+                <td>-</td>
+                <td>get grid LED buffer at position <code>x</code>, <code>y</code></td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>ANS.G x y</code></strong></td>
+                <td><strong><code>ANS.G x y z</code></strong></td>
+                <td>-</td>
+                <td>get/set grid key on/off state (<code>z</code>) at position <code>x</code>, <code>y</code></td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>ANS.G.P x y</code></strong></td>
+                <td>-</td>
+                <td>-</td>
+                <td>simulate grid key press at position (<code>x</code>, <code>y</code>)</td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>ANS.A.LED n x</code></strong></td>
+                <td>-</td>
+                <td>-</td>
+                <td>read arc LED buffer for ring <code>n</code>, LED <code>x</code> clockwise from north</td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>ANS.A</code></strong></td>
+                <td><strong><code>ANS.A n d</code></strong></td>
+                <td>-</td>
+                <td>send arc encoder event for ring <code>n</code>, delta <code>d</code></td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>ANS.APP</code></strong></td>
+                <td><strong><code>ANS.APP x</code></strong></td>
+                <td>-</td>
+                <td>Get or change the app that is active on Ansible. Numbering:<br /><br /> - <code>0</code> = levels<br /> - <code>1</code> = cycles<br /> - <code>2</code> = kria<br /> - <code>3</code> = meadowphysics<br /> - <code>4</code> = midi standard<br /> - <code>5</code> = midi arp<br /> - <code>6</code> = teletype expander<br /></td>
+                </tr>
+                <tr class="odd">
                 <td><strong><code>KR.PRE</code></strong></td>
                 <td><strong><code>KR.PRE x</code></strong></td>
                 <td>-</td>
@@ -2954,186 +3084,204 @@
                 <td>advance the clock for channel <code>x</code> (channel must have teletype clocking enabled)</td>
                 </tr>
                 <tr class="odd">
+                <td><strong><code>KR.PG</code></strong></td>
+                <td><strong><code>KR.PG x</code></strong></td>
+                <td>-</td>
+                <td>Get or change the current parameter page. Numbering:<br /><br /> - <code>0</code> = trigger<br /> - <code>1</code> = ratchet<br /> - <code>2</code> = note<br /> - <code>3</code> = alt note<br /> - <code>4</code> = octave<br /> - <code>5</code> = glide<br /> - <code>6</code> = duration<br /> - <code>7</code> = TBD<br /> - <code>8</code> = scale<br /> - <code>9</code> = pattern<br /></td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>KR.CUE</code></strong></td>
+                <td><strong><code>KR.CUE x</code></strong></td>
+                <td>-</td>
+                <td>Get or change the cued pattern. Numbered from 0.<br /></td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>KR.DIR</code></strong></td>
+                <td><strong><code>KR.DIR x</code></strong></td>
+                <td>-</td>
+                <td>Get or change the step direction. Numbered from 0.<br /></td>
+                </tr>
+                <tr class="even">
                 <td><strong><code>ME.PRE</code></strong></td>
                 <td><strong><code>ME.PRE x</code></strong></td>
                 <td>-</td>
                 <td>return current preset / load preset <code>x</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ME.SCALE</code></strong></td>
                 <td><strong><code>ME.SCALE x</code></strong></td>
                 <td>-</td>
                 <td>get/set current scale</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ME.PERIOD</code></strong></td>
                 <td><strong><code>ME.PERIOD x</code></strong></td>
                 <td>-</td>
                 <td>get/set internal clock period</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ME.STOP x</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>stop channel <code>x</code> (<code>0</code> = all)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ME.RES x</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>reset channel <code>x</code> (<code>0</code> = all), also used as &quot;start&quot;</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ME.CV x</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>get the current CV value for channel <code>x</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>LV.PRE</code></strong></td>
                 <td><strong><code>LV.PRE x</code></strong></td>
                 <td>-</td>
                 <td>return current preset / load preset <code>x</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>LV.RES x</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>reset, <code>0</code> for soft reset (on next ext. clock), <code>1</code> for hard reset</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>LV.POS</code></strong></td>
                 <td><strong><code>LV.POS x</code></strong></td>
                 <td>-</td>
                 <td>get/set current position</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>LV.L.ST</code></strong></td>
                 <td><strong><code>LV.L.ST x</code></strong></td>
                 <td>-</td>
                 <td>get/set loop start</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>LV.L.LEN</code></strong></td>
                 <td><strong><code>LV.L.LEN x</code></strong></td>
                 <td>-</td>
                 <td>get/set loop length</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>LV.L.DIR</code></strong></td>
                 <td><strong><code>LV.L.DIR x</code></strong></td>
                 <td>-</td>
                 <td>get/set loop direction</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>LV.CV x</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>get the current CV value for channel <code>x</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>CY.PRE</code></strong></td>
                 <td><strong><code>CY.PRE x</code></strong></td>
                 <td>-</td>
                 <td>return current preset / load preset <code>x</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>CY.RES x</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>reset channel <code>x</code> (<code>0</code> = all)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>CY.POS x</code></strong></td>
                 <td><strong><code>CY.POS x y</code></strong></td>
                 <td>-</td>
                 <td>get / set position of channel <code>x</code> (<code>x = 0</code> to set all), position between <code>0-255</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>CY.REV x</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>reverse channel <code>x</code> (<code>0</code> = all)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>CY.CV x</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>get the current CV value for channel <code>x</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>MID.SLEW t</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>set pitch slew time in ms (applies to all allocation styles except FIXED)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>MID.SHIFT o</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>shift pitch CV by standard Teletype pitch value (e.g. <code>N 6</code>, <code>V -1</code>, etc)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ARP.HLD h</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td><code>0</code> disables key hold mode, other values enable</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ARP.STY y</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>set base arp style [0-7]</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ARP.GT v g</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>set voice gate length [0-127], scaled/synced to course divisions of voice clock</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ARP.SLEW v t</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>set voice slew time in ms</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ARP.RPT v n s</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>set voice pattern repeat, <code>n</code> times [0-8], shifted by <code>s</code> semitones [-24, 24]</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ARP.DIV v d</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>set voice clock divisor (euclidean length), range [1-32]</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ARP.FIL v f</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>set voice euclidean fill, use 1 for straight clock division, range [1-32]</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ARP.ROT v r</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>set voice euclidean rotation, range [-32, 32]</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ARP.ER v f d r</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>set all euclidean rhythm</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ARP.RES v</code></strong></td>
                 <td>-</td>
                 <td>-</td>
                 <td>reset voice clock/pattern on next base clock tick</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ARP.SHIFT v o</code></strong></td>
                 <td>-</td>
                 <td>-</td>
@@ -4740,6 +4888,30 @@
                 <td>logical AND of <code>x</code> and <code>y</code></td>
                 </tr>
                 <tr class="even">
+                <td><strong><code>ANS.A</code></strong> <br /><strong><code>ANS.A n d</code></strong></td>
+                <td>send arc encoder event for ring <code>n</code>, delta <code>d</code></td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>ANS.A.LED n x</code></strong></td>
+                <td>read arc LED buffer for ring <code>n</code>, LED <code>x</code> clockwise from north</td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>ANS.APP</code></strong> <br /><strong><code>ANS.APP x</code></strong></td>
+                <td>get/set active app</td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>ANS.G x y</code></strong> <br /><strong><code>ANS.G x y z</code></strong></td>
+                <td>get/set grid key on/off state (<code>z</code>) at position <code>x</code>, <code>y</code></td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>ANS.G.LED x y</code></strong></td>
+                <td>get grid LED buffer at position <code>x</code>, <code>y</code></td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>ANS.G.P x y</code></strong></td>
+                <td>simulate grid key press at position (<code>x</code>, <code>y</code>)</td>
+                </tr>
+                <tr class="even">
                 <td><strong><code>ARP.DIV v d</code></strong></td>
                 <td>set voice clock divisor (euclidean length), range [1-32]</td>
                 </tr>
@@ -4904,504 +5076,520 @@
                 <td>set the lower bound for <code>DRUNK</code>, default <code>0</code></td>
                 </tr>
                 <tr class="odd">
+                <td><strong><code>DRUNK.SEED</code></strong> <br /><strong><code>DRUNK.SEED x</code></strong> <br /> <strong><code>DRUNK.SD</code></strong></td>
+                <td>get / set the random number generator seed for the <code>DRUNK</code> op</td>
+                </tr>
+                <tr class="even">
                 <td><strong><code>DRUNK.WRAP</code></strong> <br /><strong><code>DRUNK.WRAP x</code></strong></td>
                 <td>should <code>DRUNK</code> wrap around when it reaches it's bounds, default <code>0</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ELIF x: ...</code></strong></td>
                 <td>if all previous <code>IF</code> / <code>ELIF</code> fail, and <code>x</code> is not zero, execute command</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ELSE: ...</code></strong></td>
                 <td>if all previous <code>IF</code> / <code>ELIF</code> fail, excute command</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>EQ x y</code></strong> <br /> <strong><code>==</code></strong></td>
                 <td>does <code>x</code> equal <code>y</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ER f l i</code></strong></td>
                 <td>Euclidean rhythm, <code>f</code> is fill (<code>1-32</code>), <code>l</code> is length (<code>1-32</code>) and <code>i</code> is step (any value), returns <code>0</code> or <code>1</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ES.CLOCK x</code></strong></td>
                 <td>If II clocked, next pattern event</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ES.MAGIC x</code></strong></td>
                 <td>Magic shape (1= halfspeed, 2=doublespeed, 3=linearize)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ES.MODE x</code></strong></td>
                 <td>Set pattern clock mode. (0=normal, 1=II clock)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ES.PATTERN x</code></strong></td>
                 <td>Select playing pattern (0-15)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ES.PRESET x</code></strong></td>
                 <td>Recall preset <code>x</code> (0-7)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ES.RESET x</code></strong></td>
                 <td>Reset pattern to start (and start playing)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ES.STOP x</code></strong></td>
                 <td>Stop pattern playback.</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>ES.TRANS x</code></strong></td>
                 <td>Transpose the current pattern</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>ES.TRIPLE x</code></strong></td>
                 <td>Recall triple shape (1-4)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>EVERY x: ...</code></strong></td>
                 <td>run the command every <code>x</code> times the command is called</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>EXP x</code></strong></td>
                 <td>exponentiation table lookup. <code>0-16383</code> range (V <code>0-10</code>)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>EZ x</code></strong> <br /> <strong><code>!</code></strong></td>
                 <td><code>x</code> is <code>0</code>, equivalent to logical NOT</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>FADER x</code></strong> <br /> <strong><code>FB</code></strong></td>
                 <td>reads the value of the <code>FADER</code> slider <code>x</code>; default return range is from 0 to 16383</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>FLIP</code></strong> <br /><strong><code>FLIP x</code></strong></td>
                 <td>returns inverted state (<code>0</code> or <code>1</code>) on each read (also settable)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.BTN id x y w h type level script</code></strong></td>
                 <td>initialize button</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.BTN.EN id</code></strong> <br /><strong><code>G.BTN.EN id x</code></strong></td>
                 <td>enable/disable button or check if enabled</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.BTN.L id</code></strong> <br /><strong><code>G.BTN.L id level</code></strong></td>
                 <td>get/set button level</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.BTN.PR id action</code></strong></td>
                 <td>emulate button press/release</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.BTN.SW id</code></strong></td>
                 <td>switch button</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.BTN.V id</code></strong> <br /><strong><code>G.BTN.V id value</code></strong></td>
                 <td>get/set button value</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.BTN.X id</code></strong> <br /><strong><code>G.BTN.X id x</code></strong></td>
                 <td>get/set button x coordinate</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.BTN.Y id</code></strong> <br /><strong><code>G.BTN.Y id y</code></strong></td>
                 <td>get/set button y coordinate</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.BTNI</code></strong></td>
                 <td>id of last pressed button</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.BTNL</code></strong> <br /><strong><code>G.BTNL level</code></strong></td>
                 <td>get/set level of last pressed button</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.BTNV</code></strong> <br /><strong><code>G.BTNV value</code></strong></td>
                 <td>get/set value of last pressed button</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.BTNX</code></strong> <br /><strong><code>G.BTNX x</code></strong></td>
                 <td>get/set x of last pressed button</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.BTNY</code></strong> <br /><strong><code>G.BTNY y</code></strong></td>
                 <td>get/set y of last pressed button</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.BTX id x y w h type level script columns rows</code></strong></td>
                 <td>initialize multiple buttons</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.CLR</code></strong></td>
                 <td>clear all LEDs</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.DIM level</code></strong></td>
                 <td>set dim level</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.FDR id x y w h type level script</code></strong></td>
                 <td>initialize fader</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.FDR.EN id</code></strong> <br /><strong><code>G.FDR.EN id x</code></strong></td>
                 <td>enable/disable fader or check if enabled</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.FDR.L id</code></strong> <br /><strong><code>G.FDR.L id level</code></strong></td>
                 <td>get/set fader level</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.FDR.N id</code></strong> <br /><strong><code>G.FDR.N id value</code></strong></td>
                 <td>get/set fader value</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.FDR.PR id value</code></strong></td>
                 <td>emulate fader press</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.FDR.V id</code></strong> <br /><strong><code>G.FDR.V id value</code></strong></td>
                 <td>get/set scaled fader value</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.FDR.X id</code></strong> <br /><strong><code>G.FDR.X id x</code></strong></td>
                 <td>get/set fader x coordinate</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.FDR.Y id</code></strong> <br /><strong><code>G.FDR.Y id y</code></strong></td>
                 <td>get/set fader y coordinate</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.FDRI</code></strong></td>
                 <td>id of last pressed fader</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.FDRL</code></strong> <br /><strong><code>G.FDRL level</code></strong></td>
                 <td>get/set level of last pressed fader</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.FDRN</code></strong> <br /><strong><code>G.FDRN value</code></strong></td>
                 <td>get/set value of last pressed fader</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.FDRV</code></strong> <br /><strong><code>G.FDRV value</code></strong></td>
                 <td>get/set scaled value of last pressed fader</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.FDRX</code></strong> <br /><strong><code>G.FDRX x</code></strong></td>
                 <td>get/set x of last pressed fader</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.FDRY</code></strong> <br /><strong><code>G.FDRY y</code></strong></td>
                 <td>get/set y of last pressed fader</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.FDX id x y w h type level script columns rows</code></strong></td>
                 <td>initialize multiple faders</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GBT group id x y w h type level script</code></strong></td>
                 <td>initialize button in group</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GBTN.C group</code></strong></td>
                 <td>get count of currently pressed</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GBTN.H group</code></strong></td>
                 <td>get button block height</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GBTN.I group index</code></strong></td>
                 <td>get id of pressed button</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GBTN.L group odd_level even_level</code></strong></td>
                 <td>set level for group buttons</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GBTN.V group value</code></strong></td>
                 <td>set value for group buttons</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GBTN.W group</code></strong></td>
                 <td>get button block width</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GBTN.X1 group</code></strong></td>
                 <td>get leftmost pressed x</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GBTN.X2 group</code></strong></td>
                 <td>get rightmost pressed x</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GBTN.Y1 group</code></strong></td>
                 <td>get highest pressed y</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GBTN.Y2 group</code></strong></td>
                 <td>get lowest pressed y</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GBX group id x y w h type level script columns rows</code></strong></td>
                 <td>initialize multiple buttons in group</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GFD grp id x y w h type level script</code></strong></td>
                 <td>initialize fader in group</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GFDR.L group odd_level even_level</code></strong></td>
                 <td>set level for group faders</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GFDR.N group value</code></strong></td>
                 <td>set value for group faders</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GFDR.RN group min max</code></strong></td>
                 <td>set range for group faders</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GFDR.V group value</code></strong></td>
                 <td>set scaled value for group faders</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GFX group id x y w h type level script columns rows</code></strong></td>
                 <td>initialize multiple faders in group</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GRP</code></strong> <br /><strong><code>G.GRP id</code></strong></td>
                 <td>get/set current group</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GRP.EN id</code></strong> <br /><strong><code>G.GRP.EN id x</code></strong></td>
                 <td>enable/disable group or check if enabled</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GRP.RST id</code></strong></td>
                 <td>reset all group controls</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GRP.SC id</code></strong> <br /><strong><code>G.GRP.SC id script</code></strong></td>
                 <td>get/set group script</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.GRP.SW id</code></strong></td>
                 <td>switch groups</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.GRPI</code></strong></td>
                 <td>get last group</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.KEY x y action</code></strong></td>
                 <td>emulate grid press</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.LED x y</code></strong> <br /><strong><code>G.LED x y level</code></strong></td>
                 <td>get/set LED</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.LED.C x y</code></strong></td>
                 <td>clear LED</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.RCT x1 y1 x2 y2 fill border</code></strong></td>
                 <td>draw rectangle</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.REC x y w h fill border</code></strong></td>
                 <td>draw rectangle</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>G.ROTATE x</code></strong></td>
                 <td>set grid rotation</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>G.RST</code></strong></td>
                 <td>full grid reset</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>GT x y</code></strong> <br /> <strong><code>&gt;</code></strong></td>
                 <td><code>x</code> is greater than <code>y</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>GTE x y</code></strong> <br /> <strong><code>&gt;=</code></strong></td>
                 <td><code>x</code> is greater than or equal to <code>y</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>I</code></strong> <br /><strong><code>I x</code></strong></td>
                 <td>get / set the variable <code>I</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>IF x: ...</code></strong></td>
                 <td>if <code>x</code> is not zero execute command</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>IN</code></strong></td>
                 <td>Get the value of IN jack (0-16383)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>IN.CAL.MAX</code></strong></td>
                 <td>Reads the input CV and assigns the voltage to the max point</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>IN.CAL.MIN</code></strong></td>
                 <td>Reads the input CV and assigns the voltage to the zero point</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>IN.CAL.RESET</code></strong></td>
                 <td>Resets the input CV calibration</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>IN.SCALE min max</code></strong></td>
                 <td>Set static scaling of the <code>IN</code> CV to between <code>min</code> and <code>max</code>.</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>INIT</code></strong></td>
                 <td>clears all state data</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>INIT.CV x</code></strong></td>
                 <td>clears all parameters on CV associated with output x</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>INIT.CV.ALL</code></strong></td>
                 <td>clears all parameters on all CV's</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>INIT.DATA</code></strong></td>
                 <td>clears all data held in all variables</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>INIT.P x</code></strong></td>
                 <td>clears pattern associated with pattern number x</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>INIT.P.ALL</code></strong></td>
                 <td>clears all patterns</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>INIT.SCENE</code></strong></td>
                 <td>loads a blank scene</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>INIT.SCRIPT x</code></strong></td>
                 <td>clear script number x</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>INIT.SCRIPT.ALL</code></strong></td>
                 <td>clear all scripts</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>INIT.TIME x</code></strong></td>
                 <td>clear time on trigger x</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>INIT.TR x</code></strong></td>
                 <td>clear all parameters on trigger associated with TR x</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>INIT.TR.ALL</code></strong></td>
                 <td>clear all triggers</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>J</code></strong> <br /><strong><code>J x</code></strong></td>
                 <td>get / set the variable <code>J</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>JF.GOD x</code></strong></td>
                 <td>Redefines C3 to align with the 'God' note. <code>x</code> = <code>0</code> sets A to 440, <code>x</code> = <code>1</code> sets A to 432.</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>JF.MODE x</code></strong></td>
                 <td>Set the current choice of standard functionality, or Just Type alternate modes. You'll likely want to put JF.MODE x in your Teletype INIT scripts. <code>x</code> = nonzero activates alternative modes. <code>0</code> restores normal.</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>JF.NOTE x y</code></strong></td>
                 <td>Polyphonically allocated note sequencing. Works as JF.VOX with chan selected automatically. Free voices will be taken first. If all voices are busy, will steal from the voice which has been active the longest. <code>x</code> = pitch relative to C3, <code>y</code> = velocity.</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>JF.QT x</code></strong></td>
                 <td>When non-zero, all events are queued &amp; delayed until the next quantize event occurs. Using values that don't align with the division of rhythmic streams will cause irregular patterns to unfold. Set to 0 to deactivate quantization. <code>x</code> = division, 0 deactivates quantization, 1 to 32 sets the subdivision &amp; activates quantization.</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>JF.RMODE x</code></strong></td>
                 <td>Set the RUN state of Just Friends when no physical jack is present. (<code>0</code> = run off, non-zero = run on)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>JF.RUN x</code></strong></td>
                 <td>Send a 'voltage' to the RUN input. Requires <code>JF.RMODE 1</code> to have been executed, or a physical cable in JF's input. Thus Just Friend's RUN modes are accessible without needing a physical cable &amp; control voltage to set the RUN parameter. use <code>JF.RUN V x</code> to set to <code>x</code> volts. The expected range is V -5 to V 5</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>JF.SHIFT x</code></strong></td>
                 <td>Shifts the transposition of Just Friends, regardless of speed setting. Shifting by V 1 doubles the frequency in sound, or doubles the rate in shape. <code>x</code> = pitch, use <code>N x</code> for semitones, or <code>V y</code> for octaves.</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>JF.TICK x</code></strong></td>
                 <td>Sets the underlying timebase of the Geode. <code>x</code> = clock. 0 resets the timebase to the start of measure. 1 to 48 shall be sent repetitively. The value representing ticks per measure. 49 to 255 sets beats-per-minute and resets the timebase to start of measure.</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>JF.TR x y</code></strong></td>
                 <td>Simulate a TRIGGER input. <code>x</code> is channel (<code>0</code> = all) and y is state (<code>0</code> or <code>1</code>)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>JF.TUNE x y z</code></strong></td>
                 <td>Adjust the tuning ratios used by the INTONE control. <code>x</code> = channel, <code>y</code> = numerator (set the multiplier for the tuning ratio), <code>z</code> = denominator (set the divisor for the tuning ratio).</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>JF.VOX x y z</code></strong></td>
                 <td>Create a note at the specified channel, of the defined pitch &amp; velocity. All channels can be set simultaneously with a chan value of 0. <code>x</code> = channel, <code>y</code> = pitch relative to C3, <code>z</code> = velocity (like <code>JF.VTR</code>).</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>JF.VTR x y</code></strong></td>
                 <td>Like <code>JF.TR</code> with added volume control. Velocity is scaled with volts, so try <code>V 5</code> for an output trigger of 5 volts. Channels remember their latest velocity setting and apply it regardless of TRIGGER origin (digital or physical). <code>x</code> = channel, <code>0</code> sets all channels. <code>y</code> = velocity, amplitude of output in volts. eg <code>JF.VTR 1 V 4</code>.</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>JI x y</code></strong></td>
                 <td>just intonation helper, precision ratio divider normalised to 1V</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>K</code></strong> <br /><strong><code>K x</code></strong></td>
                 <td>get / set the variable <code>K</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>KILL</code></strong></td>
                 <td>clears stack, clears delays, cancels pulses, cancels slews, disables metronome</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>KR.CLK x</code></strong></td>
                 <td>advance the clock for channel <code>x</code> (channel must have teletype clocking enabled)</td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>KR.CUE</code></strong> <br /><strong><code>KR.CUE x</code></strong></td>
+                <td>get/set the cued pattern</td>
                 </tr>
                 <tr class="even">
                 <td><strong><code>KR.CV x</code></strong></td>
                 <td>get the current CV value for channel <code>x</code></td>
                 </tr>
                 <tr class="odd">
+                <td><strong><code>KR.DIR</code></strong> <br /><strong><code>KR.DIR x</code></strong></td>
+                <td>get/set the step direction</td>
+                </tr>
+                <tr class="even">
                 <td><strong><code>KR.L.LEN x y</code></strong> <br /><strong><code>KR.L.LEN x y z</code></strong></td>
                 <td>get length of track <code>x</code>, parameter <code>y</code> / set to <code>z</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>KR.L.ST x y</code></strong> <br /><strong><code>KR.L.ST x y z</code></strong></td>
                 <td>get loop start for track <code>x</code>, parameter <code>y</code> / set to <code>z</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>KR.MUTE x</code></strong> <br /><strong><code>KR.MUTE x y</code></strong></td>
                 <td>get/set mute state for channel <code>x</code> (<code>1</code> = muted, <code>0</code> = unmuted)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>KR.PAT</code></strong> <br /><strong><code>KR.PAT x</code></strong></td>
                 <td>get/set current pattern</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>KR.PERIOD</code></strong> <br /><strong><code>KR.PERIOD x</code></strong></td>
                 <td>get/set internal clock period</td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>KR.PG</code></strong> <br /><strong><code>KR.PG x</code></strong></td>
+                <td>get/set the active page</td>
                 </tr>
                 <tr class="even">
                 <td><strong><code>KR.POS x y</code></strong> <br /><strong><code>KR.POS x y z</code></strong></td>
@@ -5425,7 +5613,7 @@
                 </tr>
                 <tr class="odd">
                 <td><strong><code>L x y: ...</code></strong></td>
-		<td>run (<em>loop</em>) the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code></td>
+                <td>run the command sequentially with <code>I</code> values from <code>x</code> to <code>y</code></td>
                 </tr>
                 <tr class="even">
                 <td><strong><code>LAST x</code></strong></td>
@@ -5800,116 +5988,124 @@
                 <td>return a value randomly selected between the start and the end position</td>
                 </tr>
                 <tr class="odd">
+                <td><strong><code>P.SEED</code></strong> <br /><strong><code>P.SEED x</code></strong> <br /> <strong><code>P.SD</code></strong></td>
+                <td>get / set the random number generator seed for the <code>P.RND</code> and <code>PN.RND</code> ops</td>
+                </tr>
+                <tr class="even">
                 <td><strong><code>P.START</code></strong> <br /><strong><code>P.START x</code></strong></td>
                 <td>get/set the start location of the working pattern, default <code>0</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>P.WRAP</code></strong> <br /><strong><code>P.WRAP x</code></strong></td>
                 <td>when the working pattern reaches its bounds does it wrap (<code>0/1</code>), default <code>1</code> (enabled)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PARAM</code></strong> <br /> <strong><code>PRM</code></strong></td>
                 <td>Get the value of PARAM knob (0-16383)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PARAM.CAL.MAX</code></strong></td>
                 <td>Reads the Parameter Knob maximum position and assigns the maximum point</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PARAM.CAL.MIN</code></strong></td>
                 <td>Reads the Parameter Knob minimum position and assigns a zero value</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PARAM.CAL.RESET</code></strong></td>
                 <td>Resets the Parameter Knob calibration</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PARAM.SCALE min max</code></strong></td>
                 <td>Set static scaling of the PARAM knob to between <code>min</code> and <code>max</code>.</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PN x y</code></strong> <br /><strong><code>PN x y z</code></strong></td>
                 <td>get/set the value of pattern <code>x</code> at index <code>y</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PN.+ x y z</code></strong></td>
                 <td>increase the value of pattern <code>x</code> at index <code>y</code> by <code>z</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PN.+W x y z a b</code></strong></td>
                 <td>increase the value of pattern <code>x</code> at index <code>y</code> by <code>z</code> and wrap it to <code>a</code>..<code>b</code> range</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PN.- x y z</code></strong></td>
                 <td>decrease the value of pattern <code>x</code> at index <code>y</code> by <code>z</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PN.-W x y z a b</code></strong></td>
                 <td>decrease the value of pattern <code>x</code> at index <code>y</code> by <code>z</code> and wrap it to <code>a</code>..<code>b</code> range</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PN.END x</code></strong> <br /><strong><code>PN.END x y</code></strong></td>
                 <td>get/set the end location of the pattern <code>x</code>, default <code>63</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PN.HERE x</code></strong> <br /><strong><code>PN.HERE x y</code></strong></td>
                 <td>get/set value at current index of pattern <code>x</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PN.I x</code></strong> <br /><strong><code>PN.I x y</code></strong></td>
                 <td>get/set index position for pattern <code>x</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PN.INS x y z</code></strong></td>
                 <td>insert value <code>z</code> at index <code>y</code> of pattern <code>x</code>, shift later values down, destructive to loop length</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PN.L x</code></strong> <br /><strong><code>PN.L x y</code></strong></td>
                 <td>get/set pattern length of pattern x. non-destructive to data</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PN.MAX x</code></strong></td>
                 <td>find the first maximum value in the pattern between the START and END for pattern <code>x</code> and return its index</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PN.MIN x</code></strong></td>
                 <td>find the first minimum value in the pattern between the START and END for pattern <code>x</code> and return its index</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PN.NEXT x</code></strong> <br /><strong><code>PN.NEXT x y</code></strong></td>
                 <td>increment index of pattern <code>x</code> then get/set value</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PN.POP x</code></strong></td>
                 <td>return and remove the value from the end of pattern <code>x</code> (like a stack), destructive to loop length</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PN.PREV x</code></strong> <br /><strong><code>PN.PREV x y</code></strong></td>
                 <td>decrement index of pattern <code>x</code> then get/set value</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PN.PUSH x y</code></strong></td>
                 <td>insert value <code>y</code> to the end of pattern <code>x</code> (like a stack), destructive to loop length</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PN.RM x y</code></strong></td>
                 <td>delete index <code>y</code> of pattern <code>x</code>, shift later values up, destructive to loop length</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PN.RND x</code></strong></td>
                 <td>return a value randomly selected between the start and the end position of pattern <code>x</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PN.START x</code></strong> <br /><strong><code>PN.START x y</code></strong></td>
                 <td>get/set the start location of pattern <code>x</code>, default <code>0</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>PN.WRAP x</code></strong> <br /><strong><code>PN.WRAP x y</code></strong></td>
                 <td>when pattern <code>x</code> reaches its bounds does it wrap (<code>0/1</code>), default <code>1</code> (enabled)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>PROB x: ...</code></strong></td>
                 <td>potentially execute command with probability <code>x</code> (0-100)</td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>PROB.SEED</code></strong> <br /><strong><code>PROB.SEED x</code></strong> <br /> <strong><code>PROB.SD</code></strong></td>
+                <td>get / set the random number generator seed for the <code>PROB</code> mod</td>
                 </tr>
                 <tr class="odd">
                 <td><strong><code>Q</code></strong> <br /><strong><code>Q x</code></strong></td>
@@ -5944,80 +6140,96 @@
                 <td>generate a random number between <code>0</code> and <code>x</code> inclusive</td>
                 </tr>
                 <tr class="odd">
+                <td><strong><code>RAND.SEED</code></strong> <br /><strong><code>RAND.SEED x</code></strong> <br /> <strong><code>RAND.SD</code></strong> , <strong><code>R.SD</code></strong></td>
+                <td>get / set the random number generator seed for <code>R</code>, <code>RRAND</code>, and <code>RAND</code> ops</td>
+                </tr>
+                <tr class="even">
                 <td><strong><code>RRAND x y</code></strong> <br /> <strong><code>RRND</code></strong></td>
                 <td>generate a random number between <code>x</code> and <code>y</code> inclusive</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>RSH x y</code></strong> <br /> <strong><code>&gt;&gt;</code></strong></td>
                 <td>right shift <code>x</code> by <code>y</code> bits, in effect divide <code>x</code> by <code>2</code> to the power of <code>y</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>S: ...</code></strong></td>
                 <td>Place a command onto the stack</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>S.ALL</code></strong></td>
                 <td>Execute all entries in the stack</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>S.CLR</code></strong></td>
                 <td>Clear all entries in the stack</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>S.L</code></strong></td>
                 <td>Get the length of the stack</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>S.POP</code></strong></td>
                 <td>Execute the most recent entry</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>SC.CV x y</code></strong></td>
                 <td>CV target value for the ER-301 virtual output <code>x</code> to value <code>y</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>SC.CV.OFF x y</code></strong></td>
                 <td>CV offset added to the ER-301 virtual output <code>x</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>SC.CV.SET x</code></strong></td>
                 <td>Set CV value for the ER-301 virtual output <code>x</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>SC.CV.SLEW x y</code></strong></td>
                 <td>Set the CV slew time for the ER-301 virtual output <code>x</code> in ms</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>SC.TR x y</code></strong></td>
                 <td>Set trigger output for the ER-301 virtual output x to y (0-1)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>SC.TR.POL x y</code></strong></td>
                 <td>Set polarity of trigger for the ER-301 virtual output x to y (0-1)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>SC.TR.PULSE x</code></strong> <br /> <strong><code>SC.TR.P</code></strong></td>
                 <td>Pulse the ER-301 virtual trigger output <code>x</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>SC.TR.TIME x y</code></strong></td>
                 <td>Set the pulse time for the ER-301 virtual trigger <code>x</code> to <code>y</code> in ms</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>SC.TR.TOG x</code></strong></td>
                 <td>Flip the state for the ER-301 virtual trigger output <code>x</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>SCALE a b x y i</code></strong> <br /> <strong><code>SCL</code></strong></td>
                 <td>scale <code>i</code> from range <code>a</code> to <code>b</code> to range <code>x</code> to <code>y</code>, i.e. <code>i * (y - x) / (b - a)</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>SCENE</code></strong> <br /><strong><code>SCENE x</code></strong></td>
                 <td>get the current scene number, or load scene <code>x</code> (0-31)</td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>SCENE.G x</code></strong></td>
+                <td>load scene <code>x</code> (0-31) without loading grid control states</td>
                 </tr>
                 <tr class="odd">
                 <td><strong><code>SCRIPT</code></strong> <br /><strong><code>SCRIPT x</code></strong> <br /> <strong><code>$</code></strong></td>
                 <td>get current script number, or execute script <code>x</code> (1-8), recursion allowed</td>
+                </tr>
+                <tr class="even">
+                <td><strong><code>SCRIPT.POL x</code></strong> <br /><strong><code>SCRIPT.POL x p</code></strong> <br /> <strong><code>$.POL</code></strong></td>
+                <td>get script x trigger polarity, or set polarity p (1 rising edge, 2 falling, 3 both)</td>
+                </tr>
+                <tr class="odd">
+                <td><strong><code>SEED</code></strong> <br /><strong><code>SEED x</code></strong></td>
+                <td>get / set the random number generator seed for all <code>SEED</code> ops</td>
                 </tr>
                 <tr class="even">
                 <td><strong><code>SKIP x: ...</code></strong></td>
@@ -6444,134 +6656,138 @@
                 <td>randomly return <code>0</code> or <code>1</code></td>
                 </tr>
                 <tr class="even">
+                <td><strong><code>TOSS.SEED</code></strong> <br /><strong><code>TOSS.SEED x</code></strong> <br /> <strong><code>TOSS.SD</code></strong></td>
+                <td>get / set the random number generator seed for the <code>TOSS</code> op</td>
+                </tr>
+                <tr class="odd">
                 <td><strong><code>TR x</code></strong> <br /><strong><code>TR x y</code></strong></td>
                 <td>Set trigger output x to y (0-1)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>TR.POL x</code></strong> <br /><strong><code>TR.POL x y</code></strong></td>
                 <td>Set polarity of trigger output x to y (0-1)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>TR.PULSE x</code></strong> <br /> <strong><code>TR.P</code></strong></td>
                 <td>Pulse trigger output x</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>TR.TIME x</code></strong> <br /><strong><code>TR.TIME x y</code></strong></td>
                 <td>Set the pulse time of trigger x to y ms</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>TR.TOG x</code></strong></td>
                 <td>Flip the state of trigger output x</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>V x</code></strong></td>
                 <td>converts a voltage to a value usable by the CV outputs (<code>x</code> between <code>0</code> and <code>10</code>)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>VV x</code></strong></td>
                 <td>converts a voltage to a value usable by the CV outputs (<code>x</code> between <code>0</code> and <code>1000</code>, <code>100</code> represents 1V)</td>
                 </tr>
-                <tr class="odd">
-                <td><strong><code>W x: ...</code></strong></td>
-		<td>run the command <em>while</em> condition x is true</td>
-                </tr>
                 <tr class="even">
+                <td><strong><code>W x: ...</code></strong></td>
+                <td>run the command while condition x is true</td>
+                </tr>
+                <tr class="odd">
                 <td><strong><code>WRAP x y z</code></strong> <br /> <strong><code>WRP</code></strong></td>
                 <td>limit the value <code>x</code> to the range <code>y</code> to <code>z</code> inclusive, but with wrapping</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>WS.CUE x</code></strong></td>
                 <td>Go to a cuepoint relative to the playhead position. <code>0</code> retriggers the current location. <code>1</code> jumps to the next cue forward. <code>-1</code> jumps to the previous cue in the reverse. These actions are relative to playback direction such that <code>0</code> always retriggers the most recently passed location</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>WS.LOOP x</code></strong></td>
                 <td>Set the loop state on/off. <code>0</code> is off. Any other value turns loop on</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>WS.PLAY x</code></strong></td>
                 <td>Set playback state and direction. <code>0</code> stops playback. <code>1</code> sets forward motion, while <code>-1</code> plays in reverse</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>WS.REC x</code></strong></td>
                 <td>Set recording mode. <code>0</code> is playback only. <code>1</code> sets overdub mode for additive recording. <code>-1</code> sets overwrite mode to replace the tape with your input</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>WW.END x</code></strong></td>
                 <td>Set the loop end position (0-15)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>WW.MUTE1 x</code></strong></td>
                 <td>Mute trigger 1 (0 = on, 1 = mute)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>WW.MUTE2 x</code></strong></td>
                 <td>Mute trigger 2 (0 = on, 1 = mute)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>WW.MUTE3 x</code></strong></td>
                 <td>Mute trigger 3 (0 = on, 1 = mute)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>WW.MUTE4 x</code></strong></td>
                 <td>Mute trigger 4 (0 = on, 1 = mute)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>WW.MUTEA x</code></strong></td>
                 <td>Mute CV A (0 = on, 1 = mute)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>WW.MUTEB x</code></strong></td>
                 <td>Mute CV B (0 = on, 1 = mute)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>WW.PATTERN x</code></strong></td>
                 <td>Change pattern (0-15)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>WW.PMODE x</code></strong></td>
                 <td>Set the loop play mode (0-5)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>WW.POS x</code></strong></td>
                 <td>Cut to position (0-15)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>WW.PRESET x</code></strong></td>
                 <td>Recall preset (0-7)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>WW.QPATTERN x</code></strong></td>
                 <td>Change pattern (0-15) after current pattern ends</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>WW.START x</code></strong></td>
                 <td>Set the loop start position (0-15)</td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>WW.SYNC x</code></strong></td>
                 <td>Cut to position (0-15) and hard-sync the clock (if clocked internally)</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>X</code></strong> <br /><strong><code>X x</code></strong></td>
                 <td>get / set the variable <code>X</code>, default <code>0</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>Y</code></strong> <br /><strong><code>Y x</code></strong></td>
                 <td>get / set the variable <code>Y</code>, default <code>0</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>Z</code></strong> <br /><strong><code>Z x</code></strong></td>
                 <td>get / set the variable <code>Z</code>, default <code>0</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>^ x y</code></strong></td>
                 <td>bitwise xor <code>x</code> ^ <code>y</code></td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                 <td><strong><code>| x y</code></strong></td>
                 <td>bitwise or <code>x</code></td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                 <td><strong><code>~ x</code></strong></td>
                 <td>bitwise not, i.e.: inversion of <code>x</code></td>
                 </tr>
@@ -6579,9 +6795,9 @@
                 </table>
                 </div>
                 <h1 id="missing-documentation">Missing documentation</h1>
-                <p><code>G.XYP</code>, <code>G.XYP.X</code>, <code>G.XYP.Y</code>, <code>P.ADD</code>, <code>P.ADDW</code>, <code>P.SUB</code>, <code>P.SUBW</code>, <code>PN.ADD</code>, <code>PN.ADDW</code>, <code>PN.SUB</code>, <code>PN.SUBW</code>, <code>TIF</code></p>
+                <p><code>G.XYP</code>, <code>G.XYP.X</code>, <code>G.XYP.Y</code></p>
                 <h1 id="changelog">Changelog</h1>
-                <h2 id="v3.x">v3.x</h2>
+                <h2 id="v3.1.0">v3.1.0</h2>
                 <ul>
                 <li><strong>NEW</strong>: new op: DEVICE.FLIP</li>
                 <li><strong>FIX</strong>: <a href="https://github.com/monome/teletype/issues/156">some keyboards losing keystrokes</a></li>
@@ -6589,8 +6805,14 @@
                 <li><strong>NEW</strong>: new op: DEL.R</li>
                 <li><strong>IMP</strong>: DELAY_SIZE increased to 16 from 8</li>
                 <li><strong>NEW</strong>: new variables: J &amp; K local script variables</li>
+                <li><strong>FIX</strong>: <a href="https://github.com/monome/teletype/issues/174">metro rate not updated after <code>INIT.SCENE</code></a></li>
+                <li><strong>NEW</strong>: new ops: SEED, R.SEED, TOSS.SEED, DRUNK.SEED, P.SEED, PROB.SEED</li>
+                <li><strong>NEW</strong>: new op: SCENE.G</li>
+                <li><strong>NEW</strong>: new op: SCRIPT.POL, alias $.POL</li>
+                <li><strong>NEW</strong>: new ansible remote ops: ANS.G, ANS.G.P, ANS.G.LED, ANS.A, ANS.A.LED</li>
+                <li><strong>NEW</strong>: new kria remote ops: KR.CUE, KR.PG</li>
                 </ul>
-                <h2 id="v3.0">v3.0</h2>
+                <h2 id="v3.0.0">v3.0.0</h2>
                 <ul>
                 <li><strong>NEW</strong>: grid integration / grid visualizer / grid control mode</li>
                 <li><strong>NEW</strong>: multiline copy/paste and editing</li>
@@ -6653,7 +6875,7 @@
                 <li><strong>NEW</strong>: <code>SCRIPT</code> with no arguments gets the current script number.</li>
                 <li><strong>FIX</strong>: <code>AVG</code> and <code>Q.AVG</code> now round up properly</li>
                 <li><strong>NEW</strong>: new op: <code>BREAK</code> to stop the remainder of the script</li>
-                <li><strong>NEW</strong>: new mod: <code>W [condition]:	[statement]</code> will execute <code>statement</code> as long as (<em>while</em>) <code>condition</code> is true (up to an iteration limit).</li>
+                <li><strong>NEW</strong>: new mod: <code>W [condition]: [statement]</code> will execute <code>statement</code> as long as <code>condition</code> is true (up to an iteration limit).</li>
                 <li><strong>NEW</strong>: new mods: <code>EVERY x:</code>, <code>SKIP x:</code>, <code>OTHER:</code> to alternately execute or not execute a command.</li>
                 <li><strong>NEW</strong>: new op: <code>SYNC x</code> will synchronize all <code>EVERY</code> and <code>SKIP</code> line to the same step.</li>
                 <li><strong>NEW</strong>: new feature: @ - the turtle. Walks around the pattern grid. Many ops, see documentation.</li>

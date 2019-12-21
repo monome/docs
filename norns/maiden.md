@@ -173,13 +173,12 @@ Have doubts? The line should read: `screen /dev/tty.usb[TAB KEY] 115200`
 
 **linux**:
 
-- `dmesg` to see what device name your system gave norns
+- `dmesg` to see what enumeration number your system gave norns
 - you'll get something like this: `FTDI USB Serial Device converter now attached to ttyUSB0`
-- then, type: `screen /dev/ttyUSB0` (or whatever ID was given)
-- then, press TAB to autocomplete your serial number
+- then, type: `screen /dev/ttyUSB0` (or whatever enumeration number was given)
 - then type `115200`
 
-Have doubts? The line should read: `screen /dev/ttyUSB0[TAB KEY] 115200`
+Have doubts? The line should read: `screen /dev/ttyUSB<enumeration number> 115200`
 
 If you see a blank screen, press ENTER.
 

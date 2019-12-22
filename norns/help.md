@@ -209,9 +209,9 @@ With your norns powered-on and connected to the same WIFI network as your comput
 
 Use [SFTP](../sftp/) to connect to norns and download the PNG you just created. You'll notice the PNG is kinda tiny and the colors are inverted. Let's fix that with [ImageMagick](https://imagemagick.org/script/download.php).
 
-With ImageMagick installed on your computer, execute the following (replacing <FILENAME> with your chosen filename from the previous command):
+With ImageMagick installed on your computer, execute the following (replacing <PATH+FILENAME> with the entire path to your downloaded PNG):
 
-`magick convert <FILENAME>.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% <FILENAME>-m.png`
+`magick convert <PATH+FILENAME>.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% <PATH+FILENAME>-m.png`
 
 This will clean up the image and make it look just like it renders on norns :)
 

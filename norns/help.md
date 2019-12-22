@@ -213,7 +213,10 @@ With ImageMagick installed on your computer, execute the following (replacing <P
 
 `magick convert <PATH+FILENAME>.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% <PATH+FILENAME>-m.png`
 
-This will clean up the image and make it look just like it renders on norns :)
+For example:
+`magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr-m.png`
+
+This will clean up the image, make it look just like it renders on norns, and save it as a new file with the same name, but a `-m` at the end :)
 
 ## additional a's to faq's <a name="faq"></a>
 

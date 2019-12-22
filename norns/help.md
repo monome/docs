@@ -17,6 +17,7 @@ nav_order: 6
 	- [without WiFi](#manual-update)
 	- [fresh install](#fresh-install)
 - [backing up norns to USB](#backup-no-wifi)
+- [taking a screenshot](#png)
 - [additional q's](#faq)
 
 ## replacing parts
@@ -197,6 +198,22 @@ First, connect via [serial](../maiden/#other-access) and then insert a USB stick
 - Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
 - If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
 - Shutdown with `sudo shutdown now`
+
+## taking a screenshot <a name="png"></a>
+
+Capturing a screenshot of your norns can be a helpful tool for creating illustrative documentation or sharing UI ideas.
+
+With your norns powered-on and connected to the same WIFI network as your computer, connect to maiden. Then, execute this line in maiden's REPL (replacing <FILENAME> with something unique):
+
+`_norns.screen_export_png("/home/we/<FILENAME>.png")`
+
+Use [SFTP](../sftp/) to connect to norns and download the PNG you just created. You'll notice the PNG is kinda tiny and the colors are inverted. Let's fix that with [ImageMagick](https://imagemagick.org/script/download.php).
+
+With ImageMagick installed on your computer, execute the following (replacing <FILENAME> with your chosen filename from the previous command):
+
+`magick convert <FILENAME>.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% <FILENAME>-m.png`
+
+This will clean up the image and make it look just like it renders on norns :)
 
 ## additional a's to faq's <a name="faq"></a>
 

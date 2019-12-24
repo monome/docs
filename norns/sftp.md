@@ -78,6 +78,8 @@ You can use Cyberduck to share audio files between norns and your computer. On n
 
 Feel free to make folders inside `audio` to store various samples, field recordings, single cycle waveforms, etc. Each of those folders can also store subfolders, but please note that you cannot nest more than ten folder layers.
 
+If you are importing audio to norns, please note that 48khz `.wav` files are best.
+
 ## backup
 
 If you want to make a backup of your scripts, psets or other data simply make a copy of the `dust` directory in `/home/we` via SFTP.

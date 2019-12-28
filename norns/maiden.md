@@ -1,9 +1,9 @@
 ---
 layout: default
 parent: norns
-has_children: true
+has_children: false
 title: maiden
-nav_order: 2
+nav_order: 3
 has_toc: false
 ---
 
@@ -163,11 +163,22 @@ When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM
 
 Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux, open a terminal and type:
 
+**macOS**:
+
 - `screen /dev/tty.usb`
 - then, press TAB to autocomplete your serial number
 - then type `115200`
 
-So, in total: `screen /dev/tty.usb[TAB KEY] 115200`
+Have doubts? The line should read: `screen /dev/tty.usb[TAB KEY] 115200`
+
+**linux**:
+
+- `dmesg` to see what enumeration number your system gave norns
+- you'll get something like this: `FTDI USB Serial Device converter now attached to ttyUSB0`
+- then, type: `screen /dev/ttyUSB0` (or whatever enumeration number was given)
+- then type `115200`
+
+Have doubts? The line should read: `screen /dev/ttyUSB<enumeration number> 115200`
 
 If you see a blank screen, press ENTER.
 

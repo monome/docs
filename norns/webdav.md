@@ -1,16 +1,17 @@
 ---
 layout: default
-parent: maiden
+parent: manage
 grand_parent: norns
 title: webDAV
 nav_order: 1
+has_toc: false
 ---
 
-# WebDAV
+# webDAV
 
 You can manage projects and delete/rename files via [maiden](../maiden). But sometimes you'll need to copy files between your computer and norns, like audio.
 
-This type of file management is best achieved via WebDAV, a protocol that allows you to directly connect your computer's file browser to norns. If you haven't already, please connect your norns and your computer to the same WIFI network and read on!
+This type of file management is best achieved via webDAV, a protocol that allows you to directly connect your computer's file browser to norns. If you haven't already, please connect your norns and your computer to the same WIFI network and read on!
 
 ## macOS
 
@@ -62,6 +63,8 @@ You can use WebDAV to share audio files between norns and your computer. On norn
 `tape` is where the TAPE function stores recordings made on your norns.
 
 Feel free to make folders inside `audio` to store various samples, field recordings, single cycle waveforms, etc. Each of those folders can also store subfolders, but please note that you cannot nest more than ten folder layers.
+
+If you are importing audio to norns, please note that 48khz `.wav` files are best.
 
 ## backup
 

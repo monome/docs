@@ -2,8 +2,8 @@
 layout: default
 parent: scripting
 grand_parent: norns
-title: softcut studies
-nav_order: 1
+title: softcut
+nav_order: 2
 permalink: /norns/softcut/
 ---
 

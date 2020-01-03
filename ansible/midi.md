@@ -119,4 +119,4 @@ Holding `Key 2` and a short press on `preset` saves the current value for the fo
   * pattern repeat values
   * euclidean rhythm parameters ([accessible through Teletype](/docs/ansible/teletype/#midi))
 
-Holding `Key 2` and a long press on `preset` will clear the stored configuration and reset back to default vaules (the mode light blinks twice).
+Holding `Key 2` and a long press on `preset` will clear the stored configuration and reset back to default values (the mode light blinks twice).

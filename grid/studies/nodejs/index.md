@@ -661,7 +661,7 @@ And that's it! We have a fully functioning MIDI sequencer that can sync to MIDI 
 
 ## Closing
 
-### Suggested Excercises
+### Suggested Exercises
 
 - "Record" keypresses in the "trigger" row to the toggle matrix.
 - Display the loop range on the bottom row of the grid.

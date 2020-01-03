@@ -38,7 +38,7 @@ However you choose to approach it, grid is lasting -- both in construction and i
 
 - [editions](editions) - information about different device generations
 - [disassembly](disassembly) - guides for disassembling the hardware
-- [care](care) - some suggestions for device maintanance
+- [care](care) - some suggestions for device maintenance
 - [bus power upgrade](buspowerupgrade) - some early grid models had external power, they can be updated
 
 ## grids in education

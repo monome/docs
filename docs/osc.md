@@ -140,7 +140,7 @@ _examples_
 /grid/led/map 0 0 254 253 125 247 239 36 191 4
 ```
 
-Offsets must be mutliples of 8.
+Offsets must be multiples of 8.
 
 ```
 /grid/led/row x_offset y s[..]
@@ -164,7 +164,7 @@ _examples (for 64)_
 /grid/led/row 0 3 129
 ```
 
-Offsets must be mutliples of 8. Offsets for monome64 should always be zero.
+Offsets must be multiples of 8. Offsets for monome64 should always be zero.
 
 ```
 /grid/led/col x y_offset s[..]
@@ -188,7 +188,7 @@ _examples (for 64)_
 /grid/led/col 6 0 155
 ```
 
-Offsets must be mutliples of 8. Offsets for monome64 should always be zero.
+Offsets must be multiples of 8. Offsets for monome64 should always be zero.
 
 ```
 /grid/led/intensity i

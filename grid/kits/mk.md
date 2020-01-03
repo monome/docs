@@ -141,7 +141,7 @@ i normally solder the entire panel then go back and solder the other leg of each
 
 **important!** the LEDs must be inserted with the correct orientation. shown above, the long leg of the LED goes in the hole marked with the white line.
 
-i generally insert all of the LEDs at once, use carboard to hold them all down, then flip the whole thing onto the table for soldering.
+i generally insert all of the LEDs at once, use cardboard to hold them all down, then flip the whole thing onto the table for soldering.
 
 ![](/docs/kits/images/tech-mk-assembly-mk-keypad10.jpg)
 
@@ -334,7 +334,7 @@ the mk driver is connected as shown below:
 
 ![](/docs/kits/images/tech-mk-alt-mk-40h-hookup.jpg)
 
-we've written a alternate version of the firmware which performs all of the necessary software rotations so that your rotated boards will work correctly. these firmwares are succeded with `-old` in their titles, for example `encoders-old`.
+we've written a alternate version of the firmware which performs all of the necessary software rotations so that your rotated boards will work correctly. these firmwares are succeeded with `-old` in their titles, for example `encoders-old`.
 
 new logic boards ship standard with the `encoders` firmware, so if you're using 40h keypad kits, you'll need to flash your firmware with `encoders-old`.
 
@@ -425,7 +425,7 @@ lower will be too dim, higher may create a bright "spot" in the middle of the pa
 
 **angle**: as wide as possible!
 
-a 20 degree angle may result in a bright spot. a 50 degree angle should uniformally light up the entire pad.
+a 20 degree angle may result in a bright spot. a 50 degree angle should uniformly light up the entire pad.
 
 **Vf and current:** below 4.5V, 20ma
 

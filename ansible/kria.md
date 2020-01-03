@@ -99,7 +99,7 @@ The glide view screen allows the user to slew the currently playing note into th
 
 ### Quick track muting
 
-Holding the *loop* modifer and pressing a track button will mute it; pressing again will unmute.
+Holding the *loop* modifier and pressing a track button will mute it; pressing again will unmute.
 
 ### Scale
 

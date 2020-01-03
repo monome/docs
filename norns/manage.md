@@ -17,8 +17,8 @@ In the [maiden](../maiden) section, we reviewed how to write scripts of your own
 
 These tools can help you confidently add, change, transfer, and remove files from norns:
 
-- [webDAV](../webdav): A protocol which allows you to connect norns to a Mac (via WIFI) and browse the contents of norns like you would a thumb drive. Use this to import/export audio files or to back up your scripts and presets.
-- [SFTP](../sftp): A client which allows you to connect norns to a PC or Mac (via WIFI) and browse the contents of norns like you would a thumb drive. Same uses as webDAV.
+- [file share](../fileshare): samba is a protocol which allows you to connect norns to a computer (via WIFI) and browse the contents of norns like you would a thumb drive. Use this to import/export audio files or to back up your scripts and presets.
+- [SFTP](../sftp): A client which allows you to connect norns to a PC or Mac (via WIFI) and browse the contents of norns like you would a thumb drive. Same uses as above.
 
 Please click either link above to learn more about each method.
 

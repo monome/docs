@@ -172,7 +172,7 @@ cd 191230
 
 ## fresh install
 
-- current image: [190801](https://monome.nyc3.digitaloceanspaces.com/norns190801.img.tgz) - 1.1G (please conserve bandwidth by not repeatedly downloading)
+- current image: [200106](https://github.com/monome/norns-image/releases/download/200106/norns200106.img.zip) - 1.1G
 
 By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows.
 

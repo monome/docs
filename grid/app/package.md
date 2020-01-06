@@ -2,7 +2,7 @@
 layout: default
 title: max
 parent: + computer
-redirect_from: /docs/app/package
+redirect_from: /app/package
 nav_order: 3
 ---
 

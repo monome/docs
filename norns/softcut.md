@@ -9,7 +9,7 @@ permalink: /norns/softcut/
 
 # softcut studies
 
-softcut is a multi-voice sample playback and recording system build into the norns environment. it features level-smoothing, interpolated overdubbing, and matrix mixing. it was written by @zebra.
+softcut is a multi-voice sample playback and recording system built into the norns environment. it features level-smoothing, interpolated overdubbing, and matrix mixing. it was written by @zebra.
 
 for an introduction to scripting see the norns [studies](https://monome.org/docs/norns/study-1/) and [tutorial](https://llllllll.co/t/norns-tutorial/23241).
 

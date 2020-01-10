@@ -28,7 +28,7 @@ This core flexibility makes it hard to point to one use case and say "it does th
 
 ## how do I use it?
 
-Most artists approach grid through two doors, often simultaneously: as an instrumentalist (using applications made by others) or as a designer (creating applications for others). There are applications for [laptops + desktops] (/docs/grid/grid-computer/#applications) and applications for [norns](/docs/grid/grid-norns/#applications).
+Most artists approach grid through two doors, often simultaneously: as an instrumentalist (using applications made by others) or as a designer (creating applications for others). There are applications for [laptops + desktops](/docs/grid/grid-computer/#applications) and applications for [norns](/docs/grid/grid-norns/#applications).
 
 Over the last 15 years, grid has connected instrumentalists + designers to create an ecosystem of applications. This exchange of ideas and energy has, in turn, created a [community](https://llllllll.co).
 

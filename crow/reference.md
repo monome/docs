@@ -70,6 +70,28 @@ output[n].volts = 2.0 -- tell output n to move toward 2.0 volts, over the slew t
 v = output[n].volts   -- set v to the instantaneous voltage of output n
 ```
 
+### shaping cv
+
+*since v1.0.3*
+
+```lua
+output[n].shape = 'expo' -- travel to the .volts destination with a non-linear path
+output[n].slew  = 0.1
+output[n].volts = 2.0
+```
+
+Available options:
+- 'linear'
+- 'sine'
+- 'logarithmic'
+- 'exponential'
+- 'now': go instantly to the destination then wait
+- 'wait': wait at the current level, then go to the destination
+- 'over': move toward the destination and overshoot, before landing
+- 'under': move away from the destination, then smoothly ramp up
+- 'rebound': emulate a bouncing ball toward the destination
+
+
 ### actions
 
 outputs can have `actions`, not just voltages and slew times.
@@ -83,12 +105,14 @@ output[n]( lfo() )       -- shortcut to set the action and start immediately
 
 available actions are (from `asllib.lua`):
 
+*shape parameters available since v1.0.3. see 'shaping cv' for the list of options.*
+
 ```lua
-lfo( time, level )             -- low frequency oscillator
-pulse( time, level, polarity ) -- trigger / gate generator
-ramp( time, skew, level )      -- triangle LFO with skew between sawtooth or ramp shapes
-ar( attack, release, level )   -- attack-release envelope, retriggerable
-adsr( attack, decay, sustain, release ) -- ADSR envelope
+lfo( time, level, shape )           -- low frequency oscillator
+pulse( time, level, polarity )      -- trigger / gate generator
+ramp( time, skew, level )           -- triangle LFO with skew between sawtooth or ramp shapes
+ar( attack, release, level, shape ) -- attack-release envelope, retriggerable
+adsr( attack, decay, sustain, release, shape ) -- ADSR envelope
 ```
 
 actions can take 'directives' to control them. the `adsr` action needs a `false` directive in order to enter the release phase:
@@ -125,6 +149,8 @@ end
 ```
 
 everything is built on the primitive `to( destination, time )` which takes a destination and time pair, sending the output along a gradient. ASL is just some syntax to tie these short trips into a journey.
+
+*since v1.0.3*: the `to` primitive now takes an optional third argument for *shape*: `to( destination, time, shape )` allowing for non-linear paths to the destination value. See *shaping cv* above for a list of options.
 
 ```lua
 -- an ASL is composed of a sequence of 'to' calls in a table
@@ -236,6 +262,21 @@ ii.help()          -- prints a list of supported ii devices
 ii.<device>.help() -- prints available functions for <device>
 ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups
 ```
+
+for devices that support multiple addresses (eg: txi, er301, faders)
+```lua
+ii.txi[1].get('param',1) -- get the first param of the first device
+ii.txi[2].get('param',1) -- get the first param of the second device
+
+-- results in an event with an additional argument for 'device'
+-- this number is the index after the device name
+--    ie. 1 or 2 in txi[1] and txi[2] above
+ii.txi.event( event, data, device )
+    -- handle all connected txi device events here
+end
+```
+
+nb: don't mix and match multiple-address style with regular style!
 
 ## cal
 

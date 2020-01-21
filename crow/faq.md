@@ -197,22 +197,7 @@ crow internally generates signals at 48kHz (though the user doesn’t have direc
 
 Pull-ups are resistors on [i2c-enabled](https://llllllll.co/t/a-users-guide-to-i2c/19219) (or, ii) devices (like crow, Teletype, Ansible, Just Friends, W/). They are required to ensure integrity of the data on the i2c bus. A "bus" requires only one device to have its pull-ups enabled in order for data and power to flow correctly. As of firmware v1.0.2, crow's pull-ups are on by default.
 
-If you are connecting crow to another i2c-enabled device *without* a powered-bus between them (eg. if you're connecting crow directly to the i2c connector on Just Friends), then keep the pull-ups on!
-
-If you ever need to disable crow's pull-ups (unless you have more than a dozen crows, you do not need to disable crow's pull-ups), you can do this through a variety of methods:
-
-- in your norns script, specify: `crow.ii.pullup(false)`
-- in druid, execute: `ii.pullup(false)`
-- in Max, send the [crow] object a `tell_crow ii.pullup(false)` message
-
-If you are connecting crow to a device which already supplies power through the ii bus (like a Teletype or a powered busboard), then you do not need to enable crow's pull-ups. It will happily piggyback onto the existing bus.
-
-If you accidentally disable crow's pull-ups, they will remain that way until you enable them through any of these methods:
-
-- power-cycle your modular synth (as crow's default is pull-ups enabled)
-- in your norns script, specify: `crow.ii.pullup(true)`
-- in druid, execute: `ii.pullup(true)`
-- in Max, send the [crow] object a `tell_crow ii.pullup(true)` message
+Since *crow v1.0.2* crow's pullups are enabled by default - that's what you want! If for some specific reason you need to turn them off, crow provides the function `ii.pullup(state)` where you can turn them on (`true`) or off (`false`).
 
 ### is crow's status as an [i2c leader or follower](https://github.com/monome/crow#leading-the-i2c-bus) automatic or configurable?
 

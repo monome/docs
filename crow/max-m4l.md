@@ -70,8 +70,6 @@ After loading new firmware, you will need to re-establish the connection between
 
 *Watch a [livestream walkthrough](https://www.youtube.com/watch?v=dKMO1Vg0heA) of crow's Max for Live devices.*
 
-![](../images/m4l-row.png)
-
 ### Install
 
 *nb. Max installation is **not** required to use the devices in `crow_m4l`.*
@@ -83,7 +81,16 @@ Open Live (9 or 10) Suite, running at least Max 7.3.6. Place `crow_m4l` wherever
 If you are updating a previous installation, just replace the previous `crow_m4l` folder's contents with the new files.
 
 ### Getting started with crow + Max for Live
-The `crow_m4l` folder holds a suite of devices to help integrate your modular with Live.
+The `crow_m4l` folder holds a suite of devices to help integrate your modular with Live:
+
+- **^^command_center**: routes messages between Live and crow
+- **^^dual**: translate MIDI data from Live to v/8 and variable envelope voltages
+- **^^ins**: translate incoming CV through crow to useful MIDI data for Live
+- **^^jf_synth**: an i2c output device to play a connected Just Friends module as a 6-voice polyphonic synth through Live
+- **^^outs**: a MIDI-to-CV output device that collects multiple utilities in a single interface
+- **^^derwydd**: send Lua code to crow to execute on the fly + modify crow’s behavior in real-time
+- **^^bridges**: translate multiple mappable knobs in Live into data for crow
+- **^^macros**: store code snippets which can be sent to crow as macros on the fly
 
 #### ^^command_center
 
@@ -123,9 +130,10 @@ So, a typical two-crow setup would require:
 
 - an *output* device to translate MIDI data from Live to v/8 and envelope voltages
 - load onto any MIDI track + either arm it for record or set the monitoring to "in"
-- expand the `(outs)` dropdown to identify which duo of outputs you'd like **^^dual** to use for v/8 and envelope voltage: ouputs 1+2 or outputs 3+4
+- expand the `v/8 + env` dropdown to identify which duo of outputs you'd like **^^dual** to use for v/8 and envelope voltage: ouputs 1+2 or outputs 3+4
 - output 1/3 will send v/8
 - output 2/4 will send either an envelope or a trigger for every note-on event
+- expand the `shape` dropdown to choose an envelope shape: logarithmic, linear, or exponential
 
 ~~
 
@@ -173,16 +181,15 @@ An i2c output device to play a connected Just Friends module as a 6-voice polyph
 - as always, you must first choose a crow device with the ^^command_center
 - ^^jf_synth requires Just Friends (Whimsical Raps) to be connected to crow via i2c cable or through powered-bus
 - load onto any MIDI track + either arm it for record or set the monitoring to "in"
-- if crow is NOT connected to an i2c powered-bus (ie, if it's just connected directly to Just Friends via an i2c cable with no Teletpe/TXb/powered-bus in between), toggle 'enable pullups' on the m4l interface
 - on your Just Friends module's panel, engage 'sound' and 'transient'
-- on the m4l device, engage the second toggle to connect to Just Friends
+- on the m4l device, engage the toggle to connect to Just Friends
 - you will see the 6 lights blink on Just Friends
 - you should now be able to play Just Friends through MIDI!
 
 ---
 #### ^^outs
 
-![](../images/m4l_outs-setup.png)
+![](../images/m4l_outs.png)
 
 *nb. You can instantiate this device up to four times in a Live set, to speak to each of the four hardware outputs on crow.*
 
@@ -195,16 +202,12 @@ An i2c output device to play a connected Just Friends module as a 6-voice polyph
 
 *v/8*
 
-![](../images/m4l_outs-v-8.png)
-
 - *base*: the central point for MIDI-to-CV conversion, default is MIDI note 60
 - *slew*: adds glide between notes, default is none
 
 ~~
 
 *clock*
-
-![](../images/m4l_outs-clock.png)
 
 - *rate*: the rate of clock pulses, synced to Live's transport + tempo, default quarter notes
 - *trigger*: set the max voltage for the trigger signal, default 5V
@@ -215,18 +218,15 @@ An i2c output device to play a connected Just Friends module as a 6-voice polyph
 
 *lfo*
 
-![](../images/m4l_outs-lfo.png)
-
 - *rate*: the rate of a positive LFO, synced to Live's transport + tempo, default 1 bar
 - *level*: the high voltage for the LFO to reach before falling to 0V, default 5V
+- *shape*: choose a shape for the LFO
 
 ~~
 
 *remote*
 
-![](../images/m4l_outs-remote.png)
-
-- *knob*: an automatable knob which sends any movement out as CV
+- *knob*: an automat-able knob which sends any movement out as CV
 - *min*: the minimum CV the knob can put out when the needle is far-left, default -5V
 - *max* the maximum CV the knob can put out when the needle is far-right, default 5V
 - *bias*: adds an offset to the knob's current position, default 0V
@@ -236,7 +236,7 @@ An i2c output device to play a connected Just Friends module as a 6-voice polyph
 
 #### ^^derwydd
 
-This device gives you access to crow's Lua [read-eval-print loop](https://en.wikipedia.org/wiki/Read–eval–print_loop).  Send Lua code to Crow to execute on the fly, allowing you to modify crow's behavior in your real time.  You can also use it to upload new scripts, erase scripts, and more.
+This device gives you access to crow's Lua [read-eval-print loop](https://en.wikipedia.org/wiki/Read–eval–print_loop).  Send Lua code to crow to execute on the fly, allowing you to modify crow's behavior in *your* real time.  You can also use it to upload new scripts, erase scripts, and more.
 
 ![](../images/m4l_derwydd.png)
 
@@ -256,7 +256,7 @@ This device gives you access to crow's Lua [read-eval-print loop](https://en.wik
 
 ![](../images/m4l_bridges.png)
 
-Use this device to translate multiple mappable knobs in ableton into data for crow; the primary use case is taking remote control over variables in a script that crow is currently running.
+Use this device to translate multiple mappable knobs in Live into data for crow; the primary use case is taking remote control over variables in a script that crow is currently running.
 
 - as always, you must first choose a crow device with the ^^command_center
 - load onto any MIDI track

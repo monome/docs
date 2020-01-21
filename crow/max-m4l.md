@@ -83,14 +83,14 @@ If you are updating a previous installation, just replace the previous `crow_m4l
 ### Getting started with crow + Max for Live
 The `crow_m4l` folder holds a suite of devices to help integrate your modular with Live:
 
-- **^^command_center**: routes messages between Live and crow
-- **^^dual**: translate MIDI data from Live to v/8 and variable envelope voltages
-- **^^ins**: translate incoming CV through crow to useful MIDI data for Live
-- **^^jf_synth**: an i2c output device to play a connected Just Friends module as a 6-voice polyphonic synth through Live
-- **^^outs**: a MIDI-to-CV output device that collects multiple utilities in a single interface
-- **^^derwydd**: send Lua code to crow to execute on the fly + modify crow’s behavior in real-time
-- **^^bridges**: translate multiple mappable knobs in Live into data for crow
-- **^^macros**: store code snippets which can be sent to crow as macros on the fly
+- [**^^command_center**](#command_center): routes messages between Live and crow
+- [**^^dual**](#dual): translate MIDI data from Live to v/8 and variable envelope voltages
+- [**^^ins**](#ins): translate incoming CV through crow to useful MIDI data for Live
+- [**^^jf_synth**](#jf_synth): an i2c output device to play a connected Just Friends module as a 6-voice polyphonic synth through Live
+- [**^^outs**](#outs): a MIDI-to-CV output device that collects multiple utilities in a single interface
+- [**^^derwydd**](#derwydd): send Lua code to crow to execute on the fly + modify crow’s behavior in real-time
+- [**^^bridges**](#bridges): translate multiple mappable knobs in Live into data for crow
+- [**^^macros**](#macros): store code snippets which can be sent to crow as macros on the fly
 
 #### ^^command_center
 
@@ -185,6 +185,8 @@ An i2c output device to play a connected Just Friends module as a 6-voice polyph
 - on the m4l device, engage the toggle to connect to Just Friends
 - you will see the 6 lights blink on Just Friends
 - you should now be able to play Just Friends through MIDI!
+
+*nb. if your JF module gets "stuck" in synth mode after closing the device, simply re-open the device and press the toggle twice (on -> off)*
 
 ---
 #### ^^outs

@@ -204,6 +204,49 @@ crow.output[1].query()
 
 Each time `query` is called, crow will send a value to the function `receive`. The script uses this technique to create a realtime scope of the outputs on the norns screen.
 
+## 5. construct
+
+![](../images/5-construct.png)
+
+Run `5-construct.lua`. Crow outputs 1-4 are 5-segment looping envelopes, each with its own unique shape and trajectory. E1 will change the timebase from which these LFOs are constructed. K2 will construct new LFOs at the specified timebase. K3 will restart the LFOs from 0V. The current Voltage output is displayed as meters on the left.
+
+crow can speak a slope language, affectionately referenced as **a/s/l**. In the previous script, we learned how a/s/l's `to` command can be used to create multipoint envelopes using Voltage and time. `to` also has a third argument for shape, which defines *how* we move from Voltage to Voltage across time. If we do not define the shape, `to` commands default to linear movement.
+
+*nb. This script uses some extended techniques, so don't worry if it feels a little heady.*
+
+We start with a table of shapes:
+
+```lua
+shapes = {'linear','sine','logarithmic','exponential','now','wait','over','under','rebound'} 
+```
+
+Using random, we query shapes from that table and generate Voltages and durations for each of segments. This constructs the `to` commands which will structure our evolving waves:
+
+```
+wave[1][1].to = to(0,0.4,under)
+wave[1][2].to = to(-3.655,1.2,logarithmic)
+wave[1][3].to = to(4.922,0.6,sine)
+wave[1][4].to = to(2.536,1.2,linear)
+wave[1][5].to = to(0,0.6,exponential)
+```
+
+We concatenate these into a single statement:
+
+```lua
+wave[1].full = "loop( { "..wave[1][1].to..","..wave[1][2].to..","..wave[1][3].to..","..wave[1][4].to..","..wave[1][5].to.."} )"
+```
+
+...which becomes:
+
+```lua
+wave[1].full = "loop( { to(0,0.4,under),to(-3.655,1.2,logarithmic),to(4.922,0.6,sine),toto(2.536,1.2,linear),to(0,0.6,exponential)} )"
+```
+
+And finally, assign it to a crow output:
+
+```lua
+crow.output[1].action = wave[1].full
+```
 
 ## Reference
 
@@ -214,12 +257,12 @@ crow.output[x].volts = y         -- set output x (1 to 4) to y (-5.0 to 10.0) vo
 crow.output[x].slew = y          -- set output x slew time to y
 
 crow.output[x].action =
-  "{ to(volt,time), ... , to(volt,time) }"    -- series of segments
-  "times( x, { ... } )"                       -- repeat segments x times
-  "loop( { ... } )"                           -- loop segments indefinitely
-  "lfo(rate,amplitude)"
+  "{ to(volt,time,shape), ... , to(volt,time,shape) }"    -- series of segments
+  "times( x, { ... } )"                                   -- repeat segments x times
+  "loop( { ... } )"                                       -- loop segments indefinitely
+  "lfo(time,level,shape)"
   "pulse(time,level,polarity)"
-  "ar(attack,release)"
+  "ar(attack,release,shape)"
 
 crow.output[x].query()           -- query current output x value
 crow.output[x].receive           -- function called by query x

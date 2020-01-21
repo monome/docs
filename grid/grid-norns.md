@@ -8,7 +8,7 @@ has_toc: false
 
 # grid + norns
 
-## compatability
+## compatibility
 
 All editions of grid are compatible with norns. Playability is dictated by two factors, size and varibright capability.
 

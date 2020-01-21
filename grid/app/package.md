@@ -2,6 +2,7 @@
 layout: default
 title: max
 parent: + computer
+redirect_from: /app/package
 nav_order: 3
 ---
 
@@ -17,7 +18,7 @@ Once downloaded, open Max and go to the Package Manager via the dropdown menu:
 
 **File &rarr; Show Package Manager**
 
-Use the seach bar at the top: "monome" and the click *Install*.
+Use the search bar at the top: "monome" and the click *Install*.
 
 ![Package](images/monomepackage.png)
 

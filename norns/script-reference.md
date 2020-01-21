@@ -1,9 +1,10 @@
 ---
 layout: default
-parent: norns
-has_children: true
-title: script reference
-nav_order: 4
+parent: scripting
+grand_parent: norns
+has_children: false
+title: reference
+nav_order: 3
 has_toc: false
 ---
 

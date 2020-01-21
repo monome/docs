@@ -1,9 +1,9 @@
 ---
 layout: default
 parent: norns
-has_children: true
+has_children: false
 title: maiden
-nav_order: 2
+nav_order: 3
 has_toc: false
 ---
 
@@ -85,6 +85,8 @@ If you choose to update a project that currently lives on your norns, please not
 
 Once you update a project through the PROJECT MANAGER, you'll see a commit number listed on the right of the project's tile (like *34d225b*). Click a project's commit number to be brought to the project's GitHub page, where you can learn more about the project and verify that the version you have is the latest.
 
+*nb. If you are updating a project through the PROJECT MANAGER that was not installed by using the PROJECT MANAGER, you will receive an error that the project cannot be found in the catalog. Please delete the previously installed version and reinstall through PROJECT MANAGER, which establishes the necessary git files for future updates.*
+
 #### AVAILABLE
 
 This tab shows which projects are available through the *base* and *community* repositories.
@@ -159,8 +161,25 @@ When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM
 
 ### SERIAL (NO WIFI)
 
-Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux do:
+Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux, open a terminal and type:
 
-`screen /dev/tty.usb(tab) 115200`
+**macOS**:
 
-Where `(tab)` appears hit TAB to autocomplete the serial number. Login is the same as above.
+- `screen /dev/tty.usb`
+- then, press TAB to autocomplete your serial number
+- then type `115200`
+
+Have doubts? The line should read: `screen /dev/tty.usb[TAB KEY] 115200`
+
+**linux**:
+
+- `dmesg` to see what enumeration number your system gave norns
+- you'll get something like this: `FTDI USB Serial Device converter now attached to ttyUSB0`
+- then, type: `screen /dev/ttyUSB0` (or whatever enumeration number was given)
+- then type `115200`
+
+Have doubts? The line should read: `screen /dev/ttyUSB<enumeration number> 115200`
+
+If you see a blank screen, press ENTER.
+
+You'll be asked for login credentials. Login is the same as SSH above.

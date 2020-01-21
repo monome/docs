@@ -2,6 +2,7 @@
 layout: default
 title: raspbian
 nav_exclude: true
+redirect_from: /raspbian/
 permalink: /serialosc/raspbian/
 ---
 

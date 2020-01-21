@@ -1,6 +1,7 @@
 ---
 layout: default
 nav_exclude: true
+redirect_from: /app/terms/
 ---
 
 
@@ -78,7 +79,7 @@ A simple step sequencer for triggering drum sounds or melodies.
 **Make sure the Transport is running in Live, otherwise no response will be seen on the grid**
 
 - Enter triggers with key presses. Notes will light when active.
-- Top row shows the curent playhead.
+- Top row shows the current playhead.
 - Press keys in the top row to jump to a new playback position.
 - Set a playback loop by holding the new playback position, and pressing another top-row key to set the end position.
 

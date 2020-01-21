@@ -1,8 +1,9 @@
 ---
 layout: default
-parent: norns
+parent: scripting
+grand_parent: norns
 title: studies
-nav_order: 3
+nav_order: 1
 permalink: /norns/study-1/
 ---
 

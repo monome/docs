@@ -2,7 +2,7 @@
 layout: default
 parent: norns
 title: help
-nav_order: 5
+nav_order: 6
 ---
 
 # norns: help
@@ -17,6 +17,7 @@ nav_order: 5
 	- [without WiFi](#manual-update)
 	- [fresh install](#fresh-install)
 - [backing up norns to USB](#backup-no-wifi)
+- [taking a screenshot](#png)
 - [additional q's](#faq)
 
 ## replacing parts
@@ -61,7 +62,10 @@ If you are consistently unable to connect your norns to wifi through the ['Conne
 
 3. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
 
-4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../maiden/#other-access). Once you perform this serial login, try running `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network.
+4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../maiden/#other-access). Once you perform this serial login, try executing `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network:
+
+	![](image/terminal-nmtui-main.png)
+
 
 5. If you are still unable to connect, please email help@monome.org with the following information:
 
@@ -73,7 +77,9 @@ If you are consistently unable to connect your norns to wifi through the ['Conne
 
 As of 10.28.2019, maiden (the web-based editor built into norns) now features a [project manager](../maiden/#project-manager) to help facilitate project discovery, installation, and upgrades.
 
-lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns%20order%3Alatest) for projects tagged `norns`. In each project's thread, you'll find in-depth conversation as well as performance examples and tutorials. Projects for norns are primarily built and maintained by the lines community, so any questions/trouble with a specific project should be directed to its thread.
+If you are updating a project through the project manager that was not installed by using the project manager, you will receive an error that the project cannot be found in the catalog. Please delete the previously installed version and reinstall through project manager, which establishes the necessary git files for future updates.
+
+lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns) for projects tagged `norns`. In each project's thread, you'll find in-depth conversation as well as performance examples and tutorials. Projects for norns are primarily built and maintained by the lines community, so any questions/trouble with a specific project should be directed to its thread.
 
 ## help: I've deleted the `code` folder! <a name="code-folder"></a>
 
@@ -117,20 +123,22 @@ This simply means there is an error in the script you're trying to load.
 
 Connect via wifi and open maiden to see the error message when you again try to load the script.
 
-A common problem may be a MISSING INCLUDE. Check the output for something like:
+A common problem may be a missing engine. Check the output for something like:
 
 ```
-### MISSING INCLUDE: ack/lib/ack
-### SCRIPT ERROR: load fail
-/home/we/dust/code/ash/playfair.lua:21: MISSING INCLUDE: ack/lib/ack
+### SCRIPT ERROR: missing Timber
 ```
 
-The script `playfair` requires `ack`, so go find it in the Library and add the file to `dust/code/`.
+In this example, the script requires `Timber`, so go find it in the Project Manager and install it. If you had just recently installed `Timber`, you need to restart your norns through SLEEP or entering `;restart` in the matron REPL.
 
 ### SUPERCOLLIDER FAIL
 
 This indicates that something is wrong with Supercollider, which could be due to various issues.
 
+If you're able to load maiden, there are two tabs in the main REPL area (above the `>>` prompt at the bottom of your screen). The first tab is for `matron`, the control program that runs scripts -- the other is `sc` for SuperCollider. Click into the `sc` tab and type `;restart` into the REPL. That should show you what is going on inside of SuperCollider.
+
+- You might have a [duplicate engine](#duplicate-engines).
+- You might be [missing a required engine](#load-fail).
 - If an update was recently applied, it may be necessary to [manually re-apply it](#manual-update).
 - If this doesn't help, you may need to re-flash your norns with a clean image (after backing up any of your data).
 - If this doesn't fix it, there may be a hardware issue: e-mail help@monome.org.
@@ -141,7 +149,7 @@ If a newly-renamed script throws a `file not found` error in maiden, it is likel
 
 ## manual / offline update <a name="manual-update"></a>
 
-- Download and copy [update file (12/01/2019)](https://github.com/monome/norns/releases/download/v2.2.4/norns191201.tgz) to a FAT-formatted USB drive
+- Download and copy [update file (12/30/2019)](https://github.com/monome/norns/releases/download/v2.2.5/norns191230.tgz) to a FAT-formatted USB drive
 - Insert the disk to norns and power up.
 - Connect via [serial](../maiden/#other-access).
 - Copy file to `~/update/`:
@@ -154,8 +162,8 @@ sudo cp /media/usb0/*.tgz ~/update/
 
 ```
 cd ~/update
-tar xzvf norns191028.tgz
-cd 191028
+tar xzvf norns191230.tgz
+cd 191230
 ./update.sh
 ```
 
@@ -164,7 +172,7 @@ cd 191028
 
 ## fresh install
 
-- current image: [190801](https://monome.nyc3.digitaloceanspaces.com/norns190801.img.tgz) - 1.1G (please conserve bandwidth by not repeatedly downloading)
+- current image: [200106](https://github.com/monome/norns-image/releases/download/200106/norns200106.img.zip) - 1.1G
 
 By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows.
 
@@ -190,6 +198,25 @@ First, connect via [serial](../maiden/#other-access) and then insert a USB stick
 - Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
 - If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
 - Shutdown with `sudo shutdown now`
+
+## taking a screenshot <a name="png"></a>
+
+Capturing a screenshot of your norns can be a helpful tool for creating illustrative documentation or sharing UI ideas.
+
+With your norns powered-on and connected to the same WIFI network as your computer, connect to maiden. Then, execute this line in maiden's REPL (replacing <FILENAME> with something unique):
+
+`_norns.screen_export_png("/home/we/<FILENAME>.png")`
+
+Use [SFTP](../sftp/) to connect to norns and download the PNG you just created. You'll notice the PNG is kinda tiny and the colors are inverted. Let's fix that with [ImageMagick](https://imagemagick.org/script/download.php).
+
+With ImageMagick installed on your computer, execute the following (replacing <PATH+FILENAME> with the entire path to your downloaded PNG):
+
+`magick convert <PATH+FILENAME>.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% <PATH+FILENAME>-m.png`
+
+For example:
+`magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr-m.png`
+
+This will clean up the image, make it look just like it renders on norns, and save it as a new file with the same name, but a `-m` at the end :)
 
 ## additional a's to faq's <a name="faq"></a>
 

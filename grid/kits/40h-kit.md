@@ -126,7 +126,7 @@ Load ALL leds correctly as described above (long and short leg) while holding th
 
 ![](/docs/kits/images/tech-kits-leds1_480.jpg)
 
-When they are all inserted, take a sheet of paper and hold it in front to the "led side" (so they don't fall out of their holes) while laying it gently face down on the table with the legs sticking up (see picture below). When it's on the table, push and shake alittle so that every led finds an "ok position". They don't have to be perfectly aligned..you'll correct this later.
+When they are all inserted, take a sheet of paper and hold it in front to the "led side" (so they don't fall out of their holes) while laying it gently face down on the table with the legs sticking up (see picture below). When it's on the table, push and shake a little so that every led finds an "ok position". They don't have to be perfectly aligned..you'll correct this later.
 
 ![](/docs/kits/images/tech-kits-leds2_480.jpg)
 
@@ -253,7 +253,7 @@ lower will be too dim, higher may create a bright "spot" in the middle of the pa
 
 **angle**: as wide as possible!
 
-a 20 degree angle may result in a bright spot. a 50 degree angle should uniformally light up the entire pad.
+a 20 degree angle may result in a bright spot. a 50 degree angle should uniformly light up the entire pad.
 
 **Vf and current:** below 4.5V, 20ma
 

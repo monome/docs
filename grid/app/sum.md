@@ -1,6 +1,7 @@
 ---
 layout: default
 nav_exclude: true
+redirect_from: /app/sum/
 ---
 
 <div class="vid"><html><iframe src="//player.vimeo.com/video/91524122" width="570" height="321" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></html></div>
@@ -85,7 +86,7 @@ A simple step sequencer for triggering drum sounds. Standard percussion sounds a
 ![step](images/step.png)
 
 - Enter note events with key presses. Notes will light when active.
-- Top row shows the curent playhead.
+- Top row shows the current playhead.
 - Press keys in the top row to jump to a new playback position.
 - Set a playback loop by holding the new playback position, and pressing another top-row key to set the end position.
 

@@ -195,7 +195,7 @@ crow internally generates signals at 48kHz (though the user doesn’t have direc
 
 ### what the heck are pull-ups + i2c and what do I need to know about them in order to use crow?
 
-Pull-ups are resistors on [i2c-enabled](https://llllllll.co/t/a-users-guide-to-i2c/19219) (or, ii) devices (like crow, Teletype, Ansible, Just Friends, W/). They are required to ensure integrity of the data on the i2c bus. A "bus" requires only one device to have it's pull-ups enabled in order for data and power to flow correctly. crow's pull-ups are off by default.
+Pull-ups are resistors on [i2c-enabled](https://llllllll.co/t/a-users-guide-to-i2c/19219) (or, ii) devices (like crow, Teletype, Ansible, Just Friends, W/). They are required to ensure integrity of the data on the i2c bus. A "bus" requires only one device to have its pull-ups enabled in order for data and power to flow correctly. As of firmware v1.0.2, crow's pull-ups are on by default.
 
 Since *crow v1.0.2* crow's pullups are enabled by default - that's what you want! If for some specific reason you need to turn them off, crow provides the function `ii.pullup(state)` where you can turn them on (`true`) or off (`false`).
 

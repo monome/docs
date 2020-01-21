@@ -50,6 +50,17 @@ These are maximums. Power consumption varies greatly based on which USB controll
 - 19ma @ -12V
 - No +5v required
 
+## Panel details
+
+![Panel Overlay](images/ansible_CLEAN.png)
+
+- 4 Trigger outputs (TR 1-4, voltage range, slew rate, sample rate, bit rate?)
+- 4 continuous CV outputs (CV 1-4, voltage range, slew rate, sample rate, bit rate)
+- 2 KEY buttons
+- 2 CV inputs (IN 1-2, voltage range, sample rate, bit rate)
+- 1 USB-A port
+- 1 MODE button
+
 ## Firmware Updates
 
 Ansible ships with a strange USB A-A cable. This is used for firmware updates. We expect to be adding features from time to time, and the Ansible is a good candidate for community hacking. It's suggested to update your firmware to ensure you're running the newest version-- so the following documentation will be applicable rather than confusing.
@@ -62,11 +73,9 @@ This documentation documents firmware version **2.0.0**. Changelogs and binaries
 
 ## Basics
 
-![Panel Overlay](images/ansible_CLEAN.png)
-
 Output and input functionality vary according to which application is running.
 
-Applications are determined by which USB device is plugged in. For example, when you plug in a Grid after a firmware update, it will be running Kria. Hold the preset key (next to the USB port) to switch to Meadowphysics; push it again to switch to Earthsea. Ansible will remember which application you were last running between power-ups.
+Applications are determined by which USB device is plugged in. For example, when you plug in a Grid after a firmware update, it will be running Kria. Hold the MODE key (next to the USB port) to switch to Meadowphysics; push it again to switch to Earthsea. Ansible will remember which application you were last running between power-ups.
 
 Unplugging the Grid and plugging an Arc will change to Levels.
 

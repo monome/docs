@@ -2,6 +2,7 @@
 layout: default
 title: serialosc setup
 parent: + computer
+redirect_from: /setup/
 nav_order: 1
 ---
 

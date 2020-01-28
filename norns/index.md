@@ -19,7 +19,7 @@ has_toc: false
 - [script reference](../norns/script-reference) contains lists of functions.
 - [help](../norns/help) for deeper device and system troubleshooting.
 
-current version: [191230](https://github.com/monome/norns/releases) (Dec 30 2019)
+current version: [200121](https://github.com/monome/norns/releases) (Jan 21 2020)
 
 ### contributing
 

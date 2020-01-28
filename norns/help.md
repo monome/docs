@@ -149,7 +149,7 @@ If a newly-renamed script throws a `file not found` error in maiden, it is likel
 
 ## manual / offline update <a name="manual-update"></a>
 
-- Download and copy [update file (12/30/2019)](https://github.com/monome/norns/releases/download/v2.2.5/norns191230.tgz) to a FAT-formatted USB drive
+- Download and copy [update file (01/21/2020)](https://github.com/monome/norns/releases/download/v2.2.7/norns200121.tgz) to a FAT-formatted USB drive
 - Insert the disk to norns and power up.
 - Connect via [serial](../maiden/#other-access).
 - Copy file to `~/update/`:

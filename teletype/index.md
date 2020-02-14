@@ -65,7 +65,7 @@ The basics of Teletype are quick to learn. The tutorials will get you started an
 * [PDF command reference](TT_commands_3.0.pdf)
 * [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
 
-* [Default scenes](scenes-1.0/)
+* [Default scenes](scenes-10/)
 
 You can also access in-module help any time by using ALT-H to toggle help mode.
 

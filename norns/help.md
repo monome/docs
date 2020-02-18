@@ -7,6 +7,19 @@ nav_order: 6
 
 # norns: help
 
+Between this page and the search bar above, you should be able to self-solve most norns troubles that you'd run into.
+
+If you need additional help, we're here for you! Please send an email to help@monome.org using this format:
+
+- *What issue did you experience?*
+- *What steps are necessary to reproduce the issue?*
+- *What additional hardware was connected to norns at the time of the issue? This includes controllers, WiFi dongles, external hubs, etc.*
+- *Please attach any output printed in [maiden](../maiden/) when the issue occurs*
+
+If you're unable to supply concrete steps to reliably reproduce the issue, this will reduce our efficacy. Please understand if we point you to existing resources and ask you to verify additional info.
+
+For support with specific scripts and libraries, please visit [lines](https://llllllll.co) and search for the script's thread.
+
 ### sections
 - [replacing parts](#replacing-parts)
 - [wifi troubleshooting](#wifi-troubleshooting)

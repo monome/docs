@@ -127,3 +127,21 @@ dfu-programmer at32uc3b0512 start
 ```
 
 > note: these are the same commands that are run by the `update_firmware.command` script included in the official firmware releases.
+
+after reflashing teletype, it makes the following proclamation:
+
+```
+SCENES WILL BE OVERWRITTEN!
+PRESS TO CONFIRM
+DO NOT PRESS OTHERWISE!
+```
+
+this will appear every time you power on the module until the panel
+button is pressed during this message, after which the module will
+behave normally. this is a safeguard that requires user confirmation
+before teletype will reset its flash memory to the default state, and
+was added to avoid accidentally wiping out saved scenes. if you see
+this message or get stuck in this state after normal usage of teletype
+without reflashing, do not press the button and please do post on
+lines, it should be possible to recover your scenes and troubleshoot
+using a firmware backup .hex file.

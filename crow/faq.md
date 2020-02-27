@@ -155,6 +155,10 @@ The `[sprintf]` object is the easiest way to format messages to crow. Using the 
 
 ## hardware<a name="hardware"></a>
 
+### one of crow's inputs doesn't seem to respond to triggers
+
+If you are running a script or device that uses crow's inputs (perhaps for clocking), but crow doesn't seem to be receiving the triggers, try executing the following commands in druid/maiden/max: `crow.reset()` and `crow.clear()` (or `^^r` and `^^c`). 
+
 ### can I use [x thing] to control crow?
 
 Since crow uses a specific communication syntax, it requires some sort of layer between the thing you want to use to control crow and crow itself. Right now, you can use any of these to have immediate fun with crow:

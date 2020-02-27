@@ -118,12 +118,18 @@ engine.name = 'R'
 local R = require 'r/lib/r'
 ```
 
-- `engine.list_commands()`, shows the commands.
+- `engine.list_commands()` shows the commands.
 
 For example to set the command `cutoff` to 500:
 
 ```lua
 engine.cutoff(500)
+```
+
+To see a list of all locally installed engines:
+
+```lua
+tab.print(engine.names)
 ```
 
 ### screen

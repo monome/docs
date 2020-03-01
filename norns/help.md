@@ -30,6 +30,7 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 	- [without WiFi](#manual-update)
 	- [fresh install](#fresh-install)
 - [backing up norns to USB](#backup-no-wifi)
+- [change passwords on norns](#change-passwd)
 - [taking a screenshot](#png)
 - [additional q's](#faq)
 
@@ -211,6 +212,31 @@ First, connect via [serial](../maiden/#other-access) and then insert a USB stick
 - Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
 - If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
 - Shutdown with `sudo shutdown now`
+
+## change passwords on norns <a name="change-passwd"></a>
+
+For security reasons (a device exposed to wifi should not have a widely-known password), you may want to change the default password for the `we` user.
+
+
+### login / ssh
+
+To change the login/ssh password for user `we`, log in to the norns via `ssh`. The command
+
+```
+passwd
+```
+
+will prompt you for the current and new password.
+
+### Samba
+
+The `smb://` remote login password does not automatically change when `passwd` changes. Although Samba is a low-security, local network project, it makes sense to set its login credentials to match the newly set user password. This can be done with:
+
+```
+sudo smbpasswd -a we
+```
+
+Re-type your new password and you should be all set.
 
 ## taking a screenshot <a name="png"></a>
 

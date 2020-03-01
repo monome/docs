@@ -215,23 +215,22 @@ First, connect via [serial](../maiden/#other-access) and then insert a USB stick
 
 ## change passwords on norns <a name="change-passwd"></a>
 
-For security reasons (a device exposed to wifi should not have a widely-known password), one may want to change the default password for the `we` user.
+For security reasons (a device exposed to wifi should not have a widely-known password), you may want to change the default password for the `we` user.
 
 
 ### login / ssh
 
-To change the login/ssh password for user `we`, log in to the norns via `ssh`. 
-The command 
+To change the login/ssh password for user `we`, log in to the norns via `ssh`. The command
 
 ```
 passwd
 ```
 
-will promt you for the current and new password.
+will prompt you for the current and new password.
 
 ### Samba
 
-The `smb://` remote login password does not automatically change with the `raspi-config` method and, although Samba is a low-security, local network project, it makes sense to set its login credentials to match the newly set user password. This can be done with
+The `smb://` remote login password does not automatically change when `passwd` changes. Although Samba is a low-security, local network project, it makes sense to set its login credentials to match the newly set user password. This can be done with:
 
 ```
 sudo smbpasswd -a we

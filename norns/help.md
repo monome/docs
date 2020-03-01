@@ -220,13 +220,14 @@ For security reasons (a device exposed to wifi should not have a widely-known pa
 
 ### login / ssh
 
-Change the login/ssh password for user `we` by help of 
+To change the login/ssh password for user `we`, log in to the norns via `ssh`. 
+The command 
 
 ```
-sudo raspi-config
+passwd
 ```
 
-and follow instructions in `Change User Password`
+will promt you for the current and new password.
 
 ### Samba
 

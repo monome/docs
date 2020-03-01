@@ -170,8 +170,8 @@ A parameter can be installed with the following:
 params:add{type = "number", id = "someparam", name = "Some Param", min = 1, max = 48, default = 4}
 ```
 
-- `params:set(index, value)`, reads a parameter.
-- `params:get(index)`, writes a parameter.
+- `params:set(index, value)`, writes a parameter.
+- `params:get(index)`, reads a parameter.
 
 ## devices
 

@@ -159,7 +159,7 @@ PLAY
 
 PLAY expects stereo 48khz files. WAV, AIFF and other uncompressed header / sample formats supported by [libsndfile](http://www.mega-nerd.com/libsndfile) will work (including raw). FLAC also.
 
-To share / sync audio files between norns and your computer, you'll need to use a file-sharing client. Learn more in our guides for [WebDAV (Mac)](/docs/norns/webdav) and [STFP (Windows)](/docs/norns/sftp).
+To share / sync audio files between norns and your computer, you'll need to use a file-sharing client. Learn more in our [file management guides](/docs/norns/manage).
 
 ### LEVELS
 

@@ -97,7 +97,15 @@ KR.SCALE        return current scale
 KR.POS x y z    set position to z for track x parameter y
                 a value of 0 for x means all tracks
                 a value of 0 for y means all parameters
-                parameters: 0 = all, 1 = trigger, 2 = note, 3 = octave, 4 = length
+                parameters: 
+                0 - all
+                1 - trigger
+                2 - note
+                3 - octave
+                4 - duration
+                5 - trigger ratcheting
+                6 - alternate note
+                7 - glide
 KR.POS x y      return position of track x parameter y
 KR.L.ST x y z   set loop start to z for track x parameter y
 KR.L.ST x y     return loop start of track x parameter y

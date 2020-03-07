@@ -278,6 +278,10 @@ end
 
 nb: don't mix and match multiple-address style with regular style!
 
+generally ii arguments corresponding to voltage parameters, including
+pitch, are specified in volts, times are specified in seconds, and others
+work the same as the teletype op.
+
 ## cal
 
 ```lua

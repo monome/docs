@@ -211,7 +211,7 @@ the example script reads a "backing track" clip when K1 is long-pressed. this se
 
 ## reference
 
-- [softcut API docs](https://monome.github.io/norns/doc/modules/softcut.html)
+- [softcut API docs](https://monome.org/norns/modules/softcut.html)
 
 contributions welcome: [github/monome/softcut-studies](https://github.com/monome/softcut-studies)
 

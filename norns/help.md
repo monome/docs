@@ -59,27 +59,27 @@ On early batches of norns, some users have reported that the encoder values are 
 - turn a level all the way up and continue to turn the encoder
 - if the level jumps and does not remain at maximum, then you might want to replace that encoder
 
-We are still working to identify if this is related to our assembly house or if the actual OEM parts are flawed. The fix is *incredibly* straightforward if you have access to a soldering iron. While we can provide fixes in-house, shipping back and forth has a great deal of environmental impact that we'd love to help avoid. So, please consider DIY'ing and email us at help@monome.org if you have any questions or trepidations about the DIY process.
+We are still working to identify if this is related to our assembly house or if the actual OEM parts are flawed. The fix is straightforward if you have access to a soldering iron and some past experience. E-mail help@monome.org if you're not comfortable making the fix and we can help.
 
 Replacement encoders can be purchased [from Octopart](https://octopart.com/pec11r-4015f-n0024-bourns-26648251).
 
 Please reference this [step-by-step video](https://vimeo.com/373181868/f58ea21a31) detailing the fix.
 
 ## wifi troubleshooting
+
 _nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources._
 
 If you are consistently unable to connect your norns to wifi through the ['Connect' steps outlined here](../play/#connect), please perform the following steps:
 
-1. Try plugging the wifi nub into a different USB slot on norns and perform a standard reboot.
+1. Try getting very close to your wifi router. Bad signal can make it seem nonfunctional.
 
-2. Plug the wifi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected. If your nub is defective, please email help@monome.org for a replacement
+2. Plug the wifi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected. If your nub is defective, please email help@monome.org for a replacement.
 
 3. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
 
 4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../maiden/#other-access). Once you perform this serial login, try executing `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network:
 
 	![](image/terminal-nmtui-main.png)
-
 
 5. If you are still unable to connect, please email help@monome.org with the following information:
 
@@ -116,9 +116,9 @@ lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20t
 
 ### DUPLICATE ENGINES
 
-Supercollider fails to load if you have multiple copies of the same engine (`.sc` files) inside of `dust` (the parent folder for the projects installed on norns).
+Supercollider fails to load if you have multiple copies of the same class, which are commonly contained in duplicate `.sc` files inside of `dust` (the parent folder for the projects installed on norns).
 
-To solve this, [connect](../play/#connect) via wifi and open [maiden](../maiden). Type `;restart` into the maiden REPL at the bottom (the `>>` prompt).
+To typically solve this, [connect](../play/#connect) via wifi and open [maiden](../maiden). Type `;restart` into the maiden _matron_ REPL at the bottom (the `>>` prompt).
 
 This will restart the audio components and output their logs. If there's a duplicate class an error message like the following will be shown:
 
@@ -130,6 +130,8 @@ DUPLICATE ENGINES:
 ```
 
 In this example, the `Engine_Ack.sc` engine is duplicated in two projects: `ack` and `we`. Using maiden, you would expand each project's `lib` folder to reveal the duplicated `Engine_Ack.sc`. After you remove one of the offending engines, execute `SYSTEM > RESTART` from the norns menu.
+
+If the issue persists or maiden does not report duplicate engines, please email help@monome.org. Keep in mind that unless you're familiar with Supercollider, do not tamper with its internal folder structure. All typical norns functionality can be handled through the maiden project manager or the `dust` folder.
 
 ### LOAD FAIL
 
@@ -147,7 +149,7 @@ In this example, the script requires `Timber`, so go find it in the Project Mana
 
 ### SUPERCOLLIDER FAIL
 
-This indicates that something is wrong with Supercollider, which could be due to various issues.
+This indicates that something is wrong with Supercollider, which could be due to various issues. First always just try rebooting via `SYSTEM > SLEEP`.
 
 If you're able to load maiden, there are two tabs in the main REPL area (above the `>>` prompt at the bottom of your screen). The first tab is for `matron`, the control program that runs scripts -- the other is `sc` for SuperCollider. Click into the `sc` tab and type `;restart` into the REPL. That should show you what is going on inside of SuperCollider.
 
@@ -265,8 +267,8 @@ This will clean up the image, make it look just like it renders on norns, and sa
 
 - If a connected MIDI controller is not functioning as expected, it may be due to a known limitation in scripts that do not explicitly allow for MIDI control from channels other than channel 1. Either reassign your MIDI controller to channel 1 or insert this [bit of code](https://llllllll.co/t/norns-scripting-best-practices/23606/2) into a script.
 
-- norns is not able to send MIDI to a VST or DAW directly over USB. You will need either two USB MIDI dongles or [2host](https://llllllll.co/t/2host-a-diy-usbmidi-host-to-host-adapter/23472).
+- norns is not able to send MIDI to a VST or DAW directly over USB, because you'd be trying to connect two MIDI hosts. One solution is to use two USB MIDI interfaces plugged into one another, or some MIDI devices exist with two USB host ports.
 
 - All grid editions will work with norns, but some apps may be coded for varibright levels that your hardware may not support.
 
-- norns does not have built-in bluetooth + the OS is not designed to take advantage of bluetooth.
+- norns does not have built-in bluetooth + the OS is not currently designed to take advantage of bluetooth.

@@ -95,6 +95,10 @@ If you are updating a project through the project manager that was not installed
 
 lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns) for projects tagged `norns`. In each project's thread, you'll find in-depth conversation as well as performance examples and tutorials. Projects for norns are primarily built and maintained by the lines community, so any questions/trouble with a specific project should be directed to its thread.
 
+## help: how do I clear a currently running app/script? <a name="clear-script>"</a>
+
+Press K1 to toggle from PLAY to HOME. Highlight `SELECT` and hold K1 -- you'll see `CLEAR` in the middle of the screen. Press K3 to clear the currently running script.
+
 ## help: I've deleted the `code` folder! <a name="code-folder"></a>
 
 ### getting the `code` folder back

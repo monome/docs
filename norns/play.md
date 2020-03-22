@@ -99,6 +99,7 @@ The installed software version will be listed under the script's name (eg. 19110
 
 Explore the collection of scripts.  Selecting a script will show a description.  Forward again will run the script.  The play screen will return upon running.  Quickly tap K1 to toggle between **PLAY** and **OTHER**.
 
+If you wish to clear a currently running script, highlight SELECT + hold K1. You'll see `CLEAR` in the middle of the screen -- press K3 to clear the currently running script.
 
 #### SYSTEM
 
@@ -112,7 +113,6 @@ Explore the collection of scripts.  Selecting a script will show a description. 
 #### SLEEP
 
 Powers down cleanly, saving current state.
-
 
 
 ### PARAMETERS
@@ -257,7 +257,9 @@ You'll be asked for login credentials. Login is the same as SSH above.
 
 ## UPDATE
 
-Updates to the core norns software can be installed easily via the SYSTEM menu. You must first be connected to the internet via wifi and have at least 400M free disk space. If a new version is available you will be prompted to continue installing. Audio will be disabled during this time. Note that the download time may be a few minutes, have patience. Upon completion you'll be notified of success or failure, then the unit will shut down after confirmation.
+Updates to the core norns software can be installed easily via the SYSTEM menu. You must first be connected to the internet via wifi and have at least 400M free disk space. If a new version is available you will be prompted to continue installing. Audio will be disabled during this time. Note that the download time may be a few minutes, have patience. Upon completion you'll be notified of success or failure, then the unit will ask for your confirmation to shut down.
+
+If for some reason you wish to re-run an update, hold K1 while selecting SYSTEM > UPDATE. norns will notify you that it has found the most recent update and you can follow the prompts to install.
 
 **If you are running 181101 or earlier it's recommended to do a [fresh install](../help/#fresh-install).**
 

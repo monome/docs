@@ -183,3 +183,73 @@ Have doubts? The line should read: `screen /dev/ttyUSB<enumeration number> 11520
 If you see a blank screen, press ENTER.
 
 You'll be asked for login credentials. Login is the same as SSH above.
+
+### Command Line Interface
+
+Nearly all of the project management operations exposed in the maiden web UI can be accomplished on the Command Line Interface (CLI).
+
+To access:
+
+```
+ssh we@norns.local
+...
+norns/maiden/maiden 
+```
+
+The maiden backend server also has sub-commands:
+
+```
+ssh we@norns.local
+...
+#
+# the catalog sub-command is useful for updating the "we" and "community"
+#
+~/maiden/maiden catalog help
+manage the script catalog
+
+Usage:
+  maiden catalog [command]
+
+Available Commands:
+  init        init an empty catalog file
+  list        list projects
+  update      update configured catalogs
+
+Flags:
+  -h, --help   help for catalog
+
+Global Flags:
+      --config string   use specific config file
+      --debug           enable debug logging
+
+Use "maiden catalog [command] --help" for more information about a command.
+```
+
+```
+#
+# the project sub-command is installing and updating project directories
+#
+~/maiden/maiden project help
+manage dust projects
+
+Usage:
+  maiden project [command]
+
+Available Commands:
+  install     install a script/project
+  list        list installed script/project(s)
+  push        push a git based project
+  remove      remove a project dir
+  update      install a script/project
+
+Flags:
+  -h, --help   help for project
+
+Global Flags:
+      --config string   use specific config file
+      --debug           enable debug logging
+
+Use "maiden project [command] --help" for more information about a command.
+```
+
+Have further usage questions? Visit the [norns: maiden](https://llllllll.co/t/norns-maiden/14052) topic on lines.

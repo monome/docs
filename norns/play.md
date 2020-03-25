@@ -181,17 +181,17 @@ K2 toggles focus between PLAY and REC.
 
 PLAY
 
-- K3 loads file.
-- K3 again to start.
-- K3 again to stop.
+- K3 loads file
+- K3 again to start
+- K3 again to stop
 
 PLAY expects 48khz files (both stereo and mono supported). WAV, AIFF and other uncompressed header / sample formats supported by [libsndfile](http://www.mega-nerd.com/libsndfile) will work (including raw). FLAC also.
 
 REC
 
-- K3 to arm recording.
-- K3 again to start.
-- K3 again to stop.
+- K3 to arm recording
+- K3 again to start
+- K3 again to stop
 
 When you arm recording, you will have the option to name your file, with default auto-incrementing text.
 

@@ -136,7 +136,7 @@ Scroll past the global audio parameters to reveal the script-level parameters (*
 
 ![](image/screen-params-script-200323.png)
 
-- K2 on a separator jumps to next section
+- K3 on a separator jumps to next section
 - K1+E2 jumps between separators (plus top line)
 
 #### PSET

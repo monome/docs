@@ -103,7 +103,7 @@ include("otherscript/lib/otherlib")
 
 ### engine
 
-Specify an engine at the top of your script, see the [engine docs](https://monome.github.io/norns/doc/modules/engine.html) for more details.
+Specify an engine at the top of your script, see the [engine docs](https://monome.org/norns/classes/engine.html) for more details.
 
 ```lua
 engine.name = 'PolySub'
@@ -134,7 +134,7 @@ tab.print(engine.names)
 
 ### screen
 
-The screen API handles drawing on the norns screen, see the [screen docs](https://monome.github.io/norns/doc/modules/screen.html) for more details.
+The screen API handles drawing on the norns screen, see the [screen docs](https://monome.org/norns/classes/screen.html) for more details.
 
 ```
 function redraw()
@@ -147,7 +147,7 @@ end
 
 ### metro
 
-The metro API allows for high-resolution scheduling, see the [metro docs](https://monome.github.io/norns/doc/modules/metro.html) for more details.
+The metro API allows for high-resolution scheduling, see the [metro docs](https://monome.org/norns/classes/metro.html) for more details.
 
 ```
 re = metro.init()
@@ -162,7 +162,7 @@ end
 
 ### paramset
 
-The paramset API allows to read and write temporary data and files, see the [paramset docs](https://monome.github.io/norns/doc/modules/paramset.html) for more details.
+The paramset API allows to read and write temporary data and files, see the [paramset docs](https://monome.org/norns/classes/paramset.html) for more details.
 
 A parameter can be installed with the following:
 
@@ -177,7 +177,7 @@ params:add{type = "number", id = "someparam", name = "Some Param", min = 1, max 
 
 ### grid
 
-`grid.connect(n)` to create device, returns object with handler, see the [grid docs](https://monome.github.io/norns/doc/modules/grid.html) for more details.
+`grid.connect(n)` to create device, returns object with handler, see the [grid docs](https://monome.org/norns/classes/grid.html) for more details.
 
 ```lua
 g = grid.connect()
@@ -190,7 +190,7 @@ g = grid.connect()
 
 ### arc
 
-`arc.connect(n)` to create device, returns object with handler, see the [arc docs](https://monome.github.io/norns/doc/modules/arc.html) for more details.
+`arc.connect(n)` to create device, returns object with handler, see the [arc docs](https://monome.org/norns/classes/arc.html) for more details.
 
 ```lua
 a = arc.connect()
@@ -204,7 +204,7 @@ a = arc.connect()
 
 ### midi
 
-`midi.connect(n)` to create device, returns object with handler, see the [midi docs](https://monome.github.io/norns/doc/modules/midi.html) for more details.
+`midi.connect(n)` to create device, returns object with handler, see the [midi docs](https://monome.org/norns/classes/midi.html) for more details.
 
 ```lua
 m = midi.connect()
@@ -216,7 +216,7 @@ m = midi.connect()
 
 ### hid
 
-`hid.connect(n)` to create device, returns object with handler, see the [hid docs](https://monome.github.io/norns/doc/modules/hid.html) for more details.
+`hid.connect(n)` to create device, returns object with handler, see the [hid docs](https://monome.org/norns/classes/hid.html) for more details.
 
 ```lua
 h = hid.connect()
@@ -234,6 +234,6 @@ h = hid.connect()
 [pdf version](../crone-process-routing.pdf)
 
 ## further
-- [Norns Lua docs](https://monome.github.io/norns/doc/)
+- [Norns Lua docs](https://monome.org/norns/)
 - [https://monome.org/docs/norns](https://monome.org/docs/norns)
 - [https://github.com/monome/norns](https://github.com/monome/norns)

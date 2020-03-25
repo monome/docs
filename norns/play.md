@@ -8,7 +8,7 @@ nav_order: 1
 
 # play
 
-sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [audio](#audio) &mdash; [connect](#connect) &mdash; [update](#update) &mdash; [help](#help)
+sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [pages](#pages) &mdash; [audio](#audio) &mdash; [connect](#connect) &mdash; [update](#update) &mdash; [help](#help)
 
 
 ## LEGEND
@@ -56,16 +56,16 @@ E1 changes the mode. K1+? means hold K1 then push ?.
 (bonus: try plugging in a grid.)
 
 
-## OTHER
+## PAGES
 
-Tap K1 quickly to toggle between **PLAY** and **OTHER**.
+Tap K1 quickly to toggle between **PLAY** and **NOPLAY**.
 
 You are now at **HOME**.
 
 ![](image/screen-home.png)
 
 
-In **OTHER** mode:
+In **NOPLAY** mode:
 
 - E1 moves between pages.
 - E2 scrolls up/down.
@@ -97,44 +97,78 @@ The installed software version will be listed under the script's name (eg. 19110
 
 #### SELECT
 
-Explore the collection of scripts.  Selecting a script will show a description.  Forward again will run the script.  The play screen will return upon running.  Quickly tap K1 to toggle between **PLAY** and **OTHER**.
+Explore the collection of scripts.  Selecting a script will show a description.  Forward again will run the script.  The play screen will return upon running.  Quickly tap K1 to toggle between **PLAY** and **NOPLAY**.
 
 If you wish to clear a currently running script, highlight SELECT + hold K1. You'll see `CLEAR` in the middle of the screen -- press K3 to clear the currently running script.
 
 #### SYSTEM
 
-- AUDIO - Like the parameter list, but for the global audio settings. Includes output and input levels, headphone gain, aux send (reverb), and insert (compression). See the [AUDIO](#audio) section below for details on the parameters available.
 - DEVICES - This is a list of connected USB hardware with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports. This section lets you re-assign connected devices to specific ports.
 - WIFI - Networking settings. Requires USB WIFI interface. See [CONNECT](#connect).
-- UPDATE - Checks for updates. Internet connection required. See [UPDATE](#update).
 - RESET - Quickly resets the audio system.
-
+- UPDATE - Checks for updates. Internet connection required. See [UPDATE](#update).
 
 #### SLEEP
 
 Powers down cleanly, saving current state.
 
+**If you are unable to SLEEP your norns due to a lockup situation, please DO NOT USE THE BOTTOM WHITE BUTTON.**
+
+Instead, push-and-hold K3-K2-K1 (in this order) for 10 seconds and the system will safely reset.
 
 ### PARAMETERS
 
-![](image/screen-params.png)
+![](image/screen-params-200323.png)
 
-Scripts can define their own parameters. Note that some scripts may have no parameters.
+#### EDIT
 
-- E2 scrolls.
-- E3 changes values. Hold K3 for fine tuning.
+Provides control over system audio levels, mix bus, and script parameters.
 
-![](image/screen-params-alt.png)
+EDIT begins with a parameter list for the global audio settings. See [AUDIO](#audio) for details on the parameters available in each section.
 
-HOLD K1 to access parameter set saving and loading:
+![](image/screen-params-edit-200323.png)
 
-- E3 scrolls set number (0 is default, with 1-99 available).
-- K2 loads the selected set.
-- K3 saves the set to the selected position.
 
-Enable MIDI-mapping with E3 while the MIDI-map item is selected. Release K1 to return to the Parameter list, but now you see MIDI CC assignments. Push K3 to enable MIDI-learn, whereupon the next incoming MIDI CC will be mapped to this value.
+- E2 scrolls
+- E3 changes values. Hold K3 for fine tuning
 
-Get out of MIDI-mapping mode by holding K1 and toggling off.
+Scroll past the global audio parameters to reveal the script-level parameters (*nb. some scripts may not have their own parameters*).
+
+![](image/screen-params-script-200323.png)
+
+- K2 on a separator jumps to next section
+- K1+E2 jumps between separators (plus top line)
+
+#### PSET
+
+![](image/screen-pset-200323.png)
+
+Parameter set saving and loading:
+
+- E2 navigates SAVE, LOAD, DELETE
+- E3 scrolls PSET slots for each section
+- K3 executes the command on the selected PSET slot
+
+When you execute SAVE, you will have the option to name your PSET, with default text.
+
+A `*` indicates the currently loaded PSET.
+
+#### MAP
+
+Enable MIDI mapping and control over parameters. If a parameter has a `-` to its right, it's mappable.
+
+![](image/screen-mapselect-200323.png)
+
+- E2 navigates
+- K3 opens for mapping
+
+To assign a MIDI control to a parameter, you can either LEARN or manually edit:
+
+![](image/screen-mapdetail-200323.png)
+
+- E2 navigates
+- E3 scrolls values
+- K3 executes
 
 
 ### TAPE
@@ -143,21 +177,27 @@ Get out of MIDI-mapping mode by holding K1 and toggling off.
 
 On this page you can record and play directly to and from disk.
 
-K2 toggles focus between REC and PLAY.
-
-REC
-
-- K3 to arm recording.
-- K3 again to start.
-- K3 again to stop.
+K2 toggles focus between PLAY and REC.
 
 PLAY
 
-- K3 loads file.
-- K3 again to start.
-- K3 again to stop.
+- K3 loads file
+- K3 again to start
+- K3 again to stop
 
-PLAY expects stereo 48khz files. WAV, AIFF and other uncompressed header / sample formats supported by [libsndfile](http://www.mega-nerd.com/libsndfile) will work (including raw). FLAC also.
+PLAY expects 48khz files (both stereo and mono supported). WAV, AIFF and other uncompressed header / sample formats supported by [libsndfile](http://www.mega-nerd.com/libsndfile) will work (including raw). FLAC also.
+
+REC
+
+- K3 to arm recording
+- K3 again to start
+- K3 again to stop
+
+When you arm recording, you will have the option to name your file, with default auto-incrementing text.
+
+![](image/screen-tape-filename-200323.png)
+
+REC writes 48khz stereo WAV.
 
 To share / sync audio files between norns and your computer, you'll need to use a file-sharing client. Learn more in our [file management guides](/docs/norns/manage).
 

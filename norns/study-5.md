@@ -140,15 +140,15 @@ there will come a time when you have collected too many numbers, and they are pr
 
 ```lua
 my_secret_bits = {2,-1,21,0}
-tab.save(my_secret_bits, data_dir.."secret.txt")
+tab.save(my_secret_bits, _path.data.."secret.txt")
 ```
 
-`tab.save` is a function which saves a table to disk. we specify the file as `secret.txt` inside the folder `data_dir` (which is a global for `/home/we/dust/data/`).
+`tab.save` is a function which saves a table to disk. we specify the file as `secret.txt` inside the folder `_path.data` (which is a global for `/home/we/dust/data/`).
 
 let's now load the same file to a different table:
 
 ```lua
-summoned_bits = tab.load(data_dir.."secret.txt")
+summoned_bits = tab.load(_path.data.."secret.txt")
 ```
 
 a quick check via `tab.print(summoned_bits)` will show that the read was successful:
@@ -212,7 +212,7 @@ the file `readme.md` should be printed! stepping through `print_file`:
 writing a file is not much more complex:
 
 ```
-f=io.open(data_dir .. "other_test.txt","w+")
+f=io.open(_path.data .. "other_test.txt","w+")
 f:write("dear diary,\n")
 f:write("10011010\n")
 f:close(f)

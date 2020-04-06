@@ -192,6 +192,8 @@ cd 200218
 
 ## fresh install
 
+*nb. these instructions apply only to stock norns. If you have a norns shield, please see [the github documentation](https://github.com/monome/norns-shield) for the latest shield image and troubleshooting help.*
+
 - current image: [200106](https://github.com/monome/norns-image/releases/download/200106/norns200106.img.zip) - 1.1G
 
 By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows.

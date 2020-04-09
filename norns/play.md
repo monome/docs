@@ -217,6 +217,8 @@ Audio routing is shown below:
 
 ![](image/norns-audio-route.png)
 
+[Technical details about the norns mixer client (crone).](../script-reference/#crone)
+
 ### AUDIO PARAMETERS
 
 Control of various audio parameters happens in **SYSTEM > AUDIO**. Note that the topmost levels are also controlled via the **LEVELS** page.

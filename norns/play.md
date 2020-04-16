@@ -21,7 +21,7 @@ The mini-USB plug provides power and charges the internal battery. Use the cable
 
 Hold **K1** for three seconds.
 
-Be still, and norns will awaken.
+Be still, and norns will awaken with a welcome chime.
 
 There's a small light near the power plug.  ORANGE means power.  WHITE means disk access.
 
@@ -105,12 +105,12 @@ If you wish to clear a currently running script, highlight SELECT + hold K1. You
 
 - DEVICES - This is a list of connected USB hardware with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports. This section lets you re-assign connected devices to specific ports.
 - WIFI - Networking settings. Requires USB WIFI interface. See [CONNECT](#connect).
-- RESET - Quickly resets the audio system.
+- RESET - Quickly resets the audio system and resets current configuration data to a default state, restoring audio levels to maximum and clearing the currently loaded script.
 - UPDATE - Checks for updates. Internet connection required. See [UPDATE](#update).
 
 #### SLEEP
 
-Powers down cleanly, saving current state.
+Powers down cleanly, saving current state to be restored upon next boot (including audio levels and which script is currently loaded).
 
 **If you are unable to SLEEP your norns due to a lockup situation, please DO NOT USE THE BOTTOM WHITE BUTTON.**
 

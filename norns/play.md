@@ -280,7 +280,8 @@ If you do not have access to a router, you can turn the norns into a WIFI hotspo
 
 When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM.
 
-- user: `we`
+- open a Terminal
+- execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`
 - password: `sleep`
 
 ### SERIAL (NO WIFI)

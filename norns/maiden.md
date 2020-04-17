@@ -156,7 +156,8 @@ Also see the [scripting reference](../script-reference/).
 
 When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM.
 
-- user: `we`
+- open a Terminal
+- execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`
 - password: `sleep`
 
 ### SERIAL (NO WIFI)

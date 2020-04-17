@@ -154,9 +154,9 @@ Also see the [scripting reference](../script-reference/).
 
 ### SSH
 
-When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM.
+When connected via WIFI you can SSH into norns from another computer on the same network at the IP address shown in SYSTEM.
 
-- open a Terminal
+- open a Terminal on a Mac/Win/Linux computer
 - execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`
 - password: `sleep`
 

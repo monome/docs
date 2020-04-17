@@ -278,9 +278,9 @@ If you do not have access to a router, you can turn the norns into a WIFI hotspo
 
 ### SSH
 
-When connected via WIFI you can SSH into norns at the IP address shown in SYSTEM.
+When connected via WIFI you can SSH into norns from another computer on the same network at the IP address shown in SYSTEM.
 
-- open a Terminal
+- open a Terminal on a Mac/Win/Linux computer
 - execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`
 - password: `sleep`
 

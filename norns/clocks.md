@@ -136,7 +136,7 @@ you can run lots of clocks at once: up to 100.
 engine.name = 'PolyPerc'
 
 function forever(freq,rate)
-  while(true) do
+  while true do
     clock.sync(1/rate)
     engine.hz(freq)
   end

@@ -101,7 +101,7 @@ now each `strum` is executed with different agruments. note that you can overlap
 
 ### loop
 
-so far all of our clock functions end by themselves, by reaching the end of their own execution. we can create forever-running loops using a `while(true)` inner loop. these will continue running until you cancel them manually with `clock.cancel`, or by launch a new script.
+so far all of our clock functions end by themselves, by reaching the end of their own execution. we can create forever-running loops using a `while true` inner loop. these will continue running until you cancel them manually with `clock.cancel`, or by launch a new script.
 
 ```
 engine.name = 'PolyPerc'
@@ -208,4 +208,3 @@ clock signals can be transmitted via midi or crow.
 `crow out` sets the output number, and also has a `crow out div` setting for beat subdivisions.
 
 ---
-

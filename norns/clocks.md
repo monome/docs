@@ -109,7 +109,7 @@ engine.name = 'PolyPerc'
 clock_id = 0
 
 function forever(freq)
-  while(true) do
+  while true do
     clock.sync(1/4)
     engine.hz(freq)
   end

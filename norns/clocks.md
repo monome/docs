@@ -9,12 +9,12 @@ permalink: /norns/clocks/
 
 # clocks
 
-the clock library provides a way to create timed function calls: loops, repetition, and delays. synchronization is possible and time base can come from a variety of sources.
+the clock library provides a way to create timed function calls: loops, repetition, and delays. synchronization is possible and time base can come from a variety of sources. the clock library uses lua coroutines.
 
 ## commands
 
-- `id = clock.run( func )` &mdash; start a new clock with function _func_. returns _id_
-- `clock.cancel( id )` &mdash; cancel clock _id_ 
+- `id = clock.run( func )` &mdash; start a new coroutine with function _func_. returns _id_
+- `clock.cancel( id )` &mdash; cancel coroutine _id_ 
 - `clock.sleep( time )` &mdash; resume in _time_ seconds
 - `clock.sync( beats )` &mdash; resume in _beats_ according to tempo
 - `beats = clock.get_time_beats()` &mdash; returns current time in _beats_
@@ -47,7 +47,7 @@ function init()
 end
 ```
 
-when executed, you will see _starting now_, _done with init_, (two seconds delay and then): _now awake_. `clock.run` starts a coroutine with the function `later`. this functions immediately sleeps for two seconds, which means the `init` function resumes.
+when executed, you will see _starting now_, _done with init_, (two seconds delay and then): _now awake_. `clock.run` starts a coroutine with the function `later`. this function immediately sleeps for two seconds, which means the `init` function resumes.
    
 ### repetition and sync
 
@@ -95,7 +95,7 @@ function key(n,z)
 end
 ```
 
-now each `strum` is executed with different agruments. note that you can overlap multiple runs by pressing the key rapidly! a new coroutine is created with each run, so you can have numerous clock processes running at once.
+now each `strum` is executed with different arguments. note that you can overlap multiple runs by pressing the key rapidly! a new coroutine is created with each run, so you can have numerous clock processes running at once.
 
 `clock.sync` sleeps until the next subdivision specified arrives, so the timing is effectively quantized to the master tempo (which is the goal of this use case).
 

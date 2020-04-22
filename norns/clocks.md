@@ -19,7 +19,7 @@ the clock library provides a way to create timed function calls: loops, repetiti
 - `clock.sync( beats )` &mdash; resume in _beats_ according to tempo
 - `beats = clock.get_time_beats()` &mdash; returns current time in _beats_
 - `tempo = clock.get_tempo()` &mdash; returns current _tempo_
-- `beat_sec = clock.get_beat_sec()` &mdash; returns length of beat in seconds
+- `beat_sec = clock.get_beat_sec()` &mdash; returns length of a single beat at current tempo in seconds
 
 ## callbacks
 

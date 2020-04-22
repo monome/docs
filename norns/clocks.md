@@ -144,10 +144,15 @@ function forever(freq,rate)
 end
 
 function init()
-  clock.run(forever,333,3)
-  clock.run(forever,666,1)
-  clock.run(forever,999,2)
-  clock.run(forever,111,0.33)
+  voice = {1,2,3,4}
+  voice[1] = clock.run(forever,333,3)
+  voice[2] = clock.run(forever,666,1)
+  voice[3] = clock.run(forever,999,2)
+  voice[4] = clock.run(forever,111,0.33)
+  
+  for i = 1,4 do
+    print("voice "..i..": ID "..voice[i])
+  end
 end
 ```
 use maiden's command line to cancel individual voices, eg `clock.cancel(voice[3])`

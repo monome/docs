@@ -101,7 +101,9 @@ now each `strum` is executed with different arguments. note that you can overlap
 
 ### loop
 
-so far all of our clock functions end by themselves, by reaching the end of their own execution. we can create forever-running loops using a `while true` inner loop. these will continue running until you cancel them manually with `clock.cancel`, or by launch a new script.
+so far all of our coroutines end by themselves, by reaching the end of their own execution. we can create forever-running loops using a `while true` inner loop. these will continue running until you launch a new script or cancel them manually with `clock.cancel`.
+
+to cancel a coroutine, you need to store its `id`. in the following script, we establish a global variable `clock_id` to capture the identifier for our running function, so that we can directly cancel it later.
 
 ```
 engine.name = 'PolyPerc'

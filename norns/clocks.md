@@ -150,6 +150,27 @@ function init()
 end
 ```
 
+### complex timing
+
+multiple `clock.sync` and `clock.sleep` commands are allowed within the same function. this script creates a swing rhythm:
+
+```
+engine.name = 'PolyPerc'
+
+function forever(freq)
+  while true do
+    clock.sync(2/3)
+    engine.hz(freq)
+    clock.sync(1/3)
+    engine.hz(freq)
+  end
+end
+
+function init()
+  clock.run(forever,333)
+end
+```
+
 ### query
 
 you can query the current tempo, beats, and seconds-per-beat:

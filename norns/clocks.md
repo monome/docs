@@ -16,7 +16,7 @@ the clock library provides a way to create timed function calls: loops, repetiti
 - `id = clock.run( func )` &mdash; start a new coroutine with function _func_. returns _id_
 - `clock.cancel( id )` &mdash; cancel coroutine _id_ 
 - `clock.sleep( time )` &mdash; resume in _time_ seconds
-- `clock.sync( beats )` &mdash; resume in _beats_ according to tempo
+- `clock.sync( beats )` &mdash; resume at _beats_ count according to global tempo
 - `beats = clock.get_time_beats()` &mdash; returns current time in _beats_
 - `tempo = clock.get_tempo()` &mdash; returns current _tempo_
 - `beat_sec = clock.get_beat_sec()` &mdash; returns length of a single beat at current tempo in seconds

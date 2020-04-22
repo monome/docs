@@ -35,15 +35,15 @@ these functions can be script defined and are called by system events:
 `clock.run` starts a new coroutine with the function you provide:
 
 ```
-function later()
-  clock.sleep(2)
-  print("now awake")
-end
-
 function init()
   print("starting now")
   clock.run(later)
   print("done with init")
+end
+
+function later()
+  clock.sleep(2)
+  print("now awake")
 end
 ```
 

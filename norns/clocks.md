@@ -189,15 +189,20 @@ softcut.loop_start(1,clock.get_beats_sec())
 scripts can define their own callback functions for transport start and stop:
 
 ```
-saved_id = 0
+engine.name = 'PolyPerc'
+
+function pulse()
+  clock.sync(1/4)
+  engine.hz(333)
+end
 
 function clock.transport.start()
   print("we begin")
-  saved_id = clock.run(something)
+  id = clock.run(pulse)
 end
 
 function clock.transport.stop()
-  clock.cancel(saved_id)
+  clock.cancel(id)
 end
 ```
 

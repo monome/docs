@@ -130,7 +130,7 @@ to cancel a coroutine you need to save its `id`.
 
 ### multiples
 
-you can run lots of clocks at once: up to 100.
+you can run lots of coroutines at once: up to 100.
 
 ```
 engine.name = 'PolyPerc'

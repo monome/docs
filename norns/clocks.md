@@ -70,7 +70,7 @@ function key(n,z)
 end
 ```
 
-this script starts a new coroutine when K3 is pressed. the `strum` function plays eight notes, sleeping for 1/4 of a beat between notes.
+this script starts a new coroutine when K3 is pressed. the `strum` function plays eight notes, sleeping for 1/4 of a beat (= 1/16th note in 4/4) between notes, synced to the global tempo.
 
 you can change the global tempo using parameters via command or menu. see the later section.
 

@@ -150,6 +150,7 @@ function init()
   clock.run(forever,111,0.33)
 end
 ```
+use maiden's command line to cancel individual voices, eg `clock.cancel(voice[3])`
 
 ### complex timing
 

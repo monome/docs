@@ -47,7 +47,7 @@ function later()
 end
 ```
 
-when executed, you will see _starting now_, _done with init_, (two seconds delay and then): _now awake_. `clock.run` starts a coroutine with the function `later`. this function immediately sleeps for two seconds, which means the `init` function resumes.
+when executed, you will see _starting now_, _done with init_, (two seconds delay and then): _now awake_. `clock.run` starts a coroutine with the function `later`. this function immediately sleeps for two seconds, which means the `init` function resumes and finishes before `later` is able to print its output.
    
 ### repetition and sync
 

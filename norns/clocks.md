@@ -220,6 +220,12 @@ crow additionally has a `crow in div` parameter to specify the number of sub-div
 
 the `tempo` parameter sets the internal and link tempos. this tempo will be automatically updated if set by an external source (midi, crow, or remote link device).
 
+you can set the tempo in your script by the normal method of setting parameters:
+
+```
+params:set("clock_tempo",100)
+```
+
 ### out
 
 clock signals can be transmitted via midi or crow.

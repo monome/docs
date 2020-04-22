@@ -133,6 +133,8 @@ end
 
 you can run lots of coroutines at once: up to 100.
 
+in this script, we capture `id`s using a table of `voice`s and print the assignments to the REPL. you'll notice that the `id`s change (by incrementing) each time -- but by using variables to capture the `id`, we have a predictable way to terminate them.
+
 ```
 engine.name = 'PolyPerc'
 

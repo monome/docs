@@ -95,9 +95,9 @@ function key(n,z)
 end
 ```
 
-now each `strum` is executed with different arguments. note that you can overlap multiple runs by pressing the key rapidly! a new coroutine is created with each run, so you can have numerous clock processes running at once.
+now each `strum` is executed with different arguments. note that you can overlap multiple runs by pressing the key rapidly! a new coroutine is started with each run, so you can have numerous processes running at once.
 
-`clock.sync` sleeps until the next subdivision specified arrives, so the timing is effectively quantized to the master tempo (which is the goal of this use case).
+`clock.sync` sleeps until the next subdivision specified arrives, so the timing is effectively quantized to the global tempo (which is the goal of this use case).
 
 ### loop
 

@@ -58,8 +58,8 @@ engine.name = 'PolyPerc'
 
 function strum()
   for i=1,8 do
-    engine.hz(i*100)
     clock.sync(1/4)
+    engine.hz(i*100)
   end
 end
 

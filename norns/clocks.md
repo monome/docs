@@ -32,7 +32,7 @@ these functions can be script defined and are called by system events:
 
 ### simple delay
 
-`clock.run` starts a new clock with the function you provide:
+`clock.run` starts a new coroutine with the function you provide:
 
 ```
 function later()

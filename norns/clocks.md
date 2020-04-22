@@ -128,7 +128,6 @@ function key(n,z)
 end
 ```
 
-to cancel a coroutine you need to save its `id`.
 
 ### multiples
 

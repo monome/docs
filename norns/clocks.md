@@ -126,7 +126,7 @@ function key(n,z)
 end
 ```
 
-to cancel a clock you need to save its `id`.
+to cancel a coroutine you need to save its `id`.
 
 ### multiples
 

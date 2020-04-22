@@ -106,7 +106,7 @@ so far all of our clock functions end by themselves, by reaching the end of thei
 ```
 engine.name = 'PolyPerc'
 
-clock_id = 0
+clock_id = 0   -- make a global variable to save the id
 
 function forever(freq)
   while true do

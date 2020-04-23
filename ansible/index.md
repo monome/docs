@@ -69,7 +69,7 @@ Firmware update information [instructions are available](/docs/modular/update/).
 
 ## Firmware Version
 
-This documentation documents firmware version **2.0.0**. Changelogs and binaries for previous releases can be found [here](https://github.com/monome/ansible/releases). For versions 2.0.0 and up, you can determine the firmware version of your module by performing a USB disk backup. The created `ansible-preset.json` file will list the `"version":` at the beginning of the file.
+This documentation documents firmware version **3.0.0**. Changelogs and binaries for previous releases can be found [here](https://github.com/monome/ansible/releases). For versions 2.0.0 and up, you can determine the firmware version of your module by performing a USB disk backup. The created `ansible-preset.json` file will list the `"version":` at the beginning of the file.
 
 ## Basics
 

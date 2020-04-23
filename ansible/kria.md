@@ -113,6 +113,8 @@ Moving upwards through the rows, each row specifies a number of semitones to be 
 
 For example, a whole tone scale (2 semitones per note) would be constructed by setting all rows to the second position. (The *zero* position is indicated dimly. Scale notes set to zero will be identical to the previous scale step).
 
+To adjust one note in a scale without affecting its interval relationship with the notes after it, hold the scale key while changing the scale note. The subsequent note is adjusted to compensate.
+
 You can perform temporary "live" adjustments to scale steps with a two-key gesture: hold down the active scale step, then press another key on that row of the scale programming section. The second key is highlighted more dimly to indicate that this scale step is adjusted. This adjusts the pitch CV assigned to that scale step without affecting the rest of the scale, which can be a useful performance tool. Pressing the brighter, "primary" scale key, or pressing another key to change the interval, will clear the adjustment. Scale adjustments are not saved to flash. Changing the selected scale will clear all scale adjustments, but changing patterns will not, which can make this useful for introducing live variations in a longer sequence.
 
 Scales are shared between Kria, [Meadowphysics](/docs/ansible/meadowphysics), and [Earthsea](/docs/ansible/earthsea), and are saved to flash whenever a preset of either is saved.

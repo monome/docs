@@ -119,6 +119,9 @@ KR.TMUTE x      toggle mute for Kria track x (0 = all)
                 toggle will _invert current state_.
 KR.CLK x        send to clock track x (0 == all) IF track is enabled to be clocked
                 by Teletype (see above)
+KR.DIR x y      set track direction
+KR.DIR x        get track direction
+KR.DUR p        get track duration
 KR.CUE p        cue pattern p to play next
 KR.PG  p        show kria UI page p
 ```

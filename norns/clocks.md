@@ -17,7 +17,7 @@ the clock library provides a way to create timed function calls: loops, repetiti
 - `clock.cancel( id )` &mdash; cancel coroutine _id_ 
 - `clock.sleep( time )` &mdash; resume in _time_ seconds
 - `clock.sync( beats )` &mdash; resume at _beats_ count according to global tempo
-- `beats = clock.get_time_beats()` &mdash; returns current time in _beats_
+- `beats = clock.get_beats()` &mdash; returns current time in _beats_
 - `tempo = clock.get_tempo()` &mdash; returns current _tempo_
 - `beat_sec = clock.get_beat_sec()` &mdash; returns length of a single beat at current tempo in seconds
 
@@ -181,7 +181,7 @@ you can query the current tempo, beats, and seconds-per-beat:
 ```
 print(clock.get_tempo())
 t = clock.get_beats()
-softcut.loop_start(1,clock.get_beats_sec())
+softcut.loop_start(1,clock.get_beat_sec())
 ```
 
 ### callbacks

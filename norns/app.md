@@ -15,6 +15,24 @@ While this is not a comprehensive list of what's available (or even all of our f
 
 All of the projects in this section are available for download in maiden's [project manager](/docs/norns/maiden/#project-manager). Each name links back to its discussion thread on lines.
 
+### summon scripts
+
+in the video above, all scripts are made by the lines community played by the [lines community](https://llllllll.co).
+
+[orca](https://llllllll.co/t/orca/22492) // script: [`@its_your_bedtime`](https://www.instagram.com/its_your_bedtime/) // performance: [`@elia`](https://www.instagram.com/eliapiana/)
+
+[TimeParty](https://llllllll.co/t/timeparty/22837) // script: [`@crim`](https://llllllll.co/u/crim/summary) // performance: [`@Olivier`](https://www.instagram.com/oliviercreurer/)
+
+[QUENCE](https://llllllll.co/t/quence/29436) // script: [`@spunoza`](https://www.youtube.com/channel/UCYTk7jkyot_w15r_7mqcTuw) // performance: [`@Justmat`](https://www.instagram.com/probably_justmat/)
+
+[Compass](https://llllllll.co/t/compass-3-0/25192) // script: [`@Olivier`](https://www.instagram.com/oliviercreurer/) // performance: [`@glia`](https://www.instagram.com/zunaito/)
+
+[otis](https://llllllll.co/t/otis/22149) // script: [`@Justmat`](https://www.instagram.com/probably_justmat/) // performance: [`@mattlowery`](https://www.instagram.com/mattlowery/)
+
+[wrms](https://llllllll.co/t/wrms/28954) // script: [`@andrew`](https://www.instagram.com/_and.rew__/) // performance: [`@zanderraymond`](https://www.instagram.com/zanderraymond/)
+
+[cheat codes](https://llllllll.co/t/cheat-codes-v1-3-april-26-2020/31655) // script: [`@dan_derks`](https://www.instagram.com/jailaibookie/) // performance: [`@andrew`](https://www.instagram.com/_and.rew__/)
+
 ## softcut-based
 
 *norns has a built-in realtime sampling layer called `softcut`. It is always running and is able to capture external audio or sounds from the engines. Apps in this section control softcut and cover nearly every corner of sampling and looping. Want to build your own or have an idea to extend one of these apps? Check out the [softcut studies](https://llllllll.co/t/norns-softcut-studies/23585).*

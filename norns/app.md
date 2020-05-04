@@ -23,7 +23,7 @@ in the video above, scripts made by the [lines community](https://llllllll.co) a
 
 [TimeParty](https://llllllll.co/t/timeparty/22837) // script: [`@crim`](https://llllllll.co/u/crim/summary) // performance: [`@Olivier`](https://www.instagram.com/oliviercreurer/)
 
-[mlr](https://llllllll.co/t/mlr-norns/21145) // script: [`tehn`](https://nnnnnnnn.co) // performance: [`@shellfritsch`](https://linktr.ee/coolmaritime)
+[mlr](https://llllllll.co/t/mlr-norns/21145) // script: [`@tehn`](https://softbits.bandcamp.com/album/rapid-history) // performance: [`@shellfritsch`](https://linktr.ee/coolmaritime)
 
 [QUENCE](https://llllllll.co/t/quence/29436) // script: [`@spunoza`](https://www.youtube.com/channel/UCYTk7jkyot_w15r_7mqcTuw) // performance: [`@Justmat`](https://www.instagram.com/probably_justmat/)
 

@@ -17,17 +17,21 @@ All of the projects in this section are available for download in maiden's [proj
 
 ### summon scripts
 
-in the video above, all scripts are made by the lines community played by the [lines community](https://llllllll.co).
+in the video above, scripts made by the [lines community](https://llllllll.co) are being played by the [lines community](https://llllllll.co).
 
 [orca](https://llllllll.co/t/orca/22492) // script: [`@its_your_bedtime`](https://www.instagram.com/its_your_bedtime/) // performance: [`@elia`](https://www.instagram.com/eliapiana/)
 
 [TimeParty](https://llllllll.co/t/timeparty/22837) // script: [`@crim`](https://llllllll.co/u/crim/summary) // performance: [`@Olivier`](https://www.instagram.com/oliviercreurer/)
+
+[mlr](https://llllllll.co/t/mlr-norns/21145) // script: [`tehn`](https://nnnnnnnn.co) // performance: [`@shellfritsch`](https://linktr.ee/coolmaritime)
 
 [QUENCE](https://llllllll.co/t/quence/29436) // script: [`@spunoza`](https://www.youtube.com/channel/UCYTk7jkyot_w15r_7mqcTuw) // performance: [`@Justmat`](https://www.instagram.com/probably_justmat/)
 
 [Compass](https://llllllll.co/t/compass-3-0/25192) // script: [`@Olivier`](https://www.instagram.com/oliviercreurer/) // performance: [`@glia`](https://www.instagram.com/zunaito/)
 
 [otis](https://llllllll.co/t/otis/22149) // script: [`@Justmat`](https://www.instagram.com/probably_justmat/) // performance: [`@mattlowery`](https://www.instagram.com/mattlowery/)
+
+[Animator](https://llllllll.co/t/animator/28242) // script: [`@crim`](https://llllllll.co/u/crim/summary) // performance: [`@bereenondo`](http://www.instagram.com/bereenondo)
 
 [wrms](https://llllllll.co/t/wrms/28954) // script: [`@andrew`](https://www.instagram.com/_and.rew__/) // performance: [`@zanderraymond`](https://www.instagram.com/zanderraymond/)
 

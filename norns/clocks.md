@@ -11,6 +11,10 @@ permalink: /norns/clocks/
 
 the clock library provides a way to create timed function calls: loops, repetition, and delays. synchronization is possible and time base can come from a variety of sources. the clock library uses lua coroutines.
 
+curious to see it all work together in realtime? here's an introduction to working with clocks + [softcut](/docs/norns/softcut):
+
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/416730766?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
 ## commands
 
 - `id = clock.run( func )` &mdash; start a new coroutine with function _func_. returns _id_

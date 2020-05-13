@@ -29,7 +29,7 @@ you'll see a light at x,y (1,8) go to full brightness. like the norns screen, (1
 
 _NOTE_: if you have a grid plugged in and this didn't work, check **SYSTEM > DEVICES > GRID** and make sure your grid is attached to port 1. (more on this later.)
 
-push a key and you'll see `grid input` printed. let's make it more informative:
+Let's see what happens when you push a key:
 
 ```lua
 g.key = function(x,y,z) print(x,y,z) end

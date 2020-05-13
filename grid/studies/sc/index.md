@@ -11,7 +11,7 @@ SuperCollider is an environment and programming language for real time audio syn
 
 If you're very new to SuperCollider, it will be very beneficial to work through the 'Getting Started' tutorial which is within SuperCollider's help file documentation.
 
-Download SuperCollider: [supercollider.github.io](http://supercollider.github.io/)
+Download SuperCollider: [supercollider.github.io](https://supercollider.github.io/)
 
 Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
 

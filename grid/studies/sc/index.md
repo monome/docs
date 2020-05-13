@@ -23,11 +23,11 @@ Download the monom library:
 
 [github.com/catfact/monom/archive/master.zip](https://github.com/catfact/monom/archive/master.zip)
 
-Copy to library to your SuperCollider class library folder:
+Unzip and copy the resulting folder to your SuperCollider user extensions folder:
 
-- MacOSX: right click on SuperCollider.app, choose “Show Package Contents” and then navigate to 'Contents/Resources/SCClassLibrary'
-- Windows: 'SCClassLibrary' within the SuperCollider program folder
-- Linux: look in /usr/share/SuperCollider/
+- In SuperCollider, select "Open user support directory” from the File menu.
+- Move or copy the `monom-master` folder into the `Extensions` folder (it might not exist,
+  in which case you will need to create it).
 
 ## 1. Connect
 

@@ -8,7 +8,7 @@ nav_order: 1
 
 # play
 
-sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [pages](#pages) &mdash; [audio](#audio) &mdash; [connect](#connect) &mdash; [update](#update) &mdash; [help](#help)
+sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [pages](#pages) &mdash; [audio](#audio) &mdash; [midi] (#midi) &mdash; [network connect](#network-connect) &mdash; [update](#update) &mdash; [help](#help)
 
 
 ## LEGEND
@@ -252,8 +252,31 @@ comp release      |[1, 1000] ms     |time constant (1/e smoothing time) for comp
 comp pre gain     |[-inf, 30] db    |gain pre compression
 comp post gain    |[-inf, 30] db    |gain post compression
 
+## MIDI
 
-## CONNECT
+### CLOCK
+
+With norns firmware `200424`, a global clock system was introduced. This means that it's dead simple to pass clock from an external source to a norns script, provided the script has been updated to use the new clock system.
+
+To clock a script from MIDI:
+
+- navigate to PARAMETERS > EDIT
+- move down to CLOCK
+- set it to MIDI
+
+![](image/screen-params-midi-200518.png)
+
+### DEVICES
+
+To ensure a connected MIDI device is recognized by a currently running script, navigate to SYSTEM > DEVICES > MIDI and select your MIDI device:
+
+![](image/screen-system-midi-200518.png)
+
+### MIDI MAP
+
+To control a script's parameters with MIDI, please see the [PARAMETERS > MAP](https://monome.org/docs/norns/play/#map) section above.
+
+## NETWORK CONNECT
 
 Scripts can be created and edited using a web browser when norns is connected to a network. These scripts will appear in the **SELECT** list for later play.
 

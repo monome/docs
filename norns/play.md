@@ -8,7 +8,7 @@ nav_order: 1
 
 # play
 
-sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [pages](#pages) &mdash; [audio](#audio) &mdash; [midi] (#midi) &mdash; [network connect](#network-connect) &mdash; [update](#update) &mdash; [help](#help)
+sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [pages](#pages) &mdash; [audio](#audio) &mdash; [midi](#midi) &mdash; [network connect](#network-connect) &mdash; [update](#update) &mdash; [help](#help)
 
 
 ## LEGEND

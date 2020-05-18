@@ -274,7 +274,7 @@ for y in range(6):
 
 First we create a dim row (level 4 is fairly dim). Then we search through the `step` array at the current play position, showing a bright indicator for each on state. This displays a sort of horizontal correlation of rows (or "channels") 1-6 current state.
 
-For the screen drawing, we create a function `trigger()` which gets passed values of activated steps. This is what we do, inside `draw()` right after we change `play_position`:
+For the screen drawing, we create a function `trigger()` which gets passed values of activated steps. This is what we do, inside `play()` right after we change `play_position`:
 
 ```python
 # TRIGGER SOMETHING
@@ -303,7 +303,7 @@ We will now use the bottom row to dynamically cut the playback position. First l
 buffer.led_level_set(self.play_position, 7, 15)
 ```
 
-Now we look for key presses in the last row, in the `grid_key` function:
+Now we look for key presses in the last row, in the `on_grid_key` function:
 
 ```python
 # cut

@@ -15,8 +15,8 @@ Ansible can be used as a leader device for the [ii](/docs/modular/ii)
 bus, controlling one or more follower modules using trigger and CV
 information sent from Ansible. Since Ansible is not wired to supply
 power to the ii bus, another leader module or a powered busboard is
-required to use Ansible as a leader. Having [/docs/crow](Crow) or
-[/docs/teletype](Teletype) connected to the same ii bus is sufficient.
+required to use Ansible as a leader. Having [Crow](/docs/crow) or
+[Teletype](docs/teletype) connected to the same ii bus is sufficient.
 
 When Ansible is acting as a ii leader, it can no longer receive ii
 commands from other leaders like Teletype or Crow. Note also that
@@ -234,4 +234,3 @@ You can leave the tuning page to experiment with your tuning on other
 Grid apps, but note that tuning changes are not saved to flash until
 you explicitly save them using one of the rightmost keys on the third
 row up of the tuning page.
-

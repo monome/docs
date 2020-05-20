@@ -61,6 +61,12 @@ sudo pip3 install monome-druid
 
 Now druid should be ready to use, you might need to close and reopen the terminal to get access to it.
 
+To update when there's a new [release](https://github.com/monome/druid/releases), use
+
+```
+pip3 install --upgrade monome-druid
+```
+
 ### install druid on Windows
 
 In PowerShell, execute:
@@ -72,13 +78,19 @@ python -m pip install pyserial asyncio prompt_toolkit
 Then:
 
 ```
-pip3 install --upgrade setuptools
+python -m pip install --upgrade setuptools
 ```
 
 Finally:
 
 ```
-pip3 install monome-druid
+python -m pip install monome-druid
+```
+
+To update when there's a new [release](https://github.com/monome/druid/releases), use
+
+```
+python -m pip install --upgrade monome-druid
 ```
 
 #### Windows errors

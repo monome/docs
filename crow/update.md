@@ -132,3 +132,5 @@ If you get an error:  `Cannot open DFU device 0483:df11`, this means that your c
 - to the right of the green arrow, you should have `WinUSB (v6.1.7600.16385)` (if you don't, please select it)
 - click the Replace Driver button and wait a few minutes for the process to complete
 - re-attempt [flashing the update](#flashing-the-update)
+
+On Windows 7, you may need to use the "USB Serial (CDC)" driver instead of WinUSB.

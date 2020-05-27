@@ -150,25 +150,30 @@ So, a typical two-crow setup would require:
 
 - an *input* device to translate incoming CV to useful MIDI data
 - load onto any MIDI track
-- expand the `(input)` dropdown to identify which hardware input you'd like to monitor / control Live: 1 or 2
-- *input cv*: real-time streaming monitor of voltage incoming through the input specified
+- expand the `(mode)` dropdown to choose between CV-to-note or CV-to-CC
 
 ~~
+
+*CV-to-note*: this section will translate incoming CV to MIDI pitch data
+
+Input 1 expects v/8, input 2 expects triggers.
+
+- *low*: set the desired floor for CV-to-MIDI, default is lowest note at 36
+- *high* set the desired ceiling for CV-to-MIDI, default is highest note at 127
+
+~~
+
+![](../images/m4l_ins_extended.png)
 
 *CV-to-CC*: this section will translate incoming voltage to MIDI CC data
 
 - *low*: set the desired floor for voltage-to-CC, default is 0V
 - *high*: set the desired ceiling for voltage-to-CC, default is 10V
 - *map*: map the incoming voltage to any MIDI-controllable parameter in Live
-- *%'s*: adjust the range of CC expression for each individual map channel
-
-~~
-
-*CV-to-note*: this section will translate incoming CV to MIDI pitch data
-
-- *(trig src)*: identify whether you would like the CV conversion to take place synced to Live's clock (arpeggiator) or if you'd like the conversion to take place every time a trigger is received through the *other* input of crow
-- *low*: set the desired floor for CV-to-MIDI, default is lowest note at 36
-- *high* set the desired ceiling for CV-to-MIDI, default is highest note at 127
+- *d*: depth of cv-to-cc
+- *o*: offset the scaling of received cv values
+- *s*: slew the cv-to-cc conversion, to soften clickiness/steppiness when mapping to audio parameters (like panning, filter cutoff, gain, etc)
+- *> more*: open an additional 6 channels of mapping
 
 ---
 

@@ -50,6 +50,7 @@ Contact `help@monome.org` to have your project listed. We suggest [github](http:
 * [max package](/docs/grid/app/package) -- several patchers and tools for use within Max, rolled by monome.
 * [gridlab](https://github.com/stretta/gridlab) -- a deep suite of Max for Live grid devices (requires 128 grid).
 * [conway music](https://llllllll.co/t/32818) -- conway's game of life, midi-fied.
+* [markov music](https://l.llllllll.co/markov/) -- make music with a simple Markov chain.
 * [elements](https://github.com/benjaminvanesser/elements) -- a collection of Max for Live midi controls for grids.
 * [mark eats sequencer](http://markeats.com/sequencer) -- rapid performance sequencer.
 * [terms](/docs/grid/app/terms) -- a collection of Max for Live devices rolled by monome.

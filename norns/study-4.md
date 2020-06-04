@@ -8,7 +8,7 @@ permalink: /norns/study-4/
 
 # physical
 
-norns studies part 4
+norns studies part 4: grids + midi
 
 ## tactile numbers
 
@@ -229,17 +229,17 @@ note the braces, as this is a syntax we haven't seen yet. it's equivalent to `m.
 this sends note on for note 60 at velocity 127 but it's much easier to use the helper function:
 
 ```lua
-m.note_on(60,127)
+m:note_on(60,127)
 ```
 
 here's a list of the helper functions for midi out:
 
-- `.note_on(note,velocity,ch)`
-- `.note_off(note,velocity,ch)`
-- `.cc(cc,val,ch)`
-- `.pitchbend(val,ch)`
-- `.key_pressure(note,val,ch)`
-- `.channel_pressure(val,ch)`
+- `:note_on(note,velocity,ch)`
+- `:note_off(note,velocity,ch)`
+- `:cc(cc,val,ch)`
+- `:pitchbend(val,ch)`
+- `:key_pressure(note,val,ch)`
+- `:channel_pressure(val,ch)`
 
 in each case, channel will default to 1 if left off. for note on/off, velocity is optional (100 will be used if none provided).
 
@@ -320,7 +320,6 @@ this little snippet does quite a lot. it has internal/external clocking and adds
 you can see on the third line that the beatclock needs a midi port. here it uses the default (1).
 
 to attach a function to the clock sync, simply redefine `on_step` as shown in `init`. we'll demonstrate this below.
-
 
 ## example: physical
 
@@ -421,14 +420,13 @@ end
 
 ```
 
-
 ## continued
 
-- part 1: [many tomorrows](../study-1/)
-- part 2: [patterning](../study-2)
-- part 3: [spacetime](../study-3)
+- part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
+- part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
+- part 3: [spacetime](../study-3/) // functions, parameters, time
 - part 4: physical
-- part 5: [streams](../study-5/)
+- part 5: [streams](../study-5/) // system polls, osc, file storage
 
 ## community
 

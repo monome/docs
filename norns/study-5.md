@@ -8,7 +8,7 @@ permalink: /norns/study-5/
 
 # streams
 
-norns studies part 5
+norns studies part 5: system polls, osc, file storage
 
 ## numerical superstorm
 
@@ -337,12 +337,12 @@ end
 
 ## continued
 
-- part 1: [many tomorrows](../study-1/)
-- part 2: [patterning](../study-2)
-- part 3: [spacetime](../study-3)
-- part 4: [physical](../study-4)
+- part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
+- part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
+- part 3: [spacetime](../study-3/) // functions, parameters, time
+- part 4: [physical](../study-4/) // grids + midi
 - part 5: streams
-- part 6: (forthcoming)
+- further: [softcut studies](../softcut/) // a multi-voice sample playback and recording system built into norns
 
 ## community
 

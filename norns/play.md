@@ -328,7 +328,9 @@ input adc			|`cut_input_adc`
 input engine		|`cut_input_eng`
 input tape		|`cut_input_tape`
 
-If you're setting up an OSC template, you'll just need to format your messages as `/param/osc_name value`, eg:
+If you're setting up an OSC template, norns receives OSC messages on port `10111`.
+
+Format your messages as `/param/osc_name value`, eg:
 
 ```
 /param/comp_ratio 2.3

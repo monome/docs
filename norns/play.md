@@ -8,7 +8,7 @@ nav_order: 1
 
 # play
 
-sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [pages](#pages) &mdash; [audio](#audio) &mdash; [midi](#midi) &mdash; [network connect](#network-connect) &mdash; [update](#update) &mdash; [help](#help)
+sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [pages](#pages) &mdash; [audio](#audio) &mdash; [midi](#midi) &mdash; [osc](#osc) &mdash; [network connect](#network-connect) &mdash; [update](#update) &mdash; [help](#help)
 
 
 ## LEGEND
@@ -225,6 +225,7 @@ Control of various audio parameters happens in **SYSTEM > AUDIO**. Note that the
 
 param |range |description
 ---|---|---
+**LEVELS**			|					|
 output            |[-inf, 0] db     |output level
 input             |[-inf, 0] db     |input level
 monitor           |[-inf, 0] db     |monitor level (input mix to ouput)
@@ -233,6 +234,7 @@ softcut           |[-inf, 0] db     |multivoice sampler level
 tape              |[-inf, 0] db     |tape playback level
 monitor mode      |[MONO, STEREO]   |MONO = mix input 1 and 2 to both channels
 headphone         |[0, 60]          |headphone gain
+**REVERB**			| 					|
 reverb            |[ON, OFF]        |reverb state
 rev engine input  |[-inf, 12] db    |engine input to reverb
 rev cut input     |[-inf, 12] db    |softcut input to reverb
@@ -243,6 +245,7 @@ rev lf fc         |[50, 1000] hz    |crossover frequency between low and middle 
 rev low time      |[1, 32] s        |time to decay by 60dB in low band
 rev mid time      |[1, 32] s        |time to decay by 60dB in mid band
 rev hf damping    |[1500, nyq] hz   |frequency at which high band decay time is 1/2 of mid band decay time
+**COMPRESSOR**		|					|
 compressor        |[ON, OFF]        |compressor state
 comp mix          |[0, 1.0]         |dry/wet mix. 0 = dry, 1 = wet
 comp ratio        |[1, 20]          |compression ratio: for each N dB increase in input level above threshold, output level increases by 1dB
@@ -251,6 +254,10 @@ comp attack       |[1, 1000] ms     |time constant (1/e smoothing time) for comp
 comp release      |[1, 1000] ms     |time constant (1/e smoothing time) for compression gain to exponentially approach a new _higher_ target level
 comp pre gain     |[-inf, 30] db    |gain pre compression
 comp post gain    |[-inf, 30] db    |gain post compression
+**SOFTCUT**			|					|
+input adc				|[0, 1.0]			|hardware input level to softcut
+input engine			|[0, 1.0]			|engine input level to softcut
+input tape			|[0, 1.0]			|tape input level to softcut
 
 ## MIDI
 
@@ -275,6 +282,61 @@ To ensure a connected MIDI device is recognized by a currently running script, n
 ### MIDI MAP
 
 To control a script's parameters with MIDI, please see the [PARAMETERS > MAP](https://monome.org/docs/norns/play/#map) section above.
+
+## OSC
+
+[Open Sound Control (OSC)](https://en.wikipedia.org/wiki/Open_Sound_Control) is a network protocol for sending messages supported by numerous sound and media applications.
+
+OSC allows you to control norns over WIFI using applications like Max/MSP, TouchOSC, Clean OSC, OSCulator, or Wekinator. You can create custom control surfaces to extend your gestural interactions with norns -- eg. rather than using MIDI faderbank to change reverb damping, you could use a biometric sensor or Wiimote.
+
+All of the [audio parameters](https://monome.org/docs/norns/play/#audio-parameters) listed above have OSC names. To see them, navigate to `PARAMETERS > MAP`:
+
+param |OSC name
+---|---
+**LEVELS**		| ---
+output            |`output_level`
+input             |`input_level`
+monitor           |`monitor_level`
+engine            |`engine_level`
+softcut           |`softcut_level`
+tape              |`tape_level`
+monitor mode      |`monitor_mode`
+headphone         |`headphone_gain`
+**REVERB**		| ---
+reverb            |`reverb`
+rev engine input  |`rev_eng_input`
+rev cut input     |`rev_cut_input`
+rev monitor input |`rev_monitor_input`
+rev tape input    |`rev_tape_input`
+rev return level  |`rev_monitor_output`
+rev pre delay     |`rev_pre_delay`
+rev lf fc         |`rev_lf_fc`
+rev low time      |`rev_low_time`
+rev mid time      |`rev_mid_time`
+rev hf damping    |`rev_hf_damping`
+**COMPRESSOR**	| ---
+compressor        |`compressor`
+comp mix          |`comp_mix`
+comp ratio        |`comp_ratio`
+comp threshold    |`comp_threshold`
+comp attack       |`comp_attack`
+comp release      |`comp_release`
+comp pre gain     |`comp_pre_gain`
+comp post gain    |`comp_post_gain`
+**SOFTCUT**		| ---
+input adc			|`cut_input_adc`
+input engine		|`cut_input_eng`
+input tape		|`cut_input_tape`
+
+If you're setting up an OSC template, you'll just need to format your messages as `/param/osc_name value`, eg:
+
+```
+/param/comp_ratio 2.3
+/param/rev_monitor_output 0
+/param/output_level 0.5
+```
+
+For more detail on norns + OSC scripting, please see [study 5](/docs/norns/study-5/#numbers-through-air).
 
 ## NETWORK CONNECT
 

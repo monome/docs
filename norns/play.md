@@ -289,7 +289,7 @@ To control a script's parameters with MIDI, please see the [PARAMETERS > MAP](ht
 
 OSC allows you to control norns over WIFI using applications like Max/MSP, TouchOSC, Clean OSC, OSCulator, or Wekinator. You can create custom control surfaces to extend your gestural interactions with norns -- eg. rather than using MIDI faderbank to change reverb damping, you could use a biometric sensor or Wiimote.
 
-All of the [audio parameters](https://monome.org/docs/norns/play/#audio-parameters) listed above have OSC names. To see them, navigate to `PARAMETERS > MAP`:
+All of the [audio parameters](https://monome.org/docs/norns/play/#audio-parameters) have OSC names. To see them, navigate to `PARAMETERS > MAP`:
 
 param |OSC name
 ---|---
@@ -328,8 +328,6 @@ input adc			|`cut_input_adc`
 input engine		|`cut_input_eng`
 input tape		|`cut_input_tape`
 
-If you're setting up an OSC template, norns receives OSC messages on port `10111`.
-
 Format your messages as `/param/osc_name value`, eg:
 
 ```
@@ -337,6 +335,10 @@ Format your messages as `/param/osc_name value`, eg:
 /param/rev_monitor_output 0
 /param/output_level 0.5
 ```
+
+Please note that norns receives OSC messages on port `10111`.
+
+Want to see norns + OSC in action? Check out `@felart`'s [TouchOSC template](https://github.com/felart/Norns-TouchOSC) for the LEVELS, REVERB, and COMPRESSOR controls.
 
 For more detail on norns + OSC scripting, please see [study 5](/docs/norns/study-5/#numbers-through-air).
 

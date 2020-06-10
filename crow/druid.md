@@ -67,6 +67,8 @@ To update when there's a new [release](https://github.com/monome/druid/releases)
 pip3 install --upgrade monome-druid
 ```
 
+NB: If you see an error like "The script druid is installed in '/Users/your/Library/Python/3.8/bin' which is not on PATH...", you can open up `~/.zshrc` and add this line: `export PATH="$PATH:/$HOME/Library/Python/3.8/bin"`. Note macOS switched from bash to zsh with 10.15 (Catalina.) If you on on a previous version of macOS, you will probably have to add this line to your `~/.bash_rc` instead.
+
 ### install druid on Windows
 
 In PowerShell, execute:

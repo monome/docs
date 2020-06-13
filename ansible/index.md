@@ -75,7 +75,7 @@ This documentation documents firmware version **3.0.0**. Changelogs and binaries
 
 Output and input functionality vary according to which application is running.
 
-Applications are determined by which USB device is plugged in. For example, when you plug in a Grid after a firmware update, it will be running Kria. Hold the MODE key (next to the USB port) to switch to Meadowphysics; push it again to switch to Earthsea. Ansible will remember which application you were last running between power-ups.
+Applications are determined by which USB device is plugged in. For example, when you plug in a Grid after a firmware update, it will be running Kria. Hold the MODE key (next to the USB port) to switch to Meadowphysics; push it again to switch to Earthsea. Ansible will remember which application you were last running between power-ups. NOTE: USB hubs do not work with Ansible.
 
 Unplugging the Grid and plugging an Arc will change to Levels.
 

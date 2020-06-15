@@ -308,7 +308,7 @@ engine.name = "TestSine"
 function init()
   sound = 1
   level = 1
-  octave =1
+  octave = 1
   f = 100
   position = 0
   engine.hz(f)

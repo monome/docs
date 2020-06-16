@@ -27,7 +27,7 @@ first, locate yourself such:
 
 it's blank. full of possibilities. type in the text below:
 
-```
+```lua
 -- many tomorrows
 -- norns study 1
 

@@ -32,6 +32,8 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 - [backing up norns to USB](#backup-no-wifi)
 - [change passwords on norns](#change-passwd)
 - [taking a screenshot](#png)
+- [audio input/output hardware specs](#audio-specs)
+- [can I plug modular signals into norns directly?](#modular-levels)
 - [additional q's](#faq)
 
 ## replacing parts
@@ -264,6 +266,34 @@ For example:
 `magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr-m.png`
 
 This will clean up the image, make it look just like it renders on norns, and save it as a new file with the same name, but a `-m` at the end :)
+
+## what are the audio input/output hardware specs? <a name="audio-specs"></a>
+
+**Codec**
+
+The audio codec is a CS4720.
+
+The codec is externally clocked with a crystal (for no jitter), and the sample rate is fixed at 48k.
+
+**Inputs**
+
+The input jacks are configured for balanced or unbalanced. Input impedance is 10k.
+
+**Outputs**
+
+The output jacks are configured for balanced or unbalanced. Output impedance is 590 ohm.
+
+Output from the codec is connected to the headphone driver as well.
+
+**Headphone driver**
+
+The headphone driver is a TPA6130A2. Volume is controlled via i2c with a simple protocol, so no driver is necessary, though I think one exists.
+
+The i2c lines are connected to i2c0.
+
+## can I plug modular signals into norns directly? <a name="modular-levels"></a>
+
+NO! norns (both stock and shield) has line-level inputs only -- sending modular signals, which run very hot, through these inputs may result in damage. Please attenuate your modular signals before sending them into norns with an interface module like [Intellijel's Audio Interface](https://www.modulargrid.net/e/intellijel-audio-interface-ii).
 
 ## additional a's to faq's <a name="faq"></a>
 

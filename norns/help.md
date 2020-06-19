@@ -22,6 +22,7 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 
 ### sections
 - [replacing parts](#replacing-parts)
+     - [increase storage](#storage)
 - [wifi troubleshooting](#wifi-troubleshooting)
 - [updating + managing apps](#update-apps)
 - [restoring deleted system folders](#code-folder)
@@ -66,6 +67,14 @@ We are still working to identify if this is related to our assembly house or if 
 Replacement encoders can be purchased [from Octopart](https://octopart.com/pec11r-4015f-n0024-bourns-26648251).
 
 Please reference this [step-by-step video](https://vimeo.com/373181868/f58ea21a31) detailing the fix.
+
+### storage
+
+The Raspberry Pi at the heart of stock norns can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage. Just search `raspberry pi cm3+ 32gb` to find a retailer.
+
+There is no soldering needed, but you will have to disassemble your norns a bit (the first few minutes of [this video](https://vimeo.com/373181868/f58ea21a31) details how).
+
+Many thanks to `@mutedial` for [compiling replacement steps](https://llllllll.co/t/norns-cm3-installation/19985/103).
 
 ## wifi troubleshooting
 

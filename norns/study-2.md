@@ -8,7 +8,7 @@ permalink: /norns/study-2/
 
 # patterning
 
-norns studies part 2
+norns studies part 2: screen drawing, for/while loops, tables
 
 ## ways of seeing
 
@@ -476,11 +476,11 @@ end
 
 ## continued
 
-- part 1: [many tomorrows](../study-1/)
+- part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
 - part 2: patterning
-- part 3: [spacetime](../study-3/)
-- part 4: [physical](../study-4/)
-- part 5: [streams](../study-5/)
+- part 3: [spacetime](../study-3/) // functions, parameters, time
+- part 4: [physical](../study-4/) // grids + midi
+- part 5: [streams](../study-5/) // system polls, osc, file storage
 
 ## community
 

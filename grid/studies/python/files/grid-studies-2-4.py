@@ -76,7 +76,6 @@ class GridStudies(monome.GridApp):
             if s == 1:
                 self.cutting = True
                 self.next_position = x
-                self.key_last = x
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()

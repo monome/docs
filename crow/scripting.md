@@ -89,7 +89,7 @@ Using the `h` command in `druid` will print the above list anytime you need a re
 
 If you want to use a script you see online, you'll need to save it as a text file in a folder of your choosing, `cd` to that folder, open druid and then run it as before with `r a-cool-script-i-found.lua`. We'll be adding more examples, and accept community contributions into the official *bowery* repo.
 
-*Note: Occasionally you might see `druid` complain about errors after calling `r`. Wait a couple seconds & try again. If you still have problems, enter `^^kill` to reset crow, then `r` again. [Learn more about Environment Commands here](technical/#environment-commands)*
+*Note: Occasionally you might see `druid` complain about errors after calling `r`. Wait a couple seconds & try again. If you still have problems, enter `^^kill` to reset crow, then `r` again. [Learn more about Environment Commands here](../technical/#environment-commands)*
 
 ## Stage Two: Execute
 

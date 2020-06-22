@@ -61,6 +61,14 @@ sudo pip3 install monome-druid
 
 Now druid should be ready to use, you might need to close and reopen the terminal to get access to it.
 
+To update when there's a new [release](https://github.com/monome/druid/releases), use
+
+```
+pip3 install --upgrade monome-druid
+```
+
+NB: If you see an error like "The script druid is installed in '/Users/your/Library/Python/3.8/bin' which is not on PATH...", you can open up `~/.zshrc` and add this line: `export PATH="$PATH:/$HOME/Library/Python/3.8/bin"`. Note macOS switched from bash to zsh with 10.15 (Catalina.) If you on on a previous version of macOS, you will probably have to add this line to your `~/.bash_rc` instead.
+
 ### install druid on Windows
 
 In PowerShell, execute:
@@ -72,13 +80,19 @@ python -m pip install pyserial asyncio prompt_toolkit
 Then:
 
 ```
-pip3 install --upgrade setuptools
+python -m pip install --upgrade setuptools
 ```
 
 Finally:
 
 ```
-pip3 install monome-druid
+python -m pip install monome-druid
+```
+
+To update when there's a new [release](https://github.com/monome/druid/releases), use
+
+```
+python -m pip install --upgrade monome-druid
 ```
 
 #### Windows errors
@@ -92,6 +106,8 @@ If you do, copy the entire path listed (the stuff between the `'`s), open your S
 On the dialogue that appears, click the Environment Variables button. In the "User variables for USERNAME" dialogue box, select Path and click Edit. On the next dialogue, click the New button, and paste in the path you copied earlier.
 
 Click OK until all the dialogue boxes are gone.
+
+On Windows 7, druid may be unable to connect with crow. Try using Zadig (instructions [here](/docs/crow/update/#windows)) to install the "USB Serial (CDC)" driver instead of the "WinUSB" driver.
 
 ## loading druid
 

@@ -11,7 +11,7 @@ permalink: /norns/study-1/
 
 # many tomorrows
 
-norns studies part 1
+norns studies part 1: variables, simple maths, keys + encoders
 
 ## hello?
 
@@ -27,7 +27,7 @@ first, locate yourself such:
 
 it's blank. full of possibilities. type in the text below:
 
-```
+```lua
 -- many tomorrows
 -- norns study 1
 
@@ -308,7 +308,7 @@ engine.name = "TestSine"
 function init()
   sound = 1
   level = 1
-  octave =1
+  octave = 1
   f = 100
   position = 0
   engine.hz(f)
@@ -372,10 +372,10 @@ its OK to use global variables while you’re experimenting with a script, but i
 ## continued
 
 - part 1: many tomorrows
-- part 2: [patterning](../study-2/)
-- part 3: [spacetime](../study-3/)
-- part 4: [physical](../study-4/)
-- part 5: [streams](../study-5/)
+- part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
+- part 3: [spacetime](../study-3/) // functions, parameters, time
+- part 4: [physical](../study-4/) // grids + midi
+- part 5: [streams](../study-5/) // system polls, osc, file storage
 
 ## community
 

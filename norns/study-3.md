@@ -8,7 +8,7 @@ permalink: /norns/study-3/
 
 # spacetime
 
-norns studies part 3
+norns studies part 3: functions, parameters, time
 
 ## we function together
 
@@ -552,11 +552,11 @@ end
 
 ## continued
 
-- part 1: [many tomorrows](../study-1/)
-- part 2: [patterning](../study-2)
+- part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
+- part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
 - part 3: spacetime
-- part 4: [physical](../study-4)
-- part 5: [streams](../study-5/)
+- part 4: [physical](../study-4/) // grids + midi
+- part 5: [streams](../study-5/) // system polls, osc, file storage
 
 ## community
 

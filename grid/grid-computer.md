@@ -22,35 +22,38 @@ The grid is *intended* to be reimagined. You give it purpose and meaning that's 
 
 To start with some introductory knowledge, please visit [grid studies](../studies).
 
-## applications
+## projects
 
-Here are open source applications others have scripted using the above environments. Many of the applications require [Max](http://cycling74.com) which includes a free runtime.
+Here are open source projects others have scripted using the above environments. Many require [Max](http://cycling74.com) which can be downloaded and run for free, without a license.
 
-Contact `help@monome.org` to have your application listed. We suggest [github](http://github.com) for hosting your project.
+In this list, you'll also find many Max for Live devices, which can be run in Max for free (just drag the `.amxd` file directly into a patcher) or within Ableton's Live Suite (or using Ableton's Max for Live add-on).
 
-### featured applications
-
-* [max package](/docs/grid/app/package) -- several patchers and tools for use within Max.
-* [mark eats sequencer](http://markeats.com/sequencer) -- rapid performance sequencer.
-* [the party van](http://www.rodrigoconstanzo.com/the-party-van) -- live sampling performance instrument.
-* [control](https://github.com/benjaminvanesser/control) -- open midi control surface for grids.
-* [grainfields](https://github.com/kasperskov/monome_grainfields-v1.0) -- granular instrument for grids (also a [max for live version](https://github.com/kasperskov/monome_grainfields_m4l-v1.0))
-* [re:mix](https://github.com/el-quinto/mix) -- extended mlr within ableton live.
-* [mlrv](https://github.com/trentgill/mlrv2/releases/latest) -- the quintessential grid-based sampling instrument.
-* [sum](/docs/grid/app/sum) -- a collection of essential monome apps synced together to work as one flexible tool for creating music.
-* [terms](/docs/grid/app/terms) -- sum, pulled apart, as max for live plugins for ableton
-* [capstarc](https://github.com/mhetrick/capstarc) -- tactile sample scrubbing for arc
+Contact `help@monome.org` to have your project listed. We suggest [github](http://github.com) for hosting your project.
 
 ### audio
 
+* [re:mix](https://github.com/el-quinto/mix) -- extended mlr.
+* [grainfields](https://github.com/kasperskov/monome_grainfields_m4l-v1.0) -- 8 voice granular synthesizer.
+* [anaphora](https://github.com/AndrewShike/anaphora) -- simple, live-input focused mlr variant.
+* [anachronism](https://github.com/AndrewShike/anachronism) -- asynchronous digital tape looping interface.
+* [versos](https://llllllll.co/t/31326) -- multi-track looper and sampler for grids with 64 keys.
 * [mlr](https://github.com/monome-community/mlr) -- the original live sample-cutting platform.
 * [meadowphysics](https://github.com/monome/meadowphysics) -- rhizomatic cascading counter.
 * [straw](https://github.com/monome-community/straw) -- grid-based FM synthesizer.
 * [inkblot](https://github.com/monome-community/inkblot) -- additive synthesis with rorschach patterns.
 * [life](https://github.com/monome-community/life) -- conway's game of life.
+* [the party van](http://www.rodrigoconstanzo.com/the-party-van) -- live sampling performance instrument.
+* [mlrv](https://github.com/trentgill/mlrv2/releases/latest) -- the quintessential grid-based sampling instrument (requires Max 6).
 
 ### midi
 
+* [max package](/docs/grid/app/package) -- several patchers and tools for use within Max, rolled by monome.
+* [gridlab](https://github.com/stretta/gridlab) -- a deep suite of Max for Live grid devices (requires 128 grid).
+* [conway music](https://llllllll.co/t/32818) -- conway's game of life, midi-fied.
+* [markov music](https://l.llllllll.co/markov/) -- make music with a simple Markov chain.
+* [elements](https://github.com/benjaminvanesser/elements) -- a collection of Max for Live midi controls for grids.
+* [mark eats sequencer](http://markeats.com/sequencer) -- rapid performance sequencer.
+* [terms](/docs/grid/app/terms) -- a collection of Max for Live devices rolled by monome.
 * [flin](https://github.com/monome-community/flin) -- a cyclic poly-rhythm music box.
 * [polygome](https://github.com/monome-community/polygome) -- arpeggiating pattern instrument.
 * [decisions](https://github.com/monome-community/decisions) -- generative maze run. trigger scripts to make midi note and cc data.
@@ -66,23 +69,28 @@ Contact `help@monome.org` to have your application listed. We suggest [github](h
 * [xor](https://github.com/monome-community/xor) -- cross-influenced event generator.
 * [quantum](https://github.com/monome-community/quantum) -- generative sequencer based on siteswap, a juggling notation.
 
+### arc
 
-### max for live
-
-* [re:mix](https://github.com/el-quinto/mix) -- extended mlr.
-* [grainfields](https://github.com/kasperskov/monome_grainfields_m4l-v1.0) -- granular instrument for grids
-* [gridlab](https://github.com/stretta/gridlab) -- a suite of maxforlive monome devices.
-* [elements](https://github.com/benjaminvanesser/elements) -- a collection of midi controls for grids.
-* [anaphora](https://github.com/AndrewShike/anaphora) -- simple, live-input focused mlr variant.
-* [anachronism](https://github.com/AndrewShike/anachronism) -- asynchronous digital tape looping interface
-* [prosody](https://github.com/AndrewShike/prosody) -- a modular collection of effects for grids & no grids
-
+* [capstarc](https://github.com/mhetrick/capstarc) -- tactile sample scrubbing for arc.
+* [cascades](https://l.llllllll.co/cascades/) -- 65,536 combinations of 16th note patterns across seven tracks.
+* [pear](https://llllllll.co/t/32699) -- dual manual tape player for arc and Max.
 
 ### utilities
 
-* [pages](https://code.google.com/p/monome-pages) -- extremely in-depth java-based multi-instrument, with integration with ableton live.
+* [control](https://github.com/benjaminvanesser/control) -- open midi control surface for grids.
+* [pages](https://code.google.com/p/monome-pages) -- extremely in-depth java-based multi-instrument, with integration with Ableton Live.
 * [mesh](https://github.com/monome/mesh) -- inter-app meta-gesture recorder.
 
 ### archives
 
 [collected](https://github.com/monome-community/collected) is a large unsorted repository of applications contributed over the years. We've also collected numerous [old monomeserial applications](https://github.com/monome-community/collected-ms) which are basically obsolete, but could be updated easily given some small ambition.
+
+### no grid or arc?
+
+While we believe that grid and arc help inspire interesting and idiosyncratic design, we value the perspectives that lead to unique music-making experiences above all else. Here are some of the free projects that have been born out of the [lines community](https://llllllll.co) that can be run on your computer using Max / Max for Live without any additional hardware:
+
+* [confetti](http://www.rodrigoconstanzo.com/confetti/) -- a library of audio processing devices based on Rodrigo Constanzo's Max projects.
+* [prosody](https://github.com/AndrewShike/prosody) -- a modular collection audio effects with minimal design and maximal impact.
+* [geneseq](https://llllllll.co/t/32237) -- a Max external that implements a genetic algorithm for simple 8 step melodies using scale degrees.
+* [grainshifter](https://llllllll.co/t/32261) -- an highly playable granulator for live input or prerecorded samples.
+* [less concepts](https://llllllll.co/t/31294) -- an elementary cellular automata sequencer.

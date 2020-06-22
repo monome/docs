@@ -11,7 +11,7 @@ has_toc: false
 
 You can manage projects and delete/rename files via [maiden](../maiden). But sometimes you'll need to copy files between your computer and norns, like audio.
 
-File management between norns and macOS is best achieved via [WebDAV](../webdav), but we suggest using SFTP to connect norns to your Windows laptop via WIFI. An SFTP client (such as Cyberduck) can connect to the IP address shown on the norns screen.
+File management between norns and macOS is best achieved via [file share](../fileshare), but we suggest using SFTP to connect norns to your Windows laptop via WIFI. An SFTP client (such as Cyberduck) can connect to the IP address shown on the norns screen.
 
 ## connect
 

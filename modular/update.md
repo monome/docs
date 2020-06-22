@@ -8,8 +8,8 @@ permalink: /modular/update/
 
 new releases are available per module:
 
-- [teletype](https://github.com/monome/teletype/releases) **3.1.0** (july 7, 2019)
-- [ansible](https://github.com/monome/ansible/releases) **2.0.0** (july 7, 2019)
+- [teletype](https://github.com/monome/teletype/releases) **3.2.0** (april 22 2020)
+- [ansible](https://github.com/monome/ansible/releases) **3.0.0** (april 22  2020)
 - [whitewhale](https://github.com/monome/whitewhale/releases) **1.5.0** (march 27 2017)
 - [meadowphysics](https://github.com/monome/meadowphysics/releases) **2.1.0** (march 25 2017)
 - [earthsea](https://github.com/monome/earthsea/releases) **1.9.4** (june 19 2017)
@@ -127,3 +127,21 @@ dfu-programmer at32uc3b0512 start
 ```
 
 > note: these are the same commands that are run by the `update_firmware.command` script included in the official firmware releases.
+
+after reflashing teletype, it makes the following proclamation:
+
+```
+SCENES WILL BE OVERWRITTEN!
+PRESS TO CONFIRM
+DO NOT PRESS OTHERWISE!
+```
+
+this will appear every time you power on the module until the panel
+button is pressed during this message, after which the module will
+behave normally. this is a safeguard that requires user confirmation
+before teletype will reset its flash memory to the default state, and
+was added to avoid accidentally wiping out saved scenes. if you see
+this message or get stuck in this state after normal usage of teletype
+without reflashing, do not press the button and please do post on
+lines, it should be possible to recover your scenes and troubleshoot
+using a firmware backup .hex file.

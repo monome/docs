@@ -46,6 +46,10 @@ Secure the module with the four included screws, hiding under the tape in the bo
 
 If you wish Teletype to communicate with Ansible or other modules with [ii](/docs/modular/ii), you will need to attach an ii cable (not included, but DIY'able [here](https://www.adafruit.com/product/1950)) as outlined in the [ii Communication](/docs/modular/iiheader/#connecting-the-trilogy) page. Teletype can also connect to a world of other [i2c-capable devices](https://llllllll.co/t/a-users-guide-to-i2c/19219). If your Teletype has a green circuit board, it can support 2 direct ii/i2c connections. If it has a black circuit board (Dec 2018 revision), it can support 4 direct ii/i2c connections.
 
+### Keyboard
+
+Teletype cannot use a USB keyboard if it has an internal USB hub, and does not work with USB hubs in general. Otherwise most keyboards should work, but keep in mind that backlit keyboards etc. are drawing power from Teletype, so you may wish to use external USB power. Teletype assumes the keyboard layout is US-ANSI. For more discussion, see [lines](https://llllllll.co/t/alternative-teletype-keyboard-recommendations-mechanical-wireless-etc/5859).
+
 ### Firmware
 
 **[Firmware updates](/docs/modular/update) may be available. The currently installed firmware version is displayed at startup.**
@@ -65,7 +69,7 @@ The basics of Teletype are quick to learn. The tutorials will get you started an
 * [PDF command reference](TT_commands_3.0.pdf)
 * [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
 
-* [Default scenes](scenes-1.0/)
+* [Default scenes](scenes-10/)
 
 You can also access in-module help any time by using ALT-H to toggle help mode.
 

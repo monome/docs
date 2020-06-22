@@ -7,8 +7,22 @@ nav_order: 6
 
 # norns: help
 
+Between this page and the search bar above, you should be able to self-solve most norns troubles that you'd run into.
+
+If you need additional help, we're here for you! Please send an email to help@monome.org using this format:
+
+- *What issue did you experience?*
+- *What steps are necessary to reproduce the issue?*
+- *What additional hardware was connected to norns at the time of the issue? This includes controllers, WiFi dongles, external hubs, etc.*
+- *Please attach any output printed in [maiden](../maiden/) when the issue occurs*
+
+If you're unable to supply concrete steps to reliably reproduce the issue, this will reduce our efficacy. Please understand if we point you to existing resources and ask you to verify additional info.
+
+For support with specific scripts and libraries, please visit [lines](https://llllllll.co) and search for the script's thread.
+
 ### sections
 - [replacing parts](#replacing-parts)
+     - [increase storage](#storage)
 - [wifi troubleshooting](#wifi-troubleshooting)
 - [updating + managing apps](#update-apps)
 - [restoring deleted system folders](#code-folder)
@@ -17,7 +31,10 @@ nav_order: 6
 	- [without WiFi](#manual-update)
 	- [fresh install](#fresh-install)
 - [backing up norns to USB](#backup-no-wifi)
+- [change passwords on norns](#change-passwd)
 - [taking a screenshot](#png)
+- [audio input/output hardware specs](#audio-specs)
+- [can I plug modular signals into norns directly?](#modular-levels)
 - [additional q's](#faq)
 
 ## replacing parts
@@ -45,27 +62,35 @@ On early batches of norns, some users have reported that the encoder values are 
 - turn a level all the way up and continue to turn the encoder
 - if the level jumps and does not remain at maximum, then you might want to replace that encoder
 
-We are still working to identify if this is related to our assembly house or if the actual OEM parts are flawed. The fix is *incredibly* straightforward if you have access to a soldering iron. While we can provide fixes in-house, shipping back and forth has a great deal of environmental impact that we'd love to help avoid. So, please consider DIY'ing and email us at help@monome.org if you have any questions or trepidations about the DIY process.
+We are still working to identify if this is related to our assembly house or if the actual OEM parts are flawed. The fix is straightforward if you have access to a soldering iron and some past experience. E-mail help@monome.org if you're not comfortable making the fix and we can help.
 
 Replacement encoders can be purchased [from Octopart](https://octopart.com/pec11r-4015f-n0024-bourns-26648251).
 
 Please reference this [step-by-step video](https://vimeo.com/373181868/f58ea21a31) detailing the fix.
 
+### storage
+
+The Raspberry Pi at the heart of stock norns can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage. Just search `raspberry pi cm3+ 32gb` to find a retailer.
+
+There is no soldering needed, but you will have to disassemble your norns a bit (the first few minutes of [this video](https://vimeo.com/373181868/f58ea21a31) details how).
+
+Many thanks to `@mutedial` for [compiling replacement steps](https://llllllll.co/t/norns-cm3-installation/19985/103).
+
 ## wifi troubleshooting
+
 _nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources._
 
 If you are consistently unable to connect your norns to wifi through the ['Connect' steps outlined here](../play/#connect), please perform the following steps:
 
-1. Try plugging the wifi nub into a different USB slot on norns and perform a standard reboot.
+1. Try getting very close to your wifi router. Bad signal can make it seem nonfunctional.
 
-2. Plug the wifi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected. If your nub is defective, please email help@monome.org for a replacement
+2. Plug the wifi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected. If your nub is defective, please email help@monome.org for a replacement.
 
 3. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
 
 4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../maiden/#other-access). Once you perform this serial login, try executing `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network:
 
 	![](image/terminal-nmtui-main.png)
-
 
 5. If you are still unable to connect, please email help@monome.org with the following information:
 
@@ -80,6 +105,10 @@ As of 10.28.2019, maiden (the web-based editor built into norns) now features a 
 If you are updating a project through the project manager that was not installed by using the project manager, you will receive an error that the project cannot be found in the catalog. Please delete the previously installed version and reinstall through project manager, which establishes the necessary git files for future updates.
 
 lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns) for projects tagged `norns`. In each project's thread, you'll find in-depth conversation as well as performance examples and tutorials. Projects for norns are primarily built and maintained by the lines community, so any questions/trouble with a specific project should be directed to its thread.
+
+## help: how do I clear a currently running app/script? <a name="clear-script"></a>
+
+Press K1 to toggle from PLAY to HOME. Highlight `SELECT` and hold K1 -- you'll see `CLEAR` in the middle of the screen. Press K3 to clear the currently running script.
 
 ## help: I've deleted the `code` folder! <a name="code-folder"></a>
 
@@ -102,9 +131,9 @@ lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20t
 
 ### DUPLICATE ENGINES
 
-Supercollider fails to load if you have multiple copies of the same engine (`.sc` files) inside of `dust` (the parent folder for the projects installed on norns).
+Supercollider fails to load if you have multiple copies of the same class, which are commonly contained in duplicate `.sc` files inside of `dust` (the parent folder for the projects installed on norns).
 
-To solve this, [connect](../play/#connect) via wifi and open [maiden](../maiden). Type `;restart` into the maiden REPL at the bottom (the `>>` prompt).
+To typically solve this, [connect](../play/#connect) via wifi and open [maiden](../maiden). Type `;restart` into the maiden _matron_ REPL at the bottom (the `>>` prompt).
 
 This will restart the audio components and output their logs. If there's a duplicate class an error message like the following will be shown:
 
@@ -116,6 +145,8 @@ DUPLICATE ENGINES:
 ```
 
 In this example, the `Engine_Ack.sc` engine is duplicated in two projects: `ack` and `we`. Using maiden, you would expand each project's `lib` folder to reveal the duplicated `Engine_Ack.sc`. After you remove one of the offending engines, execute `SYSTEM > RESTART` from the norns menu.
+
+If the issue persists or maiden does not report duplicate engines, please email help@monome.org. Keep in mind that unless you're familiar with Supercollider, do not tamper with its internal folder structure. All typical norns functionality can be handled through the maiden project manager or the `dust` folder.
 
 ### LOAD FAIL
 
@@ -133,7 +164,7 @@ In this example, the script requires `Timber`, so go find it in the Project Mana
 
 ### SUPERCOLLIDER FAIL
 
-This indicates that something is wrong with Supercollider, which could be due to various issues.
+This indicates that something is wrong with Supercollider, which could be due to various issues. First always just try rebooting via `SYSTEM > SLEEP`.
 
 If you're able to load maiden, there are two tabs in the main REPL area (above the `>>` prompt at the bottom of your screen). The first tab is for `matron`, the control program that runs scripts -- the other is `sc` for SuperCollider. Click into the `sc` tab and type `;restart` into the REPL. That should show you what is going on inside of SuperCollider.
 
@@ -149,7 +180,7 @@ If a newly-renamed script throws a `file not found` error in maiden, it is likel
 
 ## manual / offline update <a name="manual-update"></a>
 
-- Download and copy [update file (12/30/2019)](https://github.com/monome/norns/releases/download/v2.2.5/norns191230.tgz) to a FAT-formatted USB drive
+- Download and copy [update file (02/18/2020)](https://github.com/monome/norns/releases/download/v2.2.9/norns200218.tgz) to a FAT-formatted USB drive
 - Insert the disk to norns and power up.
 - Connect via [serial](../maiden/#other-access).
 - Copy file to `~/update/`:
@@ -162,8 +193,8 @@ sudo cp /media/usb0/*.tgz ~/update/
 
 ```
 cd ~/update
-tar xzvf norns191230.tgz
-cd 191230
+tar xzvf norns200218.tgz
+cd 200218
 ./update.sh
 ```
 
@@ -171,6 +202,8 @@ cd 191230
 
 
 ## fresh install
+
+*nb. these instructions apply only to stock norns. If you have a norns shield, please see [the github documentation](https://github.com/monome/norns-shield) for the latest shield image and troubleshooting help.*
 
 - current image: [200106](https://github.com/monome/norns-image/releases/download/200106/norns200106.img.zip) - 1.1G
 
@@ -199,6 +232,31 @@ First, connect via [serial](../maiden/#other-access) and then insert a USB stick
 - If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
 - Shutdown with `sudo shutdown now`
 
+## change passwords on norns <a name="change-passwd"></a>
+
+For security reasons (a device exposed to wifi should not have a widely-known password), you may want to change the default password for the `we` user.
+
+
+### login / ssh
+
+To change the login/ssh password for user `we`, log in to the norns via `ssh`. The command
+
+```
+passwd
+```
+
+will prompt you for the current and new password.
+
+### Samba
+
+The `smb://` remote login password does not automatically change when `passwd` changes. Although Samba is a low-security, local network project, it makes sense to set its login credentials to match the newly set user password. This can be done with:
+
+```
+sudo smbpasswd -a we
+```
+
+Re-type your new password and you should be all set.
+
 ## taking a screenshot <a name="png"></a>
 
 Capturing a screenshot of your norns can be a helpful tool for creating illustrative documentation or sharing UI ideas.
@@ -218,6 +276,34 @@ For example:
 
 This will clean up the image, make it look just like it renders on norns, and save it as a new file with the same name, but a `-m` at the end :)
 
+## what are the audio input/output hardware specs? <a name="audio-specs"></a>
+
+**Codec**
+
+The audio codec is a CS4720.
+
+The codec is externally clocked with a crystal (for no jitter), and the sample rate is fixed at 48k.
+
+**Inputs**
+
+The input jacks are configured for balanced or unbalanced. Input impedance is 10k.
+
+**Outputs**
+
+The output jacks are configured for balanced or unbalanced. Output impedance is 590 ohm.
+
+Output from the codec is connected to the headphone driver as well.
+
+**Headphone driver**
+
+The headphone driver is a TPA6130A2. Volume is controlled via i2c with a simple protocol, so no driver is necessary, though I think one exists.
+
+The i2c lines are connected to i2c0.
+
+## can I plug modular signals into norns directly? <a name="modular-levels"></a>
+
+NO! norns (both stock and shield) has line-level inputs only -- sending modular signals, which run very hot, through these inputs may result in damage. Please attenuate your modular signals before sending them into norns with an interface module like [Intellijel's Audio Interface](https://www.modulargrid.net/e/intellijel-audio-interface-ii).
+
 ## additional a's to faq's <a name="faq"></a>
 
 - Imported audio must be 48khz, bit depth is irrelevant.
@@ -226,8 +312,8 @@ This will clean up the image, make it look just like it renders on norns, and sa
 
 - If a connected MIDI controller is not functioning as expected, it may be due to a known limitation in scripts that do not explicitly allow for MIDI control from channels other than channel 1. Either reassign your MIDI controller to channel 1 or insert this [bit of code](https://llllllll.co/t/norns-scripting-best-practices/23606/2) into a script.
 
-- norns is not able to send MIDI to a VST or DAW directly over USB. You will need either two USB MIDI dongles or [2host](https://llllllll.co/t/2host-a-diy-usbmidi-host-to-host-adapter/23472).
+- norns is not able to send MIDI to a VST or DAW directly over USB, because you'd be trying to connect two MIDI hosts. One solution is to use two USB MIDI interfaces plugged into one another, or some MIDI devices exist with two USB host ports.
 
 - All grid editions will work with norns, but some apps may be coded for varibright levels that your hardware may not support.
 
-- norns does not have built-in bluetooth + the OS is not designed to take advantage of bluetooth.
+- norns does not have built-in bluetooth + the OS is not currently designed to take advantage of bluetooth.

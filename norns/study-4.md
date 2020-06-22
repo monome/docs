@@ -8,7 +8,7 @@ permalink: /norns/study-4/
 
 # physical
 
-norns studies part 4
+norns studies part 4: grids + midi
 
 ## tactile numbers
 
@@ -29,7 +29,7 @@ you'll see a light at x,y (1,8) go to full brightness. like the norns screen, (1
 
 _NOTE_: if you have a grid plugged in and this didn't work, check **SYSTEM > DEVICES > GRID** and make sure your grid is attached to port 1. (more on this later.)
 
-push a key and you'll see `grid input` printed. let's make it more informative:
+Let's see what happens when you push a key:
 
 ```lua
 g.key = function(x,y,z) print(x,y,z) end
@@ -97,17 +97,17 @@ let's take this decoupling a step further by implementing a complete step sequen
 engine.name = 'PolyPerc'
 
 steps = {}
-position = 1
-counter = metro.init()
-counter.time = 0.1
-counter.count = -1
-counter.callback = count
 
 function init()
   for i=1,16 do
     table.insert(steps,1)
   end
   grid_redraw()
+  position = 1
+  counter = metro.init()
+  counter.time = 0.1
+  counter.count = -1
+  counter.event = count
   counter:start()
 end
 
@@ -229,17 +229,17 @@ note the braces, as this is a syntax we haven't seen yet. it's equivalent to `m.
 this sends note on for note 60 at velocity 127 but it's much easier to use the helper function:
 
 ```lua
-m.note_on(60,127)
+m:note_on(60,127)
 ```
 
 here's a list of the helper functions for midi out:
 
-- `.note_on(note,velocity,ch)`
-- `.note_off(note,velocity,ch)`
-- `.cc(cc,val,ch)`
-- `.pitchbend(val,ch)`
-- `.key_pressure(note,val,ch)`
-- `.channel_pressure(val,ch)`
+- `:note_on(note,velocity,ch)`
+- `:note_off(note,velocity,ch)`
+- `:cc(cc,val,ch)`
+- `:pitchbend(val,ch)`
+- `:key_pressure(note,val,ch)`
+- `:channel_pressure(val,ch)`
 
 in each case, channel will default to 1 if left off. for note on/off, velocity is optional (100 will be used if none provided).
 
@@ -320,7 +320,6 @@ this little snippet does quite a lot. it has internal/external clocking and adds
 you can see on the third line that the beatclock needs a midi port. here it uses the default (1).
 
 to attach a function to the clock sync, simply redefine `on_step` as shown in `init`. we'll demonstrate this below.
-
 
 ## example: physical
 
@@ -421,14 +420,13 @@ end
 
 ```
 
-
 ## continued
 
-- part 1: [many tomorrows](../study-1/)
-- part 2: [patterning](../study-2)
-- part 3: [spacetime](../study-3)
+- part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
+- part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
+- part 3: [spacetime](../study-3/) // functions, parameters, time
 - part 4: physical
-- part 5: [streams](../study-5/)
+- part 5: [streams](../study-5/) // system polls, osc, file storage
 
 ## community
 

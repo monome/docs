@@ -11,7 +11,7 @@ SuperCollider is an environment and programming language for real time audio syn
 
 If you're very new to SuperCollider, it will be very beneficial to work through the 'Getting Started' tutorial which is within SuperCollider's help file documentation.
 
-Download SuperCollider: [supercollider.sourceforge.net](http://supercollider.sourceforge.net/)
+Download SuperCollider: [supercollider.github.io](https://supercollider.github.io/)
 
 Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
 
@@ -23,11 +23,11 @@ Download the monom library:
 
 [github.com/catfact/monom/archive/master.zip](https://github.com/catfact/monom/archive/master.zip)
 
-Copy to library to your SuperCollider class library folder:
+Unzip and copy the resulting folder to your SuperCollider user extensions folder:
 
-- MacOSX: right click on SuperCollider.app, choose “Show Package Contents” and then navigate to 'Contents/Resources/SCClassLibrary'
-- Windows: 'SCClassLibrary' within the SuperCollider program folder
-- Linux: look in /usr/share/SuperCollider/
+- In SuperCollider, select "Open user support directory” from the File menu.
+- Move or copy the `monom-master` folder into the `Extensions` folder (it might not exist,
+  in which case you will need to create it).
 
 ## 1. Connect
 

@@ -59,6 +59,16 @@ Many of the parameter views have "sub-pages" that extend or augment their functi
 
 Just like the primary parameter pages, each of the extended parameter subpages have their own probability, clock division and loop controls. This allows for some very complex phrasing to be built.
 
+### Modifiers
+
+The sequencing of each parameter can also be altered using one or more modifiers. The modifiers correspond to keys 11-13 on the bottom row and are, in order, LOOP MOD, TIME MOD, and PROBABILITY MOD. You adjust a modifier for a particular parameter by holding the mod key, which causes a different UI view to appear.
+
+The LOOP modifier lets you adjust the endpoints of the sequence loop for a given parameter. With the loop mod key held, the current loop selection is highlighted. You can move the start point of the loop by tapping any column (outside the bottom row). To change both endpoints of the loop, hold the loop mod key, hold the new start point, then hold the new end point. The loop may wrap around the edges of the grid if you tap an end point further to the left than the start point. By default, all parameters and all tracks share the same loop endpoints and are updated whenever you change the loop for any parameter. You can allow tracks or parameters to have independent loops by configuring the sync settings on the [config page](/docs/ansible/kria#config).
+
+The TIME modifier lets each parameter update on a different clock divider. With the time mod key held, the top row is highlighted to let you select a clock division between 1 at the left and 16 at the right. You may wish to have parameters within a track share clock dividers, or quantize changes to the clock division to occur only at the end of the current loop - these settings can be configured on the [time page](/docs/ansible/kria#time).
+
+The PROBABILITY modifier lets you program the probability of taking no action for a sequence step of a particular parameter. With the probability mod key held, the 4 center rows of each column of the grid act as a fader controlling the probability that the parameter will change to its next programmed value when the step is reached. The default is that reaching the step will update the parameter 100% of the time, you can set individual steps to ccur with 50% probability, 25% probability, or 0% probability.
+
 #### Trigger Ratcheting
 
 *Trigger ratcheting* allows multiple, regularly-spaced gates to be emitted for a single trigger in the grid.
@@ -112,6 +122,8 @@ Scales are constructed from the bottom row up. (In this case, the bottom row is 
 Moving upwards through the rows, each row specifies a number of semitones to be added to the previous scale note, building an ascending scale.
 
 For example, a whole tone scale (2 semitones per note) would be constructed by setting all rows to the second position. (The *zero* position is indicated dimly. Scale notes set to zero will be identical to the previous scale step).
+
+To adjust one note in a scale without affecting its interval relationship with the notes after it, hold the scale key while changing the scale note. The subsequent note is adjusted to compensate.
 
 You can perform temporary "live" adjustments to scale steps with a two-key gesture: hold down the active scale step, then press another key on that row of the scale programming section. The second key is highlighted more dimly to indicate that this scale step is adjusted. This adjusts the pitch CV assigned to that scale step without affecting the rest of the scale, which can be a useful performance tool. Pressing the brighter, "primary" scale key, or pressing another key to change the interval, will clear the adjustment. Scale adjustments are not saved to flash. Changing the selected scale will clear all scale adjustments, but changing patterns will not, which can make this useful for introducing live variations in a longer sequence.
 
@@ -254,7 +266,7 @@ Some space on this page is also used for some behavior that affects all apps:
   non-varibright, 4-step varibright, or 16-step varibright grid (the default).
 
 * The key in the bottom right, where Kria's scale page key is, accesses tuning mode,
-  described [here](/docs/ansible#tuning).
+  described [here](/docs/ansible/advanced#tuning).
 
 ### Presets
 

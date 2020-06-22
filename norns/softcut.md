@@ -11,7 +11,11 @@ permalink: /norns/softcut/
 
 softcut is a multi-voice sample playback and recording system built into the norns environment. it features level-smoothing, interpolated overdubbing, and matrix mixing. it was written by @zebra.
 
-for an introduction to scripting see the norns [studies](https://monome.org/docs/norns/study-1/) and [tutorial](https://llllllll.co/t/norns-tutorial/23241).
+for an introduction to scripting:
+
+- [studies](https://monome.org/docs/norns/study-1/)
+- [tutorial](https://llllllll.co/t/norns-tutorial/23241)
+- [video: softcut + clocks](https://vimeo.com/416730766)
 
 ## 1. basic playback
 
@@ -211,7 +215,7 @@ the example script reads a "backing track" clip when K1 is long-pressed. this se
 
 ## reference
 
-- [softcut API docs](https://monome.github.io/norns/doc/modules/softcut.html)
+- [softcut API docs](https://monome.org/norns/modules/softcut.html)
 
 contributions welcome: [github/monome/softcut-studies](https://github.com/monome/softcut-studies)
 

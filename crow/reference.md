@@ -22,18 +22,44 @@ input[n].query  -- send input n's value to the host -> ^^stream(<channel>,<volts
 
 ### input modes
 
-available modes are: `'none'`, `'stream'`, and `'change'`
+available modes are: `'none'`, `'stream'`, `'change'`, `'window'`, `'scale'`, `'volume'`, `'peak'`
 
 ```lua
 input[n].mode = 'stream' -- set input n to stream with default time
 
 input[n].mode( 'none' )         -- set input n to 'none' mode
+
 input[n].mode( 'stream', time ) -- set input n to 'stream' every time seconds
+
 input[n].mode( 'change', threshold, hysteresis, direction ) -- set input n to:
     -- 'change':   create an event each time the threshold is crossed
     -- threshold:  set the voltage around which to change state
     -- hysteresis: avoid noise of this size (in volts)
     -- direction:  'rising', 'falling', or 'both' transitions create events
+```
+
+*since v2.0*
+
+```lua
+input[n].mode( 'window', windows, hysteresis ) -- set input n to:
+    -- 'window':  create an event when the input enters a new voltage window
+    -- windows:   a table of voltages defining window boundaries, eg: {-3,-1,1,3}
+    -- threshold: sets the hysteresis voltage at each boundary
+
+input[n].mode( 'scale', notes, temperament, scaling ) -- set input n to:
+    -- 'scale':     quantize the input, raising an event when a new note is entered
+    -- notes:       a table of notes representing the scale, eg: {0,2,4,5,7,9,11}
+    -- temperament: number of possible notes per octave. defaults to 12
+    -- scaling:     volts-per-octave. default to 1.0, but use 1.2 for buchla systems
+
+input[n].mode( 'volume', time ) -- set input n to stream the volume at the input
+    -- 'volume': tracks the RMS amplitude of an audio signal (not a direct voltage)
+    -- time:     sets the rate in seconds at which to report the volume
+
+input[n].mode( 'peak', threshold, hysteresis ) -- set input n to:
+    -- 'stream':   creates an event when an audio transient is detected at the input
+    -- threshold:  sets the RMS level required to trigger an event
+    -- hysteresis: sets how far the RMS level needs to decrease before retriggering
 ```
 
 table calling the input will set the mode with named parameters:
@@ -59,7 +85,22 @@ input[1].stream = function(volts) <your_function> end
 input[1].change = function(state) <your_function> end
 ```
 
+using table call syntax, you can set the event handler at the same time:
+```lua
+-- set input n to stream every 0.2 seconds & print the value
+input[n]{ mode   = 'stream'
+        , time   = 0.2
+        , stream = function(v) print(v) end -- assign the handler inline
+        }
+```
+
 ## output
+
+### setting cv
+
+```lua
+output[n].volts = 3.0 -- set output n to 3 volts instantly
+```
 
 ### slewing cv
 
@@ -91,6 +132,19 @@ Available options:
 - 'under': move away from the destination, then smoothly ramp up
 - 'rebound': emulate a bouncing ball toward the destination
 
+### quantize to scales
+
+*since v2.0*
+
+outputs can be quantized with a flexible scale system. these scales are applied *after* slew or actions, so they can be used to eg. convert lfo's into arpeggios.
+
+```lua
+output[n].scale( {scale}, temperament, scaling )
+  -- scale: a table of note values, eg: {0,2,3,5,7,9,10}
+  --        use the empty table {} for chromatic scale
+  -- temperament: how many notes in a scale, default 12 (ie 12TET)
+  -- scaling: volts per octave, default to 1.0, but use eg. 1.2 for buchla systems
+```
 
 ### actions
 
@@ -131,7 +185,7 @@ output[1].running
 
 or set an event to be called whenever the action ends:
 ```lua
-output[1].done = function() <do something when the actions done> end
+output[1].done = function() print 'done!' end
 ```
 
 ## ASL
@@ -222,7 +276,7 @@ end
 
 ## metro
 
-crow has 7 metros that can be used directly:
+crow has 8 metros that can be used directly:
 
 ```lua
 -- start a timer that prints a number every second, counting up each time
@@ -263,16 +317,19 @@ ii.<device>.help() -- prints available functions for <device>
 ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups
 ```
 
-for devices that support multiple addresses (eg: txi, er301, faders)
+*since v2.0*
+
+multiple addresses per device are supported (eg: txi, er301, faders)
 ```lua
 ii.txi[1].get('param',1) -- get the first param of the first device
 ii.txi[2].get('param',1) -- get the first param of the second device
 
--- results in an event with an additional argument for 'device'
--- this number is the index after the device name
---    ie. 1 or 2 in txi[1] and txi[2] above
-ii.txi.event( event, data, device )
-    -- handle all connected txi device events here
+ii.txi.event( e, value ) -- 'e' is a table of: { name, device, arg }
+    if e.name == 'param' then
+        print('txi[' .. e.device .. '][' .. e.arg .. ']=' .. value)
+        -- prints: txi[1][1]=1.0
+        --         txi[2][1]=3.2
+    end
 end
 ```
 
@@ -306,4 +363,7 @@ These will likely be deprecated / pulled into `_c` or their respective libs
 time() -- returns a count of milliseconds since crow was turned on
 get_out( channel ) -- send the current output voltage to host
 get_cv( channel )  -- send the current input voltage to host
+cputime() -- prints a count of main loops per dsp block. higher == lower cpu
+delay( action, time, repeats ) -- delays execution of action (a function)
+                               -- by time (in seconds), repeats times
 ```

@@ -39,6 +39,8 @@ and the firmware will be updated. the clock led (if present) will flash to show 
 
 you will need to power-cycle the module to re-enable USB device detection.
 
+seeing `device not present`? first, ensure you are following the connection steps in order. then, it might be good to update Xcode's command-line tools (following [the steps in this post](https://llllllll.co/t/solved-dfu-programmer-device-not-present/31163/4)).
+
 
 ## windows
 
@@ -63,6 +65,8 @@ run `cmd` as Administrator (not sure it matters but best to anyway), cd to the d
 the clock led (if present) will flash to show it has successfully installed.
 
 you will need to power-cycle the module to re-enable USB device detection.
+
+having trouble with libusb? please see [this post](https://llllllll.co/t/dfu-programmer-installation-windows/622/12) for troubleshooting.
 
 ## linux
 

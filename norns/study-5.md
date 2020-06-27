@@ -163,20 +163,20 @@ a quick check via `tab.print(summoned_bits)` will show that the read was success
 let's do some more complex file operations. here's how you get a folder listing:
 
 ```lua
-listing = util.scandir(home_dir.."/dust")
+listing = util.scandir(paths.home)
 tab.print(listing)
 ```
 
 you'll see something resembling this:
 
 ```
-1	audio/
-2	data/
-3	docs/
-4	lib/
-5	scripts/
-6	LICENSE
-7	readme.md
+1    dust/
+2    maiden/
+3    norns/
+4    norns-image/
+5    update/
+6    changelog.txt
+7    version.txt
 ```
 
 `util.scandir` takes one argument which is a folder path, and then it returns a table the folder contents. let's load one of these files and print it out, just to see how file loading works:
@@ -197,13 +197,13 @@ function print_file(filepath)
 end
 
 -- let's test it:
-folder = home_dir.."/dust/"
+folder = paths.home.."/"
 listing = util.scandir(folder)
-print_file(folder..listing[7])
+print_file(folder..listing[6])
 
 ```
 
-the file `readme.md` should be printed! stepping through `print_file`:
+the file `changelog.txt` should be printed! stepping through `print_file`:
 
 - argument is a file with path
 - checks if the file exists

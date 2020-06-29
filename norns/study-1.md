@@ -54,7 +54,7 @@ you can type as many lines at the top of a script as you want, but note that the
 
 but we did do one important thing: we selected an engine.
 
-```
+```lua
 engine.name = "TestSine"
 ```
 
@@ -70,7 +70,7 @@ when you execute the script with `print("some words")` then `some words` get pri
 
 at the bottom is a `>>` prompt which is where you can type in commands. let's do that.
 
-```
+```lua
 print("hello.")
 ```
 
@@ -78,7 +78,7 @@ and you'll see `hello.` printed in response. norns has _excellent_ manners.
 
 but let's do something even more useful now:
 
-```
+```lua
 engine.list_commands()
 ```
 
@@ -100,7 +100,7 @@ this is useful information! for the "TestSine" engine we have two commands:
 
 both are float (decimal) values. given the name "TestSine" we can infer that `amp` is amplitude and `hz` is frequency. so let's change some values:
 
-```
+```lua
 engine.hz(200)
 ```
 
@@ -108,7 +108,7 @@ now is a good time to point out the UP ARROW on your keyboard. when typing into 
 
 so back to the script, if we want to have the engine start up with a particular frequency, we add it to the `init` function:
 
-```
+```lua
 function init()
   engine.hz(100)
   print("the end and the beginning they are the same.")
@@ -121,20 +121,20 @@ try it. it works!
 
 back to the command line. let's throw around some variables:
 
-```
+```lua
 coins = 4
 spell = "heal party"
 ```
 
 we just made two variables. the first assigned the number 4, the second a string. you can easily confirm that it worked with:
 
-```
+```lua
 print(coins)
 ```
 
 this prints just the number. you'll find it helpful when debugging to make more informative prints by using _string concatenation_ which just means gluing strings together (or tying them together, if you prefer a more rational metaphor). you do this with the lua operator `..` (two periods):
 
-```
+```lua
 print("i will cast " .. spell .. " for " .. coins .. " coins.")
 ```
 
@@ -146,7 +146,7 @@ print("i will cast " .. spell .. " for " .. coins .. " coins.")
 
 all of the normal arithmetic operators are available:
 
-```
+```lua
 coins = coins + 1
 coins = coins - 10
 coins = coins * 2
@@ -156,7 +156,7 @@ coins = coins % 2
 
 modulus (`%`) is perhaps unusual. it gives the remainder after a division. so: `11 % 10` would equal 1. we can use this as a trick for confining values to a range, say:
 
-```
+```lua
 x = x % 10
 ```
 
@@ -164,13 +164,13 @@ for whatever value of x, it will be wrapped to the range 0-9.
 
 and let's just make sure you know about this early on:
 
-```
+```lua
 coins = math.random(100)
 ```
 
 this assigns `coins` to a random value up to 100. but also:
 
-```
+```lua
 engine.hz(math.random(10)*50+100)
 ```
 
@@ -178,7 +178,7 @@ engine.hz(math.random(10)*50+100)
 
 so far all of our interaction has been through the command prompt. this is a good way to demonstrate some basic syntax, but the point of norns is interaction. here's how we make an event happen on key presses:
 
-```
+```lua
 function key(n,z)
   print("key " .. n .. " == " .. z)
 end
@@ -191,7 +191,7 @@ type this in at the bottom of your script. save and rerun. then push some keys, 
 
 let's modify the script to do something more engaging:
 
-```
+```lua
 function key(n,z)
   if n == 3 then
     engine.hz(100 + 100 * z)
@@ -201,7 +201,7 @@ end
 
 here we make an `if` statement:
 
-```
+```lua
 if (condition) then
   (do stuff)
 end
@@ -218,7 +218,7 @@ above we used `n == 3` as the condition, which checked to see if the key number 
 
 `if` statements can also be expanded with `elseif` and `else`:
 
-```
+```lua
 if coins > 100 then
   print("this bag is way too heavy")
 elseif coins < 0 then
@@ -232,7 +232,7 @@ end
 
 to get data from the encoders type this at the end of the script:
 
-```
+```lua
 function enc(n,d)
   print("encoder " .. n .. " == " .. d)
 end
@@ -242,7 +242,7 @@ here `d` is delta. the encoders report incremental steps of a turn: clockwise is
 
 we can accumulate these steps to get an absolute position:
 
-```
+```lua
 function enc(n,d)
   if n == 3 then
     position = position + d
@@ -264,13 +264,13 @@ stack traceback:
 
 (your line number may be different, but the error the same). we made a small mistake. while you don't need to declare variables, you can't add `nil` to numbers and since:
 
-```
+```lua
 position = position + d
 ```
 
 assumes that `position` already exists, we have to first make it exist. just do that by adding a line inside of `init` which gives `position` a default value:
 
-```
+```lua
 function init()
   position = 10
   engine.hz(100)
@@ -280,7 +280,7 @@ end
 
 but you may have already discovered error checking if you made some typos. for example:
 
-```
+```lua
 print("we like to party"
 ```
 
@@ -292,7 +292,7 @@ so: be sure to keep an eye on the command line for errors.
 
 putting together the concepts above. this script is demonstrated in the video up top.
 
-```
+```lua
 -- many tomorrows
 -- norns study 1
 --
@@ -344,19 +344,19 @@ end
 
 variables in lua are global by default. this means they are visible in any script and in the REPL. use the local keyword to make a variable visible only to the script that declared it:
 
-```
+```lua
 local hidden_spell = "foobarbaz"
 ```
 
 notice that you can’t access hidden_spell in the REPL:
 
-```
+```lua
 >> print(hidden_spell)
 ```
 
 produces the output: `nil`
 
-its OK to use global variables while you’re experimenting with a script, but it’s a good idea to add the local keyword when you’re done, because global variables can cause problems with other scripts and with the norns system. we're putting together a list of reserved variable names.
+it's OK to use global variables while you’re experimenting with a script, but it’s a good idea to add the local keyword when you’re done, because global variables can cause problems with other scripts and with the norns system. we're putting together a list of reserved variable names.
 
 ## reference
 

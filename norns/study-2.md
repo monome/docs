@@ -18,7 +18,7 @@ each script defines what happens on the screen. an interface can be as complex o
 
 start here:
 
-```
+```lua
 -- patterning
 -- norns study 2
 
@@ -54,7 +54,7 @@ this is a pretty typical (despite being simple) drawing function. we set some at
 
 let's make something more interactive then. replace `redraw()` and add the other functions below:
 
-```
+```lua
 function init()
   color = 3
   number = 84
@@ -85,7 +85,7 @@ we're calling `redraw()` when we get encoder or key data in order to display the
 
 and `redraw()` can itself have much more logic involved. for example, we may want to use different modes or pages, such as:
 
-```
+```lua
 function init()
   color = 3
   number = 84
@@ -147,7 +147,7 @@ but what is this! lines and rectangles?!
 
 add this below `screen.text("WILD")`:
 
-```
+```lua
     screen.aa(1)
     screen.line_width(2)
     screen.move(60,30)
@@ -171,7 +171,7 @@ check out the rest of the reference docs for more drawing bliss and get out your
 
 we've already looked at `if` / `ifelse` / `else` for basic control. let's look at a few other techniques:
 
-```
+```lua
 x = 3
 repeat
   print("we learn by repetition")
@@ -181,7 +181,7 @@ until x == 0
 
 the `repeat ... until` loop construct follow this form:
 
-```
+```lua
 repeat
   (commands)
 until (condition == true)
@@ -191,7 +191,7 @@ this is sometimes helpful because `(commands)` are always run at least once.
 
 here's another loop construct:
 
-```
+```lua
 x = 3
 while x > 0 do
   print("still learning")
@@ -201,7 +201,7 @@ end
 
 which can be abstracted to:
 
-```
+```lua
 while (condition == true)
   (commands)
 end
@@ -211,7 +211,7 @@ these are very similar and can often be used interchangeably. it's best to pick 
 
 you'll notice in the previous examples we've been adding a value modifier on each iteration of the loop (ie `x = x - 1`). there is one more loop construct that you'll likely use quite often:
 
-```
+```lua
 for i=1,3 do
   print("believe! " .. i)
 end
@@ -232,7 +232,7 @@ believe! 3
 
 let's draw some things (put this inside `redraw()`):
 
-```
+```lua
 screen.clear()
 screen.level(15)
 for x = 0,16 do
@@ -245,7 +245,7 @@ screen.update()
 
 you can also nest multiple `for` loops inside one another. think about how this works:
 
-```
+```lua
 screen.clear()
 screen.level(15)
 screen.line_width(0.5)
@@ -265,7 +265,7 @@ in lua, tables are associative arrays. think spreadsheets. (when making music my
 
 it's a way of storing, looking up, and manipulating a lot of data.
 
-```
+```lua
 nothing = {}
 drumzzz = {1,0,0,0,1,0,1,0}
 ```
@@ -274,20 +274,20 @@ tables are created with curly brackets. above, `nothing` is am empty table, `dru
 
 elements of a table can be keyed with an index (number) or a string. let's add some data (you can try things out on the command line):
 
-```
+```lua
 nothing[4] = 101
 nothing["lasers"] = "off"
 ```
 
 for elements keyed with a string, you can use a different syntax:
 
-```
+```lua
 print(nothing.lasers)
 ```
 
 this prints `off` if you did the assignment above. but note that:
 
-```
+```lua
 print(nothing[lasers])
 ```
 
@@ -303,7 +303,7 @@ when initializing a table with values (like `drumzzz`) the values are keyed incr
 
 we can insert and remove elements from a table:
 
-```
+```lua
 table.insert(drumzzz, 11)
 table.insert(drumzzz, 1, -1)
 table.remove(drumzzz, 1)
@@ -317,14 +317,14 @@ table.remove(drumzzz, 1)
 
 we can get the length of a table using the `#` operator:
 
-```
+```lua
 drumzzz = {1,0,0,0,1,0,1,0}
 print(#drumzzz)
 ```
 
 this prints `8`, which is the number of elements in the table. let's use this to display the whole table as steps in a sequence:
 
-```
+```lua
 screen.clear()
 for i=1,#drumzzz do
   screen.move(i*8, 40)
@@ -343,7 +343,7 @@ a few new techniques are here: `for i=1,#drumzzz do` means that the loop is perf
 
 tables can live inside tables! this is useful for two-dimensional structures.
 
-```
+```lua
 steps = { {1,0,0,0},
           {0,1,0,0},
           {0,0,1,0},
@@ -357,7 +357,7 @@ i've typed this on multiple lines for visualization, but you can write it all in
 
 one last table-talking-point. let's make a table with non-indexed elements:
 
-```
+```lua
 moon = {}
 moon.color = 15
 moon.phase = 0
@@ -366,7 +366,7 @@ moon.hollowness = "?"
 
 `#moon` will not return a length because these elements are not indexed. but we can use a technique to iterate through the list:
 
-```
+```lua
 for key,value in pairs(moon) do
   print(key .. " = " .. value)
 end
@@ -374,7 +374,7 @@ end
 
 or better yet, let's get it on the screen:
 
-```
+```lua
 screen.clear()
 screen.level(15)
 screen.move(0,0)
@@ -393,7 +393,7 @@ screen.update()
 
 putting together concepts above. this script is demonstrated in the video up top.
 
-```
+```lua
 -- patterning
 -- norns study 2
 

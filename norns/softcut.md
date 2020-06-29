@@ -30,7 +30,7 @@ first, some nomenclature:
 
 softcut parameters are reset when a script is loaded. to get a looping sound we need at a minimum the following, where the arguments are `(voice, value)`:
 
-```
+```lua
 softcut.enable(1,1)
 softcut.buffer(1,1)
 softcut.level(1,1.0)
@@ -43,7 +43,7 @@ softcut.play(1,1)
 
 the buffers are blank. load a file (wav/aif/etc):
 
-```
+```lua
 softcut.buffer_read_mono(file, start_src, start_dst, dur, ch_src, ch_dst)
 ```
 
@@ -63,7 +63,7 @@ softcut.buffer_read_mono(file, start_src, start_dst, dur, ch_src, ch_dst)
 
 enable more voices, then set their parameters using the first argument in the various param functions. here are a few more playback parameters:
 
-```
+```lua
 softcut.pan(voice,position)
 softcut.level_slew_time(voice,time)
 softcut.rate_slew_time(voice,time)
@@ -76,13 +76,13 @@ softcut.rate_slew_time(voice,time)
 
 softcut cross-fades nicely when cutting to a new position and looping. specify the fade time:
 
-```
+```lua
 softcut.fade_time(voice,time)
 ```
 
 we can read the playback position of a voice by setting up a poll.
 
-```
+```lua
 function update_positions(voice,position)
   print(voice,position)
 end
@@ -90,7 +90,7 @@ end
 
 and then inside `init()`:
 
-```
+```lua
 softcut.phase_quant(voice,time)
 softcut.event_phase(update_positions)
 softcut.poll_start_phase()
@@ -107,13 +107,13 @@ softcut.poll_start_phase()
 
 first activate record mode for voice 1:
 
-```
+```lua
 softcut.rec(1,1)
 ```
 
 then set up the input source. first we route audio input to softcut, and then set unity levels for each input channel on voice 1:
 
-```
+```lua
 audio.level_adc_cut(1)
 softcut.level_input_cut(1,1,1.0)
 softcut.level_input_cut(2,1,1.0)
@@ -135,7 +135,7 @@ so, full overdub would have both levels set to `1.0`. just playback would have `
 
 softcut can apply filtering pre-record and post-playback.
 
-```
+```lua
 softcut.pre_filter_dry(voice,value)
 softcut.pre_filter_lp(voice,value)
 softcut.pre_filter_hp(voice,value)
@@ -147,7 +147,7 @@ both are state variable filters with all taps available, so you can freely mix t
 
 to set the filter cutoff and q values:
 
-```
+```lua
 softcut.pre_filter_fc(voice,value)
 softcut.pre_filter_rq(voice,value)
 ```
@@ -166,7 +166,7 @@ the audio routing within softcut is highly configurable.
 
 first we can specify a mix of softcut's input source:
 
-```
+```lua
 audio.level_adc_cut( level )
 audio.level_eng_cut( level )
 audio.level_tape_cut( level )
@@ -174,19 +174,19 @@ audio.level_tape_cut( level )
 
 then assign input levels per voice:
 
-```
+```lua
 softcut.level_input_cut( ch, voice, level )
 ```
 
 we can also cross-patch the output of voices to the input of other voices:
 
-```
+```lua
 softcut.level_cut_cut( src, dst, value )
 ```
 
 each voice can have a separate level for final output:
 
-```
+```lua
 softcut.level( voice, value )
 ```
 
@@ -202,7 +202,7 @@ the example script uses two voices. the first just plays a loop. the second jump
 
 softcut reads files to buffers and writes buffers to files, in mono and stereo.
 
-```
+```lua
 softcut.buffer_read_mono (file, start_src, start_dst, dur, ch_src, ch_dst)
 softcut.buffer_read_stereo (file, start_src, start_dst, dur)
 softcut.buffer_write_mono (file, start, dur, ch)
@@ -218,4 +218,3 @@ the example script reads a "backing track" clip when K1 is long-pressed. this se
 - [softcut API docs](https://monome.org/norns/modules/softcut.html)
 
 contributions welcome: [github/monome/softcut-studies](https://github.com/monome/softcut-studies)
-

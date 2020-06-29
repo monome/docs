@@ -17,7 +17,7 @@ nav_order: 5
 - most importantly, `require()` caches its results, and will not re-run its arguments (unless you use a hack[^1]) the state of a `require`'d module is persisted, and this is significant. consider the following set of files.
 
 `baz.lua`, a module:
-```
+```lua
 local Baz = {}
 Baz.value = 100
 return Baz
@@ -26,7 +26,7 @@ return Baz
 'foo1' and 'foo2' scripts will use the `baz` module twice via `require`, incrementing the module state by 1 and 2 respectively.
 
 `foo1.lua`:
-```
+```lua
 local baz = require('baz')
 print('foo1:baz initial value = ' .. baz.value)
 baz.value = baz.value + 1
@@ -34,7 +34,7 @@ print('foo1:baz new value = ' .. baz.value)
 ```
 
 `foo2.lua`:
-```
+```lua
 local baz = require('baz')
 print('foo1:baz initial value = ' .. baz.value)
 baz.value = baz.value + 2
@@ -44,7 +44,7 @@ print('foo1:baz new value = ' .. baz.value)
 'bar1' and 'bar2' do the same, but with `dofile`.
 
 `bar1.lua`:
-```
+```lua
 local baz = dofile('baz.lua')
 print('bar1:baz initial value = ' .. baz.value)
 baz.value = baz.value + 1
@@ -52,7 +52,7 @@ print('bar1:baz new value = ' .. baz.value)
 ```
 
 `bar2.lua`:
-```
+```lua
 local baz = dofile('baz.lua')
 print('bar2:baz initial value = ' .. baz.value)
 baz.value = baz.value + 2
@@ -60,7 +60,7 @@ print('bar2:baz new value = ' .. baz.value)
 ```
 
 `test.lua`:
-```
+```lua
 dofile('foo1.lua')
 dofile('foo2.lua')
 dofile('bar1.lua')
@@ -86,7 +86,7 @@ viz., `foo2` inherits the state change from `foo1`, but `bar1` and `bar2` each g
 ---
 
 [^1] you can clear a package from the `require` cache manually. this is a hack:
-```
+```lua
 	package.loaded[baz] = nil
 	_G[baz] = nil -- also remove from global namespace
 ```

@@ -74,7 +74,9 @@ crow is a blank slate, so it requires instructions to know what you’d like it 
 
 Messages to crow must fit a format that crow expects, e.g.:
 
-`output[1].volts = 3.33`
+```lua
+output[1].volts = 3.33
+```
 
 Or on norns: `crow.output[1].volts = 3.33`
 
@@ -157,7 +159,7 @@ The `[sprintf]` object is the easiest way to format messages to crow. Using the 
 
 ### one of crow's inputs doesn't seem to respond to triggers
 
-If you are running a script or device that uses crow's inputs (perhaps for clocking), but crow doesn't seem to be receiving the triggers, try executing the following commands in druid/maiden/max: `crow.reset()` and `crow.clear()` (or `^^r` and `^^c`). 
+If you are running a script or device that uses crow's inputs (perhaps for clocking), but crow doesn't seem to be receiving the triggers, try executing the following commands in druid/maiden/max: `crow.reset()` and `crow.clear()` (or `^^r` and `^^c`).
 
 ### can I use [x thing] to control crow?
 

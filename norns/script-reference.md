@@ -136,7 +136,7 @@ tab.print(engine.names)
 
 The screen API handles drawing on the norns screen, see the [screen docs](https://monome.org/norns/classes/screen.html) for more details.
 
-```
+```lua
 function redraw()
   screen.clear()
   screen.move(10,10)
@@ -149,7 +149,7 @@ end
 
 The metro API allows for high-resolution scheduling, see the [metro docs](https://monome.org/norns/classes/metro.html) for more details.
 
-```
+```lua
 re = metro.init()
 re.time = 1.0 / 15
 re.event = function()
@@ -166,7 +166,7 @@ The paramset API allows to read and write temporary data and files, see the [par
 
 A parameter can be installed with the following:
 
-```
+```lua
 params:add{type = "number", id = "someparam", name = "Some Param", min = 1, max = 48, default = 4}
 ```
 

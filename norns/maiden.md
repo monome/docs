@@ -49,7 +49,7 @@ Messages are printed in the bottom panel. There are two tabs: matron is the main
 
 You can use the bottom prompt to type commands which will be interpreted by the system. For example:
 
-```
+```lua
 print("hello there")
 ```
 
@@ -105,8 +105,8 @@ If you have already installed a project and attempt to install it again, you wil
 
 To add to the [community project repo](https://github.com/monome/norns-community/blob/master/community.json), please submit a pull request with the following information:
 
-```
-{
+```json
+    {
       "project_name": "NAME",
       "project_url": "URL",
       "author": "NAME",
@@ -133,7 +133,7 @@ You'll be able to attach a .zip file containing your project folder, or if you w
 
 Be sure you include information at the top of your script to help future users:
 
-```
+```lua
 -- scriptname: short script description
 -- v1.0.0 @author
 -- llllllll.co/t/22222
@@ -191,17 +191,18 @@ Nearly all of the project management operations exposed in the maiden web UI can
 
 To access:
 
-```
+```bash
 ssh we@norns.local
 ...
-norns/maiden/maiden 
+maiden/maiden
 ```
 
 The maiden backend server also has sub-commands:
 
-```
+```bash
 ssh we@norns.local
 ...
+
 #
 # the catalog sub-command is useful for updating the "we" and "community"
 #
@@ -226,7 +227,7 @@ Global Flags:
 Use "maiden catalog [command] --help" for more information about a command.
 ```
 
-```
+```bash
 #
 # the project sub-command is installing and updating project directories
 #

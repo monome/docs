@@ -32,7 +32,7 @@ Now load up a terminal so we can check Python is installed and get the next piec
 
 Check if Python is installed and working:
 
-```
+```bash
 python3 -V
 ```
 
@@ -48,7 +48,7 @@ Now it's time to install `druid`!
 
 In a terminal, execute:
 
-```
+```bash
 pip3 install monome-druid
 ```
 
@@ -63,7 +63,7 @@ Now druid should be ready to use, you might need to close and reopen the termina
 
 To update when there's a new [release](https://github.com/monome/druid/releases), use
 
-```
+```bash
 pip3 install --upgrade monome-druid
 ```
 
@@ -73,25 +73,25 @@ NB: If you see an error like "The script druid is installed in '/Users/your/Libr
 
 In PowerShell, execute:
 
-```
+```powershell
 python -m pip install pyserial asyncio prompt_toolkit
 ```
 
 Then:
 
-```
+```powershell
 python -m pip install --upgrade setuptools
 ```
 
 Finally:
 
-```
+```powershell
 python -m pip install monome-druid
 ```
 
 To update when there's a new [release](https://github.com/monome/druid/releases), use
 
-```
+```powershell
 python -m pip install --upgrade monome-druid
 ```
 
@@ -113,7 +113,7 @@ On Windows 7, druid may be unable to connect with crow. Try using Zadig (instruc
 
 Let's load up `druid` to test if everything works as expected. With crow connected to your device with USB and your modular case turned on, execute:
 
-```
+```bash
 druid
 ```
 
@@ -133,7 +133,7 @@ If `druid` responds with `can't open serial port` you probably don't have the re
 
 If `druid` says `can't open serial port` you probably don't have the required permissions to open the device. To remedy this add yourself to the correct group, which can be determined by running (on Linux):
 
-```
+```bash
 ls -l /dev/ttyACM0
 crw-rw---- 1 root dialout 166, 0 Oct  9 20:28 /dev/ttyACM0
 #                  ^ the group
@@ -143,7 +143,7 @@ In this case the group is called `dialout` but it's sometimes also called `uucp`
 
 To add yourself to the `dialout` group run
 
-```
+```bash
 sudo gpasswd -a <your username> <the group name found above>
 ```
 

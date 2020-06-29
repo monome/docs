@@ -211,7 +211,7 @@ the file `changelog.txt` should be printed! stepping through `print_file`:
 
 writing a file is not much more complex:
 
-```
+```lua
 f=io.open(_path.data .. "other_test.txt","w+")
 f:write("dear diary,\n")
 f:write("10011010\n")

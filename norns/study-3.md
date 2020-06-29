@@ -20,7 +20,7 @@ so far we've seen a few ways to run commands:
 
 i just said _function_ a few times, and you may have seen in study 1 we didn't explain the first word of `function init()`. a function is a block of code that can be _called_ and conditionally accept and return parameters. simplest example:
 
-```
+```lua
 function greeting()
   print("hello there!")
 end
@@ -28,7 +28,7 @@ end
 
 in the command line you can type `greeting()` and this function will run, printing `hello there!`. but this is a silly example. functions are useful when you have some code you need to run frequently or perhaps from different places. they are very good for organizing and making your scripts readable and reusable. a better example:
 
-```
+```lua
 function midi_to_hz(note)
   local hz = (440 / 32) * (2 ^ ((note - 9) / 12))
   return hz
@@ -43,7 +43,7 @@ it's just a bunch of math that you likely don't want to remember. but we introdu
 
 let's use it:
 
-```
+```lua
 drone = midi_to_hz(30)
 ```
 
@@ -56,7 +56,7 @@ here's what happens:
 
 but where do you put the function definition? check this out:
 
-```
+```lua
 -- spacetime
 -- norns study 3
 
@@ -81,14 +81,14 @@ we simply put our function at the bottom. when you execute the script, the entir
 
 you'll also see that we did a little shortcut with function calling. you can nest them:
 
-```
+```lua
 drone = midi_to_hz(60)
 engine.hz(drone)
 ```
 
 is the same as:
 
-```
+```lua
 engine.hz(midi_to_hz(60))
 ```
 
@@ -96,7 +96,7 @@ engine.hz(midi_to_hz(60))
 
 functions can have many arguments:
 
-```
+```lua
 function stack_notes(root, interval, number)
   local note = root
   for i=1,number do
@@ -108,13 +108,13 @@ end
 
 this function takes three arguments: a `root` note, a note `interval`, and a `number` of notes. using a loop it plays a stack of notes. try this:
 
-```
+```lua
 stack_notes(40,7,6)
 ```
 
 it'll play these 6 midi notes, which start at 40 and increment by 7 each time: `40 47 54 61 68 75`. but what if we leave off an argument, ie `stack_notes(40,7)`? you'll get an error when the function tries to use `nil` as `number` in the loop. in functions we can define a default value like this:
 
-```
+```lua
 function stack_notes(root, interval, number)
   number = number or 4
   interval = interval or 7
@@ -126,7 +126,7 @@ now you can even call `stack_notes()` and you'll get something much more pleasan
 
 functions can also return many values:
 
-```
+```lua
 function whereami()
   local a = math.random(128)
   local b = math.random(64)
@@ -136,7 +136,7 @@ end
 
 and the get the values:
 
-```
+```lua
 x,y = whereami()
 x,y,z = whereami()
 x = whereami()
@@ -146,7 +146,7 @@ in the second line `z` will be nil. in the third line the second returned value 
 
 try this:
 
-```
+```lua
 function redraw()
   screen.clear()
   screen.level(15)
@@ -162,7 +162,7 @@ then enter/exit menu mode.
 
 lua lets us easily make functions that point at other functions. observe:
 
-```
+```lua
 function happy()
   engine.hz(midi_to_hz(60))
   engine.hz(midi_to_hz(64))
@@ -187,7 +187,7 @@ end
 
 the trick happens in the `key` function. see how `go` is getting reassigned to one of the other functions? for the puzzle lovers let's make it even more complicated:
 
-```
+```lua
 feelings = {sad,happy}
 
 function key(n,z)
@@ -199,7 +199,7 @@ what? it's a table of functions! why would you want to do this??
 
 the default way of thinking about decisions is perhaps to make a big if-else statement:
 
-```
+```lua
 function key(n,z)
   if z == 1 then
     happy()
@@ -211,7 +211,7 @@ end
 
 makes sense, totally readable. but what if your program could change itself while it ran?
 
-```
+```lua
 feelings[2] = sad
 ```
 
@@ -225,7 +225,7 @@ pause. really consider the possibilities, and i hope your mind explodes a tiny b
 
 managing numbers is of primary concern. we usually want them to stay in a certain range and behave a certain way, and this means typically making a lot of repetitive code. but we've created some structures to help you keep your numbers together and scripts looking clean:
 
-```
+```lua
 params:add_number("tempo","tempo",20,240,88)
 ```
 
@@ -241,7 +241,7 @@ we just created an entry in the default _parameter set_ which is called `params`
 
 besides editing in the menu, let's do some things with code:
 
-```
+```lua
 params:set("tempo", 110)
 print("tempo is " .. params:get("tempo"))
 params:delta("tempo", -100)
@@ -258,7 +258,7 @@ that last delta we did was clamped into the range, so you'll that the final `tem
 
 usually when a parameter changes we want something to happen. what if we could automatically call a function whenever a parameter changed, via `set` or `delta`?
 
-```
+```lua
 function print_bpm_to_ms(bpm)
   print(bpm .. " bpm is a " .. 60/bpm .. "second interval.")
 end
@@ -270,7 +270,7 @@ indeed indeed! now whenever the value of `tempo` is touched you'll be informed o
 
 there's a shortcut to make parameter creation more readable:
 
-```
+```lua
 params:add{type="number", id="tempo", min=20, max=240, default=88,
   action=function(x) print_bpm_to_ms(x) end}
 ```
@@ -281,7 +281,7 @@ note that we're using a new syntax style with curly brackets. this passes a tabl
 
 add more parameters with multiple lines of `params:add_number()`, but all parameters are not just basic numbers. there is a _control_ parameter that maps a "control" range (think 0-100) to a specified min/max, with linear and exponential scaling. we use these frequently with engine parameters:
 
-```
+```lua
 params:add_control("cutoff","cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
 ```
 
@@ -296,7 +296,7 @@ the third argument of the `params:add_control` function is a _control spec_. we 
 
 if we wanted to define this control spec once and then assign it to many controls, we could do it like this:
 
-```
+```lua
 filter_cs = controlspec.new(50,5000,'exp',0,555,'hz')
 params:add_control("f1","f1",filter_cs)
 params:add_control("f2","f2",filter_cs)
@@ -305,13 +305,13 @@ params:add_control("f3","f3",filter_cs)
 
 it is easy to then directly attach the parameter to an engine parameter:
 
-```
+```lua
 params:set_action("cutoff", function(x) engine.cutoff(x) end)
 ```
 
 now we can use the system menu to directly change an engine parameter. or much more fun, include it in our own script function:
 
-```
+```lua
 function enc(n,d)
   if n == 3 then
     params:delta("cutoff",d)
@@ -321,13 +321,13 @@ end
 
 with this short few lines we have an exponential, range-limited parameter control! and what's more:
 
-```
+```lua
 params:write("later.pset")
 ```
 
 this saves the current values of the parameter set to disk, in the file `later.pset` under `/dust/data/`. you can similarly load with:
 
-```
+```lua
 params:read("later.pset")
 params:bang()
 ```
@@ -336,7 +336,7 @@ after a read you'll want to call `params:bang()` which will activate every param
 
 lastly, we've been using the default parameter set throughout, but we can create as many of our own parameter sets as desired. they won't be hooked up to the system menu, but we can manipulate them in all of the same ways. here's how to create one:
 
-```
+```lua
 others = paramset.new()
 others:add_number("first","My First Parameter")
 ```
@@ -347,13 +347,13 @@ this creates a new parameter set called `others` and adds a number.
 
 until now we haven't considered time. how do we become aware of time?
 
-```
+```lua
 util.time()
 ```
 
 this returns something like: `1529498027.7441`. it's the system time, which is useful as a marker. now we will measure the length of a key press:
 
-```
+```lua
 down_time = 0
 
 function key(n,z)
@@ -374,7 +374,7 @@ try it out. press key 3, you'll get a time measurement. we can use something lik
 
 in addition to using keys and encoders to trigger functions, we can also make time-based metronomes which trigger functions.
 
-```
+```lua
 function init()
   position = 0
   counter = metro.init()
@@ -400,7 +400,7 @@ this `init` function creates a `metro` called `counter`:
 
 on each tick of the `counter`, the `count` function is executed. the value `c` is the stage of the metro. we create a `position` variable which is counted up. try the following one by one on the command line:
 
-```
+```lua
 counter.time = 0.5
 position = 0
 counter:stop()
@@ -410,7 +410,7 @@ counter:start()
 
 this demonstrates how we're able to manipulate `counter` on the fly. here's a quick script that creates a simple ascending strum pattern:
 
-```
+```lua
 -- strum
 
 engine.name = "PolyPerc"

@@ -263,16 +263,23 @@ Capturing a screenshot of your norns can be a helpful tool for creating illustra
 
 With your norns powered-on and connected to the same WIFI network as your computer, connect to maiden. Then, execute this line in maiden's REPL (replacing <FILENAME> with something unique):
 
-`_norns.screen_export_png("/home/we/<FILENAME>.png")`
+```lua
+_norns.screen_export_png("/home/we/<FILENAME>.png")
+```
 
 Use [SFTP](../sftp/) to connect to norns and download the PNG you just created. You'll notice the PNG is kinda tiny and the colors are inverted. Let's fix that with [ImageMagick](https://imagemagick.org/script/download.php).
 
 With ImageMagick installed on your computer, execute the following (replacing <PATH+FILENAME> with the entire path to your downloaded PNG):
 
-`magick convert <PATH+FILENAME>.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% <PATH+FILENAME>-m.png`
+```bash
+magick convert <PATH+FILENAME>.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% <PATH+FILENAME>-m.png
+```
 
 For example:
-`magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr-m.png`
+
+```bash
+magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr-m.png
+```
 
 This will clean up the image, make it look just like it renders on norns, and save it as a new file with the same name, but a `-m` at the end :)
 

@@ -204,7 +204,7 @@ Let's make a basic sample and hold script which takes a clock on input 1, which 
 
 In your text editor, save a file called `sketch.lua` to the *bowery/* folder. Copy and paste the following default layout:
 
-```
+```lua
 --- sketch name
 -- description
 
@@ -236,7 +236,7 @@ You'll notice nothing happened though, and that's because our script doesn't do 
 
 Start by setting input 1 to accept a clock signal. For this we set the input to have a special *mode* called 'change'. This mode waits for the input signal to pass above or below a threshold voltage, and generates an *event* whenever this happens. We'll put it inside the `init` function so that it happens whenever the script begins:
 
-```
+```lua
 function init()
     input[1].mode('change',1.0,0.1,'rising')
 end
@@ -253,7 +253,7 @@ These values for *threshold* and *hysteresis* are good defaults, so don't worry 
 
 Our input is setup, but we currently aren't doing anything when a *change* event is triggered by the input cable. When this event occurs, a *function* will be called allowing us to respond to the input. It looks like this:
 
-```
+```lua
 input[1].change = function(state)
     -- do things
 end
@@ -261,7 +261,7 @@ end
 
 Copy this to the bottom of the script, and replace the comment with the `print` function to make sure the clock is being detected:
 
-```
+```lua
 input[1].change = function(state)
     print('BANG!')
 end
@@ -281,7 +281,7 @@ BANG!
 
 Those *BANG!*s tell us the input is correctly setup and detecting the clock signal. Now rather than having crow shout at us, let's create the elusive random voltage.
 
-```
+```lua
 input[1].change = function(state)
     output[1].volts = math.random() * 10 - 5
 end
@@ -300,7 +300,7 @@ If you're having trouble, you can look at the file `samplehold-basic.lua` in *bo
 
 While building the above script, we just zipped through implementation and were only using `druid` to send our script to crow. It can be super useful to have crow send us some information while we work, or to try out commands as we go. For example, let's add a *variable* and debug print to our change event to see what's going on:
 
-```
+```lua
 input[1].change = function(state)
     rand = math.random() * 10 - 5
     print(rand)
@@ -323,7 +323,7 @@ Patch a voltage source to input 2, then up-arrow + enter in druid a few times to
 
 This call to `input[2].volts` can be included in our sample & hold script too. For now the script just outputs a random value on output 1, but why not sample input 2 and send that to output 2:
 
-```
+```lua
 input[1].change = function(state)
     rand = math.random() * 10 - 5
     volt = input[2].volts

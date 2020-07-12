@@ -217,7 +217,7 @@ crow can speak a slope language, affectionately referenced as **a/s/l**. In the 
 We start with a table of shapes:
 
 ```lua
-shapes = {'linear','sine','logarithmic','exponential','now','wait','over','under','rebound'} 
+shapes = {'linear','sine','logarithmic','exponential','now','wait','over','under','rebound'}
 ```
 
 Using random, we query shapes from that table and generate Voltages and durations for each of segments. This constructs the `to` commands which will structure our evolving waves:
@@ -287,6 +287,15 @@ crow.input[x].query()            -- queries current value of input x
 
 ```lua
 crow.ii.pullup(state)       -- enable/disable pullups (true/false)
+
+-- crow
+-- commands
+crow.ii.crow.output( channel, level )
+crow.ii.crow.slew( channel, time )
+crow.ii.crow.call1( arg )
+crow.ii.crow.call2( arg1, arg2 )
+crow.ii.crow.call3( arg1, arg2, arg3 )
+crow.ii.crow.call4( arg1, arg2, arg3, arg4 )
 
 -- ansible
 -- commands

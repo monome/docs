@@ -144,6 +144,9 @@ output[n].scale( {scale}, temperament, scaling )
   --        use the empty table {} for chromatic scale
   -- temperament: how many notes in a scale, default 12 (ie 12TET)
   -- scaling: volts per octave, default to 1.0, but use eg. 1.2 for buchla systems
+
+-- deactivate any active scaling with the 'none' argument
+output[n].scale( 'none' )
 ```
 
 ### actions

@@ -38,6 +38,14 @@ Once connected, you can freely navigate through files on norns:
 
 ![](../image/smb-mac-tree.png)
 
+## Windows
+
+To use SMB network sharing on Windows 10, navigate to Control Panel > Programs > Programs and Features > Turn Windows features on or off, and turn on the SMB features. 
+
+Reboot.
+
+The norns.local file tree should be available at \\norns.local
+
 ## file tree
 
 Upon connecting, you'll be in the `dust` folder which contains everything we need. Here's the layout:

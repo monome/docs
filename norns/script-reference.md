@@ -175,78 +175,58 @@ params:add{type = "number", id = "someparam", name = "Some Param", min = 1, max 
 
 ### system globals
 
-These are system globals as of norns `200712`. Do not overwrite them.
+These are the lua and norns globals as of norns `200712`. Do not overwrite them.
 
-```lua
-_G
-_menu
-_norns
-_path
-_startup
-_VERSION
-arc
-assert
-audio
-bit32
-cleanup
-clock
-collectgarbage
-controlspec
-coroutine
-crow
-debug
-dofile
-enc
-engine
-error
-getmetatable
-grid
-hid
-include
-inf
-io
-ipairs
-key
-load
-loadfile
-math
-metro
-midi
-mix
-next
-norns
-os
-osc
-package
-pairs
-params
-paramset
-paths
-pcall
-poll
-print
-rawequal
-rawget
-rawlen
-rawset
-redraw
-require
-screen
-select
-setmetatable
-softcut
-string
-tab
-table
-tonumber
-tostring
-type
-utf8
-util
-wifi
-xpcall
-
-```
+| Lua Globals    | norns Globals |
+|----------------|---------------|
+| _G             | _menu         |
+| _VERSION       | _norns        |
+| assert         | _path         |
+| collectgarbage | _startup      |
+| error          | arc           |
+| getmetatable   | audio         |
+| ipairs         | bit32         |
+| next           | cleanup       |
+| pairs          | clock         |
+| pcall          | controlspec   |
+| print          | coroutine     |
+| rawequal       | crow          |
+| rawget         | debug         |
+| select         | dofile        |
+| setmetatable   | enc           |
+| tonumber       | engine        |
+| tostring       | grid          |
+| type           | hid           |
+| xpcall         | include       |
+|                | inf           |
+|                | io            |
+|                | key           |
+|                | load          |
+|                | loadfile      |
+|                | math          |
+|                | metro         |
+|                | midi          |
+|                | mix           |
+|                | norns         |
+|                | os            |
+|                | osc           |
+|                | package       |
+|                | params        |
+|                | paramset      |
+|                | paths         |
+|                | poll          |
+|                | rawlen        |
+|                | rawset        |
+|                | redraw        |
+|                | require       |
+|                | screen        |
+|                | softcut       |
+|                | string        |
+|                | tab           |
+|                | table         |
+|                | utf8          |
+|                | util          |
+|                | wifi          |
 
 ## devices
 

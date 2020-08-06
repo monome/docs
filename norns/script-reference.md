@@ -178,53 +178,41 @@ params:add{type = "number", id = "someparam", name = "Some Param", min = 1, max 
 These are the lua and norns globals as of norns `200712`. Do not overwrite them.
 
 | Lua Globals    | norns Globals |
-|----------------|---------------|
+|:---------------|:--------------|
 | _G             | _menu         |
 | _VERSION       | _norns        |
 | assert         | _path         |
-| collectgarbage | _startup      |
-| error          | arc           |
-| getmetatable   | audio         |
-| ipairs         | bit32         |
-| next           | cleanup       |
-| pairs          | clock         |
-| pcall          | controlspec   |
-| print          | coroutine     |
-| rawequal       | crow          |
-| rawget         | debug         |
-| select         | dofile        |
-| setmetatable   | enc           |
-| tonumber       | engine        |
-| tostring       | grid          |
-| type           | hid           |
-| xpcall         | include       |
-|                | inf           |
-|                | io            |
-|                | key           |
-|                | load          |
-|                | loadfile      |
-|                | math          |
-|                | metro         |
-|                | midi          |
-|                | mix           |
-|                | norns         |
-|                | os            |
-|                | osc           |
-|                | package       |
-|                | params        |
-|                | paramset      |
-|                | paths         |
-|                | poll          |
-|                | rawlen        |
-|                | rawset        |
-|                | redraw        |
-|                | require       |
-|                | screen        |
+| bit32          | _startup      |
+| collectgarbage | arc           |
+| dofile         | audio         |
+| error          | cleanup       |
+| getmetatable   | clock         |
+| ipairs         | controlspec   |
+| io             | coroutine     |
+| load           | crow          |
+| loadfile       | debug         |
+| next           | enc           |
+| math           | engine        |
+| os             | grid          |
+| pairs          | hid           |
+| pcall          | include       |
+| print          | inf           |
+| rawequal       | key           |
+| rawget         | metro         |
+| rawlen         | midi          |
+| rawset         | mix           |
+| require        | norns         |
+| select         | osc           |
+| setmetatable   | package       |
+| tonumber       | params        |
+| tostring       | paramset      |
+| table          | paths         |
+| type           | poll          |
+| utf8           | redraw        |
+| xpcall         | screen        |
 |                | softcut       |
 |                | string        |
 |                | tab           |
-|                | table         |
-|                | utf8          |
 |                | util          |
 |                | wifi          |
 

@@ -173,6 +173,49 @@ params:add{type = "number", id = "someparam", name = "Some Param", min = 1, max 
 - `params:set(index, value)`, writes a parameter.
 - `params:get(index)`, reads a parameter.
 
+### system globals
+
+These are the lua and norns globals as of norns `200712`. Do not overwrite them.
+
+| Lua Globals    | norns Globals |
+|:---------------|:--------------|
+| _G             | _menu         |
+| _VERSION       | _norns        |
+| assert         | _path         |
+| bit32          | _startup      |
+| collectgarbage | arc           |
+| dofile         | audio         |
+| error          | cleanup       |
+| getmetatable   | clock         |
+| ipairs         | controlspec   |
+| io             | coroutine     |
+| load           | crow          |
+| loadfile       | debug         |
+| next           | enc           |
+| math           | engine        |
+| os             | grid          |
+| pairs          | hid           |
+| pcall          | include       |
+| print          | inf           |
+| rawequal       | key           |
+| rawget         | metro         |
+| rawlen         | midi          |
+| rawset         | mix           |
+| require        | norns         |
+| select         | osc           |
+| setmetatable   | package       |
+| tonumber       | params        |
+| tostring       | paramset      |
+| table          | paths         |
+| type           | poll          |
+| utf8           | redraw        |
+| xpcall         | screen        |
+|                | softcut       |
+|                | string        |
+|                | tab           |
+|                | util          |
+|                | wifi          |
+
 ## devices
 
 ### grid

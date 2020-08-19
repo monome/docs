@@ -44,7 +44,7 @@ Secure the module with the four included screws, hiding under the tape in the bo
 
 ### ii/i2c
 
-If you wish Teletype to communicate with Ansible or other modules with [ii](/docs/modular/ii), you will need to attach an ii cable (not included, but DIY'able [here](https://www.adafruit.com/product/1950)) as outlined in the [ii Communication](/docs/modular/iiheader/#connecting-the-trilogy) page. Teletype can also connect to a world of other [i2c-capable devices](https://llllllll.co/t/a-users-guide-to-i2c/19219). If your Teletype has a green circuit board, it can support 2 direct ii/i2c connections. If it has a black circuit board (Dec 2018 revision), it can support 4 direct ii/i2c connections.
+If you wish Teletype to communicate with Ansible or other modules with [ii](/docs/modular/ii), you will need to attach an ii cable (not included, but DIY'able [here](https://www.adafruit.com/product/1950)) as outlined in the [ii Communication](/docs/modular/iiheader#connecting-the-trilogy) page. Teletype can also connect to a world of other [i2c-capable devices](https://llllllll.co/t/a-users-guide-to-i2c/19219). If your Teletype has a green circuit board, it can support 2 direct ii/i2c connections. If it has a black circuit board (Dec 2018 revision), it can support 4 direct ii/i2c connections.
 
 ### Keyboard
 

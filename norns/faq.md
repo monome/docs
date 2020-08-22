@@ -3,7 +3,7 @@ layout: default
 parent: scripting
 grand_parent: norns
 title: faq
-nav_order: 5
+nav_order: 3
 ---
 
 # FAQ

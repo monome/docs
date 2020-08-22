@@ -13,20 +13,12 @@ Scripting for norns is remarkably rewarding. For script development, we have cho
 
 If you wish to dig deeper into the capabilities of norns, this is where to start :)
 
-## studies
-
-- part 1: [many tomorrows](../study-1/) // variables, simple maths, keys + encoders
-- part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
-- part 3: [spacetime](../study-3/) // functions, parameters, time
-- part 4: [physical](../study-4/) // grids + midi
-- part 5: [streams](../study-5/) // system polls, osc, file storage
-- further: [softcut studies](../softcut/) // a multi-voice sample playback and recording system built into norns
+## [norns studies](../studies-landing/)
 
 ## further
 
 - [norns script reference](../script-reference)
 - [norns scripting faq](../faq)
-- [norns tutorial](https://llllllll.co/t/norns-tutorial/23241)
 - [programming in lua (first edition)](https://www.lua.org/pil/contents.html)
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
 - [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)

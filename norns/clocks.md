@@ -2,6 +2,7 @@
 layout: default
 parent: scripting
 grand_parent: norns
+title: clocks
 nav_exclude: true
 permalink: /norns/clocks/
 ---

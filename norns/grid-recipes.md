@@ -22,7 +22,7 @@ these microstudies have been designed with simplicity and extensibility in mind.
 - [simple redraw](#simple-redraw)
 - [momentary keys](#momentary-keys)
 - [toggles](#toggles)
-- [machine states](#machine-states)
+- [state machine](#state-machine)
 - [switches](#switches)
 - [range](#range)
 - [meters](#meters)

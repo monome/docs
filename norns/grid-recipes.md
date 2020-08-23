@@ -6,15 +6,17 @@ permalink: /norns/grid-recipes/
 
 ## grid recipes
 
-these snippets of code are starting points for some of the most common grid interactions.
+these snippets of code are starting points for some of the most common grid interactions, to help make incorporating grids into your scripts easier.
 
-they're each written following these core techniques:
+each are written following these "house" techniques:
 
 - use flags to determine when to redraw the grid
 - use tables to track flag states and grid coordinates
 - query flag states at 30fps and only redraw when things change
 
 these microstudies have been designed with simplicity and extensibility in mind. drop them into an existing script and stitch an interface together, or start from an interface and fill in functions as you go!
+
+(grid GIFs created using `@Tyler`'s excellent [GridCapture](https://llllllll.co/t/33158) library)
 
 ## TOC
 - [simple redraw](#simple-redraw)

@@ -491,7 +491,7 @@ g = grid.connect()
 
 function init()
   grid_dirty = true
-  meter = {{},selected = 1}
+  meter = { {} , selected = 1 }
   for x = 1,16 do
     meter[x] = {height = 0}
   end

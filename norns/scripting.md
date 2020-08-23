@@ -7,13 +7,13 @@ nav_order: 5
 has_toc: false
 ---
 
+## cooking at home
+
 By this point, you've probably downloaded a few projects and hopefully have had a few ideas of your own. Maybe you want to extend the functionality of a particular script or add something that solves a new musical problem? Perhaps you've been looking for a script that does ______, but nobody's built it yet!
 
 Scripting for norns is remarkably rewarding. For script development, we have chosen Lua as the primary language. Lua is very readable and approachable for those with no coding experience.
 
-If you wish to dig deeper into the capabilities of norns, this is where to start :)
-
-## [norns studies](../studies-landing/)
+If you wish to dig deeper into the capabilities of norns, this is where to start: [norns studies](../studies-landing/)
 
 ## further
 

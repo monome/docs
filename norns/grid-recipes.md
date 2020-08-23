@@ -1,10 +1,10 @@
 ---
 layout: default
-parent: scripting
-grand_parent: norns
 nav_exclude: true
 permalink: /norns/grid-recipes/
 ---
+
+## grid recipes
 
 these snippets of code are starting points for some of the most common grid interactions.
 
@@ -33,7 +33,8 @@ these microstudies have been designed with simplicity and extensibility in mind.
 
 all keys are set up as switches, so only one can be lit at a time. press a new one, it lights up as the previous selection goes out. useful for state changes. use encoder 3 to change brightness level.
 
-#### core concepts:
+**core concepts:**
+
 - `clock`-centric grid redraw
 - `grid_dirty` flag to prompt grid redraw
 - introduce table elements (`show.x` and `show.y` instead of variables)
@@ -80,7 +81,7 @@ function enc(n,d) -- define what happens in an encoder is turned
 end
 ```
 
-#### try this:
+**try this:**
 
 - start the script with a random x,y position
 - control brightness with a different encoder
@@ -94,7 +95,8 @@ classic earthsea-style interaction. press a key and it lights up as it's held. r
 
 the difference between this snippet and the 'simple redraw' is that the state of every key is being independetly tracked. this means that the state of each key won't influence the others -- instead of only *one* lit key at a time, you can press many keys at once and they'll *all* light up.
 
-#### core concepts:
+**core concepts:**
+
 - establish a table that holds booleans for every grid key
 - utilize inline conditions (see line 41)
 
@@ -146,7 +148,7 @@ function g.key(x,y,z)  -- define what happens if a grid key is pressed or releas
 end
 ```
 
-#### try this:
+**try this:**
 
 - restrict momentary keys to a 64-sized grid
 - restrict momentary keys to even-numbered rows
@@ -159,7 +161,8 @@ press an unlit key and it toggles on at half-bright. hold a half-bright key to m
 
 here, we enter state management territory. instead of defining single-state toggles for each key, we use additional gesture information to switch between two toggle states: half-bright and full-bright. this is the foundation of modified behavior.
 
-#### core concepts:
+**core concepts:**
+
 - using `clock` to track held time
 - managing `clock` state to cancel clocks with unmet criteria
 - modifying existing states
@@ -243,7 +246,7 @@ function grid_redraw_clock()
 end
 ```
 
-#### try this:
+**try this:**
 
 - modify the script so that a long press on an unlit key toggles the key at full-bright (current behavior: only a short press can toggle an unlit key)
 - modify the script so that a short press on full-bright key drops to half-bright (current behavior: only a long press on a full-bright key will drop to half-bright)
@@ -254,7 +257,8 @@ end
 
 sorta like toggles, but a long press momentarily inverts the state of the key whereas a short press flips the state. very useful for alt menus + modifiers and doesn't require dedicating any real-estate to single-purpose "meta" keys.
 
-#### core concepts:
+**core concepts:**
+
 - implementing a low-level state machine
 - using `clock` to track held time
 - managing `clock` state to cancel clocks with unmet criteria
@@ -338,7 +342,7 @@ function grid_redraw_clock()
 end
 ```
 
-#### try this:
+**try this:**
 
 - short press = half-bright, long press = full-bright
 - only during a long press, draw additional LEDs
@@ -350,7 +354,7 @@ end
 
 foundation for a step sequencer -- 16 columns of switches, stealing vertically.
 
-#### core concepts:
+**core concepts:**
 
 - using nested tables to segment the grid display
 
@@ -392,7 +396,7 @@ function g.key(x,y,z)
 end
 ```
 
-#### try this:
+**try this:**
 
 - add a moving playhead indicator
 - incorporate a long press to modify and display an additional table of switches
@@ -403,7 +407,7 @@ end
 
 hold a grid key and press another in the same row to establish a range. pressing a single key will establish a new start point for the range, so long as the entire range can fit. establishing a negative range resets to 1.
 
-#### core concepts:
+**core concepts:**
 
 - using nested tables with multiple elements to track state
 - using if/then conditions to define all possible interactions
@@ -470,7 +474,7 @@ function g.key(x,y,z)
 end
 ```
 
-#### try this:
+**try this:**
 
 - add a moving playhead indicator in each row
 - incorporate a long press to reset the range to 1
@@ -481,7 +485,8 @@ end
 
 16 vertical meters, use E3 to change height. great for step sequencers or showing parameter + variable states.
 
-#### core concepts:
+**core concepts:**
+
 - more advanced table nesting + methods
 - reverse `for` count
 - `g:led` features in-line comparison
@@ -534,7 +539,7 @@ function enc(n,d)
 end
 ```
 
-#### try this:
+**try this:**
 
 - add a moving playhead indicator across the grid which runs across the top-most key in each column
 - add a mechanism to the bottom row which dynamically sets a range to restrict the playhead's movement

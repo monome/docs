@@ -2,8 +2,7 @@
 layout: default
 parent: scripting
 grand_parent: norns
-title: softcut
-nav_order: 2
+nav_exclude: true
 permalink: /norns/softcut/
 ---
 

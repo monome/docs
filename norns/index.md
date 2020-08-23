@@ -19,7 +19,7 @@ has_toc: false
 - [script reference](../norns/script-reference) contains lists of functions.
 - [help](../norns/help) for deeper device and system troubleshooting.
 
-current version: [200604](https://l.llllllll.co/norns) (June 04 2020)
+current version: [200712](https://l.llllllll.co/norns) (July 12 2020)
 
 ### contributing
 

@@ -4,7 +4,7 @@ parent: scripting
 grand_parent: norns
 has_children: false
 title: reference
-nav_order: 4
+nav_order: 2
 has_toc: false
 ---
 

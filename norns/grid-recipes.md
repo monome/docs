@@ -95,7 +95,7 @@ end
 
 classic earthsea-style interaction. press a key and it lights up as it's held. release to extinguish.
 
-the difference between this snippet and the 'simple redraw' is that the state of every key is being independetly tracked. this means that the state of each key won't influence the others -- instead of only *one* lit key at a time, you can press many keys at once and they'll *all* light up.
+the difference between this snippet and the 'simple redraw' is that the state of every key is being independently tracked. this means that the state of each key won't influence the others -- instead of only *one* lit key at a time, you can press many keys at once and they'll *all* light up.
 
 **core concepts:**
 

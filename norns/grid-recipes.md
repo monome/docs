@@ -25,7 +25,7 @@ these microstudies have been designed with simplicity and extensibility in mind.
 - [machine states](#machine-states)
 - [switches](#switches)
 - [range](#range)
-- [sliders](#sliders)
+- [meters](#meters)
 
 ***
 

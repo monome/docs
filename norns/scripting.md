@@ -7,6 +7,8 @@ nav_order: 5
 has_toc: false
 ---
 
+# scripting
+
 ## cooking at home
 
 By this point, you've probably downloaded a few projects and hopefully have had a few ideas of your own. Maybe you want to extend the functionality of a particular script or add something that solves a new musical problem? Perhaps you've been looking for a script that does ______, but nobody's built it yet!

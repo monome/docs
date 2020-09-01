@@ -42,7 +42,7 @@ Additional magic shapes for pattern modulations allow the resequencing of your p
 
 **Align the ribbon cable so the red stripe corresponds to the white indicator on the rear of the module's circuit board.**
 
-- Be careful not to misalign the connector left-to-right either as it can damage this module, and other's in your case.
+- Be careful not to misalign the connector left-to-right either as it can damage this module, and others in your case.
 - Secure the module in your case with included screws, hiding under blue tape in the box.
 
 As mentioned at top, monome modules require high +5v current. Before powering up your case, make sure the power supply can provide at least 600mA of current on the +5v line. Even if it appears to work in an underpowered case, it may degrade slowly over time until it fails and destroys the Earthsea. These repairs are not warrantied.

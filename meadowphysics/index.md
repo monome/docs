@@ -41,7 +41,7 @@ These installation instructions are the Meadowphysics module only. To run Meadow
 
 **Align the ribbon cable so the red stripe corresponds to the white indicator on the rear of the module's circuit board.**
 
-- Be careful not to misalign the connector left-to-right either as it can damage this module, and other's in your case.
+- Be careful not to misalign the connector left-to-right either as it can damage this module, and others in your case.
 - Secure the module in your case with included screws, hiding under blue tape in the box.
 
 ### WARNING: Meadowphysics requires high +5v current

@@ -193,7 +193,7 @@ sudo cp /media/usb0/*.tgz ~/update/
 
 ```
 cd ~/update
-tar xzvf norns20712.tgz
+tar xzvf norns200712.tgz
 cd 200712
 ./update.sh
 ```

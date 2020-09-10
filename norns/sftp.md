@@ -23,7 +23,7 @@ Be careful when editing files on Norns.  If you delete files that Norns needs to
 
 Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, windows and linux.  While the screens will be different, the goal is the same, (to connect to Norns over the IP adress provided using SFTP/port 22).
 
-1. If not already, start up Norns.  Navigate to SYSTEM / WIFI.  You can either use Norns in HOTSPOT mode, or by connecting to the same NETWORK that the computer you'll be downloading the SFTP client to is on. See the [connect docs](../play/#connect) for more information about WIFI setup.
+1. If not already, start up Norns.  Navigate to SYSTEM / WIFI.  You can either use Norns in HOTSPOT mode, or by connecting to the same NETWORK that the computer you'll be downloading the SFTP client to is on. See the [network connect docs](../play/#network-connect) for more information about WIFI setup.
 
 2. Download Cyberduck.  You can find direct package installation for free from Cyberduck's website on the [changelog](https://cyberduck.io/changelog/) page.
 

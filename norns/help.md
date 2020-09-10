@@ -80,7 +80,7 @@ Many thanks to `@mutedial` for [compiling replacement steps](https://llllllll.co
 
 _nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources._
 
-If you are consistently unable to connect your norns to wifi through the ['Connect' steps outlined here](../play/#connect), please perform the following steps:
+If you are consistently unable to connect your norns to wifi through the ['Network Connect' steps outlined here](../play/#network-connect), please perform the following steps:
 
 1. Try getting very close to your wifi router. Bad signal can make it seem nonfunctional.
 
@@ -133,7 +133,7 @@ Press K1 to toggle from PLAY to HOME. Highlight `SELECT` and hold K1 -- you'll s
 
 Supercollider fails to load if you have multiple copies of the same class, which are commonly contained in duplicate `.sc` files inside of `dust` (the parent folder for the projects installed on norns).
 
-To typically solve this, [connect](../play/#connect) via wifi and open [maiden](../maiden). Type `;restart` into the maiden _matron_ REPL at the bottom (the `>>` prompt).
+To typically solve this, [connect](../play/#network-connect) via wifi and open [maiden](../maiden). Type `;restart` into the maiden _matron_ REPL at the bottom (the `>>` prompt).
 
 This will restart the audio components and output their logs. If there's a duplicate class an error message like the following will be shown:
 

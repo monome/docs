@@ -14,7 +14,7 @@ has_toc: false
 - [first](norns-first.pdf) a quick, printable introduction.
 - [play](../norns/play) is a longer introduction and a great starting point.
 - [maiden](../norns/maiden) is how to manage projects and import scripts.
-- [studies](../norns/study-1) is a series of tutorials for creating scripts.
+- [studies](../norns/studies-landing) is a series of tutorials for creating scripts.
 - [tutorial](https://github.com/neauoire/tutorial) is a minimal scripting introduction.
 - [script reference](../norns/script-reference) contains lists of functions.
 - [help](../norns/help) for deeper device and system troubleshooting.

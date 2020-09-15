@@ -292,34 +292,43 @@ hz = music.note_num_to_freq(60)
 
 the library is imported with the `require` command, whereafter all of the functions within the library are available. check out the [norns function reference](https://norns.local/doc) for the default libraries (the libraries are in upper and lower case like `MusicUtil`). Additional user libraries are also available, but are maintained by individual users. See the lines [Library category](https://llllllll.co/c/library) for more.
 
-## midi sync
+## midi sync, Ableton Link, modular clocks
 
 an often-used feature of midi is the ability to sync devices to a tempo. one device can send clock to another.
 
 this is accomplished using a series of bytes: 248 (clock tick), 250 (clock start), 251 (clock continue), and 252 (clock stop).
 
-instead of sorting these bytes out by hand, we can use the `beatclock` library created by @dewb.
+instead of sorting these bytes out by hand, we can just use the global clock inside of norns, which has handlers built in for internal clocking as well as midi, Ableton Link, and clock signals through crow. the `CLOCK` menu is available in the `PARAMETERS` screen. see the [dedicated clock study](../clocks/) for more detail.
+
+### source
+
+this sets the sync source for the global tempo.
+
+- `internal` sets norns as the clock source
+- `midi` takes any external midi clock via connected USB midi devices
+- `link` enables ableton link sync for the connecting wifi network
+- `crow` takes sync from input 1 of a connected crow device
+
+link has a `link quantum` parameter to set the quantum size.
+
+crow additionally has a `crow in div` parameter to specify the number of sub-divisions per beat.
+
+the `tempo` parameter sets the internal and link tempos. this tempo will be automatically updated if set by an external source (midi, crow, or remote link device).
+
+you can set the tempo in your script by the normal method of setting parameters:
 
 ```lua
-beatclock = require 'beatclock'
-clk = beatclock.new()
-clk_midi = midi.connect()
-clk_midi.event = clk.process_midi
-
-function init()
-  clk.on_step = function() print("step") end
-  clk.on_select_internal = function() clk:start() end
-  clk.on_select_external = function() print("external") end
-  clk:add_clock_params()
-  clk:start()
-end
+params:set("clock_tempo",100)
 ```
 
-this little snippet does quite a lot. it has internal/external clocking and adds parameters (in the PARAMETER menu) for clock configuration and bpm.
+### out
 
-you can see on the third line that the beatclock needs a midi port. here it uses the default (1).
+clock signals can be transmitted via midi or crow.
 
-to attach a function to the clock sync, simply redefine `on_step` as shown in `init`. we'll demonstrate this below.
+`midi out` sets the port number (which midi device, via SYSTEM > DEVICES) on which to transmit.
+
+`crow out` sets the output number, and also has a `crow out div` setting for beat subdivisions.
+
 
 ## example: physical
 
@@ -339,7 +348,6 @@ engine.name = 'PolyPerc'
 music = require 'musicutil'
 beatclock = require 'beatclock'
 
-
 steps = {}
 position = 1
 transpose = 0
@@ -347,29 +355,19 @@ transpose = 0
 mode = math.random(#music.SCALES)
 scale = music.generate_scale_of_length(60,music.SCALES[mode].name,8)
 
-clk = beatclock.new()
-clk_midi = midi.connect()
-clk_midi.event = clk.process_midi
-
 function init()
   for i=1,16 do
     table.insert(steps,math.random(8))
   end
   grid_redraw()
-
-  clk.on_step = count
-  clk.on_select_internal = function() clk:start() end
-  clk.on_select_external = function() print("external") end
-  clk:add_clock_params()
-
-  params:add_separator()
-
-  clk:start()
+  clock.run(count)
 end
 
 function enc(n,d)
-  if n == 2 then
-    params:delta("bpm",d)
+  if n == 1 then
+    params:delta("clock_source",d)
+  elseif n == 2 then
+    params:delta("clock_tempo",d)
   elseif n == 3 then
     mode = util.clamp(mode + d, 1, #music.SCALES)
     scale = music.generate_scale_of_length(60,music.SCALES[mode].name,8)
@@ -380,8 +378,10 @@ end
 function redraw()
   screen.clear()
   screen.level(15)
+  screen.move(0,20)
+  screen.text("clock source: "..params:string("clock_source"))
   screen.move(0,30)
-  screen.text("bpm: "..params:get("bpm"))
+  screen.text("bpm: "..params:get("clock_tempo"))
   screen.move(0,40)
   screen.text(music.SCALES[mode].name)
   screen.update()
@@ -391,7 +391,7 @@ g = grid.connect()
 
 g.key = function(x,y,z)
   if z == 1 then
-    steps[x] = y
+    steps[x] = 9-y
     grid_redraw()
   end
 end
@@ -399,15 +399,19 @@ end
 function grid_redraw()
   g:all(0)
   for i=1,16 do
-    g:led(i,steps[i],i==position and 15 or 4)
+    g:led(i,9-steps[i],i==position and 15 or 4)
   end
   g:refresh()
 end
 
 function count()
-  position = (position % 16) + 1
-  engine.hz(music.note_num_to_freq(scale[steps[position]] + transpose))
-  grid_redraw()
+  while true do
+    clock.sync(1/4)
+    position = (position % 16) + 1
+    engine.hz(music.note_num_to_freq(scale[steps[position]] + transpose))
+    grid_redraw()
+    redraw() -- for bpm changes on LINK, MIDI, or crow
+  end
 end
 
 m = midi.connect()
@@ -417,7 +421,6 @@ m.event = function(data)
     transpose = d.note - 60
   end
 end
-
 ```
 
 ## continued

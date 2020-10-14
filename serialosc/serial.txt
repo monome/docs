@@ -16,21 +16,21 @@ pattern:	/sys/id
 desc:		request device ID string
 serial:		[0x01]
 
-pattern:	/sys/size	
+pattern:	/sys/size
 desc:		request grid size
 serial:		[0x05]
 
 // led-grid
 
-pattern:	/prefix/led/set x y s	
+pattern:	/prefix/led/set x y s
 desc:		set led state
 args:		x = x value (0-255)
 			y = y value (0-255)
 			s = on/off (0-1)
 serial:		if s = 0, [0x10, x, y]
 			if s = 1, [0x11, x, y]
-			
-pattern:	/prefix/led/all s	
+
+pattern:	/prefix/led/all s
 desc:		set all leds
 args:		s = on/off (0-1)
 serial:		if s = 0, [0x12]
@@ -64,24 +64,30 @@ desc:		set intensity for entire grid
 args:		i = intensity (0-15)
 serial:		[0x17, i]
 
-pattern:	/prefix/led/level/set x y i	
+pattern:	/prefix/led/level/set x y i
 desc:		set led intensity
 args:		x = x value (0-255)
 			y = y value (0-255)
 			i = intensity (0-255)
 serial:		[0x18, x, y, i]
 
-pattern:	/prefix/led/level/all s	
+pattern:	/prefix/led/level/all s
 desc:		set all leds to level
 args:		i = intensity (0-255)
 serial:		[0x19, i]
 
-pattern:	/prefix/led/level/map x y d[64]
+pattern:	/prefix/led/level/map x y d[32]
 desc:		set 8x8 block of leds levels, with offset
 args:		x = x offset, will be floored to multiple of 8 by firmware
 			y = y offset, will be floored to multiple of 8 by firmware
-			d[64] = intensities
-serial:		[0x1A, x, y, d[64]]
+			d[32] = 64 states, 4 bit values, in 32 consecutive bytes
+			d[0] (0:3) value 0
+			d[0] (4:7) value 1
+			d[1] (0:3) value 2
+			....
+			d[31] (0:3) value 62
+			d[31] (4:7) value 63
+serial:		[0x1A, x, y, d[32]]
 
 pattern:	/prefix/led/level/row x y d[8]
 desc:		set 8x1 block of led levels, with offset
@@ -134,7 +140,7 @@ args:		n = ring number
 			x2 = ending position
 			a = value
 serial:		[0x93, n, x1, x2, a]
-note:		set range x1-x2 (inclusive) to a. wrapping supported, ie. set range 60,4 would set values 60,61,62,63,0,1,2,3,4. always positive direction sweep. ie. 4,10 = 4,5,6,7,8,9,10 whereas 10,4 = 10,11,12,13...63,0,1,2,3,4 
+note:		set range x1-x2 (inclusive) to a. wrapping supported, ie. set range 60,4 would set values 60,61,62,63,0,1,2,3,4. always positive direction sweep. ie. 4,10 = 4,5,6,7,8,9,10 whereas 10,4 = 10,11,12,13...63,0,1,2,3,4
 
 
 
@@ -153,12 +159,12 @@ desc:		device ID string
 serial:		[0x01, s[64]]
 args:		s = id string, 64 chars
 
-pattern:	/sys/size x y	
+pattern:	/sys/size x y
 desc:		grid size
 serial:		[0x05, x, y]
 args:		x = x size
 			y = y size
-			
+
 // key
 
 pattern:	/prefix/key x y s
@@ -167,7 +173,7 @@ serial:		if s = 0 [0x00, x, y] key up
 			if s = 1 [0x01, x, y] key down
 args:		x = x position
 			y = y position
-			
+
 // encoder
 
 pattern:	/prefix/enc/delta n d
@@ -202,7 +208,7 @@ notes
 new serial prefix: tty.usbserial-m0000000
 
 mk set-number of grids, firmware versions for each size 1/2/4
-	
+
 should grid offsets live inside the grid subsystem?
 	applies to both led-grid and key-grid.
 	should each have it's own?
@@ -231,7 +237,7 @@ organized by section:
 ---------------------------------------------------------------------
 0 system
 ---------------------------------------------------------------------
-	
+
 note: most of these messages are not accessible via OSC
 	intended for device configuration
 
@@ -514,7 +520,7 @@ description: key down at (x,y)
 ---------------------------------------------------------------------
 3 digital-out
 ---------------------------------------------------------------------
-	
+
 to device:
 ----------
 
@@ -571,7 +577,7 @@ from device:
 ---------------------------------------------------------------------
 4 digital-line-in
 ---------------------------------------------------------------------
-	
+
 to device:
 ----------
 
@@ -636,7 +642,7 @@ description: encoder switch down
 ---------------------------------------------------------------------
 6 analog in
 ---------------------------------------------------------------------
-	
+
 to device:
 ----------
 
@@ -695,7 +701,7 @@ description: analog input
 ---------------------------------------------------------------------
 7 analog out
 ---------------------------------------------------------------------
-	
+
 to device:
 ----------
 
@@ -719,7 +725,7 @@ from device:
 ---------------------------------------------------------------------
 8 tilt
 ---------------------------------------------------------------------
-	
+
 to device:
 ----------
 
@@ -818,7 +824,7 @@ n = group number
 x1 = start position
 x2 = end position
 a = value
-description: set range x1-x2 (inclusive) to a. wrapping supported, ie. set range 60,4 would set values 60,61,62,63,0,1,2,3,4. always positive direction sweep. ie. 4,10 = 4,5,6,7,8,9,10 whereas 10,4 = 10,11,12,13...63,0,1,2,3,4 
+description: set range x1-x2 (inclusive) to a. wrapping supported, ie. set range 60,4 would set values 60,61,62,63,0,1,2,3,4. always positive direction sweep. ie. 4,10 = 4,5,6,7,8,9,10 whereas 10,4 = 10,11,12,13...63,0,1,2,3,4
 
 
 

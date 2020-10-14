@@ -44,7 +44,7 @@ To use SMB network sharing on Windows 10, navigate to Control Panel > Programs >
 
 Reboot.
 
-The norns.local file tree should be available at \\norns.local
+The norns.local file tree should be available at `\\norns.local`
 
 ## file tree
 

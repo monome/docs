@@ -175,46 +175,19 @@ params:add{type = "number", id = "someparam", name = "Some Param", min = 1, max 
 
 ### system globals
 
-These are the lua and norns globals as of norns `200712`. Do not overwrite them.
+Do not overwrite them. Doing so may break things.
 
-| Lua Globals    | norns Globals |
-|:---------------|:--------------|
-| _G             | _menu         |
-| _VERSION       | _norns        |
-| assert         | _path         |
-| bit32          | _startup      |
-| collectgarbage | arc           |
-| dofile         | audio         |
-| error          | cleanup       |
-| getmetatable   | clock         |
-| ipairs         | controlspec   |
-| io             | coroutine     |
-| load           | crow          |
-| loadfile       | debug         |
-| next           | enc           |
-| math           | engine        |
-| os             | grid          |
-| pairs          | hid           |
-| pcall          | include       |
-| print          | inf           |
-| rawequal       | key           |
-| rawget         | metro         |
-| rawlen         | midi          |
-| rawset         | mix           |
-| require        | norns         |
-| select         | osc           |
-| setmetatable   | package       |
-| tonumber       | params        |
-| tostring       | paramset      |
-| table          | paths         |
-| type           | poll          |
-| utf8           | redraw        |
-| xpcall         | screen        |
-|                | softcut       |
-|                | string        |
-|                | tab           |
-|                | util          |
-|                | wifi          |
+System globals:
+
+```lua
+_G, _VERSION, assert, bit32, collectgarbage, dofile , error, getmetatable, ipairs, io, load, loadfile, next, math, os, pairs, pcall, print, rawequal, rawget, rawlen, rawset, require, select, setmetatable, tonumber, tostring, table, type, utf8, xpcall
+```
+
+Norns globals:
+
+```lua
+_menu, _norns, _path, _startup, arc, audio, cleanup, clock, controlspec, coroutine, crow, debug, enc, engine, grid, hid, include, inf, key, metro, midi, mix, norns, osc, package, params, paramset, paths, poll, redraw, screen, softcut, string, tab, util, wifi
+```
 
 ## devices
 

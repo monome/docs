@@ -225,7 +225,7 @@ Steps:
   7a. Re-connect USB, power norns up, and connect via [serial](https://monome.org/docs/norns/maiden/#other-access) through a terminal.  
   7b. Execute `sudo raspi-config` and enter *sleep* as the password.  
   7c. Navigate down to `Advanced`.  
-  7d. Select `Expand Filesystem` and press <OK>.  
+  7d. Select `Expand Filesystem` and press OK.  
   7e. After it's completed, put norns to sleep.  
 
 ## back up norns to USB <a name="backup-no-wifi"></a>

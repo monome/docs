@@ -209,7 +209,7 @@ cd 200712
 - [norns201023.img](https://github.com/monome/norns-image/releases/download/201023/norns201023.img.zip)
 - [norns201023-shield.img](https://github.com/monome/norns-image/releases/download/201023/norns201023-shield.img.zip)
 
-By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows.
+By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows. If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
 
 **WARNING**: flashing a disk completely erases the contents and replaces it with a clean install. Be sure to first back up any data you have in `dust`.
 
@@ -221,8 +221,12 @@ Steps:
 4. You'll see a switch through a notch in the circuit board, flip this to DISK.
 5. Run etcher. Select the disk image. Select the Compute Module as the target. Push go and wait for it to finish.
 6. Disconnect USB. Flip the switch back to RUN. Put the bottom back on.
-
-If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
+7. If you have a norns with a 32gb CM3+ (purchased October 2020 and thereafter), you will need to expand the file storage.  
+  7a. Re-connect USB, power norns up, and connect via [serial](https://monome.org/docs/norns/maiden/#other-access) through a terminal.  
+  7b. Execute `sudo raspi-config` and enter *sleep* as the password.  
+  7c. Navigate down to `Advanced`.  
+  7d. Select `Expand Filesystem` and press <OK>.  
+  7e. After it's completed, put norns to sleep.  
 
 ## back up norns to USB <a name="backup-no-wifi"></a>
 

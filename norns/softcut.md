@@ -151,8 +151,6 @@ softcut.pre_filter_rq(voice,value)
 
 `post` filters are the same. just replace `pre` with `post` in the command set.
 
-
-
 ## 6. routing
 
 * see/run softcut-studies/6-routing [(source)](https://github.com/monome/softcut-studies/blob/master/6-routing.lua)
@@ -189,7 +187,6 @@ softcut.level( voice, value )
 
 the example script uses two voices. the first just plays a loop. the second jumps positions, overdub-recording into the same loop using the first playhead as the input for recording. it's a sort of feedback buffer process that radically restructures sound.
 
-...
 
 ## 7. files
 
@@ -200,13 +197,42 @@ the example script uses two voices. the first just plays a loop. the second jump
 softcut reads files to buffers and writes buffers to files, in mono and stereo.
 
 ```lua
-softcut.buffer_read_mono (file, start_src, start_dst, dur, ch_src, ch_dst)
-softcut.buffer_read_stereo (file, start_src, start_dst, dur)
-softcut.buffer_write_mono (file, start, dur, ch)
-softcut.buffer_write_stereo (file, start, dur)
+softcut.buffer_read_mono(file, start_src, start_dst, dur, ch_src, ch_dst)
+softcut.buffer_read_stereo(file, start_src, start_dst, dur)
+softcut.buffer_write_mono(file, start, dur, ch)
+softcut.buffer_write_stereo(file, start, dur)
 ```
 
 the example script reads a "backing track" clip when K1 is long-pressed. this sets a loop length, and the playback volume can be changed with E1. a second clip is recorded from the audio input, with configurable rec/pre levels with E2/E3 respectively. the recorded clip can be saved at any time with K3, to `dust/audio/` with a `ss7-` prefix along with a random number. this functions as a live "clip grabber" with overdub options.
+
+## 8. copy + waveform data
+
+*see/run softcut-studies/8-copy [(source)](https://github.com/monome/softcut-studies/blob/master/8-copy.lua)
+
+![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/8-copy.png)
+
+sections of a softcut buffer can be copied and pasted, for creative collage or straightforward duplication.
+
+```lua
+softcut.buffer_copy_mono(src_ch, dst_ch, start_src, start_dst, dur, fade_time, reverse)
+softcut.buffer_copy_stereo(start_src, start_dst, dur, fade_time, reverse)
+```
+
+buffer content can also be rendered as a series of floats, -1 to +1, for waveform visualization.
+
+to request a numerical snapshot of a section:
+
+```lua
+softcut.render_buffer(ch, start, dur, samples)
+```
+
+to perform a task after the snapshot, use the `event_render` callback:
+
+```lua
+softcut.event_render(func)
+```
+
+see the `8-copy.lua` script for an example of how to turn the -1 to +1 floats to a waveform.
 
 ---
 

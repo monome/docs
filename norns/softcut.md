@@ -207,7 +207,7 @@ the example script reads a "backing track" clip when K1 is long-pressed. this se
 
 ## 8. copy + waveform data
 
-*see/run softcut-studies/8-copy [(source)](https://github.com/monome/softcut-studies/blob/master/8-copy.lua)
+* see/run softcut-studies/8-copy [(source)](https://github.com/monome/softcut-studies/blob/master/8-copy.lua)
 
 ![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/8-copy.png)
 

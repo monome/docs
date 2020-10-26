@@ -238,6 +238,6 @@ see the `8-copy.lua` script for an example of how to turn the -1 to +1 floats to
 
 ## reference
 
-- [softcut API docs](https://monome.org/norns/modules/softcut.html)
+- [softcut API docs](https://monome.org/docs/norns/api/modules/softcut.html)
 
 contributions welcome: [github/monome/softcut-studies](https://github.com/monome/softcut-studies)

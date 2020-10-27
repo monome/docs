@@ -203,6 +203,8 @@ cd 200712
 
 ## fresh install
 
+*nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/play/#update).
+
 *nb. these instructions apply only to stock norns. If you have a norns shield, please see [the github documentation](https://github.com/monome/norns-shield) for the latest shield image and troubleshooting help.*
 
 

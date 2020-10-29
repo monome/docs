@@ -17,7 +17,7 @@ has_toc: false
 - [scripting](../norns/scripting) has studies, tutorials, and reference material.
 - [help](../norns/help) for deeper device and system troubleshooting.
 
-current version: [200712](https://l.llllllll.co/norns) (July 12 2020)
+current version: [201029](https://l.llllllll.co/norns) (Oct 29 2020)
 
 ### contributing
 

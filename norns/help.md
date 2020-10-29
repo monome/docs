@@ -207,7 +207,7 @@ cd 200712
 
 
 - [norns201029.img](https://github.com/monome/norns-image/releases/download/201023/norns201029.img.zip)
-- [norns201029-shield.img](https://github.com/monome/norns-image/releases/download/201029/norns201029-shield.img.zip) (Pi 3b+ and Pi 3b only)
+- [norns201029-shield.img](https://github.com/monome/norns-image/releases/download/201029/norns201029-shield.zip) (Pi 3b+ and Pi 3b only)
 
 ### stock norns fresh install process
 

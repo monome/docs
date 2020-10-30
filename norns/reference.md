@@ -5,6 +5,7 @@ grand_parent: norns
 has_children: false
 title: reference
 nav_order: 1
+redirect_from: /norns/script-reference/
 has_toc: false
 ---
 

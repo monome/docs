@@ -6,13 +6,9 @@ has_children: true
 has_toc: false
 ---
 
-# modular
+- [whitewhale](/whitewhale)
+- [meadowphysics](/meadowphysics)
+- [earthsea](/earthsea)
+- [walk](/walk)
 
-[whitewhale](/whitewhale)
-[meadowphysics](/meadowphysics)
-[earthsea](/earthsea)
-[walk](/walk)
-
-# other
-
-[aleph](/aleph)
+- [aleph](/aleph)

@@ -203,13 +203,15 @@ cd 200712
 
 ## fresh install
 
-*nb. these instructions apply only to stock norns. If you have a norns shield, please see [the github documentation](https://github.com/monome/norns-shield) for the latest shield image and troubleshooting help.*
+*nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/play/#update). fresh installing will wipe your norns, so back up any data you need before proceeding.*
 
 
-- [norns201023.img](https://github.com/monome/norns-image/releases/download/201023/norns201023.img.zip)
-- [norns201023-shield.img](https://github.com/monome/norns-image/releases/download/201023/norns201023-shield.img.zip)
+- [norns201029.img](https://github.com/monome/norns-image/releases/download/201023/norns201029.img.zip)
+- [norns201029-shield.img](https://github.com/monome/norns-image/releases/download/201029/norns201029-shield.zip) (Pi 3b+ and Pi 3b only)
 
-By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows.
+### stock norns fresh install process
+
+By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows. If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
 
 **WARNING**: flashing a disk completely erases the contents and replaces it with a clean install. Be sure to first back up any data you have in `dust`.
 
@@ -221,8 +223,28 @@ Steps:
 4. You'll see a switch through a notch in the circuit board, flip this to DISK.
 5. Run etcher. Select the disk image. Select the Compute Module as the target. Push go and wait for it to finish.
 6. Disconnect USB. Flip the switch back to RUN. Put the bottom back on.
+7. If you have a norns with a 32gb CM3+ (purchased October 2020 and thereafter), you will need to expand the file storage.  
+  7a. Re-connect USB, power norns up, and connect via [serial](https://monome.org/docs/norns/maiden/#other-access) through a terminal.  
+  7b. Execute `sudo raspi-config` and enter *sleep* as the password.  
+  7c. Navigate down to `Advanced`.  
+  7d. Select `Expand Filesystem` and press OK.  
+  7e. After it's completed, put norns to sleep.  
+  
+### shield fresh install process
 
-If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
+Use [etcher](https://www.balena.io/etcher/) to flash your SD card (*nb. use a high quality one. if you have trouble, try a different card*)
+
+If your SD card seems a lot more full than it should be, you'll need to expand the filesystem:  
+
+1. open a terminal on a computer connected to the same network as your shield  
+2. execute: `ssh we@norns.local`  
+3. password: sleep  
+4. execute: `sudo raspi-config`  
+5. navigate to Advanced and hit RETURN  
+6. select expand filesystem and hit RETURN  
+7. lots of activity will happen. when it's done, power down and reboot. if you get any errors, reboot again.  
+8. if you SSH back into norns and execute `df -h`, you'll see the newly expanded capacity.
+
 
 ## back up norns to USB <a name="backup-no-wifi"></a>
 

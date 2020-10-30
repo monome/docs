@@ -1,7 +1,8 @@
 ---
 layout: default
+parent: legacy
 title: meadowphysics
-nav_order: 8
+nav_order: 2
 redirect_from: /modular/meadowphysics/
 ---
 

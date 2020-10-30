@@ -1,7 +1,8 @@
 ---
 layout: default
+parent: legacy
 title: earthsea
-nav_order: 9
+nav_order: 3
 redirect_from: /modular/earthsea/
 ---
 

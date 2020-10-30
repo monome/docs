@@ -1,7 +1,8 @@
 ---
 layout: default
+parent: legacy
 title: walk
-nav_order: 10
+nav_order: 4
 redirect_from: /modular/walk/
 ---
 

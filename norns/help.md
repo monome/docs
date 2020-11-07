@@ -301,6 +301,8 @@ With ImageMagick installed on your computer, [download this bash script](../norn
 
 That will clean up all the PNGs to render how they do on the norns screen.
 
+*nb. You may need to execute `chmod u+x ./norns-convert_screenshots.bash` beforehand, or use `sudo ./norns-convert_screenshots.bash` if permission is denied.*
+
 If you wish to do this manually, execute the following (replacing <PATH+FILENAME> with the entire path to your downloaded PNG):
 
 ```bash

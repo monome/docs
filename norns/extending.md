@@ -57,8 +57,8 @@ once.
    the audio parts. this will be the focus of our discussion today.
 
 - *`crone`*: the audio stuff manager. handles OSC messages for mixing,
-   tape, and softcut. you may also wish to add other commands here for
-   e.g. adding functionality to softcut but this is a bit of a
+   tape, and softcut. you may also wish to add other OSC commands here
+   for e.g. adding functionality to softcut but this is a slightly
    different topic.
 
 - *`ws-wrapper`*: `matron` and `sclang` just interact with stdin /
@@ -119,9 +119,10 @@ contains many lines like this:
 ```
 
 adding a new entry here will make another C function accessible from
-lua by adding a new value to the `_norns` table. all such functions
-have the same signature (argument and return value types). we need to
-add a function declaration (toward the top of the file):
+lua by adding a new value to the `_norns` table,
+e.g. `_norns.screen_update`. all such functions have the same C
+signature. we need to add a function declaration (toward the top of
+the file):
 
 ```c
 static int _screen_peek(lua_State *l);
@@ -133,36 +134,42 @@ from lua, do some work, and possibly give a result back. we also
 include specially formatted comments that provide documentation for
 the arguments these functions expect. for a function that returns a
 value, we need to tell lua we left 1 value on the stack by returning
-1. for more info, see [this page](https://www.lua.org/pil/24.2.html)
+`1`. for more info, see [this page](https://www.lua.org/pil/24.2.html)
 about using the lua stack.
 
 ```c
 /***
  * screen: peek
  * @function s_peek
- * @tparam integer x screen x position (0-127) 
+ * @tparam integer x screen x position (0-127)
  * @tparam integer y screen y position (0-63)
  * @tparam integer w rectangle width to grab
  * @tparam integer h rectangle height to grab
  */
 int _screen_peek(lua_State *l) {
-    lua_check_num_args(4);
+    // get the args passed in to _norns.screen_peek
+	lua_check_num_args(4);
     int x = luaL_checkinteger(l, 1);
     int y = luaL_checkinteger(l, 2);
     int w = luaL_checkinteger(l, 3);
     int h = luaL_checkinteger(l, 4);
+	// release the stack space used for the arguments
     lua_settop(l, 0);
     if ((x >= 0) && (x <= 127)
      && (y >= 0) && (y <= 63)
      && (w > 0)
      && (h > 0)) {
         uint8_t* buf = screen_peek(x, y, &w, &h);
-        if (buf) {
+	    if (buf) {
+			// return the results to lua by putting
+			// a string value on the stack
             lua_pushlstring(l, buf, w * h);
+			// lua_pushlstring copies the buffer to lua's memory,
+			// so we can free it now
             free(buf);
             return 1;
         }
-    } 
+    }
     return 0;
 }
 ```
@@ -255,4 +262,3 @@ out the new norns function in a lua repl:
 >> string.byte(s, 1)
 15
 ```
-

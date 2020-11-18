@@ -13,7 +13,7 @@ by building the latest changes made to the code between official
 releases, either to try new features or get bug fixes as soon as
 possible. or you might want to make your own modifications to the
 software or try patches made by community members (for more details,
-see the [/norns/extending](extending norns) page).
+see the [extending norns](/norns/extending) page).
 
 norns (the sound computer) comes with everything you need to edit and
 recompile norns (the software suite). this page gives a quick guide on
@@ -61,21 +61,20 @@ Linux norns 4.19.127-16-gb1425b1 #1 SMP PREEMPT Mon Oct 26 05:39:00 UTC 2020 arm
 |_|_|___|_| |_|_|___| monome.org/norns
 
 we@norns.local:~$ cd norns
-we@norns.local:~/norns$ 
+we@norns.local:~/norns$
 ```
 
 this directory (`/home/we/norns`) contains all the source code for
-norns -- it's a checkout of the https://github.com/monome/norns git
-repository. it's also sort of the main directory for norns system
+norns -- it's a checkout of the [git repository](https://github.com/monome/norns). it's also sort of the main directory for norns system
 files, as opposed to user files like scripts and tape recordings,
 which are in `/home/we/dust`. that includes the executable files for
 the core norns C/C++ programs including `matron` and `crone`. source
-code for `maiden` lives [https://github.com/monome/maiden](elsewhere).
+code for `maiden` lives [elsewhere](https://github.com/monome/maiden)
 
 the git repository `/home/we/norns` is set up to point at the main
-norns repo on github. by default the version on github is nicknamed
-`origin`. to pull the latest changes on github down and merge them
-into the local copy, we run:
+norns repo on github. by default the copy of the code that's on the
+monome github is nicknamed `origin`. to pull the latest changes on
+github down and merge them into the local copy, we run:
 
 ```bash
 we@norns:~/norns$ git pull origin main
@@ -91,14 +90,13 @@ yet, this will show you a summary of changes as well.
 we also need to make sure that the submodules are all up to
 date. submodules are basically git repos within a git repo that help
 norns track dependencies on other projects, notably the main
-[https://github.com/monome/softcut](softcut library) and ableton link
+[softcut library](https://github.com/monome/softcut) and ableton link
 support. run:
 
 ```bash
 we@norns:~/norns$ git submodule update --init --recursive
-git submodule update --init --recursive
 Submodule path 'crone/softcut': checked out '7cce02a6f5b58a9c46bd022bd7b572e2b3218dae'
-we@norns:~/norns$ 
+we@norns:~/norns$
 ```
 
 ## compiling with waf
@@ -111,22 +109,22 @@ run:
 
 ```bash
 we@norns.local:~/norns$ ./waf configure
-Setting top to                           : /home/we/norns 
-Setting out to                           : /home/we/norns/build 
-Checking for 'gcc' (C compiler)          : /usr/bin/gcc 
-Checking for 'g++' (C++ compiler)        : /usr/bin/g++ 
+Setting top to                           : /home/we/norns
+Setting out to                           : /home/we/norns/build
+Checking for 'gcc' (C compiler)          : /usr/bin/gcc
+Checking for 'g++' (C++ compiler)        : /usr/bin/g++
 ...
-Checking for libmonome                   : yes 
-Checking for supercollider               : yes 
-Checking for program 'dpkg-architecture' : /usr/bin/dpkg-architecture 
-Checking boost includes                  : 1.62.0 
+Checking for libmonome                   : yes
+Checking for supercollider               : yes
+Checking for program 'dpkg-architecture' : /usr/bin/dpkg-architecture
+Checking boost includes                  : 1.62.0
 'configure' finished successfully (2.727s)
 we@norns.local:~/norns$
 ```
 
 if there are missing dependencies, you may need to install them using
 `apt-get`. as of the current norns version with the latest image
-(201029) all dependencies should already be installed.
+(201023 and above) all dependencies should already be installed.
 
 assuming that you get `'configure' finished successfully` we should be
 already to compile:

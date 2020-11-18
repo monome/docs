@@ -40,3 +40,9 @@ However you choose to approach it, grid is lasting -- both in construction and i
 - [disassembly](disassembly) - guides for disassembling the hardware
 - [care](care) - some suggestions for device maintenance
 - [bus power upgrade](buspowerupgrade) - some early grid models had external power, they can be updated
+
+## grids in education
+
+We offer an educational discount to currently enrolled college and university students. The discount is 10%, limited to a single grid which we sell directly. contact `help@monome.org` with school and government IDs attached.
+
+In addition, we also offer institutional package pricing and workshops extending from the Grid Studies series of tutorials. Please contact `help@monome.org` for further details and to discuss how we can best introduce the grids to your students.

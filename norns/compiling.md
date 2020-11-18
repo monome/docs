@@ -13,7 +13,7 @@ by building the latest changes made to the code between official
 releases, either to try new features or get bug fixes as soon as
 possible. or you might want to make your own modifications to the
 software or try patches made by community members (for more details,
-see the [extending norns](/norns/extending) page).
+see the [extending norns](../norns/extending) page).
 
 norns (the sound computer) comes with everything you need to edit and
 recompile norns (the software suite). this page gives a quick guide on
@@ -49,7 +49,7 @@ output from the `ls` program.
 
 ## get up to date
 
-open a terminal and connect to norns via [SSH](/norns/play/#ssh). then
+open a terminal and connect to norns via [SSH](../norns/play/#ssh). then
 go to the `norns` directory using `cd norns`.
 
 ```bash
@@ -149,4 +149,4 @@ norns and are ready to restart. the easiest way to do that is just to
 put norns to SLEEP as usual.
 
 to continue from here and learn how to make your own changes to the
-norns code, see [extending norns](/norns/extending).
+norns code, see [extending norns](../norns/extending).

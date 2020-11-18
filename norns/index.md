@@ -21,7 +21,7 @@ current version: [201029](https://l.llllllll.co/norns) (Oct 29 2020)
 
 ### contributing
 
-norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. Check out the [github repo](https://github.com/monome/norns). To try out the latest changes to the code, you can read about [compiling norns](/norns/compiling). There's also a guide on [extending norns](/norns/extending) if you have new functionality you'd like to add.
+norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. Check out the [github repo](https://github.com/monome/norns). To try out the latest changes to the code, you can read about [compiling norns](../norns/compiling). There's also a guide on [extending norns](../norns/extending) if you have new functionality you'd like to add.
 
 We're also always looking for help with [documentation](https://github.com/monome/docs), if your skills include design, instruction, or proofreading. Collective efforts have created numerous exceptional projects over the years, and there's more to a project than just code!
 

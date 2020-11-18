@@ -19,7 +19,7 @@ code base, please send a [pull request on
 github](https://github.com/monome/norns/pulls)!
 
 this tutorial assumes you've already figured out how to [compile
-norns](/norns/compiling), and also assumes some familiarity with the C
+norns](../norns/compiling), and also assumes some familiarity with the C
 programming language.
 
 ## where are we going with this?

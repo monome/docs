@@ -4,7 +4,7 @@ title: norns shield
 has_toc: false
 ---
 
-![](https://monome.org/docs/norns/images/norns-shield.png)
+![](https://monome.org/docs/norns/image/norns-shield.png)
 
 # norns shield
 
@@ -28,13 +28,13 @@ all you need is a normal philips screwdriver.
 4. attach the raspberry pi. attach the white case. add four long screws to secure the case. add the rubber feet.
 5. read on for instructions on flashing your sd card.
 
-![](https://monome.org/docs/norns/images/norns-shield-assembly1.png)
+![](https://monome.org/docs/norns/image/norns-shield-assembly1.png)
 
-![](https://monome.org/docs/norns/images/norns-shield-assembly2.png)
+![](https://monome.org/docs/norns/image/norns-shield-assembly2.png)
 
-![](https://monome.org/docs/norns/images/norns-shield-assembly3.png)
+![](https://monome.org/docs/norns/image/norns-shield-assembly3.png)
 
-![](https://monome.org/docs/norns/images/norns-shield-assembly4.png)
+![](https://monome.org/docs/norns/image/norns-shield-assembly4.png)
 
 
 ## flashing sd card

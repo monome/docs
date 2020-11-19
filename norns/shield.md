@@ -4,7 +4,7 @@ title: norns shield
 has_toc: false
 ---
 
-![](https://monome.org/images/norns-shield.png)
+![](https://monome.org/docs/norns/images/norns-shield.png)
 
 # norns shield
 
@@ -14,9 +14,9 @@ the norns shield is [open source hardware](https://github.com/monome/norns-shiel
 
 ## requirements
 
-- [raspberry pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) (important! other models are not compatible)
-- sd card - use a high quality brand such as [SanDisk](https://www.adafruit.com/product/2820)
-- power supply - the Pi3B has a micro-USB power port and requires (at least 2A)[https://www.adafruit.com/product/1995]. you can also use a portable USB battery if it's sufficiently large.
+- [raspberry pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) ($35) important! other models are not compatible.
+- sd card - use a high quality brand such as [SanDisk](https://www.adafruit.com/product/2820) ($10)
+- power supply - the Pi3B has a micro-USB power port and requires [at least 2A](https://www.adafruit.com/product/1995). you can also use a portable USB battery if it's sufficiently large.
 
 ## assembly
 
@@ -28,13 +28,13 @@ all you need is a normal philips screwdriver.
 4. attach the raspberry pi. attach the white case. add four long screws to secure the case. add the rubber feet.
 5. read on for instructions on flashing your sd card.
 
-![](https://monome.org/images/norns-shield-assembly1.png)
+![](https://monome.org/docs/norns/images/norns-shield-assembly1.png)
 
-![](https://monome.org/images/norns-shield-assembly2.png)
+![](https://monome.org/docs/norns/images/norns-shield-assembly2.png)
 
-![](https://monome.org/images/norns-shield-assembly3.png)
+![](https://monome.org/docs/norns/images/norns-shield-assembly3.png)
 
-![](https://monome.org/images/norns-shield-assembly4.png)
+![](https://monome.org/docs/norns/images/norns-shield-assembly4.png)
 
 
 ## flashing sd card

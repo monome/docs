@@ -10,7 +10,10 @@ has_toc: false
 
 # norns
 
+[norns shield](../norns/shield) assembly guide.
+
 ### resources:
+
 - [first](norns-first.pdf) a quick, printable introduction.
 - [play](../norns/play) is a longer introduction and a great starting point.
 - [maiden](../norns/maiden) is how to manage projects and import scripts.

@@ -34,21 +34,19 @@ all you need is a normal philips screwdriver.
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly1.png)
 
-1. peel the clear acrylic cover. observe the orientation above to see which way is up. add the four short standoffs, using the four short screws.
+- peel the clear acrylic cover. observe the orientation above to see which way is up. add the four short standoffs, using the four short screws.
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly2.png)
 
-2. press the black key caps on to the white keys. this takes a bit of force, and you will hear a satisfying snap. press the knob caps into the top of the knobs, then put them on the encoders.
+- press the black key caps on to the white keys. this takes a bit of force, and you will hear a satisfying snap. press the knob caps into the top of the knobs, then put them on the encoders.
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly3.png)
 
-3. peel the protective sheet away from the screen. the acrylic assembly will fit over the top, poking the threads through the circuit board. flip it over and add the longer standoffs. the short standoffs go near the audio jacks. hand-tightening is sufficient.
+- peel the protective sheet away from the screen. the acrylic assembly will fit over the top, poking the threads through the circuit board. flip it over and add the longer standoffs. the short standoffs go near the audio jacks. hand-tightening is sufficient.
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly4.png)
 
-4. attach the raspberry pi. attach the white case. add four long screws to secure the case. add the rubber feet.
-
-5. read on for instructions on flashing your sd card...
+- attach the raspberry pi. attach the white case. add four long screws to secure the case. add the rubber feet.
 
 
 ## flashing sd card

@@ -39,8 +39,7 @@ comprehensive tutorials on individual elements of the norns ecosystem. through t
 
 ## further
 
-- [norns script reference](../script-reference)
-- [norns scripting faq](../faq)
+- [norns script reference + faq](../script-reference)
 - [programming in lua (first edition)](https://www.lua.org/pil/contents.html)
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
 - [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)

@@ -61,7 +61,7 @@ In addition to the `crow` object, there are many helper objects which can aid in
 - `crow.n2v`: convert semitones to V/oct voltage levels.
 
 ### ^^bootloader
-To help make flashing [new crow firmware](update) easy, we've included a straightforward Max patch that walks through the necessary steps:
+To help make flashing [new crow firmware](https://github.com/monome/crow/releases) easy, we've included a straightforward Max patch that walks through the necessary steps:
 
 ![](../images/max-bootloader.png)
 

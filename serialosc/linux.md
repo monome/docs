@@ -8,7 +8,7 @@ permalink: /serialosc/linux/
 
 _Note: This guide may need link updates! Please let us know: [help@monome.org](mailto:help@monome.org)_.
 
-This is a brief guide for using a monome grid on Linux. This guide covers two Linux distributions: [Ubuntu Linux](https://www.ubuntu.com) and [Arch Linux](https://www.archlinux.org). Once the required packages are installed, check out the [list](/docs/app) of available applications, or read through the [guides](/docs/grid-studies/) on how to create your own.
+This is a brief guide for using a monome grid on Linux. This guide covers two Linux distributions: [Ubuntu Linux](https://www.ubuntu.com) and [Arch Linux](https://www.archlinux.org). Once the required packages are installed, check out the [list](../grid/app) of available applications, or read through the [guides](/docs/grid-studies/) on how to create your own.
 
 ## Ubuntu Linux
 

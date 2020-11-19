@@ -16,7 +16,7 @@ bus, controlling one or more follower modules using trigger and CV
 information sent from Ansible. Since Ansible is not wired to supply
 power to the ii bus, another leader module or a powered busboard is
 required to use Ansible as a leader. Having [Crow](/docs/crow) or
-[Teletype](docs/teletype) connected to the same ii bus is sufficient.
+[Teletype](../teletype/) connected to the same ii bus is sufficient.
 
 When Ansible is acting as a ii leader, it can no longer receive ii
 commands from other leaders like Teletype or Crow. Note also that

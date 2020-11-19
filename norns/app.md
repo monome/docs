@@ -112,7 +112,7 @@ in the video above, scripts made by the [lines community](https://llllllll.co) a
 
 - **[the arp index](https://llllllll.co/t/the-arp-index/25182)**: Check stocks on norns (and make music). Listen to the sound of stocks falling, invest to push up the last note of your arpeggiator, do money things on norns. Also speaks MIDI to sequence external instruments.
 
-- **[boingg](https://llllllll.co/t/boingg/26536)**: Bouncing balls make notes, with probability. Speaks to an internal synth engine, speaks to Just Friends through [crow](../crow/index). grid interface available, though not required.
+- **[boingg](https://llllllll.co/t/boingg/26536)**: Bouncing balls make notes, with probability. Speaks to an internal synth engine, speaks to Just Friends through [crow](../crow). grid interface available, though not required.
 
 - **[circles](https://llllllll.co/t/22951)**: Move cursor. Place circles. Make music. Circles burst when they hit another circle or grow too big. When they burst, they make sound. The sound they make depends on position and size.
 

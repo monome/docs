@@ -11,11 +11,11 @@ We'll be using the Ardunio's USB Host capabilities to run grid code without a co
 
 ## Prerequisites
 
-If you're very new to Arduino, it will be very beneficial to work through the 'Getting Started' section at Arduino.cc: [arduino.cc/en/Guide/HomePage](http://arduino.cc/en/Guide/HomePage)
+If you're very new to Arduino, it will be very beneficial to work through the 'Getting Started' section at Arduino.cc: [https://arduino.cc/en/Guide/HomePage](http://arduino.cc/en/Guide/HomePage)
 
 Be sure you have Arduino version 1.6.0 or later. **It is required.**
 
-Download Arduino: [arduino.cc](http://http://arduino.cc/en/Main/Software)
+Download Arduino: [arduino.cc](http://arduino.cc/en/Main/Software)
 
 Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
 
@@ -449,6 +449,6 @@ Done!
 
 *MonomeHost* was written by and is maintained by [Ezra Buchla](http://catfact.net).
 
-This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](monome.org).
+This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

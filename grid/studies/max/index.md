@@ -255,6 +255,6 @@ See grid-studies-3-5.maxpat for a js implementation of this patch.
 
 *Max* was originally designed by Miller Puckette and is actively developed by [Cycling '74](http://cycling74.com).
 
-This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](monome.org).
+This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

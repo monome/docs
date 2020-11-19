@@ -397,10 +397,10 @@ Done!
 
 ## Credits
 
-Python was designed by Guido van Rossum and is maintained by the [Python Software Foundation](python.org).
+Python was designed by Guido van Rossum and is maintained by the [Python Software Foundation](https://python.org).
 
 *pymonome* was written and is maintained by [Artem Popov](https://github.com/artfwo/pymonome).
 
-This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](monome.org).
+This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).

@@ -87,7 +87,7 @@ For DSP modules, there is no debug/release option. Version numbers are passed to
 
 The Aleph hardware is open source:
 
-[github.com/tehn/aleph-hardware](github.com/tehn/aleph-hardware)
+[github.com/tehn/aleph-hardware](https://github.com/tehn/aleph-hardware)
 
 While the majority of aleph development will concern software, there is the possibility to augment the capabilities of the aleph with hardware.
 

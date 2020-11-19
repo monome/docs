@@ -6,9 +6,9 @@ has_children: true
 has_toc: false
 ---
 
-- [whitewhale](/whitewhale)
-- [meadowphysics](/meadowphysics)
-- [earthsea](/earthsea)
-- [walk](/walk)
+- [whitewhale](../whitewhale)
+- [meadowphysics](../meadowphysics)
+- [earthsea](../earthsea)
+- [walk](../walk)
 
-- [aleph](/aleph)
+- [aleph](../aleph)

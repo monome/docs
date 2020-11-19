@@ -49,7 +49,7 @@ If connecting all three trilogy modules there is a small juggling act to holding
 
 The trilogy modules will likely needed newest firmwares installed-- the II functionality was introduced after most trilogy modules shipped.
 
-See the [firmware updates](../update/) page for a walkthrough on updating.
+See the [firmware updates](/docs/modular/update/) page for a walkthrough on updating.
 
 ## In Use
 

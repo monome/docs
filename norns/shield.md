@@ -14,7 +14,7 @@ the norns shield is [open source hardware](https://github.com/monome/norns-shiel
 
 ## requirements
 
-- [raspberry pi 3](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) ($35) important! other models are not compatible.
+- [raspberry pi 3B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) ($35) 3B+ is also fine. important! other models are not compatible.
 - sd card - use a high quality brand such as [SanDisk](https://www.adafruit.com/product/2820) ($10)
 - power supply - the Pi3B has a micro-USB power port and requires [at least 2A](https://www.adafruit.com/product/1995). you can also use a portable USB battery if it's sufficiently large.
 

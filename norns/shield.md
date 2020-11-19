@@ -1,6 +1,7 @@
 ---
 layout: default
 title: norns shield
+nav_exclude: true
 has_toc: false
 ---
 

@@ -65,4 +65,4 @@ to run serialosc, execute `serialoscd`.
 
 (todo: startup scripts for autolaunching serialosc)
 
-to get started running and creating applications, check out the [grid studies](https://monome.org/docs/grid-studies/), particular the ones on [pd](https://monome.org/docs/grid-studies/pd/) and [python](https://monome.org/docs/grid-studies/python/).
+to get started running and creating applications, check out the [grid studies](https://monome.org/docs/grid/studies/), particular the ones on [pd](https://monome.org/docs/grid/studies/pd/) and [python](https://monome.org/docs/grid/studies/python/).

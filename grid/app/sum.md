@@ -244,8 +244,8 @@ These save files are complete collections of sounds that can be shared between u
 
 ## Credits
 
-*monome sum* was created by [monome.org](monome.org) using Max 6.
+*monome sum* was created by [monome.org](https://monome.org) using Max 6.
 
-This manual was created by [Trent Gill](http://www.whimsicalraps.com) for [monome.org](monome.org).
+This manual was created by [Trent Gill](http://www.whimsicalraps.com) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/monome_sum](https://github.com/monome/monome_sum) or e-mail `help@monome.org`.

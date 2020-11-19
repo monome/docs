@@ -12,8 +12,6 @@ An overview on programming operators for Bees.
 
 ### Mac OS X
 
-A compiled installer package is available here: [avr32 Toolchain for Mac](https://services.droparea.de/blog/avr32-toolchain-for-mac-os-x)
-
 To build from source see: [droparea's github](https://github.com/droparea/avr32-toolchain)
 
 ### Linux

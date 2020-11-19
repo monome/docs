@@ -676,6 +676,6 @@ And that's it! We have a fully functioning MIDI sequencer that can sync to MIDI 
 
 The *monome-grid* library was written and is maintained by [Tom Dinchak](https://soundcloud.com/phortran).
 
-This tutorial was created by [Tom Dinchak](https://soundcloud.com/phortran) and [Tom Armitage](https://tomarmitage.com) for [monome.org](monome.org).
+This tutorial was created by [Tom Dinchak](https://soundcloud.com/phortran) and [Tom Armitage](https://tomarmitage.com) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).

@@ -285,6 +285,6 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
 
 *Max* was designed by Miller Puckette and is actively developed as an open source project. [puredata.info](http://puredata.info).
 
-This tutorial was created by [Trent Gill](http://whimsicalraps.com) for [monome.org](monome.org).
+This tutorial was created by [Trent Gill](http://whimsicalraps.com) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).

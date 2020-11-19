@@ -60,4 +60,4 @@ all you need is a normal philips screwdriver.
 
 ## credits
 
-shield circuit design by [tehn](llllllll.co/u/tehn). 3D enclosure design by [JHC](llllllll.co/u/JHC).
+shield circuit design by [tehn](https://llllllll.co/u/tehn). 3D enclosure design by [JHC](https://llllllll.co/u/JHC).

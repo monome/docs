@@ -148,24 +148,24 @@ about using the lua stack.
  */
 int _screen_peek(lua_State *l) {
     // get the args passed in to _norns.screen_peek
-	lua_check_num_args(4);
+    lua_check_num_args(4);
     int x = luaL_checkinteger(l, 1);
     int y = luaL_checkinteger(l, 2);
     int w = luaL_checkinteger(l, 3);
     int h = luaL_checkinteger(l, 4);
-	// release the stack space used for the arguments
+    // release the stack space used for the arguments
     lua_settop(l, 0);
     if ((x >= 0) && (x <= 127)
      && (y >= 0) && (y <= 63)
      && (w > 0)
      && (h > 0)) {
         uint8_t* buf = screen_peek(x, y, &w, &h);
-	    if (buf) {
-			// return the results to lua by putting
-			// a string value on the stack
+        if (buf) {
+            // return the results to lua by putting
+            // a string value on the stack
             lua_pushlstring(l, buf, w * h);
-			// lua_pushlstring copies the buffer to lua's memory,
-			// so we can free it now
+            // lua_pushlstring copies the buffer to lua's memory,
+            // so we can free it now
             free(buf);
             return 1;
         }

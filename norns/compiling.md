@@ -149,4 +149,4 @@ norns and are ready to restart. the easiest way to do that is just to
 put norns to SLEEP as usual.
 
 to continue from here and learn how to make your own changes to the
-norns code, see [extending norns](..extending).
+norns code, see [extending norns](../extending).

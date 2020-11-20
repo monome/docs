@@ -22,7 +22,7 @@ Since 64 is a 8x8 grid, an app's critical functions may not be displayed or exec
 
 Addressing playability due to size is straightforward -- since norns apps are coded in Lua, modifications can be made which either expand or constrict the app's grid interactions.
 
-If you want to adapt a script's grid size, [norns study 4](/docs/norns/study-4) is a good place to start.
+If you want to adapt a script's grid size, [norns study 4](../norns/study-4) is a good place to start.
 
 ### varibrightness
 

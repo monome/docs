@@ -148,7 +148,7 @@ The bottom left ? icon can be used to navigate to the onboard programming refere
 
 You can manually open the API reference at `norns.local/doc`.
 
-Also see the [scripting reference](../script-reference/).
+Also see the [scripting reference](../reference/).
 
 ## OTHER ACCESS
 

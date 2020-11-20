@@ -120,4 +120,4 @@ Part 6: Collaboration
 
 ## Credits
 
-This study was created by [Dan Derks](http://soundandprocess.com).
+This study was created by [Dan Derks](http://soundcloud.com/sound-and-process).

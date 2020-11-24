@@ -206,7 +206,7 @@ cd 200712
 *nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/play/#update). fresh installing will wipe your norns, so back up any data you need before proceeding.*
 
 
-- [norns201029.img](https://github.com/monome/norns-image/releases/download/201023/norns201029.img.zip)
+- [norns201029.img](https://github.com/monome/norns-image/releases/download/201029/norns201029.zip)
 - [norns201029-shield.img](https://github.com/monome/norns-image/releases/download/201029/norns201029-shield.zip) (Pi 3b+ and Pi 3b only)
 
 ### stock norns fresh install process

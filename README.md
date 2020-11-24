@@ -10,9 +10,8 @@ if you have [jekyll](https://jekyllrb.com/) installed, you can build a partially
 git clone https://github.com/monome/docs
 cd docs/
 bundle
-gem install just-the-docs
 jekyll build
-bundle exec jekyll serve --watch
+bundle exec jekyll serve --baseurl '/docs' --watch
 ```
 
 and visiting [http://localhost:4000/docs](http://localhost:4000/docs).

@@ -1,12 +1,12 @@
 ---
 layout: default
-<!--parent: norns-->
+parent: norns
 has_children: false
 <!--title: play-->
 <!--nav_order: 1-->
 ---
 
-# play
+<!--# play-->
 
 ## awake
 

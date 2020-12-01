@@ -8,26 +8,23 @@ has_children: false
 
 <!--# play-->
 
+nav: [awake](#awake) | [levels](#levels) | [parameters](#parameters) | [tape](#tape) | [select](#select)
+
 ## awake
 
 After norns powers up, it will launch the last script that was loaded. On a fresh norns, this will be *awake*, a set of looping sequencers.
 
 Your first impulse might be to press buttons and turn the knobs — follow it!
 
-Just to make sure we talk about the *same* buttons and knobs, here's how things are laid out on a stock norns:
+Just to make sure we talk about the *same* buttons and knobs, here's how things are laid out on a stock norns and shield:
 
-![](image/play-images/norns-legend.png)
-<div align="center">*figure 1: stock norns*</div>
-
-And here's how they're laid out on a shield:
-
-![](image/play-images/norns-shield-legend.png)
-<div align="center">*figure 2: norns shield*</div>
+![](image/play-images/norns-legends.png)
+*[figure 1: stock norns and shield legend](image/play-images/norns-legends.png)*
 
 In any norns script, a quick tap of **K1** will toggle between the playable interface and the menus interface. If you get caught in the menus, just tap **K1** to get back to the script.
 
 ![](image/play-images/menu-nav.png)
-<div align="center">*figure 3: interface layers*</div>
+[*figure 2: interface layers*](image/play-images/menu-nav.png)
 
 Before we dive into menus, here's a quick guide to exploring *awake*.
 
@@ -68,7 +65,7 @@ To begin our menu dive, let's adjust the audio levels.
 Tap **K1** to come up from the script layer to the menus layer and turn **E1** counter-clockwise until you see pairs of vertical sliders.
 
 ![](image/play-images/menu-levels.png)
-<div align="center">*figure 4: setting levels*</div>
+[*figure 3: setting levels*](image/play-images/menu-levels.png)
 
 - **K2 / K3**: select previous pair / select next pair
 - **E2 / E3**: adjust left level / adjust right level
@@ -90,7 +87,7 @@ The horizontal notch represents unity. All levels can go to +6dB.
 Use **E1** to navigate to PARAMETERS, and enter the EDIT menu with **K3**.
 
 ![](image/play-images/menu-params_edit.png)
-<div align="center">*figure 5: editing parameters*</div>
+[*figure 4: editing parameters*](image/play-images/menu-params_edit.png)
 
 At the top of this menu are controls for each component of the global audio chain:
 
@@ -110,7 +107,7 @@ Scrolling down further, we find some of the script's parameters. These are chose
 To recall and build on the changes you've made in a future session, we can save all the parameters as a PSET (preset).
 
 ![](image/play-images/menu-params_pset.png)
-<div align="center">*figure 6: saving parameters / PSET*</div>
+[*figure 5: saving parameters / PSET*](image/play-images/menu-params_pset.png)
 
 
 Use **E2** to navigate down the left column of the PSET screen.  
@@ -144,7 +141,7 @@ These changing melodies are lovely, but they're a bit removed from the natural w
 Jump to the menus interface and use **E1** to navigate to the tape screen.
 
 ![](image/play-images/menu-tape_play.png)
-<div align="center">*figure 7: playing a tape*</div>
+[*figure 6: playing a tape*](image/play-images/menu-tape_play.png)
 
 **select loop**
 
@@ -171,13 +168,13 @@ This all sounds rather lovely -- perhaps you'd like to record it?
 On the tape screen, press **K2** to switch between the PLAY and REC lanes.
 
 ![](image/play-images/menu-tape_rec.png)
-<div align="center">*figure 8: recording a tape*</div>
+[*figure 7: recording a tape*](image/play-images/menu-tape_rec.png)
 
 **record**
 
 - with the REC lane selected, press **K3** to open the naming dialogue
 - name your tape, or feel free to use the pre-populated counter
-  - see *figure 6* for tips on navigating the naming dialogue
+  - see [*figure 5*](image/play-images/menu-params_pset.png) for tips on navigating the naming dialogue
 - when you arrive back at the tape menu, press K3 to record a stereo 48khz .wav file
 
 **stop recording**
@@ -197,7 +194,7 @@ Now that we have a nice *awake* session under our belts, let's explore some of t
 Tap **K1** and navigate to the *home* menu, then press **K3** on SELECT:
 
 ![](image/play-images/menu-sel.png)
-<div align="center">*figure 9: selecting a script*</div>
+[*figure 8: selecting a script*](image/play-images/menu-sel.png)
 
 - use **E2** to scroll through installed scripts
 - press **K3** to open a description of the selected script

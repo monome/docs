@@ -181,7 +181,7 @@ On the tape screen, press **K2** to switch between the PLAY and REC lanes.
 
 - with the REC lane selected, press **K3** stop an active recording
 - the tape will be saved as a stereo 48khz .wav file with the name you gave it
-  - want to export it from your norns? see **TODO: LINK TO FILE TRANSFER DOC**
+  - want to export it from your norns? see [**wifi + files**](/docs/norns/wifi-files).
 
 #### what gets recorded exactly?
 
@@ -198,7 +198,7 @@ Tap **K1** and navigate to the *home* menu, then press **K3** on SELECT:
 
 - use **E2** to scroll through installed scripts
 - press **K3** to open a description of the selected script
-- press **K3** again to load the selected script
+  - press **K3** again to load the selected script
   - press **K2** to return to the SELECT menu
 
 ### favorites

@@ -1,10 +1,6 @@
 ---
 layout: default
-parent: manage
-grand_parent: norns
-title: file share
-nav_order: 1
-has_toc: false
+nav_exclude: true
 ---
 
 # file share

@@ -1,10 +1,6 @@
 ---
 layout: default
-parent: norns
-has_children: true
-title: manage
-nav_order: 4
-has_toc: false
+nav_exclude: true
 ---
 
 # file management on norns

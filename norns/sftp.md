@@ -1,10 +1,6 @@
 ---
 layout: default
-parent: manage
-grand_parent: norns
-title: sftp
-nav_order: 2
-has_toc: false
+nav_exclude: true
 ---
 
 # sftp

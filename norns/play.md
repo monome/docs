@@ -8,402 +8,208 @@ nav_order: 1
 
 # play
 
-sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [pages](#pages) &mdash; [audio](#audio) &mdash; [midi](#midi) &mdash; [osc](#osc) &mdash; [network connect](#network-connect) &mdash; [update](#update) &mdash; [help](#help)
+sections: [awake](#awake) &mdash; [levels](#levels) &mdash; [parameters](#parameters) &mdash; [tape](#tape) &mdash; [select](#select)
 
+## awake
 
-## LEGEND
+After norns powers up, it will launch the last script that was loaded. On a fresh norns, this will be *awake*, a set of looping sequencers.
 
-![](image/norns-legend.png)
+Your first impulse might be to press buttons and turn the knobs — follow it!
 
-## BEGIN
+Just to make sure we talk about the *same* buttons and knobs, here's how things are laid out on a stock norns and shield:
 
-The mini-USB plug provides power and charges the internal battery. Use the cable and power supply provided. (The included supply supplies 2A via USB connector.)
+![](image/play-images/norns-legends.png)  
+*[figure 1: stock norns and shield legend](image/play-images/norns-legends.png)*
 
-Hold **K1** for three seconds.
+In any norns script, a quick tap of **K1** will toggle between the playable interface and the menus interface. If you get caught in the menus, just tap **K1** to get back to the script.
 
-Be still, and norns will awaken with a welcome chime.
+![](image/play-images/menu-nav.png)  
+[*figure 2: interface layers*](image/play-images/menu-nav.png)
 
-There's a small light near the power plug.  ORANGE means power.  WHITE means disk access.
+Before we dive into menus, here's a quick guide to exploring *awake*.
 
-Please DO NOT USE THE BOTTOM WHITE BUTTON. This button is essentially like pulling the power cord on a desktop computer and runs the risk of disk corruption. If you are unable to SLEEP your norns due to a lockup situation, push-and-hold K3-K2-K1 (in this order) for 10 seconds and the system will safely reset.
-
-## AWAKE
-
-A changing melody will play.
-
-E1 changes the mode. K1+? means hold K1 then push ?.
+**E1** changes the mode: STEP, LOOP, SOUND, OPTION
 
 ### STEP
 
-- E2 navigates position, E3 changes position.
-- K2 toggles the sequence to edit. K1+K2 clears all steps.
-- K3 morphs the current sequence. K1+K3 randomizes.
+- **E2** navigates position, **E3** changes position
+- **K2** toggles the sequence to edit. **K1+K2** clears all steps
+- **K3** morphs the current sequence. **K1+K3** randomizes
 
 ### LOOP
 
-- E2/E3 set loop length.
-- K2 resets to play to zero. K3 jumps to random position.
+- **E2 / E3** sets loop length
+- **K2** resets to play to zero
+- **K3** jumps to random position
 
 ### SOUND
 
-- E2/E3 adjust selected parameter. K2/K3 move selector.
+- **E2 / E3** adjusts selected parameter
+- **K2 / K3** moves selector
 
 ### OPTION
 
-- E2 adjusts BPM. K1+E2 change division.
-- E3 changes root note. K1+E3 selects scale.
+- **E2** adjusts BPM
+- **K1+E2** change division
+- **E3** changes root note
+- **K1+E3** selects scale
 
 (bonus: try plugging in a grid.)
 
+Most norns scripts rely on these types of interactions — re-definable encoders, two-button presses in the form of hold-one-press-the-other, turning an encoder while a modifier button is held, etc.
 
-## PAGES
+## levels
 
-Tap K1 quickly to toggle between **PLAY** and **NOPLAY**.
+To begin our menu dive, let's adjust the audio levels.
 
-You are now at **HOME**.
+Tap **K1** to come up from the script layer to the menus layer and turn **E1** counter-clockwise until you see pairs of vertical sliders.
 
-![](image/screen-home.png)
+![](image/play-images/menu-levels.png)  
+[*figure 3: setting levels*](image/play-images/menu-levels.png)
 
+- **K2 / K3**: select previous pair / select next pair
+- **E2 / E3**: adjust left level / adjust right level
 
-In **NOPLAY** mode:
+The horizontal notch represents unity. All levels can go to +6dB.
 
-- E1 moves between pages.
-- E2 scrolls up/down.
-- K2/K3 move back/forward.
+- **out** controls the final output of the global mix
+- **in** determines how much of an external input is fed into the script
+  - DO NOT plug modular-level signals into norns (neither stock and shield) -- norns is designed for line levels only
+- **mon** allows the input to be monitored as part of the global mix
+- **eng** controls the output level of the script's synth engine
+- **cut** determines the mix presence of softcut, a flexible sampling layer
+- **tp** adjusts the level of a playing tape, which is fed into the global mix as well as softcut
 
-Page layout:
+## parameters
 
-![](image/norns-pages.png)
+### changing the sounds
 
+Use **E1** to navigate to PARAMETERS, and enter the EDIT menu with **K3**.
 
-### HOME
+![](image/play-images/menu-params_edit.png)  
+[*figure 4: editing parameters*](image/play-images/menu-params_edit.png)
 
-![](image/screen-home.png)
+At the top of this menu are controls for each component of the global audio chain:
 
-At **HOME** press K2 to toggle additional system information display:
+- LEVELS features controls for output, input, monitoring, engine, softcut and tape levels
+    - on stock norns, you can also adjust whether the headphone monitor is stereo or mono and add or remove headphone gain
+    - again, DO NOT plug modular-level signals into norns (neither stock and shield)
+- REVERB adjusts the system reverb and send levels for the currently loaded engine, softcut, monitor, and tape
+- COMPRESSOR adjusts the system compressor, which is the final stage of the audio processing
+- SOFTCUT adjusts the output and send levels for the six-voice system sampler
 
-![](image/screen-info.png)
+CLOCK reveals controls for the norns global clock. The clock can be synced to a number of sources, including MIDI, Ableton Link, and crow. We'll dig into specifics about clock later, but it's good to know about!
 
-From top-left:
+Scrolling down further, we find some of the script's parameters. These are chosen by the script's author and can be adjusted by using **E3**.
 
-- BAT: current battery %
-- mA: battery's current power draw; negative values indicate discharging
-- DISK: available disk storage
-- CPU: current CPU utilization
-- c: current internal temperature
-- IP: current IP address if connected to a network
+### saving the changes
 
-The installed software version will be listed under the script's name (eg. 191101). The format is YY-MM-DD.
+To recall and build on the changes you've made in a future session, we can save all the parameters as a PSET (preset).
 
-#### SELECT
+![](image/play-images/menu-params_pset.png)  
+[*figure 5: saving parameters / PSET*](image/play-images/menu-params_pset.png)
 
-Explore the collection of scripts.  Selecting a script will show a description.  Forward again will run the script.  The play screen will return upon running.  Quickly tap K1 to toggle between **PLAY** and **NOPLAY**.
 
-If you wish to clear a currently running script, highlight SELECT + hold K1. You'll see `CLEAR` in the middle of the screen -- press K3 to clear the currently running script.
+Use **E2** to navigate down the left column of the PSET screen.  
+Use **E3** to navigate down the right.  
+The currently loaded PSET will have an asterisk `*` next to it
 
-#### SYSTEM
+**save PSET**
 
-- DEVICES - This is a list of connected USB hardware with their associated port number. Most scripts address port 1. See [norns study 4](https://monome.org/docs/norns/study-4/) for a scripting guide to multiple ports. This section lets you re-assign connected devices to specific ports.
-- WIFI - Networking settings. Requires USB WIFI interface. See [NETWORK CONNECT](#network-connect).
-- RESET - Quickly resets the audio system and resets current configuration data to a default state, restoring audio levels to maximum and clearing the currently loaded script.
-- UPDATE - Checks for updates. Internet connection required. See [UPDATE](#update).
+- select `SAVE` and press **K3** to open the naming dialogue
+- use **E3** to switch to the alphabet and **E2** to choose letters
+- **K3** enters the selected letter
+- use **E3** to navigate back to the controls (use **E2** and **K3** on `DEL` to delete a letter)
+- press **K3** on `OK` to save
 
-#### SLEEP
+**load PSET**
 
-Powers down cleanly, saving current state to be restored upon next boot (including audio levels and which script is currently loaded).
+- select `LOAD` and use **E3** to choose a saved PSET
+- press **K3** to load the selected PSET
 
-**If you are unable to SLEEP your norns due to a lockup situation, please DO NOT USE THE BOTTOM WHITE BUTTON.**
+**delete PSET**
 
-Instead, push-and-hold K3-K2-K1 (in this order) for 10 seconds and the system will safely reset.
+- select `DELETE` and use **E3** to choose a saved PSET
+- press **K3** to delete the selected PSET
 
-### PARAMETERS
+## tape
 
-![](image/screen-params-200323.png)
+### play
 
-#### EDIT
+These changing melodies are lovely, but they're a bit removed from the natural world. Let's load a field recording of hermits to loop underneath.
 
-Provides control over system audio levels, mix bus, and script parameters.
+Jump to the menus interface and use **E1** to navigate to the tape screen.
 
-EDIT begins with a parameter list for the global audio settings. See [AUDIO](#audio) for details on the parameters available in each section.
+![](image/play-images/menu-tape_play.png)  
+[*figure 6: playing a tape*](image/play-images/menu-tape_play.png)
 
-![](image/screen-params-edit-200323.png)
+**select loop**
 
+- with the PLAY lane selected, press **K3** to open the `audio` folder
+- the `audio` folder contains both folders and single clips
+  - folders will be prepended with `/`, without a duration
+  - clips will be prepended with their filetype (eg. `.wav`) and a duration
+  - want to import more clips into your norns? see [**wifi + files**](/docs/norns/wifi-files).
 
-- E2 scrolls
-- E3 changes values. Hold K3 for fine tuning
+PLAY expects 48khz files (both stereo and mono supported). WAV, AIFF, FLAC and other uncompressed header / sample formats supported by [libsndfile](http://www.mega-nerd.com/libsndfile) will work (including raw).
 
-Scroll past the global audio parameters to reveal the script-level parameters (*nb. some scripts may not have their own parameters*).
+**start/stop loop**
 
-![](image/screen-params-script-200323.png)
+- when a clip is loaded, its name will be reflected on the PLAY lane
+- press **K3** to START playback
+- during playback, press **K3** to STOP and clear the sound
 
-- K3 on a separator jumps to next section
-- K1+E2 jumps between separators (plus top line)
+As of this writing, sounds always loop and there are no additional transport controls.
 
-#### PSET
+### rec
 
-![](image/screen-pset-200323.png)
+This all sounds rather lovely -- perhaps you'd like to record it?
 
-Parameter set saving and loading:
+On the tape screen, press **K2** to switch between the PLAY and REC lanes.
 
-- E2 navigates SAVE, LOAD, DELETE
-- E3 scrolls PSET slots for each section
-- K3 executes the command on the selected PSET slot
+![](image/play-images/menu-tape_rec.png)  
+[*figure 7: recording a tape*](image/play-images/menu-tape_rec.png)
 
-When you execute SAVE, you will have the option to name your PSET, with default text.
+**record**
 
-A `*` indicates the currently loaded PSET.
+- with the REC lane selected, press **K3** to open the naming dialogue
+- name your tape, or feel free to use the pre-populated counter
+  - see [*figure 5*](image/play-images/menu-params_pset.png) for tips on navigating the naming dialogue
+- when you arrive back at the tape menu, press K3 to record a stereo 48khz .wav file
 
-#### MAP
+**stop recording**
 
-Enable MIDI mapping and control over parameters. If a parameter has a `-` to its right, it's mappable.
+- with the REC lane selected, press **K3** stop an active recording
+- the tape will be saved as a stereo 48khz .wav file with the name you gave it
+  - want to export it from your norns? see [**wifi + files**](/docs/norns/wifi-files).
 
-![](image/screen-mapselect-200323.png)
+#### what gets recorded exactly?
 
-- E2 navigates
-- K3 opens for mapping
+In the simplest terms, everything you hear from the main output is committed to a recording tape. This includes the system reverb, compressor, and monitor audio. If you are recording for further processing in a DAW, you may want to turn off the system reverb and compressor for a more barebones sound.
 
-To assign a MIDI control to a parameter, you can either LEARN or manually edit:
+## select
 
-![](image/screen-mapdetail-200323.png)
+Now that we have a nice *awake* session under our belts, let's explore some of the other scripts on norns!
 
-- E2 navigates
-- E3 scrolls values
-- K3 executes
+Tap **K1** and navigate to the *home* menu, then press **K3** on SELECT:
 
+![](image/play-images/menu-sel.png)  
+[*figure 8: selecting a script*](image/play-images/menu-sel.png)
 
-### TAPE
+- use **E2** to scroll through installed scripts
+- press **K3** to open a description of the selected script
+  - press **K3** again to load the selected script
+  - press **K2** to return to the SELECT menu
 
-![](image/screen-tape.png)
+### favorites
 
-On this page you can record and play directly to and from disk.
+When you entered the SELECT menu, you might've noticed an asterisk next to *awake* -- this signifies a favorite script, which places it at the top of the scroll. This makes it easy to quickly access your go-to's!
 
-K2 toggles focus between PLAY and REC.
+To add a favorite, turn **E3** clockwise on any script in the SELECT menu.  
+To remove a favorite, turn **E3** counter-clockwise on any already-favorited script.
 
-PLAY
+## where to next?
 
-- K3 loads file
-- K3 again to start
-- K3 again to stop
+Now that you know the basics of navigating the system, adjusting a script's parameters, and recording the results, you should feel free to explore the dozens of community scripts preloaded on your norns. To learn more about the default scripts, check out the [**app**](/docs/norns/app) page!
 
-PLAY expects 48khz files (both stereo and mono supported). WAV, AIFF and other uncompressed header / sample formats supported by [libsndfile](http://www.mega-nerd.com/libsndfile) will work (including raw). FLAC also.
-
-REC
-
-- K3 to arm recording
-- K3 again to start
-- K3 again to stop
-
-When you arm recording, you will have the option to name your file, with default auto-incrementing text.
-
-![](image/screen-tape-filename-200323.png)
-
-REC writes 48khz stereo WAV.
-
-To share / sync audio files between norns and your computer, you'll need to use a file-sharing client. Learn more in our [file management guides](/docs/norns/manage).
-
-### LEVELS
-
-![](image/screen-levels.png)
-
-Mixing and VU display happens here.
-
-- K2/K3 to change selection, which is highlighted.
-- E2/E3 modify the respective highlighted levels.
-
-
-## AUDIO
-
-Audio routing is shown below:
-
-![](image/norns-audio-route.png)
-
-[Technical details about the norns mixer client (crone).](../reference/#crone)
-
-*nb. DO NOT plug modular-level signals into norns (both stock and shield). The inputs are designed for line levels only, so please attenuate any modular signals before sending them into norns.*
-
-### AUDIO PARAMETERS
-
-Control of various audio parameters happens in **SYSTEM > AUDIO**. Note that the topmost levels are also controlled via the **LEVELS** page.
-
-param |range |description
----|---|---
-**LEVELS**			|					|
-output            |[-inf, 0] db     |output level
-input             |[-inf, 0] db     |input level
-monitor           |[-inf, 0] db     |monitor level (input mix to ouput)
-engine            |[-inf, 0] db     |engine level (ie, supercollider)
-softcut           |[-inf, 0] db     |multivoice sampler level
-tape              |[-inf, 0] db     |tape playback level
-monitor mode      |[MONO, STEREO]   |MONO = mix input 1 and 2 to both channels
-headphone         |[0, 60]          |headphone gain
-**REVERB**			| 					|
-reverb            |[ON, OFF]        |reverb state
-rev engine input  |[-inf, 12] db    |engine input to reverb
-rev cut input     |[-inf, 12] db    |softcut input to reverb
-rev monitor input |[-inf, 12] db    |monitor input to reverb
-rev return level  |[-inf, 12] db    |reverb return level
-rev pre delay     |[20, 100] ms     |delay before reverberation
-rev lf fc         |[50, 1000] hz    |crossover frequency between low and middle bands
-rev low time      |[1, 32] s        |time to decay by 60dB in low band
-rev mid time      |[1, 32] s        |time to decay by 60dB in mid band
-rev hf damping    |[1500, nyq] hz   |frequency at which high band decay time is 1/2 of mid band decay time
-**COMPRESSOR**		|					|
-compressor        |[ON, OFF]        |compressor state
-comp mix          |[0, 1.0]         |dry/wet mix. 0 = dry, 1 = wet
-comp ratio        |[1, 20]          |compression ratio: for each N dB increase in input level above threshold, output level increases by 1dB
-comp threshold    |[-100, 10] dB    |amplitutde above which the signal is compressed
-comp attack       |[1, 1000] ms     |time constant (1/e smoothing time) for compression gain to exponentially approach a new _lower_ target level
-comp release      |[1, 1000] ms     |time constant (1/e smoothing time) for compression gain to exponentially approach a new _higher_ target level
-comp pre gain     |[-inf, 30] db    |gain pre compression
-comp post gain    |[-inf, 30] db    |gain post compression
-**SOFTCUT**			|					|
-input adc				|[0, 1.0]			|hardware input level to softcut
-input engine			|[0, 1.0]			|engine input level to softcut
-input tape			|[0, 1.0]			|tape input level to softcut
-
-## MIDI
-
-### CLOCK
-
-With norns firmware `200424`, a global clock system was introduced. This means that it's dead simple to pass clock from an external source to a norns script, provided the script has been updated to use the new clock system.
-
-To clock a script from MIDI:
-
-- navigate to PARAMETERS > EDIT
-- move down to CLOCK
-- set it to MIDI
-
-![](image/screen-params-midi-200518.png)
-
-### DEVICES
-
-To ensure a connected MIDI device is recognized by a currently running script, navigate to SYSTEM > DEVICES > MIDI and select your MIDI device:
-
-![](image/screen-system-midi-200518.png)
-
-### MIDI MAP
-
-To control a script's parameters with MIDI, please see the [PARAMETERS > MAP](https://monome.org/docs/norns/play/#map) section above.
-
-## OSC
-
-[Open Sound Control (OSC)](https://en.wikipedia.org/wiki/Open_Sound_Control) is a network protocol for sending messages supported by numerous sound and media applications.
-
-OSC allows you to control norns over WIFI using applications like Max/MSP, TouchOSC, Clean OSC, OSCulator, or Wekinator. You can create custom control surfaces to extend your gestural interactions with norns -- eg. rather than using MIDI faderbank to change reverb damping, you could use a biometric sensor or Wiimote.
-
-All of the [audio parameters](https://monome.org/docs/norns/play/#audio-parameters) have OSC names. To see them, navigate to `PARAMETERS > MAP`:
-
-param |OSC name
----|---
-**LEVELS**		| ---
-output            |`output_level`
-input             |`input_level`
-monitor           |`monitor_level`
-engine            |`engine_level`
-softcut           |`softcut_level`
-tape              |`tape_level`
-monitor mode      |`monitor_mode`
-headphone         |`headphone_gain`
-**REVERB**		| ---
-reverb            |`reverb`
-rev engine input  |`rev_eng_input`
-rev cut input     |`rev_cut_input`
-rev monitor input |`rev_monitor_input`
-rev tape input    |`rev_tape_input`
-rev return level  |`rev_monitor_output`
-rev pre delay     |`rev_pre_delay`
-rev lf fc         |`rev_lf_fc`
-rev low time      |`rev_low_time`
-rev mid time      |`rev_mid_time`
-rev hf damping    |`rev_hf_damping`
-**COMPRESSOR**	| ---
-compressor        |`compressor`
-comp mix          |`comp_mix`
-comp ratio        |`comp_ratio`
-comp threshold    |`comp_threshold`
-comp attack       |`comp_attack`
-comp release      |`comp_release`
-comp pre gain     |`comp_pre_gain`
-comp post gain    |`comp_post_gain`
-**SOFTCUT**		| ---
-input adc			|`cut_input_adc`
-input engine		|`cut_input_eng`
-input tape		|`cut_input_tape`
-
-Format your messages as `/param/osc_name value`, eg:
-
-```
-/param/comp_ratio 2.3
-/param/rev_monitor_output 0
-/param/output_level 0.5
-```
-
-Please note that norns receives OSC messages on port `10111`.
-
-Want to see norns + OSC in action? Check out `@felart`'s [TouchOSC template](https://github.com/felart/Norns-TouchOSC) for the LEVELS, REVERB, and COMPRESSOR controls.
-
-For more detail on norns + OSC scripting, please see [study 5](/docs/norns/study-5/#numbers-through-air).
-
-## NETWORK CONNECT
-
-Scripts can be created and edited using a web browser when norns is connected to a network. These scripts will appear in the **SELECT** list for later play.
-
-### WIFI
-
-The WIFI nub must be inserted before starting.
-
-![](image/screen-wifi.png)
-
-To connect to your local network router:
-
-- Navigate to **SYSTEM > WIFI**.
-- Select **ADD**.
-- Choose your network from the list displayed.
-- Enter the password. E2 toggle between top and bottom row, E3 scrolls character, K3 selects character. Select **OK** when complete.
-- With success, you should be assigned an IP address shortly after.
-
-If you do not have access to a router, you can turn the norns into a WIFI hotspot. This will create a new network which you can then connect to with your computer:
-
-- SSID: `norns`
-- password: `nnnnnnnn`
-
-### SSH
-
-When connected via WIFI you can SSH into norns from another computer on the same network at the IP address shown in SYSTEM.
-
-- open a Terminal on a Mac/Win/Linux computer
-- execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`
-- password: `sleep`
-
-### SERIAL (NO WIFI)
-
-Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux, open a terminal and type:
-
-- `screen /dev/tty.usb`
-- then, press TAB to autocomplete your serial number
-- then type `115200`
-
-So, in total: `screen /dev/tty.usb[TAB KEY] 115200`
-
-If you see a blank screen, press ENTER.
-
-You'll be asked for login credentials. Login is the same as SSH above.
-
-## UPDATE
-
-Updates to the core norns software can be installed easily via the SYSTEM menu. You must first be connected to the internet via wifi and have at least 400M free disk space. If a new version is available you will be prompted to continue installing. Audio will be disabled during this time. Note that the download time may be a few minutes, have patience. Upon completion you'll be notified of success or failure, then the unit will ask for your confirmation to shut down.
-
-If for some reason you wish to re-run an update, hold K1 while selecting SYSTEM > UPDATE. norns will notify you that it has found the most recent update and you can follow the prompts to install.
-
-**If you are running 181101 or earlier it's recommended to do a [fresh install](../help/#fresh-install).**
-
-
-## HELP
-
-See the dedicated [help page](../help/) for solutions to common problems.
-
-The [community forum](https://llllllll.co/tag/norns) has various informative threads. Please join us!
-
-Check the [known bugs](https://github.com/monome/norns/wiki/known-bugs) list for problems and solutions.
-
-If you're experiencing hardware problems contact `help@monome.org` and we can help right away.
+Want to connect to WIFI to download more scripts? Want to transfer TAPE files? Want to make sure norns is up to date? Check out [**wifi + files**](/docs/norns/wifi-files)!

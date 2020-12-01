@@ -2,11 +2,11 @@
 layout: default
 parent: norns
 has_children: false
-<!--title: wifi + files-->
-<!--nav_order: 2-->
+title: wifi + files
+nav_order: 2
 ---
 
-<!--# wifi + files-->
+# wifi + files
 
 sections: [connect](#connect) &mdash; [update](#update) &mdash; [transfer](#transfer) &mdash; [advanced access](#advanced-access)
 
@@ -14,12 +14,12 @@ sections: [connect](#connect) &mdash; [update](#update) &mdash; [transfer](#tran
 
 norns and shield are both capable of connecting to existing WIFI networks, or hosting their own as a hotspot.
 
-shield has its own WIFI antenna built in, thanks to the Raspberry Pi. Stock norns has a "compute module" version of Pi, which doesn't have WIFI built in, so you will need to use a USB WIFI antenna. Stock norns comes with one, though any Linux-friendly dongle will work.
+shield has its own WIFI antenna built in, thanks to the Raspberry Pi. Stock norns has a "compute module" version of Pi, which doesn't have WIFI built in, so you will need to use a USB WIFI antenna. Stock norns come with one, but if you need replacements please see [replacement parts](/docs/norns/help/#wifi-nub).
 
 The first few minutes of this video walks through how to host a hotspot from norns and how to connect norns to a known WIFI network:
 
-[![YouTube video demonstrating how to connect norns to WiFi and how to access maiden, the norns project manager](http://img.youtube.com/vi/Vf-Br3wwQRw/0.jpg)](http://www.youtube.com/watch?v=Vf-Br3wwQRw "norns: wifi + maiden")  
-*[figure 1: wifi + maiden access video](http://www.youtube.com/watch?v=Vf-Br3wwQRw)*
+<div style="padding:62.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/436460489?title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>  
+*[figure 1: wifi + maiden access video](https://vimeo.com/436460489)*
 
 To connect norns to your local network router:
 
@@ -41,7 +41,7 @@ If you do not have access to a router, you can also turn the norns into a WIFI h
 
 Once norns is connected to a network, you can access system updates which fix bugs, add new features, and improve the overall experience.
 
-![](image/wifi_maiden-images/update.png)
+![](image/wifi_maiden-images/update.png)  
 *[figure 2: update process](image/wifi_maiden-images/update.png)*
 
 To check for and install updates:
@@ -82,7 +82,8 @@ Open Finder and hit CMD/Apple-K or navigate to `Go > Connect to Server`.
 
 In the top IP address bar, enter: `smb://norns.local` and click Connect:
 
-![](image/smb-mac-connect.png)
+![](image/smb-mac-connect.png)  
+*[figure 3: samba connect address](image/smb-mac-connect.png)*
 
 You may see an "Unsecured Connection" warning, but you can safely ignore it and click Connect.
 
@@ -93,11 +94,13 @@ Login as a Registered User with the following credentials:
 
 ...and click Connect one last time!
 
-![](image/smb-mac-login.png)
+![](image/smb-mac-login.png)  
+*[figure 4: samba connect dialogue](image/smb-mac-login.png)*
 
 Once connected, you can freely navigate through files on norns:
 
-![](image/smb-mac-tree.png)
+![](image/smb-mac-tree.png)  
+*[figure 5: norns as connected network drive](image/smb-mac-tree.png)*
 
 ### Windows
 
@@ -113,7 +116,9 @@ You can use samba to share audio files between norns and your computer. On norns
 
 `tape` is where the TAPE function stores recordings made on your norns. You'll also find an `index.txt` file which logs the TAPE index -- if you wish to reset the auto-generated counter, edit this file to start back at 0.
 
-![](image/smb-mac-tree-tape.png)
+![](image/smb-mac-tree-tape.png)  
+*[figure 6: tape folder path](image/smb-mac-tree-tape.png)*
+
 
 Feel free to make folders inside `audio` to store various samples, field recordings, single cycle waveforms, etc. Each of those folders can also store subfolders, but please note that you cannot nest more than ten folder layers.
 
@@ -162,4 +167,4 @@ You'll be asked for login credentials. Login is the same as SSH above.
 
 ## where to next?
 
-Now that you know how to get connected to WIFI, your norns is up to date, and you've got some fresh new audio to mangle, let's find some new community scripts through maiden!
+Now that you know how to get connected to WIFI, your norns is up to date, and you've got some fresh new audio to mangle, let's find some new community scripts through [**maiden**](/docs/norns/maiden)!

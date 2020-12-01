@@ -8,7 +8,7 @@ has_children: false
 
 <!--# play-->
 
-nav: [awake](#awake) | [levels](#levels) | [parameters](#parameters) | [tape](#tape) | [select](#select)
+sections: [awake](#awake) &mdash; [levels](#levels) &mdash; [parameters](#parameters) &mdash; [tape](#tape) &mdash; [select](#select)
 
 ## awake
 
@@ -18,12 +18,12 @@ Your first impulse might be to press buttons and turn the knobs — follow it!
 
 Just to make sure we talk about the *same* buttons and knobs, here's how things are laid out on a stock norns and shield:
 
-![](image/play-images/norns-legends.png)
+![](image/play-images/norns-legends.png)  
 *[figure 1: stock norns and shield legend](image/play-images/norns-legends.png)*
 
 In any norns script, a quick tap of **K1** will toggle between the playable interface and the menus interface. If you get caught in the menus, just tap **K1** to get back to the script.
 
-![](image/play-images/menu-nav.png)
+![](image/play-images/menu-nav.png)  
 [*figure 2: interface layers*](image/play-images/menu-nav.png)
 
 Before we dive into menus, here's a quick guide to exploring *awake*.
@@ -64,7 +64,7 @@ To begin our menu dive, let's adjust the audio levels.
 
 Tap **K1** to come up from the script layer to the menus layer and turn **E1** counter-clockwise until you see pairs of vertical sliders.
 
-![](image/play-images/menu-levels.png)
+![](image/play-images/menu-levels.png)  
 [*figure 3: setting levels*](image/play-images/menu-levels.png)
 
 - **K2 / K3**: select previous pair / select next pair
@@ -86,7 +86,7 @@ The horizontal notch represents unity. All levels can go to +6dB.
 
 Use **E1** to navigate to PARAMETERS, and enter the EDIT menu with **K3**.
 
-![](image/play-images/menu-params_edit.png)
+![](image/play-images/menu-params_edit.png)  
 [*figure 4: editing parameters*](image/play-images/menu-params_edit.png)
 
 At the top of this menu are controls for each component of the global audio chain:
@@ -106,7 +106,7 @@ Scrolling down further, we find some of the script's parameters. These are chose
 
 To recall and build on the changes you've made in a future session, we can save all the parameters as a PSET (preset).
 
-![](image/play-images/menu-params_pset.png)
+![](image/play-images/menu-params_pset.png)  
 [*figure 5: saving parameters / PSET*](image/play-images/menu-params_pset.png)
 
 
@@ -140,7 +140,7 @@ These changing melodies are lovely, but they're a bit removed from the natural w
 
 Jump to the menus interface and use **E1** to navigate to the tape screen.
 
-![](image/play-images/menu-tape_play.png)
+![](image/play-images/menu-tape_play.png)  
 [*figure 6: playing a tape*](image/play-images/menu-tape_play.png)
 
 **select loop**
@@ -149,7 +149,7 @@ Jump to the menus interface and use **E1** to navigate to the tape screen.
 - the `audio` folder contains both folders and single clips
   - folders will be prepended with `/`, without a duration
   - clips will be prepended with their filetype (eg. `.wav`) and a duration
-  - want to import more clips into your norns? see **TODO: LINK TO FILE TRANSFER DOC**
+  - want to import more clips into your norns? see [**wifi + files**](/docs/norns/wifi-files).
 
 PLAY expects 48khz files (both stereo and mono supported). WAV, AIFF, FLAC and other uncompressed header / sample formats supported by [libsndfile](http://www.mega-nerd.com/libsndfile) will work (including raw).
 
@@ -167,7 +167,7 @@ This all sounds rather lovely -- perhaps you'd like to record it?
 
 On the tape screen, press **K2** to switch between the PLAY and REC lanes.
 
-![](image/play-images/menu-tape_rec.png)
+![](image/play-images/menu-tape_rec.png)  
 [*figure 7: recording a tape*](image/play-images/menu-tape_rec.png)
 
 **record**
@@ -193,7 +193,7 @@ Now that we have a nice *awake* session under our belts, let's explore some of t
 
 Tap **K1** and navigate to the *home* menu, then press **K3** on SELECT:
 
-![](image/play-images/menu-sel.png)
+![](image/play-images/menu-sel.png)  
 [*figure 8: selecting a script*](image/play-images/menu-sel.png)
 
 - use **E2** to scroll through installed scripts
@@ -212,4 +212,4 @@ To remove a favorite, turn **E3** counter-clockwise on any already-favorited scr
 
 Now that you know the basics of navigating the system, adjusting a script's parameters, and recording the results, you should feel free to explore the dozens of community scripts preloaded on your norns.
 
-In the next section, we'll cover how to connect to WIFI and maiden (the norns script management tool), so you can add new scripts and transfer audio to/from norns.
+In the next section, we'll cover how to connect to WIFI so you can update, transfer TAPE files to/from, and get set up to download additional scripts!

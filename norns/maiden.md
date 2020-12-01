@@ -9,41 +9,91 @@ has_toc: false
 
 # maiden
 
-sections: [file viewer](#file-viewer) &mdash; [editor](#editor) &mdash; [repl](#repl) &mdash; [project manager](#project-manager) &mdash; [programming reference](#programming-reference) &mdash;[other access](#other-access)
+sections: [project manager](#project-manager) &mdash; [repl](#repl) &mdash; [file viewer](#file-viewer) &mdash; [advanced access](#advanced-access)
 
-_maiden_ is the web-based editor for norns.
+_maiden_ is a browser-based portal for norns. It can be accessed via a norns-hosted hotspot, or if norns and your browser are on the same WIFI network.
 
-Point your web browser at `norns.local` to see the maiden interface. If the site is not found, try connecting directly to the IP address shown on the norns screen, for example: `192.168.1.30`.
+To dive in, point your web browser at `norns.local` to see the maiden interface. If the site is not found, try connecting directly to the IP address shown on the norns screen, for example: `192.168.1.30`.
 
 ![](image/maiden-1.0.png)
 
-The interface includes a meta-navigator in the far-left sidebar, which allows you to:
+The interface includes a meta-navigator in the far-left sidebar, which from bottom-to-top allows you to:
 
-- toggle the *file viewer*, where you can view and select scripts to edit
-- toggle the *repl* (read-eval-print-loop), where your scripts + the system both print useful information
-- access the *project manager*, where you can manage the scripts that are installed on your norns
+- access the [*project manager*](#project-manager), where you can manage, discover, and install community scripts on your norns
+- toggle the [*repl*](#repl) (read-eval-print-loop), where your scripts + the system both print useful information
+- toggle the [*file viewer*](#file-viewer), where you can view and select scripts to edit
 
-The bulk of the *file viewer* is dedicated to the EDITOR, where you can view and edit the code of a selected script.
+Let's start with the *project manager*, so we can download some new community scripts!
 
-### FILE VIEWER
+## project manager
 
-This panel lets you select the text you're editing in EDITOR.
+maiden features a project manager to help you discover and download new projects. Projects contain both engines and scripts.
 
-There are top bar icons for various actions: **New**, **Delete**, **Duplicate**, **New Folder**, and **Rename**.
+You can access both the *base* (projects from monome) and *community* (projects from other artists) repositories via the books icon in the left-sidebar:
 
-The `>`'s can be expanded to reveal a file tree. When you select a file, it will show in the EDITOR:
+![](image/maiden-available.png)
 
-![](image/maiden-carrot.png)
+### installed
 
-### EDITOR
+This tab shows which projects are currently installed on your norns.
 
-This is where you can edit the selected script.
+![](image/maiden-installed.png)
 
-To the right there is a bar with two icons: disk is **SAVE** and **PLAY** will run the current script.
+Each entry has two actions: **UPDATE** and **REMOVE**.
 
-The editor can be configured for various modes (default, vim, emacs) in addition to tab size and light/dark mode. Click the gear icon at the bottom left of the screen.
+If you choose to update a project that currently lives on your norns, please note that local modifications you have made will be overwritten. If you wish to retain multiple versions of a project, please reference the [SFTP](../sftp/) guide.
 
-### REPL
+Once you update a project through the PROJECT MANAGER, you'll see a commit number listed on the right of the project's tile (like *34d225b*). Click a project's commit number to be brought to the project's GitHub page, where you can learn more about the project and verify that the version you have is the latest.
+
+*nb. If you are updating a project through the PROJECT MANAGER that was not installed by using the PROJECT MANAGER, you will receive an error that the project cannot be found in the catalog. Please delete the previously installed version and reinstall through PROJECT MANAGER, which establishes the necessary git files for future updates.*
+
+### available
+
+This tab shows which projects are available through the *base* and *community* repositories.
+
+**Use the refresh button next to each header to update the catalog and pull in the latest versions.** Using the refresh action on each catalog is the only way to download them as they do not yet auto-update:
+
+![](image/maiden-update-catalog.png)
+
+Many projects will have informational tags like **crow**, **drum**, **looper**, as well as a project description. Please note that the **lib** tag is specifically used to indicate that a project includes both a script *and* an engine, which will require a device restart.
+
+Each entry has an **INSTALL** action, which can be used to install the selected script.
+
+If you have already installed a project and attempt to install it again, you will receive an error message letting you know that the project is already installed in your `code` folder.
+
+### contribute
+
+To add to the [community project repo](https://github.com/monome/norns-community/blob/master/community.json), please submit a pull request with the following information:
+
+```json
+    {
+      "project_name": "NAME",
+      "project_url": "URL",
+      "author": "NAME",
+      "description": "WORDS",
+      "discussion_url": "LINES_LINK",
+      "tags": ["TAG", "TAG", "TAG"],
+      "origin": "IF_APPLICABLE: lines"
+    },
+```
+
+Be sure you include information at the top of your script to help future users:
+
+```lua
+-- scriptname: short script description
+-- v1.0.0 @author
+-- llllllll.co/t/22222
+```
+
+That last line is a link back to the thread number. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
+
+### gather
+
+While many projects are held in the community repository, it can be hard to engage with a project's creator through GitHub. To facilitate discussion, many projects are also shared through the [norns Library on lines](https://llllllll.co/c/library).
+
+The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas. After you share your own script in the community repository, please create a new thread in the Library.
+
+## repl
 
 Messages are printed in the bottom panel. There are two tabs: matron is the main lua environment, and sc is supercollider which is the engine environment.
 
@@ -65,84 +115,27 @@ If you need to restart the matron/crone environment for any reason (ie, the menu
 
 This will disconnect maiden, but once matron has restarted you can reconnect.
 
-### PROJECT MANAGER
+## file viewer
 
-As of 10.28.2019, maiden features a project manager to help you discover and download new projects. Projects contain both engines and scripts.
+The bulk of the *file viewer* is dedicated to the EDITOR, where you can view and edit the code of a selected script.
 
-You can access both the *base* (projects from monome) and *community* (projects from other artists) repositories via the books icon in the left-sidebar:
+This panel lets you select the text you're editing in EDITOR.
 
-![](image/maiden-available.png)
+There are top bar icons for various actions: **New**, **Delete**, **Duplicate**, **New Folder**, and **Rename**.
 
-#### INSTALLED
+The `>`'s can be expanded to reveal a file tree. When you select a file, it will show in the EDITOR:
 
-This tab shows which projects are currently installed on your norns.
+![](image/maiden-carrot.png)
 
-![](image/maiden-installed.png)
+### editor
 
-Each entry has two actions: **UPDATE** and **REMOVE**.
+This is where you can edit the selected script.
 
-If you choose to update a project that currently lives on your norns, please note that local modifications you have made will be overwritten. If you wish to retain multiple versions of a project, please reference the [SFTP](../sftp/) guide.
+To the right there is a bar with two icons: disk is **SAVE** and **PLAY** will run the current script.
 
-Once you update a project through the PROJECT MANAGER, you'll see a commit number listed on the right of the project's tile (like *34d225b*). Click a project's commit number to be brought to the project's GitHub page, where you can learn more about the project and verify that the version you have is the latest.
+The editor can be configured for various modes (default, vim, emacs) in addition to tab size and light/dark mode. Click the gear icon at the bottom left of the screen.
 
-*nb. If you are updating a project through the PROJECT MANAGER that was not installed by using the PROJECT MANAGER, you will receive an error that the project cannot be found in the catalog. Please delete the previously installed version and reinstall through PROJECT MANAGER, which establishes the necessary git files for future updates.*
-
-#### AVAILABLE
-
-This tab shows which projects are available through the *base* and *community* repositories.
-
-Use the refresh button next to each header to update the catalog and pull in the latest versions. Using the refresh action on each catalog is the only way to download them as they do not yet auto-update:
-
-![](image/maiden-update-catalog.png)
-
-Many projects will have informational tags like **crow**, **drum**, **looper**, as well as a project description. Please note that the **lib** tag is specifically used to indicate that a project includes both a script *and* an engine, which will require a device restart.
-
-Each entry has an **INSTALL** action, which can be used to install the selected script.
-
-If you have already installed a project and attempt to install it again, you will receive an error message letting you know that the project is already installed in your `code` folder.
-
-#### CONTRIBUTIONS
-
-To add to the [community project repo](https://github.com/monome/norns-community/blob/master/community.json), please submit a pull request with the following information:
-
-```json
-    {
-      "project_name": "NAME",
-      "project_url": "URL",
-      "author": "NAME",
-      "description": "WORDS",
-      "discussion_url": "LINES_LINK",
-      "tags": ["TAG", "TAG", "TAG"],
-      "origin": "IF_APPLICABLE: lines"
-    },
-```
-
-#### GATHERING
-
-While many projects are held in the community repository, it can be hard to engage with a project's creator through GitHub. To facilitate discussion, many projects are also shared through the [norns Library on lines](https://llllllll.co/search?expanded=true&q=%23library%20tags%3Anorns%20order%3Alatest).
-
-These project pages have information and a download link (in addition to being available on the community repository). To install a project found through lines, download the .zip file, unpack into a folder, (IMPORTANT!) rename the folder by removing `-master` from its name, and then move this folder over to the `dust/code/` folder using [SFTP](../sftp/). It'll show up in the SELECT list.
-
-#### SHARING
-
-The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas.
-
-Create a new thread in the [Library](https://llllllll.co/c/library).
-
-You'll be able to attach a .zip file containing your project folder, or if you wish to host your project on GitHub then link to a master download or most recent release.
-
-Be sure you include information at the top of your script to help future users:
-
-```lua
--- scriptname: short script description
--- v1.0.0 @author
--- llllllll.co/t/22222
-```
-
-That last line is a link back to the thread number. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
-
-
-### PROGRAMMING REFERENCE
+### programming reference
 
 The bottom left ? icon can be used to navigate to the onboard programming reference.
 
@@ -150,40 +143,7 @@ You can manually open the API reference at `norns.local/doc`.
 
 Also see the [scripting reference](../reference/).
 
-## OTHER ACCESS
-
-### SSH
-
-When connected via WIFI you can SSH into norns from another computer on the same network at the IP address shown in SYSTEM.
-
-- open a Terminal on a Mac/Win/Linux computer
-- execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`
-- password: `sleep`
-
-### SERIAL (NO WIFI)
-
-Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux, open a terminal and type:
-
-**macOS**:
-
-- `screen /dev/tty.usb`
-- then, press TAB to autocomplete your serial number
-- then type `115200`
-
-Have doubts? The line should read: `screen /dev/tty.usb[TAB KEY] 115200`
-
-**linux**:
-
-- `dmesg` to see what enumeration number your system gave norns
-- you'll get something like this: `FTDI USB Serial Device converter now attached to ttyUSB0`
-- then, type: `screen /dev/ttyUSB0` (or whatever enumeration number was given)
-- then type `115200`
-
-Have doubts? The line should read: `screen /dev/ttyUSB<enumeration number> 115200`
-
-If you see a blank screen, press ENTER.
-
-You'll be asked for login credentials. Login is the same as SSH above.
+## advanced access
 
 ### Command Line Interface
 

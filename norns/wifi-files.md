@@ -34,7 +34,7 @@ After a network is added, norns remembers the credentials. Known networks are st
 
 If you do not have access to a router, you can also turn the norns into a WIFI hotspot. This will create a new network which you can then connect to with your computer:
 
-- network namne / SSID: `norns`
+- network name / SSID: `norns`
 - default password: `nnnnnnnn`
 
 ## update

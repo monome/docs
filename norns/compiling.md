@@ -49,7 +49,7 @@ output from the `ls` program.
 
 ## get up to date
 
-open a terminal and connect to norns via [SSH](../play/#ssh). then
+open a terminal and connect to norns via [SSH](../wifi-files/#ssh). then
 go to the `norns` directory using `cd norns`.
 
 ```bash
@@ -147,6 +147,24 @@ unresponsive.
 assuming you get `'build' finished successfully`, you've now rebuilt
 norns and are ready to restart. the easiest way to do that is just to
 put norns to SLEEP as usual.
+
+## tl;dr
+
+there's also a convenience script bundled with norns which automates all of the above.
+
+via [SSH/screen](../wifi-files/#advanced-access):
+
+```lua
+norns/edge.sh
+systemctl restart norns*
+```
+
+via maiden:
+
+```lua
+os.execute("/home/we/norns/edge.sh")
+;restart
+```
 
 to continue from here and learn how to make your own changes to the
 norns code, see [extending norns](../extending).

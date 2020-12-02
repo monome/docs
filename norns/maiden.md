@@ -115,6 +115,37 @@ If you need to restart the matron/crone environment for any reason (ie, the menu
 
 This will disconnect maiden, but once matron has restarted you can reconnect.
 
+### fetch
+
+Sometimes, scripts don't make it into the community repo. To fetch a script that's only hosted on a developer's GitHub:
+
+- copy the URL of the lone project (eg. `https://github.com/tehn/test-update`)
+- in maiden's repl, enter:
+
+```lua
+norns.fetch("https://github.com/tehn/test-update")
+```
+
+If the fetch was successful, you'll see:
+
+```lua
+Cloning into 'test-update'...
+fetch: success. you may need to SYSTEM > RESET if the new project contains an engine
+```
+
+If the fetch was unsuccessful, the cause is that a script is already installed with the same name. You'll see:
+
+```lua
+fatal: destination path 'test-update' already exists and is not an empty directory.
+fetch: FAIL
+```
+
+In which case, you just need to remove the redundant script and re-fetch:
+
+```lua
+os.execute("rm -rf /home/dust/code/test-update")
+```
+
 ## file viewer
 
 The bulk of the *file viewer* is dedicated to the EDITOR, where you can view and edit the code of a selected script.

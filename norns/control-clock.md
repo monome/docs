@@ -10,13 +10,13 @@ norns plays well with others -- black box drum machines, MIDI keyboards + faderb
 
 In this section, we'll cover the basics of nestling norns among your other gear and establishing leader/follower networks for clocking in a variety of contexts.
 
-sections: [MIDI connect](#connect) &mdash; [managing MIDI devices](#manage) &mdash; [MIDI mapping](#map) &mdash; [OSC](#OSC) &mdash; [clock](#clock)
+sections: [MIDI connect](#connect) &mdash; [managing MIDI devices](#manage) &mdash; [MIDI mapping](#map) &mdash; [OSC](#OSC) &mdash; [clocking](#clock)
 
 ## MIDI control
 
 ### connect
 
-When you connect a MIDI device to one of the four USB ports, norns automatically catalogues it under SYSTEM > DEVICES > MIDI:
+When you connect a MIDI device to one of the four USB ports, norns automatically catalogues it under `SYSTEM > DEVICES > MIDI`:
 
 ![](image/control_clock-images/device-management.png)  
 *[figure 1: managing MIDI devices through SYSTEM > DEVICES > MIDI](image/control_clock-images/device-management.png)*
@@ -74,7 +74,7 @@ To MIDI-learn:
   -- > 3	table: 0x617c30
   tab.print(midi.devices[5])
   -- > dev	userdata: 0x6b70b4a8
-  -- > id	5
+  -- > id		5
   -- > name	OP-Z
   ```
   
@@ -165,7 +165,7 @@ The global clock can be driven from four different sources.
 
 **tempo**
 
-If clock is set to `internal` or `link`, use **E3** to adjust tempo (internal minimum: 1 bpm / Link minimum: 20 bpm | maximum: 300 bpm)
+If clock is set to `internal` or `link`, use **E3** to adjust tempo (internal minimum: 1 bpm / Link minimum: 20 bpm ; maximum: 300 bpm)
 
 If clock is set to `midi` or `crow`, an average tempo will be listed but cannot be changed.
 
@@ -177,7 +177,7 @@ Press **K3** to restart the clock if it's stopped.
 
 From [Ableton](https://ableton.github.io/link/):
 
->In order to enable the desired bar and loop alignment, an application provides a quantum value to Link that specifies, in beats, the desired unit of phase synchronization. Link guarantees that session participants with the same quantum value will be phase aligned, meaning that if two participants have a 4 beat quantum, beat 3 on one participant’s timeline could correspond to beat 11 on another’s, but not beat 12. It also guarantees the expected relationship between sessions in which one participant has a multiple of another’s quantum. So if one app has an 8-beat loop with a quantum of 8 and another has a 4-beat loop with a quantum of 4, then the beginning of an 8-beat loop will always correspond to the beginning of a 4-beat loop, whereas a 4-beat loop may align with the beginning or the middle of an 8-beat loop.
+>"In order to enable the desired bar and loop alignment, an application provides a quantum value to Link that specifies, in beats, the desired unit of phase synchronization. Link guarantees that session participants with the same quantum value will be phase aligned, meaning that if two participants have a 4 beat quantum, beat 3 on one participant’s timeline could correspond to beat 11 on another’s, but not beat 12. It also guarantees the expected relationship between sessions in which one participant has a multiple of another’s quantum. So if one app has an 8-beat loop with a quantum of 8 and another has a 4-beat loop with a quantum of 4, then the beginning of an 8-beat loop will always correspond to the beginning of a 4-beat loop, whereas a 4-beat loop may align with the beginning or the middle of an 8-beat loop."
 
 **midi out**
 

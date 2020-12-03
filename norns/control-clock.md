@@ -1,6 +1,6 @@
 ---
 layout: default
-title: wifi + files
+title: control + clock
 nav_exclude: true
 ---
 

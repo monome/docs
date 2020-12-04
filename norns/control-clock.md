@@ -1,7 +1,9 @@
 ---
 layout: default
 title: control + clock
-nav_exclude: true
+parent: norns
+nav_order: 5
+has_toc: false
 ---
 
 # control + clock

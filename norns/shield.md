@@ -53,7 +53,7 @@ all you need is a normal philips screwdriver.
 ## flashing sd card
 
 1. download and install [etcher](https://www.balena.io/etcher/)
-2. get the [current image](https://github.com/monome/norns-image/releases/download/201029/norns201029-shield.zip)
+2. get the [current image](https://github.com/monome/norns-image/releases)
 3. run etcher, it's very straightforward. be aware that your sdcard will be erased!
 
 

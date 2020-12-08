@@ -8,25 +8,59 @@ nav_order: 1
 
 # play
 
-sections: [awake](#awake) &mdash; [levels](#levels) &mdash; [parameters](#parameters) &mdash; [tape](#tape) &mdash; [select](#select)
+sections: [start](#start) &mdash; [awake](#awake) &mdash; [levels](#levels) &mdash; [parameters](#parameters) &mdash; [tape](#tape) &mdash; [select](#select)
 
-## awake
+## start
 
-After norns powers up, it will launch the last script that was loaded. On a fresh norns, this will be *awake*, a set of looping sequencers.
-
-Your first impulse might be to press buttons and turn the knobs — follow it!
-
-Just to make sure we talk about the *same* buttons and knobs, here's how things are laid out on a stock norns and shield:
+To begin, let's get acquainted with the layouts of each iteration of norns -- stock and shield:
 
 ![](image/play-images/norns-legends.png)  
 *[figure 1: stock norns and shield legend](image/play-images/norns-legends.png)*
+
+### power on
+
+**stock**
+
+- Hold K1 for four seconds.
+- Until you've performed this process a few times, it might help to look at the light next to the POWER jack. You'll see it transition from white, to peach, to amber -- you can let go of K1 at amber.
+- In a few seconds, you'll see a sparkle animation on the screen. Some call it a dust. Either way, norns is on.
+
+**shield**
+
+- Attach a high quality Raspberry Pi power supply that provides at least 2A at 5V to the micro USB port on the Pi.
+- The red light on the Pi will be steady, while the not-red light will flash.
+- In a few seconds, you'll see a sparkle animation on the screen. Some call it a dust. Either way, norns is on.
+
+After norns powers up, it will launch the last script that was loaded. On a fresh norns, this will be *awake*, a set of looping sequencers.
 
 In any norns script, a quick tap of **K1** will toggle between the playable interface and the menus interface. If you get caught in the menus, just tap **K1** to get back to the script.
 
 ![](image/play-images/menu-nav.png)  
 [*figure 2: interface layers*](image/play-images/menu-nav.png)
 
-Before we dive into menus, here's a quick guide to exploring *awake*.
+### power off
+
+**stock**
+
+- Press **K1** and navigate to HOME.
+- Use **E2** to select SLEEP.
+- Press **K3**. You'll be asked to confirm.
+- Press **K3** again to go to SLEEP.
+- After a few seconds, norns is off.
+
+**shield**
+
+- Press **K1** and navigate to HOME.
+- Use **E2** to select SLEEP.
+- Press **K3**. You'll be asked to confirm.
+- Press **K3** again to go to SLEEP.
+- *Wait* until you see the not-red light on the side of the Pi stop blinking and go out completely.
+- *Only after the not-red light on the side of the Pi is no longer visible*, you can safely remove the power connector from the Pi.
+
+
+## awake
+
+Before we dive into exploring the system, here's a quick guide to exploring *awake*.
 
 **E1** changes the mode: STEP, LOOP, SOUND, OPTION
 

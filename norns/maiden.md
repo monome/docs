@@ -93,6 +93,12 @@ While many projects are held in the community repository, it can be hard to enga
 
 The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas. After you share your own script in the community repository, please create a new thread in the Library.
 
+### fork
+
+As you work with norns, you might change community scripts to integrate them into your particular toolkit. Perhaps you need to output specific ranges of MIDI messages, or maybe you're only using Just Intonation these days.
+
+If you wish to share your modifications with the larger community, or if you feel your changes represent a new vision, please review our [living document of forking etiquette guidelines](https://llllllll.co/t/library-forking-etiquette-sharing-modifications/).
+
 ## repl
 
 Messages are printed in the bottom panel. There are two tabs: matron is the main lua environment, and sc is supercollider which is the engine environment.

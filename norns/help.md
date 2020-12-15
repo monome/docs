@@ -203,7 +203,7 @@ cd 200712
 
 ## fresh install
 
-*nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/play/#update). fresh installing will wipe your norns, so back up any data you need before proceeding.*
+*nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/wifi-files/#update). fresh installing will wipe your norns, so back up any data you need before proceeding.*
 
 
 - [norns201202.img](https://github.com/monome/norns-image/releases/download/201202/norns201202.img.zip)

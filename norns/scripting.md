@@ -19,7 +19,7 @@ If you wish to dig deeper into the capabilities of norns, this is where to start
 
 ## norns studies
 
-comprehensive tutorials on individual elements of the norns ecosystem. through these resources, you'll learn how to translate your musical ideas into Lua scripts and how to extend those scripts to speak with all kinds of friends.
+Comprehensive tutorials on individual elements of the norns ecosystem. Through these resources, you'll learn how to translate your musical ideas into Lua scripts and how to extend those scripts to speak with all kinds of friends.
 
 ### core concepts:
 
@@ -34,6 +34,7 @@ comprehensive tutorials on individual elements of the norns ecosystem. through t
 - [clock studies](../clocks/) // create timed and clock-synced function calls: loops, repetition, and delays
 
 ### micro:
+- [athenaeum](https://github.com/northern-information/athenaeum) // a repository of study, spike, and sample scripts from [Tyler Etters](https://nor.the-rn.info)
 - [grid recipes](../grid-recipes/) // short snippets of code for canonical grid interactions
 - [norns: tutorial](https://llllllll.co/t/norns-tutorial/23241) // chunked examples that reveal the idiosyncrasies of the core norns concepts from [Devine Lu Linvega](https://xxiivv.com)
 
@@ -50,4 +51,9 @@ comprehensive tutorials on individual elements of the norns ecosystem. through t
 
 Ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 
-Edits to this study welcome, see [monome/docs](http://github.com/monome/docs)
+Additional community resources:
+
+- [norns study group](https://study.norns.online) // a discord server for dialogue-driven learning
+- [song](llllllll.co/t/39437) // an open-source song
+
+Edits to these pages welcome, see [monome/docs](http://github.com/monome/docs)

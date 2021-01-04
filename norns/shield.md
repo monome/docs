@@ -58,7 +58,7 @@ insert your flashed SD card into the Raspberry Pi and attac the Pi to the corres
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly4.png)
 
-attach a high quality Raspberry Pi power supply that provides at least 2A at 5V to the micro USB port on the Pi. the red light on the Pi will be steady, while the not-red light will flash. in a few seconds, you'll see a sparkle animation on the screen. some call it a dust. either way, norns shield is on and you're ready to [play](../norns/play).
+attach a high quality Raspberry Pi power supply that provides at least 2A at 5V to the micro USB port on the Pi. the red light on the Pi will be steady, while the not-red light will flash. in a few seconds, you'll see a sparkle animation on the screen. some call it a dust. either way, norns shield is on and you're ready to [play](../play).
 
 ## credits
 

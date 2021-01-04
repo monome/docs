@@ -27,7 +27,7 @@ To begin, let's get acquainted with the layouts of each iteration of norns -- st
 
 **shield**
 
-- Confirm that you've followed all of the steps in the [norns shield assembly guide](../norns/shield).
+- Confirm that you've followed all of the steps in the [norns shield assembly guide](../shield).
 - Attach a high quality Raspberry Pi power supply that provides at least 2A at 5V to the micro USB port on the Pi.
 - The red light on the Pi will be steady, while the not-red light will flash.
 - In a few seconds, you'll see a sparkle animation on the screen. Some call it a dust. Either way, norns is on.

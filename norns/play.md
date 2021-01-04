@@ -27,6 +27,7 @@ To begin, let's get acquainted with the layouts of each iteration of norns -- st
 
 **shield**
 
+- Confirm that you've followed all of the steps in the [norns shield assembly guide](../norns/shield).
 - Attach a high quality Raspberry Pi power supply that provides at least 2A at 5V to the micro USB port on the Pi.
 - The red light on the Pi will be steady, while the not-red light will flash.
 - In a few seconds, you'll see a sparkle animation on the screen. Some call it a dust. Either way, norns is on.
@@ -56,7 +57,6 @@ In any norns script, a quick tap of **K1** will toggle between the playable inte
 - Press **K3** again to go to SLEEP.
 - *Wait* until you see the not-red light on the side of the Pi stop blinking and go out completely.
 - *Only after the not-red light on the side of the Pi is no longer visible*, you can safely remove the power connector from the Pi.
-
 
 ## awake
 
@@ -126,8 +126,8 @@ Use **E1** to navigate to PARAMETERS, and enter the EDIT menu with **K3**.
 At the top of this menu are controls for each component of the global audio chain:
 
 - LEVELS features controls for output, input, monitoring, engine, softcut and tape levels
-    - on stock norns, you can also adjust whether the headphone monitor is stereo or mono and add or remove headphone gain
-    - again, DO NOT plug modular-level signals into norns (neither stock and shield)
+  - on stock norns, you can also adjust whether the headphone monitor is stereo or mono and add or remove headphone gain
+  - again, DO NOT plug modular-level signals into norns (neither stock and shield)
 - REVERB adjusts the system reverb and send levels for the currently loaded engine, softcut, monitor, and tape
 - COMPRESSOR adjusts the system compressor, which is the final stage of the audio processing
 - SOFTCUT adjusts the output and send levels for the six-voice system sampler
@@ -142,7 +142,6 @@ To recall and build on the changes you've made in a future session, we can save 
 
 ![](image/play-images/menu-params_pset.png)  
 [*figure 5: saving parameters / PSET*](image/play-images/menu-params_pset.png)
-
 
 Use **E2** to navigate down the left column of the PSET screen.  
 Use **E3** to navigate down the right.  

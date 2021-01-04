@@ -9,20 +9,45 @@ has_toc: false
 
 # grid + computer
 
-## serialosc
-grid uses serialosc to communicate back and forth with applications on your computer. Once you install it, it runs in the background and converts serial communication (over USB) into [OSC](/docs/serialosc/osc). Applications can query serialosc to connect to grid and arc.
+## first steps
+
+While grid is a completely open tool, it helps to begin exploring from a few fixed points.
+
+### serialosc
+
+grid uses serialosc to communicate back and forth with applications on your computer. Once you install it, it runs in the background and converts serial communication (over USB) into Open Sound Control (OSC). Applications query serialosc to connect to grid and arc, so while you'll never interact with serialosc directly, it's necessary to have installed before we do anything else.
 
 [&rarr; download serialosc](https://github.com/monome/serialosc/releases/latest)
 
 Running into trouble? [Check out the serialosc docs](/docs/serialosc/setup).
 
-## scripting
+Want to get into the guts of serialosc? [Check out the OSC protocol docs](/docs/serialosc/osc).
+
+### Mark Eats Sequencer
+
+Mark Eats Sequencer is a fantastic first foray into grid + (MacOS) computer play. It's a completely standalone step sequencer application, which can pipe MIDI to Ableton Live, Logic Pro, or any other DAW. With eight channels and sixteen sixteen-step patterns, it's a sequencing powerhouse that will help orient you to the flexibility of grid.
+
+[→ download Mark Eats Sequencer](https://www.markeats.com/sequencer/)
+
+### Max for Live
+
+If you have access to Ableton Live Suite (or the Max for Live add-on for Live Standard), there are a number of Max for Live devices which integrate grid into your Live Sets.
+
+- [gridlab](https://github.com/stretta/gridlab): a suite of devices which collect a number of unique sequencers and utilities
+
+- [grainfields](https://github.com/kasperskov/monome_grainfields_m4l-v1.1): eight-voice granulator with grid control
+
+- [re:mix](https://github.com/el-quinto/mix): realtime sampling, slicing and re-sequencing based on MLR
+
+- [control](https://github.com/benjaminvanesser/control): transforms grid into a collection of assignable MIDI controls
+
+### scripting
 
 The grid is *intended* to be reimagined. You give it purpose and meaning that's all your own: instrument, experiment, tool, toy... choose your own adventure!
 
 To start with some introductory knowledge, please visit [grid studies](../studies).
 
-## projects
+## further
 
 Here are open source projects others have scripted using the above environments. Many require [Max](http://cycling74.com) which can be downloaded and run for free, without a license.
 

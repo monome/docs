@@ -3,7 +3,7 @@ layout: default
 parent: scripting
 grand_parent: norns
 has_children: false
-title: script faq
+title: faq
 nav_order: 2
 has_toc: false
 ---

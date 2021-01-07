@@ -3,7 +3,7 @@ layout: default
 parent: scripting
 grand_parent: norns
 has_children: false
-title: script reference
+title: reference
 nav_order: 1
 redirect_from: /norns/script-reference/
 redirect_from: /norns/script-reference

@@ -359,13 +359,6 @@ it's OK to use global variables while you’re experimenting with a script, but 
 
 - `engine.list_commands()` -- list available engine commands (prints to command line)
 
-## further
-
-- [programming in lua (first edition)](https://www.lua.org/pil/contents.html)
-- [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
-- [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)
-- [lua in 15 mins](http://tylerneylon.com/a/learn-lua/)
-
 ## continued
 
 - part 1: many tomorrows

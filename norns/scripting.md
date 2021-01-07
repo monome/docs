@@ -38,9 +38,15 @@ Comprehensive tutorials on individual elements of the norns ecosystem. Through t
 - [grid recipes](../grid-recipes/) // short snippets of code for canonical grid interactions
 - [norns: tutorial](https://llllllll.co/t/norns-tutorial/23241) // chunked examples that reveal the idiosyncrasies of the core norns concepts from [Devine Lu Linvega](https://xxiivv.com)
 
-## further
+## reference
 
-- [norns script reference + faq](../script-reference)
+- [script reference](../script-reference) // summary for quick reference
+- [script faq](../script-faq) // some questions and answers
+
+## lua links
+
+while you don't need to master the entire lua language to make the most of norns, you eventually may be interested in checking out more traditional programming texts.
+
 - [programming in lua (first edition)](https://www.lua.org/pil/contents.html)
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
 - [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)

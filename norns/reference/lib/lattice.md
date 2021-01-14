@@ -5,6 +5,8 @@ permalink: /norns/reference/lib/lattice
 title: lattice
 ---
 
+## lattice
+
 ### control
 
 | Syntax                                 | Description                                                    |

@@ -14,6 +14,10 @@ has_toc: false
 
 Scripts are located in `~/dust/code/`, and are what make norns do things. A script consists of at least a Lua file but can additionally also contain supporting Lua libraries, SuperCollider engines and data.
 
+|                      |                                              |
+| -------------------- | -------------------------------------------- |
+| [keyboard](keyboard) | Deciphers keyboard (typing, not piano) input |
+
 ## directory structure
 
 ```
@@ -254,5 +258,3 @@ h = hid.connect()
 ![](../image/crone-process-routing.png)
 
 [pdf version](../crone-process-routing.pdf)
-
-

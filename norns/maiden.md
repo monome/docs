@@ -149,7 +149,7 @@ fetch: FAIL
 In which case, you just need to remove the redundant script and re-fetch:
 
 ```lua
-os.execute("rm -rf /home/dust/code/test-update")
+os.execute("rm -rf /home/we/dust/code/test-update")
 ```
 
 ## file viewer

@@ -12,13 +12,17 @@ has_toc: false
 
 # norns script reference
 
-Scripts are located in `~/dust/code/`, and are what make norns do things. A script consists of at least a Lua file but can additionally also contain supporting Lua libraries, SuperCollider engines and data.
+## commands
 
 |                      |                                              |
 | -------------------- | -------------------------------------------- |
 | [keyboard](keyboard) | Deciphers keyboard (typing, not piano) input |
 
-## directory structure
+
+## folder structure
+
+Scripts are located in `~/dust/code/`, and are what make norns do things. A script consists of at least a Lua file but can additionally also contain supporting Lua libraries, SuperCollider engines and data.
+
 
 ```
 myscript/

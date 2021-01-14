@@ -13,9 +13,9 @@ sections: [project manager](#project-manager) &mdash; [repl](#repl) &mdash; [fil
 
 _maiden_ is a browser-based portal for norns. It can be accessed via a norns-hosted hotspot, or if norns and your browser are on the same WIFI network.
 
-To dive in, point your web browser at `norns.local` to see the maiden interface. If the site is not found, try connecting directly to the IP address shown on the norns screen, for example: `192.168.1.30`.
+To dive in, point your web browser at `norns.local` to see the maiden interface. If the site is not found, try connecting directly to the IP address shown on the norns screen, for example: `192.168.0.100`.
 
-![](image/maiden-1.0.png)
+![](image/maiden-1.1.0.png)
 
 The interface includes a meta-navigator in the far-left sidebar, which from bottom-to-top allows you to:
 
@@ -29,9 +29,7 @@ Let's start with the *project manager*, so we can download some new community sc
 
 maiden features a project manager to help you discover and download new projects. Projects contain both engines and scripts.
 
-You can access both the *base* (projects from monome) and *community* (projects from other artists) repositories via the books icon in the left-sidebar:
-
-![](image/maiden-available.png)
+You can access both the *base* (projects from monome) and *community* (projects from other artists) repositories via the books icon in the left-sidebar.
 
 ### installed
 
@@ -39,9 +37,9 @@ This tab shows which projects are currently installed on your norns.
 
 ![](image/maiden-installed.png)
 
-Each entry has two actions: **UPDATE** and **REMOVE**.
+Each entry has two actions: **update** and **remove**.
 
-If you choose to update a project that currently lives on your norns, please note that local modifications you have made will be overwritten. If you wish to retain multiple versions of a project, please reference the [SFTP](../sftp/) guide.
+If you choose to update a project which you downloaded through maiden, please note that local modifications you have made will be overwritten. If you wish to retain multiple versions of a project, please reference the [SFTP](../sftp/) guide.
 
 Once you update a project through the PROJECT MANAGER, you'll see a commit number listed on the right of the project's tile (like *34d225b*). Click a project's commit number to be brought to the project's GitHub page, where you can learn more about the project and verify that the version you have is the latest.
 
@@ -51,15 +49,11 @@ Once you update a project through the PROJECT MANAGER, you'll see a commit numbe
 
 This tab shows which projects are available through the *base* and *community* repositories.
 
-**Use the refresh button next to each header to update the catalog and pull in the latest versions.** Using the refresh action on each catalog is the only way to download them as they do not yet auto-update:
-
-![](image/maiden-update-catalog.png)
+Whenever maiden is loaded, it automatically refreshes both catalogs. If a script is released after you've loaded maiden, just press the `refresh all` button at the top of the page and all new entries will be added.![](image/maiden-available.png)
 
 Many projects will have informational tags like **crow**, **drum**, **looper**, as well as a project description. Please note that the **lib** tag is specifically used to indicate that a project includes both a script *and* an engine, which will require a device restart.
 
 Each entry has an **INSTALL** action, which can be used to install the selected script.
-
-If you have already installed a project and attempt to install it again, you will receive an error message letting you know that the project is already installed in your `code` folder.
 
 ### contribute
 
@@ -129,28 +123,26 @@ Sometimes, scripts don't make it into the community repo. To fetch a script that
 - in maiden's repl, enter:
 
 ```lua
-norns.fetch("https://github.com/tehn/test-update")
+;install https://github.com/tehn/test-update
 ```
 
 If the fetch was successful, you'll see:
 
 ```lua
-Cloning into 'test-update'...
-fetch: success. you may need to SYSTEM > RESET if the new project contains an engine
+starting...
+installed "test-update"!
 ```
+
+*nb. you may need to SYSTEM > RESET if the new project contains an engine*
 
 If the fetch was unsuccessful, the cause is that a script is already installed with the same name. You'll see:
 
 ```lua
-fatal: destination path 'test-update' already exists and is not an empty directory.
-fetch: FAIL
+starting...
+install failed: project test-update already exists in /home/we/dust/code
 ```
 
-In which case, you just need to remove the redundant script and re-fetch:
-
-```lua
-os.execute("rm -rf /home/dust/code/test-update")
-```
+In which case, you just need to remove the redundant script and re-fetch.
 
 ## file viewer
 
@@ -168,9 +160,17 @@ The `>`'s can be expanded to reveal a file tree. When you select a file, it will
 
 This is where you can edit the selected script.
 
-To the right there is a bar with two icons: disk is **SAVE** and **PLAY** will run the current script.
+To the right there is a bar with three icons: disk is **SAVE**, **PLAY** will run the current script, **STOP** will stop and clear the currently running script.
 
-The editor can be configured for various modes (default, vim, emacs) in addition to tab size and light/dark mode. Click the gear icon at the bottom left of the screen.
+These actions are bound to the following keyboard shortcuts:
+
+- CMD/CTRL-`S` : save
+
+- CMD/CTRL-`P` : play
+
+- CMD/CTRL-`.` : stop
+
+The editor can be configured for various modes (default, vim, emacs) in addition to tab size and light/dark mode. Click the gear icon at the bottom left of the screen. For more about maiden's keybindings, [see the docs in the maiden repository](https://github.com/monome/maiden/blob/main/docs/keybindings.md).
 
 ### programming reference
 
@@ -182,6 +182,14 @@ Also see the [scripting reference](../reference/).
 
 ## advanced access
 
+### terminal REPL
+
+To access maiden's REPL from a terminal session, SSH or screen into norns and execute:
+
+```lua
+maiden repl
+```
+
 ### Command Line Interface
 
 Nearly all of the project management operations exposed in the maiden web UI can be accomplished on the Command Line Interface (CLI).
@@ -192,6 +200,25 @@ To access:
 ssh we@norns.local
 ...
 maiden/maiden
+web editor for norns scripts
+
+Usage:
+  maiden [command]
+
+Available Commands:
+  catalog     manage the script catalog
+  help        Help about any command
+  project     manage dust projects
+  repl        matron/crone repl
+  server      run the backend server for maiden
+  version     print maiden version
+
+Flags:
+      --config string   use specific config file
+      --debug           enable debug logging
+  -h, --help            help for maiden
+
+Use "maiden [command] --help" for more information about a command.
 ```
 
 The maiden backend server also has sub-commands:
@@ -239,7 +266,7 @@ Available Commands:
   list        list installed script/project(s)
   push        push a git based project
   remove      remove a project dir
-  update      install a script/project
+  update      update a script/project
 
 Flags:
   -h, --help   help for project
@@ -248,7 +275,5 @@ Global Flags:
       --config string   use specific config file
       --debug           enable debug logging
 
-Use "maiden project [command] --help" for more information about a command.
+Use "maiden project [command] --help" for more information about a command.Have further usage questions? Visit the [norns: maiden](https://llllllll.co/t/norns-maiden/14052) topic on lines.
 ```
-
-Have further usage questions? Visit the [norns: maiden](https://llllllll.co/t/norns-maiden/14052) topic on lines.

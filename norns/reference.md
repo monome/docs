@@ -14,10 +14,10 @@ has_toc: false
 
 ## commands
 
-|                        |                                                         |
-| ---------------------- | ------------------------------------------------------- |
-| [keyboard](keyboard)   | Decipher keyboard (typing, not piano) input             |
-| [lib/lattice](lattice) | Simple and extensible sequencers driven by a superclock |
+| Module                      | Description                                             |
+| --------------------------- | ------------------------------------------------------- |
+| [keyboard](keyboard)        | Decipher keyboard (typing, not piano) input             |
+| [lib/lattice](/lib/lattice) | Simple and extensible sequencers driven by a superclock |
 
 ## folder structure
 

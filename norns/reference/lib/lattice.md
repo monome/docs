@@ -186,3 +186,5 @@ Under the hood, a single fast "superclock" automatically runs all the patterns a
 A pattern's `action` is passed the lattice's transport position. This can be useful to determine a relative or absolute position in a work.
 
 Multiple lattices can be run simultaneously. Multiple patterns in different lattices can call the same action. Patterns can be added and destroyed while lattices are running.
+
+Contributed by Tyler Etters and Ezra Buchla

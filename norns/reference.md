@@ -14,15 +14,14 @@ has_toc: false
 
 ## commands
 
-|                      |                                              |
-| -------------------- | -------------------------------------------- |
-| [keyboard](keyboard) | Deciphers keyboard (typing, not piano) input |
-
+|                        |                                                         |
+| ---------------------- | ------------------------------------------------------- |
+| [keyboard](keyboard)   | Decipher keyboard (typing, not piano) input             |
+| [lib/lattice](lattice) | Simple and extensible sequencers driven by a superclock |
 
 ## folder structure
 
 Scripts are located in `~/dust/code/`, and are what make norns do things. A script consists of at least a Lua file but can additionally also contain supporting Lua libraries, SuperCollider engines and data.
-
 
 ```
 myscript/

@@ -218,7 +218,7 @@ On the tape screen, press **K2** to switch between the PLAY and REC lanes.
 
 #### what gets recorded exactly?
 
-In the simplest terms, everything you hear from the main output is committed to a recording tape. This includes the system reverb, compressor, and monitor audio. If you are recording for further processing in a DAW, you may want to turn off the system reverb and compressor for a more barebones sound.
+In the simplest terms, everything you hear from the main output is committed to a recording tape. This includes the system reverb, compressor, monitor audio, as well as any tape that might be playing. If you are recording for further processing in a DAW, you may want to turn off the system reverb and compressor for a more barebones sound.
 
 ## select
 
@@ -240,6 +240,28 @@ When you entered the SELECT menu, you might've noticed an asterisk next to *awak
 
 To add a favorite, turn **E3** clockwise on any script in the SELECT menu.  
 To remove a favorite, turn **E3** counter-clockwise on any already-favorited script.
+
+## keyboard
+
+Many of the top-layer menus are also navigable with an attached USB keyboard. Current support is minimal, [contributions welcome](https://github.com/monome/norns).
+
+When the screen UI is on the menus interface:
+
+- `F1`: LEVELS
+
+- `F2`: TAPE
+
+- `F3`: HOME
+
+- `F4`: PARAMETERS
+
+On all menus:
+
+- `arrow up` / `arrow down`: E2 with delta +/- 1
+
+- `pageup` / `pagedown`: E2 with delta +/- 6
+
+- `arrow left` / `arrow right`: K2 / K3
 
 ## where to next?
 

@@ -23,9 +23,9 @@ When you connect a MIDI device to one of the four USB ports, norns automatically
 ![](image/control_clock-images/device-management.png)  
 *[figure 1: managing MIDI devices through SYSTEM > DEVICES > MIDI](image/control_clock-images/device-management.png)*
 
-The order of devices actually matters -- many scripts will have a parameter for `device port` or similar, where you'll need to specify which slot holds the device you want to use (control in or out). If you're ever unsure which is which, just check this page.
+norns can remember up to 16 MIDI previously-connected MIDI devices. The order of devices actually matters -- many scripts will have a parameter for `device port` or similar, where you'll need to specify which slot holds the device you want to use (control in or out). If you're ever unsure which is which, just check this page.
 
-norns will remember these devices until they're manually removed, even if they are no longer connected. If you have a lot of USB-MIDI devices, you'll likely need to manage these four ports over time.
+norns will remember these devices until they're manually removed, even if they are no longer connected. If you have more than 16 unique USB-MIDI devices you'd like to use with different norns scripts, you'll need to manage these ports over time.
 
 ### manage
 
@@ -62,29 +62,46 @@ To MIDI-learn:
 #### manual map settings
 
 - **CLEAR**: clears the current map
+
 - **cc**: controller MIDI cc
+
 - **ch**: controller MIDI channel
+
 - **dev**: controller MIDI device
-  - slots 1-4 enumerated in `SYSTEM > DEVICES > MIDI`
+  
+  - slots 1-16 enumerated in `SYSTEM > DEVICES > MIDI`
   - norns supports up to 16 devices
-  - devices beyond slots 1-4 can be queried in maiden:  
+  - devices can be queried in maiden:  
   
   ```lua
   tab.print(midi.devices)
-  -- > 1	table: 0x448a70
-  -- > 5	table: 0x6abbb8
-  -- > 3	table: 0x617c30
+  -- > 1    table: 0x448a70
+  -- > 5    table: 0x6abbb8
+  -- > 3    table: 0x617c30
   tab.print(midi.devices[5])
-  -- > dev	userdata: 0x6b70b4a8
-  -- > id		5
-  -- > name	OP-Z
+  -- > dev    userdata: 0x6b70b4a8
+  -- > id        5
+  -- > name    OP-Z
   ```
-  
+
 - **in**: range of incoming MIDI values
+
 - **out**: the min/max values that **in** spans
+  
   - eg. though a filter parameter might span 20 Hz to 20000 Hz, you can use **out** as a way to clamp a MIDI fader to a 800 Hz - 1600 Hz range
   - hold **K3** while adjusting to fine-tune with 1/20th quantum
+
 - **accum**: enable when using relative midi cc streams (for controllers that send deltas rather than 0-127 absolute streams)
+
+#### PMAPs
+
+Every time a parameter is mapped, norns will save this configuration as a PMAP file. PMAPs are unique to the currently-loaded script and are stored under `data/[scriptname]/[scriptname].pmap`. An example entry:
+
+```lua
+"bd_atk":"{dev=1, ch=1, accum=false, out_lo=0, value=0, in_hi=127, out_hi=1, in_lo=0, cc=100}"
+```
+
+You'll notice that these entries are identical to the ones located on the mapping screen.
 
 ## OSC
 
@@ -94,42 +111,42 @@ OSC allows you to control norns over WIFI using applications like Max/MSP, Touch
 
 All of the [audio parameters](https://monome.org/docs/norns/play/#audio-parameters) have OSC names. To see them, navigate to `PARAMETERS > MAP`:
 
-param |OSC name
----|---
-**LEVELS**		| ---
-output            |`output_level`
-input             |`input_level`
-monitor           |`monitor_level`
-engine            |`engine_level`
-softcut           |`softcut_level`
-tape              |`tape_level`
-monitor mode      |`monitor_mode`
-headphone         |`headphone_gain`
-**REVERB**		| ---
-reverb            |`reverb`
-rev engine input  |`rev_eng_input`
-rev cut input     |`rev_cut_input`
-rev monitor input |`rev_monitor_input`
-rev tape input    |`rev_tape_input`
-rev return level  |`rev_monitor_output`
-rev pre delay     |`rev_pre_delay`
-rev lf fc         |`rev_lf_fc`
-rev low time      |`rev_low_time`
-rev mid time      |`rev_mid_time`
-rev hf damping    |`rev_hf_damping`
-**COMPRESSOR**	| ---
-compressor        |`compressor`
-comp mix          |`comp_mix`
-comp ratio        |`comp_ratio`
-comp threshold    |`comp_threshold`
-comp attack       |`comp_attack`
-comp release      |`comp_release`
-comp pre gain     |`comp_pre_gain`
-comp post gain    |`comp_post_gain`
-**SOFTCUT**		| ---
-input adc			|`cut_input_adc`
-input engine		|`cut_input_eng`
-input tape		|`cut_input_tape`
+| param             | OSC name             |
+| ----------------- | -------------------- |
+| **LEVELS**        | ---                  |
+| output            | `output_level`       |
+| input             | `input_level`        |
+| monitor           | `monitor_level`      |
+| engine            | `engine_level`       |
+| softcut           | `softcut_level`      |
+| tape              | `tape_level`         |
+| monitor mode      | `monitor_mode`       |
+| headphone         | `headphone_gain`     |
+| **REVERB**        | ---                  |
+| reverb            | `reverb`             |
+| rev engine input  | `rev_eng_input`      |
+| rev cut input     | `rev_cut_input`      |
+| rev monitor input | `rev_monitor_input`  |
+| rev tape input    | `rev_tape_input`     |
+| rev return level  | `rev_monitor_output` |
+| rev pre delay     | `rev_pre_delay`      |
+| rev lf fc         | `rev_lf_fc`          |
+| rev low time      | `rev_low_time`       |
+| rev mid time      | `rev_mid_time`       |
+| rev hf damping    | `rev_hf_damping`     |
+| **COMPRESSOR**    | ---                  |
+| compressor        | `compressor`         |
+| comp mix          | `comp_mix`           |
+| comp ratio        | `comp_ratio`         |
+| comp threshold    | `comp_threshold`     |
+| comp attack       | `comp_attack`        |
+| comp release      | `comp_release`       |
+| comp pre gain     | `comp_pre_gain`      |
+| comp post gain    | `comp_post_gain`     |
+| **SOFTCUT**       | ---                  |
+| input adc         | `cut_input_adc`      |
+| input engine      | `cut_input_eng`      |
+| input tape        | `cut_input_tape`     |
 
 Format your messages as `/param/osc_name value`, eg:
 
@@ -179,7 +196,7 @@ Press **K3** to restart the clock if it's stopped.
 
 From [Ableton](https://ableton.github.io/link/):
 
->"In order to enable the desired bar and loop alignment, an application provides a quantum value to Link that specifies, in beats, the desired unit of phase synchronization. Link guarantees that session participants with the same quantum value will be phase aligned, meaning that if two participants have a 4 beat quantum, beat 3 on one participant’s timeline could correspond to beat 11 on another’s, but not beat 12. It also guarantees the expected relationship between sessions in which one participant has a multiple of another’s quantum. So if one app has an 8-beat loop with a quantum of 8 and another has a 4-beat loop with a quantum of 4, then the beginning of an 8-beat loop will always correspond to the beginning of a 4-beat loop, whereas a 4-beat loop may align with the beginning or the middle of an 8-beat loop."
+> "In order to enable the desired bar and loop alignment, an application provides a quantum value to Link that specifies, in beats, the desired unit of phase synchronization. Link guarantees that session participants with the same quantum value will be phase aligned, meaning that if two participants have a 4 beat quantum, beat 3 on one participant’s timeline could correspond to beat 11 on another’s, but not beat 12. It also guarantees the expected relationship between sessions in which one participant has a multiple of another’s quantum. So if one app has an 8-beat loop with a quantum of 8 and another has a 4-beat loop with a quantum of 4, then the beginning of an 8-beat loop will always correspond to the beginning of a 4-beat loop, whereas a 4-beat loop may align with the beginning or the middle of an 8-beat loop."
 
 **midi out**
 

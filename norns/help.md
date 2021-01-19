@@ -21,23 +21,63 @@ If you're unable to supply concrete steps to reliably reproduce the issue, this 
 For support with specific scripts and libraries, please visit [lines](https://llllllll.co) and search for the script's thread.
 
 ### sections
+
+- [everything froze](#frozen)
+
 - [replacing parts](#replacing-parts)
-     - [increase storage](#storage)
+  
+  - [increase storage](#storage)
+
 - [wifi troubleshooting](#wifi-troubleshooting)
+
 - [updating + managing apps](#update-apps)
+
 - [restoring deleted system folders](#code-folder)
+
 - [error messages](#error-messages)
+
 - updating norns
-	- [without WiFi](#manual-update)
-	- [fresh install](#fresh-install)
+  
+  - [without WiFi](#manual-update)
+  
+  - [fresh install](#fresh-install)
+
 - [backing up norns to USB](#backup-no-wifi)
+
 - [change passwords on norns](#change-passwd)
+
 - [taking a screenshot](#png)
+
 - [audio input/output hardware specs](#audio-specs)
+
 - [can I plug modular signals into norns directly?](#modular-levels)
+
 - [additional q's](#faq)
 
+## everything froze <a name = "frozen"></a>
+
+If you ever experience a freeze that you can't recover from, there's a special button combination which will gently restart the software.
+
+- First, press and hold K3
+
+- While K3 is held, press and hold K2
+
+- While K3 and K2 are held, press and hold K1
+
+- Hold all three keys down for 10 seconds
+
+*The order matters.*
+
+If multiple attempts of this combination fail, these options are last resorts:
+
+- stock norns have a little white button on the rear side which provides a hard reset
+
+- shields do not have a reset button, so the only option is to pull power
+
+There should not be a freeze which cannot be fixed by the K3, K2, K1 approach. Use a brute-force only if you cannot recover using the suggested method.
+
 ## replacing parts
+
 ### wifi nub
 
 If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a replacement (10 USD, shipping included, only US).
@@ -89,14 +129,14 @@ If you are consistently unable to connect your norns to wifi through the ['Netwo
 3. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
 
 4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../maiden/#other-access). Once you perform this serial login, try executing `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network:
-
-	![](image/terminal-nmtui-main.png)
+   
+    ![](image/terminal-nmtui-main.png)
 
 5. If you are still unable to connect, please email help@monome.org with the following information:
-
-	- Whether your nub was able to successfully connect with a non-norns computer
-	- Screenshots of the terminal screens in step 4
-	- Your router config (WPA, WEP, etc)
+   
+   - Whether your nub was able to successfully connect with a non-norns computer
+   - Screenshots of the terminal screens in step 4
+   - Your router config (WPA, WEP, etc)
 
 ## help: how do I add/update apps on my norns? <a name="update-apps"></a>
 
@@ -121,6 +161,7 @@ Press K1 to toggle from PLAY to HOME. Highlight `SELECT` and hold K1 -- you'll s
 5. Keep this window open for the next phase!
 
 ### restoring apps into the `code` folder
+
 1. Download [we](https://github.com/monome/we/archive/master.zip), which is a collection of engines from monome.
 2. Unzip the folder, which will be named `we-master`​.
 3. IMPORTANT: Rename this folder `we`​.
@@ -180,7 +221,7 @@ If a newly-renamed script throws a `file not found` error in maiden, it is likel
 
 ## manual / offline update <a name="manual-update"></a>
 
-- Download and copy [update file (200712)](https://github.com/monome/norns/releases/download/v2.4.2/norns200712.tgz) to a FAT-formatted USB drive
+- Download and copy [update file (210114 - Jan 14 2021)](https://github.com/monome/norns/releases/download/v2.4.8/norns210114.tgz) to a FAT-formatted USB drive
 - Insert the disk to norns and power up.
 - Connect via [serial](../maiden/#other-access).
 - Copy file to `~/update/`:
@@ -193,20 +234,18 @@ sudo cp /media/usb0/*.tgz ~/update/
 
 ```
 cd ~/update
-tar xzvf norns200712.tgz
-cd 200712
+tar xzvf norns210114.tgz
+cd 210114
 ./update.sh
 ```
 
 - Upon completion type `sudo shutdown now`.
 
-
 ## fresh install
 
 *nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/wifi-files/#update). fresh installing will wipe your norns, so back up any data you need before proceeding.*
 
-
-- [norns201202.img](https://github.com/monome/norns-image/releases/download/201202/norns201202.img.zip)
+- [norns201202.img](https://github.com/monome/norns/releases/download/v2.4.8/norns210114.tgz)
 - [norns201202-shield.img](https://github.com/monome/norns-image/releases/download/201202/norns201202-shield.img.zip) (Pi 3b+ and Pi 3b only)
 
 ### stock norns fresh install process
@@ -224,12 +263,12 @@ Steps:
 5. Run etcher. Select the disk image. Select the Compute Module as the target. Push go and wait for it to finish.
 6. Disconnect USB. Flip the switch back to RUN. Put the bottom back on.
 7. If you have a norns with a 32gb CM3+ (purchased October 2020 and thereafter), you will need to expand the file storage.  
-  7a. Re-connect USB, power norns up, and connect via [serial](https://monome.org/docs/norns/maiden/#other-access) through a terminal.  
-  7b. Execute `sudo raspi-config` and enter *sleep* as the password.  
-  7c. Navigate down to `Advanced`.  
-  7d. Select `Expand Filesystem` and press OK.  
-  7e. After it's completed, put norns to sleep.  
-  
+   7a. Re-connect USB, power norns up, and connect via [serial](https://monome.org/docs/norns/maiden/#other-access) through a terminal.  
+   7b. Execute `sudo raspi-config` and enter *sleep* as the password.  
+   7c. Navigate down to `Advanced`.  
+   7d. Select `Expand Filesystem` and press OK.  
+   7e. After it's completed, put norns to sleep.  
+
 ### shield fresh install process
 
 Use [etcher](https://www.balena.io/etcher/) to flash your SD card (*nb. use a high quality one. if you have trouble, try a different card*)
@@ -245,7 +284,6 @@ If your SD card seems a lot more full than it should be, you'll need to expand t
 7. lots of activity will happen. when it's done, power down and reboot. if you get any errors, reboot again.  
 8. if you SSH back into norns and execute `df -h`, you'll see the newly expanded capacity.
 
-
 ## back up norns to USB <a name="backup-no-wifi"></a>
 
 nb. [SFTP through Cyberduck](../sftp/) is the most straightfoward way to back up your norns. These instructions are provided for times when you are unable to connect norns to WiFi (no dongle, no network, etc).
@@ -259,7 +297,6 @@ First, connect via [serial](../maiden/#other-access) and then insert a USB stick
 ## change passwords on norns <a name="change-passwd"></a>
 
 For security reasons (a device exposed to wifi should not have a widely-known password), you may want to change the default password for the `we` user.
-
 
 ### login / ssh
 
@@ -314,7 +351,6 @@ For example:
 ```bash
 magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr.png
 ```
-
 
 ## what are the audio input/output hardware specs? <a name="audio-specs"></a>
 

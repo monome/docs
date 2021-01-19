@@ -23,35 +23,20 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 ### sections
 
 - [everything froze](#frozen)
-
-- [replacing parts](#replacing-parts)
-  
+- [replacing parts](#replacing-parts) 
   - [increase storage](#storage)
-
 - [wifi troubleshooting](#wifi-troubleshooting)
-
 - [updating + managing apps](#update-apps)
-
 - [restoring deleted system folders](#code-folder)
-
 - [error messages](#error-messages)
-
 - updating norns
-  
   - [without WiFi](#manual-update)
-  
   - [fresh install](#fresh-install)
-
 - [backing up norns to USB](#backup-no-wifi)
-
 - [change passwords on norns](#change-passwd)
-
 - [taking a screenshot](#png)
-
 - [audio input/output hardware specs](#audio-specs)
-
 - [can I plug modular signals into norns directly?](#modular-levels)
-
 - [additional q's](#faq)
 
 ## everything froze <a name = "frozen"></a>
@@ -74,7 +59,7 @@ If multiple attempts of this combination fail, these options are last resorts:
 
 - shields do not have a reset button, so the only option is to pull power
 
-There should not be a freeze which cannot be fixed by the K3, K2, K1 approach. Use a brute-force only if you cannot recover using the suggested method.
+There should not be a freeze which cannot be fixed by the K3, K2, K1 process. Use the brute-force approach only if you cannot recover using the suggested method.
 
 ## replacing parts
 

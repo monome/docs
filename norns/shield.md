@@ -54,7 +54,7 @@ peel the protective sheet away from the screen. the acrylic assembly will fit ov
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly3.png)
 
-insert your flashed SD card into the Raspberry Pi and attac the Pi to the corresponding header on the shield. attach the white case. add four long screws to secure the case. add the rubber feet:
+insert your flashed SD card into the Raspberry Pi and attach the Pi to the corresponding header on the shield. attach the white case. add four long screws to secure the case. add the rubber feet:
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly4.png)
 

@@ -14,10 +14,45 @@ has_toc: false
 
 ## commands
 
-| Module                       | Description                                             |
-| ---------------------------- | ------------------------------------------------------- |
-| [keyboard](keyboard)         | Decipher keyboard (typing, not piano) input             |
-| [lib/lattice](./lib/lattice) | Simple and extensible sequencers driven by a superclock |
+| Module                       | Description                                                                         |
+| ---------------------------- | ----------------------------------------------------------------------------------- |
+| [arc](arc)                   | Connect a script to a hardware [arc](https://monome.org/docs/arc)                   |
+| audio                        | Directly set system audio levels                                                    |
+| [clock](clock)               | Coroutine system which executes functions on beat-synced and free-running schedules |
+| controlspec                  | PARAM menu control constructor with presets                                         |
+| crow                         | Connect a script to a hardware [crow](https://monome.org/docs/crow)                 |
+| [encoders](encoders)         | Decipher the norns on-board encoders                                                |
+| engine                       | Register a SuperCollider engine                                                     |
+| grid                         | Connect a script to a hardware [grid](https://monome.org/docs/grid)                 |
+| hid                          | Connect a script to HID hardware                                                    |
+| [keyboard](keyboard)         | Decipher keyboard (typing, not piano) input                                         |
+| metro                        | High-resolution time-based counter                                                  |
+| midi                         | Connect a script to MIDI hardware                                                   |
+| osc                          | Connect a script to OSC streams                                                     |
+| params                       | Create script parameters, displayed in the PARAM menu                               |
+| poll                         | System polling for CPU, incoming/outgoing amplitude, and incoming pitch             |
+| screen                       | Draw to the norns on-board screen                                                   |
+| script                       | System-level script handlers                                                        |
+| softcut                      | Two audio buffers which can be recorded into and played by six individual voices    |
+| tab                          | Table utilities                                                                     |
+| util                         | Helpful utility functions                                                           |
+| lib/elca                     | Elementary cellular automata generator                                              |
+| lib/envgraph                 | Envelope graph drawing module                                                       |
+| lib/er                       | Euclidean rhythm generator                                                          |
+| lib/fileselect               | File select utility                                                                 |
+| lib/filtergraph              | Filter graph drawing module                                                         |
+| lib/filters                  | Value smoother                                                                      |
+| lib/formatters               | PARAM menu formatter functions                                                      |
+| lib/graph                    | Graph drawing module                                                                |
+| lib/intonation               | Library of various tunings, including 12 tone and gamuts                            |
+| [lib/lattice](./lib/lattice) | Simple and extensible sequencers driven by a superclock                             |
+| lib/listselect               | List select utility                                                                 |
+| lib/musicutil                | Utility module for common music maths                                               |
+| lib/pattern                  | Timed-event pattern recorder / player                                               |
+| lib/test.luaunit             | General utilities                                                                   |
+| lib/textentry                | Text entry UI                                                                       |
+| lib/ui                       | UI widgets module                                                                   |
+| lib/voice                    | Experimental voice allocation module                                                |
 
 ## folder structure
 

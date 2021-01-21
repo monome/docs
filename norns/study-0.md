@@ -29,7 +29,7 @@ sit, listen.
 
 ...
 
-ok let's edit something now. get norns connected to wifi and open [maiden](/norns/maiden).
+ok let's edit something now. get norns connected to wifi and open [maiden](../maiden).
 
 ## the code is alive
 
@@ -251,8 +251,8 @@ suggested exercise:
 - have K2 toggle delay feedback (`pre_level`) between `0.8` and `1.0` 
 - have K3 cycle delay speed with a table `{-1.0,0.5,1.0}`
 
-and then on to [study 1: many tomorrows](/norns/study-1) for a more in-depth scripting journey.
+and then on to [study 1: many tomorrows](../study-1) for a more in-depth scripting journey.
 
 ## resources
 
-- [script reference](/norns/reference) - list of commands and how to use them
+- [script reference](../reference) - list of commands and how to use them

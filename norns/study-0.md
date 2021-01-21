@@ -2,7 +2,9 @@
 layout: default
 nav_exclude: true
 permalink: /norns/study-0/
+
 ---
+
 <div class="vid"><iframe src="https://player.vimeo.com/video/503167191?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # first light
@@ -17,35 +19,29 @@ norns is a platform for customizing and creating sound instruments with code.
 
 while norns can be used to craft ambitious sonic toolkits, it can also be used to create small compositional moments.
 
-this study aims to show the musician the power of editing a few lines of code, and the programmer thatsound can be explored playfully.
+this study aims to show the musician the power of editing a few lines of code, and the programmer that sound can be explored playfully.
 
 ## a short journey
 
 run _firstlight_.
 
-it's a simple delay effect with sequencer which modulates the loop length. a wind-chime synth plays, which you can toggle with K3. you can also play sound into the audio input.
+it's a simple delay effect with a sequencer which modulates the loop length. a wind-chime synth plays, which you can toggle with K3. you can also play sound into the audio input.
 
 sit, listen.
 
 ...
 
-ok let's edit something now. get norns connected to wifi and open [maiden](../maiden).
+ok let's edit something now. get norns connected to [wifi](../wifi-files) and open [maiden](../maiden).
 
 ## the code is alive
 
-click on the `>>` bar at the bottom. this is where you enter commands. the script we're running can manipulated in real time, and that's what we'll do now. try this:
+click on the `>>` bar at the bottom of maiden. this is where you enter commands. the script we're running can manipulated in real time, and that's what we'll do now. try this:
 
 ```
 engine.hz(700)
 ```
-this plays 700hz tone. (you might want to toggle off the wind-chimes first). try different numbers. (you may also enjoy reading about [music and math](https://en.wikipedia.org/wiki/Music_and_mathematics)).
 
-toggle off the sequencer (K2) and try each of these, one at a time:
-```
-softcut.rate(1,2.0)
-softcut.rate(1,1.0)
-softcut.rate(1,0.5)
-```
+this plays 700hz tone. (you might want to toggle off the wind-chimes first). try different numbers. (you may also enjoy reading about [music and math](https://en.wikipedia.org/wiki/Music_and_mathematics)).
 
 `softcut` is the digital tape system in norns, which this script sets up as a delay line on the first voice (hence the `1` in the command). the following command changes the feedback level 0.95:
 
@@ -55,13 +51,21 @@ softcut.pre_level(1,0.95)
 
 (careful, setting this value greater than 1.0 can eventually create very loud sounds!)
 
+toggle off the sequencer (K2) and try each of these, one at a time:
+
+```
+softcut.rate(1,2.0)
+softcut.rate(1,1.0)
+softcut.rate(1,0.5)
+```
+
 the sequencer is synchronized to the global clock. you can change the clock settings via the PARAMS menu, but you can also act upon the clock this way:
 
 ```
 param:set('clock_tempo',50)
 ```
 
-the script itself has some simple variables that can be changed on the fly, for exampe:
+the script itself has some simple variables that can be changed on the fly, for example:
 
 ```
 chimes = false
@@ -70,6 +74,7 @@ numbers[1] = 0
 ```
 
 some other things to try:
+
 ```
 engine.pw(0.2)
 engine.cutoff(300)
@@ -151,7 +156,9 @@ on line 148 we disable the chimes toggle. after this line we add a command to pl
 engine.hz(math.random(100,600))
 ```
 
-save at try it out. let's make a change so that it plays notes from a table intead. erase the `engine.hz` line and do this instead:
+save at try it out.
+
+let's make a change so that it plays notes from a table instead. erase the `engine.hz` line and do this instead:
 
 ```
 basket = {80,201,400,555,606}
@@ -205,7 +212,7 @@ as is, the strum will happen randomly every 3-9 seconds.
 
 ### sequence weirder
 
-the sequencer step values can be used for any number of things. intstead of modulating the loop time, let's modulate the delay rate, which will repitch the delay line wildly.
+the sequencer step values can be used for any number of things. instead of modulating the loop time, let's modulate the delay rate, which will re-pitch the delay line wildly.
 
 see line 52:
 
@@ -213,7 +220,7 @@ see line 52:
 softcut.loop_end(1,numbers[pos]/8)
 ```
 
-- `numbers` is a table (line 25) that gets updated with the knob interface. it's the sequencer data, which is basically up to 16 steps of values of 1-8.
+- `numbers` is a table (line 25) that gets updated with the knob interface. it's the sequencer data, which is basically up to 16 steps of values 1-8.
 - `pos` is the playback position. line 50 advances the position by adding 1 and maybe wrapping back to the start. (hint: try changing `pos+1` to `pos-1` to make it run backwards!)
 - we're dividing the step value by 8, hence setting the `loop_end` to between 1/8 and 1.0 (8/8).
 
@@ -227,7 +234,7 @@ softcut.rate(1,numbers[pos]/8)
 save and try! since the rate jumps are very large the result is substantial. let's try making it more subtle:
 
 ```
-softcut.rate(1,1+(numbers[pos/64]))
+softcut.rate(1,1+(numbers[pos]/64))
 ```
 
 this confines the numbers to a smaller range for a subtler effect. or perhaps we'd like to try something with multiples:

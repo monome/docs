@@ -3,18 +3,17 @@ layout: default
 nav_exclude: true
 permalink: /norns/study-0/
 ---
-
-<div class="vid"><iframe src="https://player.vimeo.com/video/273692952?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="vid"><iframe src="https://player.vimeo.com/video/503167191?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # first light
 
-before the studies, learning to see.
+before study, learning to see.
 
 ## who am i
 
-we have ideas about what it means to be a musician and what it means to be a programmer, and these ideas shape how we interact with an instrument.
+we have ideas about what it means to be a musician and what it means to be a programmer, and these ideas shape how we approach instruments and code.
 
-norns is a platform for customizing and creating sound instruments.
+norns is a platform for customizing and creating sound instruments with code.
 
 while norns can be used to craft ambitious sonic toolkits, it can also be used to create small compositional moments.
 
@@ -242,6 +241,18 @@ we've made a table `rates` which has 8 elements, letting us map the range of eac
 
 try setting `softcut.rate_slew_time(1,0)` down around line 98, which will make rate changes instantaneous rather than sliding.
 
-### from here
+## from here
 
-...
+suggested exercise:
+
+- have the sequencer play notes using `engine.hz()`
+- create a table to specify which frequencies get played. consider [just intonation](https://en.wikipedia.org/wiki/Just_intonation)
+- randomize `x` for `engine.pw(x)` on each sequencer step
+- have K2 toggle delay feedback (`pre_level`) between `0.8` and `1.0` 
+- have K3 cycle delay speed with a table `{-1.0,0.5,1.0}`
+
+and then on to [study 1: many tomorrows](/norns/study-1) for a more in-depth scripting journey.
+
+## resources
+
+- [script reference](/norns/reference) - list of commands and how to use them

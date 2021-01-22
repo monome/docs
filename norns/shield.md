@@ -16,7 +16,7 @@ the norns shield is [open source hardware](https://github.com/monome/norns-shiel
 ## requirements
 
 - [Raspberry Pi 3B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) ($35) 3B+ is also fine. **important! other models are not compatible.**
-- SD card - use a high quality brand such as [SanDisk](https://www.adafruit.com/product/2820) ($10)
+- microSD card - use a high quality brand such as [SanDisk](https://www.adafruit.com/product/2820) ($10)
 - power supply - the Pi3B has a micro-USB power port and requires [at least 2A](https://www.adafruit.com/product/1995). you can also use a portable USB battery if it's sufficiently large.
 
 ## comparison
@@ -28,15 +28,15 @@ there are some differences between the norns and norns shield:
 
 software is fully compatible between the two.
 
-## flashing SD card
+## flashing microSD card
 
-to use shield, we'll need to load an SD card flashed with the correct software (called an *image*). this process is straightforward thanks to a program called etcher.
+to use shield, we'll need to load a microSD card flashed with the correct software (called an *image*). this process is straightforward thanks to a program called etcher.
 
 1. download and install [etcher](https://www.balena.io/etcher/) on your computer
 2. download the [latest norns shield image](https://github.com/monome/norns-image/releases/download/201202/norns201202-shield.img.zip)
 3. unzip the shield image and insert your SD card into your computer
-4. run etcher, which will ask you to select the unzipped shield image and identify your SD card as the target -- after that, the program will take care of everything
-5. once the process completes, eject the SD card from your computer and move onto the assembly steps below
+4. run etcher, which will ask you to select the unzipped shield image and identify your microSD card as the target -- after that, the program will take care of everything
+5. once the process completes, eject the microSD card from your computer and move onto the assembly steps below
 
 ## assembly
 
@@ -54,7 +54,7 @@ peel the protective sheet away from the screen. the acrylic assembly will fit ov
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly3.png)
 
-insert your flashed SD card into the Raspberry Pi and attach the Pi to the corresponding header on the shield. attach the white case. add four long screws to secure the case. add the rubber feet:
+insert your flashed microSD card into the Raspberry Pi and attach the Pi to the corresponding header on the shield. attach the white case. add four long screws to secure the case. add the rubber feet:
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly4.png)
 

@@ -161,12 +161,12 @@ m.event = function(data) tab.print(data) end
 push a midi key and you'll see something like:
 
 ```
-1	144
-2	72
-3	127
-1	128
-2	72
-3	64
+1    144
+2    72
+3    127
+1    128
+2    72
+3    64
 ```
 
 what? MIDI is a [series of bytes](http://www.gweep.net/~prefect/eng/reference/protocol/midispec.html) which need to be decoded to become useful. we've built some helpers into the library:
@@ -178,10 +178,10 @@ m.event = function(data) tab.print(midi.to_msg(data)) end
 using `midi.to_msg` we see that (144,72,127) is converted to:
 
 ```
-ch	1
-vel	127
-note	72
-type	note_on
+ch    1
+vel    127
+note    72
+type    note_on
 ```
 
 which makes more sense. so let's hook up a midi input to the PolyPerc engine:
@@ -328,7 +328,6 @@ clock signals can be transmitted via midi or crow.
 `midi out` sets the port number (which midi device, via SYSTEM > DEVICES) on which to transmit.
 
 `crow out` sets the output number, and also has a `crow out div` setting for beat subdivisions.
-
 
 ## example: physical
 

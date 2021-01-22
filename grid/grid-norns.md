@@ -22,7 +22,7 @@ Since 64 is a 8x8 grid, an app's critical functions may not be displayed or exec
 
 Addressing playability due to size is straightforward -- since norns apps are coded in Lua, modifications can be made which either expand or constrict the app's grid interactions.
 
-If you want to adapt a script's grid size, [norns study 4](../norns/study-4) is a good place to start.
+If you want to adapt a script's grid size, [norns study 4](/docs/norns/study-4) is a good place to start.
 
 ### varibrightness
 
@@ -32,7 +32,7 @@ Since 2012, grids have had 16 steps of varibrightness.
 
 Most norns apps are built with 16-step varibright grids in mind. While 4-step and mono-bright grids will still function with these apps, there may be indicators or special functions that require 16 steps of brightness to display.
 
-If you want to adapt a script's LED brightness, [norns study 4](docs/norns/study-4) is a good place to start.
+If you want to adapt a script's LED brightness, [norns study 4](/docs/norns/study-4) is a good place to start.
 
 ## applications
 

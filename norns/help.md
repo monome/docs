@@ -230,8 +230,8 @@ cd 210114
 
 *nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/wifi-files/#update). fresh installing will wipe your norns, so back up any data you need before proceeding.*
 
-- [norns201202.img](https://github.com/monome/norns/releases/download/v2.4.8/norns210114.tgz)
-- [norns201202-shield.img](https://github.com/monome/norns-image/releases/download/201202/norns201202-shield.img.zip) (Pi 3b+ and Pi 3b only)
+- [norns201202.img.zip](https://github.com/monome/norns-image/releases/download/201202/norns201202.img.zip)
+- [norns201202-shield.img.zip](https://github.com/monome/norns-image/releases/download/201202/norns201202-shield.img.zip) (Pi 3b+ and Pi 3b only)
 
 ### stock norns fresh install process
 
@@ -253,6 +253,7 @@ Steps:
    7c. Navigate down to `Advanced`.  
    7d. Select `Expand Filesystem` and press OK.  
    7e. After it's completed, put norns to sleep.  
+8. Update via SYSTEM  > UPDATE
 
 ### shield fresh install process
 
@@ -268,6 +269,7 @@ If your SD card seems a lot more full than it should be, you'll need to expand t
 6. select expand filesystem and hit RETURN  
 7. lots of activity will happen. when it's done, power down and reboot. if you get any errors, reboot again.  
 8. if you SSH back into norns and execute `df -h`, you'll see the newly expanded capacity.
+9. Update via SYSTEM > UPDATE
 
 ## back up norns to USB <a name="backup-no-wifi"></a>
 

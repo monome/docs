@@ -48,11 +48,11 @@ function init()
   target = 1
   key3_hold = false
   random_note = math.random(48,72)
-  
+
   for i = 1,#midi.vports do -- query all ports
     midi_device[i] = midi.connect(i) -- connect each device
   end
-  
+
 end
 
 function enc(n,d)

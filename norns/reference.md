@@ -27,7 +27,7 @@ has_toc: false
 | hid                          | Connect a script to HID hardware                                                    |
 | [keyboard](keyboard)         | Decipher keyboard (typing, not piano) input                                         |
 | metro                        | High-resolution time-based counter                                                  |
-| midi                         | Connect a script to MIDI hardware                                                   |
+| [midi](midi)                 | Connect a script to MIDI hardware                                                   |
 | osc                          | Connect a script to OSC streams                                                     |
 | params                       | Create script parameters, displayed in the PARAM menu                               |
 | poll                         | System polling for CPU, incoming/outgoing amplitude, and incoming pitch             |

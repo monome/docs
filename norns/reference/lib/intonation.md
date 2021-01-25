@@ -1,8 +1,8 @@
-```yaml
+---
 layout: default
 nav_exclude: true
 permalink: /norns/reference/lib/intonation
-```
+---
 
 ## intonation
 

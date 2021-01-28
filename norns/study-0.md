@@ -23,7 +23,7 @@ this study aims to show the musician the power of editing a few lines of code, a
 
 ## a short journey
 
-run _firstlight_.
+run _firstlight_. (if you don't have it, download it via the maiden project manager in the `base` collection.)
 
 it's a simple delay effect with a sequencer which modulates the loop length. a wind-chime synth plays, which you can toggle with K3. you can also play sound into the audio input.
 

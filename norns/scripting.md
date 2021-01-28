@@ -17,6 +17,7 @@ comprehensive tutorials on individual elements of the norns ecosystem. through t
 
 ### core concepts:
 
+- [first light](../study-0/) // learning to see. edit a script.
 - [many tomorrows](../study-1/) // variables, simple maths, keys + encoders
 - [patterning](../study-2/) // screen drawing, for/while loops, tables
 - [spacetime](../study-3/) // functions, parameters, time

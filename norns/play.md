@@ -60,7 +60,7 @@ In any norns script, a quick tap of **K1** will toggle between the playable inte
 
 ### core terminology
 
-As you navigate these documents, you'll encounter a few key phrases which have specific meaning in the norns ecosystem. to help eaae the cognitive load, here's some of the core terminology:
+As you navigate these documents, you'll encounter a few key phrases which have specific meaning in the norns ecosystem. to help ease the cognitive load, here's some of the core terminology:
 
 | term          | definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

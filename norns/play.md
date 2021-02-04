@@ -32,7 +32,7 @@ To begin, let's get acquainted with the layouts of each iteration of norns -- st
 - The red light on the Pi will be steady, while the not-red light will flash.
 - In a few seconds, you'll see a sparkle animation on the screen. Some call it a dust. Either way, norns is on.
 
-After norns powers up, it will launch the last script that was loaded. On a fresh norns, this will be *awake*, a set of looping sequencers.
+After norns powers up, it will launch the last script that was loaded. On a fresh norns, this will be *awake*, a set of looping sequencers with delay.
 
 In any norns script, a quick tap of **K1** will toggle between the playable interface and the menus interface. If you get caught in the menus, just tap **K1** to get back to the script.
 
@@ -58,9 +58,23 @@ In any norns script, a quick tap of **K1** will toggle between the playable inte
 - *Wait* until you see the not-red light on the side of the Pi stop blinking and go out completely.
 - *Only after the not-red light on the side of the Pi is no longer visible*, you can safely remove the power connector from the Pi.
 
+### core terminology
+
+As you navigate these documents, you'll encounter a few key phrases which have specific meaning in the norns ecosystem. to help eaae the cognitive load, here's some of the core terminology:
+
+| term          | definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| script        | Analogous to a Game Boy cartridge, a script re-defines what norns is *right now*. When loaded, it takes over the main interface and translates button presses, encoder turns, grid button holds, incoming MIDI, etc into musical activity as defined by the script's summary (eg. live sampling manipulator, no-input drone box, polyphasic sequencer, etc). Only one script can run at a time, though individual scripts can do many things at once. A script typically has two main components: a SuperCollider engine and Lua code. |
+| SuperCollider | An open-source synthesis platform which creates sound in the norns system.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| engine        | SuperCollider code which defines the types of sounds that a currently-running script will make. Some scripts bundle their own engines, while others might rely on engines from other scripts. Some scripts don't use any SuperCollider engine at all -- these most often use the built-in sampling layer (see softcut) or create streams of data (eg. MIDI) to be interpreted by other outboard gear.                                                                                                                        |
+| softcut       | A six-voice sampler bundled with the norns software, which can be addressed through live-code or scripting. Each of the six voices can programmatically record into and play back from either of two ~5 minute mono audio buffers. For examples of scripts which creatively explore softcut's power, see: mlr, cheat codes, oooooo, and wrms.                                                                                                                                                                                |
+| Lua           | A powerful, lightweight, and approachable language which is used to create the playable structure of every norns script. Lua glues together SuperCollider engines, incoming audio, grids, arcs, crows,  MIDI, OSC, etc into an easy-to-use interface for performing artists.                                                                                                                                                                                                                                                 |
+
 ## awake
 
-Before we dive into exploring the system, here's a quick guide to exploring *awake*.
+Before we dive into exploring the system menus, lets *play* with the script that loaded when you turned on your norns and has been happily generating music as you read.
+
+Here's a quick guide to exploring *awake*:
 
 **E1** changes the mode: STEP, LOOP, SOUND, OPTION
 
@@ -78,8 +92,21 @@ Before we dive into exploring the system, here's a quick guide to exploring *awa
 
 ### SOUND
 
+*awake* uses the `PolyPerc` engine to generate the synth tones. *awake* also uses softcut configured as a monophonic half-second delay. Both `PolyPerc` and softcut have a number of useful parameters to change the sound of what's playing.
+
+- **K2 / K3** changes parameters
 - **E2 / E3** adjusts selected parameter
-- **K2 / K3** moves selector
+
+  **parameters**:
+
+  - `cut`: filter cutoff frequency. higher hertz/hz values reveal more of the engine's timbral character.
+  - `gain`: filter resonance. higher gain creates tonal focus at the cutoff frequency, further shaping the engine's output. careful: high values can create unwanted self-oscillation.
+  - `pw`: pulse width. adds string-like timbres as the distance between waveform cycles widens or closes.
+  - `rel`: release. extend or shorten the length of a played tone.
+  - `fb`: feedback (for delay). control how much past material should remain in the delay buffer.
+  - `rate`: rate (for delay). with delays, duration and pitch are linked. if there is past material in the delay buffer, changing rate will change the pitch of the playback while adjusting the time it takes for the delay to loop.
+  - `pan`: panning (for engine). change the placement of the engine in the stereo field.
+  - `delay_pan`: panning (for delay). change the placement of the delay in the stereo field. very fun to offset from the engine panning.
 
 ### OPTION
 

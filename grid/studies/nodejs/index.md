@@ -53,6 +53,8 @@ Now install the `easymidi` library:
 ```
 $ npm install --save easymidi
 ```
+Note: If you're experiencing errors while installing easymidi with npm, you might need the libasound2-dev package installed on your system. For debian: ```$ sudo apt install libasound2-dev```
+
 
 You can now copy the examples to this folder and run them using the `node` command:
 

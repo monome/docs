@@ -32,7 +32,6 @@ has_toc: false
 | params                             | Create script parameters, displayed in the PARAM menu                               |
 | poll                               | System polling for CPU, incoming/outgoing amplitude, and incoming pitch             |
 | screen                             | Draw to the norns on-board screen                                                   |
-| script                             | System-level script handlers                                                        |
 | softcut                            | Two audio buffers which can be recorded into and played by six individual voices    |
 | tab                                | Table utilities                                                                     |
 | util                               | Helpful utility functions                                                           |
@@ -49,7 +48,6 @@ has_toc: false
 | lib/listselect                     | List select utility                                                                 |
 | lib/musicutil                      | Utility module for common music maths                                               |
 | lib/pattern                        | Timed-event pattern recorder / player                                               |
-| lib/test.luaunit                   | General utilities                                                                   |
 | lib/textentry                      | Text entry UI                                                                       |
 | lib/ui                             | UI widgets module                                                                   |
 | lib/voice                          | Experimental voice allocation module                                                |

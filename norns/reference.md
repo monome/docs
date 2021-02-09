@@ -19,7 +19,7 @@ has_toc: false
 | [arc](arc)                         | Connect a script to a hardware [arc](https://monome.org/docs/arc)                   |
 | audio                              | Directly set system audio levels                                                    |
 | [clock](clock)                     | Coroutine system which executes functions on beat-synced and free-running schedules |
-| controlspec                        | PARAM menu control constructor with presets                                         |
+| [controlspec](controlspec)         | PARAM menu control constructor with presets                                         |
 | crow                               | Connect a script to a hardware [crow](https://monome.org/docs/crow)                 |
 | [encoders](encoders)               | Decipher the norns on-board encoders                                                |
 | engine                             | Register a SuperCollider engine                                                     |

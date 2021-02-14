@@ -77,11 +77,11 @@ Upon switching to *EDIT* mode however, you'll likely notice a bunch of text sudd
 
 Let's get a blank scene as a starting point. Hit **ESC** to enter the *SCENE* page.
 
-Scenes are listed along with their help texts. Use the brackets **[** and **]** to move through the available scenes. Hit **ENTER** to load the selected scene. In our case, let's load scene 9, which should be blank. Upon load you'll be thrown back to *LIVE* mode.
+Scenes are listed along with their help texts. Use the brackets **[** and **]** to move through the available scenes. Hit **ENTER** to load the selected scene. In our case, let's load scene 9, which should be blank.
 
 ## Back to the script
 
-Hit **TAB** to get into *EDIT* mode. You'll see the prompt change to `1` indicating that you're editing script 1.
+ Upon load you'll be thrown into *EDIT* mode. You'll see the prompt read `1` indicating that you're editing script 1.
 
 * Each trigger input (1-8) has its own script.
 * A script is executed on the positive (low-to-high) edge of a trigger or gate.

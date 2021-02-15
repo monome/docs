@@ -62,7 +62,7 @@ softcut.rate(1,0.5)
 the sequencer is synchronized to the global clock. you can change the clock settings via the PARAMS menu, but you can also act upon the clock this way:
 
 ```
-param:set('clock_tempo',50)
+params:set('clock_tempo',50)
 ```
 
 the script itself has some simple variables that can be changed on the fly, for example:

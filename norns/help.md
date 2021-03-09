@@ -248,7 +248,7 @@ Steps:
 5. Run etcher. Select the disk image. Select the Compute Module as the target. Push go and wait for it to finish.
 6. Disconnect USB. Flip the switch back to RUN. Put the bottom back on.
 7. If you have a norns with a 32gb CM3+ (purchased October 2020 and thereafter), you will need to expand the file storage.  
-   7a. Re-connect USB, power norns up, and connect via [serial](https://monome.org/docs/norns/maiden/#other-access) through a terminal.  
+   7a. Re-connect USB, power norns up, and connect via [serial](https://monome.org/docs/norns/wifi-files/#serial) through a terminal.  
    7b. Execute `sudo raspi-config` and enter *sleep* as the password.  
    7c. Navigate down to `Advanced`.  
    7d. Select `Expand Filesystem` and press OK.  

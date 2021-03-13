@@ -181,7 +181,7 @@ The left column shows the index number. A scrollbar indicates your relative posi
 
 Param knob live input:
 
-* **CTRL** will overwrite the current position with the knob value scaled 0-31 (useful for scrolling in note data).
+* **CTRL+ALT** will overwrite the current position with the knob value scaled 0-31 (useful for scrolling in note data).
 * **CTRL+SHIFT** will overwrite the current position with the knob value scaled 0-1023 (useful for scrolling in voltage data).
 
 ### Attributes

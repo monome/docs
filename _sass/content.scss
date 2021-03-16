@@ -5,8 +5,18 @@
 //
 // stylelint-disable selector-no-type, max-nesting-depth, selector-max-compound-selectors, selector-max-type
 
-.page-content {
+.main-content {
   line-height: $content-line-height;
+
+  ol,
+  ul,
+  dl,
+  pre,
+  address,
+  blockquote,
+  .table-wrapper {
+    margin-top: 0.5em;
+  }
 
   a {
     overflow: hidden;
@@ -17,6 +27,12 @@
   ul,
   ol {
     padding-left: 1.5em;
+  }
+
+  li {
+    .highlight {
+      margin-top: $sp-1;
+    }
   }
 
   ol {
@@ -93,7 +109,7 @@
 
   dl {
     display: grid;
-    grid-template-columns: max-content 1fr;
+    grid-template: auto / 10em 1fr;
   }
 
   dt,
@@ -102,16 +118,50 @@
   }
 
   dt {
+    grid-column: 1;
+    font-weight: 500;
     text-align: right;
-
     &::after {
       content: ":";
     }
   }
 
   dd {
+    grid-column: 2;
+    margin-bottom: 0;
     margin-left: 1em;
-    font-weight: 500;
+    blockquote,
+    div,
+    dl,
+    dt,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    li,
+    ol,
+    p,
+    pre,
+    table,
+    ul,
+    .table-wrapper {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  dd,
+  ol,
+  ul {
+    dl:first-child {
+      dt:first-child,
+      dd:nth-child(2) {
+        margin-top: 0;
+      }
+    }
   }
 
   .anchor-heading {
@@ -132,7 +182,7 @@
       display: inline-block;
       width: 100%;
       height: 100%;
-      fill: $link-color;
+      color: $link-color;
       visibility: hidden;
     }
   }
@@ -149,6 +199,10 @@
     }
   }
 
+  summary {
+    cursor: pointer;
+  }
+
   h1,
   h2,
   h3,
@@ -156,5 +210,22 @@
   h5,
   h6 {
     position: relative;
+    margin-top: 1.5em;
+    margin-bottom: 0.25em;
+
+    &:first-child {
+      margin-top: $sp-2;
+    }
+
+    + table,
+    + .table-wrapper,
+    + .code-example,
+    + .highlighter-rouge {
+      margin-top: 1em;
+    }
+
+    + p {
+      margin-top: 0;
+    }
   }
 }

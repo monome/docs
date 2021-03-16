@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "just-the-docs"
-  spec.version       = "0.3.2"
+  spec.version       = "0.3.3"
   spec.authors       = ["Patrick Marsceill"]
   spec.email         = ["patrick.marsceill@gmail.com"]
 
@@ -16,7 +16,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.1.4"
   spec.add_runtime_dependency "jekyll", ">= 3.8.5"
   spec.add_runtime_dependency "jekyll-seo-tag", "~> 2.0"
-  spec.add_runtime_dependency "jekyll-redirect-from", "~> 0.16.0"
   spec.add_runtime_dependency "rake", ">= 12.3.1", "< 13.1.0"
 
 end

@@ -1,7 +1,6 @@
 title: monome/docs
 description: monome docs
-#baseurl: "/docs"
-baseurl: "/"
+baseurl: "/docs"
 url: "https://monome.org"
 
 permalink: pretty

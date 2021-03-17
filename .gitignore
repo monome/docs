@@ -4,6 +4,7 @@
 _site
 Gemfile.lock
 node_modules
+vendor
 .DS_Store
 .jekyll-cache
 .ruby-version

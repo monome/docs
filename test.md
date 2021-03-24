@@ -9,12 +9,25 @@ this stuff!!! what if it's a really long sentence with a bunch of things. that g
 
 normal typing size. this is a paragraph.
 
+# Heading
+
+things
+
 ## subheading
+
+more things
+
+### so many things
+
+do we go lower than 3?
+
+#### omg 4
+
+whyyyyy
 
 - list element
 - hello again
 
-# Heading
 
 **TECH** &rarr; a shorter label  
 but this one has manual line breaks  

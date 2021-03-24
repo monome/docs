@@ -4,19 +4,20 @@
 
 .label,
 .label-blue {
+  width: 100%;
   display: inline-block;
-  padding-top: 0.16em;
-  padding-right: 0.56em;
-  padding-bottom: 0.16em;
-  padding-left: 0.56em;
-  margin-right: $sp-2;
-  margin-left: $sp-2;
+  padding-top: 1.0em;
+  padding-right: 1.0em;
+  padding-bottom: 1.0em;
+  padding-left: 1.0em;
+  //margin-right: $sp-2;
+  //margin-left: $sp-2;
   color: $white;
-  text-transform: uppercase;
   vertical-align: middle;
   background-color: $blue-100;
-  @include fs-2;
-  border-radius: 12px;
+  @include fs-4;
+  border-radius: $border-radius;
+  //border-radius: 3px;
 }
 
 .label-green {
@@ -29,6 +30,10 @@
 
 .label-red {
   background-color: $red-200;
+}
+
+.label-grey {
+  background-color: $grey-dk-100;
 }
 
 .label-yellow {

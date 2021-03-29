@@ -7,8 +7,16 @@ nav_order: 1
 ---
 
 # play
+{: .no_toc }
 
-sections: [start](#start) &mdash; [awake](#awake) &mdash; [levels](#levels) &mdash; [parameters](#parameters) &mdash; [tape](#tape) &mdash; [select](#select)
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## start
 
@@ -28,13 +36,15 @@ To begin, let's get acquainted with the layouts of each iteration of norns -- st
 **shield**
 
 - Confirm that you've followed all of the steps in the [norns shield assembly guide](../shield).
-- Attach a high quality Raspberry Pi power supply that provides at least 2A at 5V to the micro USB port on the Pi.
+- Attach [a high quality Raspberry Pi power supply](https://www.adafruit.com/product/1995) that provides at least 2A at 5V to the micro USB port on the Pi.
+  - If using a power supply which has a detachable USB cable, make sure the cable is 24AWG or less. Lower AWG = lower noise & more stable voltage delivery for better performance.
 - The red light on the Pi will be steady, while the not-red light will flash.
 - In a few seconds, you'll see a sparkle animation on the screen. Some call it a dust. Either way, norns is on.
 
 After norns powers up, it will launch the last script that was loaded. On a fresh norns, this will be *awake*, a set of looping sequencers with delay.
 
 In any norns script, a quick tap of **K1** will toggle between the playable interface and the menus interface. If you get caught in the menus, just tap **K1** to get back to the script.
+{: .label}
 
 ![](image/play-images/menu-nav.png)  
 [*figure 2: interface layers*](image/play-images/menu-nav.png)
@@ -56,7 +66,9 @@ In any norns script, a quick tap of **K1** will toggle between the playable inte
 - Press **K3**. You'll be asked to confirm.
 - Press **K3** again to go to SLEEP.
 - *Wait* until you see the not-red light on the side of the Pi stop blinking and go out completely.
-- *Only after the not-red light on the side of the Pi is no longer visible*, you can safely remove the power connector from the Pi.
+
+*Only after the not-red light on the side of the Pi is no longer on* can you safely remove the power connector from the Pi. If the not-red light is steady or blinking, do not disconnect power.
+{: .label .label-red}
 
 ### core terminology
 
@@ -74,23 +86,27 @@ As you navigate these documents, you'll encounter a few key phrases which have s
 
 Before we dive into exploring the system menus, lets *play* with the script that loaded when you turned on your norns and has been happily generating music as you read.
 
-Here's a quick guide to exploring *awake*:
+Here's a quick guide to each of the modes in **awake**.
 
-**E1** changes the mode: STEP, LOOP, SOUND, OPTION
+**E1** switches between modes
+{: .label}
 
 ### STEP
+{: .no_toc }
 
 - **E2** navigates position, **E3** changes position
 - **K2** toggles the sequence to edit. **K1+K2** clears all steps
 - **K3** morphs the current sequence. **K1+K3** randomizes
 
 ### LOOP
+{: .no_toc }
 
 - **E2 / E3** sets loop length
 - **K2** resets to play to zero
 - **K3** jumps to random position
 
 ### SOUND
+{: .no_toc }
 
 *awake* uses the `PolyPerc` engine to generate the synth tones. *awake* also uses softcut configured as a monophonic half-second delay. Both `PolyPerc` and softcut have a number of useful parameters to change the sound of what's playing.
 
@@ -109,6 +125,7 @@ Here's a quick guide to exploring *awake*:
   - `delay_pan`: panning (for delay). change the placement of the delay in the stereo field. very fun to offset from the engine panning.
 
 ### OPTION
+{: .no_toc }
 
 - **E2** adjusts BPM
 - **K1+E2** change division
@@ -118,8 +135,12 @@ Here's a quick guide to exploring *awake*:
 (bonus: try plugging in a grid.)
 
 Most norns scripts rely on these types of interactions — re-definable encoders, two-button presses in the form of hold-one-press-the-other, turning an encoder while a modifier button is held, etc.
+{: .label}
 
 ## levels
+
+DO NOT plug modular-level signals into norns (neither stock or shield) -- norns is designed for line levels only.
+{: .label .label-red }
 
 To begin our menu dive, let's adjust the audio levels.
 
@@ -133,15 +154,24 @@ Tap **K1** to come up from the script layer to the menus layer and turn **E1** c
 
 The horizontal notch represents unity. All levels can go to +6dB.
 
-- **out** controls the final output of the global mix
-- **in** determines how much of an external input is fed into the script
-  - DO NOT plug modular-level signals into norns (neither stock and shield) -- norns is designed for line levels only
-- **mon** allows the input to be monitored as part of the global mix
-- **eng** controls the output level of the script's synth engine
-- **cut** determines the mix presence of softcut, a flexible sampling layer
-- **tp** adjusts the level of a playing tape, which is fed into the global mix as well as softcut
+<dl>
+  <dt><b>out</b></dt>
+  <dd>controls the final output of the global mix</dd>
+  <dt><b>in</b></dt>
+  <dd>determines how much of an external input is fed into the script</dd>
+  <dt><b>mon</b></dt>
+  <dd>allows the input to be monitored as part of the global mix</dd>
+  <dt><b>eng</b></dt>
+  <dd>controls the output level of the script's synth engine</dd>
+  <dt><b>cut</b></dt>
+  <dd>determines the mix presence of softcut, a flexible sampling layer</dd>
+  <dt><b>tp</b></dt>
+  <dd>adjusts the level of a playing tape, which is fed into the global mix as well as softcut</dd>
+</dl>
 
 ## parameters
+
+The PARAMETERS menu is where you'll find helpful system controls as well as performance-centric settings for each script.
 
 ### changing the sounds
 
@@ -150,20 +180,24 @@ Use **E1** to navigate to PARAMETERS, and enter the EDIT menu with **K3**.
 ![](image/play-images/menu-params_edit.png)  
 [*figure 4: editing parameters*](image/play-images/menu-params_edit.png)
 
-At the top of this menu are controls for each component of the global audio chain:
+At the top of this menu are controls for each component of the global audio chain.
 
-- LEVELS features controls for output, input, monitoring, engine, softcut and tape levels
-  - on stock norns, you can also adjust whether the headphone monitor is stereo or mono and add or remove headphone gain
-  - again, DO NOT plug modular-level signals into norns (neither stock and shield)
-- REVERB adjusts the system reverb and send levels for the currently loaded engine, softcut, monitor, and tape
-- COMPRESSOR adjusts the system compressor, which is the final stage of the audio processing
-- SOFTCUT adjusts the output and send levels for the six-voice system sampler
-
-CLOCK reveals controls for the norns global clock. The clock can be synced to a number of sources, including MIDI, Ableton Link, and crow. We'll dig into specifics about clock later, but it's good to know about!
+<dl>
+  <dt><b>LEVELS</b></dt>
+  <dd>controls output, input, monitoring, engine, softcut and tape levels</dd>
+  <dt><b>REVERB</b></dt>
+  <dd>adjusts the system reverb and send levels for the currently loaded engine, softcut, monitor, and tape</dd>
+  <dt><b>COMPRESSOR</b></dt>
+  <dd>adjusts the system compressor, which is the final stage of the audio processing</dd>
+  <dt><b>SOFTCUT</b></dt>
+  <dd>adjusts the output and send levels for the six-voice system sampler</dd>
+  <dt><b>CLOCK</b></dt>
+  <dd>reveals controls for the norns global clock. The clock can be synced to a number of sources, including MIDI, Ableton Link, and crow. We'll dig into specifics about clock later, but it's good to know about!</dd>
+</dl>
 
 Scrolling down further, we find some of the script's parameters. These are chosen by the script's author and can be adjusted by using **E3**.
 
-### saving the changes
+### managing change
 
 To recall and build on the changes you've made in a future session, we can save all the parameters as a PSET (preset).
 
@@ -172,7 +206,8 @@ To recall and build on the changes you've made in a future session, we can save 
 
 Use **E2** to navigate down the left column of the PSET screen.  
 Use **E3** to navigate down the right.  
-The currently loaded PSET will have an asterisk `*` next to it
+The currently loaded PSET will have an asterisk * next to it
+{: .label }
 
 **save PSET**
 
@@ -194,6 +229,8 @@ The currently loaded PSET will have an asterisk `*` next to it
 
 ## tape
 
+norns has a built-in mechanism to play audio files underneath a script as well as record system audio, so you don't need connect a separate recording device to capture your creations.
+
 ### play
 
 These changing melodies are lovely, but they're a bit removed from the natural world. Let's load a field recording of hermits to loop underneath.
@@ -211,7 +248,8 @@ Jump to the menus interface and use **E1** to navigate to the tape screen.
   - clips will be prepended with their filetype (eg. `.wav`) and a duration
   - want to import more clips into your norns? see [**wifi + files**](/docs/norns/wifi-files).
 
-PLAY expects 48khz files (both stereo and mono supported). WAV, AIFF, FLAC and other uncompressed header / sample formats supported by [libsndfile](http://www.mega-nerd.com/libsndfile) will work (including raw).
+PLAY expects 48khz files (both stereo and mono supported). WAV, AIFF, FLAC and other uncompressed header / sample formats supported by libsndfile will all work (including RAW).
+{: .label }
 
 **start/stop loop**
 
@@ -223,7 +261,7 @@ As of this writing, sounds always loop and there are no additional transport con
 
 ### rec
 
-This all sounds rather lovely -- perhaps you'd like to record it?
+This all sounds pretty nice -- perhaps you'd like to record it?
 
 On the tape screen, press **K2** to switch between the PLAY and REC lanes.
 
@@ -235,7 +273,10 @@ On the tape screen, press **K2** to switch between the PLAY and REC lanes.
 - with the REC lane selected, press **K3** to open the naming dialogue
 - name your tape, or feel free to use the pre-populated counter
   - see [*figure 5*](image/play-images/menu-params_pset.png) for tips on navigating the naming dialogue
-- when you arrive back at the tape menu, press K3 to record a stereo 48khz .wav file
+- when you arrive back at the tape menu, press K3 to record
+
+REC creates 48khz stereo WAV files and stores them under we/dust/audio/tape
+{: .label }
 
 **stop recording**
 
@@ -244,6 +285,7 @@ On the tape screen, press **K2** to switch between the PLAY and REC lanes.
   - want to export it from your norns? see [**wifi + files**](/docs/norns/wifi-files).
 
 #### what gets recorded exactly?
+{: .no_toc }
 
 In the simplest terms, everything you hear from the main output is committed to a recording tape. This includes the system reverb, compressor, monitor audio, as well as any tape that might be playing. If you are recording for further processing in a DAW, you may want to turn off the system reverb and compressor for a more barebones sound.
 

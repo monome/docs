@@ -8,8 +8,16 @@ has_toc: false
 ---
 
 # maiden
+{: .no_toc }
 
-sections: [project manager](#project-manager) &mdash; [repl](#repl) &mdash; [file viewer](#file-viewer) &mdash; [advanced access](#advanced-access)
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 _maiden_ is a browser-based portal for norns. It can be accessed via a norns-hosted hotspot, or if norns and your browser are on the same WIFI network.
 
@@ -43,7 +51,8 @@ If you choose to update a project which you downloaded through maiden, please no
 
 Once you update a project through the PROJECT MANAGER, you'll see a commit number listed on the right of the project's tile (like *34d225b*). Click a project's commit number to be brought to the project's GitHub page, where you can learn more about the project and verify that the version you have is the latest.
 
-*nb. If you are updating a project through the PROJECT MANAGER that was not installed by using the PROJECT MANAGER, you will receive an error that the project cannot be found in the catalog. Please delete the previously installed version and reinstall through PROJECT MANAGER, which establishes the necessary git files for future updates.*
+If you are updating a project through the PROJECT MANAGER that was not installed by using the PROJECT MANAGER, you will receive an error that the project cannot be found in the catalog. Please delete the previously installed version and reinstall through PROJECT MANAGER, which establishes the necessary git files for future updates.
+{: .label .label-grey}
 
 ### available
 
@@ -54,6 +63,9 @@ Whenever maiden is loaded, it automatically refreshes both catalogs. If a script
 Many projects will have informational tags like **crow**, **drum**, **looper**, as well as a project description. Please note that the **lib** tag is specifically used to indicate that a project includes both a script *and* an engine, which will require a device restart.
 
 Each entry has an **INSTALL** action, which can be used to install the selected script.
+
+You will have to restart norns if a freshly-installed project contains an engine
+{: .label}
 
 ### contribute
 
@@ -86,6 +98,7 @@ That last line is a link back to the thread number. There's a chicken-egg situat
 While many projects are held in the community repository, it can be hard to engage with a project's creator through GitHub. To facilitate discussion, many projects are also shared through the [norns Library on lines](https://llllllll.co/c/library).
 
 The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas. After you share your own script in the community repository, please create a new thread in the Library.
+{: .label}
 
 ### fork
 
@@ -133,7 +146,8 @@ starting...
 installed "test-update"!
 ```
 
-*nb. you may need to SYSTEM > RESET if the new project contains an engine*
+You will have to restart norns if a newly-installed project contains an engine
+{: .label}
 
 If the fetch was unsuccessful, the cause is that a script is already installed with the same name. You'll see:
 
@@ -181,6 +195,8 @@ You can manually open the API reference at `norns.local/doc`.
 Also see the [scripting reference](../reference/).
 
 ## advanced access
+
+If you prefer to integrate norns into your existing IDE workflow, you can load maiden's REPL and manage projects through more bare-metal tools.
 
 ### terminal REPL
 
@@ -275,5 +291,6 @@ Global Flags:
       --config string   use specific config file
       --debug           enable debug logging
 
-Use "maiden project [command] --help" for more information about a command.Have further usage questions? Visit the [norns: maiden](https://llllllll.co/t/norns-maiden/14052) topic on lines.
+Use "maiden project [command] --help" for more information about a command.
+Have further usage questions? Visit the [norns: maiden](https://llllllll.co/t/norns-maiden/14052) topic on lines.
 ```

@@ -7,8 +7,16 @@ nav_order: 2
 ---
 
 # wifi + files
+{: .no_toc }
 
-sections: [connect](#connect) &mdash; [update](#update) &mdash; [transfer](#transfer) &mdash; [advanced access](#advanced-access)
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## connect
 
@@ -32,10 +40,10 @@ To connect norns to your local network router:
 
 After a network is added, norns remembers the credentials. Known networks are stored under **CONNECT**. You can remove known networks under **DEL**.
 
-If you do not have access to a router, you can also turn the norns into a WIFI hotspot. This will create a new network which you can then connect to with your computer:
-
-- network name / SSID: `norns`
-- default password: `nnnnnnnn`
+If you do not have access to a router, you can also turn the norns into a WIFI hotspot. This will create a new network which you can then connect to with your computer.  
+*network name / SSID*: **norns**  
+*default password*: **nnnnnnnn**  
+{: .label .label-grey}
 
 ## update
 
@@ -52,7 +60,8 @@ To check for and install updates:
 - if norns finds an update, press **K3** to confirm installation
 - after installation, press any key to safely shut norns down
 
-To re-run an update, navigate to **SYSTEM > UPDATE**, then hold **K1** and press **K3**.
+To re-run an update, navigate to **SYSTEM > UPDATE**, then hold **K1** and press **K3**
+{: .label }
 
 ## transfer
 
@@ -114,7 +123,9 @@ The norns.local file tree should be available at `\\norns.local`
 
 You can use samba to share audio files between norns and your computer. On norns, these files are stored under `dust/audio` -- depending on which scripts you have installed, you may see many folders under `audio` or just a few.
 
-`tape` is where the TAPE function stores recordings made on your norns. You'll also find an `index.txt` file which logs the TAPE index -- if you wish to reset the auto-generated counter, edit this file to start back at 0.
+Recordings made on norns will be stored under `dust/audio/tape`.
+
+You'll also find an `index.txt` file which logs the TAPE index -- if you wish to reset the auto-generated counter, edit this file to start back at 0.
 
 ![](image/smb-mac-tree-tape.png)  
 *[figure 6: tape folder path](image/smb-mac-tree-tape.png)*
@@ -122,7 +133,9 @@ You can use samba to share audio files between norns and your computer. On norns
 
 Feel free to make folders inside `audio` to store various samples, field recordings, single cycle waveforms, etc. Each of those folders can also store subfolders, but please note that you cannot nest more than ten folder layers.
 
-If you are importing audio to norns, please note that 48khz `.wav` files are best.
+norns records 48khz stereo WAV files  
+please only import uncompressed 48kHz files (bit-depth irrelevant)
+{: .label}
 
 ### backup
 
@@ -131,6 +144,8 @@ If you want to make a backup of your scripts, psets or other data simply make a 
 Restoring from this backup is as simple as copying this directory from your computer back to the `/home/we/dust` directory on norns.
 
 ## advanced access
+
+Sometimes, it might be necessary to interface with more of the bare-metal components of the norns software stack.
 
 ### SSH
 
@@ -142,15 +157,23 @@ When connected via WIFI you can SSH into norns from another computer on the same
 
 ### serial
 
-Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer. On Mac/linux, open a terminal and type:
+Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer.
+
+These steps are only applicable to stock norns, not shield
+{: .label .label-grey}
 
 **macOS**:
 
-- `screen /dev/tty.usb`
+- open Terminal
+- type `screen /dev/tty.usb`
 - then, press TAB to autocomplete your serial number
 - then type `115200`
 
 You'll end up with something similar to: `screen /dev/tty.usbserial-A9053JEX 115200`
+
+If you see a blank screen, press ENTER.
+
+You'll be asked for login credentials. Login is the same as SSH above.
 
 **linux**:
 

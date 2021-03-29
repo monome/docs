@@ -275,7 +275,7 @@ On the tape screen, press **K2** to switch between the PLAY and REC lanes.
   - see [*figure 5*](image/play-images/menu-params_pset.png) for tips on navigating the naming dialogue
 - when you arrive back at the tape menu, press K3 to record
 
-REC creates 48khz stereo WAV files and stores them under we/dust/audio/tape
+REC creates 48khz stereo WAV files and stores them under `we/dust/audio/tape`
 {: .label }
 
 **stop recording**

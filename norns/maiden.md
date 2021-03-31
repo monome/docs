@@ -23,6 +23,9 @@ _maiden_ is a browser-based portal for norns. It can be accessed via a norns-hos
 
 To dive in, point your web browser at `norns.local` to see the maiden interface. If the site is not found, try connecting directly to the IP address shown on the norns screen, for example: `192.168.0.100`.
 
+Windows: if neither of these URLs resolve, try `IP-ADDRESS-OF-YOUR-NORNS/maiden/`, eg. `192.168.1.100/maiden/`
+{: .label .label-grey}
+
 ![](image/maiden-1.1.0.png)
 
 The interface includes a meta-navigator in the far-left sidebar, which from bottom-to-top allows you to:

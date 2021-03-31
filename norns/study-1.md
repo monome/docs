@@ -7,8 +7,18 @@ permalink: /norns/study-1/
 <div class="vid"><iframe src="https://player.vimeo.com/video/273692952?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # many tomorrows
+{: .no_toc }
 
 norns studies part 1: variables, simple maths, keys + encoders
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## hello?
 
@@ -16,9 +26,9 @@ hello. ready? remember to stay hydrated.
 
 first, locate yourself such:
 
-- connect to norns via hotspot or network
+- connect to norns via [hotspot or network](../wifi-files/#connect)
 - navigate web browser to http://norns.local (or type in IP address if this fails)
-- you're looking at _maiden_, the editor
+- you're looking at [_maiden_](../maiden), the editor
 - create a new file in the `code` directory: click on the `code` directory and then click the + icon in the scripts toolbar
 - rename the file: click the pencil icon in the scripts toolbar
 
@@ -55,9 +65,9 @@ but we did do one important thing: we selected an engine.
 engine.name = "TestSine"
 ```
 
-this line selected the `TestSine` engine--- note that this needs to be in quotes. this is an imperative first step.
+this line selected the `TestSine` engine -- note that this needs to be in quotes (single or double work, but don't mix + match). this is an imperative first step.
 
-next we create the init function, which gets called at script startup. right now all it does is print. but where does it print?
+then, we created the `init` function, which gets called at script startup (this is true of every script). right now all it does is print. but where does it print?
 
 ## robot hangout
 
@@ -101,7 +111,10 @@ both are float (decimal) values. given the name "TestSine" we can infer that `am
 engine.hz(200)
 ```
 
-now is a good time to point out the UP ARROW on your keyboard. when typing into the command line use the up arrow to see the previous things you typed in. this makes rapid-changing of the frequency much easier. also try modulating the amplitude with `engine.amp(0.8)` (amplitude is 0.0-1.0, but you can certainly give it large values and it'll clip happily.)
+now is a good time to point out the UP ARROW on your keyboard. when typing into the command line use the up arrow to see the previous things you typed in. this makes rapid-changing of the frequency much easier.
+{: .label}
+
+also try modulating the amplitude with `engine.amp(0.8)` (amplitude is 0.0-1.0, but you can certainly give it large values and it'll clip happily.)
 
 so back to the script, if we want to have the engine start up with a particular frequency, we add it to the `init` function:
 
@@ -259,7 +272,7 @@ stack traceback:
 /home/we/norns/lua/encoders.lua:56: in function 'encoders.process'
 ```
 
-(your line number may be different, but the error the same). we made a small mistake. while you don't need to declare variables, you can't add `nil` to numbers and since:
+(your line number may be different, but the error is the same). we made a small mistake. while you don't need to declare variables, you can't add `nil` to numbers and since:
 
 ```lua
 position = position + d
@@ -283,7 +296,8 @@ print("we like to party"
 
 gives `<incomplete>` (translation: typo. no closing parenthesis.)
 
-so: be sure to keep an eye on the command line for errors.
+be sure to keep an eye on the command line for errors
+{: .label .label-grey}
 
 ## example: many tomorrows
 
@@ -337,23 +351,78 @@ function enc(n,d)
 end
 ```
 
-## addendum
+## addendum: go global
 
-variables in lua are global by default. this means they are visible in any script and in the REPL. use the local keyword to make a variable visible only to the script that declared it:
+variables in lua are global by default. use the `local` keyword to make a variable visible only to the scope within which it's declared:
 
 ```lua
 local hidden_spell = "foobarbaz"
 ```
 
-notice that you can’t access hidden_spell in the REPL:
+notice that you can’t access `hidden_spell` in the REPL:
 
 ```lua
 >> print(hidden_spell)
 ```
 
-produces the output: `nil`
+...returns `nil` as its output.
 
-it's OK to use global variables while you’re experimenting with a script, but it’s a good idea to add the local keyword when you’re done, because global variables can cause problems with other scripts and with the norns system. we're putting together a list of reserved variable names.
+locals declared within functions are only visible to that function (including `init`):
+
+```lua
+function init()
+ local hidden_spell = "foobarbaz"
+ cast()
+end
+
+function cast()
+  print(hidden_spell)  
+end
+```
+
+locals declared outside of functions are available to other functions within the file:
+
+```lua
+function init()
+ cast()
+end
+
+local hidden_spell = "foobarbaz"
+
+function cast()
+  print(hidden_spell)  
+end
+```
+
+when scripting, global variables make it incredibly easy to troubleshoot from the REPL. besides a few very specific phrases (see [the system global variable list](../reference/#system-globals)), you should feel safe using globals in your scripts. each time a new script runs, the previously-declared global namespace is wiped, so there's no risk of cross-influence.
+
+declaring locals is often a matter of taste, but also utility + legibility:
+
+```lua
+engine.name = "TestSine"
+
+function init()
+  sound = 1
+  level = 1
+  f = 650
+  engine.hz(f)
+end
+
+function enc(n,d)
+  if n == 2 then
+    local last_level = level
+    level = math.random(100) / 100
+    if level ~= last_level then
+      engine.amp(sound * level)
+    elseif level == last_level then
+    -- level didn't change, so change note
+      f = 650 / math.random(2,4)
+      engine.hz(f)
+    end
+  end
+end
+```
+
 
 ## reference
 

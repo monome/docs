@@ -7,6 +7,16 @@ has_toc: false
 ---
 
 # control + clock
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 norns plays well with others -- black box drum machines, MIDI keyboards + faderbanks, modular synths, Max/MSP, Ableton Live, etc.
 
@@ -23,15 +33,19 @@ When you connect a MIDI device to one of the four USB ports, norns automatically
 ![](image/control_clock-images/device-management.png)  
 *[figure 1: managing MIDI devices through SYSTEM > DEVICES > MIDI](image/control_clock-images/device-management.png)*
 
-norns can remember up to 16 MIDI previously-connected MIDI devices. The order of devices actually matters -- many scripts will have a parameter for `device port` or similar, where you'll need to specify which slot holds the device you want to use (control in or out). If you're ever unsure which is which, just check this page.
+norns can remember up to 16 previously-connected MIDI devices
+{: .label}
+
+The order of devices actually matters -- many scripts will have a parameter for `device port` or similar, where you'll need to specify which slot holds the device you want to use (control in or out). If you're ever unsure which slot has which device, just check the SYSTEM > DEVICES > MIDI page.
 
 norns will remember these devices until they're manually removed, even if they are no longer connected. If you have more than 16 unique USB-MIDI devices you'd like to use with different norns scripts, you'll need to manage these ports over time.
 
 ### manage
 
-If a script doesn't specify a device in or out port, the script will default to the device at port 1.
-
 Let's say we're running a sequencer and we want to send MIDI out a connected USB-MIDI interface. The device list in [figure 1](image/control_clock-images/device-management.png) shows a `16n` at port 1, but we want this to be the `UM-ONE`.
+
+If a script doesn't allow you to specify a MIDI device port for incoming or outgoing MIDI, the script will default to the device at port 1.
+{: .label}
 
 To assign devices:
 
@@ -95,7 +109,9 @@ To MIDI-learn:
 
 #### PMAPs
 
-Every time a parameter is mapped, norns will save this configuration as a PMAP file. PMAPs are unique to the currently-loaded script and are stored under `data/[scriptname]/[scriptname].pmap`. An example entry:
+Every time a parameter is mapped, norns will save this configuration as a PMAP file. PMAPs are unique to the currently-loaded script and are stored under `data/[scriptname]/[scriptname].pmap`.
+
+An example entry:
 
 ```lua
 "bd_atk":"{dev=1, ch=1, accum=false, out_lo=0, value=0, in_hi=127, out_hi=1, in_lo=0, cc=100}"
@@ -156,9 +172,11 @@ Format your messages as `/param/osc_name value`, eg:
 /param/output_level 0.5
 ```
 
-Please note that norns receives OSC messages on port `10111`.
+norns receives OSC messages on port `10111`
+{: .label}
 
-Want to see norns + OSC in action? Check out `@felart`'s [TouchOSC template](https://github.com/felart/Norns-TouchOSC) for the LEVELS, REVERB, and COMPRESSOR controls.
+Want to see norns + OSC in action? Check out `@felart`'s [TouchOSC template](https://github.com/felart/Norns-TouchOSC) for the LEVELS, REVERB, and COMPRESSOR controls
+{: .label .label-grey}
 
 For more detail on norns + OSC scripting, please see [study 5](/docs/norns/study-5/#numbers-through-air).
 
@@ -166,12 +184,14 @@ For more detail on norns + OSC scripting, please see [study 5](/docs/norns/study
 
 norns benefits from a global clock system. This helps makes it straightforward to pass a clock signal from an external source to a norns script, to pass the norns internal clock to a modular synth, or sync norns and Ableton Live over WIFI.
 
-*nb. please ensure that your MIDI devices are connected as needed by following the steps in [**connect**](#connect)*
+Please ensure that your MIDI devices are connected as needed by following the steps in [**connect**](#connect)
+{: .label .label-grey}
 
 ![](image/control_clock-images/clock.png)  
 *[figure 3: global clock settings](image/control_clock-images/clock.png)*
 
 ### settings
+{: .no_toc }
 
 **source**
 

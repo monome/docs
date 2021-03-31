@@ -8,8 +8,18 @@ permalink: /norns/study-0/
 <div class="vid"><iframe src="https://player.vimeo.com/video/503167191?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # first light
+{: .no_toc }
 
 before study, learning to see.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## who am i
 
@@ -37,7 +47,7 @@ ok let's edit something now. get norns connected to [wifi](../wifi-files) and op
 
 click on the `>>` bar at the bottom of maiden. this is where you enter commands. the script we're running can manipulated in real time, and that's what we'll do now. try this:
 
-```
+```lua
 engine.hz(700)
 ```
 
@@ -45,7 +55,7 @@ this plays 700hz tone. (you might want to toggle off the wind-chimes first). try
 
 `softcut` is the digital tape system in norns, which this script sets up as a delay line on the first voice (hence the `1` in the command). the following command changes the feedback level 0.95:
 
-```
+```lua
 softcut.pre_level(1,0.95)
 ```
 
@@ -53,7 +63,7 @@ softcut.pre_level(1,0.95)
 
 toggle off the sequencer (K2) and try each of these, one at a time:
 
-```
+```lua
 softcut.rate(1,2.0)
 softcut.rate(1,1.0)
 softcut.rate(1,0.5)
@@ -61,13 +71,13 @@ softcut.rate(1,0.5)
 
 the sequencer is synchronized to the global clock. you can change the clock settings via the PARAMS menu, but you can also act upon the clock this way:
 
-```
+```lua
 params:set('clock_tempo',50)
 ```
 
 the script itself has some simple variables that can be changed on the fly, for example:
 
-```
+```lua
 chimes = false
 length = 16
 numbers[1] = 0
@@ -75,7 +85,7 @@ numbers[1] = 0
 
 some other things to try:
 
-```
+```lua
 engine.pw(0.2)
 engine.cutoff(300)
 engine.release(2.0)
@@ -88,15 +98,19 @@ entering commands as we did above changes the running state of the script, but t
 
 you might want to make a copy of the original file, which you can do with the `duplicate` icon in maiden. you can then rename your new version of the file.
 
+the script has a few built-in places where home-editing is effective, marked by this sweet lil' friend:  
+<kbd>--[[ 0_0 ]]--</kbd>
+
 let's change some defaults when the scripts starts:
 
 - different synth sound
 - more delay feedback
 - different and more chime
 
-see line 78:
+see line 77:
 
-```
+```lua
+--[[ 0_0 ]]--
 engine.release(1)
 engine.pw(0.5)
 engine.cutoff(1000)
@@ -104,11 +118,16 @@ engine.cutoff(1000)
 
 these are the synth parameters that get set at startup. try changing the numbers, save the file, then re-launch the script using the PLAY arrow in maiden or using the menu on the hardware.
 
-line 100 sets the delay feedback.
+line 100 sets the delay feedback:
+
+```lua
+softcut.pre_level(1, 0.85) --[[ 0_0 ]]--
+```
 
 line 62 is the table of notes. in this case the table is a list of numbers, separated by commas and enclosed by braces:
 
-```
+```lua
+--[[ 0_0 ]]--
 notes = {400,451,525,555}
 ```
 
@@ -122,9 +141,9 @@ now that we've successfully changed the defaults, let's do some small changes th
 
 instead of having the sequencer run on a clock, let's have it step forward every time we push K2.
 
-first, let's disable the sequence clock, on line 32:
+first, let's disable the sequence clock on line 32:
 
-```
+```lua
 sequence = false
 ```
 
@@ -132,7 +151,8 @@ now, when the clock ticks, line 43 shows that the function `step()` will not be 
 
 let's edit what happens when K2 gets pressed, on line 151:
 
-```
+```lua
+--[[ 0_0 ]]--
 -- sequence = not sequence
 step()
 ```
@@ -145,13 +165,13 @@ instead of chimes, let's have K3 play a random tone.
 
 first, let's disable the chimes, on line 33:
 
-```
+```lua
 chimes = false
 ```
 
 on line 148 we disable the chimes toggle. after this line we add a command to play a random frequency between 100 and 600.
 
-```
+```lua
 -- chimes = not chimes
 engine.hz(math.random(100,600))
 ```
@@ -160,7 +180,7 @@ save at try it out.
 
 let's make a change so that it plays notes from a table instead. erase the `engine.hz` line and do this instead:
 
-```
+```lua
 basket = {80,201,400,555,606}
 engine.hz(basket[math.random(#basket)])
 ```
@@ -173,7 +193,7 @@ instead of a windy chime with variation, let's have the wind make a regular stru
 
 see line 64:
 
-```
+```lua
 if math.random() > 0.2 then
   engine.hz(table.remove(notes,math.random(#notes)))
 end
@@ -190,7 +210,7 @@ this creates the nice random scattered effect and creates uneven timing, with no
 
 let's comment out these three lines (with `--` in front) and make it more regular:
 
-```
+```lua
 engine.hz(table.remove(notes,1))
 ```
 
@@ -198,13 +218,13 @@ this simpler line just gets the first element of the table and removes it, so th
 
 try changing the strum speed by altering:
 
-```
+```lua
 clock.sleep(0.05)
 ```
 
 and you can change how frequently the strum happens by changing this line:
 
-```
+```lua
 clock.sleep(math.random(3,9))
 ```
 
@@ -216,30 +236,35 @@ the sequencer step values can be used for any number of things. instead of modul
 
 see line 52:
 
-```
+```lua
 softcut.loop_end(1,numbers[pos]/8)
 ```
 
-- `numbers` is a table (line 25) that gets updated with the knob interface. it's the sequencer data, which is basically up to 16 steps of values 1-8.
-- `pos` is the playback position. line 50 advances the position by adding 1 and maybe wrapping back to the start. (hint: try changing `pos+1` to `pos-1` to make it run backwards!)
-- we're dividing the step value by 8, hence setting the `loop_end` to between 1/8 and 1.0 (8/8).
+<dl>
+  <dt><b>numbers</b></dt>
+  <dd>a table (line 25) that gets updated with the knob interface. it's the sequencer data, which is basically up to 16 steps of values 1-8</dd>
+  <dt><b>pos</b></dt>
+  <dd>the playback position. line 50 advances the position by adding 1 and maybe wrapping back to the start. (hint: try changing <i>pos+1</i> to <i>pos-1</i> to make it run backwards!)</dd>
+  <dt><b>loop_end</b></dt>
+  <dd> we're dividing the step value by 8, so we'll set <i>loop_end</i> setting to between 1/8 and 1.0 (= 8/8)</dd>
+</dl>
 
 let's comment out this line and modulate `rate` instead:
 
-```
+```lua
 --softcut.loop_end(1,numbers[pos]/8)
 softcut.rate(1,numbers[pos]/8)
 ```
 
 save and try! since the rate jumps are very large the result is substantial. let's try making it more subtle:
 
-```
+```lua
 softcut.rate(1,1+(numbers[pos]/64))
 ```
 
 this confines the numbers to a smaller range for a subtler effect. or perhaps we'd like to try something with multiples:
 
-```
+```lua
 rates = {-1.0,-0.5,0.25,0.5,1.0,1.5,2.0,3.0}
 softcut.rate(1,rates[numbers[pos]])
 ```
@@ -250,7 +275,7 @@ try setting `softcut.rate_slew_time(1,0)` down around line 98, which will make r
 
 ## from here
 
-suggested exercise:
+suggested exercises:
 
 - have the sequencer play notes using `engine.hz()`
 - create a table to specify which frequencies get played. consider [just intonation](https://en.wikipedia.org/wiki/Just_intonation)

@@ -41,8 +41,8 @@ To connect norns to your local network router:
 After a network is added, norns remembers the credentials. Known networks are stored under **CONNECT**. You can remove known networks under **DEL**.
 
 If you do not have access to a router, you can also turn the norns into a WIFI hotspot. This will create a new network which you can then connect to with your computer.  
-*network name / SSID*: **norns**  
-*default password*: **nnnnnnnn**  
+*network name / SSID*: `norns`  
+*default password*: `nnnnnnnn`  
 {: .label .label-grey}
 
 ## update
@@ -119,6 +119,9 @@ Then, reboot.
 
 The norns.local file tree should be available at `\\norns.local`
 
+If `\\norns.local` does not resolve, please try using File Explorer to navigate to `\\IP-ADDRESS-OF-YOUR-NORNS`, eg. `\\192.168.1.100`
+{: .label .label-grey}
+
 ### transferring audio
 
 You can use samba to share audio files between norns and your computer. On norns, these files are stored under `dust/audio` -- depending on which scripts you have installed, you may see many folders under `audio` or just a few.
@@ -139,9 +142,9 @@ please only import uncompressed 48kHz files (bit-depth irrelevant)
 
 ### backup
 
-If you want to make a backup of your scripts, psets or other data simply make a copy of the `dust` directory found in `/home/we` via samba.
+If you want to make a backup of your scripts, psets or other data simply make a copy of the `dust` folder found in `/home/we` via samba (as described above) or if that method is inaccessible, try [Cyberduck](../sftp).
 
-Restoring from this backup is as simple as copying this directory from your computer back to the `/home/we/dust` directory on norns.
+Restoring from this backup is as simple as copying the contents of the `dust` folder from your computer back to the `/home/we/dust` directory on norns.
 
 ## advanced access
 
@@ -159,7 +162,7 @@ When connected via WIFI you can SSH into norns from another computer on the same
 
 Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer.
 
-These steps are only applicable to stock norns, not shield
+Serial / USB-UART connection is only applicable to stock norns, not shield
 {: .label .label-grey}
 
 **macOS**:

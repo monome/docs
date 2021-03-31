@@ -7,8 +7,18 @@ permalink: /norns/study-3/
 <div class="vid"><iframe src="https://player.vimeo.com/video/276054881?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # spacetime
+{: .no_toc }
 
 norns studies part 3: functions, parameters, time
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## we function together
 
@@ -52,7 +62,7 @@ here's what happens:
 - `midi_to_hz` is called with a value of 30, which is assigned to `note`
 - the function runs and returns a value which is assigned to `drone`
 
-## zoom out
+### zoom out
 
 but where do you put the function definition? check this out:
 
@@ -92,7 +102,7 @@ is the same as:
 engine.hz(midi_to_hz(60))
 ```
 
-## many to many
+### many to many
 
 functions can have many arguments:
 
@@ -158,7 +168,7 @@ end
 
 then enter/exit menu mode.
 
-## tangle and detangle
+### tangle and detangle
 
 lua lets us easily make functions that point at other functions. observe:
 
@@ -277,7 +287,7 @@ params:add{type="number", id="tempo", min=20, max=240, default=88,
 
 note that we're using a new syntax style with curly brackets. this passes a table to the function which creates the new parameter. we're able to specify the attribute names (ie, `min`, `max` which makes it more readable, in addition to specifying the `action` in the same line. you can use either method, but this way is generally recommended.
 
-## more sound please
+### more sound please
 
 add more parameters with multiple lines of `params:add_number()`, but all parameters are not just basic numbers. there is a _control_ parameter that maps a "control" range (think 0-100) to a specified min/max, with linear and exponential scaling. we use these frequently with engine parameters:
 
@@ -547,10 +557,13 @@ end
 
 ## reference
 
-- `metro` class is in [http://norns.local/doc](http://norns.local/doc) (must be connected to norns)
-- `util` (also in the docs) includes many other helper functions, such as `util.clamp`
+### norns-specific
+- `metro` -- module to create high-resolution counters, see [`metro` API docs](https://monome.org/docs/norns/api/modules/metro.html) for detailed usage
+- `params` -- module to map numbers to useful controls and ranges, see [`paramset` API docs](https://monome.org/docs/norns/api/modules/paramset.html) and [`params.control` API docs](https://monome.org/docs/norns/api/modules/params.control.html) for detailed usage
+- `util` -- module to perform common utility functions, see [`util` API docs](https://monome.org/docs/norns/api/modules/lib.util.html) for detailed usage
 
 ## continued
+{: .no_toc }
 
 - part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
@@ -559,6 +572,7 @@ end
 - part 5: [streams](../study-5/) // system polls, osc, file storage
 
 ## community
+{: .no_toc }
 
 ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 

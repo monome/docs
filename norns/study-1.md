@@ -49,7 +49,7 @@ click save (the disk icon in the upper right) and then run (the play icon just b
 
 if you typed it correctly, you'll hear a sine tone.
 
-## what happened really
+### what happened really
 
 the top two lines are comments. in lua a comment begins with two dashes, and with norns the very top comments are special in that they are displayed as the preview text in the script selector. try it:
 
@@ -127,7 +127,7 @@ end
 
 try it. it works!
 
-## numbers and strings
+### numbers and strings
 
 back to the command line. let's throw around some variables:
 
@@ -152,7 +152,7 @@ print("i will cast " .. spell .. " for " .. coins .. " coins.")
 
 (also, see addendum on local vs. global variables.)
 
-## maths
+### maths
 
 all of the normal arithmetic operators are available:
 
@@ -238,7 +238,7 @@ else
 end
 ```
 
-# all of the fun
+### all of the fun
 
 to get data from the encoders type this at the end of the script:
 
@@ -426,9 +426,20 @@ end
 
 ## reference
 
+### norns-specific
 - `engine.list_commands()` -- list available engine commands (prints to command line)
+- `print(x)` -- print value of `x` to REPL
+- `init()` -- function which executes at script load
+- `key(n,z)` -- function to parse norns keypresses
+- `enc(n,d)` -- function to parse norns encoder movement
+
+### general
+- `math.random()` -- generates random values, see [this tutorial](http://lua-users.org/wiki/MathLibraryTutorial) for detailed usage
+- `if`, `else`, and `elseif` -- conditional statements, see [Lua docs](https://www.lua.org/pil/4.3.1.html) for detailed usage
+- `<`, `>`, `==`, etc -- relational operators, see [Lua docs](https://www.lua.org/pil/3.2.html) for detailed usage
 
 ## continued
+{: .no_toc }
 
 - part 1: many tomorrows
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
@@ -437,6 +448,7 @@ end
 - part 5: [streams](../study-5/) // system polls, osc, file storage
 
 ## community
+{: .no_toc }
 
 ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 

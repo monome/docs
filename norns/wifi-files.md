@@ -146,6 +146,9 @@ If you want to make a backup of your scripts, psets or other data simply make a 
 
 Restoring from this backup is as simple as copying the contents of the `dust` folder from your computer back to the `/home/we/dust` directory on norns.
 
+norns shield: on Windows + MacOS, the norns partition on your SD card is unfortunately not accessible by simply inserting it into an SD card reader. For the adventurous, here are steps to surface the `ext4` filesystem: [Windows](https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/) and [MacOS](https://www.maketecheasier.com/mount-access-ext4-partition-mac/)
+{: .label .label-grey}
+
 ## advanced access
 
 Sometimes, it might be necessary to interface with more of the bare-metal components of the norns software stack.

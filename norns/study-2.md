@@ -7,8 +7,18 @@ permalink: /norns/study-2/
 <div class="vid"><iframe src="https://player.vimeo.com/video/274939031?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # patterning
+{: .no_toc }
 
 norns studies part 2: screen drawing, for/while loops, tables
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## ways of seeing
 
@@ -50,7 +60,7 @@ let's step through:
 
 this is a pretty typical (despite being simple) drawing function. we set some attributes (such as level), set a position (with move) and then draw something (in this case, text). and don't forget `update` or nothing will happen!
 
-## reveal
+### reveal
 
 let's make something more interactive then. replace `redraw()` and add the other functions below:
 
@@ -128,8 +138,11 @@ press KEY3 to toggle the mode.
 
 a few new commands found their way in as well:
 
-- `screen.font_face()` selects the font face
+- `screen.font_face()` selects the font face  
 - `screen.font_size()` selects the font size
+
+be sure not to call `screen` functions outside of your script's `redraw()` function, otherwise your script will draw over the norns system menus
+{: .label .label-red}
 
 ## so many commands
 
@@ -143,7 +156,7 @@ navigate to `screen` and then `font_face`. behold, a list of the available fonts
 
 but what is this! lines and rectangles?!
 
-## which path
+### which path
 
 add this below `screen.text("WILD")`:
 
@@ -313,7 +326,7 @@ table.remove(drumzzz, 1)
 - next we insert `-1` at the beginning (at position 1), shifting the existing elements ahead. `{-1,1,0,0,0,1,0,1,0,11}`
 - last we remove the element at position 1, shifting the remaining elements back. `{1,0,0,0,1,0,1,0,11}`
 
-## the joy of data
+### the joy of data
 
 we can get the length of a table using the `#` operator:
 
@@ -472,9 +485,19 @@ function enc(n,d)
   redraw()
 end
 ```
+## reference
+### norns-specific
+- `redraw()` -- function to refresh the norns screen
+- `screen` -- module to draw specific things to the norns screen, see [`screen` API docs](https://monome.org/docs/norns/api/modules/screen.html) for detailed usage
 
+### general
+- `repeat` and `until` -- perform action until condition is true, see [Lua docs](https://www.lua.org/pil/4.3.3.html) for detailed usage
+- `while` -- perform action while condition is true, see [Lua docs](https://www.lua.org/pil/4.3.2.html) for detailed usage
+- `for` -- perform action a specific number of times, see [Lua docs](https://www.lua.org/pil/4.3.4.html) for detailed usage
+- `{}` -- tables help store, look up, and manipulate lots of data, see [Lua docs](https://www.lua.org/pil/2.5.html) for detailed usage
 
 ## continued
+{: .no_toc }
 
 - part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
 - part 2: patterning
@@ -483,6 +506,7 @@ end
 - part 5: [streams](../study-5/) // system polls, osc, file storage
 
 ## community
+{: .no_toc }
 
 ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 

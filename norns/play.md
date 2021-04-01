@@ -209,7 +209,7 @@ Use **E3** to navigate down the right.
 The currently loaded PSET will have an asterisk * next to it
 {: .label }
 
-**save PSET**
+**save preset / PSET**
 
 - select `SAVE` and press **K3** to open the naming dialogue
 - use **E3** to switch to the alphabet and **E2** to choose letters
@@ -217,12 +217,12 @@ The currently loaded PSET will have an asterisk * next to it
 - use **E3** to navigate back to the controls (use **E2** and **K3** on `DEL` to delete a letter)
 - press **K3** on `OK` to save
 
-**load PSET**
+**load preset / PSET**
 
 - select `LOAD` and use **E3** to choose a saved PSET
 - press **K3** to load the selected PSET
 
-**delete PSET**
+**delete preset / PSET**
 
 - select `DELETE` and use **E3** to choose a saved PSET
 - press **K3** to delete the selected PSET

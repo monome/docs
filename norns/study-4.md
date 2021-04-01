@@ -7,8 +7,18 @@ permalink: /norns/study-4/
 <div class="vid"><iframe src="https://player.vimeo.com/video/289755493?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # physical
+{: .no_toc }
 
 norns studies part 4: grids + midi
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## tactile numbers
 
@@ -27,7 +37,8 @@ g:refresh()
 
 you'll see a light at x,y (1,8) go to full brightness. like the norns screen, (1,1) is the top left and numbers increase to the right and downwards.
 
-_NOTE_: if you have a grid plugged in and this didn't work, check **SYSTEM > DEVICES > GRID** and make sure your grid is attached to port 1. (more on this later.)
+if you have a grid plugged in and this didn't work, check **SYSTEM > DEVICES > GRID** and make sure your grid is attached to port 1. (more on this later.)
+{: .label .label-grey}
 
 Let's see what happens when you push a key:
 
@@ -51,7 +62,7 @@ end
 
 experience the magic of microtonal mashing. try changing the numbers in `engine.hz` for different intervals and ranges. the grid is simply lighting up a key on press and turning it off on release. `15` is the brightness level.
 
-## expanding
+### expanding
 
 while it's fairly exciting to have made an outer-space instrument with just a couple of lines of code, possibilities are somewhat constrained by only using `g.key` for both sound and grid refreshes. let's decouple key, light, and sound (one of the fundamental design principles of the grid).
 
@@ -135,7 +146,7 @@ function count()
 end
 ```
 
-we've added a metro (see study 3). now `grid_redraw` also gets called by the metro counter callback function, which also sounds a note.
+we've added a metro ([see study 3](../study-3/#time-again)). now `grid_redraw` also gets called by the metro counter callback function, which also sounds a note.
 
 a bonus trick is demonstrated in `grid_redraw`:
 
@@ -243,9 +254,9 @@ here's a list of the helper functions for midi out:
 
 in each case, channel will default to 1 if left off. for note on/off, velocity is optional (100 will be used if none provided).
 
-## keeping track of little boxes
+### keeping track of little boxes
 
-*DEVICES* (currently grids and midi, but will be expanded in the future) use a virtual port system. physical devices are assigned to a virtual port via the **SYSTEM > DEVICES** menu. new devices are automatically assigned to remaining empty ports.
+*DEVICES* (grids, arcs, midi, and HID) use a virtual port system. physical devices are assigned to a virtual port via the **SYSTEM > DEVICES** menu. new devices are automatically assigned to remaining empty ports.
 
 by default for grids and midi, when calling `connect()` with no argument, port 1 is used.
 
@@ -259,38 +270,18 @@ transport = midi.connect(2)
 
 with the sample setup above we could have a keyboard input on port 1, and a cc controller on port 2. these would each get their own `event` functions. but we also made a second device table for port 2, called `transport`. all three of these device tables will work at once. the idea behind the last case being: say you have some cut-paste code you want to use from another script for doing transport control (start/stop/cc). instead of hacking up your midi event functions, you can simply copy the entire unit and it will work alongside other connections to the same port.
 
-port assignment can also happen at runtime, within a script. say we want to disable the keyboard input above:
-
-```lua
-keys:disconnect()
-```
-
-_NOTE_ the colon, not a period. `disconnect` leaves the device table `keys` floating without input or output connections.
-
-```lua
-keys:reconnect(2)
-```
-
-above, we've just re-assigned the `keys` table to port 2. these functions are useful if you want/need to do dynamic port switching: for example, selecting which midi port to use incoming midi sync. (which could easily be a PARAMETER).
-
-lastly, a script may want to find out if a DEVICE is physically connected:
-
-```lua
-keys.attached()
-```
-
-this will return `true` or `false`, based on the physical device being attached or not.
+this type of device management is workable when scripting on your own, but what if you want to dynamically allocate and reassign handling of data to each port? check out [the norns midi API reference](../reference/midi#example) for an example of flexible assignment.
 
 ## support your local library
 
-in one of the above examples we use a complex transformation to turn a note number into a frequency (something we demonstrated in study 3). it's a pretty standard musical function, so @markeats put it in a library, and here's how we use it:
+in one of the above examples we use a complex transformation to turn a note number into a frequency (something we demonstrated in study 3). it's a pretty standard musical function, so `@markeats` put it in a library, and here's how we use it:
 
 ```lua
 music = require 'musicutil'
 hz = music.note_num_to_freq(60)
 ```
 
-the library is imported with the `require` command, whereafter all of the functions within the library are available. check out the [norns function reference](https://norns.local/doc) for the default libraries (the libraries are in upper and lower case like `MusicUtil`). Additional user libraries are also available, but are maintained by individual users. See the lines [Library category](https://llllllll.co/c/library) for more.
+the library is imported with the `require` command, whereafter all of the functions within the library are available. check out the [norns function reference](../api) for the default libraries (the libraries are in upper and lower case like `MusicUtil`). Additional user libraries are also available, but are maintained by individual users. See the lines [Library category](https://llllllll.co/c/library) for more.
 
 ## midi sync, Ableton Link, modular clocks
 
@@ -422,7 +413,18 @@ m.event = function(data)
 end
 ```
 
+## reference
+### norns-specific
+- `grid` -- module to manage messages to/from a connected monome grid and send LED state data, see [`grid` API docs](../api/modules/grid) for detailed usage
+- `midi` -- module to manage messages to/from a connected MIDI devices, see [`midi` API docs](../api/modules/midi) and [midi API reference](../reference/midi) for detailed usage
+- `musicutil` -- library to perform standard musical functions, see [`MusicUtil` API docs](https://monome.org/docs/norns/api/modules/lib.MusicUtil.html) for detailed usage
+
+### general
+- `and` / `or` -- a terse combination of binary operators, see [this tutorial](http://lua-users.org/wiki/TernaryOperator) for detailed usage
+- `require` -- a higher-level function, see [Lua docs](https://www.lua.org/pil/8.1.html) for more details but suffice to say you only need to use `require` when running and loading norns libraries outside of your script folder (inside of your script folder, use `include`)
+
 ## continued
+{: .no_toc }
 
 - part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
@@ -431,6 +433,7 @@ end
 - part 5: [streams](../study-5/) // system polls, osc, file storage
 
 ## community
+{: .no_toc }
 
 ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 

@@ -14,7 +14,7 @@ If you need additional help, we're here for you! Please send an email to help@mo
 
 - *What issue did you experience?*
 - *What steps are necessary to reproduce the issue?*
-- *What additional hardware was connected to norns at the time of the issue? This includes controllers, WiFi dongles, external hubs, etc.*
+- *What additional hardware was connected to norns at the time of the issue? This includes controllers, wifi dongles, external hubs, etc.*
 - *Please attach any output printed in [maiden](../maiden/) when the issue occurs*
 
 If you're unable to supply concrete steps to reliably reproduce the issue, this will reduce our efficacy. Please understand if we point you to existing resources and ask you to verify additional info.
@@ -39,7 +39,7 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 
 If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a replacement (10 USD, shipping included, only US).
 
-If you have experienced signal strength issues and wish to replace your WiFi dongle completely, you may wish to purchase a [high gain antenna adapter](https://www.amazon.com/Panda-Wireless-PAU06-300Mbps-Adapter/dp/B00JDVRCI0).
+If you have experienced signal strength issues and wish to replace your wifi dongle completely, you may wish to purchase a [high gain antenna adapter](https://www.amazon.com/Panda-Wireless-PAU06-300Mbps-Adapter/dp/B00JDVRCI0).
 
 #### charger
 {: .no_toc }
@@ -96,7 +96,7 @@ If you notice that shield doesn't seem to see the entire capacity of your microS
 
 ### wifi troubleshooting
 
-Since shield's Raspberry Pi has built-in WIFI, these steps apply to stock norns only
+Since shield's Raspberry Pi has built-in wifi, these steps apply to stock norns only
 {: .label}
 
 If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources.
@@ -258,13 +258,13 @@ All data that you create with norns -- scripts you've downloaded or created, aud
 
 #### via wifi
 
-To access the `dust` folder from another computer on the same WIFI network, follow the steps in the [wifi + files: transfer](../wifi-files/#transfer) docs.
+To access the `dust` folder from another computer on the same wifi network, follow the steps in the [wifi + files: transfer](../wifi-files/#transfer) docs.
 
 To back up or restore your `dust` folder, follow the steps in the [wifi + files: backup](../wifi-files/#backup) docs.
 
 #### via usb
 
-WIFI is the most straightforward way to back up your norns. These instructions are provided for times when you are unable to connect norns to WiFi (no dongle, no network, etc).
+wifi is the most straightforward way to back up your norns. These instructions are provided for times when you are unable to connect norns to wifi (no dongle, no network, etc).
 {: .label}
 
 If you have a stock norns, connect it to a second computer via [serial](../wifi-files/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
@@ -275,7 +275,7 @@ If you have a stock norns, connect it to a second computer via [serial](../wifi-
 
 #### via sd card (shield only)
 
-On Windows + MacOS, the norns partition on your SD card is unfortunately not accessible by simply inserting it into an SD card reader. We recommend using the WIFI steps above.
+On Windows + MacOS, the norns partition on your SD card is unfortunately not accessible by simply inserting it into an SD card reader. We recommend using the wifi steps above.
 
 For the adventurous, here are steps to surface the ext4 filesystem: [Windows](https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/) and [MacOS](https://www.maketecheasier.com/mount-access-ext4-partition-mac/).
 
@@ -380,7 +380,7 @@ Re-type your new password and you should be all set.
 
 Capturing a screenshot of your norns can be a helpful tool for creating illustrative documentation or sharing UI ideas.
 
-With your norns powered-on and connected to the same WIFI network as your computer, connect to maiden. Then, execute this line in maiden's REPL (replacing <FILENAME> with something unique):
+With your norns powered-on and connected to the same wifi network as your computer, connect to maiden. Then, execute this line in maiden's REPL (replacing <FILENAME> with something unique):
 
 ```lua
 _norns.screen_export_png("/home/we/dust/<FILENAME>.png")

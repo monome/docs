@@ -262,12 +262,12 @@ To access the `dust` folder from another computer on the same WIFI network, foll
 
 To back up or restore your `dust` folder, follow the steps in the [wifi + files: backup](../wifi-files/#backup) docs.
 
-#### via usb <a name="backup-no-wifi"></a>
+#### via usb
 
 WIFI is the most straightforward way to back up your norns. These instructions are provided for times when you are unable to connect norns to WiFi (no dongle, no network, etc).
 {: .label}
 
-If you have a stock norns, connect via [serial](../wifi-files/#serial). If you have a shield, connect via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
+If you have a stock norns, connect it to a second computer via [serial](../wifi-files/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
 
 - Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
 - If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`

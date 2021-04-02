@@ -6,6 +6,7 @@ nav_order: 6
 ---
 
 # norns: help
+{: .no_toc }
 
 Between this page and the search bar above, you should be able to self-solve most norns troubles that you'd run into.
 
@@ -20,66 +21,40 @@ If you're unable to supply concrete steps to reliably reproduce the issue, this 
 
 For support with specific scripts and libraries, please visit [lines](https://llllllll.co) and search for the script's thread.
 
-### sections
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
-- [everything froze](#frozen)
-- [replacing parts](#replacing-parts) 
-  - [increase storage](#storage)
-- [wifi troubleshooting](#wifi-troubleshooting)
-- [updating + managing apps](#update-apps)
-- [restoring deleted system folders](#code-folder)
-- [error messages](#error-messages)
-- updating norns
-  - [without WiFi](#manual-update)
-  - [fresh install](#fresh-install)
-- [backing up norns to USB](#backup-no-wifi)
-- [change passwords on norns](#change-passwd)
-- [taking a screenshot](#png)
-- [audio input/output hardware specs](#audio-specs)
-- [can I plug modular signals into norns directly?](#modular-levels)
-- [additional q's](#faq)
+## hardware
 
-## everything froze <a name = "frozen"></a>
+### replacing parts
 
-If you ever experience a freeze that you can't recover from, there's a special button combination which will gently restart the software.
-
-- First, press and hold K3
-
-- While K3 is held, press and hold K2
-
-- While K3 and K2 are held, press and hold K1
-
-- Hold all three keys down for 10 seconds
-
-*The order matters.*
-
-If multiple attempts of this combination fail, these options are last resorts:
-
-- stock norns have a little white button on the rear side which provides a hard reset
-
-- shields do not have a reset button, so the only option is to pull power
-
-There should not be a freeze which cannot be fixed by the K3, K2, K1 process. Use the brute-force approach only if you cannot recover using the suggested method.
-
-## replacing parts
-
-### wifi nub
+#### wifi nub
+{: .no_toc }
 
 If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a replacement (10 USD, shipping included, only US).
 
 If you have experienced signal strength issues and wish to replace your WiFi dongle completely, you may wish to purchase a [high gain antenna adapter](https://www.amazon.com/Panda-Wireless-PAU06-300Mbps-Adapter/dp/B00JDVRCI0).
 
-### charger
+#### charger
+{: .no_toc }
 
 The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 5.25V. A direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/1994).
 
-### battery
+#### battery
+{: .no_toc }
 
 Before you purchase a new battery, please consider that your norns may not be reporting battery performance accurately. To test, fully drain the battery and then charge it fully.
 
 If performance does not improve, then a direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/2011) or by emailing help@monome.org for a replacement (15 USD, shipping included, only US).
 
-### encoders
+#### encoders
+{: .no_toc }
 
 On early batches of norns, some users have reported that the encoder values are "jumpy". To verify that your encoders are affected, please perform this simple test:
 
@@ -93,17 +68,39 @@ Replacement encoders can be purchased [from Octopart](https://octopart.com/pec11
 
 Please reference this [step-by-step video](https://vimeo.com/373181868/f58ea21a31) detailing the fix.
 
-### storage
+### extending storage
 
-The Raspberry Pi at the heart of stock norns can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage. Just search `raspberry pi cm3+ 32gb` to find a retailer.
+#### stock norns
 
-There is no soldering needed, but you will have to disassemble your norns a bit (the first few minutes of [this video](https://vimeo.com/373181868/f58ea21a31) details how).
+Many of the original stock norns came equipped with a CM3 (Compute Module 3) which has 4gb of storage. This can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage. Just search `raspberry pi cm3+ 32gb` to find a retailer.
 
-Many thanks to `@mutedial` for [compiling replacement steps](https://llllllll.co/t/norns-cm3-installation/19985/103).
+There is no soldering needed, but you will have to disassemble your norns a bit. Please follow this tutorial video:
 
-## wifi troubleshooting
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/523980765?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
-_nb. If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources._
+#### shield
+
+Since shield's Rapsberry Pi runs off of an SD card, which can cover a wide range of capacities, the software doesn't know how much space it's allowed to allocate for itself.
+
+If you notice that shield doesn't seem to see the entire capacity of your microSD card, this is normal! You'll just need to let shield expand its filesystem:
+
+- open a terminal on a computer connected to the same network as your shield
+- execute: `ssh we@norns.local`
+  - if this doesn't find your shield, you can also use `ssh we@IP_ADDRESS_OF_SHIELD`, eg. `ssh we@192.168.1.100`
+- password: `sleep`
+- execute: `sudo raspi-config`
+- navigate to `Advanced` and hit RETURN
+- select `expand filesystem` and hit RETURN
+- lots of activity will happen. when it's done, power down and reboot. if you get any errors, reboot again.
+- if you SSH back into norns and execute `df -h`, you'll see the newly expanded capacity
+
+### wifi troubleshooting
+
+Since shield's Raspberry Pi has built-in WIFI, these steps apply to stock norns only
+{: .label}
+
+If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources.
+{: .label .label-grey}
 
 If you are consistently unable to connect your norns to wifi through the ['Network Connect' steps outlined here](../play/#network-connect), please perform the following steps:
 
@@ -123,39 +120,80 @@ If you are consistently unable to connect your norns to wifi through the ['Netwo
    - Screenshots of the terminal screens in step 4
    - Your router config (WPA, WEP, etc)
 
-## help: how do I add/update apps on my norns? <a name="update-apps"></a>
+### audio input/output hardware specs <a name="audio-specs"></a>
 
-As of 10.28.2019, maiden (the web-based editor built into norns) now features a [project manager](../maiden/#project-manager) to help facilitate project discovery, installation, and upgrades.
+**Codec**
 
-If you are updating a project through the project manager that was not installed by using the project manager, you will receive an error that the project cannot be found in the catalog. Please delete the previously installed version and reinstall through project manager, which establishes the necessary git files for future updates.
+The audio codec is a CS4720.
+
+The codec is externally clocked with a crystal (for no jitter), and the sample rate is fixed at 48k.
+
+**Inputs**
+
+The input jacks are configured for balanced or unbalanced. Input impedance is 10k.
+
+**Outputs**
+
+The output jacks are configured for balanced or unbalanced. Output impedance is 590 ohm.
+
+Output from the codec is connected to the headphone driver as well.
+
+**Headphone driver**
+
+The headphone driver is a TPA6130A2. Volume is controlled via i2c with a simple protocol, so no driver is necessary, though I think one exists.
+
+The i2c lines are connected to i2c0.
+
+### can I plug modular signals into norns directly? <a name="modular-levels"></a>
+
+NO!
+{: .label .label-red}
+
+norns (both stock and shield) has line-level inputs only -- sending modular signals, which run very hot, through these inputs may result in damage. Please attenuate your modular signals before sending them into norns with an interface module like [Intellijel's Audio Interface](https://www.modulargrid.net/e/intellijel-audio-interface-ii).
+
+## software
+
+### recovering from freezes <a name = "frozen"></a>
+
+If you experience a freeze that you can't recover from, there's a special button combination which will gently restart the software.
+
+- First, press and hold K3
+
+- While K3 is held, press and hold K2
+
+- While K3 and K2 are held, press and hold K1
+
+- Hold all three keys down for 10 seconds
+
+*The order of the keypresses matters: K3 then add K2 then add K1*
+{: .label}
+
+If multiple attempts of this combination fail, these options are last resorts:
+
+- stock norns have a little white button on the rear side which provides a hard reset
+
+- shields do not have a reset button, so the only option is to pull power
+
+Use the brute-force approach only if you cannot recover using the suggested method
+{: .label .label-grey}
+
+### adding + updating scripts <a name="update-apps"></a>
+
+maiden (the web-based editor built into norns) features a [project manager](../maiden/#project-manager) to help facilitate project discovery, installation, and upgrades.
+
+To add a script that isn't hosted on maiden, you can [fetch it using maiden's REPL](../maiden/#fetch.)
+
+If you are updating a project through maiden's project manager that was not originally installed via the project manager, you will receive an error that the project cannot be found in the catalog. Please delete the previously installed version and reinstall through project manager, which establishes the necessary git files for future updates.
 
 lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns) for projects tagged `norns`. In each project's thread, you'll find in-depth conversation as well as performance examples and tutorials. Projects for norns are primarily built and maintained by the lines community, so any questions/trouble with a specific project should be directed to its thread.
 
-## help: how do I clear a currently running app/script? <a name="clear-script"></a>
+### clear a currently-running script <a name="clear-script"></a>
 
 Press K1 to toggle from PLAY to HOME. Highlight `SELECT` and hold K1 -- you'll see `CLEAR` in the middle of the screen. Press K3 to clear the currently running script.
 
-## help: I've deleted the `code` folder! <a name="code-folder"></a>
+### error messages
 
-### getting the `code` folder back
-
-1. Download [Cyberduck](http://cyberduck.io) -- this is an app that will connect to your norns and show its file system like it's a standard computer.
-2. [Follow these instructions to connect to norns through Cyberduck](../sftp/).
-3. After you connect to norns through Cyberduck, double click the `dust`​ folder and you should see `audio`​ and `data`.
-4. In Cyberduck, click 'Action' and 'New Folder'. This will create a new folder alongside the other two. Name this folder `code`​.
-5. Keep this window open for the next phase!
-
-### restoring apps into the `code` folder
-
-1. Download [we](https://github.com/monome/we/archive/master.zip), which is a collection of engines from monome.
-2. Unzip the folder, which will be named `we-master`​.
-3. IMPORTANT: Rename this folder `we`​.
-4. Drag the newly named `we`​ folder into the `code`​ folder you made in the previous section's step 4.
-5. You have now install the standard engines! Please reference the "how do I install/update an app onto my norns?" section for help populating your `code` folder with community apps.
-
-## error messages
-
-### DUPLICATE ENGINES
+#### DUPLICATE ENGINES
 
 Supercollider fails to load if you have multiple copies of the same class, which are commonly contained in duplicate `.sc` files inside of `dust` (the parent folder for the projects installed on norns).
 
@@ -174,7 +212,7 @@ In this example, the `Engine_Ack.sc` engine is duplicated in two projects: `ack`
 
 If the issue persists or maiden does not report duplicate engines, please email help@monome.org. Keep in mind that unless you're familiar with Supercollider, do not tamper with its internal folder structure. All typical norns functionality can be handled through the maiden project manager or the `dust` folder.
 
-### LOAD FAIL
+#### LOAD FAIL
 
 This simply means there is an error in the script you're trying to load.
 
@@ -188,52 +226,67 @@ A common problem may be a missing engine. Check the output for something like:
 
 In this example, the script requires `Timber`, so go find it in the Project Manager and install it. If you had just recently installed `Timber`, you need to restart your norns through SLEEP or entering `;restart` in the matron REPL.
 
-### SUPERCOLLIDER FAIL
+#### SUPERCOLLIDER FAIL
 
-This indicates that something is wrong with Supercollider, which could be due to various issues. First always just try rebooting via `SYSTEM > SLEEP`.
+This indicates that something is wrong with SuperCollider, which could be due to various issues. First always just try rebooting via `SYSTEM > SLEEP`.
 
 If you're able to load maiden, there are two tabs in the main REPL area (above the `>>` prompt at the bottom of your screen). The first tab is for `matron`, the control program that runs scripts -- the other is `sc` for SuperCollider. Click into the `sc` tab and type `;restart` into the REPL. That should show you what is going on inside of SuperCollider.
 
 - You might have a [duplicate engine](#duplicate-engines).
 - You might be [missing a required engine](#load-fail).
-- If an update was recently applied, it may be necessary to [manually re-apply it](#manual-update).
+- If an update was recently applied, it may be necessary to [manually re-apply it](#manual--offline-update-).
 - If this doesn't help, you may need to re-flash your norns with a clean image (after backing up any of your data).
 - If this doesn't fix it, there may be a hardware issue: e-mail help@monome.org.
 
-### FILE NOT FOUND
+#### FILE NOT FOUND
 
 If a newly-renamed script throws a `file not found` error in maiden, it is likely because the system has not registered the name change -- even though you see the new name in the UI. Perform a hard refresh on your browser ([how?](https://fabricdigital.co.nz/assets/How-to-hard-refresh-browser-infographic.jpg)).
 
-## manual / offline update <a name="manual-update"></a>
+### reboot via maiden
 
-- Download and copy [update file (210114 - Jan 14 2021)](https://github.com/monome/norns/releases/download/v2.4.8/norns210114.tgz) to a FAT-formatted USB drive
-- Insert the disk to norns and power up.
-- Connect via [serial](../maiden/#other-access).
-- Copy file to `~/update/`:
+To reboot matron, the Lua layer of norns, execute `;restart` in the `matron` tab of the maiden REPL.
 
-```
-sudo cp /media/usb0/*.tgz ~/update/
-```
+To reboot SuperCollider, the synthesis layer of norns, execute `;restart` in the `supercollider` tab of the maiden REPL.
 
-- Unpack and run update:
+To perform a quick reboot of the entire norns stack (for instance, when installing a script with a synth engine), reboot SuperCollider *then* reboot matron.
 
-```
-cd ~/update
-tar xzvf norns210114.tgz
-cd 210114
-./update.sh
-```
+## data management
 
-- Upon completion type `sudo shutdown now`.
+### back up norns
 
-## fresh install
+All data that you create with norns -- scripts you've downloaded or created, audio you've imported or recorded, MIDI mappings and presets, etc -- is stored in a central location: `dust`.
+
+#### via wifi
+
+To access the `dust` folder from another computer on the same WIFI network, follow the steps in the [wifi + files: transfer](../wifi-files/#transfer) docs.
+
+To back up or restore your `dust` folder, follow the steps in the [wifi + files: backup](../wifi-files/#backup) docs.
+
+#### via usb <a name="backup-no-wifi"></a>
+
+WIFI is the most straightforward way to back up your norns. These instructions are provided for times when you are unable to connect norns to WiFi (no dongle, no network, etc).
+{: .label}
+
+If you have a stock norns, connect via [serial](../wifi-files/#serial). If you have a shield, connect via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
+
+- Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
+- If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
+- Shutdown with `sudo shutdown now`
+
+#### via sd card (shield only)
+
+On Windows + MacOS, the norns partition on your SD card is unfortunately not accessible by simply inserting it into an SD card reader. We recommend using the WIFI steps above.
+
+For the adventurous, here are steps to surface the ext4 filesystem: [Windows](https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/) and [MacOS](https://www.maketecheasier.com/mount-access-ext4-partition-mac/).
+
+### fresh install
 
 *nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/wifi-files/#update). fresh installing will wipe your norns, so back up any data you need before proceeding.*
 
 - [norns201202.img.zip](https://github.com/monome/norns-image/releases/download/201202/norns201202.img.zip)
 - [norns201202-shield.img.zip](https://github.com/monome/norns-image/releases/download/201202/norns201202-shield.img.zip) (Pi 3b+ and Pi 3b only)
 
-### stock norns fresh install process
+#### stock norns
 
 By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows. If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
 
@@ -255,9 +308,12 @@ Steps:
    7e. After it's completed, put norns to sleep.  
 8. Update via SYSTEM  > UPDATE
 
-### shield fresh install process
+#### shield
 
-Use [etcher](https://www.balena.io/etcher/) to flash your SD card (*nb. use a high quality one. if you have trouble, try a different card*)
+Use [etcher](https://www.balena.io/etcher/) to flash your SD card
+
+Be sure to use a high quality one. If you have trouble, please try a different card.
+{: .label}
 
 If your SD card seems a lot more full than it should be, you'll need to expand the filesystem:  
 
@@ -271,23 +327,38 @@ If your SD card seems a lot more full than it should be, you'll need to expand t
 8. if you SSH back into norns and execute `df -h`, you'll see the newly expanded capacity.
 9. Update via SYSTEM > UPDATE
 
-## back up norns to USB <a name="backup-no-wifi"></a>
+### manual / offline update
 
-nb. [SFTP through Cyberduck](../sftp/) is the most straightfoward way to back up your norns. These instructions are provided for times when you are unable to connect norns to WiFi (no dongle, no network, etc).
+- Download and copy the [latest release's`.tgz` update file](https://github.com/monome/norns/releases) to a FAT-formatted USB drive
+- Insert the USB drive into norns and power up.
+- If using a stock norns, connect via [serial](../wifi-files/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh).
+- Copy file to `~/update/`:
 
-First, connect via [serial](../maiden/#other-access) and then insert a USB stick into norns.
+```
+sudo cp /media/usb0/*.tgz ~/update/
+```
 
-- Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
-- If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
-- Shutdown with `sudo shutdown now`
+- Unpack and run update:
 
-## change passwords on norns <a name="change-passwd"></a>
+```
+cd ~/update
+tar xzvf norns210114.tgz
+cd 210114
+./update.sh
+```
+
+- Upon completion type `sudo shutdown now`.
+
+If performing these steps on a shield, you won't see the standard shutdown message reminding you to wait until the non-red LED goes out -- you still need to wait!
+{: .label .label-red}
+
+### change passwords on norns <a name="change-passwd"></a>
 
 For security reasons (a device exposed to wifi should not have a widely-known password), you may want to change the default password for the `we` user.
 
-### login / ssh
+#### login / ssh
 
-To change the login/ssh password for user `we`, log in to the norns via `ssh`. The command
+To change the login/ssh password for user `we`, log in to the norns via [ssh](../wifi-files/#ssh. The command
 
 ```
 passwd
@@ -295,7 +366,7 @@ passwd
 
 will prompt you for the current and new password.
 
-### Samba
+#### Samba
 
 The `smb://` remote login password does not automatically change when `passwd` changes. Although Samba is a low-security, local network project, it makes sense to set its login credentials to match the newly set user password. This can be done with:
 
@@ -305,7 +376,7 @@ sudo smbpasswd -a we
 
 Re-type your new password and you should be all set.
 
-## taking a screenshot <a name="png"></a>
+### taking a screenshot <a name="png"></a>
 
 Capturing a screenshot of your norns can be a helpful tool for creating illustrative documentation or sharing UI ideas.
 
@@ -338,34 +409,6 @@ For example:
 ```bash
 magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr.png
 ```
-
-## what are the audio input/output hardware specs? <a name="audio-specs"></a>
-
-**Codec**
-
-The audio codec is a CS4720.
-
-The codec is externally clocked with a crystal (for no jitter), and the sample rate is fixed at 48k.
-
-**Inputs**
-
-The input jacks are configured for balanced or unbalanced. Input impedance is 10k.
-
-**Outputs**
-
-The output jacks are configured for balanced or unbalanced. Output impedance is 590 ohm.
-
-Output from the codec is connected to the headphone driver as well.
-
-**Headphone driver**
-
-The headphone driver is a TPA6130A2. Volume is controlled via i2c with a simple protocol, so no driver is necessary, though I think one exists.
-
-The i2c lines are connected to i2c0.
-
-## can I plug modular signals into norns directly? <a name="modular-levels"></a>
-
-NO! norns (both stock and shield) has line-level inputs only -- sending modular signals, which run very hot, through these inputs may result in damage. Please attenuate your modular signals before sending them into norns with an interface module like [Intellijel's Audio Interface](https://www.modulargrid.net/e/intellijel-audio-interface-ii).
 
 ## additional a's to faq's <a name="faq"></a>
 

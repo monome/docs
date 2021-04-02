@@ -163,7 +163,7 @@ When connected via WIFI you can SSH into norns from another computer on the same
 
 ### serial
 
-Without WIFI, you can connect to norns via USB-UART by connecting the power cable to your computer.
+Without WIFI, you can connect to norns via serial / USB-UART by connecting the power cable to your computer.
 
 Serial / USB-UART connection is only applicable to stock norns, not shield
 {: .label .label-grey}

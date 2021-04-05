@@ -14,16 +14,16 @@ has_toc: false
 
 ### resources:
 
-- [first](norns-first.pdf) a quick, printable introduction.
-- [play](../norns/play) is a longer introduction and a great starting point.
-- [wifi + files](../norns/wifi-files) describes network connections and file transfers.
-- [maiden](../norns/maiden) is how to manage projects and import scripts.
-- [apps](../norns/app) showcases the community scripts pre-loaded on norns.
-- [control + clock](../norns/control-clock) walks through integrating norns with other tools.
-- [scripting](../norns/scripting) has studies, tutorials, and reference material.
-- [help](../norns/help) for deeper device and system troubleshooting.
+- [first](norns-first.pdf): a quick, printable introduction.
+- [play](../norns/play): a longer introduction and a great starting point.
+- [wifi + files](../norns/wifi-files): network connections and file transfers.
+- [maiden](../norns/maiden): manage projects and import scripts.
+- [apps](../norns/app): learn more about some of the community scripts pre-loaded on norns.
+- [control + clock](../norns/control-clock): integrate norns with other tools.
+- [scripting](../norns/scripting): scripting studies, tutorials, and reference material.
+- [help](../norns/help): deeper device and system troubleshooting.
 
-current version: [210114](https://l.llllllll.co/norns) (Jan 14 2021)
+current version: [210323](https://l.llllllll.co/norns) (Mar 23 2021)
 
 ### contributing
 

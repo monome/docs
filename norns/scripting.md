@@ -11,48 +11,11 @@ has_toc: false
 
 code as musical language.
 
-## norns studies
+scripts describe to norns how to function. through scripts, an encoder can become a scrollable playhead, a button might trigger a flurry of arpeggios.
 
-comprehensive tutorials on individual elements of the norns ecosystem. through these resources, you'll learn how to translate your musical ideas into scripts and how to extend those scripts to speak with all kinds of friends.
+you don't need to know how to program before you're able to write a script. wanting to learn is the fundamental prerequisite, the same as any other language. 
 
-### core concepts:
+to help bridge the gap between left and right brain, we've developed and collected a number of norns-specific resources. through these landing pages, you'll learn more about the artist-centric programming interface at the core of norns:
 
-- [first light](../study-0/) // learning to see. edit a script.
-- [many tomorrows](../study-1/) // variables, simple maths, keys + encoders
-- [patterning](../study-2/) // screen drawing, for/while loops, tables
-- [spacetime](../study-3/) // functions, parameters, time
-- [physical](../study-4/) // incorporating grids + midi
-- [streams](../study-5/) // system polls, osc, file storage
-- [softcut](../softcut/) // a multi-voice sample playback and recording system built into norns
-- [clocks](../clocks/) // create timed and clock-synced function calls: loops, repetition, and delays
-
-### micro:
-- [athenaeum](https://github.com/northern-information/athenaeum) // a repository of study, spike, and sample scripts from [Tyler Etters](https://nor.the-rn.info)
-- [grid recipes](../grid-recipes/) // short snippets of code for canonical grid interactions
-- [norns: tutorial](https://llllllll.co/t/norns-tutorial/23241) // chunked examples that reveal the idiosyncrasies of the core norns concepts from [Devine Lu Linvega](https://xxiivv.com)
-
-## reference
-
-- [script reference](../script-reference) // summary for quick reference
-- [script faq](../script-faq) // some questions and answers
-
-## lua links
-
-while you don't need to master the entire lua language to make the most of norns, you eventually may be interested in checking out more traditional programming texts.
-
-- [programming in lua (first edition)](https://www.lua.org/pil/contents.html)
-- [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
-- [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)
-- [lua in 15 mins](http://tylerneylon.com/a/learn-lua/)
-
-
-## community
-
-ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
-
-additional community resources:
-
-- [norns study group](https://study.norns.online) // a discord server for dialogue-driven learning
-- [song](llllllll.co/t/39437) // an open-source song
-
-edits to these pages welcome, see [monome/docs](http://github.com/monome/docs)
+- [studies](../studies) // comprehensive tutorials on individual components of norns, highly beginner-friendly
+- [reference](../reference) // an example-centric version of the norns API, for advanced use

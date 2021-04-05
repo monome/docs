@@ -4,7 +4,7 @@ parent: scripting
 grand_parent: norns
 has_children: false
 title: reference
-nav_order: 1
+nav_order: 2
 redirect_from: /norns/script-reference/
 redirect_from: /norns/script-reference
 has_toc: false

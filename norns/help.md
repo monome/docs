@@ -120,6 +120,25 @@ If you are consistently unable to connect your norns to wifi through the ['Netwo
    - Screenshots of the terminal screens in step 4
    - Your router config (WPA, WEP, etc)
 
+### norns shield boot troubleshooting
+
+If your shield does not seem to be booting, the first thing to check is if the "startup tone" is occurring from your shield's output. Connect headphones or a speaker to shield's output (demarcated by the outward-facing arrow) and power it up -- within 20 seconds or so, you should hear a sine-like tone which indicates the norns OS has been successfully loaded.
+
+If you do not hear a startup tone, the norns OS is not booting. The best next step is re-flashing your SD card following [these steps](../shield/#flashing-microsd-card).
+
+- If you do not hear a startup tone after a successful re-flash, we recommend confirming that your Raspberry Pi is operational. The easiest way to do this is to remove the Pi from the shield, attach it to an HDMI monitor/TV, and power the Pi separately. If the Pi is operational, you'll see a rainbow square on your monitor/TV.
+  - If your Pi is operational, your shield might require repair/re-touching. See the *`next steps`* section below.
+  - If your Pi is not operational, replacing the Pi should resolve the issue.
+
+- If you do hear a startup tone after a successful re-flash, but do not see any activity on the screen, the screen or the header might be a point of failure. See the *`next steps`* section below.
+
+**next steps**
+
+- If you purchased a fully-built unit (no soldering) from monome, please email help@monome.org for service or replacement.
+- If you soldered the unit yourself, please post images of the board to [this thread](https://llllllll.co/t/diy-norns-shield/27638/). Note that this is a community resource, so please be respectful of time and energy limitations.
+- If you purchased it from a third-party who soldered the components, please reach out to them for resolution.
+
+
 ### audio input/output hardware specs <a name="audio-specs"></a>
 
 **Codec**

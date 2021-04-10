@@ -139,7 +139,7 @@ If you do not hear a startup tone, the norns OS is not booting. The best next st
 - If you purchased it from a third-party who soldered the components, please reach out to them for resolution.
 
 
-### audio input/output hardware specs <a name="audio-specs"></a>
+### audio input/output hardware specs {#audio-specs}
 
 **Codec**
 
@@ -163,7 +163,7 @@ The headphone driver is a TPA6130A2. Volume is controlled via i2c with a simple 
 
 The i2c lines are connected to i2c0.
 
-### can I plug modular signals into norns directly? <a name="modular-levels"></a>
+### can I plug modular signals into norns directly? {#modular-levels}
 
 NO!
 {: .label .label-red}
@@ -172,7 +172,7 @@ norns (both stock and shield) has line-level inputs only -- sending modular sign
 
 ## software
 
-### recovering from freezes <a name = "frozen"></a>
+### recovering from freezes {#frozen}
 
 If you experience a freeze that you can't recover from, there's a special button combination which will gently restart the software.
 
@@ -196,7 +196,7 @@ If multiple attempts of this combination fail, these options are last resorts:
 Use the brute-force approach only if you cannot recover using the suggested method
 {: .label .label-grey}
 
-### adding + updating scripts <a name="update-apps"></a>
+### adding + updating scripts {#update-scripts}
 
 maiden (the web-based editor built into norns) features a [project manager](../maiden/#project-manager) to help facilitate project discovery, installation, and upgrades.
 
@@ -206,7 +206,7 @@ If you are updating a project through maiden's project manager that was not orig
 
 lines also has a dedicated [Library](https://llllllll.co/search?q=%23library%20tags%3Anorns) for projects tagged `norns`. In each project's thread, you'll find in-depth conversation as well as performance examples and tutorials. Projects for norns are primarily built and maintained by the lines community, so any questions/trouble with a specific project should be directed to its thread.
 
-### clear a currently-running script <a name="clear-script"></a>
+### clear a currently-running script {#clear-script}
 
 Press K1 to toggle from PLAY to HOME. Highlight `SELECT` and hold K1 -- you'll see `CLEAR` in the middle of the screen. Press K3 to clear the currently running script.
 
@@ -371,7 +371,7 @@ cd 210114
 If performing these steps on a shield, you won't see the standard shutdown message reminding you to wait until the non-red LED goes out -- you still need to wait!
 {: .label .label-red}
 
-### change passwords on norns <a name="change-passwd"></a>
+### change passwords on norns {#change-password}
 
 For security reasons (a device exposed to wifi should not have a widely-known password), you may want to change the default password for the `we` user.
 
@@ -395,7 +395,7 @@ sudo smbpasswd -a we
 
 Re-type your new password and you should be all set.
 
-### taking a screenshot <a name="png"></a>
+### taking a screenshot {#png}
 
 Capturing a screenshot of your norns can be a helpful tool for creating illustrative documentation or sharing UI ideas.
 
@@ -429,7 +429,7 @@ For example:
 magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr.png
 ```
 
-## additional a's to faq's <a name="faq"></a>
+## additional a's to faq's {#more-faq}
 
 - Imported audio must be 48khz, bit depth is irrelevant.
 

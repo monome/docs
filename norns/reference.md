@@ -29,7 +29,7 @@ has_toc: false
 | metro                              | High-resolution time-based counter                                                  |
 | [midi](midi)                       | Connect a script to MIDI hardware                                                   |
 | osc                                | Connect a script to OSC streams                                                     |
-| params                             | Create script parameters, displayed in the PARAM menu                               |
+| [params](params)                   | Create script parameters, displayed in the PARAMETERS menu                          |
 | poll                               | System polling for CPU, incoming/outgoing amplitude, and incoming pitch             |
 | screen                             | Draw to the norns on-board screen                                                   |
 | softcut                            | Two audio buffers which can be recorded into and played by six individual voices    |

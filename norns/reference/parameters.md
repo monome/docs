@@ -19,7 +19,7 @@ permalink: /norns/reference/params
 | params:add_control(id, name, controlspec, formatter)            | Create a parameter set for controlspec formatting (see [controlspec](/docs/norns/reference/controlspec) for more details)                                                                     |
 | params:add_file(id, name, path)                                 | Create a parameter set for file selection                                                                                                                                                     |
 | params:add_text(id, name, text)                                 | Create a parameter set for text entry                                                                                                                                                         |
-| params:add_taper(id, name, min, max, default, k, units)         | Create a parameter set for linear numbers with a formatter                                                                                                                                    |
+| params:add_taper(id, name, min, max, default, k, units)         | Create a parameter set for non-linear movement                                                                                                                                                |
 | params:add_trigger(id, name)                                    | Create a parameter set for an "on/off" action trigger                                                                                                                                         |
 | params:add_binary(id, name, behavior, default)                  | Create a parameter set for either momentary, toggle, or trigger behavior with a default state                                                                                                 |
 | params:print()                                                  | Print the index, name, and value for each parameter to the REPL                                                                                                                               |
@@ -35,8 +35,8 @@ permalink: /norns/reference/params
 | params:t(index)                                                 | Returns a given parameter's type                                                                                                                                                              |
 | params:get_range(index)                                         | Returns the min/max range of a parameter                                                                                                                                                      |
 | params:get_allow_pmap(index)                                    | Returns whether a parameter is able to be MIDI-mapped (boolean)                                                                                                                               |
-| params:hide(id)                                                 | Hides the specified parameter in the UI menu, but parameter index and data is still retained. Use `_menu.params_rebuild()` after hiding to dynamically rebuild the menu UI.                   |
-| params:show(id)                                                 | Shows the specified parameter in the UI menu, after it is hidden (not required for default parameter building). Use `_menu.params_rebuild()` after hiding to dynamically rebuild the menu UI. |
+| params:hide(id)                                                 | Hides the specified parameter in the UI menu, but parameter index and data is still retained. Use `_menu.rebuild_params()` after hiding to dynamically rebuild the menu UI.                   |
+| params:show(id)                                                 | Shows the specified parameter in the UI menu, after it is hidden (not required for default parameter building). Use `_menu.rebuild_params()` after hiding to dynamically rebuild the menu UI. |
 | params:visible(id)                                              | Returns whether a parameter is visible in the UI menu (boolean)                                                                                                                               |
 | params:write(filename,name)                                     | Save a `.pset` file of all parameters' current states to disk                                                                                                                                 |
 | params:read(filename, silent)                                   | Read a `.pset` file from disk, restoring saved parameter states, with an option to avoid triggering parameters' associated actions                                                            |
@@ -47,7 +47,64 @@ permalink: /norns/reference/params
 ### example
 
 ```lua
--- coming soon
+MusicUtil = require "musicutil"
+math.randomseed(os.time())
+
+function init()
+  params:add_separator("test script")
+  params:add_group("example group",3)
+  for i = 1,3 do
+    params:add{
+      type = "option",
+      id = "example "..i,
+      name = "parameter "..i,
+      options = {"hi","hello","bye"},
+      default = i
+    }
+  end
+  params:add_number(
+    "note_number", -- id
+    "notes with wrap", -- name
+    0, -- min
+    127, -- max
+    60, -- default
+    function(param) return MusicUtil.note_num_to_name(param:get(), true) end, -- formatter
+    true -- wrap
+    )
+  local groceries = {"green onions","shitake","brown rice","pop tarts","chicken thighs","apples"}
+  params:add_option("grocery list","grocery list",groceries,1)
+  params:add_control("frequency","frequency",controlspec.FREQ)
+  params:add_file("clip sample", "clip sample")
+  params:set_action("clip sample", function(file) load_sample(file) end)
+  params:add_text("named thing", "my name is:", "")
+  params:add_taper("taper_example", "taper", 0.5, 6.2, 3.3, 0, "%")
+  params:add_separator()
+  params:add_trigger("trig", "press K3 here")
+  params:set_action("trig",function() print("boop!") end)
+  params:add_binary("momentary", "press K3 here", "momentary")
+  params:set_action("momentary",function(x) print(x) end)
+  params:add_binary("toggle", "press K3 here", "toggle",1)
+  params:set_action("toggle",function(x)
+    if x == 0 then
+      params:show("secrets")
+    elseif x == 1 then
+      params:hide("secrets")
+    end
+    _menu.rebuild_params()
+  end)
+  params:add_text("secrets","secret!!")
+  params:hide("secrets")
+  params:print()
+  random_grocery()
+end
+
+function load_sample(file)
+  print(file)  
+end
+
+function random_grocery()
+  params:set("grocery list",math.random(params:get_range("grocery list")[1],params:get_range("grocery list")[2]))  
+end
 ```
 
 ### description

@@ -197,7 +197,7 @@ At the top of this menu are controls for each component of the global audio chai
 
 Scrolling down further, we find some of the script's parameters. These are chosen by the script's author and can be adjusted by using **E3**.
 
-### managing change
+### saving presets
 
 To recall and build on the changes you've made in a future session, we can save all the parameters as a PSET (preset).
 

@@ -2,6 +2,7 @@
 layout: default
 has_children: false
 title: faq
+nav_exclude: true
 has_toc: false
 ---
 

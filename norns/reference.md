@@ -38,7 +38,7 @@ has_toc: false
 | lib/elca                           | Elementary cellular automata generator                                              |
 | lib/envgraph                       | Envelope graph drawing module                                                       |
 | lib/er                             | Euclidean rhythm generator                                                          |
-| lib/fileselect                     | File select utility                                                                 |
+| [lib/fileselect](./lib/fileselect) | File select utility                                                                 |
 | lib/filtergraph                    | Filter graph drawing module                                                         |
 | lib/filters                        | Value smoother                                                                      |
 | lib/formatters                     | PARAM menu formatter functions                                                      |
@@ -48,7 +48,7 @@ has_toc: false
 | lib/listselect                     | List select utility                                                                 |
 | lib/musicutil                      | Utility module for common music maths                                               |
 | lib/pattern                        | Timed-event pattern recorder / player                                               |
-| lib/textentry                      | Text entry UI                                                                       |
+| [lib/textentry](./lib/textentry)   | Text entry UI                                                                       |
 | lib/ui                             | UI widgets module                                                                   |
 | lib/voice                          | Experimental voice allocation module                                                |
 

@@ -78,19 +78,22 @@ There is no soldering needed, but you will have to disassemble your norns a bit.
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/523980765?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
+*nb. if you are unable to use the `screen` Terminal commands shown in the video, you can expand your filesystem following the shield steps listed in the next section*
+
 #### shield
 
-Since shield's Rapsberry Pi runs off of an SD card, which can cover a wide range of capacities, the software doesn't know how much space it's allowed to allocate for itself.
+Since shield's Raspberry Pi runs off of an SD card, which can cover a wide range of capacities, the software doesn't know how much space it's allowed to allocate for itself.
 
 If you notice that shield doesn't seem to see the entire capacity of your microSD card, this is normal! You'll just need to let shield expand its filesystem:
 
 - open a terminal on a computer connected to the same network as your shield
+  - if you are using Windows, you might need to [install the SSH client](https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/)
 - execute: `ssh we@norns.local`
   - if this doesn't find your shield, you can also use `ssh we@IP_ADDRESS_OF_SHIELD`, eg. `ssh we@192.168.1.100`
-- password: `sleep`
+- password: `sleep` (you will not see characters while typing, this is normal), press ENTER/RETURN
 - execute: `sudo raspi-config`
-- navigate to `Advanced` and hit RETURN
-- select `expand filesystem` and hit RETURN
+- navigate to `Advanced` and hit ENTER/RETURN
+- select `expand filesystem` and hit ENTER/RETURN
 - lots of activity will happen. when it's done, power down and reboot. if you get any errors, reboot again.
 - if you SSH back into norns and execute `df -h`, you'll see the newly expanded capacity
 

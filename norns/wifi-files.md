@@ -158,8 +158,9 @@ Sometimes, it might be necessary to interface with more of the bare-metal compon
 When connected via WIFI you can SSH into norns from another computer on the same network at the IP address shown in SYSTEM.
 
 - open a Terminal on a Mac/Win/Linux computer
+  - using Windows? you might need to [manually enable or install an SSH client](https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/)
 - execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`
-- password: `sleep`
+- password: `sleep` (you will not see characters while typing, this is normal), then press ENTER/RETURN
 
 ### serial
 

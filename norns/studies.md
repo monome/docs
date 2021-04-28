@@ -45,6 +45,7 @@ resources developed by other learners, script authors, and designers from our co
 - [norns: tutorial](https://llllllll.co/t/norns-tutorial/23241) // chunked examples that reveal the idiosyncrasies of the core norns concepts from [Devine Lu Linvega](https://xxiivv.com)
 - [norns development](https://github.com/p3r7/awesome-monome-norns/blob/main/README.md#development-general) // general development notes from Jordan Besly's [awesome monome norns](https://github.com/p3r7/awesome-monome-norns) repo
 - [lua libs index](https://github.com/p3r7/awesome-monome-norns/blob/main/README.md#lua-libs) // overview of norns library extensions (ibid.)
+- [nest_ studues](https://github.com/andr-ew/nest_) // a grid-focused tutorial using the nest_ UI library
 
 ### learning Lua
 

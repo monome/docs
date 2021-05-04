@@ -49,7 +49,7 @@ has_toc: false
 | lib/musicutil                      | Utility module for common music maths                                               |
 | lib/pattern                        | Timed-event pattern recorder / player                                               |
 | [lib/textentry](./lib/textentry)   | Text entry UI                                                                       |
-| lib/ui                             | UI widgets module                                                                   |
+| [lib/ui](./lib/ui)                             | UI widgets module                                                                   |
 | lib/voice                          | Experimental voice allocation module                                                |
 
 ## folder structure

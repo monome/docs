@@ -10,7 +10,7 @@ permalink: /norns/reference/lib/ui/tabs
 
 | Syntax                                  | Description                                            |
 | --------------------------------------- | ------------------------------------------------------ |
-| UI.Tabs.new (index, titles)      | Create a new instance or set of tabs, with `index` being the open or active tab and `titles` being a list of each tab's titles.                               |
+| UI.Tabs.new (index, titles)      | Create a new instance or set of tabs <br> `index` is the open or active tab: number <br> `titles` is a list of each tab's title: table                               |
 | my_tabs:set_index (index)             | Set tab index  : number |
 | my_tabs:set_index_delta (delta, wrap) | Set tab index using delta, with wrapping : number, boolean |
 | my_tabs:redraw ()                     | Redraw tab elements                             |

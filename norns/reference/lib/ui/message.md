@@ -10,7 +10,7 @@ permalink: /norns/reference/lib/ui/message
 
 | Syntax                                  | Description                                            |
 | --------------------------------------- | ------------------------------------------------------ |
-| UI.Message.new (text_array)      | Create a new instance of message using the `text_array` which is a table of strings                               |
+| UI.Message.new (text_array)      | Create a new instance of message. Takes  `text_array` of multiple strings: table of strings                               |
 | my_message:redraw()             | Displays the `text_array` with one line per string |
 
 ### query

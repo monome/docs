@@ -10,7 +10,7 @@ permalink: /norns/reference/lib/ui/dial
 
 | Syntax                                                                                | Description                    |
 | ------------------------------------------------------------------------------------- | ------------------------------ |
-| UI.Dial.new (x, y, size, value, min_value, max_value, rounding, start_value, markers, units, title) | Create a new dial           |
+| UI.Dial.new (x, y, size, value, min_value, max_value, rounding, start_value, markers, units, title) | Create a new dial.<br>`x` and `y` are the coordinates where the dial will be displayed: number<br>`size` is the size of the dial (default 22): number<br>`value` is the starting value: number<br>`min_value` and `max_value` and the minimum and maximum values: number<br>`rounding` specifies the increments, and defaults to `0.01`: number<br>`start_value` sets where the fill line is drawn from, and defaults to `0`: number<br>`markers` indicates where reference markers are to be placed on the dial: table of floats or integers<br>`units` will be displayed next to the `value` below the dial: string<br>`title` will be displayed instead of `value` and `units` below the dial: string             |
 | my_dial:set_value (number)                                                         | Set value : number             |
 | my_dial:set_value_delta (delta)                                                    | Set value using delta : number |
 | my_dial:set_marker_position (id, position)                                         | Set marker positions : number  |

@@ -10,10 +10,10 @@ permalink: /norns/reference/lib/ui/scrollinglist
 
 | Syntax                                  | Description                                            |
 | --------------------------------------- | ------------------------------------------------------ |
-| UI.ScrollingList.new (x, y, index, entries)      | Create a new instance of list. `x` and `y` are the screen coordinates where the list will begin.  `index` is the default selected item and `entries` being a list of entries.                               |
+| UI.ScrollingList.new (x, y, index, entries)      | Create a new instance of list.<br>`x` and `y` are the screen coordinates where the list will begin: numbers <br> `index` is the default selected item: number <br> `entries` is the list of entries: table                               |
 | my_scrollinglist:set_index (index)             | Set index : number |
 | my_scrollinglist:set_index_delta (delta, wrap) | Set index using delta, with wrapping : number, boolean |
-| my_scrollinglist:redraw ()                     | Redraw page with `list` elements                            |
+| my_scrollinglist:redraw ()                     | Redraw page with `ScrollingList` elements                            |
 
 ### query
 

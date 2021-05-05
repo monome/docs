@@ -10,7 +10,7 @@ permalink: /norns/reference/lib/ui/list
 
 | Syntax                                  | Description                                            |
 | --------------------------------------- | ------------------------------------------------------ |
-| UI.List.new (x, y, index, entries)      | Create a new instance of list. `x` and `y` are the screen coordinates where the list will begin.  `index` is the default selected item and `entries` being a list of entries.                               |
+| UI.List.new (x, y, index, entries)      | Create a new instance of list.<br>`x` and `y` are the screen coordinates where the list will begin: numbers <br>`index` is the default selected item : number <br>`entries` is a list of entries: table                               |
 | my_list:set_index (index)             | Set index for the instance of list : number |
 | my_list:set_index_delta (delta, wrap) | Set index for the instance of list using delta, with wrapping : number, boolean |
 | my_list:redraw()                     | Redraw page with `list` elements for the instance of list                             |

@@ -10,7 +10,7 @@ permalink: /norns/reference/lib/ui/slider
 
 | Syntax                                                                                | Description                    |
 | ------------------------------------------------------------------------------------- | ------------------------------ |
-| UI.Slider.new (x, y, width, height, value, min_value, max_value, markers, direction) | Create a new slider            |
+| UI.Slider.new (x, y, width, height, value, min_value, max_value, markers, direction) | Create a new slider<br>`x` and `y` are the coordinates where the slider will be drawn: numbers <br>`width` and `height` are the width and height of the slider: numbers <br>`value` is the desired starting value: number <br> `min_value` and `max_value` are the minimum and maximum values respectively, by which `value` is clamped: numbers <br> `markers` are reference markers along the slider: table of floats or integers <br>`direction` is the direction in which the slider moves, defaults to `up`: `up`, `down`, `left` or `right`            |
 | my_slider:set_value (number)                                                         | Set value : number             |
 | my_slider:set_value_delta (delta)                                                    | Set value using delta : number |
 | my_slider:set_marker_position (id, position)                                         | Set marker positions : number  |

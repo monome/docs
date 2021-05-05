@@ -10,7 +10,7 @@ permalink: /norns/reference/lib/ui/pages
 
 | Syntax                                  | Description                                            |
 | --------------------------------------- | ------------------------------------------------------ |
-| UI.Pages.new (index, total_pages)      | Create a new instance or set of pages, with `index` being the page index (ie, the "open" page) and `total_pages` being the number of pages in the set             |
+| UI.Pages.new (index, total_pages)      | Create a new instance or set of pages <br> `index` is the page index (ie, the "open" page): number <br>`total_pages` is the number of pages in the set: number          |
 | my_pages:set_index (index)             | Set page index : number |
 | my_pages:set_index_delta (delta, wrap) | Set page index using delta, with wrapping : number, boolean |
 | my_pages:redraw ()                     | Redraw page with `Pages` elements                           |

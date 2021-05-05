@@ -39,13 +39,16 @@ permalink: /norns/reference/lib/ui/dial
 UI = require("ui")
 
 dial = {}
+active_row = 1 -- counter to indicate which row of dials is active
 
 -- create 4 dials:
-dial[1] = UI.Dial.new(10, 3, 20, 30, 0, 127, 1, 0, {0}, 'down')
-dial[2] = UI.Dial.new(55, 3, 22, 60, 0, 127, 1, 0, {},'','left')
-dial[3] = UI.Dial.new(10, 34, 22, 72, 0, 127, 1, 0, {72},'right')
+dial[1] = UI.Dial.new(10, 3, 20, 30, 0, 127, 1, 0, {0}, 'hz')
+dial[2] = UI.Dial.new(55, 3, 22, 60, 0, 127, 1, 0, {},'','volume')
+dial[3] = UI.Dial.new(10, 34, 22, 72, 0, 127, 1, 0, {72},'ms')
 dial[4] = UI.Dial.new(55,38,18,72,0,127,1,0,{0,32,64,96,127})
--- set fourth dial to inactive:
+
+-- set dial 3 and dial 4 to inactive
+dial[3].active = false
 dial[4].active = false
 
 function redraw()
@@ -55,33 +58,40 @@ function redraw()
   for i = 1,4 do
     dial[i]:redraw()
   end
- 
   screen.update()
 end
 
-function key(n,z)
-  -- manipulating dial states + values:
-  if n == 3 and z == 1 then
-    dial[3].active = not dial[3].active
-    dial[4].active = not dial[3].active
-  elseif n == 2 then
-    dial[1]:set_value(z == 1 and 70 or 30)
-    dial[2]:set_value(z == 1 and 30 or 60)
-  end
-  redraw()
-end
-
 function enc(n,d)
+  if n == 1 then
+    active_row = util.clamp(active_row+d,1,2)
+    -- select active row of dials
+    if active_row == 1 then
+      dial[1].active = true
+      dial[2].active = true
+      dial[3].active = false
+      dial[4].active = false
+    elseif active_row == 2 then
+      dial[1].active = false
+      dial[2].active = false
+      dial[3].active = true
+      dial[4].active = true
+    end
   -- adjusting dial + marker values:
-  if n == 3 then
-    if dial[3].active then
+  elseif n == 2 then
+    if dial[1].active then
+      dial[1]:set_value_delta(d)
+    else
       dial[3]:set_value_delta(d)
       dial[3]:set_marker_position(1,dial[3].value)
+    end
+  elseif n == 3 then
+    if dial[2].active then
+      dial[2]:set_value_delta(d)
     else
       dial[4]:set_value_delta(d)
     end
-    redraw()
   end
+redraw()
 end
 ```
 

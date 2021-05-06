@@ -8,7 +8,19 @@ permalink: /norns/reference/lib/ui
 
 ### description
 
-A library to simplify the creation and use of UI elements in scripts. 
+A library to simplify the creation and use of UI elements in scripts. It offloads the code for each of the elements from your script and allows you to focus on the content.
+
+`ui` provides the tools for creating, updating, and querying different UI elements which can be used for:
+
+- providing multiple pages in your script;
+- using multiple tabs for different features; 
+- displaying lists or scrolling lists;
+- displaying information in dials or sliders; or
+- creating "pop-up" messages for errors or for feedback to users. 
+
+The UI elements can also be used in combination in a single script. 
+
+`ui` handles the redrawing of the elements on the screen. The structure of each of the UI elements also provides a convenient way of structuring your script itself, and the state of the UI elements can be queried very simply. 
 
 Contributed by @markeats. 
 

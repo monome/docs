@@ -33,10 +33,7 @@ my_titles = {'bank1', 'bank2', 'bank3', 'bank4'}
 -- create our banks 
 banks = {}
 for i=1,#my_titles do
-  banks[i] = {
-                sample = 1,
-                vol = 0
-             }
+  banks[i] = {sample = 1, vol = 0}
 end
 
 my_tabs = UI.Tabs.new(1,my_titles) -- create a new instance of tabs 

@@ -8,34 +8,33 @@ permalink: /norns/reference/lib/ui/scrollinglist
 
 ### control
 
-| Syntax                                  | Description                                            |
-| --------------------------------------- | ------------------------------------------------------ |
-| UI.ScrollingList.new (x, y, index, entries)      | Create a new instance of list.<br>`x` and `y` are the screen coordinates where the list will begin: numbers <br> `index` is the default selected item: number <br> `entries` is the list of entries: table                               |
-| my_scrollinglist:set_index (index)             | Set index : number |
-| my_scrollinglist:set_index_delta (delta, wrap) | Set index using delta, with wrapping : number, boolean |
-| my_scrollinglist:redraw ()                     | Redraw page with `ScrollingList` elements                            |
+| Syntax                                         | Description                                                                                                                                                                                                |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UI.ScrollingList.new (x, y, index, entries)    | Create a new instance of list.<br>`x` and `y` are the screen coordinates where the list will begin: numbers <br> `index` is the default selected item: number <br> `entries` is the list of entries: table |
+| my_scrollinglist:set_index (index)             | Set index : number                                                                                                                                                                                         |
+| my_scrollinglist:set_index_delta (delta, wrap) | Set index using delta, with wrapping : number, boolean                                                                                                                                                     |
+| my_scrollinglist:redraw ()                     | Redraw page with `ScrollingList` elements                                                                                                                                                                  |
 
 ### query
 
-| Syntax        | Description                            |
-| ------------- | -------------------------------------- |
-| my_scrollinglist.x         | Returns originating x-coordinate : number |
-| my_scrollinglist.y         | Returns originating y-coordinate : number |
-| my_scrollinglist.index     | Returns current index : number         |
-| my_scrollinglist.entries   | Returns list of entries : list         |
+| Syntax                   | Description                               |
+| ------------------------ | ----------------------------------------- |
+| my_scrollinglist.x       | Returns originating x-coordinate : number |
+| my_scrollinglist.y       | Returns originating y-coordinate : number |
+| my_scrollinglist.index   | Returns current index : number            |
+| my_scrollinglist.entries | Returns list of entries : list            |
 
 ### example
 
 ```lua
 UI = require("ui")
 
--- create lists of entries
-
+-- create tables of entries
 adjective = {'happy', 'angry', 'sad', 'excited', 'amused','bored','hungry','lazy'}
 animal = {'pig', 'rooster', 'dog','cat','cow','rat','mouse','ox'}
 verb = {'swam', 'ran','jumped','climbed','slid','hid','danced','stood','sat'}
 
--- creates instances of lists
+-- creates instances of scrolling lists
 scroll ={}
 
 scroll[1] = UI.ScrollingList.new(20,8,1,adjective) 
@@ -47,16 +46,15 @@ message = {}
 function redraw()
   screen.clear()
   screen.font_size(8)
-  for i = 1,3 do -- redraw each scrolling list
-    scroll[i]:redraw()
-  end
-  screen.move(0,34)
-  screen.level(15)
-  screen.text('the')
-  if message.display == true then
-    screen.clear()
+  if message.display then
     message:redraw()
-    message.display = false
+  else
+    for i = 1,3 do -- redraw each scrolling list
+      scroll[i]:redraw()
+    end
+    screen.move(0,34)
+    screen.level(15)
+    screen.text('the')
   end
   screen.update()
 end
@@ -66,19 +64,23 @@ function key(n,z)
     sentence = {'the '..adjective[scroll[1].index], animal[scroll[2].index]..' '..verb[scroll[3].index]} -- updates sentence using indexes
     message = UI.Message.new(sentence) -- creates a message using the sentence
     message.display = true -- displays message
+  elseif n == 2 and z == 0 then
+    message.display = false
   end
-redraw()
+  redraw()
 end
 
 function enc(n,d)
-  if n == 1 then
-    scroll[1]:set_index_delta(d,false) -- sets index according to delta of E1, no wrapping
-  elseif n == 2 then
-    scroll[2]:set_index_delta(d,true) -- sets index according to delta of E2, with wrapping
-  elseif n == 3 then
-    scroll[3]:set_index_delta(d,false) -- sets index according to delta of E2, with no wrapping
+  if not message.display then
+    if n == 1 then
+      scroll[1]:set_index_delta(d,false) -- sets index according to delta of E1, no wrapping
+    elseif n == 2 then
+      scroll[2]:set_index_delta(d,true) -- sets index according to delta of E2, with wrapping
+    elseif n == 3 then
+      scroll[3]:set_index_delta(d,false) -- sets index according to delta of E2, with no wrapping
+    end
+    redraw()
   end
-redraw()
 end
 ```
 
@@ -88,9 +90,6 @@ Creates a scrolling list in the on-screen UI. A maximum of five entries is shown
 
 The UI is drawn using the `redraw()` function, which needs to be called when there is a change.
 
-`UI.ScrollingList.new` returns a table which should be stored in a variable `my_scrollinglist`. The various other controls and queries can then be called using `my_scrollinglist` in the manner described above.
+`UI.ScrollingList.new` returns a table which should be stored in a variable (eg. `scroll` in the example). The various other controls and queries can then be called using  the assigned variable in the manner described above.
 
 In the example above, each instance of `ScrollingList` is stored in the three variables, `scroll[1]`, `scroll[2]`, and `scroll[3]`. 
-
-
-

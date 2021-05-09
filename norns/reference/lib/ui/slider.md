@@ -6,30 +6,30 @@ permalink: /norns/reference/lib/ui/slider
 
 ## Slider
 
-### control
+### functions
 
-| Syntax                                                                                | Description                    |
-| ------------------------------------------------------------------------------------- | ------------------------------ |
-| UI.Slider.new (x, y, width, height, value, min_value, max_value, markers, direction) | Create a new slider<br>`x` and `y` are the coordinates where the slider will be drawn: numbers <br>`width` and `height` are the width and height of the slider: numbers <br>`value` is the desired starting value: number <br> `min_value` and `max_value` are the minimum and maximum values respectively, by which `value` is clamped: numbers <br> `markers` are reference markers along the slider: table of floats or integers <br>`direction` is the direction in which the slider moves, defaults to `up`: `up`, `down`, `left` or `right`            |
-| my_slider:set_value (number)                                                         | Set value : number             |
-| my_slider:set_value_delta (delta)                                                    | Set value using delta : number |
-| my_slider:set_marker_position (id, position)                                         | Set marker positions : number  |
-| my_slider:redraw ()                                                                  | Redraw slider                  |
+| Syntax                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UI.Slider.new (x, y, width, height, value, min_value, max_value, markers, direction) | Create a new slider<br>`x` and `y` are the coordinates where the slider will be drawn: numbers <br>`width` and `height` are the width and height of the slider: numbers <br>`value` is the desired starting value: number <br> `min_value` and `max_value` are the minimum and maximum values respectively, by which `value` is clamped: numbers <br> `markers` are reference markers along the slider: table of floats or integers <br>`direction` is the direction in which the slider moves, defaults to `up`: `up`, `down`, `left` or `right` |
+| my_slider:set_value (number)                                                         | Set value : number                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| my_slider:set_value_delta (delta)                                                    | Set value using delta : number                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| my_slider:set_marker_position (id, position)                                         | Set marker positions : number                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| my_slider:redraw ()                                                                  | Redraw slider                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
-### query
+### variables
 
-| Syntax        | Description                               |
-| ------------- | ----------------------------------------- |
-| my_slider.x         | Returns originating x-coordinate : number |
-| my_slider.y         | Returns originating y-coordinate : number |
-| my_slider.width     | Returns width : number                    |
-| my_slider.height    | Returns height : number                   |
-| my_slider.value     | Returns slider's current value : number   |
-| my_slider.min_value | Returns slider's minimum value : number   |
-| my_slider.max_value | Returns slider's maximum value : number   |
-| my_slider.markers   | Returns marker positions : table          |
-| my_slider.direction | Returns slider's direction : string       |
-| my_slider.active    | Returns slider's active state : boolean   |
+| Syntax              | Description                       |
+| ------------------- | --------------------------------- |
+| my_slider.x         | Originating x-coordinate : number |
+| my_slider.y         | Originating y-coordinate : number |
+| my_slider.width     | Width : number                    |
+| my_slider.height    | Height : number                   |
+| my_slider.value     | Slider's current value : number   |
+| my_slider.min_value | Slider's minimum value : number   |
+| my_slider.max_value | Slider's maximum value : number   |
+| my_slider.markers   | Marker positions : table          |
+| my_slider.direction | Slider's direction : string       |
+| my_slider.active    | Slider's active state : boolean   |
 
 ### example
 

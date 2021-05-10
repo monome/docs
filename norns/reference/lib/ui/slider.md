@@ -39,12 +39,18 @@ UI = require("ui")
 slider = {}
 
 -- create 4 sliders:
-slider[1] = UI.Slider.new(5,0,5,60,30,0,127,{0},"down")
-slider[2] = UI.Slider.new(30,15,50,5,60,0,127,{},"left")
-slider[3] = UI.Slider.new(30,40,50,5,72,0,127,{72},"right")
-slider[4] = UI.Slider.new(100,0,5,60,72,0,127,{0,32,64,96,127})
+slider[1] = UI.Slider.new(5,10,5,50,30,0,127,{0},"down")
+slider[2] = UI.Slider.new(15,10,50,5,97,0,127,{},"right")
+slider[3] = UI.Slider.new(40,55,50,5,72,0,127,{72},"left")
+slider[4] = UI.Slider.new(100,10,5,50,72,0,127,{0,32,64,96,127})
 -- set fourth slider to inactive:
 slider[4].active = false
+
+-- label sliders
+slider[1].label = "L"
+slider[2].label = "R"
+slider[3].label = "freq"
+slider[4].label = "res"
 
 function redraw()
   screen.clear()
@@ -52,6 +58,17 @@ function redraw()
   for i = 1,4 do
     slider[i]:redraw()
   end
+  screen.level(15)
+  screen.move(slider[1].x,slider[1].y - 2) -- relative positioning using the originating x and y coordinates
+  screen.text(slider[1].label)
+  for i=2,4 do -- another way to position labels
+    screen.move(slider[i].x,slider[i].y-2)
+    screen.text(slider[i].label)
+  end
+  screen.move(42,28)
+  screen.text("k2: pan")
+  screen.move(42,37)
+  screen.text("k3: lpf")
   screen.update()
 end
 
@@ -61,8 +78,8 @@ function key(n,z)
     slider[3].active = not slider[3].active
     slider[4].active = not slider[3].active
   elseif n == 2 then
-    slider[1]:set_value(z == 1 and 70 or 30)
-    slider[2]:set_value(z == 1 and 30 or 60)
+    slider[1]:set_value(z == 1 and 97 or 30)
+    slider[2]:set_value(z == 1 and 30 or 97)
   end
   redraw()
 end

@@ -27,6 +27,8 @@ permalink: /norns/reference/lib/ui/scrollinglist
 
 ### example
 
+![](../../../image/reference-lib-ui-images/scrollingexample.gif)
+
 ```lua
 UI = require("ui")
 

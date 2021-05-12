@@ -22,6 +22,8 @@ permalink: /norns/reference/lib/ui/message
 
 ### example
 
+![](../../../image/reference-lib-ui-images/messageexample.gif)
+
 ```lua
 UI = require("ui")
 

@@ -23,6 +23,8 @@ permalink: /norns/reference/lib/ui/tabs
 
 ### example
 
+![](../../../image/reference-lib-ui-images/tabsexample.gif)
+
 ```lua
 UI = require("ui")
 

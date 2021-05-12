@@ -33,6 +33,8 @@ permalink: /norns/reference/lib/ui/slider
 
 ### example
 
+![](../../../image/reference-lib-ui-images/sliderexample.gif)
+
 ```lua
 UI = require("ui")
 

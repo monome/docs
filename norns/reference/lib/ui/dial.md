@@ -35,6 +35,8 @@ permalink: /norns/reference/lib/ui/dial
 
 ### example
 
+![](../../../image/reference-lib-ui-images/dialexample.gif)
+
 ```lua
 UI = require("ui")
 

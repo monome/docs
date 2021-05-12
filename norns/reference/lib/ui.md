@@ -15,8 +15,9 @@ A library to simplify the creation and use of UI elements in scripts. It offload
 - providing multiple pages in your script;
 - using multiple tabs for different features; 
 - displaying lists or scrolling lists;
-- displaying information in dials or sliders; or
-- creating "pop-up" messages for errors or for feedback to users. 
+- displaying information in dials or sliders;
+- creating "pop-up" messages for errors or for feedback to users; or
+- displaying a playback icon with different statuses. 
 
 The UI elements can also be used in combination in a single script. 
 
@@ -26,15 +27,16 @@ Contributed by @markeats.
 
 ### features
 
-| Feature                         | Description                       |
-| ------------------------------- | --------------------------------- |
-| [dial](./dial)            | Dial UI element  |
-| [list](./list)            | List UI element  |
-| [message](./message)      | Message UI element |
-| [pages](./pages)          | Pages UI element |
+| Feature                          | Description               |
+| -------------------------------- | ------------------------- |
+| [dial](./dial)                   | Dial UI element           |
+| [list](./list)                   | List UI element           |
+| [message](./message)             | Message UI element        |
+| [pages](./pages)                 | Pages UI element          |
 | [scrollinglist](./scrollinglist) | Scrolling list UI element |
-| [slider](./slider)        | Slider UI element |
-| [tabs](./tabs)            | Tabs UI element |
+| [slider](./slider)               | Slider UI element         |
+| [tabs](./tabs)                   | Tabs UI element           |
+| [playback icon](./playbackicon)  | Playback icon UI element  |
 
 ### example
 

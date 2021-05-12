@@ -17,12 +17,13 @@ permalink: /norns/reference/lib/ui/scrollinglist
 
 ### query
 
-| Syntax                   | Description                               |
-| ------------------------ | ----------------------------------------- |
-| my_scrollinglist.x       | Returns originating x-coordinate : number |
-| my_scrollinglist.y       | Returns originating y-coordinate : number |
-| my_scrollinglist.index   | Returns current index : number            |
-| my_scrollinglist.entries | Returns list of entries : list            |
+| Syntax                   | Description                                    |
+| ------------------------ | ---------------------------------------------- |
+| my_scrollinglist.x       | Returns originating x-coordinate : number      |
+| my_scrollinglist.y       | Returns originating y-coordinate : number      |
+| my_scrollinglist.index   | Returns current index : number                 |
+| my_scrollinglist.entries | Returns list of entries : list                 |
+| my_scrollinglist.active  | Returns scrolling list's active state: boolean |
 
 ### example
 

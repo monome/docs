@@ -18,7 +18,7 @@ permalink: /norns/reference/lib/ui/message
 | Syntax            | Description                                         |
 | ----------------- | --------------------------------------------------- |
 | my_messsage.text  | Returns original text array : table                 |
-| my_message.active | Returns active (true) or inactive (false) : boolean |
+| my_message.active | Returns message's active state : boolean            |
 
 ### example
 

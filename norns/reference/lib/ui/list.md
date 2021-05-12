@@ -23,6 +23,7 @@ permalink: /norns/reference/lib/ui/list
 | my_list.y       | Returns originating y-coordinate : number |
 | my_list.index   | Returns current index : number            |
 | my_list.entries | Returns list of entries : list            |
+| my_list.active  | Returns list's active state: boolean      |
 
 ### example
 

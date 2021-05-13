@@ -107,8 +107,7 @@ So that anyone can do a 1-click install using maiden maiden, it is encourage to 
       "description": "WORDS",
       "discussion_url": "LINES_URL",
       "documentation_url": "DOC_URL",
-      "tags": ["TAG", "TAG", "TAG"],
-      "origin": "IF_APPLICABLE: lines"
+      "tags": ["TAG", "TAG", "TAG"]
     },
 ```
 

@@ -76,7 +76,7 @@ The norns ecosystem was created with community as a focus. The exchange of ideas
 
 As such, you are encourage to share your creations with the community.
 
-The first step is to host your script on a public git repository (e.g. on GitHub, GitLab ...).
+The first step is to host the sources of your script publicly, either as a git repository (e.g. on GitHub, GitLab ...) or web-hosted zip archive.
 
 Be sure you include a block of information at the top of your script. It will serve as a brief documentation when launching it from norns.
 
@@ -102,7 +102,7 @@ So that anyone can do a 1-click install using maiden maiden, it is encourage to 
 ```json
     {
       "project_name": "NAME",
-      "project_url": "GIT_URL",
+      "project_url": "PROJECT_URL",
       "author": "NAME",
       "description": "WORDS",
       "discussion_url": "LINES_URL",
@@ -111,7 +111,7 @@ So that anyone can do a 1-click install using maiden maiden, it is encourage to 
     },
 ```
 
-Where `project_url` is the URL to the script public git repository, `discussion_url` is a link to its lines Library thread and `documentation_url` is a link to its documentation page on the wiki (see [norns.community](/docs/norns/community-scripts/)).
+Where `project_url` is the URL to the web-hosted script sources, `discussion_url` is a link to its lines Library thread and `documentation_url` is a link to its documentation page on the wiki (see [norns.community](/docs/norns/community-scripts/)).
 
 
 ### fork

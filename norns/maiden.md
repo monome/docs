@@ -97,7 +97,7 @@ The URL in your script brief documentation should point to the lines Library thr
 
 You can optionally declare it on the wiki ([norns.community](/docs/norns/community-scripts/)) and write a small documentation about its usage.
 
-So that anyone can do a 1-click install using maiden maiden, it is encourage to register your script to the [community project repo](https://github.com/monome/norns-community/blob/master/community.json). Please submit a pull request with the following information:
+So that anyone can do a 1-click install using maiden maiden, it is encourage to register your script to the [community project repo](https://github.com/monome/norns-community/blob/main/community.json). Please submit a pull request with the following information:
 
 ```json
     {

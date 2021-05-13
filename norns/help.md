@@ -56,17 +56,19 @@ If performance does not improve, then a direct replacement can be purchased [fro
 #### encoders
 {: .no_toc }
 
-On early batches of norns, some users have reported that the encoder values are "jumpy". To verify that your encoders are affected, please perform this simple test:
+If your encoders feel "jumpy", you can verify that your encoders are in need of repair by performing this simple test:
 
 - navigate to the LEVELS page
 - turn a level all the way up and continue to turn the encoder
 - if the level jumps and does not remain at maximum, then you might want to replace that encoder
 
-We are still working to identify if this is related to our assembly house or if the actual OEM parts are flawed. The fix is straightforward if you have access to a soldering iron and some past experience. E-mail help@monome.org if you're not comfortable making the fix and we can help.
+For in-depth testing, see [this thread on lines](https://llllllll.co/t/norns-jumpy-defect-encoders/18856).
 
-Replacement encoders can be purchased [from Octopart](https://octopart.com/pec11r-4015f-n0024-bourns-26648251).
+We do *not* recommend at-home repair, as the encoders are extremely sensitive to heat and require quick, confident soldering. To arrange repair / replacement, please email `help@monome.org` with the following info:
 
-Please reference this [step-by-step video](https://vimeo.com/373181868/f58ea21a31) detailing the fix.
+- your order number (if you purchased the unit from monome directly)
+- if you did not purchase from monome, please provide any details you have about the unit's prior life
+- use a small screwdriver to remove the bottom plate and let us know if your board is either black or forest green
 
 ### extending storage
 

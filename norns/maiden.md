@@ -70,38 +70,51 @@ Each entry has an **INSTALL** action, which can be used to install the selected 
 You will have to restart norns if a freshly-installed project contains an engine
 {: .label}
 
-### contribute
+### contribute & gather
 
-To add to the [community project repo](https://github.com/monome/norns-community/blob/master/community.json), please submit a pull request with the following information:
+The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas.
+
+As such, you are encouraged to share your creations with the community.
+
+The first step is to host the sources of your script publicly, either as a git repository (e.g. on GitHub, GitLab ...) or web-hosted zip archive.
+
+Be sure you include the following block of information at the top of your script. It will serve as a brief documentation when launching it from norns.
+
+```lua
+-- scriptname
+-- v1.0.0 @author
+-- llllllll.co/t/22222
+--
+-- short script description
+--
+-- short usage instructions
+```
+
+Then, create a new thread under the [norns Library on lines](https://llllllll.co/c/library).
+
+
+
+The URL in your script's brief documentation should point to its corresponding lines Library thread. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
+{: .label}
+
+You can optionally declare it on [norns.community](/docs/norns/community-scripts/), a community wiki which provides tools and a platform to create compelling documentation which helps other artists use your script.
+
+So that anyone can do a one-click install using maiden, we encourage you to register your script in the [community project repo](https://github.com/monome/norns-community/blob/main/community.json). Please submit a pull request with the following information:
 
 ```json
     {
       "project_name": "NAME",
-      "project_url": "URL",
+      "project_url": "PROJECT_URL",
       "author": "NAME",
       "description": "WORDS",
-      "discussion_url": "LINES_LINK",
-      "tags": ["TAG", "TAG", "TAG"],
-      "origin": "IF_APPLICABLE: lines"
+      "discussion_url": "LINES_URL",
+      "documentation_url": "DOC_URL",
+      "tags": ["TAG", "TAG", "TAG"]
     },
 ```
 
-Be sure you include information at the top of your script to help future users:
+Where `project_url` is the URL to the web-hosted script sources, `discussion_url` is a link to its lines Library thread and `documentation_url` is a link to its documentation page on the wiki (see [norns.community](/docs/norns/community-scripts/)).
 
-```lua
--- scriptname: short script description
--- v1.0.0 @author
--- llllllll.co/t/22222
-```
-
-That last line is a link back to the thread number. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
-
-### gather
-
-While many projects are held in the community repository, it can be hard to engage with a project's creator through GitHub. To facilitate discussion, many projects are also shared through the [norns Library on lines](https://llllllll.co/c/library).
-
-The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas. After you share your own script in the community repository, please create a new thread in the Library.
-{: .label}
 
 ### fork
 

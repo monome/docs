@@ -44,7 +44,7 @@ resources developed by other learners, script authors, and designers from our co
 - [athenaeum](https://github.com/northern-information/athenaeum) // a repository of study, spike, and sample scripts from [Tyler Etters](https://nor.the-rn.info)
 - [norns: tutorial](https://llllllll.co/t/norns-tutorial/23241) // chunked examples that reveal the idiosyncrasies of the core norns concepts from [Devine Lu Linvega](https://xxiivv.com)
 - [norns development](https://github.com/p3r7/awesome-monome-norns/blob/main/README.md#development-general) // general development notes from Jordan Besly's [awesome monome norns](https://github.com/p3r7/awesome-monome-norns) repo
-- [lua libs index](https://github.com/p3r7/awesome-monome-norns/blob/main/README.md#lua-libs) // overview of norns library extensions (ibid.)
+- [lua libs index](https://norns.community/libs-and-engines#community-lua-libs) // overview of norns library extensions (ibid.)
 
 ### learning Lua
 
@@ -61,7 +61,7 @@ while you don't need to master the entire Lua language to make the most of norns
 for those who want to explore creating new synthesis engines for norns, these SuperCollider resources are some of the most-common starting points.
 
 - [YouTube playlist for an overview](https://youtu.be/yRzsOOiJ_p4)
-- [engines index](https://github.com/p3r7/awesome-monome-norns/blob/main/README.md#supercollider-engines)
+- [engines index](https://norns.community/libs-and-engines#supercollider-engines)
 
 #### language fundamentals
 {: .no_toc }

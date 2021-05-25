@@ -6,7 +6,7 @@ permalink: /norns/reference/lib/musicutil
 
 ## musicutil
 
-`musicutil` provides various utilities for working with notes, scales and chords. Its utilities offer three broad categories of functions: (a) [generating](#generating-scales-and-chords) scales and chords; (b) [snapping](#snapping-notes) notes to scales or chords; and (c) [converting](#converting-ways-of-referring-to-notes-and-intervals) between different ways of referring to notes and intervals. `musicutil` also includes a number of [tables](#data) which contain very useful information and are often helpful in `params`.
+`musicutil` provides various utilities for working with notes, scales and chords. Its utilities offer three broad categories of functions: (a) [generating](#generating-scales-and-chords) scales and chords; (b) [snapping](#snapping-notes) notes to scales or chords; and (c) [converting](#converting-references) between different ways of referring to notes and intervals. `musicutil` also includes a number of [tables](#data) which contain very useful information and are often helpful in `params`.
 
 {: .no_toc }
 
@@ -36,7 +36,7 @@ These functions allow you to quickly generate scales and chords from a root note
 
 #### example 1
 
-In this example, we utilize the functions generating scales and the [conversion](#converting-ways-of-referring-to-notes-and-intervals) of note numbers to frequencies and note names. We also demonstrate the use of the [tables](#data) in `musicutil` to facilitate the selection of parameters. 
+In this example, we utilize the functions generating scales and the [conversion](#converting-references) of note numbers to frequencies and note names. We also demonstrate the use of the [tables](#data) in `musicutil` to facilitate the selection of parameters. 
 
 ```lua
 MusicUtil = require("musicutil")

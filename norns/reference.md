@@ -46,7 +46,7 @@ has_toc: false
 | [lib/intonation](./lib/intonation) | Library of various tunings, including 12 tone and gamuts                            |
 | [lib/lattice](./lib/lattice)       | Simple and extensible sequencers driven by a superclock                             |
 | [lib/listselect](./lib/listselect)                     | List select utility                                                                 |
-| lib/musicutil                      | Utility module for common music maths                                               |
+| [lib/musicutil](./lib/musicutil)                      | Utility module for common music maths                                               |
 | lib/pattern                        | Timed-event pattern recorder / player                                               |
 | [lib/textentry](./lib/textentry)   | Text entry UI                                                                       |
 | [lib/ui](./lib/ui)                             | UI widgets module                                                                   |

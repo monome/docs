@@ -66,7 +66,7 @@ the clock led (if present) will flash to show it has successfully installed.
 
 you will need to power-cycle the module to re-enable USB device detection.
 
-having trouble with libusb? please see [this post](https://llllllll.co/t/dfu-programmer-installation-windows/622/12) for troubleshooting.
+if you're getting a `missing libusb` error, there's a pretty good change the driver update didn't work. try to redo the process above (starting at "open your device manager.")
 
 ## linux
 

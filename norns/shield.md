@@ -33,7 +33,7 @@ software is fully compatible between the two.
 since the Pi uses a microSD card in lieu of internal memory, you'll need to load the norns "operating system" (an *image*) onto the microSD card you intend to use with your Pi. this process (*flashing*) is straightforward thanks to a program called etcher.
 
 1. download and install [etcher](https://www.balena.io/etcher/) on your computer
-2. download the [latest norns shield image](https://github.com/monome/norns-image/releases/download/201202/norns201202-shield.img.zip) to your computer (*nb. the base image might not include the latest software updates*)
+2. download the [latest norns shield image](https://github.com/monome/norns-image/releases/latest) to your computer (*nb. the base image might not include the latest software updates*)
 3. unzip the shield image (which will result in an `.img` file) and insert your SD card into your computer
 4. run etcher, which will ask you to direct it to the unzipped shield image and to identify your microSD card as the target -- after that, the program will take care of everything
 5. once the process completes, eject the microSD card from your computer and move onto the assembly steps below

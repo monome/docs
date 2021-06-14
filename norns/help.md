@@ -354,6 +354,7 @@ If your SD card seems a lot more full than it should be, you'll need to expand t
 ### manual / offline update
 
 - Download and copy the [latest release's`.tgz` update file](https://github.com/monome/norns/releases) to a FAT-formatted USB drive
+- Take note of the `.tgz` file's name, as it is important (eg. `norns210607` is specific to the June 07 2021 update)
 - Insert the USB drive into norns and power up.
 - If using a stock norns, connect via [serial](../wifi-files/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh).
 - Copy file to `~/update/`:
@@ -362,14 +363,20 @@ If your SD card seems a lot more full than it should be, you'll need to expand t
 sudo cp /media/usb0/*.tgz ~/update/
 ```
 
-- Unpack and run update:
+- Enter the update folder:
 
 ```
 cd ~/update
-tar xzvf norns210114.tgz
-cd 210114
+```
+
+- Remember that special filename (eg. `norns210607`)? We'll need it to unpack and run the update:
+
+```
+tar xzvf norns210607.tgz
+cd norns210607
 ./update.sh
 ```
+*nb. make sure to replace `norns210607` in the above with the filename you downloaded*
 
 - Upon completion type `sudo shutdown now`.
 

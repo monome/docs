@@ -25,7 +25,7 @@ In `I`: `JF.SHIFT` assigns the tonal starting point to G2 and a `DRUNK` walk's b
 
 In `M`: three variables are randomly assigned (`X`, `Y` and `Z`). Every five metro ticks, channel `X` is voiced at velocity `Y` and remains at that volume until re-assigned. `Z` provides software modulation to the RUN jack.
 
-In *Synthesis*, RUN sets the frequency relationship between the modulation & carrier oscillators for FM. The shifts between `V -250` and `V 1` uncover a melody.
+In *Synthesis*, RUN sets the frequency relationship between the modulation & carrier oscillators for FM. The shifts between `V -1250` and `V 1` uncover a melody. Depending on what year you're reading this during, your results may vary -- try different values while tweaking the FM knob to find a modern sweet spot. The core idea remains: sequencing the relationship between the carrier and modulator.
 
 The numbered scripts are just chord shapes and performative changes.
 
@@ -69,12 +69,13 @@ JF.VOX 3 N 17 V 5
 X RAND 6; Y RRAND 3 6
 Z DRUNK
 EVERY 5: JF.VTR X V Y
-IF EQ Z -1: JF.RUN VV -250
+IF EQ Z -1: JF.RUN VV -1250
 IF EQ Z 0: JF.RUN VV 0
 IF EQ Z 1: JF.RUN V 1
 
 #I
 JF.MODE 1
+JF.RMODE 1
 JF.SHIFT N -5
 DRUNK.MIN -1; DRUNK.MAX 1
 DRUNK.WRAP 1

@@ -51,7 +51,7 @@ function play_sequence()
   while true do
     clock.sync(1/4)
     if er_table[current_step] then -- play a note only if there is a pulse in that step
-      engine.hz(octave *freq)
+      engine.hz(octave * freq)
     end
     current_step = util.wrap(current_step + 1,1,#er_table) -- uses a built-in helper to wrap the step-counter to the length of the sequence
     redraw()

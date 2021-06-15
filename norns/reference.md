@@ -37,7 +37,7 @@ has_toc: false
 | util                               | Helpful utility functions                                                           |
 | lib/elca                           | Elementary cellular automata generator                                              |
 | lib/envgraph                       | Envelope graph drawing module                                                       |
-| lib/er                             | Euclidean rhythm generator                                                          |
+| [lib/er](./lib/er)                 | Euclidean rhythm generator                                                          |
 | [lib/fileselect](./lib/fileselect) | File select utility                                                                 |
 | lib/filtergraph                    | Filter graph drawing module                                                         |
 | lib/filters                        | Value smoother                                                                      |

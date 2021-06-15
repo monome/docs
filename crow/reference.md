@@ -36,11 +36,7 @@ input[n].mode( 'change', threshold, hysteresis, direction ) -- set input n to:
     -- threshold:  set the voltage around which to change state
     -- hysteresis: avoid noise of this size (in volts)
     -- direction:  'rising', 'falling', or 'both' transitions create events
-```
 
-*since v2.0*
-
-```lua
 input[n].mode( 'window', windows, hysteresis ) -- set input n to:
     -- 'window':  create an event when the input enters a new voltage window
     -- windows:   a table of voltages defining window boundaries, eg: {-3,-1,1,3}
@@ -113,8 +109,6 @@ v = output[n].volts   -- set v to the instantaneous voltage of output n
 
 ### shaping cv
 
-*since v1.0.3*
-
 ```lua
 output[n].shape = 'expo' -- travel to the .volts destination with a non-linear path
 output[n].slew  = 0.1
@@ -133,8 +127,6 @@ Available options:
 - 'rebound': emulate a bouncing ball toward the destination
 
 ### quantize to scales
-
-*since v2.0*
 
 outputs can be quantized with a flexible scale system. these scales are applied *after* slew or actions, so they can be used to eg. convert lfo's into arpeggios.
 
@@ -161,8 +153,6 @@ output[n]( lfo() )       -- shortcut to set the action and start immediately
 ```
 
 available actions are (from `asllib.lua`):
-
-*shape parameters available since v1.0.3. see 'shaping cv' for the list of options.*
 
 ```lua
 lfo( time, level, shape )           -- low frequency oscillator
@@ -207,7 +197,6 @@ end
 
 everything is built on the primitive `to( destination, time )` which takes a destination and time pair, sending the output along a gradient. ASL is just some syntax to tie these short trips into a journey.
 
-*since v1.0.3*: the `to` primitive now takes an optional third argument for *shape*: `to( destination, time, shape )` allowing for non-linear paths to the destination value. See *shaping cv* above for a list of options.
 
 ```lua
 -- an ASL is composed of a sequence of 'to' calls in a table
@@ -318,8 +307,6 @@ ii.help()          -- prints a list of supported ii devices
 ii.<device>.help() -- prints available functions for <device>
 ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups
 ```
-
-*since v2.0*
 
 multiple addresses per device are supported (eg: txi, er301, faders)
 ```lua

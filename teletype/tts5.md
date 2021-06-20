@@ -51,7 +51,7 @@ There are some operators that can do some smart tricks for you (well, "smart" fo
     P.N 0
     P.INS 0 5
 
-Here we explicitly set our working pattern to 0, then insert the number 5 at index 0. This different than simply writing the number 5 to index 0, as first all pattern data is shifted back. For example, if the pattern 0 is:
+Here we explicitly set our working pattern to 0, then insert the number 5 at index 0. This is different than simply writing the number 5 to index 0, as first all pattern data is shifted back. For example, if the pattern 0 is:
 
 **3, 4, 8, 0...**
 

@@ -28,6 +28,8 @@ there are some differences between the norns and norns shield:
 
 software is fully compatible between the two.
 
+_update june 2021_: shield updated for cleaner audio path and more mechanically robust jacks.
+
 ## flashing microSD card
 
 since the Pi uses a microSD card in lieu of internal memory, you'll need to load the norns "operating system" (an *image*) onto the microSD card you intend to use with your Pi. this process (*flashing*) is straightforward thanks to a program called etcher.

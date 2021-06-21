@@ -1,6 +1,7 @@
 ---
 layout: default
 title: script reference
+nav_exclude: true
 permalink: /crow/reference3/
 ---
 

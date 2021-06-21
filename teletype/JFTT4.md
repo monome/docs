@@ -60,8 +60,8 @@ Control in *Synthesis* is similar to MIDI -- assign a channel its pitch and velo
 Create a note at the specified *channel*, of defined *pitch* and *velocity*.
 
 - *channel*: choose a channel (`1`-`6`), `0` sets all
-- *pitch*: assign a pitch, relative to C3 (eg `N3` moves three semitones up from C3 to Eb3, `V1` yields C4)
-- *velocity*: set the volume, as with `JF.VTR` (eg `V5` for 5V peak-to-peak)
+- *pitch*: assign a pitch, relative to C3 (eg `N 3` moves three semitones up from C3 to Eb3, `V 1` yields C4)
+- *velocity*: set the volume, as with `JF.VTR` (eg `V 5` for 5V peak-to-peak)
 
 `JF.NOTE pitch velocity`
 

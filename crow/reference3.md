@@ -293,6 +293,24 @@ end
 
 ## sequins
 
+```
+myseq = sequins{1,2,3,4}
+myseq:reset()
+myseq:step(n)
+myseq:select(n)
+myseq:cond(pred)
+myseq:condr(pred)
+myseq:every(n)
+myseq:times(n)
+myseq:count(n)
+myseq:all()
+myseq:once()
+myseq:settable(new_table)
+myseq()
+myseq[n] = _
+myseq.n = _
+```
+
 
 ## metro
 
@@ -331,6 +349,22 @@ metro[1].event = a_different_function
 
 ## clock
 
+```lua
+clock.start( [beat] )
+clock.stop()
+clock.transport.start = start_handler
+clock.transport.stop = stop_handler
+clock.tempo = _
+_ = clock.tempo
+_ = clock.get_beats
+_ = clock.get_beat_sec
+
+_ = clock.run(fn [, args])
+clock.cancel(coro_id)
+clock.sleep(seconds)
+clock.sync(beats)
+```
+
 
 ## ii
 
@@ -338,6 +372,8 @@ metro[1].event = a_different_function
 ii.help()          -- prints a list of supported ii devices
 ii.<device>.help() -- prints available functions for <device>
 ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups
+ii.raw(addr, bytes, rx_len)
+ii.event_raw = raw_handler
 ```
 
 multiple addresses per device are supported (eg: txi, er301, faders)
@@ -360,8 +396,41 @@ generally ii arguments corresponding to voltage parameters, including
 pitch, are specified in volts, times are specified in seconds, and others
 work the same as the teletype op.
 
+
 ## public
 
+```lua
+public(name, init_value [, type_limits] [, action])
+
+-- potential method style
+pubvar = public{name = init_value}
+pubvar:range(min, max)
+pubvar:options{...}
+pubvar:type(str)
+pubvar:action(fn)
+
+-- potential table-style
+public{ name    = _
+      , default = _
+      , range   = _
+      , options = _
+      , type    = _
+      , action  = _
+      }
+
+-- actions upon public params
+public.name = _
+_ = public.name
+
+-- cv i/o viewers
+public.view.all( [state] )
+public.view.input[n]( [state] )
+public.view.output[n]( [state] )
+
+-- remote fns (called by remote host, from library, not userspace)
+public.discover()
+public.update(name, value [, subkey])
+```
 
 ## cal
 

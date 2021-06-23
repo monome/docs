@@ -7,12 +7,9 @@ permalink: /crow/reference3/
 
 # TODO
 
-- asl other notes? functions as args revision?
 - sequins
-- clock
 - ii
 - public
-- DONE calibrate
 - globals/crowlib
 - full review!
 
@@ -227,22 +224,24 @@ function lfo( time, level )
 end
 ```
 
-everything is built on the primitive `to( destination, time )` which takes a destination and time pair, sending the output along a gradient. ASL is just some syntax to tie these short trips into a journey.
+everything is built on the primitive `to( destination, time, shape )` which takes a destination and time pair, sending the output along a gradient. ASL is just some syntax to tie these short trips into a journey.
 
 
 ```lua
 -- an ASL is composed of a sequence of 'to' calls in a table
-myjourney = { to(1,1), to(2,2), to(3,3) }
+myjourney = { to(1,1), to(2,2), to(3,3,'log') }
 
 -- often clearer as a vertical sequence
 myjourney = { to(1,1)
             , to(2,2)
-            , to(3,3)
+            , to(3,3,'log')
             }
 
 -- assign to an output and put it in motion
 output[1]( myjourney )
 ```
+
+shape types for the third parameter are [listed above](#shaping-cv).
 
 ASL provides some constructs for doing musical things:
 
@@ -253,49 +252,6 @@ held{ <asl> } -- freeze at end of sequence until a false or 'release' directive
 times( count, { <asl> } ) -- repeat the sequence `count` times
 ```
 
-### functions as arguments
-
-ASL can take functions as arguments to get fresh values at runtime. this feature is essential if you want your parameters to update at runtime. this is how we get a new random value each time the output action is called:
-
-`output[n]( to( function() return math.random(5) end, 1 ) )`
-
-in this way you can capture all kinds of runtime behaviour, like a function that fetches the state of input 1:
-
-`function() return input[1].volts end`
-
-to aid this, a few common functions are automatically closured if using curly braces:
-
-```lua
-output[n]( to( math.random(5), 1 ) ) -- gives one random, but unchanging value
-output[n]( to( math.random{5}, 1 ) )
-                          ^^^ a new random value is calculated each time
-```
-
-this functionality is provided for:
-
-```lua
-math.random
-math.min
-math.max
-```
-
-### asl.runtime
-
-you can use the `asl.runtime()` function to capture a function to be executed at runtime, each time it's called within an ASL action. this means you can do simple calculations like grabbing a random value, or complex operations on a runtime variable.
-
-check out lua/asllib.lua in the crow repo for some examples of how to use it. the `n2v` function is a simple example that divides the value by 12 at runtime.
-
-```lua
---- convert a note number to a voltage at runtime
--- the 'n' argument can be a function that returns a note number when called
--- we wrap the division by twelve in a function to be applied to n at runtime
-
-function n2v(n)
-    return asl.runtime( function(a) return a/12 end
-                      , n
-                      )
-end
-```
 
 ## sequins
 

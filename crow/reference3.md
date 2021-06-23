@@ -153,7 +153,7 @@ output[n].scale( {scale}, temperament, scaling )
 output[n].scale( 'none' )
 ```
 
-### clock
+### clock mode
 
 outputs can be set to output divisions of the clock. see [clock](#clock) for details.
 

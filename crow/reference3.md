@@ -7,8 +7,6 @@ permalink: /crow/reference3/
 
 # TODO
 
-- DONE output clock
-- DONE asl note and duration
 - asl other notes? functions as args revision?
 - sequins
 - clock
@@ -357,20 +355,47 @@ metro[1].event = a_different_function
 
 ## clock
 
-```lua
-clock.start( [beat] )
-clock.stop()
-clock.transport.start = start_handler
-clock.transport.stop = stop_handler
-clock.tempo = _
-_ = clock.tempo
-_ = clock.get_beats
-_ = clock.get_beat_sec
+The clock system facilitates various time-based functionality: repeating functions, synchronizing multiple functions, delaying functions.
 
-_ = clock.run(fn [, args])
-clock.cancel(coro_id)
-clock.sleep(seconds)
-clock.sync(beats)
+Basic control:
+```lua
+clock.start( [beat] )     -- start clock (optional: at [beat])
+clock.stop()              -- stop clock
+clock.tempo = x           -- assign clock tempo to x
+y = clock.tempo           -- get tempo value
+z = clock.get_beats       -- get current beat
+z = clock.get_beat_sec    -- get current length of beat (in seconds)
+```
+
+Transport callbacks:
+```
+clock.transport.start = start_handler       -- assign a function to be called at clock start
+clock.transport.stop = stop_handler         -- assign a function to be called at clock stop
+```
+
+Clock coroutines:
+```
+coro_id = clock.run(func [, args])    -- run function "func", and optional [args] get passed
+                                      --   to the function "func"
+                                      -- (optionally) save coroutine id as "coro_id"
+clock.cancel(coro_id)                 -- cancel (requires coroutine id)
+clock.sleep(seconds)                  -- sleep specified time (in seconds)
+clock.sync(beats)                     -- sleep until next sync at intervals "beats" (ie, 1/4)
+```
+
+Example:
+```
+function init()
+  x = 0
+  clock.run(forever)
+end
+
+function forever()
+  while true do:
+    x = x + 1
+    clock.sleep(0.1)
+  end
+end
 ```
 
 

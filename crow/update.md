@@ -13,7 +13,7 @@ New firmware can be checked and installed now through druid. Make sure you have 
 With crow connected to your computer, open a terminal and execute:
 
 ```
-druid --firmware
+druid firmware
 ```
 
 You should see something like this:

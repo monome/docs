@@ -38,3 +38,7 @@ Update complete.
 ## Version
 
 To check the current version inside of druid, type `^^version` into the command line.
+
+## Manual Firmware Upate
+
+If you have trouble updating, see the [manual firmware update](/docs/crow/manual-update).

@@ -61,6 +61,8 @@ sudo pip3 install monome-druid
 
 Now druid should be ready to use, you might need to close and reopen the terminal to get access to it.
 
+### update
+
 To update when there's a new [release](https://github.com/monome/druid/releases), use
 
 ```bash
@@ -109,9 +111,9 @@ Click OK until all the dialogue boxes are gone.
 
 On Windows 7, druid may be unable to connect with crow. Try using Zadig (instructions [here](/docs/crow/update/#windows)) to install the "USB Serial (CDC)" driver instead of the "WinUSB" driver.
 
-## loading druid
+## running druid
 
-Let's load up `druid` to test if everything works as expected. With crow connected to your device with USB and your modular case turned on, execute:
+With crow connected to your device with USB and your modular case turned on, execute:
 
 ```bash
 druid
@@ -148,3 +150,21 @@ sudo gpasswd -a <your username> <the group name found above>
 ```
 
 After this logout and login again or simply restart.
+
+## advanced
+
+### websockets
+
+It's possible to send lines of text to druid (which are forwarded to crow) using websockets. Druid listens on port `6666`.
+
+This allows you to execute crow commands from outside of druid, for example within your text editor.
+
+In `vim` here's how to bind the keystroke `CTRL-\` which executes the current line:
+
+```
+map <C-\> :silent .w !websocat ws://localhost:6666 -1<CR>
+```
+
+Copy the line above to your `.vimrc` to make it permanent. This command requires [websocat](https://github.com/vi/websocat).
+
+Other scriptable editors should be able to send data to a websocket--- we'll collect examples here as they are created.

@@ -207,6 +207,14 @@ or set an event to be called whenever the action ends:
 output[1].done = function() print 'done!' end
 ```
 
+### done action
+
+assign a function to be executed when an ASL action is completed
+
+```lua
+output[1].done = _()
+```
+
 ## ASL
 
 actions above are implemented using the `ASL` mini-language.

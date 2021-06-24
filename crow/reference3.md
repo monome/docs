@@ -12,6 +12,7 @@ permalink: /crow/reference3/
 - public
 - globals/crowlib
 - full review!
+- input scale JI mode
 
 
 # Reference
@@ -20,23 +21,23 @@ permalink: /crow/reference3/
 
 ## input
 
-`input` is a table representing the 2 inputs
+`input` is a table representing the 2 CV inputs
 
 ### input queries
 
 ```lua
-input[n].volts  -- gets the current value on input n
-input[n].query  -- send input n's value to the host -> ^^stream(<channel>,<volts>)
+_ = input[n].volts  -- returns the current value on input n
+input[n].query  -- send input n's value to the host -> ^^stream(channel, volts)
 ```
 
 ### input modes
 
-available modes are: `'none'`, `'stream'`, `'change'`, `'window'`, `'scale'`, `'volume'`, `'peak'`
+available modes are: `'none'`, `'stream'`, `'change'`, `'window'`, `'scale'`, `'volume'`, `'peak'`, `'freq'`
 
 ```lua
 input[n].mode = 'stream' -- set input n to stream with default time
 
-input[n].mode( 'none' )         -- set input n to 'none' mode
+input[n].mode( 'none' )         -- set input n to 'none' mode (ie. disable events)
 
 input[n].mode( 'stream', time ) -- set input n to 'stream' every time seconds
 
@@ -65,6 +66,11 @@ input[n].mode( 'peak', threshold, hysteresis ) -- set input n to:
     -- 'stream':   creates an event when an audio transient is detected at the input
     -- threshold:  sets the RMS level required to trigger an event
     -- hysteresis: sets how far the RMS level needs to decrease before retriggering
+
+-- NOTE: 'freq' mode is only available on input 1.
+input[1].mode( 'freq', time ) -- set input 1 to:
+    -- 'freq':  calculate the frequency of a connected oscillator.
+    -- time:    rate at which frequency is reported.
 ```
 
 table calling the input will set the mode with named parameters:
@@ -79,15 +85,15 @@ input[n]{ mode = 'stream'
 the default behaviour is that the modes call a specific event, sending to the host:
 
 ```lua
-'stream' -> ^^stream(<channel>,<volts>)
-'change' -> ^^change(<channel>,<state>)
+'stream' -> ^^stream(channel, volts)
+'change' -> ^^change(channel, state)
 ```
 
 you can customize the event handlers:
 
 ```lua
-input[1].stream = function(volts) <your_function> end
-input[1].change = function(state) <your_function> end
+input[1].stream = function(volts) <your_inline_function> end
+input[1].change = change_handler_function
 ```
 
 using table call syntax, you can set the event handler at the same time:
@@ -101,6 +107,8 @@ input[n]{ mode   = 'stream'
 
 ## output
 
+`output` is a table representing the 4 CV outputs
+
 ### setting cv
 
 ```lua
@@ -113,7 +121,7 @@ output[n].volts = 3.0 -- set output n to 3 volts instantly
 output[n].slew  = 0.1 -- sets output n's slew time to 0.1 seconds.
 output[n].volts = 2.0 -- tell output n to move toward 2.0 volts, over the slew time
 
-v = output[n].volts   -- set v to the instantaneous voltage of output n
+_ = output[n].volts   -- inspect the instantaneous voltage of output n
 ```
 
 ### shaping cv
@@ -125,15 +133,15 @@ output[n].volts = 2.0
 ```
 
 Available options:
-- 'linear'
-- 'sine'
-- 'logarithmic'
-- 'exponential'
-- 'now': go instantly to the destination then wait
-- 'wait': wait at the current level, then go to the destination
-- 'over': move toward the destination and overshoot, before landing
-- 'under': move away from the destination, then smoothly ramp up
-- 'rebound': emulate a bouncing ball toward the destination
+- `'linear'`
+- `'sine'`
+- `'logarithmic'`
+- `'exponential'`
+- `'now'`: go instantly to the destination then wait
+- `'wait'`: wait at the current level, then go to the destination
+- `'over'`: move toward the destination and overshoot, before landing
+- `'under'`: move away from the destination, then smoothly ramp up
+- `'rebound'`: emulate a bouncing ball toward the destination
 
 ### quantize to scales
 
@@ -143,43 +151,53 @@ outputs can be quantized with a flexible scale system. these scales are applied 
 output[n].scale( {scale}, temperament, scaling )
   -- scale: a table of note values, eg: {0,2,3,5,7,9,10}
   --        use the empty table {} for chromatic scale
-  -- temperament: how many notes in a scale, default 12 (ie 12TET)
+  -- temperament: how many divisions in an octave, default 12 (ie 12TET)
   -- scaling: volts per octave, default to 1.0, but use eg. 1.2 for buchla systems
 
 -- deactivate any active scaling with the 'none' argument
 output[n].scale( 'none' )
+
+-- scale table can be modified without reactivating scale
+output[n].scale = {0,7,2,9} -- note: scale can be out of order to create arpeggios
+
+-- 'ji' as the second argument causes the scale to be interpreted as just ratios
+output[n].scale( {1/1, 9/8, 5/4, 4/3, 3/2 11/8}, 'ji' )
 ```
 
 ### clock mode
 
-outputs can be set to output divisions of the clock. see [clock](#clock) for details.
+outputs can be set to output pulses at divisions of the clock. see [clock](#clock) for details.
 
 ```
-output[n]:clock(division)     -- set output to clock mode with division
+output[n]:clock(division) -- set output to clock mode with division
+  -- division is in the same units as for clock.sync(division)
+
+output[n]:clock('none') -- disable the output clock
+
+output[n].clock_div = 1/4 -- update the clock division without re-syncing the clock
 ```
 
-to disable the clock, set division to `'none'`.
+after the clock is assigned, the output `action` can be changed from the default `pulse` to any other shape (see below).
 
 ### actions
 
-outputs can have `actions`, not just voltages and slew times.
+outputs can have `actions`, not just voltages and slew times. an `action` is a sequence of voltage slopes, like an lfo or envelope.
 
 ```lua
 output[n].action = lfo() -- set output n's action to be a default LFO
-output[n]()              -- start the LFO
+output[n]()              -- call the output table to start the action- starts the LFO
 
 output[n]( lfo() )       -- shortcut to set the action and start immediately
 ```
 
-available actions are (from `asllib.lua`):
+a small set of actions are included (from `asllib.lua`):
 
 ```lua
 lfo( time, level, shape )           -- low frequency oscillator
 pulse( time, level, polarity )      -- trigger / gate generator
-ramp( time, skew, level )           -- triangle LFO with skew between sawtooth or ramp shapes
+ramp( time, skew, level )           -- triangle LFO with skew between sawtooth and ramp shapes
 ar( attack, release, level, shape ) -- attack-release envelope, retriggerable
 adsr( attack, decay, sustain, release, shape ) -- ADSR envelope
-note( midinumber, duration)         -- set note for duration
 oscillate( freq, level, shape)      -- audio rate oscillator
 ```
 
@@ -192,27 +210,17 @@ output[1]( true )  -- re-start attack phase from the current location
 output[1]( false ) -- enter release phase
 ```
 
-you can query whether there is an action currently taking place:
-```lua
-output[1].running
-```
-
-or set an event to be called whenever the action ends:
-```lua
-output[1].done = function() print 'done!' end
-```
-
 ### done action
 
 assign a function to be executed when an ASL action is completed
 
 ```lua
-output[1].done = _()
+output[1].done = function() print 'done!' end
 ```
 
 ## ASL
 
-actions above are implemented using the `ASL` mini-language.
+actions above are implemented using the `ASL` mini-language. you can write your own action functions to further customize your scripts.
 
 ```lua
 -- a basic triangle lfo
@@ -224,8 +232,7 @@ function lfo( time, level )
 end
 ```
 
-everything is built on the primitive `to( destination, time, shape )` which takes a destination and time pair, sending the output along a gradient. ASL is just some syntax to tie these short trips into a journey.
-
+everything is built on the primitive `to( destination, time, shape )` which takes a destination and time pair (and optional shape), sending the output along a gradient. ASL is just some syntax to tie these short trips into a journey.
 
 ```lua
 -- an ASL is composed of a sequence of 'to' calls in a table
@@ -247,11 +254,20 @@ ASL provides some constructs for doing musical things:
 
 ```lua
 loop{ <asl> } -- when the sequence is complete, start again
-lock{ <asl> } -- ignore all directives until the sequence is complete
 held{ <asl> } -- freeze at end of sequence until a false or 'release' directive
+lock{ <asl> } -- ignore all directives until the sequence is complete
 times( count, { <asl> } ) -- repeat the sequence `count` times
+
+-- 2 lower-level constructs are also available:
+asl._if( pred, { <asl> } ) -- only execute the sequence if `pred` is true
+asl._while( pred, { <asl> } ) -- `loop` the sequence so long as `pred` is true
 ```
 
+See [asllib.lua](https://github.com/monome/crow/blob/main/lua/asllib.lua) to see these constructs in use.
+
+### dynamic and iterate
+
+TODO
 
 ## sequins
 
@@ -276,7 +292,7 @@ myseq.n = _
 
 ## metro
 
-crow has 8 metros that can be used directly:
+crow has 8 metros, each able to run at a it's own timebase and trigger a defined event. metros are best used when you want a fixed action to occur at a regular interval.
 
 ```lua
 -- start a timer that prints a number every second, counting up each time
@@ -289,14 +305,14 @@ metro[1]:start()
 ```lua
 -- create a metro with the name 'mycounter' which calls 'count_event'
 
+function count_event(count)
+    -- do something fun!
+end
+
 mycounter = metro.init{ event = count_event
                       , time  = 2.0
                       , count = -1 -- nb: -1 is 'forever'
                       }
-
-function count_event(count)
-    -- do something fun!
-end
 
 mycounter:start() -- begin mycounter
 mycounter:stop()  -- stop mycounter
@@ -305,55 +321,64 @@ mycounter:stop()  -- stop mycounter
 ```lua
 -- update params while the timer is running like so:
 
-mycounter.time = 0.1
 metro[1].event = a_different_function
+mycounter.time = 0.1
+```
+
+## delay
+
+delay 
+
+```lua
+delay( action, time, repeats ) -- delays execution of action (a function)
+                               -- by time (in seconds), repeats times
 ```
 
 ## clock
 
-The clock system facilitates various time-based functionality: repeating functions, synchronizing multiple functions, delaying functions.
+the clock system facilitates various time-based functionality: repeating functions, synchronizing multiple functions, delaying functions. `clock` is preferable to `metro` when synchronizing to the global timebase, or for irregular time intervals.
 
-Basic control:
+clocks work by running a function in a 'coroutine'. these functions are special because they can call `clock.sleep(seconds)` and `clock.sync(beats)` to pause execution, but are otherwise just normal functions. to run a special clock function, you don't call it like a normal function, but instead pass it to `clock.run` which manages the coroutine for you.
+```
+coro_id = clock.run(func [, args]) -- run function "func", and optional [args] get passed
+                                   --   to the function "func"
+                                   -- (optionally) save coroutine id as "coro_id" so it can be cancelled
+clock.cancel(coro_id)              -- cancel a clock started by clock.run (requires coro_id)
+clock.sleep(seconds)               -- sleep specified time (in seconds)
+clock.sync(beats)                  -- sleep until next sync at intervals "beats" (ie, 1/4)
+```
+
+clock tempo & timing:
 ```lua
-clock.start( [beat] )     -- start clock (optional: at [beat])
+clock.tempo = t           -- assign clock tempo to t beats-per-minute
+_ = clock.tempo           -- get tempo value (BPM)
+_ = clock.get_beats       -- get count of beats since the clock started
+_ = clock.get_beat_sec    -- get the length of a beat in seconds
+```
+
+the clock can be stopped & started, and events can occur when doing either. the clock starts running when crow awakens. note start/stopping the clock does not affect `clock.sleep` calls.
+```
+clock.start( [beat] )     -- start clock (optional: start counting from 'beat')
 clock.stop()              -- stop clock
-clock.tempo = x           -- assign clock tempo to x
-y = clock.tempo           -- get tempo value
-z = clock.get_beats       -- get current beat
-z = clock.get_beat_sec    -- get current length of beat (in seconds)
+
+clock.transport.start = start_handler -- assign a function to be called when the clock starts
+clock.transport.stop = stop_handler   -- assign a function to be called when the clock stops
 ```
 
-Transport callbacks:
-```
-clock.transport.start = start_handler       -- assign a function to be called at clock start
-clock.transport.stop = stop_handler         -- assign a function to be called at clock stop
-```
-
-Clock coroutines:
-```
-coro_id = clock.run(func [, args])    -- run function "func", and optional [args] get passed
-                                      --   to the function "func"
-                                      -- (optionally) save coroutine id as "coro_id"
-clock.cancel(coro_id)                 -- cancel (requires coroutine id)
-clock.sleep(seconds)                  -- sleep specified time (in seconds)
-clock.sync(beats)                     -- sleep until next sync at intervals "beats" (ie, 1/4)
-```
-
-Example:
-```
+example:
+```lua
 function init()
   x = 0
-  clock.run(forever)
+  clock.run(forever) -- start a clock which will run the forever function
 end
 
 function forever()
-  while true do:
+  while true do -- this will loop forever
     x = x + 1
-    clock.sleep(0.1)
+    clock.sleep(0.1) -- waits for 100ms before the next loop
   end
 end
 ```
-
 
 ## ii
 
@@ -442,34 +467,33 @@ cal.output[n].scale = _   -- set output scale
 
 ## crow
 
-Accessed with `crow` or `_c`:
-
 ```lua
 -- send a formatted message to host
-crow.tell( name, <args> ) -> ^^name(arg1,arg2)
+crow.tell( name, <args> ) -> ^^name(arg1, ...)
 
 -- deactivate input modes, zero outputs and slews, and free all metros
+-- equivalent to restarting crow, but supresses any active userscript
 crow.reset()
 ```
 
 ## globals
 
-TODO: sentence below, revise?
-
-These will likely be deprecated / pulled into `_c` or their respective libs
-
 ```lua
-get_out( channel ) -- send the current output voltage to host
-get_cv( channel )  -- send the current input voltage to host
-
 time() -- returns a count of milliseconds since crow was turned on
+
 cputime() -- prints a count of main loops per dsp block. higher == lower cpu
-delay( action, time, repeats ) -- delays execution of action (a function)
-                               -- by time (in seconds), repeats times
 
-quotes(str)
+justvolts(fraction [, offset]) -- convert a just ratio to it's volt-per-octave representation
+  -- fraction can be a single ratio, or a table of ratios
+  -- in case of a table, a new table of voltages is returned
+  -- (optional) offset shifts the results by a just ratio (ie transposition)
+just12(fraction [, offset]) -- same as justvolts, but output is in '12TET' semitone form
 
-justvolts(fraction [, offset])
-just12(fraction [, offset])
-hztovolts(freq [, reference])
+hztovolts(freq [, reference]) -- convert a frequency to a voltage
+  -- default reference is middle-C == 0V
+  -- (optional) reference is the frequency that will be referenced as 0V
+  
+quote(...) -- returns a string-representation of it's arguments
+  -- the string is a reconstructed lua chunk, that can be loaded as lua
+  -- primarily useful for sending lua tables to a USB host
 ```

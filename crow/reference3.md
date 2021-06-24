@@ -8,16 +8,13 @@ permalink: /crow/reference3/
 # TODO
 
 - sequins
-- ii
 - public
-- globals/crowlib
 - full review!
-- input scale JI mode
 
 
 # Reference
 
-[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [clock](#clock) --- [ii](#ii) --- [public](#public) --- [cal](#cal) --- [crowlib](#crowlib)
+[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [delay](#delay) --- [clock](#clock) --- [ii](#ii) --- [public](#public) --- [cal](#cal) --- [globals](#globals)
 
 ## input
 
@@ -57,6 +54,9 @@ input[n].mode( 'scale', notes, temperament, scaling ) -- set input n to:
     -- notes:       a table of notes representing the scale, eg: {0,2,4,5,7,9,11}
     -- temperament: number of possible notes per octave. defaults to 12
     -- scaling:     volts-per-octave. default to 1.0, but use 1.2 for buchla systems
+-- 'scale' also supports just intonation ratios in the 'notes' position
+    -- notes appears as {1/1, 3/2, 9/8} etc
+    -- temperament must be set to 'ji'
 
 input[n].mode( 'volume', time ) -- set input n to stream the volume at the input
     -- 'volume': tracks the RMS amplitude of an audio signal (not a direct voltage)
@@ -385,15 +385,45 @@ end
 
 ## ii
 
+crow has functions for *leading* most available ii devices:
 ```lua
 ii.help()          -- prints a list of supported ii devices
 ii.<device>.help() -- prints available functions for <device>
-ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups
-ii.raw(addr, bytes, rx_len)
-ii.event_raw = raw_handler
 ```
 
-multiple addresses per device are supported (eg: txi, er301, faders)
+when leading the ii bus, you can send commands, or query values:
+```lua
+-- mydevice is the name of the recipient, eg: 'jf' in ii.jf.play_note()
+
+-- commands
+ii.mydevice.command( [args] ) -- 'command' will be changed to eg: play_note
+
+-- queries
+ii.mydevice.get('param' [, args]) -- asks device to send back the value of 'param'
+-- the get function does not return a value, instead it will raise an event (see below).
+
+-- response to query. triggered by .get('param')
+ii.mydevice.event = function(e, value) ... end
+  -- e is a table of metadata matching your .get request:
+    -- 'name':   the 'param' name. same as the first argument to the .get 
+    -- 'arg':    the first argument sent to the .get
+    -- 'device': the number of the ii device (usually 1, see below)
+  -- value is the actual response to .get
+```
+
+```lua
+-- example usage
+ii.jf.event = function(e, value)
+  if e.name == 'ramp' then
+    print('ramp is '..value)
+  end
+end
+ii.jf.get 'ramp' -- will trigger the above .event function
+ii.jf.tr(1, 1)   -- sets just friends' 1st trigger to the on state
+```
+generally `ii` arguments corresponding to pitch, are specified in volts (like `input` and `output`), times are specified in seconds (like `.slew` and `ASL`). other parameters use regular numbers.
+
+multiple ii devices of the same type are supported (eg. txi, er301, jf):
 ```lua
 ii.txi[1].get('param',1) -- get the first param of the first device
 ii.txi[2].get('param',1) -- get the first param of the second device
@@ -407,12 +437,28 @@ ii.txi.event( e, value ) -- 'e' is a table of: { name, device, arg }
 end
 ```
 
-nb: don't mix and match multiple-address style with regular style!
+if you are working with an unsupported ii device, or you are developing a new device that will support `ii`, you can use the `ii.raw` functions:
+```lua
+-- both set & get commands are sent using ii.raw
+ii.raw(addr, bytes [, rx_len])
+  -- addr:   i2c address as an int, typically in hex (eg. 0x70)
+  -- bytes:  bytestring of the message (eg. '\x09\x00\x00\x20')
+  -- rx_len: (optional, default 0) number of response bytes to read
 
-generally ii arguments corresponding to voltage parameters, including
-pitch, are specified in volts, times are specified in seconds, and others
-work the same as the teletype op.
+-- capture responses with event_raw
+ii.event_raw = function(addr, cmd, data)
+  -- NOTE: *all* ii events pass through this function, so you must match on your desired address
+  if addr == 0x70 then
+    -- handle your custom event here
+    return true -- if you don't return true, this event will also be processed by the normal ii system (raising an error)
+  end
+end
+```
 
+crow has weak pullups for the `ii` line. they are on by default & should probably stay on. if you have some reason to turn them off you can do so with:
+```lua
+ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups. on by default
+```
 
 ## public
 
@@ -468,21 +514,23 @@ cal.output[n].offset = _  -- set output offset
 cal.output[n].scale = _   -- set output scale
 ```
 
-## crow
-
-```lua
--- send a formatted message to host
-crow.tell( name, <args> ) -> ^^name(arg1, ...)
-
--- deactivate input modes, zero outputs and slews, and free all metros
--- equivalent to restarting crow, but supresses any active userscript
-crow.reset()
-```
-
 ## globals
 
 ```lua
+-- deactivate input modes, zero outputs and slews, and free all metros
+-- equivalent to restarting crow, but supresses any active userscript
+crow.reset()
+
+tell( event, <args> ) -> ^^event(arg1, ...) -- send a formatted message to host
+quote(...) -- returns a string-representation of it's arguments
+  -- the string is a reconstructed lua chunk, that can be loaded as lua
+  -- primarily useful for sending lua tables to a USB host with tell()
+
 time() -- returns a count of milliseconds since crow was turned on
+
+_, _, _ = unique_id() -- returns 3 numbers unique to each crow
+  -- the first number is the most unique, and will likely be unique
+  -- use all 3 if you need to ensure uniqueness between crows
 
 cputime() -- prints a count of main loops per dsp block. higher == lower cpu
 
@@ -495,8 +543,4 @@ just12(fraction [, offset]) -- same as justvolts, but output is in '12TET' semit
 hztovolts(freq [, reference]) -- convert a frequency to a voltage
   -- default reference is middle-C == 0V
   -- (optional) reference is the frequency that will be referenced as 0V
-  
-quote(...) -- returns a string-representation of it's arguments
-  -- the string is a reconstructed lua chunk, that can be loaded as lua
-  -- primarily useful for sending lua tables to a USB host
 ```

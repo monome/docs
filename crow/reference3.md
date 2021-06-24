@@ -327,11 +327,14 @@ mycounter.time = 0.1
 
 ## delay
 
-delay 
+delay takes a function and executes it in the future. by default it is only executed once, but can optionally be repeated. delay is the most basic of the timing systems, ideally used when simply delaying execution of an action. for more complex time management, use `metro` or `clock`.
+
+NOTE: if using `delay` and `metro` simultaneously, metros must be initialized with `metro.init` and not directly indexed.
 
 ```lua
-delay( action, time, repeats ) -- delays execution of action (a function)
-                               -- by time (in seconds), repeats times
+delay( action, time, [repeats] ) -- delays execution of action (a function)
+                                 -- by time (in seconds)
+                                 -- (optional) repeat the delay action repeats times
 ```
 
 ## clock

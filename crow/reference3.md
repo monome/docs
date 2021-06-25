@@ -10,6 +10,7 @@ permalink: /crow/reference3/
 - sequins
 - public
 - full review!
+- what order should sections be in?
 
 
 # Reference
@@ -271,24 +272,68 @@ TODO
 
 ## sequins
 
-```
-myseq = sequins{1,2,3,4}
-myseq:reset()
-myseq:step(n)
-myseq:select(n)
-myseq:cond(pred)
-myseq:condr(pred)
-myseq:every(n)
-myseq:times(n)
-myseq:count(n)
-myseq:all()
-myseq:once()
-myseq:settable(new_table)
-myseq()
-myseq[n] = _
-myseq.n = _
+sequins are lua tables with associated behaviour. the sequins library is designed for building sequencers and arpeggiators with short scripts.
+
+```lua
+seq = sequins{1,2,3} -- create a sequins of 3 values, and save it as seq
+_ = seq() --> returns the next value from the sequins
+    -- eg. the first 4 seq() calls result in: 1, 2, 3, 1
+
+-- it is idiomatic to alias 'sequins' with the letter 's' when in use
+s = sequins
+
+-- any datatype is allowed
+fnseq  = s{lfo, ar, pulse}
+strseq = s{'+', '-', '*', '/'}
+tabseq = s{ {1,2,3}, {4,5,6} } -- the whole table will be returned as the value
+
+-- the 'step' that occurs on each call can be changed from the default of +1
+seq = s{1,2,3,4,5}         -- seq() --> 1,2,3,4,5,1,...
+seq = s{1,2,3,4,5}:step(2) -- seq() --> 1,3,5,2,4,1,...
+    -- note how 'step' is "method chained" onto the sequins
+
+-- while it's typical to apply these method chains at initialization, they can be built up sequentially
+seq = s{1,2,3,4,5} -- defaults to step(1)
+seq:step(2)        -- modifies seq, changing to step(2)
+
+-- current active index can be set and queried
+seq:select(n) -- at the next seq(), index n will be selected & returned
+_ = seq.ix    -- value of the index can be queried directly
+
+-- sequins elements can be modified like normal tables
+seq[n] = _ -- update the value of table index n
+_ = seq[n] -- access the value of the nth element of the sequins
+
+-- to change the whole table (including changing the length of the sequins)
+seq:settable(new_table) -- preserves current index
+
+-- sequins can be nested in sequins (good for arranging melodies)
+seq = s{1, 2, s{3, 4}}
+    -- by default the behaviour will take only one value from the nested sequins at a time
+    -- eg: seq() --> 1, 2, 3, 1, 2, 4 ...
 ```
 
+to enable more complex arrangement, the standard interleaved flow of nested sequins can be modified. modifications are applied as 'method chains' operating over a sequins object.
+
+when calling a sequins object it will *always* return a result. when a flow-modifier *doesn't* return a value (eg every(2) only returns a value every second time), the outer-sequins will simply request the next value immediately until a value is returned.
+```lua
+-- flow-modifiers that might return a value, or might skip
+seq:every(n)   -- produce a value every nth call
+seq:times(n)   -- only produce a value the first n times it's called
+seq:once()     -- just a shortuct for :times(1)
+seq:cond(pred) -- conditionally produces a value if pred() returns true
+
+-- flow-modifiers that will capture focus
+-- these are 'greedy' modifiers, keeping the spotlight on them
+seq:count(n) -- produce n values in a row without letting other sequins give a value
+seq:all()    -- like count(#self), returns all values of seq before returning 
+
+-- modifiers that may return a value, and capture focus
+seq:condr(pred) -- conditionally produces a value if pred() returns true, and captures focus
+
+-- with nested sequins, you can restart the arrangement
+seq:reset() -- resets all flow-modifiers as well as table indices
+```
 
 ## metro
 

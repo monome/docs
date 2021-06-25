@@ -7,8 +7,6 @@ permalink: /crow/reference3/
 
 # TODO
 
-- sequins
-- public
 - full review!
 - what order should sections be in?
 
@@ -507,48 +505,88 @@ ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups. o
 
 ## public
 
+public variables are the automatic method for exposing crow variables to a connected USB host device. public variables are kept synchronized across both devices, and may be modified by either device.
 ```lua
-public(name, init_value [, type_limits] [, action])
+-- create a public variable 'name' and set it to 'init_value'
+public{name = init_value}
+    -- equivalent to: public.name = init_value
 
--- potential method style
-pubvar = public{name = init_value}
-pubvar:range(min, max)
-pubvar:options{...}
-pubvar:type(str)
-pubvar:action(fn)
+-- on crow, the variable can be used like a normal variable in a table
+public.name = 'jin' -- set public.name to the value 'jin'
+_ = public.name     -- get the value of public.name --> 'jin'
 
--- potential table-style
-public{ name    = _
-      , default = _
-      , range   = _
-      , options = _
-      , type    = _
-      , action  = _
-      }
+-- public variables can be most normal lua types:
+public{mynum = 33}
+public{mystring = 'hello'}
+public{mytable = {1,2,3}} -- 'flat' tables are supported
 
--- actions upon public params
-public.name = _
-_ = public.name
+-- *no functions, coroutines, or nested-tables (ie tables within tables)*
 
--- cv i/o viewers
-public.view.all( [state] )
-public.view.input[n]( [state] )
-public.view.output[n]( [state] )
+-- sequins are supported, but only the first layer (no nested sequins)
+-- this is enough for making a traditional step-sequencer public
+public{myseq = s{1,2,3,4}}
+public.myseq() -- get the next value from the sequins
+    -- remote hosts (eg norns) can support changing the 'playhead'
+```
 
--- remote fns (called by remote host, from library, not userspace)
-public.discover()
+metadata can be attached to public variables, informing a remote device how that value should be modified. it allows support for explicit datatypes, number ranges, options, and actions that are called when a value is remotely updated.
+```lua
+-- declare a range so a remote host won't allow out-of-bounds values
+public{volts = 0}:range(-5, 10) -- limit voltage to crow's hardware range
+public.volts = 20 -- 20 will be clamped down to 10
+
+-- types can be 'hinted' by crow, but relies on USB host to implement
+-- see documentation for the USB host to see which types are supported
+-- below are examples from norns
+public{seconds = 1}:range{0.001, 10}:type('exp') -- use exponential scaling
+public{count = 0}:type('int') -- force steps to be in integer multiples
+
+-- special types can be used for other data
+public{readonly = 'hello'}:type('@') -- @ stops the host changing the value
+public{readint = 22}:type('@int') -- @ can be prepended to other types, for eg readonly-integer
+public{myslide = 0}:range{-5,10}:type('slider') -- draws myslide with a visual slider
+
+-- options are variables that can be one of a set of possibilities
+-- option types are also known as 'enumerated' types
+-- list of options must be a list of strings
+public{myopt = '+'}:options{'+', '-', '*', '/'}
+_ = public.myopt --> returns the string '+'
+public.myopt = '*' --> set the value with the string (not an index)
+public.myopt = '%' --> IGNORED: the value is not an option, so ignored
+
+-- an action can be triggered when a variable is remotely updated from the host
+-- this is very useful when you need to set hardware i/o or timers
+public{speed = 1.0}:action( update_speed ) -- call update_speed whenever changed
+function update_speed(value) -- value is passed in by the action
+  metro[1].time = value
+end
+```
+
+`public.view` is a special set of public parameters that keep a remote device informed of the state of the input and output jacks. transmission is heavily throttled to reduce USB overhead.
+```lua
+-- (optional) argument is true/false for on/off. no arg activates view.
+public.view.all( [state] )       -- set state of all input & output views
+public.view.input[n]( [state] )  -- set state of nth input view
+public.view.output[n]( [state] ) -- set state of nth output view
+```
+
+when implementing public support on a USB host, these functions enable automated discovery & synchronization of variables.
+```lua
+-- remote fns to be called by remote host, not a crow userscript
+public.discover() -- request a list of all declared public vars
+    -- terminated with the key '_end'
 public.update(name, value [, subkey])
+    -- equivalent to 'public.name = value' but also triggers any 'action'
+    -- (optional) 3rd argument allows table updates --> public.name[subkey] = value
 ```
 
 ## cal
 
+crow has hardware to enable self-calibration of the CV inputs & outputs. the calibration procedure is run at the factory, so it's unlikely you'll need to use these features in a script. below are the building blocks for building your own calibration system. the official calibration script is located [here](https://github.com/monome/crow/blob/THREE/util/recalibrate.lua).
 ```lua
-cal.test()    -- re-runs the CV calibration routine
-cal.default() -- returns to default calibration values
-cal.print()   -- prints the current calibration scalers for debugging
+cal.save()       -- save current calibration to flash
+cal.source(chan) -- configures output->input multiplexer
 
-cal.save()                -- save current calibartion
-cal.source(chan)          --
 _ = cal.input[n].offset   -- get input offset
 _ = cal.input[n].scale    -- get input scale
 cal.input[n].offset = _   -- set input offset

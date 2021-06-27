@@ -165,10 +165,10 @@ In `vim` here's how to bind the keystroke `CTRL-\` which executes the current li
 map <C-\> :silent .w !websocat ws://localhost:6666 -1<CR>
 ```
 
-And here's how to bind the keystroke `F5` to execute all highlighted lines:
+And here's how to bind the keystroke `F5` to execute all highlighted lines as one block, enabling e.g. function definitions:
 
 ```
-vmap <F5> :w<Home>silent <End> !websocat ws://localhost:6666<CR>
+vmap <F5> :w<Home>silent <End> !sed -e '1i\```' -e '$a\```' <bar> websocat ws://localhost:6666<CR>
 ```
 
 Copy either or both of the lines above to your `.vimrc` to make it permanent. This command requires [websocat](https://github.com/vi/websocat).

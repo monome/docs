@@ -209,7 +209,7 @@ output[1]( true )  -- re-start attack phase from the current location
 output[1]( false ) -- enter release phase
 ```
 
-### done action
+### done event
 
 assign a function to be executed when an ASL action is completed
 
@@ -264,9 +264,71 @@ asl._while( pred, { <asl> } ) -- `loop` the sequence so long as `pred` is true
 
 See [asllib.lua](https://github.com/monome/crow/blob/main/lua/asllib.lua) to see these constructs in use.
 
-### dynamic and iterate
+### dynamic variables
 
-TODO
+ASLs are *descriptions* not programs, meaning variables are fixed when the ASL is created. an ASL can be unfixed by using `dynamic` variables. these named variables can be updated by a script or from the REPL, and will be used by the running ASL.
+
+```lua
+-- a standard lfo
+output[1].action = loop{ to( 1, 1)
+                       , to(-1, 1)
+                       }
+
+-- adding dynamic control of lfo height
+output[1].action = loop{ to( dyn{height = 1}, 1)
+                       , to(-1, 1)
+                       }
+-- dyn.height will now control the rising destination
+output[1].dyn.height = 2 -- rise to 2V
+
+-- arithmetic operations are permitted over dynamics
+-- eg: lfo with dynamic speed control
+output[1].action = loop{ to( 1, dyn{time=1}/2)
+                       , to(-1, dyn{time=1}/2)
+                       }
+-- if multiple dyn's use the same name (eg. time) they will share state
+output[1].dyn.time = 2 -- set the overall LFO time to 2seconds
+```
+
+in addition to modifying dynamics from a script, or the REPL, one can attach mutations to a `dyn`. mutations are applied every time the dynamic is used in the script.
+```lua
+-- ramp lfo, decelerating from 0.1 seconds to infinity
+output[1].action =
+  loop{ to(5, dyn{time=0.1}:step(0.1)) -- step performs addition / subtraction
+      , to(0, 0)
+      }
+-- the lfo will slow down by 0.1 seconds each time it repeats
+output[1].dyn.time = 0.1 -- reset the variable like a normal dyn
+
+-- mutation can be made exponential with 'mul' instead of 'step'
+-- ramp lfo, slowing down by 10% on each repeat
+output[1].action =
+  loop{ to(5, dyn{time=0.1}:mul(1.1)) -- mul performs multiplication
+      , to(0, 0)
+      }
+
+-- to create looping patterns, one can 'wrap' the values into a range
+-- when the ramp reaches 5seconds long, it will reset to 0.1 seconds
+output[1].action =
+  loop{ to(5, dyn{time=0.1}:step(0.1):wrap(0.1,5))
+      , to(0, 0)
+      }
+
+-- 'wrap' can be used without 'step' or 'mul' to ensure a dynamic stays in range
+output[1].action =
+  loop{ to(5, dyn{time=0.1}:wrap(0.1,2))
+      , to(0, 0)
+      }
+output[1].dyn.time = 0.5 -- sets dyn.time to 0.5
+output[1].dyn.time = 2.1 -- wraps dyn.time to 0.2
+
+
+-- reference usage
+dyn{k=v}
+  :step(inc) -- add 'inc' to the dynamic value on each access
+  :mul(factor) -- multiply the dynamic value by 'factor' on each access
+  :wrap(min, max) -- wrap the dynamic value into the range from min to max
+```
 
 ## sequins
 

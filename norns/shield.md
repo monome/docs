@@ -30,6 +30,10 @@ software is fully compatible between the two.
 
 _update june 2021_: shield updated for cleaner audio path and more mechanically robust jacks.
 
+## connecting audio
+
+at the top of the shield's board, you'll notice two arrows -- these represent audio in and audio out. the headphone jack on the Raspberry Pi is unused, as is the PI's HDMI port. to learn more about how to use shield, please refer to the norns docs, staring with [play](https://monome.org/docs/norns/play/). software is 100% compatible between the two, so the same instructions largely apply to both (and cases where things are different are notated within the docs).
+
 ## flashing microSD card
 
 since the Pi uses a microSD card in lieu of internal memory, you'll need to load the norns "operating system" (an *image*) onto the microSD card you intend to use with your Pi. this process (*flashing*) is straightforward thanks to a program called etcher.

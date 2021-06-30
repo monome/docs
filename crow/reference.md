@@ -1,8 +1,8 @@
 ---
 layout: default
 title: script reference
-nav_exclude: true
-permalink: /crow/reference3/
+nav_order: 7
+permalink: /crow/reference/
 ---
 
 # Reference

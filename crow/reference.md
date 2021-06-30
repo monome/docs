@@ -1,6 +1,7 @@
 ---
 layout: default
 title: script reference
+parent: crow
 nav_order: 7
 permalink: /crow/reference/
 ---

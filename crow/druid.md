@@ -109,7 +109,7 @@ On the dialogue that appears, click the Environment Variables button. In the "Us
 
 Click OK until all the dialogue boxes are gone.
 
-On Windows 7, druid may be unable to connect with crow. Try using Zadig (instructions [here](/docs/crow/update/#windows)) to install the "USB Serial (CDC)" driver instead of the "WinUSB" driver.
+On Windows 7, druid may be unable to connect with crow. Try using Zadig (instructions [here](/docs/crow/manual-update/#windows)) to install the "USB Serial (CDC)" driver instead of the "WinUSB" driver.
 
 ## running druid
 

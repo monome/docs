@@ -57,7 +57,7 @@ These are maximums. Power consumption varies greatly based on which USB controll
 - 4 Trigger outputs (TR 1-4, 0V/10V low/high)
 - 4 continuous CV outputs (CV 1-4, 0V TO +10V)
 - 2 KEY buttons
-- 2 Trigger inputs (IN 1-2)
+- 2 CV inputs (IN 1-2)
 - 1 USB-A port
 - 1 MODE button
 

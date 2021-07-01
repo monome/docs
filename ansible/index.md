@@ -54,8 +54,8 @@ These are maximums. Power consumption varies greatly based on which USB controll
 
 ![Panel Overlay](images/ansible_CLEAN.png)
 
-- 4 Trigger outputs (TR 1-4, voltage range, slew rate, sample rate, bit rate?)
-- 4 continuous CV outputs (CV 1-4, voltage range, slew rate, sample rate, bit rate)
+- 4 Trigger outputs (TR 1-4, 0V/10V low/high)
+- 4 continuous CV outputs (CV 1-4, 0V TO +10V)
 - 2 KEY buttons
 - 2 CV inputs (IN 1-2, voltage range, sample rate, bit rate)
 - 1 USB-A port

@@ -2,7 +2,7 @@
 layout: default
 parent: crow
 title: technical
-nav_order: 8
+nav_order: 10
 permalink: /crow/technical/
 ---
 

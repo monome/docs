@@ -8,6 +8,8 @@ permalink: /crow/update/
 
 # Firmware Update
 
+(**NOTE:** this method doesn't work for Windows. Do the [manual update](/docs/crow/manual-update) instead.)
+
 New firmware can be checked and installed now through druid. Make sure you have the [latest version](https://monome.org/docs/crow/druid/#update) which supports this feature.
 
 With crow connected to your computer, open a terminal and execute:

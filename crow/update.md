@@ -8,8 +8,6 @@ permalink: /crow/update/
 
 # Firmware Update
 
-(**NOTE:** this method doesn't work for Windows. Do the [manual update](/docs/crow/manual-update) instead.)
-
 New firmware can be checked and installed now through druid. Make sure you have the [latest version](https://monome.org/docs/crow/druid/#update) which supports this feature.
 
 With crow connected to your computer, open a terminal and execute:
@@ -40,6 +38,19 @@ Update complete.
 ## Version
 
 To check the current version inside of druid, type `^^version` into the command line.
+
+## Windows Troubleshooting
+
+If you get an error `Error: pydfu didn't find crow!`, this means that your crow's driver needs to be replaced.
+
+- put crow in bootloader mode from `druid`, by sending `^^b` (crow will disconnect from druid). exit `druid`.
+- download [Zadig](https://zadig.akeo.ie)
+- open Zadig and from `Options` check `"List All Devices"`
+- select `crow: dfu bootloader` from the list (if you see `crow: telephone line` then crow is not in bootloader mode)
+- for the current driver, you should see `None` or `STTub30 (v3.0.4.0)`
+- to the right of the green arrow, you should have `WinUSB (v6.1.7600.16385)` (if you don't, please select it)
+- click the Replace Driver button and wait a few minutes for the process to complete
+- re-attempt the firmware update with `druid firmware`
 
 ## Manual Update
 

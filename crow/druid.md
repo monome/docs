@@ -59,7 +59,7 @@ NB: If you see an error like "ERROR: Could not install packages due to an Enviro
 sudo pip3 install monome-druid
 ```
 
-Now druid should be ready to use, you might need to close and reopen the terminal to get access to it.
+*Close & reopen your terminal*, then run `druid` to start scripting.
 
 ### update
 
@@ -127,7 +127,7 @@ You should see druid open with the following message up top:
 <crow connected>
 ```
 
-If you see `<crow disconnected>` instead, make sure your modular case with crow is turned on, and the USB cable is connected.
+If you see `<crow disconnected>` instead, make sure your modular case with crow is turned on, and the USB cable is connected. If everything is connected but still not connecting, close your Terminal application & restart it.
 
 If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device.
 

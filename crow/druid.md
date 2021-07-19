@@ -17,7 +17,7 @@ To communicate with crow we'll use `druid`, a command-line tool that lets you se
 
 First we'll collect & install a few tools, starting with `Python` which is the environment that runs `druid`. Don't worry, you don't ever have to type any Python code into `druid`.
 
-`druid` requires Python 3.5+, but let's get the most recent version (3.8 as of this writing, November 2019):
+`druid` requires Python 3.6+, but let's get the most recent version (3.8 as of this writing, November 2019):
 
 - macOS: [download from the Python website](https://www.python.org/downloads/)
 - Windows: search `Python 3.8` in the Microsoft Store (it's free)

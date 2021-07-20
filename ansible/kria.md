@@ -67,7 +67,7 @@ The LOOP modifier lets you adjust the endpoints of the sequence loop for a given
 
 The TIME modifier lets each parameter update on a different clock divider. With the time mod key held, the top row is highlighted to let you select a clock division between 1 at the left and 16 at the right. You may wish to have parameters within a track share clock dividers, or quantize changes to the clock division to occur only at the end of the current loop - these settings can be configured on the [time page](/docs/ansible/kria#time).
 
-The PROBABILITY modifier lets you program the probability of taking no action for a sequence step of a particular parameter. With the probability mod key held, the 4 center rows of each column of the grid act as a fader controlling the probability that the parameter will change to its next programmed value when the step is reached. The default is that reaching the step will update the parameter 100% of the time, you can set individual steps to ccur with 50% probability, 25% probability, or 0% probability.
+The PROBABILITY modifier lets you program the probability of taking no action for a sequence step of a particular parameter. With the probability mod key held, the 4 center rows of each column of the grid act as a fader controlling the probability that the parameter will change to its next programmed value when the step is reached. The default is that reaching the step will update the parameter 100% of the time, you can set individual steps to occur with 50% probability, 25% probability, or 0% probability.
 
 #### Trigger Ratcheting
 

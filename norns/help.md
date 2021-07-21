@@ -307,8 +307,7 @@ For the adventurous, here are steps to surface the ext4 filesystem: [Windows](ht
 
 *nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/wifi-files/#update). fresh installing will wipe your norns, so back up any data you need before proceeding.*
 
-- [norns210607.img.zip](https://github.com/monome/norns-image/releases/download/210607/norns210607.img.zip)
-- [norns210607-shield.img.zip](https://github.com/monome/norns-image/releases/download/210607/norns210607-shield.zip) (Pi 3b+ and Pi 3b only)
+the latest full images for norns and shield can be downloaded [here](github.com/monome/norns-image/releases/latest). please make sure you download + install the correct image, otherwise your unit will not perform correctly.
 
 #### stock norns
 
@@ -333,6 +332,8 @@ Steps:
 8. Update via SYSTEM  > UPDATE
 
 #### shield
+
+*nb. only Pi 3 and Pi 3b's are supported*
 
 Use [etcher](https://www.balena.io/etcher/) to flash your SD card
 

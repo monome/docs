@@ -17,6 +17,8 @@ With Ansible, the +5v rail is no longer used -- instead, grid pulls from the com
 
 If your Teletype does not have a black circuit board (which we started manufacturing in December 2018), it is not recommended to plug grid directly into Teletype's USB port. The older models with green boards are not designed to supply enough power through USB, which won't harm your equipment at all but it will reset the voltage regulator and cause instability. Our recommendation is to power the grid externally when plugging into Teletype, regardless of board color, as this also reduces the likelihood of noise. [two > one](https://llllllll.co/t/2-devices-to-1-host-eurorack-switch-two-one/18826/1) was designed specifically for this purpose.
 
+If you are experiencing noise in your system as you use grid (there are no hard-and-fast rules for which case power supplies will cause or avoid ground loops), we recommend powering grid externally and connecting only the data line to your modular system. This can be achieved using a ground loop adapter similar to [this one from Expressive E](https://www.expressivee.com/14-ground-loop-adaptor). This will ensure isolation between the grid and your system's audio path. Please note that by decoupling the power from your modular system, you'll need to unplug the grid after playing in order to turn the grid's LEDs off.
+
 If you have any questions or concerns about power, please feel free to email `help@monome.org` or post to the [New to monome and modular](https://llllllll.co/t/new-to-monome-and-modular-ask-questions-here/11682) thread on lines.
 
 ## compatibility

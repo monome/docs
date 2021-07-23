@@ -307,7 +307,7 @@ For the adventurous, here are steps to surface the ext4 filesystem: [Windows](ht
 
 *nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/wifi-files/#update). fresh installing will wipe your norns, so back up any data you need before proceeding.*
 
-the latest full images for norns and shield can be downloaded [here](github.com/monome/norns-image/releases/latest). please make sure you download + install the correct image, otherwise your unit will not perform correctly.
+the latest full images for norns and shield can be downloaded [here](https://github.com/monome/norns-image/releases/latest). please make sure you download + install the correct image, otherwise your unit will not perform correctly.
 
 #### stock norns
 

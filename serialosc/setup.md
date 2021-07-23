@@ -9,7 +9,7 @@ nav_order: 1
 
 # grid and arc basic setup
 
-### [&rarr; download serialosc](https://github.com/monome/serialosc/releases/latest)
+### [&rarr; download serialosc](https://github.com/monome/serialosc/releases/latest) (be sure to restart your device afterward)
 
 serialosc runs in the background and converts serial communication (over USB) into [OSC](/docs/serialosc/osc). applications can query serialosc to connect to the grid and arc.
 

@@ -1,4 +1,4 @@
-}---
+---
 layout: default
 parent: scripting
 grand_parent: norns

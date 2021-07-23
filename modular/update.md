@@ -21,6 +21,8 @@ get a normal, inexpensive USB A-A cable such as [p/n 1175-1035-ND on digikey](ht
 
 ## mac
 
+*nb. if you run into verification troubles at any point through this process, please refer to the steps in this [Apple support article](https://support.apple.com/en-us/HT202491) to resolve!*
+
 use [homebrew](http://brew.sh) to install dfu-programmer. go to the homebrew page and scroll down to "Install Homebrew" where you'll paste a line of text into Terminal.
 
 after this is installed, you should be able to simply type:

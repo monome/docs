@@ -1,4 +1,4 @@
----
+}---
 layout: default
 parent: scripting
 grand_parent: norns
@@ -52,7 +52,7 @@ SuperCollider is a free and open-source platform for making sound, which powers 
 
 for those who want to explore creating new synthesis engines for norns, we highly recommend Zack Scholl's video series, produced in partnership between monome and Music Hackspace: [Tone to Drone](https://musichackspace.org/events/tone-to-drone-introduction-to-supercollider-for-monome-norns-live-session/) and [Ample Samples](https://musichackspace.org/events/ample-samples-introduction-to-supercollider-for-monome-norns-live-session/).
 
-if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. to protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet), both within SuperCollider on your computer and on your norns. To add this to your norns, simply enter the following line within the Maiden repl, under the `SuperCollider` tab:
+**please note** that if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. to protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet), both within SuperCollider on your computer and on your norns. This Quark ensures that the output volume of SuperCollider won't reach levels which would damage your hearing. To add this to your norns, simply enter the following line within the Maiden repl, under the `SuperCollider` tab:
 
 ```lua
 Quarks.install("SafetyNet")

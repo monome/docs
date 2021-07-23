@@ -22,7 +22,7 @@ comprehensive lessons on individual elements of norns scripting. through these r
 {:toc}
 </details>
 
-### core concepts
+### norns: core concepts
 
 tutorials written by monome. we recommend one lesson per week. a slower pace makes it easier to experiment and uncover the simplicity of the underlying language (Lua).
 
@@ -36,7 +36,7 @@ tutorials written by monome. we recommend one lesson per week. a slower pace mak
 - [clocks](../clocks/) // create timed and clock-synced function calls: loops, repetition, and delays
 - [grid recipes](../grid-recipes/) // short snippets of code for canonical grid interactions
 
-### contributed knowledge
+### norns: contributed knowledge
 
 resources developed by other learners, script authors, and designers from our community.
 
@@ -45,6 +45,23 @@ resources developed by other learners, script authors, and designers from our co
 - [norns: tutorial](https://llllllll.co/t/norns-tutorial/23241) // chunked examples that reveal the idiosyncrasies of the core norns concepts from [Devine Lu Linvega](https://xxiivv.com)
 - [norns development](https://github.com/p3r7/awesome-monome-norns/blob/main/README.md#development-general) // general development notes from Jordan Besly's [awesome monome norns](https://github.com/p3r7/awesome-monome-norns) repo
 - [lua libs index](https://norns.community/libs-and-engines#community-lua-libs) // overview of norns library extensions (ibid.)
+
+### learning SuperCollider
+
+SuperCollider is a free and open-source platform for making sound, which powers the synthesis layer of norns. many norns scripts are a combination of SuperCollider (where a synthesis engine is defined) and Lua (where the hardware + UI interactions are defined). SuperCollider can be run on most any computer -- you do not need a norns to dig into these resources!
+
+for those who want to explore creating new synthesis engines for norns, we highly recommend Zack Scholl's video series, produced in partnership between monome and Music Hackspace: [Tone to Drone](https://musichackspace.org/events/tone-to-drone-introduction-to-supercollider-for-monome-norns-live-session/) and [Ample Samples](https://musichackspace.org/events/ample-samples-introduction-to-supercollider-for-monome-norns-live-session/).
+
+if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. to protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet), both within SuperCollider on your computer and on your norns. To add this to your norns, simply enter the following line within the Maiden repl, under the `SuperCollider` tab:
+
+```lua
+Quarks.install("SafetyNet")
+```
+
+here are some additional starting points for learning:
+
+- [Eli Fieldsteel's *fantastic* YouTube series](https://youtu.be/yRzsOOiJ_p4)
+- [norns SuperCollider engines index](https://norns.community/libs-and-engines#supercollider-engines)
 
 ### learning Lua
 
@@ -55,13 +72,6 @@ while you don't need to master the entire Lua language to make the most of norns
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
 - [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)
 - [lua in 15 mins](http://tylerneylon.com/a/learn-lua/)
-
-### SuperCollider
-
-for those who want to explore creating new synthesis engines for norns, these SuperCollider resources are some of the most-common starting points.
-
-- [YouTube playlist for an overview](https://youtu.be/yRzsOOiJ_p4)
-- [engines index](https://norns.community/libs-and-engines#supercollider-engines)
 
 #### language fundamentals
 {: .no_toc }

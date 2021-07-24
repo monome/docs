@@ -17,7 +17,7 @@ We have created a custom `[crow]` object and several helpful abstractions for Ma
 
 Using the `[crow]` object, we have also created a suite of Max for Live devices which help connect your Eurorack system and Ableton Live in ways beyond simple clocking.
 
-Before we begin: [download the latest Max and Max for Live releases](https://github.com/monome/crow-max-and-m4l/archive/master.zip).
+Before we begin: [download the latest Max and Max for Live releases](https://github.com/monome/crow-max-and-m4l/releases/latest).
 
 If any of the devices or objects are crashing Max or Ableton Live upon load, please follow the [clean install](https://cycling74.com/support/faq-maxcrash) steps from Cycling '74.
 

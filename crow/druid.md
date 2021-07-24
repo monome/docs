@@ -17,7 +17,7 @@ To communicate with crow we'll use `druid`, a command-line tool that lets you se
 
 First we'll collect & install a few tools, starting with `Python` which is the environment that runs `druid`. Don't worry, you don't ever have to type any Python code into `druid`.
 
-`druid` requires Python 3.5+, but let's get the most recent version (3.8 as of this writing, November 2019):
+`druid` requires Python 3.6+, but let's get the most recent version (3.8 as of this writing, November 2019):
 
 - macOS: [download from the Python website](https://www.python.org/downloads/)
 - Windows: search `Python 3.8` in the Microsoft Store (it's free)
@@ -59,7 +59,9 @@ NB: If you see an error like "ERROR: Could not install packages due to an Enviro
 sudo pip3 install monome-druid
 ```
 
-Now druid should be ready to use, you might need to close and reopen the terminal to get access to it.
+*Close & reopen your terminal*, then run `druid` to start scripting.
+
+### update
 
 To update when there's a new [release](https://github.com/monome/druid/releases), use
 
@@ -107,11 +109,11 @@ On the dialogue that appears, click the Environment Variables button. In the "Us
 
 Click OK until all the dialogue boxes are gone.
 
-On Windows 7, druid may be unable to connect with crow. Try using Zadig (instructions [here](/docs/crow/update/#windows)) to install the "USB Serial (CDC)" driver instead of the "WinUSB" driver.
+On Windows 7, druid may be unable to connect with crow. Try using Zadig (instructions [here](/docs/crow/manual-update/#windows)) to install the "USB Serial (CDC)" driver instead of the "WinUSB" driver.
 
-## loading druid
+## running druid
 
-Let's load up `druid` to test if everything works as expected. With crow connected to your device with USB and your modular case turned on, execute:
+With crow connected to your device with USB and your modular case turned on, execute:
 
 ```bash
 druid
@@ -125,7 +127,7 @@ You should see druid open with the following message up top:
 <crow connected>
 ```
 
-If you see `<crow disconnected>` instead, make sure your modular case with crow is turned on, and the USB cable is connected.
+If you see `<crow disconnected>` instead, make sure your modular case with crow is turned on, and the USB cable is connected. If everything is connected but still not connecting, close your Terminal application & restart it.
 
 If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device.
 
@@ -148,3 +150,27 @@ sudo gpasswd -a <your username> <the group name found above>
 ```
 
 After this logout and login again or simply restart.
+
+## advanced
+
+### websockets
+
+It's possible to send lines of text to druid (which are forwarded to crow) using websockets. Druid listens on port `6666`.
+
+This allows you to execute crow commands from outside of druid, for example within your text editor.
+
+In `vim` here's how to bind the keystroke `CTRL-\` which executes the current line:
+
+```
+map <C-\> :silent .w !websocat ws://localhost:6666 -1<CR>
+```
+
+And here's how to bind the keystroke `F5` to execute all highlighted lines as one block, enabling e.g. function definitions:
+
+```
+vmap <F5> :w<Home>silent <End> !sed -e '1i\```' -e '$a\```' <bar> websocat ws://localhost:6666<CR>
+```
+
+Copy either or both of the lines above to your `.vimrc` to make it permanent. This command requires [websocat](https://github.com/vi/websocat).
+
+Other scriptable editors should be able to send data to a websocket--- we'll collect examples here as they are created.

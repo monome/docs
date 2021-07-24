@@ -8,7 +8,7 @@ permalink: /modular/update/
 
 new releases are available per module:
 
-- [teletype](https://github.com/monome/teletype/releases) **3.2.0** (april 22 2020)
+- [teletype](https://github.com/monome/teletype/releases) **4.0.0** (july 10 2021)
 - [ansible](https://github.com/monome/ansible/releases) **3.1.1** (june 7  2021)
 - [whitewhale](https://github.com/monome/whitewhale/releases) **1.6.0** (june 7 2021)
 - [meadowphysics](https://github.com/monome/meadowphysics/releases) **2.2.1** (june 7 2021)
@@ -20,6 +20,8 @@ firmware is updated by connecting a USB A-A cable to your computer and using the
 get a normal, inexpensive USB A-A cable such as [p/n 1175-1035-ND on digikey](http://www.digikey.com/product-detail/en/101-1020-BE-00100/1175-1035-ND/3064766). a "transfer" cable will not work.
 
 ## mac
+
+*nb. if you run into verification troubles at any point through this process, please refer to the steps in this [Apple support article](https://support.apple.com/en-us/HT202491) to resolve!*
 
 use [homebrew](http://brew.sh) to install dfu-programmer. go to the homebrew page and scroll down to "Install Homebrew" where you'll paste a line of text into Terminal.
 

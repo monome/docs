@@ -450,6 +450,7 @@ coro_id = clock.run(func [, args]) -- run function "func", and optional [args] g
 clock.cancel(coro_id)              -- cancel a clock started by clock.run (requires coro_id)
 clock.sleep(seconds)               -- sleep specified time (in seconds)
 clock.sync(beats)                  -- sleep until next sync at intervals "beats" (ie, 1/4)
+clock.cleanup()                    -- kill all currently-running clocks
 ```
 
 clock tempo & timing:

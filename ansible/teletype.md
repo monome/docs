@@ -81,6 +81,9 @@ Address         Out     In
 
 Teletype can control various parameters for Kria, Meadowphysics, Levels, and Cycles.
 
+Individually addressing multiple Ansible by assigning each a unique II address is only applicable to the **Output** and **Input** commands listed above. The parameter commands listed in this section cannot be used to control multiple Ansibles in the same way -- these commands use only one address and are not currently extensible. For example, if you have two Ansibles on your i2c bus (`Address 0` and `Address 1`) and they're both running Kria, `KR.CLK 7` will *not* clock the third Kria track on the second Ansible -- but if those two Ansibles are each set to `Address 0`, `KR.CLK 1` *will* clock the first Kria track on each.
+{: .label}
+
 ### Kria
 
 Kria's tracks can be clocked individually by the `KR.CLK` op, this must be enabled using the toggles on the far top-left column of Kria's scale page.

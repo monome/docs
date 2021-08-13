@@ -19,6 +19,8 @@ the norns shield is [open source hardware](https://github.com/monome/norns-shiel
 - microSD card - use a high quality brand such as [SanDisk](https://chicagodist.com/products/raspberry-pi-official-noobs-microsd-card?variant=12404373160015) ($10)
 - power supply - we *highly* recommend [this one](https://chicagodist.com/products/raspberry-pi-2-amp-micro-usb-power-supply). the Pi3B has a micro-USB power port and requires at least 2A and 5.25V ideally supplied through a cable with 24AWG or less. lower AWG = lower noise & more stable voltage delivery for better performance. **most consumer USB cables do not meet this spec, so please be sure to keep an eye out**. you can also use a portable USB battery if it's sufficiently large.
 
+*nb. the total cost for this project is ~$330 USD. no soldering is required, only screwdriver assembly done in minutes. flashing the SD card should take 15 minutes of passive time. if you run into any trouble along the way, we are happy to assist via help@monome.org*
+
 ## comparison
 
 there are some differences between the norns and norns shield:

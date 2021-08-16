@@ -23,6 +23,8 @@ If you have any questions or concerns about power, please feel free to email `he
 
 ## compatibility
 
+*nb. 2021 grids require updated firmware for compatibility -- please see [modular firmware updates](../modular/update) for more info*
+
 ### Ansible
 
 - varibright grids only

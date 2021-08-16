@@ -143,6 +143,20 @@ If you do not hear a startup tone, the norns OS is not booting. The best next st
 - If you soldered the unit yourself, please post images of the board to [this thread](https://llllllll.co/t/diy-norns-shield/27638/). Note that this is a community resource, so please be respectful of time and energy limitations.
 - If you purchased it from a third-party who soldered the components, please reach out to them for resolution.
 
+### grid connectivity troubleshooting
+
+If you've recently received a new grid, you may find that scripts do not seem to be connecting to it.
+
+To troubleshoot:
+
+- ensure your norns is up to date via `SYSTEM > UPDATE` (see [wifi + files](../wifi-files/#update) for more info)
+- many scripts assume that an artist only has access to one grid (versus many MIDI controllers), and automatically connect to the first slot under `SYSTEM > DEVICES > GRID`.
+  - disconnect all grids
+  - press `K3` on slot 1, select `none`, press `K3`
+  - press `K3` on slot 2, select `none`, press `K3`
+  - ..repeat for any slot that doesn't say `none`
+  - connect your new grid + it should populate slot 1!
+
 
 ### audio input/output hardware specs {#audio-specs}
 

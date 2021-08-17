@@ -33,6 +33,12 @@ GRID
 
 ### FAQ
 
+#### why don't I see my grid populate in the `GRID` menu?
+
+If you have a [2021 grid](/docs/grid/editions), norns needs to be running the latest software to communicate to it (2021 grid compatibility was added in update `210706`). Follow the steps in the [norns update docs](/docs/norns/wifi-files/#update) to update your software. After the unit restarts, your new grid should be successfully detected by norns.
+
+Still running into trouble seeing your grid in `SYSTEM > DEVICES > GRID` after your norns update? Please email `help@monome.org` and we'll work it out!
+
 #### why are there four `GRID` ports?
 
 The norns software can host a lot more than what might be currently present at its four physical USB ports, including:

@@ -31,6 +31,14 @@ GRID
 4. none
 ```
 
+#### what should I use grid + norns for first?
+
+A great starting point is [awake](/docs/norns/play/#awake), which is the script that norns runs after its very first boot-up.
+
+`awake` is a good one to start with because the grid interface mirrors the sequence that you see on the screen -- after loading, you'll see your grid come alive with a playhead + some programmed notes. Press some pads to change notes! That's it :)
+
+Want more? Check out the *community script selections* at the bottom of this page!
+
 ### FAQ
 
 #### why don't I see my grid populate in the `GRID` menu?
@@ -122,7 +130,7 @@ Most norns apps are built with 16-step varibright grids in mind. While 4-step an
 
 If you want to adapt a script's LED brightness, [norns study 4](/docs/norns/study-4) is a good place to start.
 
-## community scripts
+## community scripts selections
 
 After you [learn how to import apps into your norns](/docs/norns/maiden), here are a few starting points for exploring grid + norns.
 

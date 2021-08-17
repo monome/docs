@@ -88,7 +88,7 @@ GRID
 4. none
 ```
 
-In each case, if `monome 128 m1000437` is the grid we want to use then we need to clear it from port 2 and register it to port 1.
+In each case, if `monome 128 m4409455` is the grid we want to use then we need to clear it from port 2 and register it to port 1.
 
 The critical thing to remember is that the grid at port 1 is the one which most community scripts target.
 {: .label .label-grey}

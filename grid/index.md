@@ -16,7 +16,7 @@ It has 128 keys (though it's also been 64 and 256) which are decoupled from thei
 
 ## what does it do?
 
-grid connects through USB to personal computers, Eurorack modules, and sound computers like [norns](/docs/norns). It is a highly flexible interface for applications within each of these environments.
+grid connects through USB to personal computers, modular synths, and sound computers like [norns](/docs/norns). It is a highly flexible interface for applications within each of these environments.
 
 grid communicates with applications to do a wide range of things: control MIDI devices, sequence modular synthesizers, cut samples, provide an isometric keyboard to software synths, change faders, visualize streams of data, etc. This core flexibility makes it hard to point to one use case and say "it does this."
 
@@ -24,7 +24,7 @@ In short, grid doesn't do much on its own. It's inherently modeless, adapting to
 
 ## how do I use it?
 
-Most artists approach grid through two doors, often simultaneously: as an instrumentalist (using applications made by others) or as a designer (creating applications for others). There are applications for [laptops + desktops](/docs/grid/grid-computer/#applications) and applications for [norns](/docs/grid/grid-norns/#applications).
+Most artists approach grid through two doors, often simultaneously: as an instrumentalist (using applications made by others) or as a designer (creating applications for others). There are applications for [laptops + desktops](/docs/grid/grid-computer/#applications) and applications for [norns](/docs/grid/grid-norns/#applications). If you have access to a modular synth, grid also connects to [modules](grid-modular), which are also reprogrammable.
 
 Over the last 15 years, grid has connected instrumentalists + designers to create an ecosystem of applications. This exchange of ideas and energy has, in turn, created a [community](https://llllllll.co).
 
@@ -32,6 +32,9 @@ However you choose to approach it, grid is lasting -- both in construction and i
 
 ## further info
 
+- [grid + norns / norns shield](grid-norns) - information specifically about connecting grid with norns + norns shield
+- [grid + modular](grid-modular) - information specifically about grid's connectivity options in a modular synth
+- [grid + computer](grid-computer) - information specifically about connecting grid with general-purpose computers
 - [editions](editions) - information about different device generations
 - [disassembly](disassembly) - guides for disassembling the hardware
 - [care](care) - some suggestions for device maintenance (tl;dr: don't rest other gear on top of grid, as it will discolor pads)

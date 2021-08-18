@@ -105,7 +105,7 @@ Connect a script to other OSC-enabled devices across a network. Provides scaffol
 - `from`: a table which includes the source device's IP address and port, which help identify the device to norns
 
 norns *only* listens to OSC events through port `10111`
-{.label}
+{: .label}
 
 `osc.send` is a static method to send an OSC event from norns. These events are formatted as:
 
@@ -114,4 +114,4 @@ norns *only* listens to OSC events through port `10111`
 - `args`: a table of values which follow the path, which a destination device can separate by index
 
 norns can send to any OSC port which your destination device accepts
-{.label}
+{: .label}

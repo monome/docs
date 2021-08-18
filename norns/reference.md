@@ -41,7 +41,7 @@ many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for 
 | [keyboard](keyboard)               | Decipher keyboard (typing, not piano) input                                         |
 | metro                              | High-resolution time-based counter                                                  |
 | [midi](midi)                       | Connect a script to MIDI hardware                                                   |
-| osc                                | Connect a script to OSC streams                                                     |
+| [osc](osc)                         | Connect a script to OSC streams                                                     |
 | [params](params)                   | Create script parameters, displayed in the PARAMETERS menu                          |
 | poll                               | System polling for CPU, incoming/outgoing amplitude, and incoming pitch             |
 | screen                             | Draw to the norns on-board screen                                                   |
@@ -58,11 +58,11 @@ many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for 
 | lib/graph                          | Graph drawing module                                                                |
 | [lib/intonation](./lib/intonation) | Library of various tunings, including 12 tone and gamuts                            |
 | [lib/lattice](./lib/lattice)       | Simple and extensible sequencers driven by a superclock                             |
-| [lib/listselect](./lib/listselect)                     | List select utility                                                                 |
-| [lib/musicutil](./lib/musicutil)                      | Utility module for common music maths                                               |
+| [lib/listselect](./lib/listselect) | List select utility                                                                 |
+| [lib/musicutil](./lib/musicutil)   | Utility module for common music maths                                               |
 | lib/pattern                        | Timed-event pattern recorder / player                                               |
 | [lib/textentry](./lib/textentry)   | Text entry UI                                                                       |
-| [lib/ui](./lib/ui)                             | UI widgets module                                                                   |
+| [lib/ui](./lib/ui)                 | UI widgets module                                                                   |
 | lib/voice                          | Experimental voice allocation module                                                |
 
 ## folder structure

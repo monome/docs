@@ -27,7 +27,7 @@ permalink: /norns/reference/lib/ui/list
 
 ### example
 
-![](../../../image/reference-lib-ui-images/listexample.gif)
+![](../../../image/reference-images/listexample.gif)
 
 ```lua
 UI = require("ui")

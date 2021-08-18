@@ -12,7 +12,7 @@ has_toc: false
 
 # norns script reference
 
-this script reference is a supplement to the complete norns API. here, you'll find examples which explore single components of the API, which can be copied/pasted into your own scripts and manipulated for your needs. these examples assumes familiarity with the scripting concepts covered in the [norns studies](/docs/norns/studies).
+this script reference is a supplement to the complete norns API. here, you'll find examples which explore single components of the API, which can be copied/pasted into your own scripts and manipulated for your needs. these examples assume familiarity with the scripting concepts covered in the [norns studies](/docs/norns/studies).
 
 to access the complete norns API, you can either:
 

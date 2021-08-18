@@ -12,6 +12,19 @@ has_toc: false
 
 # norns script reference
 
+this script reference is a supplement to the complete norns API. here, you'll find examples which explore single components of the API, which can be copied/pasted into your own scripts and manipulated for your needs. these examples assumes familiarity with the scripting concepts covered in the [norns studies](/docs/studies).
+
+to access the complete norns API, you can either:
+
+- connect to maiden and navigate to `norns.local/doc` in your browser
+- visit the [static API](https://monome.org/docs/norns/api/index.html)
+
+contributions to the script reference are welcomed + we are very grateful for any assistance covering these topics.
+
+have questions about how to contribute? please feel free to email `help@monome.org` and we can collaborate!
+
+many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for building the reference pages for `er`, `fileselect`, `musicutil`, `textentry`, and `ui`.
+
 ## commands
 
 | Module                             | Description                                                                         |

@@ -368,29 +368,31 @@ If your SD card seems a lot more full than it should be, you'll need to expand t
 
 ### manual / offline update
 
+For this process, we'll use the phrase `execute` to mean "type this text into your terminal and press return/enter to run it."
+
 - Download and copy the [latest release's`.tgz` update file](https://github.com/monome/norns/releases) to a FAT-formatted USB drive
-- Take note of the `.tgz` file's name, as it is important (eg. `norns210706` is specific to the July 06 2021 update)
-- Insert the USB drive into norns and power up.
-- If using a stock norns, connect via [serial](../wifi-files/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh).
-- Copy file to `~/update/`:
+- Take note of the `.tgz` file's name, as it is important (eg. `norns210706` is specific to the July 06 2021 update in YYMMDD format)
+- Insert the USB drive into norns and boot up your norns
+- If using a stock norns, connect via [serial](../wifi-files/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh)
+- Copy file to `~/update/` by executing the following:
 
 ```
 sudo cp /media/usb0/*.tgz ~/update/
 ```
 
-- Once you see the command prompt again, enter the update folder:
+- Once you see the command prompt again, enter the update folder by executing:
 
 ```
 cd ~/update
 ```
 
-- Remember that special filename (eg. `norns210706`)? We'll need it to unpack to the update folder:
+- Remember that special filename (eg. `norns210706`)? We'll need it to unpack to the update folder by executing:
 
 ```
 tar xzvf norns210706.tgz
 ```
 
-- You'll see a flurry of activity, but after a few dozen seconds you'll get to the command prompt again:
+- You'll see a flurry of activity, but after a few dozen seconds you'll get to the command prompt again. Now, we'll go into the the update folder by executing:
 
 ```
 cd 210706
@@ -398,7 +400,7 @@ cd 210706
 ```
 *nb. make sure to replace `210706` in the above with the date reflected in the file you downloaded. If you're in doubt, simply execute `ls` and you'll be shown two files: the `.tgz` and the folder it unpacked. We want to copy the name of the folder exactly.*
 
-- You'll see something similar to:
+You'll see something similar to the following printed in your terminal:
 
 ```bash
 [ ok ] Restarting nmbd (via systemctl): nmbd.service.
@@ -412,7 +414,7 @@ ln: failed to create symbolic link '/home/we/bin/maiden-repl': File exists
 
 *nb. those last two failures are benign*
 
-- Upon completion type `sudo shutdown now`
+- Finally, execute `sudo shutdown now` and norns will shut down
 
 If performing these steps on a shield, you won't see the standard shutdown message reminding you to wait until the non-red LED goes out -- you still need to wait!
 {: .label .label-red}

@@ -369,7 +369,7 @@ If your SD card seems a lot more full than it should be, you'll need to expand t
 ### manual / offline update
 
 - Download and copy the [latest release's`.tgz` update file](https://github.com/monome/norns/releases) to a FAT-formatted USB drive
-- Take note of the `.tgz` file's name, as it is important (eg. `norns210607` is specific to the June 07 2021 update)
+- Take note of the `.tgz` file's name, as it is important (eg. `norns210706` is specific to the July 06 2021 update)
 - Insert the USB drive into norns and power up.
 - If using a stock norns, connect via [serial](../wifi-files/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh).
 - Copy file to `~/update/`:
@@ -378,25 +378,46 @@ If your SD card seems a lot more full than it should be, you'll need to expand t
 sudo cp /media/usb0/*.tgz ~/update/
 ```
 
-- Enter the update folder:
+- Once you see the command prompt again, enter the update folder:
 
 ```
 cd ~/update
 ```
 
-- Remember that special filename (eg. `norns210607`)? We'll need it to unpack and run the update:
+- Remember that special filename (eg. `norns210706`)? We'll need it to unpack to the update folder:
 
 ```
-tar xzvf norns210607.tgz
-cd norns210607
+tar xzvf norns210706.tgz
+```
+
+- You'll see a flurry of activity, but after a few dozen seconds you'll get to the command prompt again:
+
+```
+cd 210706
 ./update.sh
 ```
-*nb. make sure to replace `norns210607` in the above with the filename you downloaded*
+*nb. make sure to replace `210706` in the above with the date reflected in the file you downloaded. If you're in doubt, simply execute `ls` and you'll be shown two files: the `.tgz` and the folder it unpacked. We want to copy the name of the folder exactly.*
 
-- Upon completion type `sudo shutdown now`.
+- You'll see something similar to:
+
+```bash
+[ ok ] Restarting nmbd (via systemctl): nmbd.service.
+[ ok ] Restarting smbd (via systemctl): smbd.service.
+CM3
+'/home/we/maiden/dist/sources/base.json' -> '/home/we/dust/data/sources/base.json'
+'/home/we/maiden/dist/sources/community.json' -> '/home/we/dust/data/sources/community.json'
+ln: failed to create symbolic link '/home/we/bin/maiden': File exists
+ln: failed to create symbolic link '/home/we/bin/maiden-repl': File exists
+```
+
+*nb. those last two failures are benign*
+
+- Upon completion type `sudo shutdown now`
 
 If performing these steps on a shield, you won't see the standard shutdown message reminding you to wait until the non-red LED goes out -- you still need to wait!
 {: .label .label-red}
+
+Once you restart your device, hit K2 on the SELECT / SYSTEM / SLEEP screen and you should see the update's date listed on the right side of the screen!
 
 ### change passwords on norns {#change-password}
 

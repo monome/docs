@@ -288,3 +288,4 @@ and then on to [study 1: many tomorrows](../study-1) for a more in-depth scripti
 ## resources
 
 - [script reference](../reference) - list of commands and how to use them
+- [first light walkthrough](https://vimeo.com/515473339) - a recorded livestream of dan derks doing a norns study 0 walkthrough

@@ -43,7 +43,7 @@ To begin, let's get acquainted with the layouts of each iteration of norns -- st
 
 After norns powers up, it will launch the last script that was loaded. On a fresh norns, this will be *awake*, a set of looping sequencers with delay.
 
-In any norns script, a quick tap of **K1** will toggle between the playable interface and the menus interface. If you get caught in the menus, just tap **K1** to get back to the script.
+There are two layers to the norns UI -- a multi-page menu interface and a script's playable interface. A quick tap of **K1** is how you swap focus between these layers. In the diagram below, a quick **K1** tap toggles between the multi-page menu layer (top row) and the current script's playable interface (bottom image). While you are inside of the playable interface, the encoders and keys perform script-specific actions. Once you are in the menu interface, use **E1** to switch between the different menus (LEVELS, TAPE, HOME, PARAMETERS). We'll explore each of these menus in the rest of the docs!
 {: .label}
 
 ![](image/play-images/menu-nav.png)  

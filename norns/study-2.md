@@ -182,7 +182,7 @@ check out the rest of the reference docs for more drawing bliss and get out your
 
 ## procedural
 
-we've already looked at `if` / `ifelse` / `else` for basic control. let's look at a few other techniques:
+we've already looked at `if` / `elseif` / `else` for basic control. let's look at a few other techniques:
 
 ```lua
 x = 3

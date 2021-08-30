@@ -189,6 +189,14 @@ NO!
 
 norns (both stock and shield) has line-level inputs only -- sending modular signals, which run very hot, through these inputs may result in damage. Please attenuate your modular signals before sending them into norns with an interface module like [Intellijel's Audio Interface](https://www.modulargrid.net/e/intellijel-audio-interface-ii).
 
+### shield: can I use the Pi's HDMI output to mirror the shield's screen?
+
+No.
+
+The norns OS is primarily developed for/on the stock norns hardware, which makes use of a compute module which has a smaller form factor than the traditional Pi board and does not have any of the additional I/O. This allows stock units to provide pro-audio connectors, a battery, and an overall roomier layout while maintaining a small footprint.
+
+Avoiding the additional CPU headroom required to support external video output also allows us to optimize the capabilities of norns, to provide stock and shield users with the same foundational software experience.
+
 ## software
 
 ### recovering from freezes {#frozen}

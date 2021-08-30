@@ -63,6 +63,14 @@ To check for and install updates:
 To re-run an update, navigate to **SYSTEM > UPDATE**, then hold **K1** and press **K3**
 {: .label }
 
+### "disk full. need 400M."
+
+If you encounter this message while attempting to update, it means the amount of storage allocated to norns by the filesystem has less than 400 megabytes currently available.
+
+If you're using a high-capacity card/chip (eg. 32gb), this is likely the result of the filesystem not being expanded after a [fresh install](/docs/norns/help/#fresh-install) (eg. re-flashing the norns to overcome technical issues) or after the initial norns shield assembly (eg. the final [expand](/docs/norns/shield/#explore--expand) steps). Either way, this is normal -- norns can't anticipate how much space it's allowed to allocate for itself, so it retains a minimal installation size until directed otherwise. To expand the filesystem of a stock norns, follow [step 7 of the 'fresh install' docs](/docs/norns/help/#stock-norns-1). To expand the filesystem of a shield, follow [steps 1-8 here](/docs/norns/help/#shield-1).
+
+If filesystem expansion doesn't resolve the issue (or if you know you have a *lot* of stored audio files), you'll want to transfer files from norns to another computer. See the next section of these docs to learn how to mount norns as a networked drive.
+
 ## transfer
 
 In **play**, we loaded loops and recorded our own audio using the **TAPE**. All of the files that you interact with (audio, scripts, presets, etc), live inside of a special folder in norns called `dust`.

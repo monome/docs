@@ -45,7 +45,9 @@ Want more? Check out the *community script selections* at the bottom of this pag
 
 If you have a [2021 grid](/docs/grid/editions), norns needs to be running the latest software to communicate to it (2021 grid compatibility was added in update `210706`). Follow the steps in the [norns update docs](/docs/norns/wifi-files/#update) to update your software. After the unit restarts, your new grid should be successfully detected by norns.
 
-Still running into trouble seeing your grid in `SYSTEM > DEVICES > GRID` after your norns update? Please email `help@monome.org` and we'll work it out!
+If your grid is not automatically detected upon startup, please follow the steps listed [here](https://monome.org/docs/grid/grid-norns/#how-do-i-manage-the-virtual-ports-on-my-norns) on the first port under `SYSTEM > DEVICES > GRID`.
+
+Still running into trouble with your grid + norns? Please email `help@monome.org` and we'll work it out!
 
 #### why are there four `GRID` ports?
 

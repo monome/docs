@@ -2,11 +2,11 @@
 layout: default
 parent: norns
 has_children: false
-title: wifi + files
+title: wifi / update / files
 nav_order: 2
 ---
 
-# wifi + files
+# wifi / update / files
 {: .no_toc }
 
 <details open markdown="block">

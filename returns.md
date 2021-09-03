@@ -22,7 +22,7 @@ has_children: false
 | used | item is returned without original packaging or accessories, item has visible wear | 20+%, determined after appraisal |
 | defective | item is not working as expected | n/a |
 
-## warranty
+# warranty
 
 monome is a very tiny organization (three people), operating at human scale. we take great care to ensure all items sent from our NY workshop are in optimal working condition by partnering with local circuit board manufacturers, assembling each unit by hand, and packing them with care.
 

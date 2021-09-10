@@ -24,7 +24,7 @@ Attach the included 9v power adapter to the input plug labeled '9-24V DC' at the
 Output power consumption to your USB device is limited to 1A to protect against short circuits.
 
 
-##Power
+## Power
 
 Switch adds an additional 5v power supply to a Eurorack modular system specifically to power a monome grid, though any USB-compliant controller can be powered also.
 

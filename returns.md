@@ -18,7 +18,7 @@ has_children: false
 | condition | details | fee |
 | --- | --- | --- |
 | unopened + unused | item is returned exactly as received | n/a |
-| used, like-new | item is returned with all original packaging and accessories, item has no visible wear | 15% |
+| used, like-new | item is returned with all original packaging and accessories, item has no visible wear | 10% |
 | used | item is returned without original packaging or accessories, item has visible wear | 20+%, determined after appraisal |
 | defective | item is not working as expected | n/a |
 

@@ -50,10 +50,13 @@
   <li><a href="../modules/clock.html">clock</a></li>
   <li><a href="../modules/controlspec.html">controlspec</a></li>
   <li><a href="../modules/crow.html">crow</a></li>
+  <li><a href="../modules/core.crow.public.html">core.crow.public</a></li>
+  <li><a href="../modules/core.crow.quote.html">core.crow.quote</a></li>
   <li><a href="../modules/encoders.html">encoders</a></li>
   <li><a href="../modules/engine.html">engine</a></li>
   <li><a href="../modules/grid.html">grid</a></li>
   <li><a href="../modules/hid.html">hid</a></li>
+  <li><a href="../modules/keyboard.html">keyboard</a></li>
   <li><a href="../modules/metro.html">metro</a></li>
   <li><a href="../modules/midi.html">midi</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
@@ -78,12 +81,15 @@
   <li><a href="../modules/lib.formatters.html">lib.formatters</a></li>
   <li><a href="../modules/lib.Graph.html">lib.Graph</a></li>
   <li><a href="../modules/lib.intonation.html">lib.intonation</a></li>
+  <li><a href="../modules/Lattice.html">Lattice</a></li>
   <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
   <li><a href="../modules/lib.MusicUtil.html">lib.MusicUtil</a></li>
   <li><a href="../modules/lib.pattern.html">lib.pattern</a></li>
+  <li><a href="../modules/lib.sequins.html">lib.sequins</a></li>
   <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
   <li><a href="../modules/lib.test.luaunit.html">lib.test.luaunit</a></li>
   <li><a href="../modules/lib.textentry.html">lib.textentry</a></li>
+  <li><a href="../modules/lib.textentry_kbd.html">lib.textentry_kbd</a></li>
   <li><strong>lib.UI</strong></li>
   <li><a href="../modules/lib.util.html">lib.util</a></li>
   <li><a href="../modules/lib.voice.html">lib.voice</a></li>
@@ -96,7 +102,10 @@
 <h1>Module <code>lib.UI</code></h1>
 <p>UI widgets module.</p>
 <p>
+
  Widgets for paging, tabs, lists, dials, sliders, etc.
+
+
 </p>
     <h3>Info:</h3>
     <ul>
@@ -158,6 +167,10 @@
 	<td class="summary">Set selected list using delta.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#UI.List:set_active">UI.List:set_active (state)</a></td>
+	<td class="summary">Set selected list's active state.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#UI.List:redraw">UI.List:redraw ()</a></td>
 	<td class="summary">Redraw List.</td>
 	</tr>
@@ -177,6 +190,10 @@
 	<td class="summary">Set selected scrolling list using delta.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#UI.ScrollingList:set_active">UI.ScrollingList:set_active (state)</a></td>
+	<td class="summary">Set selected scrolling list's active state.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#UI.ScrollingList:redraw">UI.ScrollingList:redraw ()</a></td>
 	<td class="summary">Redraw ScrollingList.</td>
 	</tr>
@@ -186,6 +203,10 @@
 	<tr>
 	<td class="name" nowrap><a href="#UI.Message.new">UI.Message.new (text_array)</a></td>
 	<td class="summary">Create a new Message object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#UI.Message:set_active">UI.Message:set_active (state)</a></td>
+	<td class="summary">Set message's active state.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#UI.Message:redraw">UI.Message:redraw ()</a></td>
@@ -211,6 +232,10 @@
 	<td class="summary">Set marker position.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#UI.Slider:set_active">UI.Slider:set_active (state)</a></td>
+	<td class="summary">Set slider's active state.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#UI.Slider:redraw">UI.Slider:redraw ()</a></td>
 	<td class="summary">Redraw Slider.</td>
 	</tr>
@@ -234,6 +259,10 @@
 	<td class="summary">Set marker position.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#UI.Dial:set_active">UI.Dial:set_active (state)</a></td>
+	<td class="summary">Set dial's active state.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#UI.Dial:redraw">UI.Dial:redraw ()</a></td>
 	<td class="summary">Redraw Dial.</td>
 	</tr>
@@ -243,6 +272,14 @@
 	<tr>
 	<td class="name" nowrap><a href="#UI.PlaybackIcon.new">UI.PlaybackIcon.new (x, y, size, status)</a></td>
 	<td class="summary">Create a new PlaybackIcon object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#UI.PlaybackIcon:set_status">UI.PlaybackIcon:set_status (status)</a></td>
+	<td class="summary">Set PlaybackIcon's status.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#UI.PlaybackIcon:set_active">UI.PlaybackIcon:set_active (state)</a></td>
+	<td class="summary">Set PlaybackIcon's active state.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#UI.PlaybackIcon:redraw">UI.PlaybackIcon:redraw ()</a></td>
@@ -340,7 +377,9 @@
     </dt>
     <dd>
     Redraw Pages.
+
  Call when changed.
+
 
 
 
@@ -436,7 +475,9 @@
     </dt>
     <dd>
     Redraw Tabs.
+
  Call when changed.
+
 
 
 
@@ -535,12 +576,35 @@
 
 </dd>
     <dt>
+    <a name = "UI.List:set_active"></a>
+    <strong>UI.List:set_active (state)</strong>
+    </dt>
+    <dd>
+    Set selected list's active state.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">state</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Boolean, true for active.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "UI.List:redraw"></a>
     <strong>UI.List:redraw ()</strong>
     </dt>
     <dd>
     Redraw List.
+
  Call when changed.
+
 
 
 
@@ -639,12 +703,35 @@
 
 </dd>
     <dt>
+    <a name = "UI.ScrollingList:set_active"></a>
+    <strong>UI.ScrollingList:set_active (state)</strong>
+    </dt>
+    <dd>
+    Set selected scrolling list's active state.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">state</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Boolean, true for active.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "UI.ScrollingList:redraw"></a>
     <strong>UI.ScrollingList:redraw ()</strong>
     </dt>
     <dd>
     Redraw ScrollingList.
+
  Call when changed.
+
 
 
 
@@ -685,12 +772,35 @@
 
 </dd>
     <dt>
+    <a name = "UI.Message:set_active"></a>
+    <strong>UI.Message:set_active (state)</strong>
+    </dt>
+    <dd>
+    Set message's active state.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">state</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Boolean, true for active.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "UI.Message:redraw"></a>
     <strong>UI.Message:redraw ()</strong>
     </dt>
     <dd>
     Redraw Message.
+
  Call when changed.
+
 
 
 
@@ -830,12 +940,35 @@
 
 </dd>
     <dt>
+    <a name = "UI.Slider:set_active"></a>
+    <strong>UI.Slider:set_active (state)</strong>
+    </dt>
+    <dd>
+    Set slider's active state.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">state</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Boolean, true for active.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "UI.Slider:redraw"></a>
     <strong>UI.Slider:redraw ()</strong>
     </dt>
     <dd>
     Redraw Slider.
+
  Call when changed.
+
 
 
 
@@ -983,12 +1116,35 @@
 
 </dd>
     <dt>
+    <a name = "UI.Dial:set_active"></a>
+    <strong>UI.Dial:set_active (state)</strong>
+    </dt>
+    <dd>
+    Set dial's active state.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">state</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Boolean, true for active.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "UI.Dial:redraw"></a>
     <strong>UI.Dial:redraw ()</strong>
     </dt>
     <dd>
     Redraw Dial.
+
  Call when changed.
+
 
 
 
@@ -1041,12 +1197,56 @@
 
 </dd>
     <dt>
+    <a name = "UI.PlaybackIcon:set_status"></a>
+    <strong>UI.PlaybackIcon:set_status (status)</strong>
+    </dt>
+    <dd>
+    Set PlaybackIcon's status.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">status</span>
+            <span class="types"><span class="type">number</span></span>
+         Status number. 1 = Play, 2 = Reverse Play, 3 = Pause, 4 = Stop.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "UI.PlaybackIcon:set_active"></a>
+    <strong>UI.PlaybackIcon:set_active (state)</strong>
+    </dt>
+    <dd>
+    Set PlaybackIcon's active state.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">state</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Boolean, true for active.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "UI.PlaybackIcon:redraw"></a>
     <strong>UI.PlaybackIcon:redraw ()</strong>
     </dt>
     <dd>
     Redraw PlaybackIcon.
+
  Call when changed.
+
 
 
 
@@ -1062,7 +1262,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-01-11 12:10:11 </i>
+<i style="float:right;">Last updated 2021-09-10 15:00:16 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

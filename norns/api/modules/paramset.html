@@ -43,10 +43,13 @@
   <li><a href="../modules/clock.html">clock</a></li>
   <li><a href="../modules/controlspec.html">controlspec</a></li>
   <li><a href="../modules/crow.html">crow</a></li>
+  <li><a href="../modules/core.crow.public.html">core.crow.public</a></li>
+  <li><a href="../modules/core.crow.quote.html">core.crow.quote</a></li>
   <li><a href="../modules/encoders.html">encoders</a></li>
   <li><a href="../modules/engine.html">engine</a></li>
   <li><a href="../modules/grid.html">grid</a></li>
   <li><a href="../modules/hid.html">hid</a></li>
+  <li><a href="../modules/keyboard.html">keyboard</a></li>
   <li><a href="../modules/metro.html">metro</a></li>
   <li><a href="../modules/midi.html">midi</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
@@ -71,12 +74,15 @@
   <li><a href="../modules/lib.formatters.html">lib.formatters</a></li>
   <li><a href="../modules/lib.Graph.html">lib.Graph</a></li>
   <li><a href="../modules/lib.intonation.html">lib.intonation</a></li>
+  <li><a href="../modules/Lattice.html">Lattice</a></li>
   <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
   <li><a href="../modules/lib.MusicUtil.html">lib.MusicUtil</a></li>
   <li><a href="../modules/lib.pattern.html">lib.pattern</a></li>
+  <li><a href="../modules/lib.sequins.html">lib.sequins</a></li>
   <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
   <li><a href="../modules/lib.test.luaunit.html">lib.test.luaunit</a></li>
   <li><a href="../modules/lib.textentry.html">lib.textentry</a></li>
+  <li><a href="../modules/lib.textentry_kbd.html">lib.textentry_kbd</a></li>
   <li><a href="../modules/lib.UI.html">lib.UI</a></li>
   <li><a href="../modules/lib.util.html">lib.util</a></li>
   <li><a href="../modules/lib.voice.html">lib.voice</a></li>
@@ -110,7 +116,7 @@
 	<td class="summary">add generic parameter.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#ParamSet:add_number">ParamSet:add_number (id, name, min, max, wrap, default, formatter)</a></td>
+	<td class="name" nowrap><a href="#ParamSet:add_number">ParamSet:add_number (id, name, min, max, default, formatter, wrap)</a></td>
 	<td class="summary">add number.</td>
 	</tr>
 	<tr>
@@ -214,7 +220,7 @@
 	<td class="summary">write to disk.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#ParamSet:read">ParamSet:read (filename)</a></td>
+	<td class="name" nowrap><a href="#ParamSet:read">ParamSet:read (filename, silent)</a></td>
 	<td class="summary">read from disk.</td>
 	</tr>
 	<tr>
@@ -340,7 +346,7 @@
 </dd>
     <dt>
     <a name = "ParamSet:add_number"></a>
-    <strong>ParamSet:add_number (id, name, min, max, wrap, default, formatter)</strong>
+    <strong>ParamSet:add_number (id, name, min, max, default, formatter, wrap)</strong>
     </dt>
     <dd>
     add number.
@@ -350,29 +356,31 @@
     <ul>
         <li><span class="parameter">id</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         identifier slug (no spaces)
         </li>
         <li><span class="parameter">name</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         user-facing name (can contain spaces)
         </li>
         <li><span class="parameter">min</span>
             <span class="types"><span class="type">number</span></span>
-
+         minimum value
         </li>
         <li><span class="parameter">max</span>
             <span class="types"><span class="type">number</span></span>
-
+         maximum value
+        </li>
+        <li><span class="parameter">default</span>
+            <span class="types"><span class="type">number</span></span>
+         default / initial value
+        </li>
+        <li><span class="parameter">formatter</span>
+            <span class="types"><span class="type">function</span></span>
+         function accepting a value and returning a string
         </li>
         <li><span class="parameter">wrap</span>
             <span class="types"><span class="type">boolean</span></span>
-
-        </li>
-        <li><span class="parameter">default</span>
-
-        </li>
-        <li><span class="parameter">formatter</span>
-
+         if true, value wraps on delta; otherwise saturates
         </li>
     </ul>
 
@@ -983,7 +991,7 @@
 </dd>
     <dt>
     <a name = "ParamSet:read"></a>
-    <strong>ParamSet:read (filename)</strong>
+    <strong>ParamSet:read (filename, silent)</strong>
     </dt>
     <dd>
     read from disk.
@@ -992,7 +1000,12 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">filename</span>
+            <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
          either an absolute path, number (to read [scriptname]-[number].pset from local data folder) or nil (to read pset number specified by pset-last.txt in the data folder)
+        </li>
+        <li><span class="parameter">silent</span>
+            <span class="types"><span class="type">boolean</span></span>
+         if true, do not trigger parameter actions
         </li>
     </ul>
 
@@ -1050,7 +1063,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-01-11 12:10:11 </i>
+<i style="float:right;">Last updated 2021-09-10 15:00:16 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

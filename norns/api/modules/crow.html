@@ -33,6 +33,7 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
 </ul>
 
 
@@ -43,10 +44,13 @@
   <li><a href="../modules/clock.html">clock</a></li>
   <li><a href="../modules/controlspec.html">controlspec</a></li>
   <li><strong>crow</strong></li>
+  <li><a href="../modules/core.crow.public.html">core.crow.public</a></li>
+  <li><a href="../modules/core.crow.quote.html">core.crow.quote</a></li>
   <li><a href="../modules/encoders.html">encoders</a></li>
   <li><a href="../modules/engine.html">engine</a></li>
   <li><a href="../modules/grid.html">grid</a></li>
   <li><a href="../modules/hid.html">hid</a></li>
+  <li><a href="../modules/keyboard.html">keyboard</a></li>
   <li><a href="../modules/metro.html">metro</a></li>
   <li><a href="../modules/midi.html">midi</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
@@ -71,12 +75,15 @@
   <li><a href="../modules/lib.formatters.html">lib.formatters</a></li>
   <li><a href="../modules/lib.Graph.html">lib.Graph</a></li>
   <li><a href="../modules/lib.intonation.html">lib.intonation</a></li>
+  <li><a href="../modules/Lattice.html">Lattice</a></li>
   <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
   <li><a href="../modules/lib.MusicUtil.html">lib.MusicUtil</a></li>
   <li><a href="../modules/lib.pattern.html">lib.pattern</a></li>
+  <li><a href="../modules/lib.sequins.html">lib.sequins</a></li>
   <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
   <li><a href="../modules/lib.test.luaunit.html">lib.test.luaunit</a></li>
   <li><a href="../modules/lib.textentry.html">lib.textentry</a></li>
+  <li><a href="../modules/lib.textentry_kbd.html">lib.textentry_kbd</a></li>
   <li><a href="../modules/lib.UI.html">lib.UI</a></li>
   <li><a href="../modules/lib.util.html">lib.util</a></li>
   <li><a href="../modules/lib.voice.html">lib.voice</a></li>
@@ -94,32 +101,27 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#version">version ()</a></td>
-	<td class="summary">send version</td>
+	<td class="name" nowrap><a href="#norns.crow.clock_enable">norns.crow.clock_enable ()</a></td>
+	<td class="summary">helper functions for common crow actions from norns</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#_norns.crow">_norns.crow</a></td>
+	<td class="summary">system level configuration</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#identity">identity ()</a></td>
-	<td class="summary">send identity</td>
+	<td class="name" nowrap><a href="#norns.crow">norns.crow</a></td>
+	<td class="summary">for talking *about* crow
+
+ contain support / functions for ^^ events from crow</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#reset">reset ()</a></td>
-	<td class="summary">reset crow</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#kill">kill ()</a></td>
-	<td class="summary">send kill</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#clear">clear ()</a></td>
-	<td class="summary">send clear</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#send">send (cmd)</a></td>
-	<td class="summary">send a command</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#connected">connected ()</a></td>
-	<td class="summary">check if crow is connected</td>
+	<td class="name" nowrap><a href="#crow">crow</a></td>
+	<td class="summary">crow namespace support
+
+ for talking *to* crow</td>
 	</tr>
 </table>
 
@@ -131,11 +133,29 @@
 
     <dl class="function">
     <dt>
-    <a name = "version"></a>
-    <strong>version ()</strong>
+    <a name = "norns.crow.clock_enable"></a>
+    <strong>norns.crow.clock_enable ()</strong>
     </dt>
     <dd>
-    send version
+    helper functions for common crow actions from norns
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "_norns.crow"></a>
+    <strong>_norns.crow</strong>
+    </dt>
+    <dd>
+    system level configuration
 
 
 
@@ -145,72 +165,18 @@
 
 </dd>
     <dt>
-    <a name = "identity"></a>
-    <strong>identity ()</strong>
+    <a name = "norns.crow"></a>
+    <strong>norns.crow</strong>
     </dt>
     <dd>
-    send identity
+    for talking *about* crow
+
+ contain support / functions for ^^ events from crow
 
 
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "reset"></a>
-    <strong>reset ()</strong>
-    </dt>
-    <dd>
-    reset crow
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "kill"></a>
-    <strong>kill ()</strong>
-    </dt>
-    <dd>
-    send kill
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "clear"></a>
-    <strong>clear ()</strong>
-    </dt>
-    <dd>
-    send clear
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "send"></a>
-    <strong>send (cmd)</strong>
-    </dt>
-    <dd>
-    send a command
-
-
-    <h3>Parameters:</h3>
+    <h3>Fields:</h3>
     <ul>
-        <li><span class="parameter">cmd</span>
+        <li><span class="parameter">public</span>
 
         </li>
     </ul>
@@ -221,11 +187,13 @@
 
 </dd>
     <dt>
-    <a name = "connected"></a>
-    <strong>connected ()</strong>
+    <a name = "crow"></a>
+    <strong>crow</strong>
     </dt>
     <dd>
-    check if crow is connected
+    crow namespace support
+
+ for talking *to* crow
 
 
 
@@ -241,7 +209,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-01-11 12:10:11 </i>
+<i style="float:right;">Last updated 2021-09-10 15:00:16 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

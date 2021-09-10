@@ -33,6 +33,7 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
 </ul>
 
 
@@ -45,11 +46,11 @@
   <li><a href="../modules/crow.html">crow</a></li>
   <li><a href="../modules/core.crow.public.html">core.crow.public</a></li>
   <li><a href="../modules/core.crow.quote.html">core.crow.quote</a></li>
-  <li><strong>encoders</strong></li>
+  <li><a href="../modules/encoders.html">encoders</a></li>
   <li><a href="../modules/engine.html">engine</a></li>
   <li><a href="../modules/grid.html">grid</a></li>
   <li><a href="../modules/hid.html">hid</a></li>
-  <li><a href="../modules/keyboard.html">keyboard</a></li>
+  <li><strong>keyboard</strong></li>
   <li><a href="../modules/metro.html">metro</a></li>
   <li><a href="../modules/midi.html">midi</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
@@ -92,24 +93,43 @@
 
 <div id="content">
 
-<h1>Module <code>encoders</code></h1>
-<p>encoders</p>
+<h1>Module <code>keyboard</code></h1>
+<p>keyboard (typing, not piano)</p>
 <p></p>
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#set_accel">set_accel (n, z)</a></td>
-	<td class="summary">set acceleration</td>
+	<td class="name" nowrap><a href="#code">code (key, value)</a></td>
+	<td class="summary">key code callback, script should redefine</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#set_sens">set_sens (n, s)</a></td>
-	<td class="summary">set sensitivity</td>
+	<td class="name" nowrap><a href="#char">char (ch)</a></td>
+	<td class="summary">key character callback, script should redefine</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#process">process (n, d)</a></td>
-	<td class="summary">process delta</td>
+	<td class="name" nowrap><a href="#shift">shift ()</a></td>
+	<td class="summary">return SHIFT state</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#alt">alt ()</a></td>
+	<td class="summary">return ALT state</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ctrl">ctrl ()</a></td>
+	<td class="summary">return CTRL state</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#meta">meta ()</a></td>
+	<td class="summary">return META state</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#state">state</a></td>
+	<td class="summary">key states</td>
 	</tr>
 </table>
 
@@ -121,19 +141,19 @@
 
     <dl class="function">
     <dt>
-    <a name = "set_accel"></a>
-    <strong>set_accel (n, z)</strong>
+    <a name = "code"></a>
+    <strong>code (key, value)</strong>
     </dt>
     <dd>
-    set acceleration
+    key code callback, script should redefine
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">n</span>
+        <li><span class="parameter">key</span>
 
         </li>
-        <li><span class="parameter">z</span>
+        <li><span class="parameter">value</span>
 
         </li>
     </ul>
@@ -144,19 +164,16 @@
 
 </dd>
     <dt>
-    <a name = "set_sens"></a>
-    <strong>set_sens (n, s)</strong>
+    <a name = "char"></a>
+    <strong>char (ch)</strong>
     </dt>
     <dd>
-    set sensitivity
+    key character callback, script should redefine
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">n</span>
-
-        </li>
-        <li><span class="parameter">s</span>
+        <li><span class="parameter">ch</span>
 
         </li>
     </ul>
@@ -167,22 +184,73 @@
 
 </dd>
     <dt>
-    <a name = "process"></a>
-    <strong>process (n, d)</strong>
+    <a name = "shift"></a>
+    <strong>shift ()</strong>
     </dt>
     <dd>
-    process delta
+    return SHIFT state
 
 
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">n</span>
 
-        </li>
-        <li><span class="parameter">d</span>
 
-        </li>
-    </ul>
+
+
+
+</dd>
+    <dt>
+    <a name = "alt"></a>
+    <strong>alt ()</strong>
+    </dt>
+    <dd>
+    return ALT state
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ctrl"></a>
+    <strong>ctrl ()</strong>
+    </dt>
+    <dd>
+    return CTRL state
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "meta"></a>
+    <strong>meta ()</strong>
+    </dt>
+    <dd>
+    return META state
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "state"></a>
+    <strong>state</strong>
+    </dt>
+    <dd>
+    key states
+
+
 
 
 

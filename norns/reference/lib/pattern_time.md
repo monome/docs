@@ -1,7 +1,7 @@
 ---
 layout: default
 nav_exclude: true
-permalink: /norns/reference/pattern_time
+permalink: /norns/reference/lib/pattern_time
 ---
 
 ## pattern_time

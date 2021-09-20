@@ -8,7 +8,7 @@ permalink: /crow/reference/
 
 # Reference
 
-[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [delay](#delay) --- [clock](#clock) --- [ii](#ii) --- [public](#public) --- [cal](#cal) --- [globals](#globals)
+[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [delay](#delay) --- [clock](#clock) --- [ii/i2c](#ii) --- [public](#public) --- [cal](#cal) --- [globals](#globals)
 
 ## input
 
@@ -584,6 +584,10 @@ crow has weak pullups for the `ii` line. they are on by default & should probabl
 ```lua
 ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups. on by default
 ```
+
+### just friends
+
+for a longform description of the i2c relationship between crow + Just Friends, please see the [extended reference](https://github.com/whimsicalraps/Just-Friends/blob/main/Just-Type.md).
 
 ## public
 

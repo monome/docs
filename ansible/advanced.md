@@ -39,6 +39,16 @@ just left of center. From top to bottom:
 * [ER-301](http://www.orthogonaldevices.com/er-301) can be sent
   gates and CV.
 
+* [Disting EX](https://www.expert-sleepers.co.uk/distingEX.html) can be
+used as a set of 4 CV/gate pairs or 4 channels of CV - Midi conversion.
+
+* [W/Syn](https://www.whimsicalraps.com/products/wslash) can be used as a
+synthesis voice.
+
+* [Crow](/docs/crow) can be used as a set of 2 ii CV/gate pairs.
+
+![](../images/grid_KR_ii.png)
+
 Multiple followers may be active at once. Toggling any follower on
 enters leader mode, and deactivating all followers exits leader mode.
 Leader mode causes Ansible to send ii messages on any CV or gate
@@ -83,6 +93,20 @@ meanings for different followers.
 
 * ER-301 can be sent gate and CV commands, with the 4 tracks
   corresponding to the first 4 `SC` channels.
+
+* Disting Ex, left to right: allocate notes/gates polyphonically, map each
+  track to one output, convert CV to MIDI via the MIDI breakout on the
+  Disting EX, all channels sent via channel 1, all channels send
+  via channels 1-4. In MIDI modes data is passed through the Disting,
+  it cannot be used in single algorithm mode, but will function
+  in dual algorithm mode.
+
+* W/ Syn, left to right: allocate notes polyphonically, map each track
+  to one output as a synth voice.
+
+* Crow, sends output number, pitch and duration.
+
+  ![](../images/grid_KR_ii_config.png)
 
 
 ### USB disk mode

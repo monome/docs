@@ -141,6 +141,8 @@ The top-left region of the scale page contains settings for changing how each tr
 
 * The next 4x5 group of keys to the right lets you select direction modes for each track. From left to right these are: forward, reverse, triangle (bounce off the ends instead of wrapping), drunk (randomly move forward or backward each step), and random (any step in the loop may be chosen with equal probability).
 
+![](../images/grid_KR_overview.png)
+
 ### Patterns
 
 Patterns are shown along the top row, with 16 available total. Push a pattern key momentarily to load that pattern. *Hold* a pattern key to store the current pattern into it; it will pulse when the pattern is stored. Remember that loading an 'empty' pattern will effectively clear the current pattern.

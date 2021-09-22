@@ -57,8 +57,11 @@ oh, right, you can also play sound into the audio input. pretty neat!
 ...
 
 ok let's toggle off the windchimes (press K3), toggle off the softcut sequencer (K2), and play with some code.
+{: .label}
 
 ## the code is alive
+
+in this section, we'll execute small chunks of Lua code in realtime to control different elements of the _firstlight_ script. the goal is to introduce a few fundamental commands and make typing musical ideas feel approachable and fun!
 
 ### manually playing the engine
 
@@ -165,7 +168,7 @@ to hear what we mean, try executing these commands one at a time:
 
 you'll notice there's a bit of a pitch ramp when you change rate -- this is determined by the [`rate_slew_time`](/docs/norns/api/modules/softcut.html#rate_slew_time) command. _firstlight_ starts with a default value of 1 second. try a few new values and see if you like something less or more dramatic.
 
-### a few more
+### a few more chunks
 
 let's turn on the softcut sequencer *without* pressing the physical K2 button:
 
@@ -203,55 +206,77 @@ you will want to make a copy of the original file, which you can do in maiden:
 the script has a few built-in places where home-editing is effective, marked by this sweet lil' friend:  
 <kbd>--[[ 0_0 ]]--</kbd>
 
-let's change some defaults when the scripts starts:
+let's change a few default values to customize:
 
-- different synth sound
-- more delay feedback
-- different and more chime
+- synth sound
+- delay feedback
+- chime notes
 
-see line 77:
+to change the startup synth parameters, see [line 77](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L77-L80):
 
 ```lua
---[[ 0_0 ]]--
+-- configure the synth --[[ 0_0 ]]--
 engine.release(1)
 engine.pw(0.5)
 engine.cutoff(1000)
 ```
 
-these are the synth parameters that get set at startup. try changing the numbers, save the file, then re-launch the script using the PLAY arrow in maiden or using the menu on the hardware.
+try changing the arguments (the numbers between parenthesis), save the file, then re-launch the script using the PLAY arrow in maiden or using the menu on the hardware.
 
-line 100 sets the delay feedback:
+to change the delay feedback, see [line 100](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L100):
 
 ```lua
 softcut.pre_level(1, 0.85) --[[ 0_0 ]]--
 ```
 
-line 62 is the table of notes. in this case the table is a list of numbers, separated by commas and enclosed by braces:
+try changing the second argument, save the file, then re-launch the script using the PLAY arrow in maiden or using the menu on the hardware.
+
+to change the chime notes, see [line 61](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L61-L62):
 
 ```lua
 --[[ 0_0 ]]--
 notes = {400,451,525,555}
 ```
 
-the notes are frequencies, just like we called with `engine.hz(700)`. try changing the values of the table, and also adding additional notes. the chime player can handle different table lengths.
+`notes` is a [table](https://www.lua.org/pil/2.5.html) of notes. tables can contain many things, but in this case the table is a list of numbers separated by commas and enclosed by braces. the notes are frequencies, just like we called with `engine.hz(700)`.
+
+try changing the values of the `notes` table. the chime player (the enclosing [`wind`](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L58) function) can handle different table lengths ([greater than zero](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L63)), so feel free to add additional notes!
 
 ## now differently
 
-now that we've successfully changed the defaults, let's do some small changes that alter how the script actually works.
+now that we've successfully changed some of the default values, let's make some small changes to alter how the script actually works.
 
 ### clock by hand
 
-instead of having the sequencer run on a clock, let's have it step forward every time we push K2.
+instead of having the softcut sequencer run on a clock, let's have it step forward every time we push K2.
 
-first, let's disable the sequence clock on line 32:
+first, we'll need to make sure the sequence doesn't autostart when the script is loaded. we can change this default on [line 32](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L32) from:
+
+```lua
+sequence = true
+```
+to:
 
 ```lua
 sequence = false
 ```
 
-now, when the clock ticks, line 43 shows that the function `step()` will not be run. (by the way, we can type `step()` into the maiden REPL to advance the sequencer!)
+now, when the script starts and the [system clock ticks](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L36-L45), the `step()` function will not be run!
 
-let's edit what happens when K2 gets pressed, on line 151:
+let's try executing `step()` in the matron REPL, to confirm that it will advance the sequencer:
+
+```lua
+>> step()
+```
+
+if you need to re-execute something you just executed in the matron REPL, press the up arrow on your keyboard to recall it and press ENTER to re-execute
+{: .label}
+
+now, let's assign the execution of `step()` to K2.
+
+as mentioned in the intro, all norns scripts contain definitions for how the hardware should behave. try searching your version of _firstlight_ to find where the `key` function is defined ([hint](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L144-L153)).
+
+to change what happens when K2 gets pressed, we'll edit [line 151](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L151) by commenting it out by appending `--` and adding a line below:
 
 ```lua
 --[[ 0_0 ]]--
@@ -259,41 +284,97 @@ let's edit what happens when K2 gets pressed, on line 151:
 step()
 ```
 
-add two dashes to comment-out the sequence toggle, which deactivates this line of code. then add `step()`. save and re-run. now K2 advances the sequencer!
+two dashes in front of a line of code will comment-out the line and keep it from being executed
+{: .label}
 
-### play a random note
+save and re-run. now K2 advances the sequencer!
 
-instead of chimes, let's have K3 play a random tone.
+### play a random pitch
 
-first, let's disable the chimes, on line 33:
+instead of chimes, let's employ K3 to play a random tone through our synth engine.
+
+first, we'll disable the chimes by changing [line 33](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L33) to:
 
 ```lua
 chimes = false
 ```
 
-on line 148 we disable the chimes toggle. after this line we add a command to play a random frequency between 100 and 600.
+we'll revisit the [`key` function](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L145-L153) to reassign K3's action. comment-out [line 148](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L148) to unassign the chimes toggle action from K3. after this line, add a command to play a random frequency between 100 and 600:
 
 ```lua
 -- chimes = not chimes
 engine.hz(math.random(100,600))
 ```
 
-save at try it out.
+save and re-run the script to try it out.
 
-let's make a change so that it plays notes from a table instead. erase the `engine.hz` line and do this instead:
+## advanced mods
+
+these modifications increase in complexity, so make sure you feel comfortable with the core concepts of each before moving ahead.
+
+### randomly select a pitch
+
+let's make a change so that K3 plays a random selection of discrete pitches from a table, instead of randomly selecting pitches across a range.
+
+replace the `engine.hz` line from the previous exercise with:
 
 ```lua
 basket = {80,201,400,555,606}
 engine.hz(basket[math.random(#basket)])
 ```
 
-`basket` can be any length: add more frequencies separated by commas. `math.random(x)` makes a random number from `1` to `x`. `basket[x]` gets the `x` element of the table, so `basket[1]` would be `80`. this gets passed to `engine.hz()` and the note gets played!
+`basket` can be any length, so feel free to add as many frequencies as you'd like, separating them by commas.
+
+breaking `engine.hz(basket[math.random(#basket)])` down a bit, from the inside-out:
+
+- `#basket` will return the number of values in the `basket`
+- `math.random(x)` generates a random number from `1` to `x` (in this case, 1 to the number of values in the `basket`)
+- `basket[x]` gets the `x`th element of the table (in our example, `basket[1]` would return `80`)
+- `80` gets passed to `engine.hz()` as an argument and the note gets played at 80hz!
 
 ### even strum
 
-instead of a windy chime with variation, let's have the wind make a regular strum. make sure line 33 is turned back on: `chimes = true`.
+instead of a windy chime with variation, let's have the wind make a regular strum.
 
-see line 64:
+**but first, a brief detour**. try executing the following in matron's REPL:
+
+```lua
+>> t = {1,2,3,4,5,6}
+>> table.remove(t,1); tab.print(t)
+>> table.remove(t,1); tab.print(t)
+>> table.remove(t,1); tab.print(t)
+>> table.remove(t,1); tab.print(t)
+>> table.remove(t,1); tab.print(t)
+>> table.remove(t,1); tab.print(t)
+```
+
+each time we execute `table.remove(temporal,1)`, the table's current first element is sequentially removed and the table's values shift their index.
+
+let's try randomly removing values from the `temporal` table by using the number of entries in the `temporal` table to generate a random number for `table.remove`:
+
+```lua
+>> t = {1,2,3,4,5,6}
+>> table.remove(t,math.random(#temporal)); tab.print(t)
+>> table.remove(t,math.random(#temporal)); tab.print(t)
+>> table.remove(t,math.random(#temporal)); tab.print(t)
+>> table.remove(t,math.random(#temporal)); tab.print(t)
+>> table.remove(t,math.random(#temporal)); tab.print(t)
+>> table.remove(t,math.random(#temporal)); tab.print(t)
+```
+
+what's cool about `table.remove` is that we can actually *do* stuff with the removed number:
+
+```lua
+>> t = {100,200,300,400,500,600}
+>> engine.hz(table.remove(t,math.random(#t))); tab.print(t)
+>> engine.hz(table.remove(t,math.random(#t))); tab.print(t)
+>> engine.hz(table.remove(t,math.random(#t))); tab.print(t)
+>> engine.hz(table.remove(t,math.random(#t))); tab.print(t)
+>> engine.hz(table.remove(t,math.random(#t))); tab.print(t)
+>> engine.hz(table.remove(t,math.random(#t))); tab.print(t)
+```
+
+with that in mind, let's take a look at the `wind` section starting at [line 55](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L55-L71). in particular, the three line starting at [line 64](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L64) should contain something pretty familiar:
 
 ```lua
 if math.random() > 0.2 then
@@ -305,8 +386,8 @@ what this bit does:
 
 - make a random number between 0.0 and 1.0
 - if it is less than 0.2 then
-- get a random value from the `note` table and remove it
-- play this note
+- get a random value from the `notes` table and remove it
+- play the removed note
 
 this creates the nice random scattered effect and creates uneven timing, with no single note played twice.
 
@@ -318,25 +399,23 @@ engine.hz(table.remove(notes,1))
 
 this simpler line just gets the first element of the table and removes it, so the notes get played in order.
 
-try changing the strum speed by altering:
+try changing the strum speed by altering [line 67](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L67):
 
 ```lua
 clock.sleep(0.05)
 ```
 
-and you can change how frequently the strum happens by changing this line:
+and you can further modify this line by adding a bit of randomization. to have a random strum every 3-9 seconds:
 
 ```lua
 clock.sleep(math.random(3,9))
 ```
 
-as is, the strum will happen randomly every 3-9 seconds.
-
 ### sequence weirder
 
 the sequencer step values can be used for any number of things. instead of modulating the loop time, let's modulate the delay rate, which will re-pitch the delay line wildly.
 
-see line 52:
+see [line 52](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L52):
 
 ```lua
 softcut.loop_end(1,numbers[pos]/8)
@@ -358,7 +437,9 @@ let's comment out this line and modulate `rate` instead:
 softcut.rate(1,numbers[pos]/8)
 ```
 
-save and try! since the rate jumps are very large the result is substantial. let's try making it more subtle:
+save and try it out!
+
+since the rate jumps are very large the result is substantial. let's try making it more subtle:
 
 ```lua
 softcut.rate(1,1+(numbers[pos]/64))
@@ -379,8 +460,8 @@ try setting `softcut.rate_slew_time(1,0)` down around line 98, which will make r
 
 suggested exercises:
 
-- have the sequencer play notes using `engine.hz()`
-- create a table to specify which frequencies get played. consider [just intonation](https://en.wikipedia.org/wiki/Just_intonation)
+- re-route the softcut sequencer to send notes to the SuperCollider engine
+  - consider [just intonation](https://en.wikipedia.org/wiki/Just_intonation) for your pitch definitions
 - randomize `x` for `engine.pw(x)` on each sequencer step
 - have K2 toggle delay feedback (`pre_level`) between `0.8` and `1.0` 
 - have K3 cycle delay speed with a table `{-1.0,0.5,1.0}`
@@ -390,4 +471,4 @@ and then on to [study 1: many tomorrows](../study-1) for a more in-depth scripti
 ## resources
 
 - [script reference](../reference) - list of commands and how to use them
-- [first light walkthrough](https://vimeo.com/515473339) - a recorded livestream of dan derks doing a norns study 0 walkthrough
+- [firstlight walkthrough](https://vimeo.com/515473339) - a recorded livestream of a _firstlight_ study walkthrough

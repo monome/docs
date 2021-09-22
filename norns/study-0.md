@@ -102,7 +102,7 @@ pw	 		f
 release	 	f
 ```
 
-this list lets us know that we can append any of those commands to `engine.` and as long as we supply the expected argument. to hear this, turn on the windchimes (K2) and try executing these lines:
+this list lets us know that we can append any of those commands to `engine.` and as long as we supply the expected argument. to hear this, turn on the windchimes (K3) and try executing these lines:
 
 ```lua
 >> engine.pw(0.2)

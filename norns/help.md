@@ -429,29 +429,38 @@ If performing these steps on a shield, you won't see the standard shutdown messa
 
 Once you restart your device, hit K2 on the SELECT / SYSTEM / SLEEP screen and you should see the update's date listed on the right side of the screen!
 
-### change passwords on norns {#change-password}
+### change default password + address {#change-password}
 
-For security reasons (a device exposed to wifi should not have a widely-known password), you may want to change the default password for the `we` user.
+Since all norns units come configured with the same username + password, we encourage you to personalize + protect your setup by changing the default hostname and password for the `we` user.
 
 #### login / ssh
 
-To change the login/ssh password for user `we`, log in to the norns via [ssh](../wifi-files/#ssh. The command
+To change the login/ssh password for user `we`, log in to the norns via [ssh](../wifi-files/#ssh) and execute:
 
 ```
-passwd
+sudo raspi-config
 ```
 
-will prompt you for the current and new password.
+This will lead you to the [Raspberry Pi Software Configuration Tool](https://www.raspberrypi.org/documentation/computers/configuration.html), where you can follow these steps:
+
+- press ENTER on `1 Change User Password`
+- enter a new password to log in for the `we` user, press ENTER, re-enter the new password
+- press ENTER on `2 Network Options`
+- press ENTER on `N1 Hostname`
+- press ENTER on `<ok>` and type in a new hostname for your norns device (be sure to keep `.local` at the end!!)
+- navigate down to `Finish` and press ENTER -- if asked to reboot, please do
+
+Now, you'll be able to use your new hostname for maiden access (what once was `norns.local` will now be `your_unique_name.local`!) and your new password for ssh access!
 
 #### Samba
 
-The `smb://` remote login password does not automatically change when `passwd` changes. Although Samba is a low-security, local network project, it makes sense to set its login credentials to match the newly set user password. This can be done with:
+The `smb://` remote login password does not automatically change when you perform the changes above. To set Samba's login credentials to match the newly set user password, log in to the norns via [ssh](../wifi-files/#ssh) and execute:
 
 ```
 sudo smbpasswd -a we
 ```
 
-Re-type your new password and you should be all set.
+You'll be prompted to set a new SMB password -- we encourage setting it to match with the password you created in the previous section.
 
 ### taking a screenshot {#png}
 

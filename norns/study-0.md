@@ -302,7 +302,7 @@ Now, let's assign the execution of `step()` to K2.
 
 As mentioned in the intro, all norns scripts contain definitions for how the hardware should behave. try searching your version of _firstlight_ to find where the `key` function is defined ([hint](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L144-L153)).
 
-To change what happens when K2 gets pressed, we'll edit [line 151](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L151) by commenting it out by typing `--` in front of the line and adding our `step` command line below:
+To change what happens when K2 gets pressed, we'll edit [line 151](https://github.com/monome/firstlight/blob/e67ee2f104bfc60f5053b94c3bd9c80f50efd867/firstlight.lua#L151) by commenting it out by typing two dashes in front of the line and adding our `step` command line below:
 
 ```lua
 --[[ 0_0 ]]--

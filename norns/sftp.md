@@ -4,22 +4,30 @@ nav_exclude: true
 ---
 
 # sftp
+{: .no_toc }
 
 You can manage projects and delete/rename files via [maiden](../maiden). But sometimes you'll need to copy files between your computer and norns, like audio.
 
-File management between norns and macOS is best achieved via [file share](../fileshare), but we suggest using SFTP to connect norns to your Windows laptop via WIFI. An SFTP client (such as Cyberduck) can connect to the IP address shown on the norns screen.
+File management between norns and macOS is best achieved via [Samba/SMB](/docs/norns/wifi-files/#transfer), but we suggest using SFTP to connect your computer to norns in case Samba is unsuccessful. An SFTP client (such as [Cyberduck](https://cyberduck.io)) can connect to the IP address shown on the norns screen.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## connect
 
-Using cyberduck for SFTP access to Norns (macOS/windows)
+This tutorial will help you connect norns to a Mac or Windows computer using [Cyberduck](https://cyberduck.io), so that you can add and update scripts manually on the norns filesystem.  It was written using Cyberduck 6.7.1, macOS 10.13.6, and norns 180828 on September 3, 2018.
 
-This tutorial will help you connect Norns to another mac or windows computer, so that you can add and update scripts manually on the Norns filesystem.  It was written using Cyberduck 6.7.1, macOS 10.13.6, and norns 180828 on September 3, 2018.
+Be careful when editing files on norns.  If you delete files that norns needs to run, it could corrupt the filesystem which would require a complicated re-flash of the image to get back up and running. You most likely only want to be updating things in the dust subdirectory.
 
-Be careful when editing files on Norns.  If you delete files that Norns needs to run, it could corrupt the filesystem which would require a complicated reflash of the image to get back up and running. You most likely only want to be updating things in the dust subdirectory.
+Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, windows and linux.  While the screens will be different, the goal is the same -- to connect to norns over the IP adress provided using SFTP/port 22.
 
-Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, windows and linux.  While the screens will be different, the goal is the same, (to connect to Norns over the IP adress provided using SFTP/port 22).
-
-1. If not already, start up Norns.  Navigate to SYSTEM / WIFI.  You can either use Norns in HOTSPOT mode, or by connecting to the same NETWORK that the computer you'll be downloading the SFTP client to is on. See the [network connect docs](../play/#network-connect) for more information about WIFI setup.
+1. If norns is not already running, boot it up.  Navigate to SYSTEM / WIFI.  You can either use norns in HOTSPOT mode, or by connecting to the same NETWORK that the computer you'll be downloading the SFTP client to is on. See the [network connect docs](../play/#network-connect) for more information about WIFI setup.
 
 2. Download Cyberduck.  You can find direct package installation for free from Cyberduck's website on the [changelog](https://cyberduck.io/changelog/) page.
 
@@ -31,7 +39,7 @@ Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, wi
 
 	![](../image/sftp2.png)
 
-5. Enter the IP address that is displayed on the second line of the Norns SYSTEM / WIFI screen in the Server field of the dialog in Cyberduck.  Enter "we" in the Username field and "sleep" in the Password field.  The completed dialog should look like this (note that the IP address may be different, use the one given on _your_ Norns screen):
+5. Enter the IP address that is displayed on the second line of the norns SYSTEM / WIFI screen in the Server field of the dialog in Cyberduck.  Enter "we" in the Username field and "sleep" in the Password field.  The completed dialog should look like this (note that the IP address may be different, use the one given on _your_ norns screen):
 
 	![](../image/sftp3.png)
 
@@ -39,7 +47,7 @@ Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, wi
 
 	![](../image/sftp4.png)
 
-The Norns filesystem should be displayed in the Cyberduck window.  You can add, delete, and rename files in this window, just like you would with an external USB flash drive in your computer's file explorer application.
+The norns filesystem should be displayed in the Cyberduck window.  You can add, delete, and rename files in this window, just like you would with an external USB flash drive in your computer's file explorer application.
 
 Everything you need will be in the `dust` directory.
 See the [file-tree](./#file-tree) overview in the main docs for an overview of what's what.
@@ -83,8 +91,8 @@ Restoring from this backup is as simple as copying this directory from your comp
 
 ## troubleshooting
 
-If things hang and do not connect, try to connect again after restarting Norns (and reconnecting on the SYSTEM / WIFI screen), as well as restarting Cyberduck.
+If things hang and do not connect, try to connect again after restarting norns (and reconnecting on the SYSTEM / WIFI screen), as well as restarting Cyberduck.
 
 ## credits
 
-Thanks for jlmitch5 for this guide!
+Thanks to `jlmitch5` for this guide!

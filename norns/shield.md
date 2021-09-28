@@ -8,6 +8,7 @@ has_toc: false
 ![](https://monome.org/docs/norns/image/norns-shield.png)
 
 # norns shield
+{: .no_toc }
 
 A DIY circuit which extends a normal Raspberry Pi, turning it into a norns.
 

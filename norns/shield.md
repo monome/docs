@@ -58,6 +58,8 @@ Since the Pi uses a microSD card in lieu of internal memory, you'll need to load
 4. run balenaEtcher, which will ask you to direct it to the unzipped shield image and to identify your microSD card as the target -- after that, the program will take care of everything
 5. once the process completes, eject the microSD card from your computer and move onto the assembly steps below
 
+*please note: don't forget to [expand your filesystem](#expand-filesystem) after you boot norns for the first time!*
+
 ## assembly
 
 All you need is a normal phillips-head screwdriver.
@@ -95,7 +97,7 @@ OFF:
 - *wait* until you see the not-red light on the side of the Pi stop blinking and go out completely
 - **only after the not-red light on the side of the Pi is no longer visible:** remove the power connector from the Pi
 
-## explore + expand
+## explore + expand filesystem (important!) {#expand-filesystem}
 
 Once norns shield is on, [play](../play) will orient you to the norns system as well as how to control `awake`, the startup script that should be playing on first boot.
 

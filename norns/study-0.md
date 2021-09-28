@@ -145,7 +145,7 @@ in case it's opaque, the general pattern we're following is:
 softcut.command(voice_id, command_value)
 ```
 
-the full range of softcut commands can be found in the [softcut API](/docs/norns/api/modules/softcut.hmtl). let's try some of the other commands!
+the full range of softcut commands can be found in the [softcut API](/docs/norns/api/modules/softcut.html). let's try some of the other commands!
 
 the following command changes the feedback level to 95%:
 

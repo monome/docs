@@ -9,26 +9,62 @@ has_toc: false
 
 ## Advanced configuration
 
-### ii leader mode
+  ###  what is i2c/ii?
 
-Ansible can be used as a leader device for the [ii](/docs/modular/ii)
-bus, controlling one or more follower modules using trigger and CV
-information sent from Ansible. Since Ansible is not wired to supply
-power to the ii bus, another leader module or a powered busboard is
-required to use Ansible as a leader. Having [Crow](/docs/crow) or
-[Teletype](../teletype/) connected to the same ii bus is sufficient.
+    i2c, or [ii](/docs/modular/ii), is a flexible communication protocol which
+    allows modules to send commands to each other digitally, which opens up
+    possibilities that patch cables can’t facilitate. This digital networking is
+    described as a ‘bus’.
 
-When Ansible is acting as a ii leader, it can no longer receive ii
-commands from other leaders like Teletype or Crow. Note also that
-sending messages from multiple leader devices simultaneously on the
-same ii bus does work in some tested scenarios, but may increase the
-risk of buggy behavior including modules locking up and needing a
-power cycle.
+    The i2c bus consists of 3 lines - ground (GND), data (SDA) and clock (SCL).
+    The data and clock lines are “pulled high” via pull-up resistors to 5V and
+    data is transferred when these lines are “low”, thus power is also needed
+    for the bus to operate.
 
-Currently, the only interface for turning on leader mode uses a grid.
-In any grid application, go to the preset page by pressing the button
-next to the USB port. Follower device toggles are arranged vertically,
-just left of center. From top to bottom:
+    Both Monome’s [Teletype](/docs/teletype) and [Crow](/docs/crow) provide power over the i2c bus – however,
+    Ansible does not. If you are in need of additional power or are planning to
+    add more than three or four i2c-capable modules to your bus, we suggest
+    invest in a powered bus board like the [Txb] (https://store.bpcmusic.com/products/telexb).
+
+![](../images/ii_overview.png)
+
+    While ii setups are usually straightforward, requiring the connection of
+    matching ii headers (GND <-> GND, SCL <-> SCL, SDA <-> SDA) via 2.54mm
+    connectors, there are a few consideration to keep things working:
+
+      * Best practice is to daisy chain modules together. Several modules provide
+        dual headers, allowing you to connect one module to the next. If your
+        module only has one set of ii pins, like the [Disting Ex]
+        (https://www.expert-sleepers.co.uk/distingEX.html), place this at the end
+        of the chain.
+
+      * Make sure to align your ii connections correctly, with each of the
+        corresponding pins. These are usually marked on the PCB – a white line
+        is often used to refer to the ground pin. Note that the vertical order
+        of the pins on each module may be reversed from another in your case –
+        always check to see where the GND line is!
+
+      * Keep your cables as short as possible to reduce the risk of dropped data.
+
+    For additional information, please check out the helpful [i2c/ii guide]
+    (https://llllllll.co/t/a-users-guide-to-i2c/19219) available on lines.
+
+  ###  ii leader/follower
+
+    A device that initiates communication with another is known as a leader.
+    It’s important to note that while the i2c protocol makes provisions for
+    multiple leaders, currently this is not officially supported in the Monome
+    ecosystem as this may increase the risk of buggy behavior, including modules
+    locking up and needing a power cycle.
+
+    Currently, the only interface for enabling Ansible’s leader mode requires a
+    [grid](/docs/grid/). In any grid application, go to the preset page by pressing the button
+    next to the USB port.
+
+![](../images/grid_KR_ii.png)
+
+Follower device toggles are arranged vertically, just left of center.
+From top to bottom:
 
 * [Just Friends](/docs/teletype/jt-1) can be used as a synthesis
   voice or function generator.
@@ -46,8 +82,6 @@ used as a set of 4 CV/gate pairs or 4 channels of CV - Midi conversion.
 synthesis voice.
 
 * [Crow](/docs/crow) can be used as a set of 2 ii CV/gate pairs.
-
-![](../images/grid_KR_ii.png)
 
 Multiple followers may be active at once. Toggling any follower on
 enters leader mode, and deactivating all followers exits leader mode.

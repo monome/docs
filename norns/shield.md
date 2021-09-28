@@ -9,62 +9,71 @@ has_toc: false
 
 # norns shield
 
-a DIY circuit which extends a normal Raspberry Pi, turning it into a norns.
+A DIY circuit which extends a normal Raspberry Pi, turning it into a norns.
 
-the norns shield is [open source hardware](https://github.com/monome/norns-shield). monome sells a complete kit so that you can get straight to making sound and code.
+The norns shield is [open source hardware](https://github.com/monome/norns-shield). monome sells a complete kit so that you can get straight to making sound with code.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## requirements
 
 - [Raspberry Pi 3B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) ([$35](https://chicagodist.com/products/raspberry-pi-model-3-b-1-4-ghz)) 3B+ is also fine. **important! other models are not compatible.**
 - microSD card - use a high quality brand such as [SanDisk](https://chicagodist.com/products/raspberry-pi-official-noobs-microsd-card?variant=12404373160015) ($10)
-- power supply - we *highly* recommend [this one](https://chicagodist.com/products/raspberry-pi-2-amp-micro-usb-power-supply). the Pi3B has a micro-USB power port and requires at least 2A and 5.25V ideally supplied through a cable with 24AWG or less. lower AWG = lower noise & more stable voltage delivery for better performance. **most consumer USB cables do not meet this spec, so please be sure to keep an eye out**. you can also use a portable USB battery if it's sufficiently large.
+- Power supply - we *highly* recommend [this one](https://chicagodist.com/products/raspberry-pi-2-amp-micro-usb-power-supply). The Pi3B has a micro-USB power port and requires at least 2A and 5.25V ideally supplied through a cable with 24AWG or less. Lower AWG = lower noise & more stable voltage delivery for better performance. **Most consumer USB cables do not meet this spec, so please be sure to keep an eye out**. You can also use a portable USB battery if it's sufficiently large.
 
-*nb. the total cost for this project is ~$330 USD. no soldering is required, only screwdriver assembly done in minutes. flashing the SD card should take 15 minutes of passive time. if you run into any trouble along the way, we are happy to assist via help@monome.org*
+*please note: The total cost for this project is ~$330 USD. no soldering is required, only screwdriver assembly done in minutes. Flashing the SD card should take 15 minutes of passive time. If you run into any trouble along the way, we are happy to assist via help@monome.org*
 
 ## comparison
 
-there are some differences between the norns and norns shield:
+There are some differences between the norns and norns shield:
 
 - norns has a battery, 1/4" mono jacks, a separate headphone jack and driver, very high quality audio, serial connection over power port
-- norns shield has 3.5mm stereo jacks (headphones work on the output jack) and an ethernet port
+- norns shield has 1/8" (interchangeably referred to as 3.5mm) stereo jacks (headphones work on the output jack) and an ethernet port
 
-software is fully compatible between the two.
+Software is fully compatible between the two.
 
-_update june 2021_: shield updated for cleaner audio path and more mechanically robust jacks.
+*please note: shield hardware was updated in June 2021 for cleaner audio path and more mechanically robust jacks*
 
 ## connecting audio
 
-at the top of the shield's board, you'll notice two arrows -- these represent audio in and audio out. they are 1/8" stereo. please note that the headphone jack on the Raspberry Pi is unused, as is the PI's HDMI port.
+At the top of the shield's board, you'll notice two arrows -- their points represent audio in (`▽`) and audio out (`△`). These jacks are each 1/8" stereo. The headphone jack on the Raspberry Pi itself is unused, as is the Pi's HDMI port.
 
-to learn more about how to use shield, please refer to the norns docs, staring with [play](https://monome.org/docs/norns/play/). software is 100% compatible between the two, so the same instructions largely apply to both (and cases where things are different are notated within the docs).
+To learn more about how to use shield, please refer to the standard norns documentation, staring with [play](https://monome.org/docs/norns/play/). Software is 100% compatible between the two, so the same instructions largely apply to both (and cases where things are different are notated within the docs).
 
 ## flashing microSD card
 
-since the Pi uses a microSD card in lieu of internal memory, you'll need to load the norns "operating system" (an *image*) onto the microSD card you intend to use with your Pi. this process (*flashing*) is straightforward thanks to a program called etcher.
+Since the Pi uses a microSD card in lieu of internal memory, you'll need to load the norns system (referred to as an **image**) onto the microSD card you intend to use with your Pi. This process (referred to as **flashing**) will erase and replace the microSD card's contents with the norns image. We'll use a program called [balenaEtcher](https://www.balena.io/etcher/), which makes flashing very straightforward:
 
-1. download and install [etcher](https://www.balena.io/etcher/) on your computer
+1. download and install [balenaEtcher](https://www.balena.io/etcher/) on your computer
 2. download the [latest norns shield image](https://github.com/monome/norns-image/releases/latest) to your computer (*nb. the base image might not include the latest software updates*)
 3. unzip the shield image (which will result in an `.img` file) and insert your SD card into your computer
-4. run etcher, which will ask you to direct it to the unzipped shield image and to identify your microSD card as the target -- after that, the program will take care of everything
+4. run balenaEtcher, which will ask you to direct it to the unzipped shield image and to identify your microSD card as the target -- after that, the program will take care of everything
 5. once the process completes, eject the microSD card from your computer and move onto the assembly steps below
 
 ## assembly
 
-all you need is a normal philips screwdriver.
+All you need is a normal phillips-head screwdriver.
 
-peel the clear acrylic cover. observe the orientation below to see which way is up. add the four short standoffs, using the four short screws:
+Peel the wrapping from the clear acrylic cover -- if you have trouble, try coaxing from a corner. Observe the orientation below to see which way is up and add the four short standoffs, using the four short screws:
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly1.png)
 
-press the black key caps on to the white keys. this takes a bit of force, and you will hear a satisfying snap. press the knob caps into the top of the knobs, then put them on the encoders:
+The black button caps have square holes that fit snugly over the white buttons. Press down until they click on with a satisfying snap. Then, press the knob caps into the top of the knobs and put the knobs onto the encoders:
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly2.png)
 
-peel the protective sheet away from the screen. the acrylic assembly will fit over the top, poking the threads through the circuit board. flip it over and add the longer standoffs. the short standoffs go near the audio jacks. hand-tightening is sufficient:
+Peel the protective sheet away from the screen. If you have a dust-blower handy, remove any residual debris on the inside of the acrylic and on the screen. The acrylic assembly will fit over the top, poking the threads through the circuit board. Flip it over and add the longer standoffs. The short standoffs go near the audio jacks. Hand-tightening is sufficient:
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly3.png)
 
-insert your flashed microSD card into the Raspberry Pi and attach the Pi to the corresponding header on the shield. attach the white case. add four long screws to secure the case (nb. please be careful not to over-tighten, as these screws will pull the shield downward and too much pull might crack the acrylic top). add the rubber feet:
+Insert your newly-flashed microSD card into the Raspberry Pi and attach the Pi to the corresponding header on the shield. Attach the white case. Add four long screws to secure the case (**please be careful not to over-tighten, as these screws will pull the shield downward and too much pull might crack the acrylic top**). Finally, add the rubber feet:
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly4.png)
 
@@ -72,35 +81,45 @@ insert your flashed microSD card into the Raspberry Pi and attach the Pi to the 
 
 ON:
 
-- Attach a high quality Raspberry Pi power supply that provides at least 2A at 5V to the micro USB port on the Pi.
-- The red light on the Pi will be steady, while the not-red light will flash.
-- In a few seconds, you’ll see a sparkle animation on the screen (some call it dust).
+- attach a high quality Raspberry Pi power supply that provides at least 2A at 5V to the micro USB port on the Pi
+- the red light on the Pi will be steady, while the not-red light will flash
+- in a few seconds, you’ll see a sparkle animation on the screen
 
 OFF:
 
-- Press **K1** and navigate to HOME.
-- Use **E2** to select SLEEP.
-- Press **K3**. You’ll be asked to confirm.
-- Press **K3** again to go to SLEEP.
-- *Wait* until you see the not-red light on the side of the Pi stop blinking and go out completely.
-- *Only after the not-red light on the side of the Pi is no longer visible*, you can safely remove the power connector from the Pi.
+- press **K1** and navigate to HOME
+- use **E2** to select SLEEP
+- press **K3** -- you’ll be asked to confirm
+- press **K3** again to go to SLEEP
+- *wait* until you see the not-red light on the side of the Pi stop blinking and go out completely
+- **only after the not-red light on the side of the Pi is no longer visible:** remove the power connector from the Pi
 
 ## explore + expand
 
-once norns shield is on, [play](../play) will orient you to the norns system as well as how to control `awake`, the startup script that should be playing on first boot.
+Once norns shield is on, [play](../play) will orient you to the norns system as well as how to control `awake`, the startup script that should be playing on first boot.
 
-you should also [connect to WIFI](https://monome.org/docs/norns/wifi-files/) to run a software update, in case the shield image is behind the latest release. to learn more about software updates, visit [the latest norns update thread on lines](https://l.llllllll.co/norns).
+You should also [connect to WiFi](https://monome.org/docs/norns/wifi-files/) to run a software update, in case the shield image is behind the latest release. To learn more about software updates, visit [the latest norns update thread on lines](https://l.llllllll.co/norns).
 
-once you're settled in, you might notice that shield doesn't seem to see the entire capacity of your microSD card. this is normal, since shield can't anticipate how much space it's allowed to allocate for itself. to expand the filesystem:
+Once you're settled in, you might notice that shield doesn't seem to see the entire capacity of your microSD card. This is normal, since shield can't anticipate how much space it's allowed to allocate for itself. To expand the filesystem:
 
-- open a terminal on a computer connected to the same network as your shield
-- execute: `ssh we@norns.local`
-- password: `sleep`
-- execute: `sudo raspi-config`
-- navigate to `Advanced` and hit RETURN
-- select `expand filesystem` and hit RETURN
-- lots of activity will happen. when it's done, power down and reboot. if you get any errors, reboot again.
-- if you SSH back into norns and execute `df -h`, you'll see the newly expanded capacity.
+- open the terminal program on a computer connected to the same network as your shield
+  - Windows: use PowerShell
+  - Mac: use Terminal
+  - Linux: use your favorite
+- type: `ssh we@norns.local` and press Enter
+- this will prompt you for a password, which is: `sleep`
+- type: `df -h` and press Enter
+  - the information returned to you next to `/dev/root` will show the current allocated Size of the card
+  - if you see `3.6G` and your microSD card is actually larger than 4 GB, please follow the rest of the steps in this section! otherwise, if the allocated Size is close to your card's capacity, then there's no need to continue.
+- type: `sudo raspi-config` and press Enter
+- navigate to `Advanced Options` and press Enter
+- select `Expand Filesystem` and press Enter
+- dismiss the alert by pressing Enter, navigate to Finish (press keyboard right arrow twice) and press Enter
+- when asked to reboot, select Yes and press Enter
+- norns will begin powering down, which will take a few minutes after this procedure, and will reboot
+  - if you encounter any errors after this reboot, simply power your device down and start fresh
+
+Once your norns has rebooted, press K2 on the SELECT / SYSTEM / SLEEP screen to toggle on some system statistics -- the number next to `disk` will show how many megabytes are still available on your microSD card. 1000 megabytes = 1 gigabyte, so a 32 gigabyte microSD card should have approximately `disk 27570M` available storage.
 
 ## credits
 

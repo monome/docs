@@ -60,11 +60,9 @@ pressing the button next to the USB port.
 
 ![](../images/grid_KR_ii.png)
 
-Follower device toggles are arranged vertically, just left of center.
-From top to bottom:
+Follower device toggles are arranged just left of center. From top to bottom, left to right:
 
-* [Just Friends](/docs/teletype/jt-1) can be used as a synthesis
-  voice or function generator.
+* [Just Friends](/docs/teletype/jt-1) can be used as a synthesis voice or function generator.
 
 * [TELEXo](https://github.com/bpcmusic) can be used as a set of 4
   enveloped oscillators, or 4 CV/gate pairs.
@@ -98,6 +96,8 @@ On the follower configuration view, the bottom left keys
 which follower, so you can send the first 2 tracks to one device and
 the last 2 tracks to another. By default all tracks are sent to all
 enabled followers.
+
+![](../images/grid_KR_ii_config.png)
 
 The top-left portion of the page is an octave shift for the
 follower. This will shift all pitches sent to the follower by the
@@ -136,8 +136,6 @@ meanings for different followers.
   to one output as a synth voice.
 
 * Crow, sends output number, pitch and duration.
-
-  ![](../images/grid_KR_ii_config.png)
 
 
 ### USB disk mode

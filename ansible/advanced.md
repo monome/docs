@@ -9,57 +9,54 @@ has_toc: false
 
 ## Advanced configuration
 
-  ###  what is i2c/ii?
+###  what is i2c/ii?
 
-    i2c, or [ii](/docs/modular/ii), is a flexible communication protocol which
-    allows modules to send commands to each other digitally, which opens up
-    possibilities that patch cables can’t facilitate. This digital networking is
-    described as a ‘bus’.
+i2c, or [ii](/docs/modular/ii), is a flexible communication protocol which
+allows modules to send commands to each other digitally, which opens up
+possibilities that patch cables can’t facilitate. This digital networking is
+described as a ‘bus’.
 
-    The i2c bus consists of 3 lines - ground (GND), data (SDA) and clock (SCL).
-    The data and clock lines are “pulled high” via pull-up resistors to 5V and
-    data is transferred when these lines are “low”, thus power is also needed
-    for the bus to operate.
+The i2c bus consists of 3 lines - ground (GND), data (SDA) and clock (SCL).
+The data and clock lines are “pulled high” via pull-up resistors to 5V and
+data is transferred when these lines are “low”, thus power is also needed
+for the bus to operate.
 
-    Both Monome’s [Teletype](/docs/teletype) and [Crow](/docs/crow) provide power over the i2c bus – however,
-    Ansible does not. If you are in need of additional power or are planning to
-    add more than three or four i2c-capable modules to your bus, we suggest
-    invest in a powered bus board like the [Txb] (https://store.bpcmusic.com/products/telexb).
+Both Monome’s [Teletype](/docs/teletype) and [Crow](/docs/crow) provide power
+over the i2c bus – however, Ansible does not. If you are in need of additional
+power or are planning to add more than three or four i2c-capable modules to your
+bus, we suggest invest in a powered bus board like the [Txb](https://store.bpcmusic.com/products/telexb).
 
 ![](../images/ii_overview.png)
 
-    While ii setups are usually straightforward, requiring the connection of
-    matching ii headers (GND <-> GND, SCL <-> SCL, SDA <-> SDA) via 2.54mm
-    connectors, there are a few consideration to keep things working:
+While ii setups are usually straightforward, requiring the connection of
+matching ii headers (GND <-> GND, SCL <-> SCL, SDA <-> SDA) via 2.54mm
+connectors, there are a few consideration to keep things working:
 
-      * Best practice is to daisy chain modules together. Several modules provide
-        dual headers, allowing you to connect one module to the next. If your
-        module only has one set of ii pins, like the [Disting Ex]
-        (https://www.expert-sleepers.co.uk/distingEX.html), place this at the end
-        of the chain.
+* Best practice is to daisy chain modules together. Several modules provide dual
+headers, allowing you to connect one module to the next. If your module only has
+one set of ii pins, like the [Disting Ex](https://www.expert-sleepers.co.uk/distingEX.html),
+place this at the end of the chain.
 
-      * Make sure to align your ii connections correctly, with each of the
-        corresponding pins. These are usually marked on the PCB – a white line
-        is often used to refer to the ground pin. Note that the vertical order
-        of the pins on each module may be reversed from another in your case –
-        always check to see where the GND line is!
+* Make sure to align your ii connections correctly, with each of the corresponding
+pins. These are usually marked on the PCB – a white line is often used to refer
+to the ground pin. Note that the vertical order of the pins on each module may
+be reversed from another in your case – always check to see where the GND line is!
 
-      * Keep your cables as short as possible to reduce the risk of dropped data.
+* Keep your cables as short as possible to reduce the risk of dropped data.
 
-    For additional information, please check out the helpful [i2c/ii guide]
-    (https://llllllll.co/t/a-users-guide-to-i2c/19219) available on lines.
+For additional information, please check out the helpful [i2c/ii guide](https://llllllll.co/t/a-users-guide-to-i2c/19219) available on lines.
 
-  ###  ii leader/follower
+###  ii leader/follower
 
-    A device that initiates communication with another is known as a leader.
-    It’s important to note that while the i2c protocol makes provisions for
-    multiple leaders, currently this is not officially supported in the Monome
-    ecosystem as this may increase the risk of buggy behavior, including modules
-    locking up and needing a power cycle.
+A device that initiates communication with another is known as a leader.
+It’s important to note that while the i2c protocol makes provisions for multiple
+leaders, currently this is not officially supported in the Monome ecosystem as
+this may increase the risk of buggy behavior, including modules locking up and
+needing a power cycle.
 
-    Currently, the only interface for enabling Ansible’s leader mode requires a
-    [grid](/docs/grid/). In any grid application, go to the preset page by pressing the button
-    next to the USB port.
+Currently, the only interface for enabling Ansible’s leader mode requires a
+[grid](/docs/grid/). In any grid application, go to the preset page by
+pressing the button next to the USB port.
 
 ![](../images/grid_KR_ii.png)
 

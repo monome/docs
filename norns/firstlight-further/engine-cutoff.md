@@ -15,7 +15,7 @@ Questions to consider:
 
 ## making random values
 
-In [play a random pitch](https://monome.org/docs/norns/study-0/#play-a-random-pitch), we modified our code to generate a random value between 100 and 600, which we passed as an argument to the `engine.hz()` function by embedding our random number generator *inside* of the command, where we'd usually have a static number:
+In [play a random pitch](/docs/norns/study-0/#play-a-random-pitch), we modified our code to generate a random value between 100 and 600, which we passed as an argument to the `engine.hz()` function by embedding our random number generator *inside* of the command, where we'd usually have a static number:
 
 ```lua
 -- static version:
@@ -40,7 +40,7 @@ To find the right range for your `cutoff` values, make sure the wind-chimes are 
 
 ## making chimes
 
-In [make it so](https:monome.org/docs/norns/study-0/#make-it-so), we modified the `notes` table to change which notes our chime played. If we take a look at the lines above and below the `notes` table, we'll discover that we're modifying code inside of a `wind` function.
+In [make it so](/docs/norns/study-0/#make-it-so), we modified the `notes` table to change which notes our chime played. If we take a look at the lines above and below the `notes` table, we'll discover that we're modifying code inside of a `wind` function.
 
 ```lua
 -- wind blows chimes play

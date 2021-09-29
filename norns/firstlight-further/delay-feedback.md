@@ -15,7 +15,7 @@ Questions to consider:
 
 ## finding K2
 
-In [clock by hand](https://monome.org/docs/norns/study-0/#clock-by-hand), we modified the functionality of K2:
+In [clock by hand](/docs/norns/study-0/#clock-by-hand), we modified the functionality of K2:
 
 ```lua
 -- key
@@ -36,7 +36,7 @@ Let's comment-out `sequence = not sequence` and add our modification below!
 ## making random values (less than 1)
 
 
-In [even strum](https:monome.org/docs/norns/study-0/#even-strum), we discussed how `math.random` generates different ranges of random values depending on how many arguments are supplied to it.
+In [even strum](/docs/norns/study-0/#even-strum), we discussed how `math.random` generates different ranges of random values depending on how many arguments are supplied to it.
 
 ```lua
 >> math.random() -- generates random floats between 0 and 1

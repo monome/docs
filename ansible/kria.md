@@ -242,6 +242,8 @@ By default Note Division Sync is off, Division Cueing is off, and Division Sync 
 
 ### Config
 
+![](../images/grid_KR_config.png)
+
 Kria has two parameters, represented on the left and right quadrants of the grid when `Key 2` is held down, and
 a toggle for alternative sync behavior.
 

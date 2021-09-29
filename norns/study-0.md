@@ -2,7 +2,6 @@
 layout: default
 nav_exclude: true
 permalink: /norns/study-0/
-
 ---
 
 <div class="vid"><iframe src="https://player.vimeo.com/video/503167191?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
@@ -564,10 +563,9 @@ Try setting `softcut.rate_slew_time(1,0)` down around line 98, which will make r
 
 suggested exercises:
 
-- re-route the softcut sequencer to send notes to the SuperCollider engine
-  - consider [just intonation](https://en.wikipedia.org/wiki/Just_intonation) for your pitch definitions
-- randomize `x` for `engine.pw(x)` on each sequencer step
-- have K2 toggle delay feedback (`pre_level`) between `0.8` and `1.0` 
+- randomize `x` for `engine.cutoff(x)` on each wind chime ([solution](/docs/norns/firstlight-further/engine-cutoff))
+- make K2 set delay feedback (`softcut.pre_level(1,x)`) to a random value between `0.2` and `0.99` ([solution](/docs/norns/firstlight-further/delay-feedback))
+- re-route the softcut sequencer to send notes to the SuperCollider engine. consider [just intonation](https://en.wikipedia.org/wiki/Just_intonation) for your pitch definitions.
 - have K3 cycle delay speed with a table `{-1.0,0.5,1.0}`
 
 and then on to [study 1: many tomorrows](../study-1) for a more in-depth scripting journey.

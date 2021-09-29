@@ -177,7 +177,7 @@ When *Meta-Pattern* is activated the rows on your grid are:
 
 Rows 3 through 6 are where you store your patterns in a *Pattern Sequence*. Each button in this row can have 2 pieces of data associated with it, a pattern and a duration.
 
-![](../images\grid_KR_METAPattern.png)
+![](../images/grid_KR_METAPattern.png)
 
 To edit the data just select the *pattern sequence* button you wish to change. It will glow at the maximum brightness. Selecting a pattern from row 1 will now change the pattern in the currently selected step.
 
@@ -199,7 +199,7 @@ Hold `Key 1` to change the timing.
 
 With nothing present in `In 1` the device is internally clocked. A pulse indicator is shown in the top row. Row 2 is *rough* and row 3 is *fine*, for jumping time intervals. The four keys in the middle are for incremental time movement, right and leftwards by fine and rough intervals.
 
-![](../images/grid_TIME_INTERNAL_1.2.png)
+![](../images/grid_time_interval1.3.png)
 
 With a cable present in `In 1` the device is externally clocked. The time view now shows a clock division multiplier in row 2.
 

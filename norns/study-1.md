@@ -352,7 +352,7 @@ function key(n,z)
 - returns: `'end' expected (to close 'function' at line 10)`
 - translation: "the function you started on line 10 does not have a closing `end` line, so we don't know if you're done defining the function"
 
-**Be sure to keep an eye on the command line for errors.**
+**Be sure to keep an eye on the REPL for errors.**
 
 ## example: many tomorrows
 

@@ -7,7 +7,7 @@ title: sequins
 
 ## sequins
 
-A library designed to build sequencers and arpeggiators with very little scaffolding, using Lua tables. Originally designed by `@trengill` for use with crow (/docs/crow/reference/#sequins), which was imported to norns by `@tyleretters`.
+A library designed to build sequencers and arpeggiators with very little scaffolding, using Lua tables. Originally designed by `@trengill` for use with [crow] (/docs/crow/reference/#sequins), which was imported to norns by `@tyleretters`.
 
 ### control
 
@@ -79,7 +79,7 @@ end
 
 The `sequins` library is designed for building sequencers and arpeggiators with very little scaffolding required.
 
-Originally designed as a []component for crow scripts](/docs/crow/reference/#sequins), `sequins` helps reduce complex data structures and their manipulation into a terse function call with special modifiers.
+Originally designed as a [component for crow scripts](/docs/crow/reference/#sequins), `sequins` helps reduce complex data structures and their manipulation into a terse function call with special modifiers.
 
 Any datatype is allowed, eg:
 

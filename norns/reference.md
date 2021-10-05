@@ -61,6 +61,7 @@ many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for 
 | [lib/listselect](./lib/listselect)     | List select utility                                                                 |
 | [lib/musicutil](./lib/musicutil)       | Utility module for common music maths                                               |
 | [lib/pattern_time](./lib/pattern_time) | Timed-event pattern recorder / player                                               |
+| [lib/sequins](./lib/sequins)           | A library to build and modify sequencers + arpeggiators with very little code       |
 | [lib/textentry](./lib/textentry)       | Text entry UI                                                                       |
 | [lib/ui](./lib/ui)                     | UI widgets module                                                                   |
 | lib/voice                              | Experimental voice allocation module                                                |

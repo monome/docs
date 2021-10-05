@@ -35,7 +35,7 @@ Flow-modifiers are exclusively supported in nested-sequins and can only be modif
 | my_seq:condr(fn) | Conditionally produces a value if `fn()` returns `true` and will not release focus until `fn()` returns `false` |
 | my_seq:reset()   | Reset all flow modifiers and table indices                                                                      |
 
-### ### example
+### example
 
 ```lua
 s = require 'sequins'

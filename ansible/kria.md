@@ -259,6 +259,9 @@ When Note Sync is on but Loop Sync is off, placing notes will enable correspondi
 * Track (top single block lit): all parameters within tracks have the same loop, but tracks can differ in their looping
 * All (bottom row of 4 lit): all tracks and parameters have a synchronized loop
 
+**Note Tie Duration** to enable note ties at lower duration multipliers e.g short triggers combined with held gates hold `Key 2` (CONFIG) and pressing the bottom-middle (note tie duration), this causes notes to tie whenever the duration for an individual note is set to maximum by simply not turning the trigger off in the note-off timer callback when these options are set.
+
+**Meta-pattern Reset** a trigger to the reset input `In 2` currently resets the playhead within the current pattern, but does not reset the meta-pattern playhead to the first pattern in the meta-pattern sequence. Holding `Key 2` (CONFIG) and pressing the bottom-right (pattern page select) key will reset the meta-sequence.
 
 By default Note Sync is on, and Loop Sync is set to All.
 

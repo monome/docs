@@ -141,6 +141,8 @@ The top-left region of the scale page contains settings for changing how each tr
 
 * The next 4x5 group of keys to the right lets you select direction modes for each track. From left to right these are: forward, reverse, triangle (bounce off the ends instead of wrapping), drunk (randomly move forward or backward each step), and random (any step in the loop may be chosen with equal probability).
 
+![](../images/grid_KR_overview.png)
+
 ### Patterns
 
 Patterns are shown along the top row, with 16 available total. Push a pattern key momentarily to load that pattern. *Hold* a pattern key to store the current pattern into it; it will pulse when the pattern is stored. Remember that loading an 'empty' pattern will effectively clear the current pattern.
@@ -175,7 +177,7 @@ When *Meta-Pattern* is activated the rows on your grid are:
 
 Rows 3 through 6 are where you store your patterns in a *Pattern Sequence*. Each button in this row can have 2 pieces of data associated with it, a pattern and a duration.
 
-![](../images\grid_KR_METAPattern.png)
+![](../images/grid_KR_METAPattern.png)
 
 To edit the data just select the *pattern sequence* button you wish to change. It will glow at the maximum brightness. Selecting a pattern from row 1 will now change the pattern in the currently selected step.
 
@@ -197,7 +199,7 @@ Hold `Key 1` to change the timing.
 
 With nothing present in `In 1` the device is internally clocked. A pulse indicator is shown in the top row. Row 2 is *rough* and row 3 is *fine*, for jumping time intervals. The four keys in the middle are for incremental time movement, right and leftwards by fine and rough intervals.
 
-![](../images/grid_TIME_INTERNAL_1.2.png)
+![](../images/grid_time_interval1.3.png)
 
 With a cable present in `In 1` the device is externally clocked. The time view now shows a clock division multiplier in row 2.
 
@@ -240,6 +242,8 @@ By default Note Division Sync is off, Division Cueing is off, and Division Sync 
 
 ### Config
 
+![](../images/grid_KR_config.png)
+
 Kria has two parameters, represented on the left and right quadrants of the grid when `Key 2` is held down, and
 a toggle for alternative sync behavior.
 
@@ -255,6 +259,9 @@ When Note Sync is on but Loop Sync is off, placing notes will enable correspondi
 * Track (top single block lit): all parameters within tracks have the same loop, but tracks can differ in their looping
 * All (bottom row of 4 lit): all tracks and parameters have a synchronized loop
 
+**Note Tie Duration** to enable note ties at lower duration multipliers e.g short triggers combined with held gates hold `Key 2` (CONFIG) and pressing the bottom-middle (note tie duration), this causes notes to tie whenever the duration for an individual note is set to maximum by simply not turning the trigger off in the note-off timer callback when these options are set.
+
+**Meta-pattern Reset** a trigger to the reset input `In 2` currently resets the playhead within the current pattern, but does not reset the meta-pattern playhead to the first pattern in the meta-pattern sequence. Holding `Key 2` (CONFIG) and pressing the bottom-right (pattern page select) key will reset the meta-sequence.
 
 By default Note Sync is on, and Loop Sync is set to All.
 

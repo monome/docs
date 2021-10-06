@@ -7,6 +7,8 @@ title: lattice
 
 ## lattice
 
+The `lattice` allows you to quickly create simple and extensible sequencers. Learn more with the [splicer eduscript](https://l.llllllll.co/splicer).
+
 ### control
 
 | Syntax                                 | Description                                                    |
@@ -151,8 +153,6 @@ end
 ```
 
 ### description
-
-The `lattice` allows you to quickly create simple and extensible sequencers.
 
 By default, lattices are synced to the norns clock. Lattices are built on the concept of "pulses per quarter note" or PPQN.  For most scripts, the default `96` PPQN (which is something of an industry standard) will be sufficient. Lattices default to a `meter` of `4`. Since lattices are built on pulses per **quarter note** this describes how many quarter notes are in a measure.
 

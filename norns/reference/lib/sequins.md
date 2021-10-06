@@ -22,7 +22,7 @@ A library designed to build sequencers and arpeggiators with very little scaffol
 
 ### flow-modifiers
 
-Flow-modifiers are exclusively supported in nested-sequins and can only be modified by recompiling the entire sequins. See example below.
+Flow-modifiers are exclusively supported in nested-sequins and can only be modified by recompiling that nested sequins. See example below.
 
 | Syntax           | Description                                                                                                     |
 | ---------------- | --------------------------------------------------------------------------------------------------------------- |

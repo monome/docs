@@ -33,8 +33,6 @@ cpu_avg
 cpu_peak
 pitch_in_l
 pitch_in_r
-tape_play_pos
-tape_rec_dur
 ------
 ```
 

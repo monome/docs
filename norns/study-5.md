@@ -199,7 +199,7 @@ end
 -- let's test it:
 folder = paths.home.."/"
 listing = util.scandir(folder)
-print_file(folder..listing[6])
+print_file(folder..listing[7])
 
 ```
 

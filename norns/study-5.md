@@ -33,8 +33,6 @@ cpu_avg
 cpu_peak
 pitch_in_l
 pitch_in_r
-tape_play_pos
-tape_rec_dur
 ------
 ```
 
@@ -170,13 +168,14 @@ tab.print(listing)
 you'll see something resembling this:
 
 ```
-1    dust/
-2    maiden/
-3    norns/
-4    norns-image/
-5    update/
-6    changelog.txt
-7    version.txt
+1    bin/ 
+2    dust/
+3    maiden/
+4    norns/
+5    norns-image/
+6    update/
+7    changelog.txt
+8    version.txt
 ```
 
 `util.scandir` takes one argument which is a folder path, and then it returns a table the folder contents. let's load one of these files and print it out, just to see how file loading works:
@@ -199,7 +198,7 @@ end
 -- let's test it:
 folder = paths.home.."/"
 listing = util.scandir(folder)
-print_file(folder..listing[6])
+print_file(folder..listing[7])
 
 ```
 

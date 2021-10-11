@@ -144,9 +144,9 @@ If you need to restart the matron/crone environment for any reason (ie, the menu
 
 This will disconnect maiden, but once matron has restarted you can reconnect.
 
-### fetch
+### installing scripts from GitHub {#fetch}
 
-Sometimes, scripts don't make it into the community repo. To fetch a script that's only hosted on a developer's GitHub:
+Sometimes, scripts don't make it into the community catalog. To fetch a script that's only hosted on a developer's GitHub:
 
 - copy the URL of the lone project (eg. `https://github.com/tehn/test-update`)
 - in maiden's repl, enter:

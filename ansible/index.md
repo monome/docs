@@ -88,7 +88,7 @@ For more usage details, see the individual app pages linked above, or read about
 
 ## Contributions
 
-Diagrams by [Piotr Szyhalski / Laborcamp](http://laborcamp.org)
+Diagrams by [Piotr Szyhalski / Laborcamp](http://laborcamp.org) and [Matt Allison](https://matt-allison.com/).
 
 MIDI design and code by [Greg Wuller / @ngwese](https://github.com/ngwese)
 

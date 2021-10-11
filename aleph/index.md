@@ -3,7 +3,7 @@ layout: default
 parent: legacy
 title: aleph
 nav_order: 4
-has_children: true
+has_children: false
 has_toc: false
 ---
 

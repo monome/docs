@@ -189,6 +189,14 @@ NO!
 
 norns (both stock and shield) has line-level inputs only -- sending modular signals, which run very hot, through these inputs may result in damage. Please attenuate your modular signals before sending them into norns with an interface module like [Intellijel's Audio Interface](https://www.modulargrid.net/e/intellijel-audio-interface-ii).
 
+### how do I send MIDI to/from norns from/to another computer? {#midi-host}
+
+Since norns is a MIDI host and other computers are *also* MIDI hosts, norns is not able to send/receive MIDI to/from a DAW or computer directly over its USB charge port.
+
+- connect a [Roland UM-ONE mk2](https://www.roland.com/us/products/um-one_mk2/) to norns with USB, which will create a DIN-MIDI input and output for norns -- then connect UM-ONE MIDI to your computer using another USB-MIDI interface
+- build this [DIY USBMIDI host-to-host adapter from `@okyeron`](https://llllllll.co/t/2host-a-diy-usbmidi-host-to-host-adapter/23472)
+- use a USB host MIDI router like [Sevilla Soft's MIDI USB-USB](https://sevillasoft.com/index.php/midi-usb-usb)
+
 ### shield: can I use the Pi's HDMI output to mirror the shield's screen?
 
 No.
@@ -503,8 +511,6 @@ magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize
 - Line noise while usb charge + audio input are both coming from the same laptop (ground loop) can be defeated with [an isolator](https://llllllll.co/t/external-grid-power-ext5v-alternative/3260).
 
 - If a connected MIDI controller is not functioning as expected, it may be due to a known limitation in scripts that do not explicitly allow for MIDI control from channels other than channel 1. Either reassign your MIDI controller to channel 1 or insert this [bit of code](https://llllllll.co/t/norns-scripting-best-practices/23606/2) into a script.
-
-- norns is not able to send MIDI to a VST or DAW directly over USB, because you'd be trying to connect two MIDI hosts. One solution is to use two USB MIDI interfaces plugged into one another, or some MIDI devices exist with two USB host ports.
 
 - All grid editions will work with norns, but some apps may be coded for varibright levels that your hardware may not support.
 

@@ -20,13 +20,54 @@ norns studies part 2: screen drawing, for/while loops, tables
 {:toc}
 </details>
 
+## terminology
+
+Before we dive in, here is some terminology which is mentioned throughout this study:
+
+- [**conditions**](https://www.tutorialspoint.com/lua/lua_decision_making.htm): something to be evaluated or tested to help a script make decisions. We'll use `if`/`elseif`/`else` statements to demarcate what should happen when, using `==` to symbolize "is equal to" and `~=` to symbolize "is not equal to", eg:
+
+  ```lua
+  if joke == "funny" then
+      laugh()
+  else
+      groan()
+  end
+  ```
+ 
+  Note that `==` and `=` are two different things! `=` is how we assign a value to a variable.
+
 ## ways of seeing
 
-norns offers a view into its thoughts through a charmingly low-resolution screen. the 128 by 64 pixels can display 16 gradations from black to white.
+norns offers a view into its thoughts through a charmingly low-resolution screen. The 128 by 64 pixels can display 16 gradations from black to white.
 
-each script defines what happens on the screen. an interface can be as complex or simple as you like.
+Each script defines what happens on the screen. An interface can be as complex or simple as you like.
 
-start here:
+First, locate yourself thus:
+
+- connect to norns via [hotspot or network](../wifi-files/#connect)
+- navigate web browser to http://norns.local (or type in IP address if this fails)
+- you're looking at [_maiden_](../maiden), the editor
+
+**If you've gone through the previous studies:**
+
+- open your uniquely-named study folder in the maiden file browser
+- create a new file in your study folder: locate and click on the folder and then click the + icon in the scripts toolbar
+- rename the file: select the newly-created `untitled.lua` file, then click the pencil icon in the scripts toolbar
+  - after naming it something meaningful to you (only use alphanumeric, underscore and hyphen characters when naming), select the file again to load it into the editor
+
+<details closed markdown="block">
+  <summary>
+    <i>If you haven't gone through the previous studies</i>
+  </summary>
+  {: .text-delta }
+- create a new folder in the `code` directory: click on the `code` directory and then click the folder icon with the plus symbol to create a new folder
+  - name your new folder something meaningful, like `my_studies` (only use alphanumeric, underscore and hyphen characters when naming)
+- create a new file in the folder you created: locate and click on the folder and then click the + icon in the scripts toolbar
+- rename the file: select the newly-created `untitled.lua` file, then click the pencil icon in the scripts toolbar
+  - after naming it something meaningful to you (only use alphanumeric, underscore and hyphen characters when naming), select the file again to load it into the editor
+</details>
+
+The file is blank. Full of possibilities. Type the text below into the editor:
 
 ```lua
 -- patterning
@@ -43,36 +84,42 @@ function redraw()
 end
 ```
 
-the familiar bits: start with some comments which are displayed in the menu selector, and then choose a sound engine to load. this time we're using `PolySub`.
+The familiar bits:
 
-`redraw` is new. it's the function that is called whenever the screen needs to be refreshed. if you don't have a redraw function in your script the screen will remain black.
+- start with some comments which are displayed in the menu selector
+- choose a sound engine to load (this time we're using `PolySub`)
 
-let's step through:
+However, `redraw` is new. It's the function that's called whenever the screen needs to be refreshed. If you don't have a `redraw` function in your script the screen will remain black.
 
-- `screen.clear()` erases the screen
-- `screen.move(0,40)` moves the current position to (x,y) = (0,40) in pixels. the top left of the screen is (0,0). as you move right x is increasing, and as you move down y is increasing.
+Let's step through the example's `redraw`:
+
+- `screen.clear()` erases the screen.
+- `screen.move(0,40)` moves the current position to (x,y) = (0,40) in pixels.
+	- the top left of the screen is (0,0)
+	- as you move right, x is increasing
+	- as you move down, y is increasing
 
 ![](../study-image/coordinate_system.gif)
 
-- `screen.level(15)` sets the brightness. 0 = black, 15 = white. in between you get grays.
-- `screen.text("The relationship between what we see and what we know")` prints some words.
+- `screen.level(15)` sets the brightness. 0 = nothing, 15 = full. In between you get gradients.
+- `screen.text("The relationship between what we see and what we know")` prints a string (which even extends beyond our screen's boundaries).
 - `screen.update()` refreshes the screen, updating the contents.
 
-this is a pretty typical (despite being simple) drawing function. we set some attributes (such as level), set a position (with move) and then draw something (in this case, text). and don't forget `update` or nothing will happen!
+This is a pretty typical (despite being simple) drawing function. We set some attributes (such as `level`), set a position (with `move`) and then draw something (in this case, `text`). **Don't forget `update`, or else nothing will happen!**
 
 ### reveal
 
-let's make something more interactive then. replace `redraw()` and add the other functions below:
+Let's make something more interactive. Clear the previous code and start anew with:
 
 ```lua
 function init()
-  color = 3
+  level = 3
   number = 84
 end
 
 function redraw()
   screen.clear()
-  screen.level(color)
+  screen.level(level)
   screen.font_face(10)
   screen.font_size(20)
   screen.move(0,50)
@@ -81,7 +128,7 @@ function redraw()
 end
 
 function key(n,z)
-  color = 3 + z * 12
+  level = 3 + z * 12
   redraw()
 end
 
@@ -91,28 +138,39 @@ function enc(n,d)
 end
 ```
 
-we're calling `redraw()` when we get encoder or key data in order to display the newest information. you can call `redraw()` conditionally whenever the screen needs to be updated: this may be on a keypress or a metro or on grid input or midi notes.
+What's happening:
 
-and `redraw()` can itself have much more logic involved. for example, we may want to use different modes or pages, such as:
+- we use a variable called `level` to keep track of our display level
+- we use a variable called `number` to keep track of a number
+- we call `redraw()` when we interact with the `key`s or `enc`s in order to display the latest information
+- we track `key` state (remember: `z` returns 1 for down, 0 for up) and use that to change the `level` of our text
+- we track `enc` turns (remember: `d` is the delta of our rotation) and use that to change the `number` displayed
+
+You can call `redraw()` conditionally whenever the screen needs to be updated: this may be on a keypress or a metro or on grid input or midi notes.
+
+### conditional reveal
+
+`redraw()` can itself have much more logic involved. For example, we may want to endow our script with different modes or pages. We'll use conditions to check the state of certain variables to make decisions about what should happen and when it should happen.
+
+Clear the previous code and start anew with:
 
 ```lua
 function init()
-  color = 3
+  level = 3
   number = 84
   mode = 0
 end
 
 function redraw()
+  screen.clear()
   if mode == 0 then
-    screen.clear()
-    screen.level(color)
+    screen.level(level)
     screen.font_face(10)
     screen.font_size(20)
     screen.move(0,50)
     screen.text("number: " .. number)
     screen.update()
   elseif mode == 1 then
-    screen.clear()
     screen.move(0,20)
     screen.text("WILD")
     screen.update()
@@ -123,7 +181,7 @@ function key(n,z)
   if n == 3 then
     mode = z
   else
-    color = 3 + z * 12
+    level = 3 + z * 12
   end
   redraw()
 end
@@ -134,31 +192,30 @@ function enc(n,d)
 end
 ```
 
-press KEY3 to toggle the mode.
+And press KEY3 to toggle the mode.
 
-a few new commands found their way in as well:
+Note that `mode = 0` and `mode == 0` are *not* the same thing -- the latter assigns the value `0` to the variable `mode`, whereas the former checks to see if the value of `mode` is equal to `0`.
+
+A few new commands found their way in as well:
 
 - `screen.font_face()` selects the font face  
 - `screen.font_size()` selects the font size
 
-be sure not to call `screen` functions outside of your script's `redraw()` function, otherwise your script will draw over the norns system menus
-{: .label .label-red}
+**Be sure not to call `screen` functions outside of your script's `redraw()` function, otherwise your script will draw over the norns system menus.**
 
 ## so many commands
 
-what in the world is `font_face 10`? how am i going to remember all of these commands?
+If you're worried about remember all of these norns scripting functions, you'll appreciate the reference docs. They live on norns and you can load them up from maiden by hovering over the `?` in the bottom left corner and selecting 'API'.
 
-this is a moment when you'll appreciate the reference docs. they live on norns and you can load them up right alongside maiden:
+[There's also a web-accessible version here](https://monome.org/docs/norns/api/index.html).
 
-[http://norns.local/doc](http://norns.local/doc)
+Navigate to `Modules > screen` and then `Functions > screen.font_face`. Behold, a list of the available fonts!
 
-navigate to `screen` and then `font_face`. behold, a list of the available fonts!
-
-but what is this! lines and rectangles?!
+But wait, there's so much in here! Lines and rectangles?!
 
 ### which path
 
-add this below `screen.text("WILD")`:
+In your code, add this below `screen.text("WILD")`:
 
 ```lua
     screen.aa(1)
@@ -170,7 +227,7 @@ add this below `screen.text("WILD")`:
     screen.stroke()
 ```
 
-that's one wild smooth triangle.
+That's one wild smooth triangle.
 
 - `screen.aa()` sets anti-aliasing: 0 = off, 1 = on
 - `screen.line_width()` sets the line width in pixels (decimals ok)
@@ -178,21 +235,29 @@ that's one wild smooth triangle.
 - `screen.close()` closes the path (makes a line to the start position)
 - `screen.stroke()` renders the path (also check out `screen.fill()`)
 
-check out the rest of the reference docs for more drawing bliss and get out your code paintbrush.
+Check out the rest of the reference docs for more drawing bliss and get out your code paintbrush.
 
 ## procedural
 
-we've already looked at `if` / `elseif` / `else` for basic control. let's look at a few other techniques:
+We've already looked at `if` / `elseif` / `else` for basic control. Let's look at a few other techniques.
+
+### repeat...until
+
+Clear the previous code and start anew with:
 
 ```lua
-x = 3
-repeat
-  print("we learn by repetition")
-  x = x - 1
-until x == 0
+function init()
+  x = 3
+  repeat
+    print("we learn by repetition")
+    x = x - 1
+  until x == 0
+end
 ```
 
-the `repeat ... until` loop construct follow this form:
+Check the REPL for results.
+
+The `repeat ... until` loop construct follows this form:
 
 ```lua
 repeat
@@ -200,37 +265,72 @@ repeat
 until (condition == true)
 ```
 
-this is sometimes helpful because `(commands)` are always run at least once.
+This is sometimes helpful because `(commands)` are always run at least once.
 
-here's another loop construct:
+<details closed markdown="block">
+  <summary>
+    <i>Try writing out in words why the code snippet did what it did...</i>
+  </summary>
+  {: .text-delta }
+- When the script initializes, variable `x` is set to `3`. We then enter a `repeat` loop where "we learn by repetition" is `print`ed, then `x` is set to itself *minus* `1`. So now, `x` is equal to `2`. We check to see if `x` is equal to `0`, but it's not, so we `repeat`.
+
+- "we learn by repetition" is `print`ed a second time, then `x` is set to itself *minus* `1`, which means `x` is now equal to `1` -- since `x` is still not equal to `0`, we `repeat`.
+
+- "we learn by repetition" is `print`ed a third time, then `x` is set to itself *minus* `1`, which means `x` is now equal to `0` -- since `x` is now equal to `0`, we can stop `repeat`ing!
+</details>
+
+### 'while' loop
+
+Here's another loop construct. Clear the previous code and start anew with:
 
 ```lua
-x = 3
-while x > 0 do
-  print("still learning")
-  x = x - 1
+function init()
+  x = 3
+  while x > 0 do
+    print("still learning")
+    x = x - 1
+  end
+  print("done learning")
 end
 ```
 
-which can be abstracted to:
+This construct can be abstracted to:
 
 ```lua
-while (condition == true)
+while (condition == true) do
   (commands)
 end
 ```
 
-these are very similar and can often be used interchangeably. it's best to pick one which best describes what you're trying to accomplish, so that the script is readable.
+<details closed markdown="block">
+  <summary>
+    <i>Try writing out in words why the code snippet did what it did...</i>
+  </summary>
+  {: .text-delta }
+- When the script initializes, variable `x` is set to `3`. We then enter a `while` loop where our condition is whether `x` is greater than `0`. Since `3` is greater than `0`, "still learning" is `print`ed, then `x` is set to itself *minus* `1`. So now, `x` is equal to `2`. The loop continues.
 
-you'll notice in the previous examples we've been adding a value modifier on each iteration of the loop (ie `x = x - 1`). there is one more loop construct that you'll likely use quite often:
+- We check our condition of `x > 0` -- `2` is greater than `0`, so we continue. "still learning" is `print`ed, then `x` is set to itself *minus* `1`. So now, `x` is equal to `1`. The loop continues.
+
+- We check our condition of `x > 0` -- `1` is greater than `0`, so we continue. "still learning" is `print`ed, then `x` is set to itself *minus* `1`. So now, `x` is equal to `0`. The loop continues.
+
+- We check our condition of `x > 0` -- `0` is NOT greater than `0` (`0` is equal to `0`), so our `while` loop is broken and we can move on to the rest of the code and `print` "done learning".
+</details>
+
+These are very similar and can often be used interchangeably. It's best to pick one which best describes what you're trying to accomplish, so that the script is human-readable.
+
+### 'for' loop
+
+You'll notice in the previous examples we've been adding a value modifier on each iteration of the loop (eg. `x = x - 1`). There is one more loop construct that you'll likely use quite often. Clear the previous code and start anew with:
 
 ```lua
-for i=1,3 do
-  print("believe! " .. i)
+function init()
+  for i=1,3 do
+    print("believe! " .. i)
+  end
 end
 ```
 
-this will print:
+This will print the following to the REPL:
 
 ```
 believe! 1
@@ -243,34 +343,102 @@ believe! 3
 - the syntax can have it create its own counter variable (in the above case, `i`)
 - the counter is incremented on each iteration of the loop
 
-let's draw some things (put this inside `redraw()`):
+Let's draw some things with `for` loops. Clear the previous code and start anew with:
 
 ```lua
-screen.clear()
-screen.level(15)
-for x = 0,16 do
-  screen.move(x*8, 10)
-  screen.line(128 - x*8, 50)
-  screen.stroke()
+function init()
+  redraw()
 end
-screen.update()
-```
 
-you can also nest multiple `for` loops inside one another. think about how this works:
-
-```lua
-screen.clear()
-screen.level(15)
-screen.line_width(0.5)
-for upper = 0,4 do
-  for lower = 0,4 do
-    screen.move(upper*31, 0)
-    screen.line(lower*31, 60)
+function redraw()
+  screen.clear()
+  screen.level(15)
+  for x = 0,16 do
+    screen.move(x*8, 10)
+    screen.line(128 - x*8, 50)
     screen.stroke()
   end
+  screen.update()
 end
-screen.update()
 ```
+
+### nested 'for' loops
+
+You can also nest multiple `for` loops inside one another. Clear the previous code and start anew with:
+
+```lua
+function init()
+  for i = 0,3 do
+    for j = 1,4 do
+      print(i,j)
+    end
+  end
+end
+```
+
+The following will print to the REPL:
+
+```
+0	1
+0	2
+0	3
+0	4
+1	1
+1	2
+1	3
+1	4
+2	1
+2	2
+2	3
+2	4
+3	1
+3	2
+3	3
+3	4
+```
+
+<details closed markdown="block">
+  <summary>
+    <i>Try writing out in words why the code snippet did what it did...</i>
+  </summary>
+  {: .text-delta }
+
+- When the script initializes, a `for` loop establishes a temporary variable named `i` that will iterate from `0` to `3`
+  - inside of that `i` loop, another `for` loop establishes a temporary variable named `j` that will also iterate from `1` to `4` and `print` the current values of `i` and `j`
+- For each single iteration of `i`, `j` will go through its entire loop
+  - when `i` is `0`, `j` will loop through `1` to `4` and then `i` can progress to `1`
+  - when `i` is `1`, `j` will loop through `1` to `4` and then `i` can progress to `2`
+  - when `i` is `2`, `j` will loop through `1` to `4` and then `i` can progress to `3`
+  - when `i` is `3`, `j` will loop through `1` to `4`
+- Since `i` stops at `3`, the loop finishes!
+</details>
+
+#### simple loops lead to complex compositions
+
+Clear the previous code and start anew with:
+
+```lua
+function init()
+  redraw()
+end
+
+function redraw()
+  screen.clear()
+  screen.aa(1)
+  screen.level(15)
+  screen.line_width(0.5)
+  for upper = 0,4 do
+    for lower = 0,4 do
+      screen.move(upper*31, 0)
+      screen.line(lower*31, 60)
+      screen.stroke()
+    end
+  end
+  screen.update()
+end
+```
+
+Why did this code snippet do what it did?
 
 ## tables everywhere
 
@@ -499,6 +667,7 @@ end
 ## continued
 {: .no_toc }
 
+- part 0: [first light](../study-0/) //  variables, simple maths, keys + encoders
 - part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
 - part 2: patterning
 - part 3: [spacetime](../study-3/) // functions, parameters, time

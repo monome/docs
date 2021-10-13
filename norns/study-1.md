@@ -20,6 +20,14 @@ norns studies part 1: variables, simple maths, keys + encoders
 {:toc}
 </details>
 
+## terminology
+
+Before we dive in, here is some terminology which is mentioned throughout this study:
+
+- [**function**](https://www.tutorialspoint.com/lua/lua_functions.htm): a named task or event in our script. *Calling* a function simply means executing or invoking that task or event. Functions can be written to have general knowledge of the other components of our script, or we can load *arguments* into the function call to ask it to perform its task on the specific supplied values. If we are defining a function, we use `end` at the end of our definition. If we are calling a function, we use parenthesis after its name to indicate a function call -- we can pass arguments to the function inside of the parenthesis.
+- [**string**](https://www.tutorialspoint.com/lua/lua_strings.htm): a sequence of characters, like every word in this sentence. A sequence of characters becomes a string when its enclosed in single quotes eg. `'hello'`, double quotes eg. `"hello"`, or double brackets eg. `[[hello]]`.
+- [**variable**](https://www.tutorialspoint.com/lua/lua_variables.htm): a named storage container for data that our script can manipulate. We *declare* a variable and *assign* it a value by using a convention like `my_favorite_number = 11`. While our script runs, it will remember that our favorite number is 11. Variables can store numbers, strings, functions, and tables (which we'll talk about in the next study). For those with prior coding experience, it might be interesting to learn that variables in Lua are, by default, global -- later on, we'll cover [local vs. global variables](#addendum-global).
+
 ## hello?
 
 Hello. Ready? Remember to stay hydrated.
@@ -30,10 +38,10 @@ First, locate yourself thus:
 - navigate web browser to http://norns.local (or type in IP address if this fails)
 - you're looking at [_maiden_](../maiden), the editor
 - create a new folder in the `code` directory: click on the `code` directory and then click the folder icon with the plus symbol to create a new folder
-  - name your new folder
+  - name your new folder something meaningful, like `my_studies` (only use alphanumeric, underscore and hyphen characters when naming)
 - create a new file in the folder you created: locate and click on the folder and then click the + icon in the scripts toolbar
 - rename the file: select the newly-created `untitled.lua` file, then click the pencil icon in the scripts toolbar
-  - after naming it, select the file again to load it into the editor
+  - after naming it something meaningful to you (only use alphanumeric, underscore and hyphen characters when naming), select the file again to load it into the editor
 
 The file is blank. Full of possibilities. Type the text below into the editor:
 
@@ -160,8 +168,6 @@ We can also glue commands together in the REPL, to execute many at once, using `
 ```
 
 (Lua has a huge [string library](http://lua-users.org/wiki/StringLibraryTutorial).)
-
-(Later on, we'll cover [local vs. global variables](#addendum-global).)
 
 ### maths
 
@@ -503,6 +509,7 @@ end
 ## continued
 {: .no_toc }
 
+- part 0: [first light](../study-0/) //  variables, simple maths, keys + encoders
 - part 1: many tomorrows
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
 - part 3: [spacetime](../study-3/) // functions, parameters, time

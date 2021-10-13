@@ -574,3 +574,20 @@ and then on to [study 1: many tomorrows](../study-1) for a more in-depth scripti
 
 - [script reference](../reference) - lists of norns API commands and how to use them
 - [firstlight walkthrough](https://vimeo.com/515473339) - a recorded livestream of a _firstlight_ study walkthrough
+
+## continued
+{: .no_toc }
+
+- part 0: [first light](../study-0/) //  variables, simple maths, keys + encoders
+- part 1: many tomorrows
+- part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
+- part 3: [spacetime](../study-3/) // functions, parameters, time
+- part 4: [physical](../study-4/) // grids + midi
+- part 5: [streams](../study-5/) // system polls, osc, file storage
+
+## community
+{: .no_toc }
+
+ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
+
+edits to this study welcome, see [monome/docs](http://github.com/monome/docs)

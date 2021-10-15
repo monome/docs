@@ -14,7 +14,7 @@ since 2018, norns has grown beyond our earliest imaginings: all sorts of new fun
 
 [norns.community](https://norns.community) is a centralized place for community projects. it was initiated by monome and the vision was shaped by the talents of `@tyleretters` who added sharp visual styling + data design and `@eigen` who created a dynamic discovery mechanism with tagging and gallery images.
 
-## mods: community modifications for the norns system {#mods}
+## mods: community modifications {#mods}
 
 with norns update `210927` (September 27 2021), a *mods* system was introduced by `@ngwese`.
 

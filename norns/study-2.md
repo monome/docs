@@ -442,39 +442,97 @@ Why did this code snippet do what it did?
 
 ## tables everywhere
 
-in lua, tables are associative arrays. think spreadsheets. (when making music myself i get pretty psyched about spreadsheets.)
+In Lua, tables are 'associative arrays' -- think spreadsheets. When making music, we get pretty psyched about spreadsheets because they're a way of storing, looking up, and manipulating a lot of data. Tables are constructed with curly brackets.
 
-it's a way of storing, looking up, and manipulating a lot of data.
-
-```lua
-nothing = {}
-drumzzz = {1,0,0,0,1,0,1,0}
-```
-
-tables are created with curly brackets. above, `nothing` is am empty table, `drumzzz` is a table with 8 elements.
-
-elements of a table can be keyed with an index (number) or a string. let's add some data (you can try things out on the command line):
+Execute the following on the command line:
 
 ```lua
-nothing[4] = 101
-nothing["lasers"] = "off"
+>> nothing = {}
+<ok> -- matron says "ok" when things are okay.
 ```
 
-for elements keyed with a string, you can use a different syntax:
+After you construct each table, matron will tell you `<ok>`. So, now we have a variable, `nothing`, which is an empty table.
+
+Elements of a table have a **key** (or **index**) which can be either a number or a string. Let's add some data to `nothing` by executing the following on the command line:
 
 ```lua
-print(nothing.lasers)
+>> nothing[4] = 101
+<ok>
+>> nothing["lasers"] = "off"
+<ok>
 ```
 
-this prints `off` if you did the assignment above. but note that:
+Again, matron will simply tell you `<ok>`. But how do we *know* that we've added these elements to our `nothing` table? Let's pass the name of our table as an argument to the `tab.print()` function:
 
 ```lua
-print(nothing[lasers])
+>> tab.print(nothing)
+4	101
+lasers	off
+<ok>
 ```
 
-is an error! because `lasers` is nil (variable not defined), so `nothing[nil]` is nil.
+We can also query individual elements, by using bracket notation:
 
-when initializing a table with values (like `drumzzz`) the values are keyed incrementally starting from 1. so:
+```lua
+>> print(nothing[4])
+101
+<ok>
+>> print(nothing["lasers"])
+off
+<ok>
+```
+
+(Need a symbol refresher? Revisit [first light](../study-0/#curly-braces-brackets-and-parentheses)!)
+
+### make the robots mad: misusing syntax
+
+Table keys are very specific -- these are unique identifiers which point to specific data!
+
+For elements keyed with a string, you can choose your syntax:
+
+```lua
+>> print(nothing["lasers"])
+off
+<ok>
+>> print(nothing.lasers)
+off
+<ok>
+```
+
+So `nothing["lasers"]` is the same as `nothing.lasers`, but what about:
+
+```lua
+>> print(nothing[lasers])
+nil
+<ok>
+```
+
+Why doesn't *this* syntax work?
+
+Because `nothing.lasers` is just another way to represent `nothing["lasers"]` -- **a table indexed by a string**. However, `nothing[lasers]` is a table indexed by the value of the variable `lasers`, which hasn't been defined!
+
+For example:
+
+```lua
+>> print(lasers)
+nil
+<ok>
+```
+
+Because value of `lasers` is nil (which is true of all undefined variables), `nothing[nil]` is nil.
+
+### insert + remove
+
+Let's start with a new table by executing the following on the command line:
+
+```lua
+>> drumzzz = {1,0,0,0,1,0,1,0}
+<ok>
+```
+
+This constructs a new table `drumzzz` with 8 elements.
+
+When initializing a table with values (like `drumzzz`) the values are keyed incrementally starting from 1. So:
 
 - `drumzzz[1] = 1`
 - `drumzzz[2] = 0`
@@ -482,47 +540,105 @@ when initializing a table with values (like `drumzzz`) the values are keyed incr
 - `drumzzz[4] = 0`
 - `drumzzz[5] = 1`
 
-we can insert and remove elements from a table:
+We can insert and remove elements from an integer-keyed table in different ways, depending on the arguments we supply our functions:
+
+- `table.insert(table, [pos,] value)`
+	- inserts a value into the table at specified position
+	- if no position is provided, value will be inserted at the end of the table
+- `table.remove(table [, pos])`
+	- removes the value at a specified position from the table
+	- if no position is provided, the value at the end of the table will be removed
+
+([source](https://www.tutorialspoint.com/lua/lua_tables.htm))
+
+For example:
 
 ```lua
-table.insert(drumzzz, 11)
-table.insert(drumzzz, 1, -1)
-table.remove(drumzzz, 1)
+>> table.insert(drumzzz, 11)
+<ok>
 ```
 
-- first we insert `11` at the end. afterwards we have: `{1,0,0,0,1,0,1,0,11}`
-- next we insert `-1` at the beginning (at position 1), shifting the existing elements ahead. `{-1,1,0,0,0,1,0,1,0,11}`
-- last we remove the element at position 1, shifting the remaining elements back. `{1,0,0,0,1,0,1,0,11}`
+The above code snippet will create a 9th element in `drumzzz`, which will contain the value `11`.
+
+
+Let's insert another element, but we'll add it to the beginning of the table:
+```lua
+>> table.insert(drumzzz, 1, -1)
+<ok>
+```
+
+By inserting `-1` at the beginning of `drumzzz` (at position 1), we also shift the existing elements ahead by one, eg:
+
+```lua
+>> tab.print(drumzzz)
+1	-1
+2	1
+3	0
+4	0
+5	0
+6	1
+7	0
+8	1
+9	0
+10	11
+<ok>
+```
+
+Let's remove the element at position 1, shifting the remaining elements back:
+
+```lua
+>> table.remove(drumzzz, 1)
+-1
+<ok>
+```
+
+This is new! `table.remove` will actually return the value it's removing from the table. Interesting...
+
+Check the contents of `drumzzz` to see if it worked!
 
 ### the joy of data
 
-we can get the length of a table using the `#` operator:
+We can get the length of a table using the `#` operator:
 
 ```lua
-drumzzz = {1,0,0,0,1,0,1,0}
-print(#drumzzz)
+>> drumzzz = {1,1,0,0,1,0,1,0}
+<ok>
+>> print(#drumzzz)
+8
+<ok>
 ```
 
-this prints `8`, which is the number of elements in the table. let's use this to display the whole table as steps in a sequence:
+Let's use the `#` operator to display the whole table as steps in a sequence. Clear the previous code and start anew with:
 
 ```lua
-screen.clear()
-for i=1,#drumzzz do
-  screen.move(i*8, 40)
-  screen.line_rel(0,10)
-  if drumzzz[i] == 1 then
-    screen.level(15)
-  else
-    screen.level(3)
+drumzzz = {1,1,0,0,1,0,1,0}
+
+function redraw()
+  screen.clear()
+  for i=1,#drumzzz do
+    screen.move(i*8, 40)
+    screen.line_rel(0,10)
+    if drumzzz[i] == 1 then
+      screen.level(15)
+    else
+      screen.level(3)
+    end
+    screen.stroke()
   end
-  screen.stroke()
+  screen.update()
 end
-screen.update()
 ```
 
-a few new techniques are here: `for i=1,#drumzzz do` means that the loop is performed for every element in `drumzzz` (which is 8 times). we use each element in the table to determine if we're going to draw a white line or a dark line. also new here is the `screen.line_rel()` function, which draws a line relative to the previous point. we specify (0,10) which is no movement in the x axis, and 10 pixels down in the y axis. we could have just written `screen.line(i*8, 50)`, but then consider trying some different spacing and positioning: `screen.move(i*4, 30)`. using the relative line function, you only change the `move` line and the relative coordinates follow, rather than having to change both lines.
+A few new techniques:
 
-tables can live inside tables! this is useful for two-dimensional structures.
+- `for i=1,#drumzzz do` means that the loop is performed for every element in `drumzzz` (which is 8 times)
+- we use each element in the table to move along the screen's x axis with `screen.move(i*8, 40)`
+- after each movement, we call the `screen.line_rel()` function (which draws a line relative to the previous point) and specify (0,10) -- no movement in the x axis, 10 pixels down in the y axis
+- if the current element is 1, we draw a bright line -- otherwise, we draw a dark line
+
+### nested tables
+
+Tables can live inside tables! This is useful for two-dimensional structures. Clear the previous code and start anew with:
 
 ```lua
 steps = { {1,0,0,0},
@@ -531,48 +647,108 @@ steps = { {1,0,0,0},
           {0,0,0,1} }
 ```
 
-i've typed this on multiple lines for visualization, but you can write it all in one line. you can now address this table with coordinates:
+(We typed this on multiple lines for visualization, but you can write it all in one line.)
+
+You can now address this table with coordinates:
 
 - `steps[1][1]` is 1 (top left)
 - `steps[4][2]` is 0 (four down, two across)
 
-one last table-talking-point. let's make a table with non-indexed elements:
+### indexing with strings
+
+One last table-talking-point -- let's make a table with *string* indices instead of numerical indices. Clear the previous code and start anew with:
 
 ```lua
-moon = {}
-moon.color = 15
-moon.phase = 0
-moon.hollowness = "?"
-```
-
-`#moon` will not return a length because these elements are not indexed. but we can use a technique to iterate through the list:
-
-```lua
-for key,value in pairs(moon) do
-  print(key .. " = " .. value)
+function init()
+  moon = {}
+  moon.color = 15
+  moon.phase = 0
+  moon.hollowness = "?"
 end
 ```
 
-or better yet, let's get it on the screen:
+Let's try some of the surveying techniques demonstrated in previous sections:
 
 ```lua
-screen.clear()
-screen.level(15)
-screen.move(0,0)
-line = 1
-for key,value in pairs(moon) do
-  screen.move(0,line*10)
-  screen.text(key)
-  screen.move(127,line*10)
-  screen.text_right(value)
-  line = line + 1
+>> tab.print(moon)
+color	15
+hollowness	?
+phase	0
+<ok>
+>> #moon
+0
+```
+
+Wait wait wait -- `moon` definitely has elements, so why does `#moon` return `0`? Because Lua's *length* operator (`#`) is defined by **integer** indices -- so **strings** are simply not counted.
+
+But what if we want to do something with each of the elements of the `moon` table? Well, if we try to do something like:
+
+```lua
+for i = 1,#moon do
+  -- stuff
 end
-screen.update()
+```
+
+...then nothing will happen, because our `for` loop is iterating from 1 to 0 (which is what `#moon` returns).
+
+So how do we iterate through the pairs (eg. `color` and `15`)?
+
+In this case, we can use Lua's [`pairs` function](https://www.lua.org/pil/4.3.5.html) to iterate through all of the keys and their values, regardless of whether the index is a number or string.
+
+Let's modify our previous code to use the basic DNA of a `for` loop which goes through `pairs` of keys and their values:
+
+```lua
+function init()
+  moon = {}
+  moon.color = 15
+  moon.phase = 0
+  moon.hollowness = "?"
+  for key,value in pairs(moon) do
+    print(i .. " = " .. v)
+  end
+end
+```
+
+And you'll see the following printed to the REPL:
+
+```lua
+color = 15
+hollowness = ?
+phase = 0
+```
+
+Better yet, let's get it on the screen:
+
+```lua
+function init()
+  moon = {}
+  moon.color = 15
+  moon.phase = 0
+  moon.hollowness = "?"
+  for key,value in pairs(moon) do
+    print(key .. " = " .. value)
+  end
+end
+
+function redraw()
+  screen.clear()
+  screen.level(15)
+  screen.move(0,0)
+  line = 1
+  for key,value in pairs(moon) do
+    screen.move(0,line*10)
+    screen.text(key)
+    screen.move(127,line*10)
+    screen.text_right(value)
+    line = line + 1
+  end
+  screen.update()
+end
 ```
 
 ## example: patterning
 
-putting together concepts above. this script is demonstrated in the video up top.
+Putting together concepts above. This script is demonstrated in the video up top.
 
 ```lua
 -- patterning
@@ -653,6 +829,7 @@ function enc(n,d)
   redraw()
 end
 ```
+
 ## reference
 ### norns-specific
 - `redraw()` -- function to refresh the norns screen

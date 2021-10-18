@@ -20,7 +20,7 @@ with norns update `210927` (September 27 2021), a *mods* system was introduced b
 
 mods are small chunks of code to create custom modifications to the core workings of the norns system software. mods are features which modify the basic functionality of norns, for all scripts, but is a feature which isn't necessary to include in the foundational norns codebase.
 
-a mod lives in the `dust` folder just like standard norns scripts. unlike norns scripts, the code in a mod is loaded by matron when it starts up. mods can modify or extend the Lua environment globally such that the changes are visible to all scripts. full developer documentation is forthcoming, though this [example mod](https://github.com/ngwese/norns-example-mod) lays out the basics.
+a mod lives in the `dust` folder just like standard norns scripts. unlike norns scripts, the code in a mod is loaded by matron when it starts up. mods can modify or extend the Lua environment globally such that the changes are visible to all scripts. full developer documentation is forthcoming, though this [example mod](https://github.com/monome/norns-example-mod) lays out the basics.
 
 ### installing a mod
 

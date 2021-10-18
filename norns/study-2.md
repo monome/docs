@@ -27,14 +27,32 @@ Before we dive in, here is some terminology which is mentioned throughout this s
 - [**conditions**](https://www.tutorialspoint.com/lua/lua_decision_making.htm): something to be evaluated or tested to help a script make decisions. We'll use `if`/`elseif`/`else` statements to demarcate what should happen when, using `==` to symbolize "is equal to" and `~=` to symbolize "is not equal to", eg:
 
   ```lua
-  if joke == "funny" then
-      laugh()
+  if performance == "good" then
+      cheer()
   else
-      groan()
+      politely_clap()
   end
   ```
  
   Note that `==` and `=` are two different things! `=` is how we assign a value to a variable.
+
+- [**loop**](https://www.tutorialspoint.com/lua/lua_loops.htm): a task which should be repeated, which has its own counter built-in, eg:
+
+	```lua
+	for voices = 1,5 do
+	  play_note()
+	end
+	```
+
+- [**nesting**](https://www.tutorialspoint.com/lua/lua_nested_loops.htm): performing a task *inside* of another task, typically as a `for` loop or conditional, eg:
+
+	```lua
+	for measures = 1,16 do
+	  for beats = 1,4 do
+	    play_note()
+	  end
+	end
+	```
 
 ## ways of seeing
 

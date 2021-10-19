@@ -54,6 +54,14 @@ Before we dive in, here is some terminology which is mentioned throughout this s
 	end
 	```
 
+- [**tables**](https://www.tutorialspoint.com/lua/lua_tables.htm): the only data structure available in Lua to create lists, arrays, dictionaries, etc. You construct them with curly brackets / braces **{ }**. Tables can be indexed with numbers or strings, using square brackets **[ ]**, and can be manipulated to grow or shrink as we need. You can think of tables like a musical scale, or a grocery list, or an entire score, eg:
+
+	```lua
+	major_scale = {0,2,4,5,7,9,11}
+	grocery_list = {["eggs"] = 12,["bag_of_spinach"] = 2,["onion"] = 3,["feta"] = 1}
+	my_song = {"intro","verse","chorus","verse","chorus","twenty_minute_jam_session","abrupt_stop"}
+	```
+
 ## ways of seeing
 
 norns offers a view into its thoughts through a charmingly low-resolution screen. The 128 by 64 pixels can display 16 gradations from black to white.
@@ -460,7 +468,7 @@ Why did this code snippet do what it did?
 
 ## tables everywhere
 
-In Lua, tables are 'associative arrays' -- think spreadsheets. When making music, we get pretty psyched about spreadsheets because they're a way of storing, looking up, and manipulating a lot of data. Tables are constructed with curly brackets.
+In Lua, tables are 'associative arrays' -- think spreadsheets. When making music, we get pretty psyched about spreadsheets because they're a way of storing, looking up, and manipulating a lot of data. **Tables are constructed with curly brackets: {}**
 
 Execute the following on the command line:
 
@@ -469,7 +477,7 @@ Execute the following on the command line:
 <ok> -- matron says "ok" when things are okay.
 ```
 
-After you construct each table, matron will tell you `<ok>`. So, now we have a variable, `nothing`, which is an empty table.
+After you construct this table, matron tells you `<ok>`. We now have a variable, `nothing`, which is an empty table.
 
 Elements of a table have a **key** (or **index**) which can be either a number or a string. Let's add some data to `nothing` by executing the following on the command line:
 
@@ -580,6 +588,7 @@ The above code snippet will create a 9th element in `drumzzz`, which will contai
 
 
 Let's insert another element, but we'll add it to the beginning of the table:
+
 ```lua
 >> table.insert(drumzzz, 1, -1)
 <ok>
@@ -656,21 +665,45 @@ A few new techniques:
 
 ### nested tables
 
-Tables can live inside tables! This is useful for two-dimensional structures. Clear the previous code and start anew with:
+So far, we've been working with one-dimensional tables -- each time, we end up constructing a single lane of information. But tables can live inside tables! This is useful for two-dimensional structures, where we might want to create an array of many rows and columns. Clear the previous code and start anew with:
 
 ```lua
-steps = { {1,0,0,0},
-          {0,1,0,0},
-          {0,0,1,0},
-          {0,0,0,1} }
+function init()
+  steps = { {1,0,0,0},
+            {0,1,0,0},
+            {0,0,1,0},
+            {0,0,0,1} }
+end
 ```
 
 (We typed this on multiple lines for visualization, but you can write it all in one line.)
 
-You can now address this table with coordinates:
+You can now query this table with coordinates as indices on the command line:
 
-- `steps[1][1]` is 1 (top left)
-- `steps[4][2]` is 0 (four down, two across)
+```lua
+>> steps[1][1] -- top-left
+1
+>> steps[4][2] -- four down, two across
+0
+```
+
+We can constructed nested tables manually as we did above, but we could also use nested 'for' loops and conditionals to create them algorithmically. Clear the previous code and start anew with:
+
+```lua
+function init()
+  steps = {} -- a one-dimensional table
+  for row = 1,4 do -- rows 1 to 4
+    steps[row] = {} -- create a table for each row
+    for column = 1,4 do -- columns 1 to 4
+      if row == column then -- eg. if coordinate is (3,3)
+        steps[row][column] = 1
+      else -- eg. if coordinate is (3,2)
+        steps[row][column] = 0
+      end
+    end
+  end
+end
+```
 
 ### indexing with strings
 
@@ -776,28 +809,30 @@ engine.name = "PolyPerc"
 
 function init()
   engine.release(3)
-  notes = {}
-  selected = {}
-  -- build a scale, clear selected notes
-  for m = 1,5 do
-    notes[m] = {}
-    selected[m] = {}
-    for n = 1,5 do
-      notes[m][n] = 55 * 2^((m*12+n*2)/12)
-      selected[m][n] = 0
+  notes = {} -- create a 'notes' table
+  selected = {} -- create a 'selected' table to track playing notes
+  
+  -- lets create a 5x5 square of notes:
+  for m = 1,5 do -- a 'for' loop, where m = 1, then m = 2, etc
+    notes[m] = {} -- use m as an vertical index for 'notes'
+    selected[m] = {} -- use m as a vertical index for 'selected'
+    for n = 1,5 do -- another 'for' loop, where n = 1, then n = 2, etc
+      -- n is our horizontal index
+      notes[m][n] = 55 * 2^((m*12+n*2)/12) -- this is just fancy math to get some notes
+      selected[m][n] = false -- all start unselected
     end
   end
   light = 0
-  number = 3
+  number = 3 -- our maximum number of notes to play at one time
 end
 
 function redraw()
   screen.clear()
   for m = 1,5 do
     for n = 1,5 do
-      screen.rect(0.5+m*9,0.5+n*9,6,6)
+      screen.rect(0.5+m*9,0.5+n*9,6,6) -- (x,y,width,height)
       l = 2
-      if selected[m][n] == 1 then
+      if selected[m][n] then
         l = l + 3 + light
       end
       screen.level(l)
@@ -811,29 +846,29 @@ end
 
 function key(n,z)
   if n == 2 and z == 1 then
-    -- clear selected
+    -- clear selected notes
     for x=1,5 do
       for y=1,5 do
-        selected[x][y] = 0
+        selected[x][y] = false
       end
     end
     -- choose new random notes
     for i=1,number do
-      selected[math.random(5)][math.random(5)] = 1
+      selected[math.random(5)][math.random(5)] = true
     end
   elseif n == 3 then
     -- find notes to play
-    if z == 1 then
+    if z == 1 then -- key 3 down
       for x=1,5 do
         for y=1,5 do
-          if selected[x][y] == 1 then
+          if selected[x][y] then
             engine.hz(notes[x][y])
           end
         end
       end
-      light = 7
-    else
-      light = 0
+      light = 7 -- adds 7 to the square's screen level
+    elseif z == 0 -- key 3 up
+      light = 0 -- adds 0 to the square's screen level
     end
   end
   redraw()
@@ -842,7 +877,7 @@ end
 function enc(n,d)
   if n==3 then
     -- clamp number of notes from 1 to 4
-    number = math.min(4,(math.max(number + d,1)))
+    number = util.clamp(number + d,1,4)
   end
   redraw()
 end

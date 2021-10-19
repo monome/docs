@@ -58,15 +58,16 @@ end
 
 Click *save script* (the disk icon in the upper right) and then *run script* (the play icon just below that).
 
-If you typed it correctly, you'll hear a sine tone.
+If the code has been typed correctly and your levels are up, you'll hear a sine tone.
 
 ### what happened really
 
 The top two lines are comments. In Lua a comment begins with two dashes. When scripting for norns, the very top comments of the main script file are special in that they are displayed as the preview text in the script selector. Try it:
 
-- get into the norns menu
-- enter the script selector
-- find your file, select it
+- press K1 get into the norns menu
+- navigate to the SELECT / SYSTEM / SLEEP screen
+- press K2 on SELECT
+- find your file, select it with K3
 
 You can type as many lines at the top of a script as you want, but note that the norns screen isn't so wide, so keep your lines short. It's helpful to write a description about your script and list the controls. But so far this does basically nothing, so we wrote basically nothing.
 
@@ -130,6 +131,11 @@ Also try changing the amplitude by executing `engine.amp(x)`, where `x` is a val
 Back to the script -- if we want to have the engine start up with a particular frequency, we add it to the `init` function:
 
 ```lua
+-- many tomorrows
+-- norns study 1
+
+engine.name = "TestSine"
+
 function init()
   engine.hz(100)
   print("the end and the beginning they are the same.")
@@ -209,6 +215,16 @@ So far all of our interaction has been through the command prompt. This is a goo
 Let's add a keypress function to our script, after the `init()` function:
 
 ```lua
+-- many tomorrows
+-- norns study 1
+
+engine.name = "TestSine"
+
+function init()
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
 function key(n,z)
   print("key " .. n .. " == " .. z)
 end
@@ -222,6 +238,16 @@ Save and rerun. Then push some keys and you'll get some prints. You'll notice th
 Let's modify the keypress function in our script to do something more engaging:
 
 ```lua
+-- many tomorrows
+-- norns study 1
+
+engine.name = "TestSine"
+
+function init()
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
 function key(n,z)
   if n == 3 then
     engine.hz(100 + 100 * z)
@@ -252,9 +278,19 @@ Other [comparison operators](https://www.lua.org/pil/3.2.html) include:
 - `>=` (greater or equal)
 - `<=` (less than or equal)
 
-`if` statements can also be expanded with `elseif` and `else`, for example:
+`if` statements can also be expanded with `elseif` and `else`, for example try changing our script's `key` function to:
 
 ```lua
+-- many tomorrows
+-- norns study 1
+
+engine.name = "TestSine"
+
+function init()
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
 function key(n,z)
   if n == 3 then
     engine.hz(100 + 100 * z)
@@ -266,11 +302,33 @@ function key(n,z)
 end
 ```
 
+Save and re-run the script, then press K3 with or without holding K2.
+
 ### all of the fun
 
-To get data from the encoders type this at the end of the script:
+To get data from the encoders let's add to the end of the script:
 
 ```lua
+-- many tomorrows
+-- norns study 1
+
+engine.name = "TestSine"
+
+function init()
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
+function key(n,z)
+  if n == 3 then
+    engine.hz(100 + 100 * z)
+  elseif n == 2 then
+    engine.hz(300 + 175 * z)
+  else
+    engine.hz(200 + 300 * z)
+  end
+end
+
 function enc(n,d)
   print("encoder " .. n .. " == " .. d)
 end
@@ -282,9 +340,29 @@ Here, `d` is delta. The encoders report incremental steps of a turn: clockwise i
 
 Let's make a mistake on purpose.
 
-What if we wanted to accumulate encoder turns, to keep track of an absolute position? We might try replacing the `enc` function with this one:
+What if we wanted to accumulate encoder turns, to keep track of an absolute position? We might try replacing the `enc` function:
 
 ```lua
+-- many tomorrows
+-- norns study 1
+
+engine.name = "TestSine"
+
+function init()
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
+function key(n,z)
+  if n == 3 then
+    engine.hz(100 + 100 * z)
+  elseif n == 2 then
+    engine.hz(300 + 175 * z)
+  else
+    engine.hz(200 + 300 * z)
+  end
+end
+
 function enc(n,d)
   if n == 3 then
     position = position + d
@@ -327,7 +405,81 @@ function init()
 end
 ```
 
-### make some more mistakes
+Now we can try that adding that new `enc` function:
+
+```lua
+-- many tomorrows
+-- norns study 1
+
+engine.name = "TestSine"
+
+function init()
+  position = 10
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
+function key(n,z)
+  if n == 3 then
+    engine.hz(100 + 100 * z)
+  elseif n == 2 then
+    engine.hz(300 + 175 * z)
+  else
+    engine.hz(200 + 300 * z)
+  end
+end
+
+function enc(n,d)
+  if n == 3 then
+    position = position + d
+    print("encoder 3 at position: " .. position)
+  end
+end
+```
+
+### clamping down the fun
+
+Though the encoders are endless, we'll sometimes want changes made by the encoders to be clamped to a specific range. This is where special utilities built for norns come in, specifically one called `util.clamp()`, which accepts three arguments:
+
+- `n`: value
+- `min`: minumum
+- `max`: maximum
+
+Let's try it in our script by replacing our `enc` function with a clamped version:
+
+```lua
+-- many tomorrows
+-- norns study 1
+
+engine.name = "TestSine"
+
+function init()
+  position = 10
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
+function key(n,z)
+  if n == 3 then
+    engine.hz(100 + 100 * z)
+  elseif n == 2 then
+    engine.hz(300 + 175 * z)
+  else
+    engine.hz(200 + 300 * z)
+  end
+end
+
+function enc(n,d)
+  if n == 3 then
+    position = util.clamp(position + d,-20,20)
+    print("encoder 3 at position: " .. position)
+  end
+end
+```
+
+Now when we turn encoder 3, we cannot go outside of -20 to 20.
+
+## make some more mistakes
 
 To acclimate ourselves to issues, let's make a few more common mistakes:
 

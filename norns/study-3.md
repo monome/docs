@@ -20,23 +20,145 @@ norns studies part 3: functions, parameters, time
 {:toc}
 </details>
 
+## terminology
+
+Before we dive in, here is some terminology which is mentioned throughout this study:
+
+- **evaluate**: when we run our script, matron (which manages the norns Lua environment) will evaluate all of our script's code and if there are no errors, it will run the script. Evaluating code just means submitting it to the system for parsing -- if the code has no errors, then the code is stored in the short-term memory for execution as part of our script.
+
+- **global and local scope**: functions and variables throughout our script can either be known to the entire script (and maiden's command line), or they can be unique to a specific section. By default, everything in Lua is global unless it's declared as `local`. For example, clear any previous code in the editor and start anew with:
+
+	```lua
+	-- study 3
+	-- code exercise
+	-- global and local
+	
+	function init()
+	  local where_is_this = "here"
+	end
+	```
+	
+	And execute on the command line:
+	
+	```lua
+	>> where_is_this
+	nil
+	```
+	
+	Because `where_is_this` is *local* to the `init()` function, that's the only place where it has any value.
+	
+	norns has a lot of protections in place so that separate scripts can share global namespace (eg. one script's `hello()` might do something quite different from another script's `hello()`, but it's totally okay for them to share a name), but you should be aware of these [system globals](../reference/#system-globals) which are sacred names that you must avoid redefining in your scripts (eg. it'd be bad to redefine the entire concept of `midi`). If you ever make a mistake with this, restarting norns will set things right.
+
+- **return**: in previous studies, functions performed operations in a fixed fashion -- eg. a `key` function is called, a number is generated, that number is passed to our engine, that's the end. Functions can also perform calculations or modify arguments and give (or *return*) the results back to us. For example, clear any previous code in the editor and start anew with:
+
+	```lua
+	-- study 3
+	-- code exercise
+	-- return
+
+	function add_ten(number)
+	  return number + 10
+	end
+	
+	function init()
+	  x = add_ten(3)
+	  y = add_ten(9)
+	  z = add_ten(-4)
+	  print(x)
+	  print(y)
+	  print(z)
+	end
+	```
+	And matron will print:
+	
+	```
+	13
+	19
+	6
+	```
+	
 ## we function together
 
-so far we've seen a few ways to run commands:
+So far we've seen a few ways to run commands:
 
 - the command line, for single lines
 - the `init` function which is run at startup of a script
 - `enc` and `key` functions which are executed when you touch an encoder or key
 
-i just said _function_ a few times, and you may have seen in study 1 we didn't explain the first word of `function init()`. a function is a block of code that can be _called_ and conditionally accept and return parameters. simplest example:
+Let's learn a fourth way to quickly execute multi-line chunks of code for experimentation.
+
+### evaluating lines in maiden
+
+First, locate yourself thus:
+
+- connect to norns via [hotspot or network](../wifi-files/#connect)
+- navigate web browser to http://norns.local (or type in IP address if this fails)
+- you're looking at [_maiden_](../maiden), the editor
+
+**If you've gone through the previous studies:**
+
+- open your uniquely-named study folder in the maiden file browser
+- create a new file in your study folder: locate and click on the folder and then click the + icon in the scripts toolbar
+- rename the file: select the newly-created `untitled.lua` file, then click the pencil icon in the scripts toolbar
+  - after naming it something meaningful to you (only use alphanumeric, underscore and hyphen characters when naming), select the file again to load it into the editor
+
+<details closed markdown="block">
+  <summary>
+    <i>If you haven't gone through the previous studies</i>
+  </summary>
+  {: .text-delta }
+- create a new folder in the `code` directory: click on the `code` directory and then click the folder icon with the plus symbol to create a new folder
+  - name your new folder something meaningful, like `my_studies` (only use alphanumeric, underscore and hyphen characters when naming)
+- create a new file in the folder you created: locate and click on the folder and then click the + icon in the scripts toolbar
+- rename the file: select the newly-created `untitled.lua` file, then click the pencil icon in the scripts toolbar
+  - after naming it something meaningful to you (only use alphanumeric, underscore and hyphen characters when naming), select the file again to load it into the editor
+</details>
+
+The file is blank. Full of possibilities. Type the text below into the editor:
 
 ```lua
+-- study 3
+-- code exercise
+-- evaluate
+
 function greeting()
   print("hello there!")
 end
+
+greeting()
 ```
 
-in the command line you can type `greeting()` and this function will run, printing `hello there!`. but this is a silly example. functions are useful when you have some code you need to run frequently or perhaps from different places. they are very good for organizing and making your scripts readable and reusable. a better example:
+Now, instead of saving and running the entire script, highlight the function definition in the editor and then press CMD + RETURN (Mac) / CTRL + ENTER (PC). This evaluates the highlighted text and **you'll see the code print as a single line with semicolons in the maiden REPL**:
+
+```lua
+function greeting();  print("hello there!");end
+```
+
+This evaluation gesture checked our code chunk and has made it executable in our current session! Place the cursor on the last line of our code chunk and evaluate it using CMD + RETURN / CTRL + ENTER. **You'll this print to the maiden REPL**:
+
+```lua
+greeting()
+hello there!
+<ok>
+```
+
+It's the same as if you executed it on the command line:
+
+```lua
+>> greeting()
+hello there!
+<ok>
+```
+
+This can be a powerful learning tool, as we can modify and re-evaluate sections of our code without re-running the entire script. **However, if we want to start from a blank slate, we need to re-run the entire script using the 'run script' play button or using CMD+P / CTRL+P**
+
+### functional programming
+
+As we mentioned at the start of [study 1](../study-1/#terminology), a function is a block of code that can be _called_ and conditionally accept and return parameters. Functions are useful when you have some code you need to run frequently or perhaps from different places. They are very good for organizing and making your scripts readable and reusable.
+
+For example, if we want to translate a MIDI note to a frequency in Hz (A=440), we need to use a bunch of math we likely don't want to remember: `(440 / 32) * (2 ^ ((midi_note - 9) / 12))`.
+
+But we can just wrap that in a function:
 
 ```lua
 function midi_to_hz(note)
@@ -45,30 +167,56 @@ function midi_to_hz(note)
 end
 ```
 
-it's just a bunch of math that you likely don't want to remember. but we introduce a couple of things:
+What will happen:
 
-- we pass an _argument_ to the function, which is the variable `note`
+- we pass an _argument_ to the function, which our function will treat as a variable named `note`
 - we make a local variable called `hz`, do some math with `note` for the conversion
 - we return `hz`
 
-let's use it:
+Let's use it in an exercise (with a new engine, `PolySub`):
 
 ```lua
-drone = midi_to_hz(30)
+-- study 3
+-- code exercise
+-- functional programming
+
+engine.name = 'PolySub'
+
+function midi_to_hz(note)
+  local hz = (440 / 32) * (2 ^ ((note - 9) / 12))
+  return hz
+end
+
+function drone(note)
+  engine.start(1,midi_to_hz(note)) -- PolySub has different commands than PolyPerc!
+end
 ```
 
-here's what happens:
+Now, execute each of these lines of code, one at a time -- either by using our line-evaluation key combo or the command line:
+
+```lua
+drone(41)
+drone(44)
+drone(39)
+drone(49)
+drone(45)
+```
+
+Here's what happens:
 
 - `midi_to_hz` is called with a value of 30, which is assigned to `note`
 - the function runs and returns a value which is assigned to `drone`
 
 ### zoom out
 
-but where do you put the function definition? check this out:
+Throughout these studies, we've tried to provide clear examples of how your code should look as we suggest changes and add new functions. As you start to dream up your own scripts, you might be wondering if there's a flow or order for how a script's individual functions should be defined.
+
+When you execute a script, the entire file is processed and then loaded. For example:
 
 ```lua
--- spacetime
--- norns study 3
+-- study 3
+-- code exercise
+-- zoom out
 
 engine.name = "PolyPerc"
 
@@ -87,26 +235,43 @@ function midi_to_hz(note)
 end
 ```
 
-we simply put our function at the bottom. when you execute the script, the entire file is processed. so even though the `key` function comes earlier and references `midi_to_hz()`, everything is fine because now the whole global scope knows about `midi_to_hz`.
+Even though the `key` function comes earlier and references `midi_to_hz()`, everything works when we press any of our keys because the whole global scope is made aware of `midi_to_hz`. So, generally, we can simply add new functions at the bottom of the script, as we go.
 
-you'll also see that we did a little shortcut with function calling. you can nest them:
+In our `zoom out` exercise, you'll also see that we did a little shortcut when we called `midi_to_hz` inside of our `key` function. Instead of:
 
 ```lua
-drone = midi_to_hz(60)
-engine.hz(drone)
+local whatever = 30 + math.random(24)*2
+local another_variable = midi_to_hz(whatever)
+engine.hz(another_variable)
 ```
 
-is the same as:
+We simply nested the `midi_to_hz` function inside of our `engine.hz` function:
 
 ```lua
-engine.hz(midi_to_hz(60))
+local whatever = 30 + math.random(24)*2
+engine.hz(midi_to_hz(whatever))
 ```
 
 ### many to many
 
-functions can have many arguments:
+So far, we've only used functions with one argument, but functions can have *many* arguments. Clear the previous code and start anew with:
 
 ```lua
+-- study 3
+-- code exercise
+-- many to many
+
+engine.name = "PolyPerc"
+
+function init()
+  engine.amp(0.5)
+end
+
+function midi_to_hz(note)
+  local hz = (440 / 32) * (2 ^ ((note - 9) / 12))
+  return hz
+end
+
 function stack_notes(root, interval, number)
   local note = root
   for i=1,number do
@@ -116,27 +281,58 @@ function stack_notes(root, interval, number)
 end
 ```
 
-this function takes three arguments: a `root` note, a note `interval`, and a `number` of notes. using a loop it plays a stack of notes. try this:
+The `stack_notes` function takes three arguments: a `root` note, a note `interval`, and a `number` of notes. Using a loop it plays a stack of notes. Try evaluating this:
 
 ```lua
 stack_notes(40,7,6)
 ```
 
-it'll play these 6 midi notes, which start at 40 and increment by 7 each time: `40 47 54 61 68 75`. but what if we leave off an argument, ie `stack_notes(40,7)`? you'll get an error when the function tries to use `nil` as `number` in the loop. in functions we can define a default value like this:
+It'll play these 6 MIDI notes, which start at 40 and increment by 7 each time: `40 47 54 61 68 75`.
+
+#### some of many
+
+But what if we leave off an argument when we call `stack_notes`?
+
+```lua
+stack_notes(40,7)
+```
+
+Well, matron will return an error when the function tries to use `nil` as `number` in the loop:
+
+```lua
+lua: stdin:1: 'for' limit must be a number
+stack traceback:
+	stdin:1: in function <stdin:1>
+	(...tail calls...)
+```
+
+To protect against this, we can define a default value in our functions. Let's rewrite our `stack_notes` function to include some safeguards:
 
 ```lua
 function stack_notes(root, interval, number)
   number = number or 4
   interval = interval or 7
   note = root or 50
-  ...
+  for i=1,number do
+    engine.hz(midi_to_hz(note))
+    note = note + interval
+  end
+end
 ```
 
-now you can even call `stack_notes()` and you'll get something much more pleasant than an error. the `number = number or 4` trick is the same as `if number == nil then number = 4 end`.
+The `number = number or 4` trick is the same as writing `if number == nil then number = 4 end`. It's basically saying '*number* equals whatever *number* argument is passed in or if no *number* argument has been passed in, assign *number* the value of 4'.
 
-functions can also return many values:
+Now you can even call `stack_notes()` and you'll get something much more pleasant than an error!
+
+#### many in return
+
+Functions can also return many values. Clear the previous code and start anew with:
 
 ```lua
+-- study 3
+-- code exercise
+-- many in return
+
 function whereami()
   local a = math.random(128)
   local b = math.random(64)
@@ -144,19 +340,44 @@ function whereami()
 end
 ```
 
-and the get the values:
+Now we can execute `whereami()` (either through line-evaluation or on the command line) to get two random numbers. But how do we use them?
+
+Try executing these lines in pairs:
 
 ```lua
-x,y = whereami()
-x,y,z = whereami()
 x = whereami()
+print(x)
+
+x,y = whereami()
+print(x,y)
+
+x,y,z = whereami()
+print(x,y,z)
 ```
 
-in the second line `z` will be nil. in the third line the second returned value is thrown away.
+<details closed markdown="block">
+  <summary>
+    <i>The last one returned two values, but also a <code>nil</code>...why?</i>
+  </summary>
+  {: .text-delta }
+  <p>
+	<code>whereami()</code> is written to return only two values, so when we try to get a third value, it can only return <i>nil</i>.
+	</p>
+</details>
 
-try this:
+Let's use `whereami()` to display text in random positions on the screen:
 
 ```lua
+-- study 3
+-- code exercise
+-- many in return
+
+function whereami()
+  local a = math.random(128)
+  local b = math.random(64)
+  return a,b
+end
+
 function redraw()
   screen.clear()
   screen.level(15)
@@ -166,13 +387,24 @@ function redraw()
 end
 ```
 
-then enter/exit menu mode.
+To force a `redraw`, press K1 to exit the script and press it again to come back in -- norns will automatically call the `redraw` function of the currently-running script when screen focus comes back to the script.
 
 ### tangle and detangle
 
-lua lets us easily make functions that point at other functions. observe:
+Lua lets us easily make functions that point at other functions. Clear the previous code and start anew with:
 
 ```lua
+-- study 3
+-- code exercise
+-- tangle and detangle
+
+engine.name = 'PolyPerc'
+
+function midi_to_hz(note)
+  local hz = (440 / 32) * (2 ^ ((note - 9) / 12))
+  return hz
+end
+
 function happy()
   engine.hz(midi_to_hz(60))
   engine.hz(midi_to_hz(64))
@@ -195,9 +427,49 @@ function key(n,z)
 end
 ```
 
-the trick happens in the `key` function. see how `go` is getting reassigned to one of the other functions? for the puzzle lovers let's make it even more complicated:
+The trick is in the `key` function -- see how `go` is getting reassigned between each of the two functions before it's executed at the end of the `key` function? *This* is where order really matters -- matron will execute all the lines sequentially, one after the other. To demonstrate this, let's modify the `key` function and re-run the script (so matron forgets what `go` is):
 
 ```lua
+function key(n,z)
+  go()
+  if z == 1 then
+    go = happy
+  else
+    go = sad
+  end
+end
+```
+
+Now, we'll see errors that `go` is nil -- that's because `key` is attempting to call `go` *before* we assign it a function.
+
+#### more tangled
+
+For the puzzle lovers let's make it even more complicated. Clear the previous code and start anew with:
+
+```lua
+-- study 3
+-- code exercise
+-- more tangled
+
+engine.name = 'PolyPerc'
+
+function midi_to_hz(note)
+  local hz = (440 / 32) * (2 ^ ((note - 9) / 12))
+  return hz
+end
+
+function happy()
+  engine.hz(midi_to_hz(60))
+  engine.hz(midi_to_hz(64))
+  engine.hz(midi_to_hz(67))
+end
+
+function sad()
+  engine.hz(midi_to_hz(60))
+  engine.hz(midi_to_hz(63))
+  engine.hz(midi_to_hz(67))
+end
+
 feelings = {sad,happy}
 
 function key(n,z)
@@ -205,9 +477,9 @@ function key(n,z)
 end
 ```
 
-what? it's a table of functions! why would you want to do this??
+What we've done is create a table of `feelings`, which contains the `sad` and `happy` functions. When we press a key, we shift the index of `feelings` and execute the corresponding function, since `feelings[1] = sad` and `feelings[2] = happy`
 
-the default way of thinking about decisions is perhaps to make a big if-else statement:
+Being able to create a table of functions is actually *very rad* because the default way of thinking about decisions is perhaps to make a big if-else statement, eg.:
 
 ```lua
 function key(n,z)
@@ -219,17 +491,74 @@ function key(n,z)
 end
 ```
 
-makes sense, totally readable. but what if your program could change itself while it ran?
+While this makes sense and is totally readable, it's pretty rigid -- `happy()` and `sad()` are hard-coded into our key-down and key-up. But what if our `more tangled` code could change itself while it ran?
+
+After running the `more tangled` code example above, try live-executing:
 
 ```lua
 feelings[2] = sad
 ```
 
-(oh no!! always sad now!)
+...and press some keys. Oh no!! Always sad now!
 
-but really. imagine adding some complexity to these functions, having more of them, and design a process where they dynamically inform one another.
+#### all the feels
 
-pause. really consider the possibilities, and i hope your mind explodes a tiny bit. this is why programming in a musical context is so incredibly powerful and interesting.
+Now imagine adding some complexity to these functions, having more of them, and designing a process where they dynamically inform one another. It could look like:
+
+```lua
+-- study 3
+-- code exercise
+-- all the feels
+
+engine.name = 'PolyPerc'
+
+function midi_to_hz(note)
+  local hz = (440 / 32) * (2 ^ ((note - 9) / 12))
+  return hz
+end
+
+function happy()
+  engine.release(0.3)
+  engine.hz(midi_to_hz(60))
+  engine.hz(midi_to_hz(64))
+  engine.hz(midi_to_hz(67))
+end
+
+function sad()
+  engine.release(1)
+  engine.hz(midi_to_hz(60))
+  engine.hz(midi_to_hz(63))
+  engine.hz(midi_to_hz(67))
+end
+
+function melancholic()
+  engine.release(3)
+  engine.hz(midi_to_hz(53))
+  engine.hz(midi_to_hz(56))
+  engine.hz(midi_to_hz(60))
+  engine.hz(midi_to_hz(63))
+  engine.hz(midi_to_hz(67))
+end
+
+feelings = {sad,happy,melancholic,happy,happy,sad,sad,melancholic}
+cutoffs = {800,400,1200}
+
+feeling_index = 0 -- let's keep track of which feeling we're feeling
+cutoff_index = 0 -- same for cutoff values
+
+function key(n,z)
+  if z == 1 then
+    feeling_index = util.wrap(feeling_index + 1, 1, #feelings) -- increment the index
+    cutoff_index = util.wrap(cutoff_index + 1, 1, #cutoffs) -- increment the index
+    engine.cutoff(cutoffs[cutoff_index]) -- set the cutoff
+    feelings[feeling_index]() -- feel the feeling
+  end
+end
+```
+
+By using a table to store chord shapes, we created a *score* which we can iterate through our keypresses. By using a table to store cutoff values, we create timbral variety. By using libraries built into norns, we made easy work of cycling through both the chords and cutoff values and wrapping back around (here, we used `util.wrap` -- check out [its reference](https://monome.org/docs/norns/api/modules/lib.util.html#wrap)). By using live-evaluation, we can change the score by simply modifying our `feelings` table.
+
+*This* is why programming in a musical context is so incredibly powerful and interesting.
 
 ## parameters
 

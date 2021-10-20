@@ -96,8 +96,9 @@ First, locate yourself thus:
 The file is blank. Full of possibilities. Type the text below into the editor:
 
 ```lua
--- patterning
--- norns study 2
+-- study 2
+-- code exercise
+-- ways of seeing
 
 engine.name = "PolySub"
 
@@ -138,6 +139,10 @@ This is a pretty typical (despite being simple) drawing function. We set some at
 Let's make something more interactive. Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- reveal
+
 function init()
   level = 3
   number = 84
@@ -181,6 +186,10 @@ You can call `redraw()` conditionally whenever the screen needs to be updated: t
 Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- conditional reveal
+
 function init()
   level = 3
   number = 84
@@ -241,7 +250,7 @@ But wait, there's so much in here! Lines and rectangles?!
 
 ### which path
 
-In your code, add this below `screen.text("WILD")`:
+In your `conditional reveal` code, add this below `screen.text("WILD")`:
 
 ```lua
     screen.aa(1)
@@ -272,6 +281,10 @@ We've already looked at `if` / `elseif` / `else` for basic control. Let's look a
 Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: repeat
+
 function init()
   x = 3
   repeat
@@ -310,6 +323,10 @@ This is sometimes helpful because `(commands)` are always run at least once.
 Here's another loop construct. Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: while
+
 function init()
   x = 3
   while x > 0 do
@@ -349,6 +366,10 @@ These are very similar and can often be used interchangeably. It's best to pick 
 You'll notice in the previous examples we've been adding a value modifier on each iteration of the loop (eg. `x = x - 1`). There is one more loop construct that you'll likely use quite often. Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: for
+
 function init()
   for i=1,3 do
     print("believe! " .. i)
@@ -372,6 +393,10 @@ believe! 3
 Let's draw some things with `for` loops. Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: for
+
 function init()
   redraw()
 end
@@ -393,6 +418,10 @@ end
 You can also nest multiple `for` loops inside one another. Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: nested for
+
 function init()
   for i = 0,3 do
     for j = 1,4 do
@@ -444,6 +473,10 @@ The following will print to the REPL:
 Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: simple loops
+
 function init()
   redraw()
 end
@@ -638,6 +671,10 @@ We can get the length of a table using the `#` operator:
 Let's use the `#` operator to display the whole table as steps in a sequence. Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: joy of data
+
 drumzzz = {1,1,0,0,1,0,1,0}
 
 function redraw()
@@ -668,6 +705,10 @@ A few new techniques:
 So far, we've been working with one-dimensional tables -- each time, we end up constructing a single lane of information. But tables can live inside tables! This is useful for two-dimensional structures, where we might want to create an array of many rows and columns. Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: nested tables
+
 function init()
   steps = { {1,0,0,0},
             {0,1,0,0},
@@ -690,6 +731,10 @@ You can now query this table with coordinates as indices on the command line:
 We can constructed nested tables manually as we did above, but we could also use nested 'for' loops and conditionals to create them algorithmically. Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: nested tables
+
 function init()
   steps = {} -- a one-dimensional table
   for row = 1,4 do -- rows 1 to 4
@@ -710,6 +755,10 @@ end
 One last table-talking-point -- let's make a table with *string* indices instead of numerical indices. Clear the previous code and start anew with:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: indexing
+
 function init()
   moon = {}
   moon.color = 15
@@ -749,6 +798,10 @@ In this case, we can use Lua's [`pairs` function](https://www.lua.org/pil/4.3.5.
 Let's modify our previous code to use the basic DNA of a `for` loop which goes through `pairs` of keys and their values:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: indexing
+
 function init()
   moon = {}
   moon.color = 15
@@ -771,6 +824,10 @@ phase = 0
 Better yet, let's get it on the screen:
 
 ```lua
+-- study 2
+-- code exercise
+-- procedural: indexing
+
 function init()
   moon = {}
   moon.color = 15
@@ -867,7 +924,7 @@ function key(n,z)
         end
       end
       light = 7 -- adds 7 to the square's screen level
-    elseif z == 0 -- key 3 up
+    elseif z == 0 then -- key 3 up
       light = 0 -- adds 0 to the square's screen level
     end
   end

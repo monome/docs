@@ -24,8 +24,9 @@ norns studies part 1: variables, simple maths, keys + encoders
 
 Before we dive in, here is some terminology which is mentioned throughout this study:
 
-- [**function**](https://www.tutorialspoint.com/lua/lua_functions.htm): a named task or event in our script. *Calling* a function simply means executing or invoking that task or event. Functions can be written to have general knowledge of the other components of our script, or we can load *arguments* into the function call to ask it to perform its task on the specific supplied values. If we are defining a function, we use `end` at the end of our definition. If we are calling a function, we use parenthesis after its name to indicate a function call -- we can pass arguments to the function inside of the parenthesis.
-- [**string**](https://www.tutorialspoint.com/lua/lua_strings.htm): a sequence of characters, like every word in this sentence. A sequence of characters becomes a string when its enclosed in single quotes eg. `'hello'`, double quotes eg. `"hello"`, or double brackets eg. `[[hello]]`.
+- [**function**](https://www.tutorialspoint.com/lua/lua_functions.htm): a named task or event in our script. *Calling* a function simply means executing or invoking that task or event. If we are defining a function, we use `end` at the end of our definition. If we are calling a function, we use parenthesis after its name to indicate a function call -- we can pass arguments (see next) to the function inside of the parenthesis.
+	- **argument**: functions can be written to have general knowledge of the other components of our script, or we can ask it to perform its task on specific supplied values. Supplying these values is referred to as 'passing *arguments*' into the function call. In `print("hello")`, `print` is the function and `"hello"` is the argument specifying what we'd like to print.
+- [**string**](https://www.tutorialspoint.com/lua/lua_strings.htm): a sequence of characters, like every word in this sentence. A sequence of characters becomes a string when its enclosed in single quotes eg. `'hello'`, double quotes eg. `"hello"`, or double brackets eg. `[[hello]]`. We will only use double and single quotes throughout these studies, but please be sure not to mix + match -- `'hello"` is *not* a valid string.
 - [**variable**](https://www.tutorialspoint.com/lua/lua_variables.htm): a named storage container for data that our script can manipulate. We *declare* a variable and *assign* it a value by using a convention like `my_favorite_number = 11`. While our script runs, it will remember that our favorite number is 11. Variables can store numbers, strings, functions, and tables (which we'll talk about in the next study). For those with prior coding experience, it might be interesting to learn that variables in Lua are, by default, global -- later on, we'll cover [local vs. global variables](#addendum-global).
 
 ## hello?
@@ -46,8 +47,9 @@ First, locate yourself thus:
 The file is blank. Full of possibilities. Type the text below into the editor:
 
 ```lua
--- many tomorrows
--- norns study 1
+-- study 1
+-- code exercise
+-- hello
 
 engine.name = "TestSine"
 
@@ -62,7 +64,7 @@ If the code has been typed correctly and your levels are up, you'll hear a sine 
 
 ### what happened really
 
-The top two lines are comments. In Lua a comment begins with two dashes. When scripting for norns, the very top comments of the main script file are special in that they are displayed as the preview text in the script selector. Try it:
+The top three lines are comments. In Lua a comment begins with two dashes. When scripting for norns, the very top comments of the main script file are special in that they are displayed as the preview text in the script selector. Try it:
 
 - press K1 get into the norns menu
 - navigate to the SELECT / SYSTEM / SLEEP screen
@@ -131,8 +133,9 @@ Also try changing the amplitude by executing `engine.amp(x)`, where `x` is a val
 Back to the script -- if we want to have the engine start up with a particular frequency, we add it to the `init` function:
 
 ```lua
--- many tomorrows
--- norns study 1
+-- study 1
+-- code exercise
+-- hello
 
 engine.name = "TestSine"
 
@@ -215,8 +218,9 @@ So far all of our interaction has been through the command prompt. This is a goo
 Let's add a keypress function to our script, after the `init()` function:
 
 ```lua
--- many tomorrows
--- norns study 1
+-- study 1
+-- code exercise
+-- hello
 
 engine.name = "TestSine"
 
@@ -238,8 +242,9 @@ Save and rerun. Then push some keys and you'll get some prints. You'll notice th
 Let's modify the keypress function in our script to do something more engaging:
 
 ```lua
--- many tomorrows
--- norns study 1
+-- study 1
+-- code exercise
+-- hello
 
 engine.name = "TestSine"
 
@@ -281,8 +286,9 @@ Other [comparison operators](https://www.lua.org/pil/3.2.html) include:
 `if` statements can also be expanded with `elseif` and `else`, for example try changing our script's `key` function to:
 
 ```lua
--- many tomorrows
--- norns study 1
+-- study 1
+-- code exercise
+-- hello
 
 engine.name = "TestSine"
 
@@ -309,8 +315,9 @@ Save and re-run the script, then press K3 with or without holding K2.
 To get data from the encoders let's add to the end of the script:
 
 ```lua
--- many tomorrows
--- norns study 1
+-- study 1
+-- code exercise
+-- hello
 
 engine.name = "TestSine"
 
@@ -343,8 +350,9 @@ Let's make a mistake on purpose.
 What if we wanted to accumulate encoder turns, to keep track of an absolute position? We might try replacing the `enc` function:
 
 ```lua
--- many tomorrows
--- norns study 1
+-- study 1
+-- code exercise
+-- hello
 
 engine.name = "TestSine"
 
@@ -408,8 +416,9 @@ end
 Now we can try that adding that new `enc` function:
 
 ```lua
--- many tomorrows
--- norns study 1
+-- study 1
+-- code exercise
+-- hello
 
 engine.name = "TestSine"
 
@@ -448,8 +457,9 @@ Though the encoders are endless, we'll sometimes want changes made by the encode
 Let's try it in our script by replacing our `enc` function with a clamped version:
 
 ```lua
--- many tomorrows
--- norns study 1
+-- study 1
+-- code exercise
+-- hello
 
 engine.name = "TestSine"
 

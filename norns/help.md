@@ -339,6 +339,8 @@ For the adventurous, here are steps to surface the ext4 filesystem: [Windows](ht
 
 the latest full images for norns and shield can be downloaded [here](https://github.com/monome/norns-image/releases/latest). please make sure you download + install the correct image, otherwise your unit will not perform correctly.
 
+full images are not built for every release, so do not worry if the 'latest' full image is not the same as the current update -- you will update from SYSTEM > UPDATE as part of the last step.
+
 #### stock norns
 
 By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows. If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).

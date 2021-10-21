@@ -361,7 +361,8 @@ Steps:
    7c. Navigate down to `Advanced`.  
    7d. Select `Expand Filesystem` and press OK.  
    7e. After it's completed, put norns to sleep.  
-8. Update via SYSTEM  > UPDATE
+8. Boot norns + [consider changing the default password and address](#change-password)
+9. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
 
 #### shield
 

@@ -30,8 +30,8 @@ to access the complete norns API, you can either:
 | [crow (api)](/docs/norns/api/modules/crow.html)                                   | Connect a script to a hardware [crow](https://monome.org/docs/crow)                 |
 | [encoders](encoders)                   | Decipher the norns on-board encoders                                                |
 | [engine (api)](/docs/norns/api/modules/engine.html)                                 | Register a SuperCollider engine                                                     |
-| [grid (api)[/docs/norns/api/modules/grid.html)                                   | Connect a script to a hardware [grid](https://monome.org/docs/grid)                 |
-| [hid (api)[/docs/norns/api/modules/hid.html)                                    | Connect a script to HID hardware                                                    |
+| [grid (api)](/docs/norns/api/modules/grid.html)                                   | Connect a script to a hardware [grid](https://monome.org/docs/grid)                 |
+| [hid (api)](/docs/norns/api/modules/hid.html)                                    | Connect a script to HID hardware                                                    |
 | [keyboard](keyboard)                   | Decipher keyboard (typing, not piano) input                                         |
 | [metro (api)](/docs/norns/api/modules/metro.html)                                  | High-resolution time-based counter                                                  |
 | [midi](midi)                           | Connect a script to MIDI hardware                                                   |

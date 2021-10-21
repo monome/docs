@@ -30,32 +30,32 @@ many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for 
 | Module                                 | Description                                                                         |
 | -------------------------------------- | ----------------------------------------------------------------------------------- |
 | [arc](arc)                             | Connect a script to a hardware [arc](https://monome.org/docs/arc)                   |
-| [audio](/docs/norns/api/modules/audio.html)                                  | Directly set system audio levels                                                    |
+| [audio (api)](/docs/norns/api/modules/audio.html)                                  | Directly set system audio levels                                                    |
 | [clock](clock)                         | Coroutine system which executes functions on beat-synced and free-running schedules |
 | [controlspec](controlspec)             | PARAM menu control constructor with presets                                         |
-| crow                                   | Connect a script to a hardware [crow](https://monome.org/docs/crow)                 |
+| [crow (api)](/docs/norns/api/modules/crow.html)                                   | Connect a script to a hardware [crow](https://monome.org/docs/crow)                 |
 | [encoders](encoders)                   | Decipher the norns on-board encoders                                                |
-| engine                                 | Register a SuperCollider engine                                                     |
-| grid                                   | Connect a script to a hardware [grid](https://monome.org/docs/grid)                 |
-| hid                                    | Connect a script to HID hardware                                                    |
+| [engine (api)](/docs/norns/api/modules/engine.html)                                 | Register a SuperCollider engine                                                     |
+| [grid (api)[/docs/norns/api/modules/grid.html)                                   | Connect a script to a hardware [grid](https://monome.org/docs/grid)                 |
+| [hid (api)[/docs/norns/api/modules/hid.html)                                    | Connect a script to HID hardware                                                    |
 | [keyboard](keyboard)                   | Decipher keyboard (typing, not piano) input                                         |
-| metro                                  | High-resolution time-based counter                                                  |
+| [metro (api)](/docs/norns/api/modules/metro.html)                                  | High-resolution time-based counter                                                  |
 | [midi](midi)                           | Connect a script to MIDI hardware                                                   |
 | [osc](osc)                             | Connect a script to OSC streams                                                     |
 | [params](params)                       | Create script parameters, displayed in the PARAMETERS menu                          |
 | [poll](poll)                           | System polling for CPU, incoming/outgoing amplitude, and incoming pitch             |
-| screen                                 | Draw to the norns on-board screen                                                   |
-| softcut                                | Two audio buffers which can be recorded into and played by six individual voices    |
-| tab                                    | Table utilities                                                                     |
-| util                                   | Helpful utility functions                                                           |
-| lib/elca                               | Elementary cellular automata generator                                              |
-| lib/envgraph                           | Envelope graph drawing module                                                       |
+| [screen (api)](/docs/norns/api/modules/screen.html)                                 | Draw to the norns on-board screen                                                   |
+| [softcut (api)](/docs/norns/api/modules/softcut.html)                                | Two audio buffers which can be recorded into and played by six individual voices    |
+| [tab (api)](/docs/norns/api/modules/lib.tabutil.html)                                    | Table utilities                                                                     |
+| [util (api)](/docs/norns/api/modules/lib.util.html)                                  | Helpful utility functions                                                           |
+| [lib/elca (api)](/docs/norns/api/modules/audio.html)                               | Elementary cellular automata generator                                              |
+| [lib/envgraph (api)](/docs/norns/api/modules/lib.EnvGraph.html)                           | Envelope graph drawing module                                                       |
 | [lib/er](./lib/er)                     | Euclidean rhythm generator                                                          |
 | [lib/fileselect](./lib/fileselect)     | File select utility                                                                 |
-| lib/filtergraph                        | Filter graph drawing module                                                         |
-| lib/filters                            | Value smoother                                                                      |
-| lib/formatters                         | PARAM menu formatter functions                                                      |
-| lib/graph                              | Graph drawing module                                                                |
+| [lib/filtergraph (api)](/docs/norns/api/modules/lib.FilterGraph.html)                        | Filter graph drawing module                                                         |
+| [lib/filters (api)](/docs/norns/api/modules/lib.filters.html)                            | Value smoother                                                                      |
+| [lib/formatters (api)](/docs/norns/api/modules/lib.formatters.html)                         | PARAM menu formatter functions                                                      |
+| [lib/graph (api)](/docs/norns/api/modules/lib.Graph.html)                              | Graph drawing module                                                                |
 | [lib/intonation](./lib/intonation)     | Library of various tunings, including 12 tone and gamuts                            |
 | [lib/lattice](./lib/lattice)           | Simple and extensible sequencers driven by a superclock                             |
 | [lib/listselect](./lib/listselect)     | List select utility                                                                 |
@@ -64,7 +64,7 @@ many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for 
 | [lib/sequins](./lib/sequins)           | A library to build and modify sequencers + arpeggiators with very little code       |
 | [lib/textentry](./lib/textentry)       | Text entry UI                                                                       |
 | [lib/ui](./lib/ui)                     | UI widgets module                                                                   |
-| lib/voice                              | Experimental voice allocation module                                                |
+| [lib/voice](/docs/norns/api/modules/lib.voice.html)                              | Experimental voice allocation module                                                |
 
 ## folder structure
 

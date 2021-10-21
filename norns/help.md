@@ -353,7 +353,7 @@ Steps:
 2. Remove the four bottom screws of the norns.
 3. Plug the norns power into your laptop.
 4. You'll see a switch through a notch in the circuit board, flip this to DISK.
-5. Run etcher. Select the disk image. Select the Compute Module as the target. Push go and wait for it to finish.
+5. Run etcher. Select the disk image. Select the Compute Module as the target. Proceed, enter your non-norns computer's password, and wait for it to finish.
 6. Disconnect USB. Flip the switch back to RUN. Put the bottom back on.
 7. If you have a norns with a 32gb CM3+ (purchased October 2020 and thereafter), you will need to expand the file storage.  
    7a. Re-connect USB, power norns up, and connect via [serial](https://monome.org/docs/norns/wifi-files/#serial) through a terminal.  

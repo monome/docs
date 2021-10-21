@@ -19,12 +19,6 @@ to access the complete norns API, you can either:
 - connect to maiden and navigate to `norns.local/doc` in your browser
 - visit the [static API](https://monome.org/docs/norns/api/index.html)
 
-contributions to the script reference are welcomed + we are very grateful for any assistance covering these topics.
-
-have questions about how to contribute? please feel free to email `help@monome.org` and we can collaborate!
-
-many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for building the reference pages for `er`, `fileselect`, `musicutil`, `textentry`, and `ui`.
-
 ## commands
 
 | Module                                 | Description                                                                         |
@@ -308,3 +302,13 @@ h = hid.connect()
 ![](../image/crone-process-routing.png)
 
 [pdf version](../crone-process-routing.pdf)
+
+# contribute
+
+contributions to the script reference are welcomed + we are very grateful for any assistance covering these topics.
+
+have questions about how to contribute? please feel free to email `help@monome.org` and we can collaborate!
+
+many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for building the reference pages for `er`, `fileselect`, `musicutil`, `textentry`, and `ui`.
+
+

@@ -13,8 +13,8 @@ permalink: /norns/reference/grid
 | my_grid = grid.connect(n) | Assign this connected grid to a script, defaults to port 1 unless n is specified                                                   |
 | my_grid:led(x, y, val)    | Set state of single LED (x is horizontal, y is vertical, 1-indexed) of this connected grid, accepts val 0 (off) - 15 (full bright) |
 | my_grid:all(val)          | Set state of all LEDs of this connected grid, expects val 0 (off) - 15 (full bright)                                               |
-| my_grid:refresh()         | Update any dirty LEDs on this connected arc                                                                                        |
-| my_grid:intensity(i)      | Set LED intensity                                                                                                                  |
+| my_grid:refresh()         | Update any dirty LEDs on this connected grid                                                                                       |
+| my_grid:intensity(i)      | Set LED intensity, expects 0 (off) - 15 (full bright)                                                                              |
 | grid.add()                | User script callback when any grid is connected (do not use `my_grid` or custom variable, must be `grid`)                          |
 | grid.remove()             | User script callback when any grid is disconnected (do not use `my_grid` or custom variable, must be `grid`)                       |
 

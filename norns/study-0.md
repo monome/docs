@@ -236,7 +236,7 @@ Let's change a few default values to customize:
 - delay feedback
 - chime notes
 
-To change the startup synth parameters, see [line 79](https://github.com/monome/firstlight/blob/main/firstlight.lua#L79-L81):
+To change the startup synth parameters, see [line 80](https://github.com/monome/firstlight/blob/main/firstlight.lua#L80-L83):
 
 ```lua
 -- configure the synth --[[ 0_0 ]]--
@@ -249,7 +249,7 @@ engine.cutoff(1000)
 
 Try changing the arguments (the numbers between parenthesis), save the file, then re-launch the script using the PLAY arrow in maiden or using the menu on the hardware.
 
-To change the delay feedback, see [line 101](https://github.com/monome/firstlight/blob/main/firstlight.lua#L101):
+To change the delay feedback, see [line 103](https://github.com/monome/firstlight/blob/main/firstlight.lua#L103):
 
 ```lua
 softcut.pre_level(1, 0.85) --[[ 0_0 ]]--
@@ -257,7 +257,7 @@ softcut.pre_level(1, 0.85) --[[ 0_0 ]]--
 
 Try changing the second argument, save the file, then re-launch the script using the PLAY arrow in maiden or using the menu on the hardware.
 
-To change the chime notes, see [line 27](https://github.com/monome/firstlight/blob/main/firstlight.lua#L27-L28):
+To change the chime notes, see [line 28](https://github.com/monome/firstlight/blob/main/firstlight.lua#L28-L29):
 
 ```lua
 --[[ 0_0 ]]--
@@ -297,9 +297,9 @@ By prepending our table of values with `sequins`, we endow `my_seq` with special
 
 There are a lot of other ways to manipulate and use `sequins` -- check out [the reference docs](/docs/norns/reference/lib/sequins) for more examples + details.
 
-Back to the script: let's try changing the Hz values of the `notes_seq` table at [line 27](https://github.com/monome/firstlight/blob/main/firstlight.lua#L27-L28). We can commit the change by either saving the script and re-running, or we can perform our live-execution gesture (CMD+RETURN / CTRL+ENTER) to dynamically modify this one line without having to re-run the entire script.
+Back to the script: let's try changing the Hz values of the `notes_seq` table at [line 28](https://github.com/monome/firstlight/blob/main/firstlight.lua#L28-L29). We can commit the change by either saving the script and re-running, or we can perform our live-execution gesture (CMD+RETURN / CTRL+ENTER) to dynamically modify this one line without having to re-run the entire script.
 
-Feel free to add as many Hz values as you want -- the chime player (the enclosing [`wind`](https://github.com/monome/firstlight/blob/main/firstlight.lua#L57) function) will always check the table length before playing!
+Feel free to add as many Hz values as you want -- the chime player (the enclosing [`wind`](https://github.com/monome/firstlight/blob/main/firstlight.lua#L55-L74) function) will always check the table length before playing!
 
 ## now differently
 
@@ -309,7 +309,7 @@ Now that we've successfully changed some of the default values, let's make some 
 
 Instead of having the softcut delay length sequencer run on a clock, let's have it step forward every time we push K2.
 
-First, we'll need to make sure the sequence doesn't autostart when the script is loaded. We can change this default on [line 32](https://github.com/monome/firstlight/blob/main/firstlight.lua#L33) from:
+First, we'll need to make sure the sequence doesn't autostart when the script is loaded. We can change this default on [line 34](https://github.com/monome/firstlight/blob/main/firstlight.lua#L34) from:
 
 ```lua
 sequence = true
@@ -320,7 +320,7 @@ to:
 sequence = false
 ```
 
-Now, when the script starts and the [system clock ticks](https://github.com/monome/firstlight/blob/main/firstlight.lua#L37-L46), the `step()` function will not be run!
+Now, when the script starts and the [system clock ticks](https://github.com/monome/firstlight/blob/main/firstlight.lua#L38-L47), the `step()` function will not be run!
 
 Let's try executing `step()` in the matron REPL, to confirm that it will advance the sequencer:
 
@@ -334,9 +334,9 @@ Let's try executing `step()` in the matron REPL, to confirm that it will advance
 
 Now, let's assign the execution of `step()` to K2.
 
-As mentioned in the intro, all norns scripts contain definitions for how the hardware should behave. try searching your version of _firstlight_ to find where the `key` function is defined ([hint](https://github.com/monome/firstlight/blob/main/firstlight.lua#L143-L151)).
+As mentioned in the intro, all norns scripts contain definitions for how the hardware should behave. try searching your version of _firstlight_ to find where the `key` function is defined ([hint](https://github.com/monome/firstlight/blob/main/firstlight.lua#L147-L156)).
 
-To change what happens when K2 gets pressed, we'll edit [line 149](https://github.com/monome/firstlight/blob/main/firstlight.lua#L149) by commenting it out by typing two dashes in front of the line and adding our `step` command line below:
+To change what happens when K2 gets pressed, we'll edit [line 154](https://github.com/monome/firstlight/blob/main/firstlight.lua#L154) by commenting it out by typing two dashes in front of the line and adding our `step` command line below:
 
 ```lua
 --[[ 0_0 ]]--
@@ -354,13 +354,13 @@ Save and re-run. Now, pressing K2 advances the softcut delay length sequencer!
 
 Instead of relying on our wind chime mechanism, let's employ K3 to play a random tone through our synth engine.
 
-First, we'll disable the chimes by changing [line 34](https://github.com/monome/firstlight/blob/main/firstlight.lua#L34) to:
+First, we'll disable the chimes by changing [line 35](https://github.com/monome/firstlight/blob/main/firstlight.lua#L35) to:
 
 ```lua
 chimes = false
 ```
 
-We'll revisit the [`key` function](https://github.com/monome/firstlight/blob/main/firstlight.lua#L143-L151) to reassign K3's action. Comment-out [line 146](https://github.com/monome/firstlight/blob/main/firstlight.lua#L146) to un-assign the chimes toggle action from K3. After this line, add a command to play a random frequency between 100 and 600:
+We'll revisit the [`key` function](https://github.com/monome/firstlight/blob/main/firstlight.lua#L147-L156) to reassign K3's action. Comment-out [line 151](https://github.com/monome/firstlight/blob/main/firstlight.lua#L151) to un-assign the chimes toggle action from K3. After this line, add a command to play a random frequency between 100 and 600:
 
 ```lua
 -- chimes = not chimes
@@ -473,57 +473,66 @@ Query the value of the table at a random index (mixed):
 
 Instead of a windy chime with variation, let's have the wind make a regular strum.
 
-Let's take a look at the `wind` section starting at [line 57](https://github.com/monome/firstlight/blob/main/firstlight.lua#L57-L72). In particular, [lines 61 through 69](https://github.com/monome/firstlight/blob/main/firstlight.lua#L61-L69):
+Let's take a look at the `wind` section starting at [line 58](https://github.com/monome/firstlight/blob/main/firstlight.lua#L58-L74). In particular, [lines 59 through 73](https://github.com/monome/firstlight/blob/main/firstlight.lua#L59-L73):
 
 ```lua
-if math.random() > 0.2 and chimes then
-  for i = 1,notes_seq.length do
-    engine.cutoff(math.random(100,8000))
-    notes_seq:select(math.random(notes_seq.length))
-    local note = notes_seq()
-    engine.hz(note)
-    clock.sleep(0.1)
+while(true) do
+  light = 15
+  if chimes then
+    for i = 1,notes.length do
+      if math.random() > 0.2 then
+        local position = math.random(notes.length)
+        notes:select(position)
+        local frequency = notes()
+        engine.hz(frequency)
+      end
+      clock.sleep(0.1)
+    end
   end
+  clock.sleep(math.random(3,9))
 end
 ```
 
 What this bit does:
 
-- make a random value between 0.0 and 1.0 (which `math.random()` with no arguments returns)
-- if it is greater than 0.2 and the `chimes` are on then...
-	- for as many times as the current length of our `notes_seq`...
-		- set the engine `cutoff` value to a random value between 100 and 8000
-		- set the next step of `my_seq` to a random value in the sequence
-		- create a note
-		- play the note
+- while the `wind` clock is running:
+- `light` is set to full-bright (the wind lines on the screen)
+- if the `chimes` are enabled, then...
+	- count from 1 to the length of our `notes` sequins. for each count, we'll perform the following actions:
+		- make a random value between 0.0 and 1.0 (which `math.random()` with no arguments will *return* / provide us)
+		- if that random value is greater than 0.2 then...
+			- create a random value between 1 and the length of our `notes` sequins and assign this value to the temporary variable `position`
+			- use `position` to select the current position of our `notes` sequins
+			- query our `notes` sequins for the value at this random position and assign it to the temporary variable `frequency`
+			- pass the `frequency` to our engine via `engine.hz`
 		- pause for 1/10th of a second
+	- after we perform the above for each count, then we pause for anywhere between 3 and 9 seconds
 
 This creates the nice random scattered effect and creates uneven timing, with a random selection of notes each time.
 
-Let's make things more regular by replacing this with something simpler:
+We used `clock.sleep` above, which allows us to specify an amount of seconds we'd like the clock to pause for until it performs the next action. Let's make things more regularly spaced by replacing this mechanism with a bpm-synced approach:
 
 ```lua
-if chimes then
-  for i = 1,notes_seq.length do
-    engine.cutoff(math.random(100,8000))
-    local note = notes_seq()
-    engine.hz(note)
-    clock.sleep(0.1)
+while(true) do
+  light = 15
+  if chimes then
+    for i = 1,notes.length do
+      local frequency = notes()
+      engine.hz(frequency)
+      clock.sync(1)
+    end
   end
+  clock.sync(4)
 end
 ```
 
-Try changing the strum speed by altering the `clock.sleep` value in our `for` loop:
+Try changing the strum speed by altering the `clock.sync` value in our `for` loop (1 = one beat):
 
 ```lua
-clock.sleep(0.05)
+clock.sync(1/4)
 ```
 
-You can further modify this line by adding a bit of randomization. To have a random strum every 0.3-0.9 seconds:
-
-```lua
-clock.sleep(math.random(3,9)/10)
-```
+Try changing the sync value between strums by editing `clock.sync(4)` to another value.
 
 ### sequence weirder
 
@@ -557,7 +566,7 @@ Since the rate jumps are very large the result is substantial. Let's try making 
 softcut.rate(1,1+(delay_seq()/128))
 ```
 
-This confines the numbers to a smaller range for a subtler effect. Perhaps we'd like to try something with multiples. Let's create a `rate_seq` sequins, perhaps around the others at [line 24](https://github.com/monome/firstlight/blob/main/firstlight.lua#L24):
+This confines the numbers to a smaller range for a subtler effect. Perhaps we'd like to try something with multiples. Let's create a `rate_seq` sequins, perhaps around the others at [line 25](https://github.com/monome/firstlight/blob/main/firstlight.lua#L25):
  
 ```lua
 rate_seq = sequins{-1.0,-0.5,0.25,0.5,1.0,2.0,4.0}

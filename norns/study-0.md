@@ -198,8 +198,8 @@ The script has few other simple variables that can be changed on the fly. What h
 
 ```lua
 >> chimes = false
->> delay_seq.length = 16
->> delay_seq[1] = 13
+>> delays.length = 16
+>> delays[1] = 13
 ```
 
 <details closed markdown="block">
@@ -208,8 +208,8 @@ The script has few other simple variables that can be changed on the fly. What h
   </summary>
   {: .text-delta }
 - `chimes = false` turns off the wind chimes
-- `delay_seq.length = 16` increases the length of the softcut delay length sequencer to sixteen steps
-- `delay_seq[1] = 13` increases the size of the first delay sequencer column, which extends the length of the delay loop
+- `delays.length = 16` increases the length of the softcut delay length sequencer to sixteen steps
+- `delays[1] = 13` increases the size of the first delay sequencer column, which extends the length of the delay loop
 {:toc}
 </details>
 
@@ -261,10 +261,10 @@ To change the chime notes, see [line 28](https://github.com/monome/firstlight/bl
 
 ```lua
 --[[ 0_0 ]]--
-notes_seq = sequins{400,451,525,555} -- a sequencer of note values, in hz
+notes = sequins{400,451,525,555} -- a sequencer of note values, in hz
 ```
 
-As the annotation suggests, `notes_seq` is a [table](https://www.lua.org/pil/2.5.html) of notes. Tables can contain many things, but in this case the table is a list of numbers separated by commas and enclosed by curly braces. The notes are frequencies, just like we called with `engine.hz(700)`.
+As the annotation suggests, `notes` is a [table](https://www.lua.org/pil/2.5.html) of notes. Tables can contain many things, but in this case the table is a list of numbers separated by commas and enclosed by curly braces. The notes are frequencies, just like we called with `engine.hz(700)`.
 
 But there's something a bit unusual about this table -- it has the word `sequins` in front of it!
 
@@ -279,25 +279,25 @@ Let's build a `sequins` on the command line to learn how this library works.
 Give your new sequencer a name and assign it some values, eg:
 
 ```lua
->> my_seq = sequins{30,60,90}
+>> angles = sequins{30,60,90}
 ```
 
-By prepending our table of values with `sequins`, we endow `my_seq` with special abilities so it becomes both a *table* (a storage container) and a *function* (an action which produces a result). For example, to step through our values, we simply need to execute the action by writing the name of our `sequins` with parenthesis after it, eg:
+By prepending our table of values with `sequins`, we endow `angles ` with special abilities so it becomes both a *table* (a storage container) and a *function* (an action which produces a result). For example, to step through our values, we simply need to execute the action by writing the name of our `sequins` with parenthesis after it, eg:
 
 ```lua
->> my_seq()
+>> angles()
 30
->> my_seq()
+>> angles()
 60
->> my_seq()
+>> angles()
 90
->> my_seq()
+>> angles()
 30
 ```
 
 There are a lot of other ways to manipulate and use `sequins` -- check out [the reference docs](/docs/norns/reference/lib/sequins) for more examples + details.
 
-Back to the script: let's try changing the Hz values of the `notes_seq` table at [line 28](https://github.com/monome/firstlight/blob/main/firstlight.lua#L28-L29). We can commit the change by either saving the script and re-running, or we can perform our live-execution gesture (CMD+RETURN / CTRL+ENTER) to dynamically modify this one line without having to re-run the entire script.
+Back to the script: let's try changing the Hz values of the `notes` table at [line 28](https://github.com/monome/firstlight/blob/main/firstlight.lua#L28-L29). We can commit the change by either saving the script and re-running, or we can perform our live-execution gesture (CMD+RETURN / CTRL+ENTER) to dynamically modify this one line without having to re-run the entire script.
 
 Feel free to add as many Hz values as you want -- the chime player (the enclosing [`wind`](https://github.com/monome/firstlight/blob/main/firstlight.lua#L55-L74) function) will always check the table length before playing!
 
@@ -541,12 +541,12 @@ The sequencer step values can be used for any number of things. Instead of modul
 See [line 52](https://github.com/monome/firstlight/blob/main/firstlight.lua#L52):
 
 ```lua
-softcut.loop_end(1,delay_seq()/8)
+softcut.loop_end(1,delays()/8)
 ```
 
 <dl>
-  <dt><b>delay_seq</b></dt>
-  <dd>a <code>sequins</code> (line 24) that gets updated with the knob interface. it's the sequencer data, which is basically up to 16 steps of values 1-8</dd>
+  <dt><b>delays</b></dt>
+  <dd>a <code>sequins</code> (line 25) that gets updated with the knob interface. it's the sequencer data, which is basically up to 16 steps of values 1-8</dd>
   <dt><b>loop_end</b></dt>
   <dd> we're dividing the step value by 8, so we'll set <i>loop_end</i> setting to between 1/8 and 1.0 (= 8/8)</dd>
 </dl>
@@ -554,8 +554,8 @@ softcut.loop_end(1,delay_seq()/8)
 Let's comment out this line and modulate `rate` instead:
 
 ```lua
---softcut.loop_end(1, delay_seq()/8)
-softcut.rate(1,delay_seq()/8)
+--softcut.loop_end(1, delays()/8)
+softcut.rate(1,delays()/8)
 ```
 
 Save and try it out!
@@ -563,7 +563,7 @@ Save and try it out!
 Since the rate jumps are very large the result is substantial. Let's try making it more subtle:
 
 ```lua
-softcut.rate(1,1+(delay_seq()/128))
+softcut.rate(1,1+(delays()/128))
 ```
 
 This confines the numbers to a smaller range for a subtler effect. Perhaps we'd like to try something with multiples. Let's create a `rate_seq` sequins, perhaps around the others at [line 25](https://github.com/monome/firstlight/blob/main/firstlight.lua#L25):

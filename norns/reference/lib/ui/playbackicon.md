@@ -25,7 +25,7 @@ permalink: /norns/reference/lib/ui/playbackicon
 
 ### example
 
-![](../../../image/reference-lib-ui-images/playbackexample.gif)
+![](../../../image/reference-images/playbackexample.gif)
 
 ```lua
 UI = require("ui")

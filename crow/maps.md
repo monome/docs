@@ -13,3 +13,5 @@ to supplement crow's [script reference](https://monome.org/docs/crow/reference/)
 this section of the docs stores text companions to the 'fundamental learning' sections of these videos. here, you'll find code and reflections on some of the compositional scenarios Trent explores in the full-length episodes.
 
 - [S2E1: Found Shapes](s2e1)
+- [S2E2: Zippers](s2e2)
+- [S2E3: Long Distance](s2e3)

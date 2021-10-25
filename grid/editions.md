@@ -5,6 +5,10 @@ nav_exclude: true
 
 # editions
 
+### 2021 grid
+
+completely reworked. clear white light. variable brightness. snappy, easy keypress. slightly thinner, certainly lighter. uses fewer components, consumes less power. bus powered. usb-c.
+
 ### 2016 arc
 
 matches the 2015 grid. bright warm white light. variable brightness. two-tone all-aluminum assembly. super thin. bus powered. mini-usb.

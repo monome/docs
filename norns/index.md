@@ -16,10 +16,10 @@ has_toc: false
 
 - [first](norns-first.pdf): a quick, printable introduction.
 - [play](../norns/play): a longer introduction and a great starting point.
-- [wifi + files](../norns/wifi-files): network connections and file transfers.
+- [wifi / update / files](../norns/wifi-files): network connections, norns system updates, and file transfers.
 - [maiden](../norns/maiden): manage projects and import scripts.
 - [apps](../norns/app): learn more about some of the community scripts pre-loaded on norns.
-- [control + clock](../norns/control-clock): integrate norns with other tools.
+- [control + clock](../norns/control-clock): integrate norns with other tools (eg. MIDI controllers and external synths).
 - [scripting](../norns/scripting): scripting studies, tutorials, and reference material.
 - [help](../norns/help): deeper device and system troubleshooting.
 

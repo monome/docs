@@ -143,6 +143,20 @@ If you do not hear a startup tone, the norns OS is not booting. The best next st
 - If you soldered the unit yourself, please post images of the board to [this thread](https://llllllll.co/t/diy-norns-shield/27638/). Note that this is a community resource, so please be respectful of time and energy limitations.
 - If you purchased it from a third-party who soldered the components, please reach out to them for resolution.
 
+### grid connectivity troubleshooting
+
+If you've recently received a new grid, you may find that scripts do not seem to be connecting to it.
+
+To troubleshoot:
+
+- ensure your norns is up to date via `SYSTEM > UPDATE` (see [wifi + files](../wifi-files/#update) for more info)
+- many scripts assume that an artist only has access to one grid (versus many MIDI controllers), and automatically connect to the first slot under `SYSTEM > DEVICES > GRID`.
+  - disconnect all grids
+  - press `K3` on slot 1, select `none`, press `K3`
+  - press `K3` on slot 2, select `none`, press `K3`
+  - ..repeat for any slot that doesn't say `none`
+  - connect your new grid + it should populate slot 1!
+
 
 ### audio input/output hardware specs {#audio-specs}
 
@@ -174,6 +188,22 @@ NO!
 {: .label .label-red}
 
 norns (both stock and shield) has line-level inputs only -- sending modular signals, which run very hot, through these inputs may result in damage. Please attenuate your modular signals before sending them into norns with an interface module like [Intellijel's Audio Interface](https://www.modulargrid.net/e/intellijel-audio-interface-ii).
+
+### how do I send MIDI to/from norns from/to another computer? {#midi-host}
+
+Since norns is a MIDI host and other computers are *also* MIDI hosts, norns is not able to send/receive MIDI to/from a DAW or computer directly over its USB charge port.
+
+- connect a [Roland UM-ONE mk2](https://www.roland.com/us/products/um-one_mk2/) to norns with USB, which will create a DIN-MIDI input and output for norns -- then connect UM-ONE MIDI to your computer using another USB-MIDI interface
+- build this [DIY USBMIDI host-to-host adapter from `@okyeron`](https://llllllll.co/t/2host-a-diy-usbmidi-host-to-host-adapter/23472)
+- use a USB host MIDI router like [Sevilla Soft's MIDI USB-USB](https://sevillasoft.com/index.php/midi-usb-usb)
+
+### shield: can I use the Pi's HDMI output to mirror the shield's screen?
+
+No.
+
+The norns OS is primarily developed for/on the stock norns hardware, which makes use of a compute module which has a smaller form factor than the traditional Pi board and does not have any of the additional I/O. This allows stock units to provide pro-audio I/O, a battery, and an overall roomier layout while maintaining a small footprint.
+
+Avoiding the additional CPU headroom required to support external video output also allows us to optimize the capabilities of norns, to provide stock and shield users with the same foundational software experience.
 
 ## software
 
@@ -309,6 +339,8 @@ For the adventurous, here are steps to surface the ext4 filesystem: [Windows](ht
 
 the latest full images for norns and shield can be downloaded [here](https://github.com/monome/norns-image/releases/latest). please make sure you download + install the correct image, otherwise your unit will not perform correctly.
 
+full images are not built for every release, so do not worry if the 'latest' full image is not the same as the current update -- you will update from SYSTEM > UPDATE as part of the last step.
+
 #### stock norns
 
 By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows. If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
@@ -321,7 +353,7 @@ Steps:
 2. Remove the four bottom screws of the norns.
 3. Plug the norns power into your laptop.
 4. You'll see a switch through a notch in the circuit board, flip this to DISK.
-5. Run etcher. Select the disk image. Select the Compute Module as the target. Push go and wait for it to finish.
+5. Run etcher. Select the disk image. Select the Compute Module as the target. Proceed, enter your non-norns computer's password, and wait for it to finish.
 6. Disconnect USB. Flip the switch back to RUN. Put the bottom back on.
 7. If you have a norns with a 32gb CM3+ (purchased October 2020 and thereafter), you will need to expand the file storage.  
    7a. Re-connect USB, power norns up, and connect via [serial](https://monome.org/docs/norns/wifi-files/#serial) through a terminal.  
@@ -329,7 +361,8 @@ Steps:
    7c. Navigate down to `Advanced`.  
    7d. Select `Expand Filesystem` and press OK.  
    7e. After it's completed, put norns to sleep.  
-8. Update via SYSTEM  > UPDATE
+8. Boot norns + [consider changing the default password and address](#change-password)
+9. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
 
 #### shield
 
@@ -354,59 +387,91 @@ If your SD card seems a lot more full than it should be, you'll need to expand t
 
 ### manual / offline update
 
+For this process, we'll use the phrase `execute` to mean "type this text into your terminal and press return/enter to run it."
+
 - Download and copy the [latest release's`.tgz` update file](https://github.com/monome/norns/releases) to a FAT-formatted USB drive
-- Take note of the `.tgz` file's name, as it is important (eg. `norns210607` is specific to the June 07 2021 update)
-- Insert the USB drive into norns and power up.
-- If using a stock norns, connect via [serial](../wifi-files/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh).
-- Copy file to `~/update/`:
+- Take note of the `.tgz` file's name, as it is important (eg. `norns210706` is specific to the July 06 2021 update in YYMMDD format)
+- Insert the USB drive into norns and boot up your norns
+- If using a stock norns, connect via [serial](../wifi-files/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh)
+- Copy file to `~/update/` by executing the following:
 
 ```
 sudo cp /media/usb0/*.tgz ~/update/
 ```
 
-- Enter the update folder:
+- Once you see the command prompt again, enter the update folder by executing:
 
 ```
 cd ~/update
 ```
 
-- Remember that special filename (eg. `norns210607`)? We'll need it to unpack and run the update:
+- Remember that special filename (eg. `norns210706`)? We'll need it to unpack to the update folder by executing:
 
 ```
-tar xzvf norns210607.tgz
-cd norns210607
+tar xzvf norns210706.tgz
+```
+
+- You'll see a flurry of activity, but after a few dozen seconds you'll get to the command prompt again. Now, we'll go into the the update folder by executing:
+
+```
+cd 210706
 ./update.sh
 ```
-*nb. make sure to replace `norns210607` in the above with the filename you downloaded*
+*nb. make sure to replace `210706` in the above with the date reflected in the file you downloaded. If you're in doubt, simply execute `ls` and you'll be shown two files: the `.tgz` and the folder it unpacked. We want to copy the name of the folder exactly.*
 
-- Upon completion type `sudo shutdown now`.
+You'll see something similar to the following printed in your terminal:
+
+```bash
+[ ok ] Restarting nmbd (via systemctl): nmbd.service.
+[ ok ] Restarting smbd (via systemctl): smbd.service.
+CM3
+'/home/we/maiden/dist/sources/base.json' -> '/home/we/dust/data/sources/base.json'
+'/home/we/maiden/dist/sources/community.json' -> '/home/we/dust/data/sources/community.json'
+ln: failed to create symbolic link '/home/we/bin/maiden': File exists
+ln: failed to create symbolic link '/home/we/bin/maiden-repl': File exists
+```
+
+*nb. those last two failures are benign*
+
+- Finally, execute `sudo shutdown now` and norns will shut down
 
 If performing these steps on a shield, you won't see the standard shutdown message reminding you to wait until the non-red LED goes out -- you still need to wait!
 {: .label .label-red}
 
-### change passwords on norns {#change-password}
+Once you restart your device, hit K2 on the SELECT / SYSTEM / SLEEP screen and you should see the update's date listed on the right side of the screen!
 
-For security reasons (a device exposed to wifi should not have a widely-known password), you may want to change the default password for the `we` user.
+### change default password + address {#change-password}
+
+Since all norns units come configured with the same username + password, we encourage you to personalize + protect your setup by changing the default hostname and password for the `we` user.
 
 #### login / ssh
 
-To change the login/ssh password for user `we`, log in to the norns via [ssh](../wifi-files/#ssh. The command
+To change the login/ssh password for user `we`, log in to the norns via [ssh](../wifi-files/#ssh) and execute:
 
 ```
-passwd
+sudo raspi-config
 ```
 
-will prompt you for the current and new password.
+This will lead you to the [Raspberry Pi Software Configuration Tool](https://www.raspberrypi.org/documentation/computers/configuration.html), where you can follow these steps:
+
+- press ENTER on `1 Change User Password`
+- enter a new password to log in for the `we` user, press ENTER, re-enter the new password
+- press ENTER on `2 Network Options`
+- press ENTER on `N1 Hostname`
+- press ENTER on `<ok>` and type in a new hostname for your norns device (be sure to keep `.local` at the end!!)
+- navigate down to `Finish` and press ENTER -- if asked to reboot, please do
+
+Now, you'll be able to use your new hostname for maiden access (what once was `norns.local` will now be `your_unique_name.local`!) and your new password for ssh access!
 
 #### Samba
 
-The `smb://` remote login password does not automatically change when `passwd` changes. Although Samba is a low-security, local network project, it makes sense to set its login credentials to match the newly set user password. This can be done with:
+The `smb://` remote login password does not automatically change when you perform the changes above. To set Samba's login credentials to match the newly set user password, log in to the norns via [ssh](../wifi-files/#ssh) and execute:
 
 ```
 sudo smbpasswd -a we
 ```
 
-Re-type your new password and you should be all set.
+You'll be prompted to set a new SMB password -- we encourage setting it to match with the password you created in the previous section.
 
 ### taking a screenshot {#png}
 
@@ -449,8 +514,6 @@ magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize
 - Line noise while usb charge + audio input are both coming from the same laptop (ground loop) can be defeated with [an isolator](https://llllllll.co/t/external-grid-power-ext5v-alternative/3260).
 
 - If a connected MIDI controller is not functioning as expected, it may be due to a known limitation in scripts that do not explicitly allow for MIDI control from channels other than channel 1. Either reassign your MIDI controller to channel 1 or insert this [bit of code](https://llllllll.co/t/norns-scripting-best-practices/23606/2) into a script.
-
-- norns is not able to send MIDI to a VST or DAW directly over USB, because you'd be trying to connect two MIDI hosts. One solution is to use two USB MIDI interfaces plugged into one another, or some MIDI devices exist with two USB host ports.
 
 - All grid editions will work with norns, but some apps may be coded for varibright levels that your hardware may not support.
 

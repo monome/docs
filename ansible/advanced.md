@@ -2,88 +2,12 @@
 layout: default
 title: advanced
 parent: ansible
-nav_order: 7
+nav_order: 8
 has_children: false
 has_toc: false
 ---
 
 ## Advanced configuration
-
-### ii leader mode
-
-Ansible can be used as a leader device for the [ii](/docs/modular/ii)
-bus, controlling one or more follower modules using trigger and CV
-information sent from Ansible. Since Ansible is not wired to supply
-power to the ii bus, another leader module or a powered busboard is
-required to use Ansible as a leader. Having [Crow](/docs/crow) or
-[Teletype](../teletype/) connected to the same ii bus is sufficient.
-
-When Ansible is acting as a ii leader, it can no longer receive ii
-commands from other leaders like Teletype or Crow. Note also that
-sending messages from multiple leader devices simultaneously on the
-same ii bus does work in some tested scenarios, but may increase the
-risk of buggy behavior including modules locking up and needing a
-power cycle.
-
-Currently, the only interface for turning on leader mode uses a grid.
-In any grid application, go to the preset page by pressing the button
-next to the USB port. Follower device toggles are arranged vertically,
-just left of center. From top to bottom:
-
-* [Just Friends](/docs/teletype/jt-1) can be used as a synthesis
-  voice or function generator.
-
-* [TELEXo](https://github.com/bpcmusic) can be used as a set of 4
-  enveloped oscillators, or 4 CV/gate pairs.
-
-* [ER-301](http://www.orthogonaldevices.com/er-301) can be sent
-  gates and CV.
-
-Multiple followers may be active at once. Toggling any follower on
-enters leader mode, and deactivating all followers exits leader mode.
-Leader mode causes Ansible to send ii messages on any CV or gate
-change in any Ansible app, with Ansible's four gate/CV tracks
-assignable to different follower behaviors.
-
-To access more configuration, hold the lit key at the bottom of this
-column, then tap any follower toggle. This accesses detailed
-configuration for a particular follower, and pressing other follower
-toggles will change which follower you are configuring. To exit this
-mode and return to the main preset page, tap the key at the bottom of
-the column again.
-
-On the follower configuration view, the bottom left keys
-(corresponding to Kria track select keys) toggle which tracks drive
-which follower, so you can send the first 2 tracks to one device and
-the last 2 tracks to another. By default all tracks are sent to all
-enabled followers.
-
-The top-left portion of the page is an octave shift for the
-follower. This will shift all pitches sent to the follower by the
-programmed number of octaves, with the initially selected center key
-generally corresponding to middle C. This can be useful for working
-with multiple followers that have different interpretations of "zero"
-pitch.
-
-In the top right of the follower configuration page, you can select
-the operating mode for the follower. These modes have different
-meanings for different followers.
-
-* Just Friends, left to right: allocate notes polyphonically
-  (`JF.MODE` = 1 and `JF.NOTE` is sent for each gate), map each track
-  to one output as a synth voice (`JF.MODE` = 1 and `JF.VOX` is sent),
-  map each track to one output as a function generator (`JF.MODE` = 0
-  and `JF.VTR` is sent). In Kria, the velocity value is calculated
-  based on the duration parameter.
-
-* TELEXo, left to right: map each track to the corresponding enveloped
-  oscillator (`TO.OSC` is sent for pitch and `TO.ENV` is sent for gate
-  on/off), map each track to the corresponding gate/CV pair (`TO.TR` /
-  `TO.CV`).
-
-* ER-301 can be sent gate and CV commands, with the 4 tracks
-  corresponding to the first 4 `SC` channels.
-
 
 ### USB disk mode
 

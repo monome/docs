@@ -44,21 +44,25 @@ permalink: /norns/reference/midi
 ```lua
 function init()
   midi_device = {} -- container for connected midi devices
-  devices_with_names = {}
+  midi_device_names = {}
   target = 1
   key3_hold = false
   random_note = math.random(48,72)
 
   for i = 1,#midi.vports do -- query all ports
     midi_device[i] = midi.connect(i) -- connect each device
+    local full_name = 
+    table.insert(midi_device_names,"port "..i..": "..util.trim_string_to_width(midi_device[i].name,40)) -- register its name
   end
-
+  
+  params:add_option("midi target", "midi target",midi_device_names,1)
+  params:set_action("midi target", function(x) target = x end)
 end
 
 function enc(n,d)
   if n == 2 then
     if #midi_device > 0 then
-      target = util.clamp(target+d,1,#midi_device)
+      params:delta("midi target",d)
       redraw()
     end
   end
@@ -82,7 +86,7 @@ end
 function redraw()
   screen.clear()
   screen.move(0,10)
-  screen.text("midi port "..target..": "..midi_device[target].name)
+  screen.text(params:string("midi target"))
   screen.move(0,30)
   if not key3_hold then
     screen.text("press K3 to send note "..random_note)

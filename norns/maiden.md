@@ -144,9 +144,9 @@ If you need to restart the matron/crone environment for any reason (ie, the menu
 
 This will disconnect maiden, but once matron has restarted you can reconnect.
 
-### fetch
+### installing scripts from GitHub {#fetch}
 
-Sometimes, scripts don't make it into the community repo. To fetch a script that's only hosted on a developer's GitHub:
+Sometimes, scripts don't make it into the community catalog. To fetch a script that's only hosted on a developer's GitHub:
 
 - copy the URL of the lone project (eg. `https://github.com/tehn/test-update`)
 - in maiden's repl, enter:
@@ -201,6 +201,47 @@ These actions are bound to the following keyboard shortcuts:
 - CMD/CTRL-`.` : stop
 
 The editor can be configured for various modes (default, vim, emacs) in addition to tab size and light/dark mode. Click the gear icon at the bottom left of the screen. For more about maiden's keybindings, [see the docs in the maiden repository](https://github.com/monome/maiden/blob/main/docs/keybindings.md).
+
+### realtime line evaluation
+
+maiden's editor also supports realtime line evaluation, which opens up new avenues for live coding from maiden.
+
+To evaluate a line of code, place the cursor on the line and (on your keyboard) execute:
+
+- `command` + `return`: Mac
+- `Ctrl` + `Enter`: Windows / Linux
+
+To evaluate many single lines of code at once, highlight each line and execute the eval key combo -- maiden will automatically register the line breaks as discrete commands.
+
+Want to give it a try? Open a new file in maiden and paste this in, then start executing:
+
+```lua
+engine.load('PolyPerc') -- load the PolyPerc engine
+
+base = 440 -- controls the base frequency, which can be modified as the sequence runs!
+
+-- execute this entire block:
+function notes()
+  while true do
+    engine.pan(math.random(-1,1))
+    clock.sync(1)
+    engine.hz(base * math.random(3))
+    clock.sync(1/3)
+    engine.hz(base / math.random(6))
+    clock.sync(2/3)
+    engine.hz((base*3) / math.random(6))
+  end
+end
+--- ^ that will randomly create notes if it's part of a clock coroutine, which is next!
+
+seq = clock.run( notes ) -- start a seq clock and assign it the 'notes' function
+clock.cancel(seq) -- cancel the last-started 'seq'
+
+params:set("clock_tempo", 94 * math.random(3)) -- speed up / slow down
+
+-- play with 'base'!
+-- try canceling the clock and redefining the 'clock.sync' values in 'notes'!
+```
 
 ### programming reference
 

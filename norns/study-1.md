@@ -20,23 +20,36 @@ norns studies part 1: variables, simple maths, keys + encoders
 {:toc}
 </details>
 
+## terminology
+
+Before we dive in, here is some terminology which is mentioned throughout this study:
+
+- [**function**](https://www.tutorialspoint.com/lua/lua_functions.htm): a named task or event in our script. *Calling* a function simply means executing or invoking that task or event. If we are defining a function, we use `end` at the end of our definition. If we are calling a function, we use parenthesis after its name to indicate a function call -- we can pass arguments (see next) to the function inside of the parenthesis.
+	- **argument**: functions can be written to have general knowledge of the other components of our script, or we can ask it to perform its task on specific supplied values. Supplying these values is referred to as 'passing *arguments*' into the function call. In `print("hello")`, `print` is the function and `"hello"` is the argument specifying what we'd like to print.
+- [**string**](https://www.tutorialspoint.com/lua/lua_strings.htm): a sequence of characters, like every word in this sentence. A sequence of characters becomes a string when its enclosed in single quotes eg. `'hello'`, double quotes eg. `"hello"`, or double brackets eg. `[[hello]]`. We will only use double and single quotes throughout these studies, but please be sure not to mix + match -- `'hello"` is *not* a valid string.
+- [**variable**](https://www.tutorialspoint.com/lua/lua_variables.htm): a named storage container for data that our script can manipulate. We *declare* a variable and *assign* it a value by using a convention like `my_favorite_number = 11`. While our script runs, it will remember that our favorite number is 11. Variables can store numbers, strings, functions, and tables (which we'll talk about in the next study). For those with prior coding experience, it might be interesting to learn that variables in Lua are, by default, global -- later on, we'll cover [local vs. global variables](#addendum-global).
+
 ## hello?
 
-hello. ready? remember to stay hydrated.
+Hello. Ready? Remember to stay hydrated.
 
-first, locate yourself such:
+First, locate yourself thus:
 
 - connect to norns via [hotspot or network](../wifi-files/#connect)
 - navigate web browser to http://norns.local (or type in IP address if this fails)
 - you're looking at [_maiden_](../maiden), the editor
-- create a new file in the `code` directory: click on the `code` directory and then click the + icon in the scripts toolbar
-- rename the file: click the pencil icon in the scripts toolbar
+- create a new folder in the `code` directory: click on the `code` directory and then click the folder icon with the plus symbol to create a new folder
+  - name your new folder something meaningful, like `my_studies` (only use alphanumeric, underscore and hyphen characters when naming)
+- create a new file in the folder you created: locate and click on the folder and then click the + icon in the scripts toolbar
+- rename the file: select the newly-created `untitled.lua` file, then click the pencil icon in the scripts toolbar
+  - after naming it something meaningful to you (only use alphanumeric, underscore and hyphen characters when naming), select the file again to load it into the editor
 
-it's blank. full of possibilities. type in the text below:
+The file is blank. Full of possibilities. Type the text below into the editor:
 
 ```lua
--- many tomorrows
--- norns study 1
+-- study 1
+-- code exercise
+-- hello
 
 engine.name = "TestSine"
 
@@ -45,163 +58,201 @@ function init()
 end
 ```
 
-click save (the disk icon in the upper right) and then run (the play icon just below that).
+Click *save script* (the disk icon in the upper right) and then *run script* (the play icon just below that).
 
-if you typed it correctly, you'll hear a sine tone.
+If the code has been typed correctly and your levels are up, you'll hear a sine tone.
 
 ### what happened really
 
-the top two lines are comments. in lua a comment begins with two dashes, and with norns the very top comments are special in that they are displayed as the preview text in the script selector. try it:
+The top three lines are comments. In Lua a comment begins with two dashes. When scripting for norns, the very top comments of the main script file are special in that they are displayed as the preview text in the script selector. Try it:
 
-- get into the norns menu
-- enter the script selector
-- find your file, select it
+- press K1 get into the norns menu
+- navigate to the SELECT / SYSTEM / SLEEP screen
+- press K2 on SELECT
+- find your file, select it with K3
 
-you can type as many lines at the top of a script as you want, but note that the norns screen isn't so wide, so keep your lines short. it's helpful to write a description about your script and list the controls. but since so far this does basically nothing we write basically nothing.
+You can type as many lines at the top of a script as you want, but note that the norns screen isn't so wide, so keep your lines short. It's helpful to write a description about your script and list the controls. But so far this does basically nothing, so we wrote basically nothing.
 
-but we did do one important thing: we selected an engine.
+But we did do one important thing! We selected an engine on line 4:
 
 ```lua
-engine.name = "TestSine"
+engine.name = "TestSine" -- don't run this code, it's just a reminder
 ```
 
-this line selected the `TestSine` engine -- note that this needs to be in quotes (single or double work, but don't mix + match). this is an imperative first step.
+This line loaded the `TestSine` engine -- note that this needs to be in quotes (single or double work, but don't mix + match). This is an imperative first step.
 
-then, we created the `init` function, which gets called at script startup (this is true of every script). right now all it does is print. but where does it print?
+Then, we created the `init` function, which gets called at script startup (this is true of every script). Right now all it does is print. But where does it print?
 
 ## robot hangout
 
-the COMMAND LINE (aka REPL, read-eval-print loop) is where. it's the window below the editor. messages from matron (the lua machine) will appear here--- you can scroll back to see what it had to say.
+The COMMAND LINE (aka *REPL*: Read-Eval-Print Loop) is where information about the currently-running script is printed. It's the window below the editor. Messages from matron (the Lua component of norns) will appear here -- you can scroll back to see what it had to say.
 
-when you execute the script with `print("some words")` then `some words` get printed to this place. it's incredibly helpful, despite this being possibly the most boring intro to such an astoundingly interesting music machine.
+At the bottom is a `>>` prompt which is where you can type in commands (aka *command line*).
 
-at the bottom is a `>>` prompt which is where you can type in commands. let's do that.
-
-```lua
-print("hello.")
-```
-
-and you'll see `hello.` printed in response. norns has _excellent_ manners.
-
-but let's do something even more useful now:
+Type this in and then press ENTER on your keyboard:
 
 ```lua
-engine.list_commands()
+>> print("hello.")
 ```
 
-you'll see:
+...and you'll see `hello.` printed in response. norns has _excellent_ manners.
+
+Being able to print to the REPL is incredibly helpful, despite this being possibly the most boring intro to such an astoundingly interesting music machine.
+
+Let's do something even more useful now:
+
+```lua
+>> engine.list_commands()
+```
+
+Which will print this to the REPL:
 
 ```
 engine.list_commands()
---- engine commands ---
-amp (f)
-hz (f)
-------
+___ engine commands ___
+amp		f
+hz		f
 <ok>
 ```
 
-this is useful information! for the "TestSine" engine we have two commands:
+This is useful information! It lets us know that the `TestSine` engine responds to two commands:
 
-- `amp`
-- `hz`
+- `amp`: amplitude
+- `hz` : frequency
 
-both are float (decimal) values. given the name "TestSine" we can infer that `amp` is amplitude and `hz` is frequency. so let's change some values:
+It also lets us know that both accept float (decimal) values -- that's what the `f` next to each command indicates. For example, we can change the frequency of the sine by executing this in the REPL:
 
 ```lua
-engine.hz(200)
+>> engine.hz(200)
 ```
 
-now is a good time to point out the UP ARROW on your keyboard. when typing into the command line use the up arrow to see the previous things you typed in. this makes rapid-changing of the frequency much easier.
-{: .label}
+Now is a good time to point out the UP ARROW on your keyboard. **When typing into the command line use the up arrow to see the previous things you typed in.** This makes rapid-changing of the frequency much easier.
 
-also try modulating the amplitude with `engine.amp(0.8)` (amplitude is 0.0-1.0, but you can certainly give it large values and it'll clip happily.)
+Also try changing the amplitude by executing `engine.amp(x)`, where `x` is a value between 0.0 to 1.0 (you can certainly give it large values and it'll happily clip).
 
-so back to the script, if we want to have the engine start up with a particular frequency, we add it to the `init` function:
+Back to the script -- if we want to have the engine start up with a particular frequency, we add it to the `init` function:
 
 ```lua
+-- study 1
+-- code exercise
+-- hello
+
+engine.name = "TestSine"
+
 function init()
   engine.hz(100)
   print("the end and the beginning they are the same.")
 end
 ```
 
-try it. it works!
+Try it. It works!
 
 ### numbers and strings
 
-back to the command line. let's throw around some variables:
+Back to the command line. Let's create some variables:
 
 ```lua
-coins = 4
-spell = "heal party"
+>> coins = 4
+>> spell = "heal party"
 ```
 
-we just made two variables. the first assigned the number 4, the second a string. you can easily confirm that it worked with:
+We just made two variables. The first assigned the number 4 to the variable `coins`. The second assigned a [string](https://www.lua.org/pil/2.4.html) to the variable `spell`. You can easily confirm that it worked with:
 
 ```lua
-print(coins)
+>> print(coins)
 ```
 
-this prints just the number. you'll find it helpful when debugging to make more informative prints by using _string concatenation_ which just means gluing strings together (or tying them together, if you prefer a more rational metaphor). you do this with the lua operator `..` (two periods):
+This prints just the number to the REPL.
+
+During debugging, you'll find it helpful to make more informative prints by using _string concatenation_, which just means gluing strings together. You can glue strings together with the Lua operator `..` (two periods):
 
 ```lua
-print("i will cast " .. spell .. " for " .. coins .. " coins.")
+>> print("i will cast " .. spell .. " for " .. coins .. " coins.")
 ```
 
-(lua has a huge string library, many resources are on the web.)
+We can also glue commands together in the REPL, to execute many at once, using `;` (semicolon):
 
-(also, see addendum on local vs. global variables.)
+```lua
+>> engine.hz(300); print(coins)
+```
+
+(Lua has a huge [string library](http://lua-users.org/wiki/StringLibraryTutorial).)
 
 ### maths
 
-all of the normal arithmetic operators are available:
+All of the standard arithmetic operators are available:
 
 ```lua
-coins = coins + 1
-coins = coins - 10
-coins = coins * 2
-coins = coins / 4
-coins = coins % 2
+>> coins = 99 -- creates a variable 'coins' and assigns it 99
+>> coins = coins + 1 -- now coins = 100
+>> coins = coins - 10 -- now coins = 90
+>> coins = coins * 2 -- now coins = 180
+>> coins = coins / 4 -- now coins = 45
+>> coins = coins % 2 -- now coins = 1
 ```
 
-modulus (`%`) is perhaps unusual. it gives the remainder after a division. so: `11 % 10` would equal 1. we can use this as a trick for confining values to a range, say:
+Modulus (`%`) is perhaps unusual. It gives the remainder after a division. so: `11 % 10` would equal 1. We can use this as a trick for confining values to a range, say:
 
 ```lua
-x = x % 10
+>> x = x % 10
 ```
 
-for whatever value of x, it will be wrapped to the range 0-9.
+For whatever value of x, it will be wrapped to the range 0-9.
 
-and let's just make sure you know about this early on:
+And let's just make sure you know about this early on:
 
 ```lua
-coins = math.random(100)
+>> coins = math.random(100)
 ```
 
-this assigns `coins` to a random value up to 100. but also:
+This assigns `coins` a random value up to 100. But also:
 
 ```lua
-engine.hz(math.random(10)*50+100)
+>> engine.hz(math.random(10)*50+100)
 ```
 
-## where is the fun
+## use the hardware
 
-so far all of our interaction has been through the command prompt. this is a good way to demonstrate some basic syntax, but the point of norns is interaction. here's how we make an event happen on key presses:
+So far all of our interaction has been through the command prompt. This is a good way to demonstrate some basic syntax, but the point of norns is interaction -- three keys and three encoders can create a lot of fun.
+
+Let's add a keypress function to our script, after the `init()` function:
 
 ```lua
+-- study 1
+-- code exercise
+-- hello
+
+engine.name = "TestSine"
+
+function init()
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
 function key(n,z)
   print("key " .. n .. " == " .. z)
 end
 ```
 
-type this in at the bottom of your script. save and rerun. then push some keys, you'll get some prints.
+Save and rerun. Then push some keys and you'll get some prints. You'll notice that:
 
-- `n` is which key number
-- `z` is down (1) or up (0)
+- `n` is the key number
+- `z` is the key state -- down (1) or up (0)
 
-let's modify the script to do something more engaging:
+Let's modify the keypress function in our script to do something more engaging:
 
 ```lua
+-- study 1
+-- code exercise
+-- hello
+
+engine.name = "TestSine"
+
+function init()
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
 function key(n,z)
   if n == 3 then
     engine.hz(100 + 100 * z)
@@ -209,7 +260,11 @@ function key(n,z)
 end
 ```
 
-here we make an `if` statement:
+### controlling flow
+
+Code is basically a definition of flow -- what should happen when and how? In a lot of ways, code is like a musical score.
+
+In our code above, we've used an `if` statement. `if` statements test a condition and then do stuff if the condition is true:
 
 ```lua
 if (condition) then
@@ -217,7 +272,9 @@ if (condition) then
 end
 ```
 
-above we used `n == 3` as the condition, which checked to see if the key number was equal to 3. other comparison operators include:
+In our code, we used `n == 3` as the condition, which checked to see if the key number was equal to 3.
+
+Other [comparison operators](https://www.lua.org/pil/3.2.html) include:
 
 - `==` (is equal)
 - `~=` (not equal)
@@ -226,33 +283,94 @@ above we used `n == 3` as the condition, which checked to see if the key number 
 - `>=` (greater or equal)
 - `<=` (less than or equal)
 
-`if` statements can also be expanded with `elseif` and `else`:
+`if` statements can also be expanded with `elseif` and `else`, for example try changing our script's `key` function to:
 
 ```lua
-if coins > 100 then
-  print("this bag is way too heavy")
-elseif coins < 0 then
-  print("who's calling?")
-else
-  print("two cups of coffee, please.")
+-- study 1
+-- code exercise
+-- hello
+
+engine.name = "TestSine"
+
+function init()
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
+function key(n,z)
+  if n == 3 then
+    engine.hz(100 + 100 * z)
+  elseif n == 2 then
+    engine.hz(300 + 175 * z)
+  else
+    engine.hz(200 + 300 * z)
+  end
 end
 ```
 
+Save and re-run the script, then press K3 with or without holding K2.
+
 ### all of the fun
 
-to get data from the encoders type this at the end of the script:
+To get data from the encoders let's add to the end of the script:
 
 ```lua
+-- study 1
+-- code exercise
+-- hello
+
+engine.name = "TestSine"
+
+function init()
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
+function key(n,z)
+  if n == 3 then
+    engine.hz(100 + 100 * z)
+  elseif n == 2 then
+    engine.hz(300 + 175 * z)
+  else
+    engine.hz(200 + 300 * z)
+  end
+end
+
 function enc(n,d)
   print("encoder " .. n .. " == " .. d)
 end
 ```
 
-here `d` is delta. the encoders report incremental steps of a turn: clockwise is positive, counterclockwise is negative.
+Here, `d` is delta. The encoders report incremental steps of a turn: clockwise is positive, counterclockwise is negative.
 
-we can accumulate these steps to get an absolute position:
+## make the robots mad
+
+Let's make a mistake on purpose.
+
+What if we wanted to accumulate encoder turns, to keep track of an absolute position? We might try replacing the `enc` function:
 
 ```lua
+-- study 1
+-- code exercise
+-- hello
+
+engine.name = "TestSine"
+
+function init()
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
+function key(n,z)
+  if n == 3 then
+    engine.hz(100 + 100 * z)
+  elseif n == 2 then
+    engine.hz(300 + 175 * z)
+  else
+    engine.hz(200 + 300 * z)
+  end
+end
+
 function enc(n,d)
   if n == 3 then
     position = position + d
@@ -261,9 +379,7 @@ function enc(n,d)
 end
 ```
 
-replace your encoder function with this one, save and run. upon turning the encoder you'll get an error!
-
-## the robots are mad
+Try it in your script, then save and run. Upon turning the encoder you'll get an error!
 
 ```
 lua: /home/we/dust/code/study/study1-manyfutures.lua:19: attempt to perform arithmetic on a nil value (global 'position')
@@ -272,13 +388,22 @@ stack traceback:
 /home/we/norns/lua/encoders.lua:56: in function 'encoders.process'
 ```
 
-(your line number may be different, but the error is the same). we made a small mistake. while you don't need to declare variables, you can't add `nil` to numbers and since:
+(your line number may be different, but the error is the same)
 
-```lua
-position = position + d
-```
+We made a small mistake.
 
-assumes that `position` already exists, we have to first make it exist. just do that by adding a line inside of `init` which gives `position` a default value:
+### what is nil?
+
+From [Programming in Lua](https://www.lua.org/pil/2.1.html): "Lua uses nil as a kind of non-value, to represent the absence of a useful value."
+
+Revisiting our error, we see: `attempt to perform arithmetic on a nil value (global 'position')`
+
+- we tried to perform arithmetic on a non-value
+- the non-value was named `position`
+
+Look back at our code -- did we ever establish a *starting* value for `position`? No. Since we can't meaningfully add a void to a number, we receive an error.
+
+To get around this error, we need to establish that `position` indeed exists. We can do that by adding a line inside of `init` which gives `position` a default value:
 
 ```lua
 function init()
@@ -288,20 +413,118 @@ function init()
 end
 ```
 
-but you may have already discovered error checking if you made some typos. for example:
+Now we can try that adding that new `enc` function:
 
 ```lua
-print("we like to party"
+-- study 1
+-- code exercise
+-- hello
+
+engine.name = "TestSine"
+
+function init()
+  position = 10
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
+function key(n,z)
+  if n == 3 then
+    engine.hz(100 + 100 * z)
+  elseif n == 2 then
+    engine.hz(300 + 175 * z)
+  else
+    engine.hz(200 + 300 * z)
+  end
+end
+
+function enc(n,d)
+  if n == 3 then
+    position = position + d
+    print("encoder 3 at position: " .. position)
+  end
+end
 ```
 
-gives `<incomplete>` (translation: typo. no closing parenthesis.)
+### clamping down the fun
 
-be sure to keep an eye on the command line for errors
-{: .label .label-grey}
+Though the encoders are endless, we'll sometimes want changes made by the encoders to be clamped to a specific range. This is where special utilities built for norns come in, specifically one called `util.clamp()`, which accepts three arguments:
+
+- `n`: value
+- `min`: minumum
+- `max`: maximum
+
+Let's try it in our script by replacing our `enc` function with a clamped version:
+
+```lua
+-- study 1
+-- code exercise
+-- hello
+
+engine.name = "TestSine"
+
+function init()
+  position = 10
+  engine.hz(100)
+  print("the end and the beginning they are the same.")
+end
+
+function key(n,z)
+  if n == 3 then
+    engine.hz(100 + 100 * z)
+  elseif n == 2 then
+    engine.hz(300 + 175 * z)
+  else
+    engine.hz(200 + 300 * z)
+  end
+end
+
+function enc(n,d)
+  if n == 3 then
+    position = util.clamp(position + d,-20,20)
+    print("encoder 3 at position: " .. position)
+  end
+end
+```
+
+Now when we turn encoder 3, we cannot go outside of -20 to 20.
+
+## make some more mistakes
+
+To acclimate ourselves to issues, let's make a few more common mistakes:
+
+```lua
+>> print("we like to party"
+```
+- returns: `<incomplete>`
+- translation: "typo. no closing parenthesis."
+
+```lua
+>> print("we like to party')
+```
+- returns: `<incomplete>`
+- translation: "typo. don't switch between single and double quotations in a single string. use pairs of one or the other."
+
+```lua
+>> math.random(0.7)
+```
+- returns: `lua: stdin:1: bad argument #1 to 'random' (number has no integer representation)`
+- translation: "this function requires an integer and 0.7 is not an integer"
+
+```lua 
+function key(n,z)
+  if n == 3 then
+    engine.hz(100 + 100 * z)
+  end
+```
+- returns: `'end' expected (to close 'function' at line 10)`
+- translation: "the function you started on line 10 does not have a closing `end` line, so we don't know if you're done defining the function"
+
+**Be sure to keep an eye on the REPL for errors.**
 
 ## example: many tomorrows
 
-putting together the concepts above. this script is demonstrated in the video up top.
+Putting together the concepts above, this script is demonstrated in the video up top.
 
 ```lua
 -- many tomorrows
@@ -351,23 +574,27 @@ function enc(n,d)
 end
 ```
 
-## addendum: go global
+## addendum: go global {#addendum-global}
 
-variables in lua are global by default. use the `local` keyword to make a variable visible only to the scope within which it's declared:
+*This section is written for those with prior coding experience, to whom the question of 'local' versus 'global' variables in norns and Lua is curiosity-inducing. If this doesn't describe you, that's okay! Feel free to power through, or simply dog-ear this for later.*
+
+Variables in Lua are *global* by default. This means that the variable is able to be referenced and used throughout the script. Using the `local` keyword makes a variable visible only to the scope within which it's declared.
+
+To see what we mean, execute this in the REPL:
 
 ```lua
-local hidden_spell = "foobarbaz"
+>> local hidden_spell = "foobarbaz"
 ```
 
-notice that you can’t access `hidden_spell` in the REPL:
+You'll find that you can’t access `hidden_spell` in the REPL:
 
 ```lua
 >> print(hidden_spell)
 ```
 
-...returns `nil` as its output.
+...returns `nil` as its output because the REPL only has access to *global* variables.
 
-locals declared within functions are only visible to that function (including `init`):
+Locals declared within functions are only visible to that function (including `init`):
 
 ```lua
 function init()
@@ -380,7 +607,9 @@ function cast()
 end
 ```
 
-locals declared outside of functions are available to other functions within the file:
+...will print `nil` to the REPL, because `hidden_spell` is *local* to the `init` function only.
+
+Locals declared outside of functions are available to other functions within the file:
 
 ```lua
 function init()
@@ -394,9 +623,11 @@ function cast()
 end
 ```
 
-when scripting, global variables make it incredibly easy to troubleshoot from the REPL. besides a few very specific phrases (see [the system global variable list](../reference/#system-globals)), you should feel safe using globals in your scripts. each time a new script runs, the previously-declared global namespace is wiped, so there's no risk of cross-influence.
+... will print `foobarbaz` to the REPL, because `hidden_spell` is *local* to the entire script since we declared it outside of any specific function.
 
-declaring locals is often a matter of taste, but also utility + legibility:
+When scripting, global variables make it incredibly easy to troubleshoot from the REPL. Besides a few very specific phrases (see [the system global variable list](../reference/#system-globals)), you should feel safe using globals in your scripts. Each time a new script runs, the previously-declared global namespace is wiped, so there's no risk of cross-influence.
+
+Declaring locals is often a matter of taste, but also utility + legibility:
 
 ```lua
 engine.name = "TestSine"
@@ -423,7 +654,6 @@ function enc(n,d)
 end
 ```
 
-
 ## reference
 
 ### norns-specific
@@ -441,6 +671,7 @@ end
 ## continued
 {: .no_toc }
 
+- part 0: [first light](../study-0/) //  variables, simple maths, keys + encoders
 - part 1: many tomorrows
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
 - part 3: [spacetime](../study-3/) // functions, parameters, time

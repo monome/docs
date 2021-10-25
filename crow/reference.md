@@ -8,7 +8,7 @@ permalink: /crow/reference/
 
 # Reference
 
-[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [delay](#delay) --- [clock](#clock) --- [ii](#ii) --- [public](#public) --- [cal](#cal) --- [globals](#globals)
+[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [delay](#delay) --- [clock](#clock) --- [ii/i2c](#ii) --- [public](#public) --- [cal](#cal) --- [globals](#globals)
 
 ## input
 
@@ -442,6 +442,7 @@ delay( action, time, [repeats] ) -- delays execution of action (a function)
 the clock system facilitates various time-based functionality: repeating functions, synchronizing multiple functions, delaying functions. `clock` is preferable to `metro` when synchronizing to the global timebase, or for irregular time intervals.
 
 clocks work by running a function in a 'coroutine'. these functions are special because they can call `clock.sleep(seconds)` and `clock.sync(beats)` to pause execution, but are otherwise just normal functions. to run a special clock function, you don't call it like a normal function, but instead pass it to `clock.run` which manages the coroutine for you.
+
 ```
 coro_id = clock.run(func [, args]) -- run function "func", and optional [args] get passed
                                    --   to the function "func"
@@ -449,9 +450,11 @@ coro_id = clock.run(func [, args]) -- run function "func", and optional [args] g
 clock.cancel(coro_id)              -- cancel a clock started by clock.run (requires coro_id)
 clock.sleep(seconds)               -- sleep specified time (in seconds)
 clock.sync(beats)                  -- sleep until next sync at intervals "beats" (ie, 1/4)
+clock.cleanup()                    -- kill all currently-running clocks
 ```
 
 clock tempo & timing:
+
 ```lua
 clock.tempo = t           -- assign clock tempo to t beats-per-minute
 _ = clock.tempo           -- get tempo value (BPM)
@@ -460,6 +463,7 @@ _ = clock.get_beat_sec    -- get the length of a beat in seconds
 ```
 
 the clock can be stopped & started, and events can occur when doing either. the clock starts running when crow awakens. note start/stopping the clock does not affect `clock.sleep` calls.
+
 ```
 clock.start( [beat] )     -- start clock (optional: start counting from 'beat')
 clock.stop()              -- stop clock
@@ -468,7 +472,8 @@ clock.transport.start = start_handler -- assign a function to be called when the
 clock.transport.stop = stop_handler   -- assign a function to be called when the clock stops
 ```
 
-example:
+example (looping):
+
 ```lua
 function init()
   x = 0
@@ -482,6 +487,26 @@ function forever()
   end
 end
 ```
+
+example (one-shot):
+
+```lua
+function init()
+  output[2].action = adsr()
+  dur = 0.6 -- how many seconds should the sustain phase last?
+end
+
+function note_on()
+  clock.run(oneshot, dur) -- start a 'oneshot' clock and pass it duration as an argument
+end
+
+function oneshot(seconds)
+  output[2](true) -- start attack phase, pause at sustain
+  clock.sleep(seconds) -- hold for time interval specified by 'dur'
+  output[2](false) -- start release phase
+end
+```
+
 
 ## ii
 
@@ -559,6 +584,10 @@ crow has weak pullups for the `ii` line. they are on by default & should probabl
 ```lua
 ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups. on by default
 ```
+
+### just friends
+
+for a longform description of the i2c relationship between crow + Just Friends, please see the [extended reference](https://github.com/whimsicalraps/Just-Friends/blob/main/Just-Type.md).
 
 ## public
 

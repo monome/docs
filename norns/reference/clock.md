@@ -16,6 +16,7 @@ permalink: /norns/reference/clock
 | clock.sync(beats)              | Resume at next sync quantum of `beats`, per global tempo                                            |
 | clock.transport.start()        | User script callback whenever norns receives a "start" message (typically via MIDI or Ableton Link) |
 | clock.transport.stop()         | User script callback whenever norns receives a "stop" message (typically via MIDI or Ableton Link)  |
+| params:set("clock_tempo", x)   | Set the global clock tempo to `x` bpm, ranges from 1bpm to 300 bpm                                  |
 
 ### query
 

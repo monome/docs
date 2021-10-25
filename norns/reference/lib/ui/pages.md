@@ -24,7 +24,7 @@ permalink: /norns/reference/lib/ui/pages
 
 ### example
 
-![](../../../image/reference-lib-ui-images/pagesexample.gif)
+![](../../../image/reference-images/pagesexample.gif)
 
 ```lua
 UI = require("ui")

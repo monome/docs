@@ -27,6 +27,8 @@ The `lattice` allows you to quickly create simple and extensible sequencers. Lea
 | my_pattern:destroy()                   | Destroy the pattern.                                           |
 | my_pattern:set_division(number)        | Change division of the pattern.                                |
 | my_pattern:set_action(function)        | Change the action of the pattern.                              |
+| my_pattern:set_swing(swing)        | Change the swing percentage (0-100%)       |
+| my_pattern:set_delay(delay)        | Change the delay of pattern (0.0 - 1)       |
 
 ### query
 
@@ -71,11 +73,13 @@ function init()
   }
   pattern_b = my_lattice:new_pattern{
     action = function(t) print("half notes", t) end,
-    division = 1/2
+    division = 1/2,
+    delay = 0.5
   }
   pattern_c = my_lattice:new_pattern{
     action = function(t) print("quarter notes", t) end,
-    division = 1/4
+    division = 1/4,
+    swing = 60
   }
   pattern_d = my_lattice:new_pattern{
     action = function(t) print("eighth notes", t) end,
@@ -187,6 +191,10 @@ Under the hood, a single fast "superclock" automatically runs all the patterns a
 
 A pattern's `action` is passed the lattice's transport position. This can be useful to determine a relative or absolute position in a work.
 
+A pattern's `swing` allows you to control the swing of the emitted actions. The default swing is 50% (no swing). A swing above 50% will cause a long rest and then a short rest. A swing below 50% will create a short rest and then a long rest.
+
+A pattern's `delay` allows you to control how much the pattern is delayed, as a fraction of the current `division`. For example, a `division` of `1/4` with a `delay` of `0.5` will cause the action to be emitted every quarter note, but delayed from the main clock by an eigth note (0.5 * quarter note). This is useful for controlling the duration of a note when using note-on and note-off functions. You can set two patterns - one for note-on and one for note-off - with the same division, but the note-off pattern is delayed from the note-on pattern (and can be modulated).
+
 Multiple lattices can be run simultaneously. Multiple patterns in different lattices can call the same action. Patterns can be added and destroyed while lattices are running.
 
-Contributed by Tyler Etters and Ezra Buchla
+Contributed by Tyler Etters, Ezra Buchla, Zack Scholl, and Chris

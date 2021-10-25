@@ -173,6 +173,54 @@ When connected via WiFi you can SSH into norns from another computer on the same
 - execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`
 - password: `sleep` (you will not see characters while typing, this is normal), then press ENTER/RETURN
 
+
+#### never type the password again
+
+If you don't have one already, [generate a new ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent). 
+
+For less typing to `ssh` into norns create a new file at `~/.ssh/config` and add these lines:
+
+```
+Host norns
+  Hostname norns.local
+  User we
+  
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa
+```
+
+The `Host *` section assumes macOS and that one followed the Github instructions above. This configures `ssh` to use the `~/.ssh/id_rsa` for all connections. Change `id_ras` if you used a different name.
+
+Restart your terminal for the changs to take affect. Now run `ssh-copy-id norns`. YOu should see output similar to this and be prompted for a password:
+
+```
+mbp@mbp.local /Users/mbp
+% ssh-copy-id norns
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+we@norns.local's password:
+
+Number of key(s) added:        1
+
+Now try logging into the machine, with:   "ssh 'norns'"
+and check to make sure that only the key(s) you wanted were added.
+```
+
+Now you can simply type `ssh norns` for access:
+
+```
+mbp@mbp.local /Users/mbp
+% ssh norns
+Linux norns 4.19.127-16-gb1425b1 #1 SMP PREEMPT Mon Oct 26 05:39:00 UTC 2020 armv7l
+ ___ ___ ___ ___ ___
+|   | . |  _|   |_ -|
+|_|_|___|_| |_|_|___| monome.org/norns
+
+127.0.0.1 ~ $
+```
+
 ### serial
 
 Without WiFi, you can connect to norns via serial / USB-UART by connecting the power cable to your computer.

@@ -349,7 +349,7 @@ By far the easiest method to flash the disk image is using [etcher](https://www.
 
 Steps:
 
-1. Install etcher and get the disk image. Extract the disk image so you have a remaining `.img` file.
+1. Install etcher and download [the norns disk image](https://github.com/monome/norns-image/releases/latest). Extract the disk image on your computer so you have a remaining `.img` file.
 2. Remove the four bottom screws of the norns.
 3. Plug the norns power into your laptop.
 4. You'll see a switch through a notch in the circuit board, flip this to DISK.
@@ -375,15 +375,15 @@ Be sure to use a high quality one. If you have trouble, please try a different c
 
 If your SD card seems a lot more full than it should be, you'll need to expand the filesystem:  
 
-1. open a terminal on a computer connected to the same network as your shield  
-2. execute: `ssh we@norns.local`  
-3. password: sleep  
-4. execute: `sudo raspi-config`  
-5. navigate to Advanced and hit RETURN  
-6. select expand filesystem and hit RETURN  
-7. lots of activity will happen. when it's done, power down and reboot. if you get any errors, reboot again.  
-8. if you SSH back into norns and execute `df -h`, you'll see the newly expanded capacity.
-9. Update via SYSTEM > UPDATE
+1. Open a terminal on a computer connected to the same network as your shield  
+2. Execute: `ssh we@norns.local`  
+	2a. Password: `sleep`
+3. Execute: `sudo raspi-config`  
+4. Navigate to Advanced and hit RETURN  
+5. Select `Expand Filesystem` and hit RETURN  
+6. Lots of activity will happen. When it's done, power down and reboot. If you get any errors, reboot again.
+7. [Consider changing the default password and address](#change-password)
+9. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
 
 ### manual / offline update
 

@@ -368,7 +368,7 @@ Steps:
 
 *nb. only Pi 3 and Pi 3b's are supported*
 
-Use [etcher](https://www.balena.io/etcher/) to flash your SD card
+Use [etcher](https://www.balena.io/etcher/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card).
 
 Be sure to use a high quality one. If you have trouble, please try a different card.
 {: .label}

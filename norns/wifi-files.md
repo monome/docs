@@ -191,9 +191,9 @@ Host *
   IdentityFile ~/.ssh/id_rsa
 ```
 
-The `Host *` section assumes macOS and that one followed the Github instructions above. This configures `ssh` to use the `~/.ssh/id_rsa` for all connections. Change `id_ras` if you used a different name.
+The `Host *` section assumes macOS and that one followed the Github instructions above. This configures `ssh` to use the `~/.ssh/id_rsa` for all connections. Change `id_rsa` if you used a different name.
 
-Restart your terminal for the changs to take affect. Now run `ssh-copy-id norns`. YOu should see output similar to this and be prompted for a password:
+Restart your terminal for the changs to take affect. Now run `ssh-copy-id norns`. You should see output similar to this and be prompted for a password:
 
 ```
 mbp@mbp.local /Users/mbp

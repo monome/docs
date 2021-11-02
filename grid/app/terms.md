@@ -7,7 +7,7 @@ redirect_from: /app/terms/
 
 # Terms
 
-*Terms*: *Sum* pulled apart. A collection of essential monome applications, synchronized and integrated within Ableton Live 9.
+*Terms*: *Sum* pulled apart. A collection of essential monome applications, synchronized and integrated within Ableton Live Suite (works with Live 11 / Live 10 / Live 9).
 
 ![Header](images/header.png)
 

@@ -24,9 +24,9 @@ norns studies part 3: functions, parameters, time
 
 Before we dive in, here is some terminology which is mentioned throughout this study:
 
-- **evaluate**: when we run our script, matron (which manages the norns Lua environment) will evaluate all of our script's code and if there are no errors, it will run the script. Evaluating code just means submitting it to the system for parsing -- if the code has no errors, then the code is stored in the short-term memory for execution as part of our script.
+- **evaluate**: When we run our script, matron (which manages the norns Lua environment) will evaluate all of our script's code and if there are no errors, it will run the script. Evaluating code just means submitting it to the system for parsing -- if the code has no errors, then the code is stored in the short-term memory for execution as part of our script.
 
-- **global and local scope**: functions and variables throughout our script can either be known to the entire script (and maiden's command line), or they can be unique to a specific section. By default, everything in Lua is global unless it's declared as `local`. For example, clear any previous code in the editor and start anew with:
+- **global and local scope**: Functions and variables throughout our script can either be known to the entire script (and maiden's command line), or they can be unique to a specific section. By default, everything in Lua is global unless it's declared as `local`. For example, clear any previous code in the editor and start anew with:
 
 	```lua
 	-- study 3
@@ -45,11 +45,11 @@ Before we dive in, here is some terminology which is mentioned throughout this s
 	nil
 	```
 	
-	Because `where_is_this` is *local* to the `init()` function, that's the only place where it has any value.
+	Because `where_is_this` is *local* to the `init()` function, that's the only place where it has any value. The command line doesn't have access to `init()`'s local space, so we cannot access `where_is_this` from the command line.
 	
 	norns has a lot of protections in place so that separate scripts can share global namespace (eg. one script's `hello()` might do something quite different from another script's `hello()`, but it's totally okay for them to share a name), but you should be aware of these [system globals](../reference/#system-globals) which are sacred names that you must avoid redefining in your scripts (eg. it'd be bad to redefine the entire concept of `midi`). If you ever make a mistake with this, restarting norns will set things right.
 
-- **return**: in previous studies, functions performed operations in a fixed fashion -- eg. a `key` function is called, a number is generated, that number is passed to our engine, that's the end. Functions can also perform calculations or modify arguments and give (or *return*) the results back to us. For example, clear any previous code in the editor and start anew with:
+- **return**: In previous studies, functions performed operations in a fixed fashion -- eg. a `key` function is called, a number is generated, that number is passed to our engine, that's the end. Functions can also perform calculations or modify arguments and give (or *return*) the results back to us. For example, clear any previous code in the editor and start anew with:
 
 	```lua
 	-- study 3
@@ -79,11 +79,11 @@ Before we dive in, here is some terminology which is mentioned throughout this s
 	
 ## we function together
 
-So far we've seen a few ways to run commands:
+So far we've seen three primary ways to run commands:
 
-- the command line, for single lines
-- the `init` function which is run at startup of a script
-- `enc` and `key` functions which are executed when you touch an encoder or key
+- on the command line, for single lines
+- inside the `init` function which is run at startup of a script
+- inside of `enc` and `key` functions which are executed when you touch an encoder or key
 
 Let's learn a fourth way to quickly execute multi-line chunks of code for experimentation.
 
@@ -134,7 +134,7 @@ Now, instead of saving and running the entire script, highlight the function def
 function greeting();  print("hello there!");end
 ```
 
-This evaluation gesture checked our code chunk and has made it executable in our current session! Place the cursor on the last line of our code chunk and evaluate it using CMD + RETURN / CTRL + ENTER. **You'll this print to the maiden REPL**:
+This evaluation gesture checked our code chunk and has made it executable in our current session! Place the cursor on the last line of our code chunk and evaluate it using CMD + RETURN / CTRL + ENTER. **You'll see this print to the maiden REPL**:
 
 ```lua
 greeting()
@@ -154,9 +154,9 @@ This can be a powerful learning tool, as we can modify and re-evaluate sections 
 
 ### functional programming
 
-As we mentioned at the start of [study 1](../study-1/#terminology), a function is a block of code that can be _called_ and conditionally accept and return parameters. Functions are useful when you have some code you need to run frequently or perhaps from different places. They are very good for organizing and making your scripts readable and reusable.
+As we mentioned at the start of [study 1](../study-1/#terminology), a function is a block of code that is _called_, sometimes with additional *arguments*, and can conditionally *return* values. Functions are useful when you have some code you need to run frequently or perhaps from different places. They are very good for organizing and making your scripts readable and reusable.
 
-For example, if we want to translate a MIDI note to a frequency in Hz (A=440), we need to use a bunch of math we likely don't want to remember: `(440 / 32) * (2 ^ ((midi_note - 9) / 12))`.
+For example, if we want to translate a MIDI note to a frequency in Hz (A=440), we need to use a [bunch of math](https://newt.phys.unsw.edu.au/jw/notes.html) which we likely don't want to remember: `(440 / 32) * (2 ^ ((midi_note - 9) / 12))`.
 
 But we can just wrap that in a function:
 
@@ -169,43 +169,9 @@ end
 
 What will happen:
 
-- we pass an _argument_ to the function, which our function will treat as a variable named `note`
-- we make a local variable called `hz`, do some math with `note` for the conversion
-- we return `hz`
-
-Let's use it in an exercise (with a new engine, `PolySub`):
-
-```lua
--- study 3
--- code exercise
--- functional programming
-
-engine.name = 'PolySub'
-
-function midi_to_hz(note)
-  local hz = (440 / 32) * (2 ^ ((note - 9) / 12))
-  return hz
-end
-
-function drone(note)
-  engine.start(1,midi_to_hz(note)) -- PolySub has different commands than PolyPerc!
-end
-```
-
-Now, execute each of these lines of code, one at a time -- either by using our line-evaluation key combo or the command line:
-
-```lua
-drone(41)
-drone(44)
-drone(39)
-drone(49)
-drone(45)
-```
-
-Here's what happens:
-
-- `midi_to_hz` is called with a value of 30, which is assigned to `note`
-- the function runs and returns a value which is assigned to `drone`
+- we pass a MIDI note as an _argument_ to the function, which our function will treat as a variable named `note`
+- the function creates a local variable called `hz` and performs math with `note` for the conversion from MIDI to Hertz
+- the function returns `hz`, which is the result of our conversion
 
 ### zoom out
 
@@ -216,7 +182,7 @@ When you execute a script, the entire file is processed and then loaded. For exa
 ```lua
 -- study 3
 -- code exercise
--- zoom out
+-- zoom out pt.1
 
 engine.name = "PolyPerc"
 
@@ -251,6 +217,41 @@ We simply nested the `midi_to_hz` function inside of our `engine.hz` function:
 local whatever = 30 + math.random(24)*2
 engine.hz(midi_to_hz(whatever))
 ```
+
+Let's use this nesting in another exercise (with a new engine, `PolySub`). Clear any previous code in the editor and start anew with:
+
+```lua
+-- study 3
+-- code exercise
+-- zoom out pt.2
+
+engine.name = 'PolySub'
+
+function midi_to_hz(note)
+  local hz = (440 / 32) * (2 ^ ((note - 9) / 12))
+  return hz
+end
+
+function drone(note)
+  engine.start(1,midi_to_hz(note)) -- nb. PolySub has different commands than PolyPerc!
+end
+```
+
+Now, execute each of these lines of code, one at a time -- either by using our line-evaluation key combo or the command line:
+
+```lua
+drone(41)
+drone(44)
+drone(39)
+drone(49)
+drone(45)
+```
+
+Here's what happens:
+
+- our entire script is aware of the `midi_to_hz` function (remember: unless a variable is declared as *local*, Lua makes it *global*)
+- the `drone` function is designed to accept a MIDI note value, which it passes to a `midi_to_hz` function call inside of `PolySub`'s `engine.start` command
+- when we execute the `drone(x)` commands, we are passing a specific MIDI note value, which results in an audible note at the correct Hertz
 
 ### many to many
 
@@ -558,99 +559,203 @@ end
 
 By using a table to store chord shapes, we created a *score* which we can iterate through our keypresses. By using a table to store cutoff values, we create timbral variety. By using libraries built into norns, we made easy work of cycling through both the chords and cutoff values and wrapping back around (here, we used `util.wrap` -- check out [its reference](https://monome.org/docs/norns/api/modules/lib.util.html#wrap)). By using live-evaluation, we can change the score by simply modifying our `feelings` table.
 
-*This* is why programming in a musical context is so incredibly powerful and interesting.
+*This* is why programming in a musical context is so incredibly powerful and interesting. We hope you feel similarly :)
 
 ## parameters
 
-managing numbers is of primary concern. we usually want them to stay in a certain range and behave a certain way, and this means typically making a lot of repetitive code. but we've created some structures to help you keep your numbers together and scripts looking clean:
+Managing numbers is of primary concern. We usually want them to stay in a certain range and behave a certain way, and this means typically making a lot of repetitive code. To help keep clusters of related numbers together and scripts looking clean, norns employs *parameters*.
+
+It might help to approach these from a user perspective first -- take a minute to revisit the [parameters section of the play docs](/docs/norns/play/#parameters). Parameters are particularly special because they help streamline a number of things:
+
+- parameters surface variables from our code to the norns UI as readable names
+- parameters facilitate MIDI mapping of these variables + recall the mapping when the script is reloaded
+- parameter ID's facilitate OSC control over these variables
+- parameters can be saved through the preset / PSET mechanism, to capture and recall unique script states
+
+### defining a parameter
+
+Let's establish a system menu parameter using `params`, which is a UI-visible instance of a norns library called *paramset* (which we'll cover [later](#off-menu)). Clear the previous code and start anew with:
 
 ```lua
-params:add_number("tempo","tempo",20,240,88)
+-- study 3
+-- code exercise
+-- parameters pt.1: defining
+
+params:add_number("velocity","velocity",0,127,63)
 ```
 
-we just created an entry in the default _parameter set_ which is called `params`. this is the parameter set that you see in the system menu under `PARAMETERS`. go there now and you'll see "tempo" which you can change with the menu interface. here's what we did:
+Here's what we did:
 
-- parameter id = "tempo"
-- name = "tempo"
-- minimum = 20
-- maximum = 240
-- default = 88
+- id = "velocity" (this is the parameter's scripting ID and OSC address, which we'll cover more of in [study 5](/docs/norns/study-5/#numbers-through-air))
+- name = "velocity" (the name we see in the norns `PARAMETERS > EDIT` menu UI)
+- minimum = 0 (the smallest value we can reach)
+- maximum = 127 (the largest value we can reach)
+- default = 63 (the starting value)
 
-`min`, `max`, and `default` are all optional. we could add an unbounded number parameter that defaults to 0 by simply writing `params:add_number("anything")`. the `name` field is required.
+If you head to the `PARAMETERS > EDIT` menu on norns, you'll see `velocity` at a default value of 63, which we can decrease/increase between 0 and 127 using E3.
 
-besides editing in the menu, let's do some things with code:
+Definitions for `name`, `min`, `max`, and `default` are all optional. We could add an unbounded number parameter without a visible name in the menu UI that defaults to 0 by simply writing `params:add_number("anything")`. The `id` field is all that's required, though a blank and boundless number parameter is perhaps not a terribly useful menu entry for an artist using the script.
+
+### controlling a parameter with code
+
+Besides editing in the menu, let's do some things with code (evaluate through either line-execution or on the command line):
 
 ```lua
-params:set("tempo", 110)
-print("tempo is " .. params:get("tempo"))
-params:delta("tempo", -100)
-print("tempo is now " .. params:get("tempo"))
+params:set("velocity", 110)
+print("velocity is " .. params:get("velocity"))
+params:delta("velocity", 20)
+print("tempo is now " .. params:get("velocity"))
 ```
 
-note the colon (`:`) for the parameter functions (these are class functions). the lines above did some pretty handy things:
+Note the colon (`:`) for the parameter functions. For the curious, these are *class functions*, a feature of Object Oriented Programming [that we can use in Lua](https://www.tutorialspoint.com/lua/lua_object_oriented.htm) (heads up: *not* super beginner-friendly, so don't worry about the 'why').
+
+The lines above did some pretty handy things:
 
 - `set` the value
 - `get` the value
 - `delta` the value
 
-that last delta we did was clamped into the range, so you'll that the final `tempo` value is 20 (which is the minimum we specified above).
+You'll notice that our `delta` of 20 from 110 didn't get us to 130 -- instead, we ended up at 127. This is because the range is clamped to our defined `min` and `max`. Since 130 is above 127, the final result was clamped to 127.
 
-usually when a parameter changes we want something to happen. what if we could automatically call a function whenever a parameter changed, via `set` or `delta`?
+### assigning an action to a parameter
+
+Usually when a parameter changes we want something to happen. What if we could automatically call a function whenever a parameter changed via `set` or `delta`?
 
 ```lua
-function print_bpm_to_ms(bpm)
-  print(bpm .. " bpm is a " .. 60/bpm .. "second interval.")
+-- study 3
+-- code exercise
+-- parameters pt.2: assigning
+
+function print_bpm_to_sec(bpm)
+  print(bpm .. " bpm is a " .. 60/bpm .. " second interval")
 end
 
-params:set_action("tempo", function(x) print_bpm_to_ms(x) end)
+params:add_number("tempo","tempo",20,240,88)
+params:set_action("tempo", function(x) print_bpm_to_sec(x) end)
 ```
 
-indeed indeed! now whenever the value of `tempo` is touched you'll be informed of the interval time. the value `x` is the value of the parameter, and we pass it to the `print_bpm_to_ms()` function.
+Here's what we did:
 
-there's a shortcut to make parameter creation more readable:
+- created a global function called `print_bpm_to_sec`, which accepts `bpm` as an argument and prints the conversion of bpm to seconds
+- added a number parameter for `tempo`, with a range of 20 to 240 and a default value of 88
+- set an action for the `tempo` parameter, where the current value of the parameter (`x`) is passed as an argument to the `print_bpm_to_sec` function
+
+Now whenever the value of `tempo` is modified you'll be informed of the interval time.
+
+If we want to make parameter creation more readable, we can also format like this:
 
 ```lua
-params:add{type="number", id="tempo", min=20, max=240, default=88,
-  action=function(x) print_bpm_to_ms(x) end}
+-- study 3
+-- code exercise
+-- parameters pt.2: assigning
+
+function print_bpm_to_sec(bpm)
+  print(bpm .. " bpm is a " .. 60/bpm .. " second interval")
+end
+
+params:add{
+  type="number",
+  id="tempo",
+  min=20,
+  max=240,
+  default=88,
+  action=function(x) print_bpm_to_sec(x) end
+}
 ```
 
-note that we're using a new syntax style with curly brackets. this passes a table to the function which creates the new parameter. we're able to specify the attribute names (ie, `min`, `max` which makes it more readable, in addition to specifying the `action` in the same line. you can use either method, but this way is generally recommended.
+Note that we're using a new syntax style with curly brackets. This passes a table to the `params:add` function, which creates the new parameter. We're able to specify the attribute names (ie, `min`, `max` which makes it more readable, in addition to specifying the `action` in the same line.
 
-### more sound please
+Either declaration method works -- it's just about what feels most comfortable for you.
 
-add more parameters with multiple lines of `params:add_number()`, but all parameters are not just basic numbers. there is a _control_ parameter that maps a "control" range (think 0-100) to a specified min/max, with linear and exponential scaling. we use these frequently with engine parameters:
+### more control + sound please
+
+We can add more number parameters, but not all parameters are just basic numbers which change by steps of 1. To allow more responsive mapping to a specified min/max with linear and exponential scaling, norns gives us a _control_ parameter and a _control specification_ (referred to as *controlspec*) to define how our values should scale. We use these frequently with engine parameters.
+
+Clear the previous code and start anew with:
 
 ```lua
+-- study 3
+-- code exercise
+-- parameters pt.3: more control + sound
+
+engine.name = "PolyPerc"
+
 params:add_control("cutoff","cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
 ```
 
-the third argument of the `params:add_control` function is a _control spec_. we use `controlspec.new()` to create a new spec with arguments:
+The third argument of the `params:add_control` function is a _controlspec_. We used `controlspec.new()` to create a new control specification with arguments:
 
 - min = 50
 - max = 5000
 - curve = `exp` (can also be `lin`)
-- step = 0
+- step = 0 (output will be rounded to a multiple of step)
 - default = 555
 - unit = `hz` (for printing)
 
-if we wanted to define this control spec once and then assign it to many controls, we could do it like this:
+It's easy to then directly attach the parameter to the engine's `cutoff` parameter:
 
 ```lua
-filter_cs = controlspec.new(50,5000,'exp',0,555,'hz')
-params:add_control("f1","f1",filter_cs)
-params:add_control("f2","f2",filter_cs)
-params:add_control("f3","f3",filter_cs)
+-- study 3
+-- code exercise
+-- parameters pt.3: more control + sound
+
+engine.name = "PolyPerc"
+
+function init()
+  params:add_control("cutoff","cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
+  params:set_action("cutoff", function(x) engine.cutoff(x) end)
+end
 ```
 
-it is easy to then directly attach the parameter to an engine parameter:
+Now we can use the system menu to directly change an engine parameter.
+
+Let's add some more interactions to the code!
+
+First, let's get the `cutoff` parameter to display in the script's UI using `params:string`, which will return both the cutoff value and the 'hz' formatter:
 
 ```lua
-params:set_action("cutoff", function(x) engine.cutoff(x) end)
+-- study 3
+-- code exercise
+-- parameters pt.3: more control + sound
+
+engine.name = "PolyPerc"
+
+function init()
+  params:add_control("cutoff","cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
+  params:set_action("cutoff", function(x) engine.cutoff(x) end)
+end
+
+function redraw()
+  screen.clear()
+  screen.move(64,32)
+  screen.font_size(18)
+  screen.text_center(params:string("cutoff"))
+  screen.update()
+end
 ```
 
-now we can use the system menu to directly change an engine parameter. or much more fun, include it in our own script function:
+Then, let's use E3 to delta the `cutoff` parameter:
 
 ```lua
+-- study 3
+-- code exercise
+-- parameters pt.3: more control + sound
+
+engine.name = "PolyPerc"
+
+function init()
+  params:add_control("cutoff","cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
+  params:set_action("cutoff", function(x) engine.cutoff(x) end)
+end
+
+function redraw()
+  screen.clear()
+  screen.move(64,32)
+  screen.font_size(18)
+  screen.text_center(params:string("cutoff"))
+  screen.update()
+end
+
 function enc(n,d)
   if n == 3 then
     params:delta("cutoff",d)
@@ -658,41 +763,179 @@ function enc(n,d)
 end
 ```
 
-with this short few lines we have an exponential, range-limited parameter control! and what's more:
+Finally, let's use K3 to trigger a note (let's use a sequins to make things interesting!):
 
 ```lua
-params:write("later.pset")
+-- study 3
+-- code exercise
+-- parameters pt.3: more control + sound
+
+local s = require 'sequins'
+
+engine.name = "PolyPerc"
+
+function init()
+  params:add_control("cutoff","cutoff",controlspec.new(50,5000,'exp',0,555,'hz'))
+  params:set_action("cutoff", function(x) engine.cutoff(x) end)
+end
+
+notes = s{330,495,660,247.5}
+
+function redraw()
+  screen.clear()
+  screen.move(64,32)
+  screen.font_size(18)
+  screen.text_center(params:string("cutoff"))
+  screen.update()
+end
+
+function enc(n,d)
+  if n == 3 then
+    params:delta("cutoff",d)
+  end
+end
+
+function key(n,z)
+  if n == 3 then
+    if z == 1 then
+      engine.hz(notes())
+    end
+  end
+end
 ```
 
-this saves the current values of the parameter set to disk, in the file `later.pset` under `/dust/data/`. you can similarly load with:
+#### starting with action
+
+You may have noticed that when the script loads, the synth actually doesn't reflect the default `555` cutoff value. This is because the parameters load in a 'cold' state -- they wait until they receive interaction before performing their `action`.
+
+In order to trigger the action right when the script starts, you'll need to include a `params:bang()` at the end of your parameter declarations, eg: 
 
 ```lua
-params:read("later.pset")
-params:bang()
+-- study 3
+-- code exercise
+-- parameters pt.4: starting with action
+
+function init()
+  params:add_number("print_me","print this",20,600,49)
+  params:set_action("print_me", function(x) print(x) end)
+  params:bang()
+end
 ```
 
-after a read you'll want to call `params:bang()` which will activate every parameter's `action` function.
+This code snippet will print `49` to the REPL, whereas commenting out the `params:bang()` will result in no print at script start.
 
-lastly, we've been using the default parameter set throughout, but we can create as many of our own parameter sets as desired. they won't be hooked up to the system menu, but we can manipulate them in all of the same ways. here's how to create one:
+### presets
+
+As mentioned at the start of this section, parameters are especially powerful because their states can be saved and restored. While it's easy enough to save, load, and manage presets through the norns UI, perhaps you'll want to play around with preset functions through code.
+
+Run the `parameters pt.3` code and adjust the cutoff value to taste. Let's save this state by executing the following on the command line:
 
 ```lua
-others = paramset.new()
-others:add_number("first","My First Parameter")
+>> params:write(1,"later")
 ```
 
-this creates a new parameter set called `others` and adds a number.
+Here's what we did:
+
+- told the `params` system to `write` a new preset (PSET)
+- specified slot `1` as the destination
+- specified `later` as the name for the PSET
+
+We can validate that the PSET saved by heading to `PARAMETERS > PSET` in the norns menus.
+
+You'll also notice that after we executed the `write` command, matron returned a filepath (eg. `/home/we/dust/data/my_studies/study_3-01.pset`) where you can find this `.pset` file.
+
+You can similarly load any PSET slot with:
+
+```lua
+>> params:read(1)
+```
+
+After a read, the norns system will cycle through every parameter to set its value to the preset's values, but it won't perform the `action` function. In order to pass the preset's values through the parameter's actions, you'll need to include a `params:bang()`, which triggers every parameter.
+
+```lua
+>> params:read(1)
+>> params:bang()
+```
+
+### controlspec templates
+
+In our `parameters pt.3` code, we assumed a lot about what range would be useful for controlling a filter cutoff -- to help guide us, norns comes with a number of *controlspec* templates which we can call on for easier parameter definition. These templates are listed in the [API docs](http://dndrks-shield.local/doc/modules/controlspec.html#Presets).
+
+We could rewrite the `init` of our `parameters pt.3` to utilize the `constrolspec.FREQ` template:
+
+```lua
+function init()
+  params:add_control("cutoff","cutoff",controlspec.FREQ)
+  params:set_action("cutoff", function(x) engine.cutoff(x) redraw() end)
+end
+```
+
+This means out `cutoff` parameter will inherit some useful defaults, rather than us having to type them all out. To see the particulars:
+
+```lua
+>> tab.print(controlspec.FREQ)
+warp	table: 0x455ee0
+wrap	false
+step	0
+quantum	0.01
+units	Hz
+maxval	20000
+default	440
+minval	20
+```
+
+### off-menu parameters {#off-menu}
+
+We've been using the default parameter set throughout, which automatically adds what we declare to the norns PARAMETERS system menu -- but if we just want to use these templates for managing values, we can create as many of our *own* parameter sets as we want. They won't be hooked up to the system menu, but we can manipulate them in all of the same ways. Here's how to create one:
+
+```lua
+-- study 3
+-- code exercise
+-- parameters pt.6: off-menu
+
+custom = paramset.new()
+
+custom:add{
+  type = 'option',
+  id = 'grocery_list',
+  options = {'apples','bananas','carrots','daikon','eggplant','fennel'},
+  action = function() redraw() end
+}
+
+function redraw()
+  screen.clear()
+  screen.move(10,10*custom:get('grocery_list'))
+  screen.text(custom:string('grocery_list'))
+  screen.update()
+end
+
+function enc(n,d)
+  if n == 3 then
+    custom:delta('grocery_list',d)
+  end
+end
+```
+
+This creates a new parameter set called `custom` and adds a `grocery_list` as an `option`-type paramset. For a complete rundown of all the parameter types, see the [extended reference](/docs/norns/reference/params).
+
 
 ## it's about time
 
-until now we haven't considered time. how do we become aware of time?
+Until now we haven't considered time. How do we become aware of time? Try executing this on the command line:
 
 ```lua
-util.time()
+>> util.time()
 ```
 
-this returns something like: `1529498027.7441`. it's the system time, which is useful as a marker. now we will measure the length of a key press:
+This will return something like: `1529498027.7441`. This is the system time (in seconds), which is useful as a marker. Let's measure the length of a key press!
+
+Clear the previous code and start anew with:
 
 ```lua
+-- study 3
+-- code exercise
+-- it's about time
+
 down_time = 0
 
 function key(n,z)
@@ -707,13 +950,19 @@ function key(n,z)
 end
 ```
 
-try it out. press key 3, you'll get a time measurement. we can use something like this to create a tap-tempo, by sampling the time interval between key-downs, storing those values in a table, and averaging the values.
+Hold K3 and you'll see a time measurement printed to the REPL upon release. We could use something like this to create a tap-tempo, by sampling the time interval between key-downs, storing those values in a table, and averaging the values.
 
 ## time again
 
-in addition to using keys and encoders to trigger functions, we can also make time-based metronomes which trigger functions.
+In addition to using keys and encoders to trigger functions, we can also make time-based metronomes which trigger functions.
+
+Clear the previous code and start anew with:
 
 ```lua
+-- study 3
+-- code exercise
+-- time again
+
 function init()
   position = 0
   counter = metro.init()
@@ -723,21 +972,43 @@ function init()
   counter:start()
 end
 
-function count(c)
+function count(stage)
   position = position + 1
-  print(c .. "> " .. position)
+  print(stage .. "> " .. position)
 end
-
 ```
 
-this `init` function creates a `metro` called `counter`:
+Here's what happened when we created a `metro` named `counter` in our `init()`:
 
 - set interval `time` to 1 (second)
-- set count to -1, which means never stop. (we could set this to a target number to auto-stop).
-- set the event function (like a param action function).
-- start the metronome counting. (note this is a class function, use a colon).
+- set count to -1, which means it'll never stop (we could set this to a target number to auto-stop)
+- set the event function (like the param action functions we covered before)
+- start the metronome counting (note this is a class function, so use a colon!)
 
-on each tick of the `counter`, the `count` function is executed. the value `c` is the stage of the metro. we create a `position` variable which is counted up. try the following one by one on the command line:
+On each tick of the `counter`, the `count` function is executed. The value `stage` is the stage of the metro, which is automatically provided with each metro step. We create a `position` variable which is counted up.
+
+Just like our previous practice with `params`, a `metro` can also be established in long or short-hand. This performs the same as the above:
+
+```lua
+-- study 3
+-- code exercise
+-- time again: short version
+
+function init()
+  position = 0
+  counter = metro.init(count,1,-1) -- arguments are (action, time, count)
+  counter:start()
+end
+
+function count(stage)
+  position = position + 1
+  print(stage .. "> " .. position)
+end
+```
+
+### manipulate time
+
+While the `time again` exercise runs, try executing the following one by one via line-execution or by executing on the command line to manipulate how `counter` operates:
 
 ```lua
 counter.time = 0.5
@@ -747,28 +1018,33 @@ counter.count = 5
 counter:start()
 ```
 
-this demonstrates how we're able to manipulate `counter` on the fly. here's a quick script that creates a simple ascending strum pattern:
+### strum
+
+Here's a quick script that creates a simple ascending strum pattern:
 
 ```lua
--- strum
+-- study 3
+-- code exercise
+-- time again: strum
 
 engine.name = "PolyPerc"
 
 function init()
-  strum = metro.init(note, 0.05, 8)
+  strum = metro.init(note, 0.05, 8) -- strum will trigger 'note' every 50ms for 8 stages
 end
 
 function key(n,z)
   if z == 1 then
-    strum:stop()
-    root = 40 + math.random(12) * 2
-    engine.hz(midi_to_hz(root))
-    strum:start()
+    strum:stop() -- stop the strum
+    root = 40 + math.random(12) * 2 -- select a random root MIDI note, starting at 40
+    engine.hz(midi_to_hz(root)) -- play the root
+    strum:start() -- start the strum
   end
 end
 
 function note(stage)
-  engine.hz(midi_to_hz(root + stage * 5))
+  local pitch = midi_to_hz(root + stage * 5) -- stage multiplies by 5 and adds to root
+  engine.hz(pitch) -- play the pitch
 end
 
 function midi_to_hz(note)
@@ -776,12 +1052,21 @@ function midi_to_hz(note)
 end
 ```
 
-we use a shortcut for initializing the metro by putting the event function, interval time, and number of stages in the `metro.init()` function arguments. when we push any key down, a random root note is selected and played and then the metro is started. it will trigger 8 times, and on each function call we will sound a new note that is 5 semi-tones above the previous note. try modulating the metro interval, number of stages, and stage multiplier! for example, change 8 to 1 (for a single note) and 5 to 12 (for an octave shift).
+Here's what we did:
+
+- used a shortcut for initializing the metro by putting the event function, interval time, and number of stages in the `metro.init()` function arguments
+- when we push any key down, a random root note is selected and played and then the metro is started
+- because of our `strum` definition, `note` will trigger 8 times, and on each function call we will sound a new note that is 5 semi-tones above the previous note
+
+Try:
+- changing the metro interval (eg. change 0.05 to 0.5 for slower jams)
+- changing the number of stages (eg. change 8 to 1 for a single note)
+- changing the stage multiplier (eg. change 5 to 12 for an octave shift)
 
 
 ## example: spacetime
 
-putting together concepts above. this script is demonstrated in the video up top.
+Putting together concepts above. This script is demonstrated in the video up top.
 
 ```lua
 -- spacetime
@@ -894,7 +1179,8 @@ end
 ## continued
 {: .no_toc }
 
-- part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
+- part 0: [first light](../study-0/) // learning to read and edit code
+- part 1: [many tomorrows](../study-1/) // variables, simple maths, keys + encoders
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
 - part 3: spacetime
 - part 4: [physical](../study-4/) // grids + midi

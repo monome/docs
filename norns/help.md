@@ -30,7 +30,7 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 {:toc}
 </details>
 
-## hardware
+## HARDWARE
 
 ### replacing parts
 
@@ -205,7 +205,7 @@ The norns OS is primarily developed for/on the stock norns hardware, which makes
 
 Avoiding the additional CPU headroom required to support external video output also allows us to optimize the capabilities of norns, to provide stock and shield users with the same foundational software experience.
 
-## software
+## SOFTWARE
 
 ### recovering from freezes {#frozen}
 
@@ -304,7 +304,7 @@ To reboot SuperCollider, the synthesis layer of norns, execute `;restart` in the
 
 To perform a quick reboot of the entire norns stack (for instance, when installing a script with a synth engine), reboot SuperCollider *then* reboot matron.
 
-## data management
+## DATA MANAGEMENT
 
 ### back up norns
 
@@ -507,7 +507,7 @@ For example:
 magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr.png
 ```
 
-## additional a's to faq's {#more-faq}
+## MORE {#more-faq}
 
 - Imported audio must be 48khz, bit depth is irrelevant.
 

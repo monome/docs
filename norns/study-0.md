@@ -468,7 +468,7 @@ Generate a random value and use it to replace the value of the table at a specif
 Query the value of the table at a random index (mixed):
 
 ```lua
->> my_table[math.random(#table)]
+>> my_table[math.random(#my_table)]
 ```
 
 ### even strum

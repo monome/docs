@@ -60,6 +60,8 @@ Also, you can also play sound into the audio input.
 
 **Let's toggle off the wind chime synth (press K3), toggle off the softcut delay length sequencer (K2), and play with some code.**
 
+*nb. If you are not running version 1.1.0 of the firstlight script, please update or reinstall the script fresh from maiden. Sometimes, browsers can aggressively cache scripts, so try clearing your cache if you find you cannot access version 1.1.0*
+
 ## the code is alive
 
 In this section, we'll execute small chunks of Lua code in realtime to control different elements of the _firstlight_ script. The goal is to introduce a few fundamental commands and make typing musical ideas feel approachable and fun!

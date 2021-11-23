@@ -112,8 +112,8 @@ then set up the input source. first we route audio input to softcut, and then se
 
 ```lua
 audio.level_adc_cut(1)
-softcut.level_input_cut(1,1,1.0)
-softcut.level_input_cut(2,1,1.0)
+softcut.level_input_cut(1,1,0.5)
+softcut.level_input_cut(2,1,0.5)
 ```
 
 finally, set the `rec` and `pre` levels.

@@ -808,7 +808,7 @@ function init()
   moon.phase = 0
   moon.hollowness = "?"
   for key,value in pairs(moon) do
-    print(i .. " = " .. v)
+    print(key .. " = " .. value)
   end
 end
 ```

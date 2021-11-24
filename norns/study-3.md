@@ -759,6 +759,7 @@ end
 function enc(n,d)
   if n == 3 then
     params:delta("cutoff",d)
+    redraw()
   end
 end
 ```
@@ -792,6 +793,7 @@ end
 function enc(n,d)
   if n == 3 then
     params:delta("cutoff",d)
+    redraw()
   end
 end
 

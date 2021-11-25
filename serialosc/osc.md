@@ -2,7 +2,7 @@
 layout: default
 title: osc
 nav_exclude: true
-redirect_from: /docs/osc/
+redirect_from: /osc/
 permalink: /serialosc/osc/
 ---
 

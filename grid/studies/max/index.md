@@ -13,7 +13,7 @@ This tutorial will show the basics of interfacing with the grid including how a 
 
 This lesson assumes a basic understanding of the Max patching interface. If you're absolutely new to Max it may be helpful to first go through some of the most excellent Max tutorials in-app `Help > Max Documentation`.
 
-Download Max 7: [cycling74.com/downloads](https://cycling74.com/downloads/)
+Download Max 8: [cycling74.com/downloads](https://cycling74.com/downloads/)
 
 Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
 

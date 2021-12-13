@@ -1,9 +1,12 @@
 ---
 layout: default
 title: libmonome tutorial
+nav_exclude: true
 ---
 
-# Controlling the Grid with libmonome and C
+# libmonome tutorial
+
+Controlling the Grid with libmonome and C
 
 Introduction
 ============
@@ -33,7 +36,8 @@ Hello Grid
 
 To begin, here\'s very simple \"hello grid\" program:
 
-``` {#00_hello.c .c tangle="00_hello.c"}
+```
+// {#00_hello.c .c tangle="00_hello.c"}
 #include <stdlib.h>
 #include <monome.h>
 #include <stdio.h>
@@ -118,7 +122,8 @@ is what `monome_event_loop` was calling to process events.
 Not only is this approach allow for a more graceful exit, but it also a
 more practical way to use it in larger pieces of software.
 
-``` {#01_eventloop.c .c tangle="01_eventloop.c"}
+```
+// {#01_eventloop.c .c tangle="01_eventloop.c"}
 #include <stdlib.h>
 #include <monome.h>
 #include <stdio.h>
@@ -191,7 +196,8 @@ This toggle LED example will be reworked to use quads with
 `monome_led_map`, as it is the most efficient way to draw a bunch of
 LEDs.
 
-``` {#02_more_efficient.c .c tangle="02_more_efficient.c"}
+```
+// {#02_more_efficient.c .c tangle="02_more_efficient.c"}
 #include <stdlib.h>
 #include <monome.h>
 #include <stdio.h>
@@ -309,7 +315,8 @@ easier to manage this way, but removing global variables also eases off
 dependency on stack memory allocation, which is finite and can be very
 small on some systems.
 
-``` {#03_ripples.c .c tangle="03_ripples.c"}
+```
+// {#03_ripples.c .c tangle="03_ripples.c"}
 #include <stdlib.h>
 #include <monome.h>
 #include <stdio.h>
@@ -640,3 +647,15 @@ Further Reading
 ===============
 
 TODO: link to monome.h, OSC reference, etc.
+
+## Files
+
+- [00_hello.c](00_hello.c)
+- [01_eventloop.c](01_eventloop.c)
+- [02_more_efficient.c](02_more_efficient.c)
+- [03_ripples.c](03_ripples.c)
+
+## Acknowledgements
+
+This tutorial was contributed by [pbat.ch](https://pbat.ch)
+

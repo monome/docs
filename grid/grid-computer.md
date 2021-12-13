@@ -31,7 +31,7 @@ Running into trouble? [Check out the serialosc docs](/docs/serialosc/setup).
 
 Want to get into the guts of serialosc for extension or re-programming? [Check out the serialosc protocol docs](/docs/serialosc/osc).
 
-Serialosc uses [libmonome](), which simplifies serial communication with the grid. Further details on the monome [serial protocol](/docs/serialosc/serial.txt) and a complete [libmonome tutorial](/docs/libmonome/tutorial).
+Serialosc uses [libmonome](https://github.com/monome/libmonome), which simplifies serial communication with the grid. Further details on the monome [serial protocol](/docs/serialosc/serial.txt) and a complete [libmonome tutorial](/docs/libmonome/tutorial).
 
 ## Mark Eats Sequencer (MacOS)
 

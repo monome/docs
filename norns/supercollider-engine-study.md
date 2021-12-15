@@ -219,18 +219,18 @@ Engine_BloopSynth : CroneEngine {
 		});
 		
 		this.addCommand("hz", "f", { arg msg;
-		Synth("BloopSynth", [
-		\freq,msg[1],
-		\pw,pw,
-		\amp,amp,
-		\cutoff,cutoff,
-		\resonance,resonance,
-		\release,release,
-		\pan,pan,
-		\out,out
-		]);
-		});
-		
+			Synth("BloopSynth", [
+				\freq,msg[1],
+				\pw,pw,
+				\amp,amp,
+				\cutoff,cutoff,
+				\resonance,resonance,
+				\release,release,
+				\pan,pan,
+				\out,out
+			]);
+		});	
+			
 	}
 
 }
@@ -264,7 +264,16 @@ Though most of this engine's components are recognizable from our previous Synth
 
 ```
 this.addCommand("hz", "f", { arg msg;
-	Synth("BloopSynth", [\freq,msg[1], \pw,pw, \amp,amp, \cutoff,cutoff, \resonance,resonance, \release,release, \pan,pan, \out,out]);
+	Synth("BloopSynth", [
+		\freq,msg[1],
+		\pw,pw,
+		\amp,amp,
+		\cutoff,cutoff,
+		\resonance,resonance,
+		\release,release,
+		\pan,pan,
+		\out,out
+	]);
 });
 ```
 
@@ -277,7 +286,8 @@ Now that our `BloopSynth` engine is installed on norns (and we've done a proper 
 In maiden, navigate to the `code > engine_study` folder and create a new Lua file (make sure this file is created outside of the `code > engine_study > lib` folder!). Name it `bloopsynth.lua` and enter the following text:
 
 ```lua
-engine.name = 'BloopSynth' -- single or double quotes doesn't matter, just don't mix-n-match pairs!
+engine.name = 'BloopSynth'
+-- nb. single or double quotes doesn't matter, just don't mix + match pairs!
 
 s = require 'sequins'
 
@@ -437,18 +447,18 @@ The *path* we provide the `include` function is also very important -- it specif
 To distribute our `BloopSynth` engine to others, we could use the following architecture:
 
 ```
-bloopsynth
-  - lib
-  	- Engine_BloopSynth.sc
-  	- bloopsynth_engine.lua
-  - bloopsynth.lua
+bloopsynth/
+  lib/
+    Engine_BloopSynth.sc
+    bloopsynth_engine.lua
+  bloopsynth.lua
 ```
 
 #### the example script {#example-script}
 
 While we've made it easier for another script to use our `BloopSynth` engine by providing a companion Lua library file, we can ensure success + legibility by including a simple example script (in the filetree above, this is the `bloopsynth.lua` file) which clarifies usage.
 
-The `SC engine study: import + initialize` [snippet above](#script-scope) is a fine starting point:
+The `SC engine study: import + initialize` [snippet above](#import) is a fine starting point:
 
 - it models the proper engine naming
 - it confirms the library file's path
@@ -460,8 +470,8 @@ The `SC engine study: import + initialize` [snippet above](#script-scope) is a f
 To continue exploring + creating new synthesis engines for norns, we highly recommend:
 
 -  Zack Scholl's video series (produced in partnership between monome and Music Hackspace):
-  -  [Tone to Drone](https://musichackspace.org/events/tone-to-drone-introduction-to-supercollider-for-monome-norns-live-session/)
-  -  [Ample Samples](https://musichackspace.org/events/ample-samples-introduction-to-supercollider-for-monome-norns-live-session/)
+	-  [Tone to Drone](https://musichackspace.org/events/tone-to-drone-introduction-to-supercollider-for-monome-norns-live-session/)
+	-  [Ample Samples](https://musichackspace.org/events/ample-samples-introduction-to-supercollider-for-monome-norns-live-session/)
 - [Zack Scholl's #supercollider blog entries](https://schollz.com/tags/supercollider/)
 - [Eli Fieldsteel's *fantastic* YouTube series](https://youtu.be/yRzsOOiJ_p4)
 - [norns SuperCollider engines index](https://norns.community/libs-and-engines#supercollider-engines)

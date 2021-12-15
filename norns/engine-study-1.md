@@ -1,11 +1,13 @@
 ---
 layout: default
 nav_exclude: true
-permalink: /norns/supercollider-engine-study/
+permalink: /norns/engine-study-1/
 ---
 
 # norns engine study
 {: .no_toc }
+
+Welome! We're so glad you're here! This study is meant to provide orientation for engine development on norns, using SuperCollider. We assume that you've already got a bit of familiarity with SuperCollider -- if not, be sure to check out [learning SuperCollider](/docs/norns/studies/#learning-supercollider) for helpful learning resources and come back here after some experimentation.
 
 <details open markdown="block">
   <summary>
@@ -16,12 +18,7 @@ permalink: /norns/supercollider-engine-study/
 {:toc}
 </details>
 
-
-## preparation + expectations
-
-Welome! We're so glad you're here! This study is meant to provide orientation for engine development on norns, using SuperCollider. We assume that you've already got a bit of familiarity with SuperCollider -- if not, be sure to check out [learning SuperCollider](/docs/norns/studies/#learning-supercollider) for helpful learning resources and come back here after some experimentation.
-
-### SafetyNet
+## preparation
 
 **Please note** that if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. To protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet), both within SuperCollider on your computer and on your norns. This Quark ensures that the output volume of SuperCollider won't reach levels which would damage your hearing. To add this to your norns, simply execute the following line from the maiden REPL, under the `SuperCollider` tab:
 
@@ -29,9 +26,7 @@ Welome! We're so glad you're here! This study is meant to provide orientation fo
 Quarks.install("SafetyNet")
 ```
 
-### ready?
-
-Let's do a little housekeeping:
+Now, let's do a little housekeeping:
 
 - make sure you have SuperCollider installed on a non-norns computer
 - connect to [maiden](/docs/norns/maiden) from your non-norns computer
@@ -41,9 +36,11 @@ Let's do a little housekeeping:
 
 ## part 1: starting from scratch in SuperCollider {#part-1}
 
+We'll start by building a basic synth definition, which we'll then port into norns later on. Open SuperCollider, create a new file, and read on!
+
 ### make a sound {#sound}
 
-We'll start by building a basic synth definition, which we'll then port into norns later on. Type this text into a blank SuperCollder file:
+Type this text into a blank SuperCollder file:
 
 ```
 (
@@ -113,17 +110,17 @@ We're pretty much there, right? We have a neat little synth + a way to send it c
 
 ## part 2: building an engine for norns {#part-2}
 
-### boilerplate
+Rather than attempt to poetically guide you through discovery, it seems helpful to present the norns engine boilerplate first.
 
-Rather than attempt to poetically guide you through discovery, it seems helpful to present the boilerplate first:
+### boilerplate
 
 ```
 Engine_MySynthName : CroneEngine {
 
-	// add your variables here
+	// ** add your variables here **
 
 	// establish input + output busses/groups,
-	//   no need to modify this:
+	//   do not modify this:
 	*new { arg context, doneCallback;
 		^super.new(context, doneCallback);
 	}
@@ -131,11 +128,11 @@ Engine_MySynthName : CroneEngine {
 	// allocate memory:
 	alloc {
 		
-		// add your SynthDefs here
+		// ** add your SynthDefs here **
 				
 		context.server.sync;
 		
-		// add your commands here
+		// ** add your commands here **
 		
 	}
 
@@ -144,7 +141,7 @@ Engine_MySynthName : CroneEngine {
 
 ### BloopSynth engine
 
-Following this structure, let's build a norns engine from the synth definition we were previously working on in SuperCollider.
+Following the structure above, let's build a norns engine from the synth definition we were previously working on in SuperCollider.
 
 The end goal is to generate a SuperCollider Class File named `Engine_BloopSynth.sc`, which will contain our engine definition.
 

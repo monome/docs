@@ -45,14 +45,24 @@ Let's do a little housekeeping:
 
 We'll start by building a basic synth definition, which we'll then port into norns later on. Type this text into a blank SuperCollder file:
 
-```bash
+```
 (
 SynthDef("BloopSynth", {
-	var sound = Pulse.ar(440,0.3); // let's build a raw sound,
-	var filter = MoogFF.ar(in: sound, freq: 3000, gain: 3); // put that raw sound through a resonant filter,
-	var envelope = Env.perc(level: 1.0, releaseTime: 0.4).kr(2); // and add an envelope!
-	var signal = Pan2.ar(filter*envelope,0); // our final signal is our filter multiplied by our envelope, panned to center
-	Out.ar(0,signal); // let's send our signal to the output
+	// let's build a raw sound:
+	var sound = Pulse.ar(440,0.3);
+
+	// put that raw sound through a resonant filter:
+	var filter = MoogFF.ar(in: sound, freq: 3000, gain: 3);
+
+	// and add an envelope:
+	var envelope = Env.perc(level: 1.0, releaseTime: 0.4).kr(2);
+
+	// our final signal is our filter multiplied by our envelope, panned to center:
+	var signal = Pan2.ar(filter*envelope,0);
+
+	// let's send our signal to the output:
+	Out.ar(0,signal);
+	
 	}).add;
 )
 ```
@@ -61,7 +71,7 @@ Navigate to the closing parenthesis and press `CMD-RETURN` (Mac) / `CTRL-ENTER` 
 
 To trigger the synth, simply assign it to a variable (and evaluate):
 
-```bash
+```
 x = Synth("BloopSynth");
 ```
 
@@ -71,30 +81,31 @@ We should hear a plucky little tone as our SynthDef plays a 440hz note through o
 
 If we were to port this to norns, it'd be fun to mash a key and make this sound for a bit, but it'd eventually become stale because the pitch, the release time, the pulse width are static. So, let's introduce a few arguments so we can use them to control these dynamic elements:
 
-```bash
+```
 (
 SynthDef("BloopSynth", {
-	arg freq = 440, pw = 0.3, cutoff = 3000, resonance = 3, amp = 1, release = 0.4, pan = 0, out = 0;
+	arg freq = 440, pw = 0.3, cutoff = 3000, resonance = 3,
+	amp = 1, release = 0.4, pan = 0, out = 0;
 	
-	var sound = Pulse.ar(freq,pw); // let's build a sound,
-	var filter = MoogFF.ar(in: sound, freq: cutoff, gain: resonance); // put that sound through a resonating filter,
-	var envelope = Env.perc(level: amp, releaseTime: release).kr(2); // and add an envelope!
-	var signal = Pan2.ar(filter*envelope,pan); // our final signal is our filter multiplied by our envelope, panned to center
+	var sound = Pulse.ar(freq,pw);
+	var filter = MoogFF.ar(in: sound, freq: cutoff, gain: resonance);
+	var envelope = Env.perc(level: amp, releaseTime: release).kr(2);
+	var signal = Pan2.ar(filter*envelope,pan);
 	
-	Out.ar(out,signal); // let's send our signal to the output
+	Out.ar(out,signal);
 	}).add;
 )
 ```
 
 Now, we can simply execute the default values with:
 
-```bash
+```
 x = Synth("BloopSynth");
 ```
 
 Or we can modify the values through our arguments: 
 
-```bash
+```
 x = Synth("BloopSynth",[\freq,300, \cutoff,1400, \resonance,4, \release,3]);
 ```
 
@@ -106,7 +117,7 @@ We're pretty much there, right? We have a neat little synth + a way to send it c
 
 Rather than attempt to poetically guide you through discovery, it seems helpful to present the boilerplate first:
 
-```bash
+```
 Engine_MySynthName : CroneEngine {
 
 	// add your variables here
@@ -139,7 +150,7 @@ The end goal is to generate a SuperCollider Class File named `Engine_BloopSynth.
 
 We can do this either in SuperCollider (be sure to save as a Class File!) and import it into our `code > engine_study > lib` folder, or we can create the file directly in maiden (just use maiden's file renaming feature to rename the file `Engine_BloopSynth.sc`).
 
-```bash
+```
 Engine_BloopSynth : CroneEngine {
 // All norns engines follow the 'Engine_MySynthName' convention above
 
@@ -167,7 +178,8 @@ Engine_BloopSynth : CroneEngine {
 
 		// add SynthDefs
 		SynthDef("BloopSynth", {
-			arg freq = 440, pw = pw, cutoff = cutoff, resonance = resonance, amp = amp, release = release, pan = pan, out = out;
+			arg freq = 440, pw = pw, cutoff = cutoff, resonance = resonance,
+			amp = amp, release = release, pan = pan, out = out;
 			var sound = Pulse.ar(freq,pw);
 			var filter = MoogFF.ar(in: sound, freq: cutoff, gain: resonance);
 			var envelope = Env.perc(level: amp, releaseTime: release).kr(2);
@@ -207,7 +219,16 @@ Engine_BloopSynth : CroneEngine {
 		});
 		
 		this.addCommand("hz", "f", { arg msg;
-      		Synth("BloopSynth", [\freq,msg[1], \pw,pw, \amp,amp, \cutoff,cutoff, \resonance,resonance, \release,release, \pan,pan, \out,out]);
+		Synth("BloopSynth", [
+		\freq,msg[1],
+		\pw,pw,
+		\amp,amp,
+		\cutoff,cutoff,
+		\resonance,resonance,
+		\release,release,
+		\pan,pan,
+		\out,out
+		]);
 		});
 		
 	}
@@ -241,7 +262,7 @@ this.addCommand("release", "f", { arg msg;
 
 Though most of this engine's components are recognizable from our previous SynthDef exercise, you'll notice that `hz` is a new gesture:
 
-```bash
+```
 this.addCommand("hz", "f", { arg msg;
 	Synth("BloopSynth", [\freq,msg[1], \pw,pw, \amp,amp, \cutoff,cutoff, \resonance,resonance, \release,release, \pan,pan, \out,out]);
 });
@@ -398,13 +419,13 @@ bloop = include('engine_study/lib/bloopsynth_engine')
 
 Remember: in our `bloopsynth_engine.lua` file, we wrapped all of the engine-specific functions into a `BloopSynth` table, which we then **return** at the end. So when we use `include`, we assign those functions to the script-scope variable `bloop`, which then has access to those same functions. To confirm, run the `SC engine study: import + initialize` code snippet and execute the following on the command line:
 
-```bash
+```
 >> tab.print(bloop)
 ```
 
 Which returns:
 
-```bash
+```
 add_params	function: 0x3f3860
 trig	function: 0x4fa410
 ```
@@ -415,7 +436,7 @@ The *path* we provide the `include` function is also very important -- it specif
 
 To distribute our `BloopSynth` engine to others, we could use the following architecture:
 
-```bash
+```
 bloopsynth
   - lib
   	- Engine_BloopSynth.sc

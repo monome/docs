@@ -29,7 +29,7 @@ With Ansible, the +5v rail is no longer used -- instead, grid pulls from the com
 
 ### Teletype
 
-If your Teletype does not have a black circuit board (which we started manufacturing in December 2018), it is not recommended to plug grid directly into Teletype's USB port. The older models with green boards are not designed to supply enough power through USB, which won't harm your equipment at all but it will reset the voltage regulator and cause instability. Our recommendation is to power the grid externally when plugging into Teletype, regardless of board color, as this also reduces the likelihood of noise. [two > one](https://llllllll.co/t/2-devices-to-1-host-eurorack-switch-two-one/18826/1) was designed specifically for this purpose.
+If your Teletype does not have a black circuit board (which we started manufacturing in December 2018), it is not recommended to plug grid directly into Teletype's USB port. The older models with green boards are not designed to supply enough power through USB, which won't harm your equipment at all but it will reset the voltage regulator and cause instability. Our recommendation is to power the grid externally when plugging into Teletype, regardless of board color, as this also reduces the likelihood of noise. [two > one](https://llllllll.co/t/2-devices-to-1-host-eurorack-switch-two-one/18826/1) was designed specifically for this purpose, but if you'd like to go the pre-manufactured route, you can also utilize Expressive E's [ground loop adapter](https://www.expressivee.com/14-ground-loop-adaptor).
 
 ### troubleshooting noise
 

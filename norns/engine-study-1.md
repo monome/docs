@@ -4,10 +4,15 @@ nav_exclude: true
 permalink: /norns/engine-study-1/
 ---
 
-# norns engine study
+# learning the machine
+
+norns engine study 1: building a synth, creating an engine, scripting on norns
+
 {: .no_toc }
 
-Welome! We're so glad you're here! This study is meant to provide orientation for engine development on norns, using SuperCollider. We assume that you've already got a bit of familiarity with SuperCollider -- if not, be sure to check out [learning SuperCollider](/docs/norns/studies/#learning-supercollider) for helpful learning resources and come back here after some experimentation.
+SuperCollider is a free and open-source platform for making sound, which powers the synthesis layer of norns. Many norns scripts are a combination of SuperCollider (where a synthesis engine is defined) and Lua (where the hardware + UI interactions are defined).
+
+This study is meant to provide orientation for engine development on norns, using SuperCollider. We assume that you've already got a bit of familiarity with SuperCollider -- if not, be sure to check out [learning SuperCollider](/docs/norns/studies/#learning-supercollider) for helpful learning resources and come back here after some experimentation.
 
 <details open markdown="block">
   <summary>
@@ -19,6 +24,8 @@ Welome! We're so glad you're here! This study is meant to provide orientation fo
 </details>
 
 ## preparation
+
+If you haven't already, please [download SuperCollider](https://supercollider.github.io) on a non-norns computer to follow along with the rest of the study.
 
 **Please note** that if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. To protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet), both within SuperCollider on your computer and on your norns. This Quark ensures that the output volume of SuperCollider won't reach levels which would damage your hearing. To add this to your norns, simply execute the following line from the maiden REPL, under the `SuperCollider` tab:
 

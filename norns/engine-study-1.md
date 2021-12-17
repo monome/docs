@@ -167,9 +167,9 @@ Engine_MySynthName : CroneEngine {
 
 Following the structure above, let's build a norns engine from the synth definition we were previously working on in SuperCollider.
 
-The end goal is to generate a SuperCollider Class File named `Engine_ Moonshine.sc`, which will contain our engine definition.
+The end goal is to generate a SuperCollider Class File named `Engine_Moonshine.sc`, which will contain our engine definition.
 
-We can do this either in SuperCollider (be sure to save as a Class File!) and import it into our `code > engine_study > lib` folder, or we can create the file directly in maiden (just use maiden's file renaming feature to rename the file `Engine_ Moonshine.sc`).
+We can do this either in SuperCollider (be sure to save as a Class File!) and import it into our `code > engine_study > lib` folder, or we can create the file directly in maiden (just use maiden's file renaming feature to rename the file `Engine_Moonshine.sc`).
 
 ```
 Engine_Moonshine : CroneEngine {

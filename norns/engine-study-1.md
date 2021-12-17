@@ -4,11 +4,10 @@ nav_exclude: true
 permalink: /norns/engine-study-1/
 ---
 
-# learning the machine
-
-norns engine study 1: building a synth, creating an engine, scripting on norns
-
+# rude mechanicals
 {: .no_toc }
+
+*norns engine study 1: building a synth, creating an engine, scripting with engines on norns*
 
 SuperCollider is a free and open-source platform for making sound, which powers the synthesis layer of norns. Many norns scripts are a combination of SuperCollider (where a synthesis engine is defined) and Lua (where the hardware + UI interactions are defined).
 
@@ -25,25 +24,23 @@ This study is meant to provide orientation for engine development on norns, usin
 
 ## preparation
 
-If you haven't already, please [download SuperCollider](https://supercollider.github.io) on a non-norns computer to follow along with the rest of the study.
+If you haven't already, please [download SuperCollider](https://supercollider.github.io) on your primary non-norns computer. Though we'll eventually end up at norns, being able to quickly execute snippets SuperCollider code during the experimentation stages will provide the foundation necessary for engine construction.
 
-**Please note** that if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. To protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet), both within SuperCollider on your computer and on your norns. This Quark ensures that the output volume of SuperCollider won't reach levels which would damage your hearing. To add this to your norns, simply execute the following line from the maiden REPL, under the `SuperCollider` tab:
+**Please note** that if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. To protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet), both within SuperCollider on your computer and on your norns. This Quark ensures that the output volume of SuperCollider won't reach levels which would damage your hearing. To add SafetyNet to your norns, simply execute the following line from the maiden REPL, under the `SuperCollider` tab:
 
 ```lua
 Quarks.install("SafetyNet")
 ```
 
-Now, let's do a little housekeeping:
+Now, let's do a little norns housekeeping before digging into SuperCollider:
 
-- make sure you have SuperCollider installed on a non-norns computer
-- connect to [maiden](/docs/norns/maiden) from your non-norns computer
-  - create a folder inside of `code` named `engine_study`
-  - create a folder inside of `engine_study` named `lib`
+- create a folder inside of `code` named `engine_study`
+- create a folder inside of `engine_study` named `lib`
  
 
 ## part 1: starting from scratch in SuperCollider {#part-1}
 
-We'll start by building a basic synth definition, which we'll then port into norns later on. Open SuperCollider, create a new file, and read on!
+We'll start by building a basic synth definition in SuperCollider, which we'll then port into norns later on. Open SuperCollider on your non-norns computer and create a new SuperCollider file.
 
 ### make a sound {#sound}
 
@@ -51,17 +48,22 @@ Type this text into a blank SuperCollder file:
 
 ```
 (
-SynthDef("BloopSynth", {
+SynthDef("Moonshine", {
 	// let's build a raw sound:
-	var sound = Pulse.ar(440,0.3);
+	var pulse = Pulse.ar(freq: 300);
+	var saw = Saw.ar(freq: 300);
+	var sub = Pulse.ar(freq: 300/2);
+	var noise = WhiteNoise.ar(mul: 0.1);
+	var mix = Mix.ar([pulse,saw,sub,noise]);
 
-	// put that raw sound through a resonant filter:
-	var filter = MoogFF.ar(in: sound, freq: 3000, gain: 3);
+	// and generate an envelope:
+	var envelope = Env.perc(attackTime: 0.3, releaseTime: 2).kr(doneAction: 2);
+	
+	// put the raw sound through a resonant filter
+	//  and modulate the filter with the envelope
+	var filter = MoogFF.ar(in: mix, freq: 6000 * envelope, gain: 3);
 
-	// and add an envelope:
-	var envelope = Env.perc(level: 1.0, releaseTime: 0.4).kr(2);
-
-	// our final signal is our filter multiplied by our envelope, panned to center:
+	// our filtered signal is then multiplied by our envelope, panned to center:
 	var signal = Pan2.ar(filter*envelope,0);
 
 	// let's send our signal to the output:
@@ -71,32 +73,47 @@ SynthDef("BloopSynth", {
 )
 ```
 
-Navigate to the closing parenthesis and press `CMD-RETURN` (Mac) / `CTRL-ENTER` (Win) to evaluate the text. This adds the synth definition to our current SuperCollider session.
+Navigate to the closing parenthesis and press `CMD-RETURN` (Mac) / `CTRL-ENTER` (Win) to evaluate the text. You won't hear sound yet, since this only adds the synth definition to our current SuperCollider session.
 
-To trigger the synth, simply assign it to a variable (and evaluate):
+To trigger the synth and make sound, assign it to a variable and evaluate:
 
 ```
-x = Synth("BloopSynth");
+x = Synth("Moonshine");
 ```
 
-We should hear a plucky little tone as our SynthDef plays a 440hz note through our Pulse UGen, shaped by a resonant filter and percussive envelope.
+You should hear a buzzy tone swept by a filter as our SynthDef plays a 300hz note through our three wave generator UGens (alongside a white noise UGen) and generates an envelope which controls the synth's amplitude but *also* modulates the cutoff frequency of a final-stage resonant filter.
 
 ### build and modify arguments {#arguments}
 
-If we were to port this to norns, it'd be fun to mash a key and make this sound for a bit, but it'd eventually become stale because the pitch, the release time, the pulse width are static. So, let's introduce a few arguments so we can use them to control these dynamic elements:
+If we were to port this sketch as a norns engine and assigned a key to trigger the synth, it'd eventually become stale because the *pitch*, the envelope's *attack* and *release*, the *noise level*, the starting *filter cutoff*, even the sub-oscillator's division -- these are all **static** values. So, let's introduce a few arguments to our SyntheDef to modify these elements with each execution:
 
 ```
 (
-SynthDef("BloopSynth", {
-	arg freq = 440, pw = 0.3, cutoff = 3000, resonance = 3,
-	amp = 1, release = 0.4, pan = 0, out = 0;
+SynthDef("Moonshine", {
+	arg freq = 330, sub_div = 5, noise_level = 0.1,
+	cutoff = 8000, resonance = 3,
+	attack = 0.3, release = 0.4,
+	amp = 1, pan = 0, out = 0;
 	
-	var sound = Pulse.ar(freq,pw);
-	var filter = MoogFF.ar(in: sound, freq: cutoff, gain: resonance);
-	var envelope = Env.perc(level: amp, releaseTime: release).kr(2);
+	var pulse = Pulse.ar(freq: freq);
+	var saw = Saw.ar(freq: freq);
+	var sub = Pulse.ar(freq: freq/sub_div);
+	var noise = WhiteNoise.ar(mul: noise_level);
+	var mix = Mix.ar([pulse,saw,sub,noise]);
+
+	// and generate an envelope:
+	var envelope = Env.perc(attackTime: attack, releaseTime: release, level: amp).kr(doneAction: 2);
+	
+	// put the raw sound through a resonant filter
+	//  and modulate the filter with the envelope
+	var filter = MoogFF.ar(in: mix, freq: cutoff * envelope, gain: resonance);
+
+	// our filtered signal is then multiplied by our envelope, panned to center:
 	var signal = Pan2.ar(filter*envelope,pan);
-	
+
+	// let's send our signal to the output:
 	Out.ar(out,signal);
+	
 	}).add;
 )
 ```
@@ -104,16 +121,16 @@ SynthDef("BloopSynth", {
 Now, we can simply execute the default values with:
 
 ```
-x = Synth("BloopSynth");
+x = Synth("Moonshine");
 ```
 
-Or we can modify the values through our arguments: 
+*Or* we can modify the values by addressing these arguments:
 
 ```
-x = Synth("BloopSynth",[\freq,300, \cutoff,1400, \resonance,4, \release,3]);
+x = Synth("Moonshine",[\freq,300, \cutoff,2000, \resonance,3.7, \release,3]);
 ```
 
-We're pretty much there, right? We have a neat little synth + a way to send it commands -- now, let's get it into shape as a norns engine!
+Now, we have a neat little synth + a way to send it commands -- let's get this SynthDef shaped into a norns engine!
 
 ## part 2: building an engine for norns {#part-2}
 
@@ -146,25 +163,28 @@ Engine_MySynthName : CroneEngine {
 }
 ```
 
-### BloopSynth engine
+### Moonshine engine
 
 Following the structure above, let's build a norns engine from the synth definition we were previously working on in SuperCollider.
 
-The end goal is to generate a SuperCollider Class File named `Engine_BloopSynth.sc`, which will contain our engine definition.
+The end goal is to generate a SuperCollider Class File named `Engine_ Moonshine.sc`, which will contain our engine definition.
 
-We can do this either in SuperCollider (be sure to save as a Class File!) and import it into our `code > engine_study > lib` folder, or we can create the file directly in maiden (just use maiden's file renaming feature to rename the file `Engine_BloopSynth.sc`).
+We can do this either in SuperCollider (be sure to save as a Class File!) and import it into our `code > engine_study > lib` folder, or we can create the file directly in maiden (just use maiden's file renaming feature to rename the file `Engine_ Moonshine.sc`).
 
 ```
-Engine_BloopSynth : CroneEngine {
+Engine_Moonshine : CroneEngine {
 // All norns engines follow the 'Engine_MySynthName' convention above
 
-	// Here, we define variables for our synth's starting values,
+	// Here, we establish variables for our synth, with starting values,
 	//  which our script commands can modify:
+	var freq = 330;
+	var sub_div = 2;
+	var noise_level = 0.1;
+	var cutoff = 8000;
+	var resonance = 3;
+	var attack = 0;
+	var release = 0.4;
 	var amp = 1;
-	var release=4;
-	var pw=0.5;
-	var cutoff=3000;
-	var resonance=3;
 	var pan = 0;
 	var out = 0;
 
@@ -181,16 +201,27 @@ Engine_BloopSynth : CroneEngine {
 	alloc { // allocate memory to the following:
 
 		// add SynthDefs
-		SynthDef("BloopSynth", {
-			arg freq = 440, pw = pw, cutoff = cutoff, resonance = resonance,
-			amp = amp, release = release, pan = pan, out = out;
-			var sound = Pulse.ar(freq,pw);
-			var filter = MoogFF.ar(in: sound, freq: cutoff, gain: resonance);
-			var envelope = Env.perc(level: amp, releaseTime: release).kr(2);
+		SynthDef("Moonshine", {
+			arg freq = freq, sub_div = sub_div, noise_level = noise_level,
+			cutoff = cutoff, resonance = resonance,
+			attack = attack, release = release,
+			amp = amp, pan = pan, out = out;
+
+			var pulse = Pulse.ar(freq: freq);
+			var saw = Saw.ar(freq: freq);
+			var sub = Pulse.ar(freq: freq/sub_div);
+			var noise = WhiteNoise.ar(mul: noise_level);
+			var mix = Mix.ar([pulse,saw,sub,noise]);
+
+			var envelope = Env.perc(attackTime: attack, releaseTime: release, level: amp).kr(doneAction: 2);
+			var filter = MoogFF.ar(in: mix, freq: cutoff * envelope, gain: resonance);
+
 			var signal = Pan2.ar(filter*envelope,pan);
-			Out.ar(out,signal); // let's send our signal to the output
+
+			Out.ar(out,signal);
+
 		}).add;
-		
+
 		context.server.sync; // syncs our synth definition to the server
 
 // This is how you add "commands",
@@ -202,45 +233,55 @@ Engine_BloopSynth : CroneEngine {
 			amp = msg[1];
 		});
 
-		this.addCommand("pw", "f", { arg msg;
-			pw = msg[1];
+		this.addCommand("sub_div", "f", { arg msg;
+			sub_div = msg[1];
 		});
-		
-		this.addCommand("release", "f", { arg msg;
-			release = msg[1];
+
+		this.addCommand("noise_level", "f", { arg msg;
+			noise_level = msg[1];
 		});
-		
+
 		this.addCommand("cutoff", "f", { arg msg;
 			cutoff = msg[1];
 		});
-		
+
 		this.addCommand("resonance", "f", { arg msg;
 			resonance = msg[1];
 		});
 		
+		this.addCommand("attack", "f", { arg msg;
+			attack = msg[1];
+		});
+
+		this.addCommand("release", "f", { arg msg;
+			release = msg[1];
+		});
+
 		this.addCommand("pan", "f", { arg msg;
 			pan = msg[1];
 		});
-		
+
 		this.addCommand("hz", "f", { arg msg;
-			Synth("BloopSynth", [
+			Synth("Moonshine", [
 				\freq,msg[1],
-				\pw,pw,
 				\amp,amp,
+				\sub_div,sub_div,
+				\noise_level,noise_level,
 				\cutoff,cutoff,
 				\resonance,resonance,
+				\attack,attack,
 				\release,release,
 				\pan,pan,
 				\out,out
 			]);
-		});	
-			
+		});
+
 	}
 
 }
 ```
 
-Once the `Engine_BloopSynth.sc` file is under `code > engine_study > lib`, we'll want to restart matron + SuperCollider together, via `SYSTEM > RESTART`.
+Once the `Engine_Moonshine.sc` file is under `code > engine_study > lib`, we'll want to restart matron + SuperCollider together, via `SYSTEM > RESTART`.
 
 #### commands
 
@@ -256,7 +297,7 @@ this.addCommand("release", "f", { arg msg;
 
 - `"release"` is the name we'd like Lua to use to reference this command
 - `"f"` defines the type of argument we expect (`"f"` means float, but we could also use `"i"` for integers or `"s"` for strings)
-	- commands can also accept many arguments at once, eg. `"ifffff"`
+	- commands can also accept many arguments (and argument types) at once, eg. `"ifffff"`
 	- we're using single float commands for this example because it's easier for an introduction
 - `arg msg` lets SuperCollider know that the incoming argument is a message to unpack
 - `release = msg[1]` assigns the SynthDef's `release` to the value of the first message
@@ -268,12 +309,14 @@ Though most of this engine's components are recognizable from our previous Synth
 
 ```
 this.addCommand("hz", "f", { arg msg;
-	Synth("BloopSynth", [
+	Synth("Moonshine", [
 		\freq,msg[1],
-		\pw,pw,
 		\amp,amp,
+		\sub_div,sub_div,
+		\noise_level,noise_level,
 		\cutoff,cutoff,
 		\resonance,resonance,
+		\attack,attack,
 		\release,release,
 		\pan,pan,
 		\out,out
@@ -285,25 +328,27 @@ This is a command which accepts a single float (our `hz` value), but then bundle
 
 ### using commands {#using-commands}
 
-Now that our `BloopSynth` engine is installed on norns (and we've done a proper `SYSTEM > RESTART`), let's use Lua to execute the commands we established in the previous exercise.
+Now that our `Moonshine` engine is installed on norns (and we've done a proper `SYSTEM > RESTART`), let's use Lua to execute the commands we established in the previous exercise.
 
-In maiden, navigate to the `code > engine_study` folder and create a new Lua file (make sure this file is created outside of the `code > engine_study > lib` folder!). Name it `bloopsynth.lua` and enter the following text:
+In maiden, navigate to the `code > engine_study` folder and create a new Lua file (make sure this file is created outside of the `code > engine_study > lib` folder!). Name it `Moonshine.lua` and enter the following text:
 
 ```lua
-engine.name = 'BloopSynth'
+engine.name = 'Moonshine'
 -- nb. single or double quotes doesn't matter, just don't mix + match pairs!
 
 s = require 'sequins'
+-- see https://monome.org/docs/norns/reference/lib/sequins for more info
 
 function init()
-  mults = s{1, 2.25, s{0.25, 1.5, 3.5, 2, 3, 0.75} }
+  mults = s{1, 2.25, s{0.25, 1.5, 3.5, 2, 3, 0.75} } -- create a sequins of hz multiples
   playing = false
+  base_hz = 200
   sequence = clock.run(
     function()
       while true do
-        clock.sync(1)
+        clock.sync(1/3)
         if playing then
-          engine.hz(200 * mults())
+          engine.hz(base_hz * mults() * math.random(2))
         end
       end
     end
@@ -313,6 +358,7 @@ end
 function key(n,z)
   if n == 3 and z == 1 then
     playing = not playing
+    mults:reset() -- resets 'mults' index to 1
     redraw()
   end
 end
@@ -332,12 +378,12 @@ As far as our engine was concerned, though, we only used a single command -- `hz
 Since we set each of these up as commands in our SuperCollider code, we can simply execute changes to them in Lua (for this example, via maiden's REPL):
 
 ```lua
->> engine.pw(0.3)
+>> engine.attack(0.1)
 >> engine.cutoff(500)
->> engine.release(0.2)
+>> engine.sub_div(3)
 ```
 
-As our sequence plays and we execute these commands, you'll notice the timbre of our synth changes.
+As our sequence plays and we execute these commands, you'll notice the timbre of our synth mutate.
 
 ## part 3: build a Lua library file for our engine {#part-3}
 
@@ -345,34 +391,36 @@ One of the conveniences of scripting in norns is the [parameters](/docs/norns/st
 
 So, to cleanly + portably integrate our engine into the norns ecosystem, let's build a companion Lua file for our engine which will bundle its commands as part of its use in a script!
 
-We'll name this file `bloopsynth_engine.lua` and we'll want it to live in our `code > engine_study > lib` folder -- so either create it there via maiden or import your externally-created `bloopsynth_engine.lua` file to that location:
+We'll name this file `moonshine_engine.lua` and we'll want it to live in our `code > engine_study > lib` folder -- so either create it there via maiden or import your externally-created `moonshine_engine.lua` file to that location:
 
 ```lua
-local BloopSynth = {} -- we build a container for our engine-specific Lua functions
+local Moonshine = {}
 local Formatters = require 'formatters'
 
 -- first, we'll collect all of our commands into norns-friendly ranges
 local specs = {
   ["amp"] = controlspec.new(0, 2, "lin", 0, 1, ""),
-  ["pw"] = controlspec.new(0.01, 0.99, "lin", 0, 0.5, ""),
-  ["release"] = controlspec.new(0.003, 8, "exp", 0, 1, "s"),
+  ["sub_div"] = controlspec.new(1, 10, "lin", 1, 2, ""),
+  ["noise_level"] = controlspec.new(0, 1, "lin", 0, 0.3, ""),
   ["cutoff"] = controlspec.WIDEFREQ,
   ["resonance"] = controlspec.new(0, 4, "lin", 0, 1, ""),
+  ["attack"] = controlspec.new(0.003, 8, "exp", 0, 0, "s"),
+  ["release"] = controlspec.new(0.003, 8, "exp", 0, 1, "s"),
   ["pan"] = controlspec.PAN
 }
 
 -- this table establishes an order for parameter initialization:
-local param_names = {"amp","pw","release","cutoff","resonance","pan"}
+local param_names = {"amp","sub_div","noise_level","cutoff","resonance","attack","release","pan"}
 
 -- initialize parameters:
-function BloopSynth.add_params()
-  params:add_group("BloopSynth",#param_names)
+function Moonshine.add_params()
+  params:add_group("Moonshine",#param_names)
 
   for i = 1,#param_names do
     local p_name = param_names[i]
     params:add{
       type = "control",
-      id = "bloopsynth_"..p_name,
+      id = "Moonshine_"..p_name,
       name = p_name,
       controlspec = specs[p_name],
       formatter = p_name == "pan" and Formatters.bipolar_as_pan_widget or nil
@@ -383,11 +431,11 @@ end
 
 -- a single-purpose triggering command to gather our parameter values
 --  and send them as commands before we fire a note
-function BloopSynth.trig(hz)
+function Moonshine.trig(hz)
 
   for i = 1,#param_names do
     local p_name = param_names[i]
-    local current_val = params:get("bloopsynth_"..p_name)
+    local current_val = params:get("Moonshine_"..p_name)
     engine[p_name](current_val)
   end
   
@@ -397,29 +445,52 @@ function BloopSynth.trig(hz)
   
 end
 
-return BloopSynth -- we return these engine-specific Lua functions back to the host script
+ -- we need to return these engine-specific Lua functions back to the host script:
+return Moonshine
 ```
 
 ### import + initialize {#import}
 
-Now that our engine's timbral commands are all self-contained as norns parameters, a host script can import + initialize `BloopSynth` very easily:
+Now that our engine's timbral commands are all self-contained as norns parameters, a host script can import + initialize `Moonshine` very easily:
 
 ```lua
 -- SC engine study: import + initialize
 
-engine.name = 'BloopSynth' -- assign the engine to this script's run
+engine.name = 'Moonshine' -- assign the engine to this script's run
 
 -- our engine's Lua file is assigned a script-scope variable:
-bloop = include('engine_study/lib/bloopsynth_engine')
+moonshine = include('engine_study/lib/moonshine_engine')
+s = require 'sequins'
 
 function init()
-  bloop.add_params() -- the script adds params via the `.add params()` function
+  moonshine.add_params() -- the script adds params via the `.add params()` function
+  mults = s{1, 2.25, s{0.25, 1.5, 3.5, 2, 3, 0.75} }
+  playing = false
+  sequence = clock.run(
+    function()
+      while true do
+        clock.sync(1/3)
+        if playing then
+          moonshine.trig(200 * mults() * math.random(2))
+        end
+      end
+    end
+  )
 end
 
 function key(n,z)
   if n == 3 and z == 1 then
-    bloop.trig(187 * math.random(3)) -- the script triggers the engine and passes a Hz value
+    playing = not playing
+    mults:reset()
+    redraw()
   end
+end
+
+function redraw()
+  screen.clear()
+  screen.move(64,32)
+  screen.text(playing and "K3: turn off" or "K3: turn on")
+  screen.update()
 end
 ```
 
@@ -428,13 +499,13 @@ end
 Whenever we include a library's functions in a norns script, we need to assign it to a script-scope variable in order to use it. From the code snippet above:
 
 ```lua
-bloop = include('engine_study/lib/bloopsynth_engine')
+moonshine = include('engine_study/lib/moonshine_engine')
 ```
 
-Remember: in our `bloopsynth_engine.lua` file, we wrapped all of the engine-specific functions into a `BloopSynth` table, which we then **return** at the end. So when we use `include`, we assign those functions to the script-scope variable `bloop`, which then has access to those same functions. To confirm, run the `SC engine study: import + initialize` code snippet and execute the following on the command line:
+Remember: in our `moonshine_engine.lua` file, we wrapped all of the engine-specific functions into a `Moonshine` table, which we then **return** at the end. So when we use `include`, we assign those functions to the script-scope variable `moonshine`, which then has access to those same functions. To confirm, run the `SC engine study: import + initialize` code snippet and execute the following on the command line:
 
 ```
->> tab.print(bloop)
+>> tab.print(moonshine)
 ```
 
 Which returns:
@@ -444,23 +515,23 @@ add_params	function: 0x3f3860
 trig	function: 0x4fa410
 ```
 
-The *path* we provide the `include` function is also very important -- it specifies where the compiler should look to round out a script's functionality. In order for any script to find and initialize our `BloopSynth`'s Lua file, we provide the exact path (eg. `'engine_study/lib/bloopsynth_engine'`).
+The *path* we provide the `include` function is also very important -- it specifies where the compiler should look to round out a script's functionality. In order for any script to find and initialize our `Moonshine`'s Lua file, we provide the exact path (eg. `'engine_study/lib/moonshine_engine'`).
 
 ### readying distribution {#distro}
 
-To distribute our `BloopSynth` engine to others, we could use the following architecture:
+To distribute our `Moonshine` engine to others, we could use the following architecture:
 
 ```
-bloopsynth/
+moonshine/
   lib/
-    Engine_BloopSynth.sc
-    bloopsynth_engine.lua
-  bloopsynth.lua
+    Engine_Moonshine.sc
+    moonshine_engine.lua
+  moonshine.lua
 ```
 
 #### the example script {#example-script}
 
-While we've made it easier for another script to use our `BloopSynth` engine by providing a companion Lua library file, we can ensure success + legibility by including a simple example script (in the filetree above, this is the `bloopsynth.lua` file) which clarifies usage.
+While we've made it easier for another script to use our `Moonshine` engine by providing a companion Lua library file, we can ensure success + legibility by including a simple example script (in the filetree above, this is the `moonshine.lua` file) which clarifies usage.
 
 The `SC engine study: import + initialize` [snippet above](#import) is a fine starting point:
 
@@ -470,6 +541,14 @@ The `SC engine study: import + initialize` [snippet above](#import) is a fine st
 - it shows how to trigger the engine
 
 ### further
+
+If you feel prepared to explore both SuperCollider and Lua more deeply (and hopefully you do!), here are a few jumping-off points to extend the `Moonshine` engine:
+
+- show parameter values on the screen
+- create an on-norns interaction for parameter manipulation in the main script UI
+- swap out the sequins sequencer for external MIDI control
+- create a separate envelope for filter cutoff modulation
+- add a mechanism to control the individual level of each of the 3 voices
 
 To continue exploring + creating new synthesis engines for norns, we highly recommend:
 

@@ -182,6 +182,10 @@ The headphone driver is a TPA6130A2. Volume is controlled via i2c with a simple 
 
 The i2c lines are connected to i2c0.
 
+**shield output levels**
+
+shield revision 210330 outputs 1.75V peak-to-peak, which is roughly *consumer line level*.
+
 ### can I plug modular signals into norns directly? {#modular-levels}
 
 NO!

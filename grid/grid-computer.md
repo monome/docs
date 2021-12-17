@@ -31,6 +31,8 @@ Running into trouble? [Check out the serialosc docs](/docs/serialosc/setup).
 
 Want to get into the guts of serialosc for extension or re-programming? [Check out the serialosc protocol docs](/docs/serialosc/osc).
 
+Serialosc uses [libmonome](https://github.com/monome/libmonome), which simplifies serial communication with the grid. Further details on the monome [serial protocol](/docs/serialosc/serial.txt) and a complete [libmonome tutorial](/docs/libmonome/tutorial).
+
 ## Mark Eats Sequencer (MacOS)
 
 Mark Eats Sequencer is a fantastic first foray into grid + computer play. It's a completely standalone step sequencer application, which can pipe MIDI to Ableton Live, Logic Pro, or any other DAW. With eight channels and sixteen sixteen-step patterns, it's a sequencing powerhouse that will help orient you to the flexibility of grid.

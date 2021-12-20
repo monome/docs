@@ -143,18 +143,16 @@ Engine_MySynthName : CroneEngine {
 
 	// ** add your variables here **
 
-	// establish input + output busses/groups,
-	//   do not modify this:
-	*new { arg context, doneCallback;
-		^super.new(context, doneCallback);
-	}
-
-	// allocate memory:
-	alloc {
+	// This is called when the engine is actually loaded by a script.
+	// You can assume it will be called in a Routine,
+	//  and you can use .sync and .wait methods.
+	alloc { // allocate memory to the following:
 		
 		// ** add your SynthDefs here **
 				
-		context.server.sync;
+		// if you need your SynthDef to be available before commands are sent,
+		//  sync with the server by ** uncommenting the following line **:
+		// Server.default.sync;
 		
 		// ** add your commands here **
 		
@@ -175,37 +173,17 @@ We can do this either in SuperCollider (be sure to save as a Class File!) and im
 Engine_Moonshine : CroneEngine {
 // All norns engines follow the 'Engine_MySynthName' convention above
 
-	// Here, we establish variables for our synth, with starting values,
-	//  which our script commands can modify:
-	var freq = 330;
-	var sub_div = 2;
-	var noise_level = 0.1;
-	var cutoff = 8000;
-	var resonance = 3;
-	var attack = 0;
-	var release = 0.4;
-	var amp = 1;
-	var pan = 0;
-	var out = 0;
+	var params;
 
-// This is your constructor. The 'context' arg is a CroneAudioContext.
-// It provides input and output busses and groups.
-// NO NEED TO MODIFY THIS
-	*new { arg context, doneCallback;
-		^super.new(context, doneCallback);
-	}
-
-// This is called when the engine is actually loaded by a script.
-// You can assume it will be called in a Routine,
-//  and you can use .sync and .wait methods.
 	alloc { // allocate memory to the following:
 
 		// add SynthDefs
 		SynthDef("Moonshine", {
-			arg freq = freq, sub_div = sub_div, noise_level = noise_level,
-			cutoff = cutoff, resonance = resonance,
-			attack = attack, release = release,
-			amp = amp, pan = pan, out = out;
+			arg out = 0,
+			freq, sub_div, noise_level,
+			cutoff, resonance,
+			attack, release,
+			amp, pan;
 
 			var pulse = Pulse.ar(freq: freq);
 			var saw = Saw.ar(freq: freq);
@@ -222,58 +200,46 @@ Engine_Moonshine : CroneEngine {
 
 		}).add;
 
-		context.server.sync; // syncs our synth definition to the server
-
-// This is how you add "commands",
-//  which are how the Lua interpreter controls the engine.
-// The format string is analogous to an OSC message format string,
-//  and the 'msg' argument contains data.
-
-		this.addCommand("amp", "f", { arg msg;
-			amp = msg[1];
-		});
-
-		this.addCommand("sub_div", "f", { arg msg;
-			sub_div = msg[1];
-		});
-
-		this.addCommand("noise_level", "f", { arg msg;
-			noise_level = msg[1];
-		});
-
-		this.addCommand("cutoff", "f", { arg msg;
-			cutoff = msg[1];
-		});
-
-		this.addCommand("resonance", "f", { arg msg;
-			resonance = msg[1];
-		});
+  // We don't need to sync with the server in this example,
+  //   because were not actually doing anything that depends on the SynthDef being available,
+  //   so let's leave this commented:
+  // Server.default.sync;
 		
-		this.addCommand("attack", "f", { arg msg;
-			attack = msg[1];
+  // let's create an Dictionary (an unordered associative collection)
+  //   to store parameter values, initialized to defaults.
+		params = Dictionary.newFrom([
+			\sub_div, 2,
+			\noise_level, 0.1,
+			\cutoff, 8000,
+			\resonance, 3,
+			\attack, 0,
+			\release, 0.4,
+			\amp, 0.5,
+			\pan, 0;
+		]);
+
+  // "Commands" are how the Lua interpreter controls the engine.
+  // The format string is analogous to an OSC message format string,
+  //   and the 'msg' argument contains data.
+
+  // We'll just loop over the keys of the dictionary, 
+  //   and add a command for each one, which updates corresponding value:
+		params.keysDo({ arg key;
+			this.addCommand(key, "f", { arg msg;
+				params[key] = msg[1];
+			});
 		});
 
-		this.addCommand("release", "f", { arg msg;
-			release = msg[1];
-		});
+  // This is faster than (but similar to) individually defining each command, eg:
+		// this.addCommand("amp", "f", { arg msg;
+		//	  amp = msg[1];
+		// });
 
-		this.addCommand("pan", "f", { arg msg;
-			pan = msg[1];
-		});
-
+  // The "hz" command, however, requires a new syntax!
+  // ".getPairs" flattens the dictionary to alternating key,value array
+  //   and "++" concatenates it:
 		this.addCommand("hz", "f", { arg msg;
-			Synth("Moonshine", [
-				\freq,msg[1],
-				\amp,amp,
-				\sub_div,sub_div,
-				\noise_level,noise_level,
-				\cutoff,cutoff,
-				\resonance,resonance,
-				\attack,attack,
-				\release,release,
-				\pan,pan,
-				\out,out
-			]);
+			Synth.new("Moonshine", [\freq, msg[1]] ++ params.getPairs)
 		});
 
 	}
@@ -287,13 +253,15 @@ Once the `Engine_Moonshine.sc` file is under `code > engine_study > lib`, we'll 
 
 Building commands are where things really get fun, because commands surface dynamic controls to the Lua layer. Once you identify what you'd like to control from your script, command construction is pretty straightforward.
 
-Let's break one down:
+We could define our commands for each timbral parameter individually, eg:
 
 ```
 this.addCommand("release", "f", { arg msg;
 	release = msg[1];
 });
 ```
+
+Where:
 
 - `"release"` is the name we'd like Lua to use to reference this command
 - `"f"` defines the type of argument we expect (`"f"` means float, but we could also use `"i"` for integers or `"s"` for strings)
@@ -303,28 +271,52 @@ this.addCommand("release", "f", { arg msg;
 - `release = msg[1]` assigns the SynthDef's `release` to the value of the first message
 	- in our case, we only have one message -- a `"f"` (float)
 
-#### command focus: hz {#hz}
+But we have 8 timbral parameters, which means we'll basically iterate the same structure over and over again, just changing names.
 
-Though most of this engine's components are recognizable from our previous SynthDef exercise, you'll notice that `hz` is a new gesture:
+Rather than needlessly repeating lines of similar code with small differences, our `Moonshine` engine utilizes SuperCollider's [Dictionary](http://doc.sccode.org/Classes/Dictionary.html) object to build an associative array which holds each of our parameter commands (and a starting default value):
 
 ```
-this.addCommand("hz", "f", { arg msg;
-	Synth("Moonshine", [
-		\freq,msg[1],
-		\amp,amp,
-		\sub_div,sub_div,
-		\noise_level,noise_level,
-		\cutoff,cutoff,
-		\resonance,resonance,
-		\attack,attack,
-		\release,release,
-		\pan,pan,
-		\out,out
-	]);
+params = Dictionary.newFrom([
+	\sub_div, 2,
+	\noise_level, 0.1,
+	\cutoff, 8000,
+	\resonance, 3,
+	\attack, 0,
+	\release, 0.4,
+	\amp, 0.5,
+	\pan, 0;
+]);
+```
+
+Once we establish `params` as a *Dictionary*, we can iterate on it very easily using SuperCollider's built in methods for iteration. [keysDo](https://depts.washington.edu/dxscdoc/Help/Classes/Dictionary.html#-keysDo) allows us to iterate over the a Dictionary and evaluate a given function for each key. Since each of these timbral commands accept a single float and contribute a single argument to our SynthDef, we can save a lot of lines using this approach:
+
+```
+params.keysDo({ arg key;
+	this.addCommand(key, "f", { arg msg;
+		params[key] = msg[1];
+	});
 });
 ```
 
-This is a command which accepts a single float (our `hz` value), but then bundles the current state of all the other variables to instantiate a `BloopSynth` voice at the specified frequency.
+#### command focus: hz {#hz}
+
+`Moonshine` represents a useful design pattern -- the 1-shot synth which bundles the current state of the timbral parameters as it plays a note. Our `hz` command is how it happens:
+
+```
+this.addCommand("hz", "f", { arg msg;
+	Synth.new("Moonshine", [\freq, msg[1]] ++ params.getPairs)
+});
+```
+
+The action of this command first passes the argument as the `freq` value for our `Moonshine` synth, but then it uses another Dictionary method ([`.getPairs`](https://doc.sccode.org/Classes/Dictionary.html#-getPairs)) to succinctly bundle up our timbral parameters. Through an array concatenation method ([++](https://doc.sccode.org/Classes/Array.html#-++)), one line of code can perform the following:
+
+- create a new Synth: `Synth.new(`
+- use the `Moonshine` SynthDef: `"Moonshine",`
+- and pass the incoming argument as the synth's frequency: `[\freq, msg[1]]`
+- but also bundle that argument: ` ++ `
+- with every current timbral parameter value: `params.getPairs)`
+
+What results is a command which accepts a single float for frequency and bundles the current state of all the other variables to instantiate a `Moonshine` voice.
 
 ### using commands {#using-commands}
 

@@ -327,8 +327,12 @@ wifi is the most straightforward way to back up your norns. These instructions a
 
 If you have a stock norns, connect it to a second computer via [serial](../wifi-files/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
 
-- Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
-- If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
+- Make sure the USB stick is detected with `ls /media`
+	- you should see `usb` listed, in a different color
+	- if you execute `ls /media/usb`, this should show the contents of the USB stick (if there are any)
+- Copy your dust folder with `cp -r /home/we/dust /media/usb`
+	- if you run into a permission issue, try `sudo cp -r /home/we/dust /media/usb`
+	- this will take time! upwards of 15 minutes.
 - Shutdown with `sudo shutdown now`
 
 #### via sd card (shield only)

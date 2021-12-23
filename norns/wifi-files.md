@@ -180,7 +180,7 @@ If you don't have one already, [generate a new ssh key](https://docs.github.com/
 
 ```
 mbp@mbp.local /Users/mbp
-% ssh-copy-id norns.local
+% ssh-copy-id we@norns.local
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
 we@norns.local's password:

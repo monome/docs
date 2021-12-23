@@ -21,15 +21,25 @@ serialosc runs in the background and converts serial communication (over USB) in
 
 ## troubleshooting
 
+This section assume two things are true:
+
+- your grid/arc is displaying a light burst when you plug it into your computer, which means its receiving power over USB
+	- if your grid/arc is *not* displaying a light burst when you plug it into your computer, then the unit is not receiving power -- please try another cable and/or USB port
+- your grid/arc is simply not visible in any apps designed to connect with it, eg. the 'Grid' section of Mark Eats Sequencer's preferences or the dropdown menu in the Max test patchers
+	- if your grid/arc *is* visible to these applications and is successfully connecting but perhaps MIDI out from these applications isn't working the way you expect, then you do not need to perform any of the steps in this section -- instead, please consult MIDI routing documentation for those environments
+
 ### macOS
-If your grid or arc is not being detected when you plug into your Mac (but it is showing the light burst indicating its receiving power over USB), here are a few things to try.
 
 1. On your Mac, open Activity Monitor and search `serialosc`. you should see entries for both `serialosc-detector` and `serialoscd`. if you do not, then serialosc is not installed.
 
 2. Once you confirm serialosc is installed, please connect your grid/arc and open Terminal.  
     - execute `ls -lrt /dev/tty.usb*`  
     - if you get `ls: /dev/tty.usb*: No such file or directory` back, then your grid/arc is not connecting and you should try a different USB cable.
-    - an example successful response: `crw-rw-rw-  1 root  wheel   20,   6 Nov  8 08:08 /dev/tty.usbserial-m1100368`
+    - successful responses will look like:
+	    - `crw-rw-rw-  1 root  wheel   20,   6 Nov  8 08:08 /dev/tty.usbserial-m1100368`
+    	- `crw-rw-rw-  1 root  wheel    9,   4 Oct 28 09:54 /dev/tty.usbmodemm44094551`
+
+ **If you are running macOS 10.14 or earlier, then there are some additional troubleshooting steps to pursue:**
 
 3. In Terminal, confirm that you do not have any conflicting FTDI drivers installed:
     - execute `ls /System/Library/Extensions | grep FTDI`

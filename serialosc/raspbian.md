@@ -6,11 +6,11 @@ redirect_from: /raspbian/
 permalink: /serialosc/raspbian/
 ---
 
-# raspbian
+# raspberry pi os
 
 ## precompiled packages
 
-monome software packages from the [ubuntu ppa](https://launchpad.net/~artfwo/+archive/ubuntu/monome) work great on raspbian. to install them on raspbian stretch, add the repository signing key first:
+monome software packages from the [ubuntu ppa](https://launchpad.net/~artfwo/+archive/ubuntu/monome) work great on raspberry pi os. to install them on raspbian stretch, add the repository signing key first:
 
 ```
 gpg --keyserver keyserver.ubuntu.com --recv DD9300F1
@@ -38,7 +38,7 @@ sudo systemctl disable serialosc.service
 
 ## compiling from source
 
-while this build script is specific to raspbian stretch (for the raspberry pi), there's a good change it'll work with other embedded linux distributions and devices.
+while this build script is specific to raspberry pi os (for the raspberry pi), there's a good change it'll work with other embedded linux distributions and devices.
 
 this script will install `libmonome` and `serialosc`. these are essential for communicating with grids and arcs on linux.
 
@@ -51,11 +51,11 @@ cd libmonome
 sudo ./waf install
 cd ..
 
-sudo apt-get install libudev-dev libavahi-compat-libdnssd-dev
+sudo apt-get install libudev-dev libavahi-compat-libdnssd-dev libuv1-dev
 git clone https://github.com/monome/serialosc.git
 cd serialosc
 git submodule init && git submodule update
-./waf configure
+./waf configure --enable-system-libuv
 ./waf
 sudo ./waf install
 cd ..

@@ -671,7 +671,7 @@ end
 ## continued
 {: .no_toc }
 
-- part 0: [first light](../study-0/) //  variables, simple maths, keys + encoders
+- part 0: [first light](../study-0) // learning to read and edit code
 - part 1: many tomorrows
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
 - part 3: [spacetime](../study-3/) // functions, parameters, time

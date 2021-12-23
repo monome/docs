@@ -9,7 +9,7 @@ permalink: /modular/update/
 new releases are available per module:
 
 - [teletype](https://github.com/monome/teletype/releases) **4.0.0** (july 10 2021)
-- [ansible](https://github.com/monome/ansible/releases) **3.1.1** (june 7  2021)
+- [ansible](https://github.com/monome/ansible/releases) **3.1.2** (november 23 2021)
 - [whitewhale](https://github.com/monome/whitewhale/releases) **1.6.0** (june 7 2021)
 - [meadowphysics](https://github.com/monome/meadowphysics/releases) **2.2.1** (june 7 2021)
 - [earthsea](https://github.com/monome/earthsea/releases) **1.9.5** (june 7 2021)

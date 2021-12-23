@@ -8,12 +8,20 @@ has_toc: false
 ---
 
 # grid + computer
+{: .no_toc }
 
-## first steps
+While grid is a completely open tool, whose use is intended to be designed by the artist who's using it, let's begin by exploring from a few fixed starting points.
 
-While grid is a completely open tool, it helps to begin exploring from a few fixed points.
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
-### serialosc
+## serialosc (required) {#serialosc}
 
 grid uses serialosc to communicate back and forth with applications on your computer. Once you install it, it runs in the background and converts serial communication (over USB) into Open Sound Control (OSC). Applications query serialosc to connect to grid and arc, so while you'll never interact with serialosc directly, it's necessary to have installed before we do anything else.
 
@@ -21,17 +29,65 @@ grid uses serialosc to communicate back and forth with applications on your comp
 
 Running into trouble? [Check out the serialosc docs](/docs/serialosc/setup).
 
-Want to get into the guts of serialosc? [Check out the OSC protocol docs](/docs/serialosc/osc).
+Want to get into the guts of serialosc for extension or re-programming? [Check out the serialosc protocol docs](/docs/serialosc/osc).
 
-### Mark Eats Sequencer
+Serialosc uses [libmonome](https://github.com/monome/libmonome), which simplifies serial communication with the grid. Further details on the monome [serial protocol](/docs/serialosc/serial.txt) and a complete [libmonome tutorial](/docs/libmonome/tutorial).
 
-Mark Eats Sequencer is a fantastic first foray into grid + (MacOS) computer play. It's a completely standalone step sequencer application, which can pipe MIDI to Ableton Live, Logic Pro, or any other DAW. With eight channels and sixteen sixteen-step patterns, it's a sequencing powerhouse that will help orient you to the flexibility of grid.
+## Mark Eats Sequencer (MacOS)
+
+Mark Eats Sequencer is a fantastic first foray into grid + computer play. It's a completely standalone step sequencer application, which can pipe MIDI to Ableton Live, Logic Pro, or any other DAW. With eight channels and sixteen sixteen-step patterns, it's a sequencing powerhouse that will help orient you to the flexibility of grid.
 
 [→ download Mark Eats Sequencer](https://www.markeats.com/sequencer/)
 
-### Max for Live
+### integration with a DAW
+{: .no_toc }
+
+Mark Eats Sequencer's documentation is fantastic (be sure to go to `Help > User Guide` in the application), but since using a standalone music-making application outside of a DAW is less common these days, here are a few tips to help get MIDI out of Mark Eats Sequencer and into a DAW. These will apply to most any DAW, including Ableton Live and Logic Pro.
+
+#### sync to DAW's clock
+
+To sync Mark Eats Sequencer with a DAW's clock, open the Sequencer's preferences and ensure that `Sync > Clock source` is set to `To Mark Eats Sequencer`. This means that the Sequencer will be listening for start/stop/reset signals from another program on your computer.
+
+In the DAW's clock settings, you'll just need to ensure that you are sending synchronization signals to the `To Mark Eats Sequencer` destination. In Ableton Live, this is the `Sync` setting under `Sequencer > Preferences > Link/Tempo/MIDI > MIDI Ports`:
+
+![](/docs/grid/images/mark-eats_ableton-live.png)
+
+In Logic Pro, choose `To Mark Eats Sequencer` as a destination under `Preferences > MIDI > MIDI Project Sync Settings` and enable `Clock`:
+
+![](/docs/grid/images/mark-eats_logic-pro.png)
+
+#### send MIDI to DAW
+
+When you open Mark Eats Sequencer, it establishes itself as a virtual MIDI device for the rest of the applications on your computer, so very little setup is needed to direct the MIDI traffic from Sequencer to instruments in a DAW. By default, Sequencer sends data from Pages 1 - 6 on MIDI channels 1 - 6 and Drums 1 + 2 on MIDI channels 11 + 12.
+
+Each DAW has slightly different workflows for selecting which MIDI device should control which instrument, but here are some quick tips for Ableton Live and Logic Pro:
+
+**Ableton Live**
+
+Under `Preferences Link/Tempo/MIDI > MIDI Ports`, ensure that `Track` is selected next to `In: From Mark Eats Sequencer`. Then, navigate to the `MIDI From` section of any track:
+
+-  change `All Ins` to `From Mark Eats Sequencer`
+-  change `All Channels` to whichever channel that corresponds to the Sequencer Page you want to use for this track
+-  either change `Monitor` to `In` *or* leave it as `Auto` and Arm Recording for the track (see Live's manual for more details)
+
+![](/docs/grid/images/mark-eats_ableton-live_routing.png)
+
+
+**Logic Pro**
+
+Under `Preferences > MIDI > Inputs`, ensure that `From Mark Eats Sequencer` is selected. Then, navigate to any track's Track inspector:
+
+- change `MIDI In Port` from `All` to `From Mark Eats Sequencer`
+- change `MIDI In Channel` from `All` to whichever channel that corresponds to the Sequencer Page you want to use for this track
+- enable recording on any track you want to hear
+
+![](/docs/grid/images/mark-eats_logic-pro_routing.png)
+
+## Max for Live (MacOS + Windows)
 
 If you have access to Ableton Live Suite (or the Max for Live add-on for Live Standard), there are a number of Max for Live devices which integrate grid into your Live Sets.
+
+- [terms](/docs/grid/app/terms): a collection of essential monome applications, synchronized and integrated within Ableton Live Suite (works with Live 11 / Live 10 / Live 9)
 
 - [gridlab](https://github.com/stretta/gridlab): a suite of devices which collect a number of unique sequencers and utilities
 
@@ -39,13 +95,15 @@ If you have access to Ableton Live Suite (or the Max for Live add-on for Live St
 
 - [control](https://github.com/benjaminvanesser/control): transforms grid into a collection of assignable MIDI controls
 
-## scripting
+## scripting (all platforms)
 
 The grid is *intended* to be reimagined. You give it purpose and meaning that's all your own: instrument, experiment, tool, toy... choose your own adventure!
 
-To start with some introductory knowledge, please visit [grid studies](../studies).
+To start with some introductory knowledge for scripting for grids on MacOS, Windows, or Linux visit [grid studies](../studies).
 
-## Max/MSP
+## Max/MSP (MacOS + Windows)
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/-1tTABS_Ugs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 The grid was originally designed as a flexible, minimal interface to control Max/MSP patchers. Over the past 15+ years many artists have not only extended this simple purpose into full-blown performance tools -- and due to the communal nature inherent to Max/MSP, have generously shared these patchers + standalone applications with others. This exchange of enthusiasm and care for other artists has always been staggering to us.
 

@@ -37,6 +37,15 @@ Exiting DFU...
 Update complete.
 ```
 
+If you see `command not found: druid`, then please confirm that you've completed druid's [preparation](/docs/crow/druid/#preparation) and [installation](/docs/crow/druid/#install-druid).
+
+If you continue to see `command not found: druid`, there's a chance that your installation was added to your PATH under a different shell (likely either `bash` or `zsh`). You can confirm your shell by executing `echo $0` in Terminal, which will return either `-zsh` or `-bash`, depending on the current shell. To switch between them, use one of the following commands:
+
+- to switch to bash: execute `chsh -s /bin/bash`, enter your password, and restart Terminal
+- to switch to zsh: execute `chsh -s /bin/zsh`, enter your password, and restart Terminal
+
+Once you're back in the shell you used to install, you should be good to go!
+
 ## Windows
 
 Before updating crow you'll need to install the driver for crow's bootloader, and the `libusb1` DLL file so that the PowerShell can talk to crow's bootloader.

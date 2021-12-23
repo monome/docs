@@ -30,7 +30,7 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 {:toc}
 </details>
 
-## hardware
+## HARDWARE
 
 ### replacing parts
 
@@ -182,6 +182,10 @@ The headphone driver is a TPA6130A2. Volume is controlled via i2c with a simple 
 
 The i2c lines are connected to i2c0.
 
+**shield output levels**
+
+shield revision 210330 outputs 1.75V peak-to-peak, which is roughly *consumer line level*.
+
 ### can I plug modular signals into norns directly? {#modular-levels}
 
 NO!
@@ -205,7 +209,7 @@ The norns OS is primarily developed for/on the stock norns hardware, which makes
 
 Avoiding the additional CPU headroom required to support external video output also allows us to optimize the capabilities of norns, to provide stock and shield users with the same foundational software experience.
 
-## software
+## SOFTWARE
 
 ### recovering from freezes {#frozen}
 
@@ -304,7 +308,7 @@ To reboot SuperCollider, the synthesis layer of norns, execute `;restart` in the
 
 To perform a quick reboot of the entire norns stack (for instance, when installing a script with a synth engine), reboot SuperCollider *then* reboot matron.
 
-## data management
+## DATA MANAGEMENT
 
 ### back up norns
 
@@ -323,8 +327,12 @@ wifi is the most straightforward way to back up your norns. These instructions a
 
 If you have a stock norns, connect it to a second computer via [serial](../wifi-files/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
 
-- Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
-- If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
+- Make sure the USB stick is detected with `ls /media`
+	- you should see `usb` listed, in a different color
+	- if you execute `ls /media/usb`, this should show the contents of the USB stick (if there are any)
+- Copy your dust folder with `cp -r /home/we/dust /media/usb`
+	- if you run into a permission issue, try `sudo cp -r /home/we/dust /media/usb`
+	- this will take time! upwards of 15 minutes.
 - Shutdown with `sudo shutdown now`
 
 #### via sd card (shield only)
@@ -349,7 +357,7 @@ By far the easiest method to flash the disk image is using [etcher](https://www.
 
 Steps:
 
-1. Install etcher and get the disk image. Extract the disk image so you have a remaining `.img` file.
+1. Install etcher and download [the norns disk image](https://github.com/monome/norns-image/releases/latest). Extract the disk image on your computer so you have a remaining `.img` file.
 2. Remove the four bottom screws of the norns.
 3. Plug the norns power into your laptop.
 4. You'll see a switch through a notch in the circuit board, flip this to DISK.
@@ -368,22 +376,22 @@ Steps:
 
 *nb. only Pi 3 and Pi 3b's are supported*
 
-Use [etcher](https://www.balena.io/etcher/) to flash your SD card
+Use [etcher](https://www.balena.io/etcher/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card).
 
 Be sure to use a high quality one. If you have trouble, please try a different card.
 {: .label}
 
 If your SD card seems a lot more full than it should be, you'll need to expand the filesystem:  
 
-1. open a terminal on a computer connected to the same network as your shield  
-2. execute: `ssh we@norns.local`  
-3. password: sleep  
-4. execute: `sudo raspi-config`  
-5. navigate to Advanced and hit RETURN  
-6. select expand filesystem and hit RETURN  
-7. lots of activity will happen. when it's done, power down and reboot. if you get any errors, reboot again.  
-8. if you SSH back into norns and execute `df -h`, you'll see the newly expanded capacity.
-9. Update via SYSTEM > UPDATE
+1. Open a terminal on a computer connected to the same network as your shield  
+2. Execute: `ssh we@norns.local`  
+	2a. Password: `sleep`
+3. Execute: `sudo raspi-config`  
+4. Navigate to Advanced and hit RETURN  
+5. Select `Expand Filesystem` and hit RETURN  
+6. Lots of activity will happen. When it's done, power down and reboot. If you get any errors, reboot again.
+7. [Consider changing the default password and address](#change-password)
+9. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
 
 ### manual / offline update
 
@@ -507,7 +515,7 @@ For example:
 magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr.png
 ```
 
-## additional a's to faq's {#more-faq}
+## MORE {#more-faq}
 
 - Imported audio must be 48khz, bit depth is irrelevant.
 

@@ -60,6 +60,8 @@ Also, you can also play sound into the audio input.
 
 **Let's toggle off the wind chime synth (press K3), toggle off the softcut delay length sequencer (K2), and play with some code.**
 
+*nb. If you are not running version 1.1.0 of the firstlight script, please update or reinstall the script fresh from maiden. Sometimes, browsers can aggressively cache scripts, so try clearing your cache if you find you cannot access version 1.1.0*
+
 ## the code is alive
 
 In this section, we'll execute small chunks of Lua code in realtime to control different elements of the _firstlight_ script. The goal is to introduce a few fundamental commands and make typing musical ideas feel approachable and fun!
@@ -466,7 +468,7 @@ Generate a random value and use it to replace the value of the table at a specif
 Query the value of the table at a random index (mixed):
 
 ```lua
->> my_table[math.random(#table)]
+>> my_table[math.random(#my_table)]
 ```
 
 ### even strum
@@ -605,8 +607,8 @@ and then on to [study 1: many tomorrows](../study-1) for a more in-depth scripti
 ## continued
 {: .no_toc }
 
-- part 0: [first light](../study-0/) //  variables, simple maths, keys + encoders
-- part 1: many tomorrows
+- part 0: first light
+- part 1: [many tomorrows](../study-1/) // variables, simple maths, keys + encoders
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
 - part 3: [spacetime](../study-3/) // functions, parameters, time
 - part 4: [physical](../study-4/) // grids + midi

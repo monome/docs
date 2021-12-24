@@ -173,7 +173,6 @@ When connected via WiFi you can SSH into norns from another computer on the same
 - execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`
 - password: `sleep` (you will not see characters while typing, this is normal), then press ENTER/RETURN
 
-
 #### never type the password again
 
 If you don't have one already, [generate a new ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).  Now run `ssh-copy-id norns.local`. You should see output similar to this and be prompted for a password:
@@ -235,6 +234,27 @@ You'll end up with something similar to: `screen /dev/ttyUSB0 115200`
 If you see a blank screen, press ENTER.
 
 You'll be asked for login credentials. Login is the same as SSH above.
+
+
+### change SMB path
+
+If you wish to add a new SMB mount path (e.g. to develop [norns itself](https://github.com/monome/norns)) modify the config file located at: `/etc/samba/smb.conf`. For example, add this section below the `[dust]` entry to create a `/home/we/norns` mount path:
+
+```bash
+[norns]
+Comment = norns
+Path = /home/we/norns
+Browseable = yes
+Writeable = yes
+read only = no
+only guest = no
+create mask = 0777
+directory mask = 0777
+Public = no
+Guest ok = no
+veto files = /._*/.DS_Store/
+delete veto files = yes
+```
 
 ## where to next?
 

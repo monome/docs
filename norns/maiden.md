@@ -26,7 +26,7 @@ To dive in, point your web browser at `norns.local` to see the maiden interface.
 Windows: if neither of these URLs resolve, try `IP-ADDRESS-OF-YOUR-NORNS/maiden/`, eg. `192.168.1.100/maiden/`
 {: .label .label-grey}
 
-![](image/maiden-1.1.0.png)
+![](/docs/norns/image/maiden-1.1.0.png)
 
 The interface includes a meta-navigator in the far-left sidebar, which from bottom-to-top allows you to:
 
@@ -46,7 +46,7 @@ You can access both the *base* (projects from monome) and *community* (projects 
 
 This tab shows which projects are currently installed on your norns.
 
-![](image/maiden-installed.png)
+![](/docs/norns/image/maiden-installed.png)
 
 Each entry has two actions: **update** and **remove**.
 
@@ -61,7 +61,7 @@ If you are updating a project through the PROJECT MANAGER that was not installed
 
 This tab shows which projects are available through the *base* and *community* repositories.
 
-Whenever maiden is loaded, it automatically refreshes both catalogs. If a script is released after you've loaded maiden, just press the `refresh all` button at the top of the page and all new entries will be added.![](image/maiden-available.png)
+Whenever maiden is loaded, it automatically refreshes both catalogs. If a script is released after you've loaded maiden, just press the `refresh all` button at the top of the page and all new entries will be added.![](/docs/norns/image/maiden-available.png)
 
 Many projects will have informational tags like **crow**, **drum**, **looper**, as well as a project description. Please note that the **lib** tag is specifically used to indicate that a project includes both a script *and* an engine, which will require a device restart.
 
@@ -184,7 +184,7 @@ There are top bar icons for various actions: **New**, **Delete**, **Duplicate**,
 
 The `>`'s can be expanded to reveal a file tree. When you select a file, it will show in the EDITOR:
 
-![](image/maiden-carrot.png)
+![](/docs/norns/image/maiden-carrot.png)
 
 ### editor
 

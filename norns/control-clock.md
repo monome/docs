@@ -30,7 +30,7 @@ sections: [MIDI connect](#connect) &mdash; [managing MIDI devices](#manage) &mda
 
 When you connect a MIDI device to one of the four USB ports, norns automatically catalogues it under `SYSTEM > DEVICES > MIDI`:
 
-![](image/control_clock-images/device-management.png)  
+![](/docs/norns/image/control_clock-images/device-management.png)  
 *[figure 1: managing MIDI devices through SYSTEM > DEVICES > MIDI](image/control_clock-images/device-management.png)*
 
 norns can remember up to 16 previously-connected MIDI devices
@@ -64,7 +64,7 @@ To clear ports:
 
 As we saw in [**play**](/docs/norns/play), the controls in a script's PARAMETERS can be fun to modify in realtime. To wrangle a bunch of parameters at once, let's map some to one of our connected MIDI controllers.
 
-![](image/control_clock-images/device-map.png)  
+![](/docs/norns/image/control_clock-images/device-map.png)  
 *[figure 2: mapping MIDI control](image/control_clock-images/device-map.png)*
 
 To MIDI-learn:
@@ -187,7 +187,7 @@ norns benefits from a global clock system. This helps makes it straightforward t
 Please ensure that your MIDI devices are connected as needed by following the steps in [**connect**](#connect)
 {: .label .label-grey}
 
-![](image/control_clock-images/clock.png)  
+![](/docs/norns/image/control_clock-images/clock.png)  
 *[figure 3: global clock settings](image/control_clock-images/clock.png)*
 
 ### settings

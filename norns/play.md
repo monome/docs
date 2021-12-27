@@ -23,7 +23,7 @@ nav_order: 1
 
 To begin, let's get acquainted with the layouts of both iterations of norns -- stock and shield:
 
-![](image/play-images/norns-legends.png)  
+![](/docs/norns/image/play-images/norns-legends.png)  
 *[figure 1: stock norns and shield legend](image/play-images/norns-legends.png)*
 
 ### power on
@@ -50,7 +50,7 @@ While you are inside of the playable interface, the encoders and keys perform sc
 
 Once you are in the menu interface, use **E1** to switch between the different menus (LEVELS, TAPE, HOME, PARAMETERS). We'll explore each of these menus in the rest of the docs!
 
-![](image/play-images/menu-nav.png)  
+![](/docs/norns/image/play-images/menu-nav.png)  
 [*figure 2: interface layers*](image/play-images/menu-nav.png)
 
 ### power off
@@ -149,7 +149,7 @@ To begin our menu dive, let's adjust the audio levels.
 
 Tap **K1** to come up from the script layer to the menus layer and turn **E1** counter-clockwise until you see pairs of vertical sliders.
 
-![](image/play-images/menu-levels.png)  
+![](/docs/norns/image/play-images/menu-levels.png)  
 [*figure 3: setting levels*](image/play-images/menu-levels.png)
 
 - **K2 / K3**: select previous pair / select next pair
@@ -180,7 +180,7 @@ The PARAMETERS menu is where you'll find helpful system controls as well as perf
 
 Use **E1** to navigate to PARAMETERS, and enter the EDIT menu with **K3**.
 
-![](image/play-images/menu-params_edit.png)  
+![](/docs/norns/image/play-images/menu-params_edit.png)  
 [*figure 4: editing parameters*](image/play-images/menu-params_edit.png)
 
 At the top of this menu are controls for each component of the global audio chain.
@@ -204,7 +204,7 @@ Scrolling down further, we find some of the script's parameters. These are chose
 
 To recall and build on the changes you've made in a future session, we can save a script's parameter state as a PSET (preset).
 
-![](image/play-images/menu-params_pset.png)  
+![](/docs/norns/image/play-images/menu-params_pset.png)  
 [*figure 5: saving parameters / PSET*](image/play-images/menu-params_pset.png)
 
 Use **E2** to navigate down the left column of the PSET screen.  
@@ -239,7 +239,7 @@ These changing melodies are lovely, but they're a bit removed from the natural w
 
 Jump to the menus interface and use **E1** to navigate to the tape screen.
 
-![](image/play-images/menu-tape_play.png)  
+![](/docs/norns/image/play-images/menu-tape_play.png)  
 [*figure 6: playing a tape*](image/play-images/menu-tape_play.png)
 
 **select loop**
@@ -266,7 +266,7 @@ This all sounds pretty nice -- perhaps you'd like to record it?
 
 On the tape screen, press **K2** to switch between the PLAY and REC lanes.
 
-![](image/play-images/menu-tape_rec.png)  
+![](/docs/norns/image/play-images/menu-tape_rec.png)  
 [*figure 7: recording a tape*](image/play-images/menu-tape_rec.png)
 
 **record**
@@ -299,7 +299,7 @@ Now that we have a nice *awake* session under our belts, let's explore some of t
 
 Tap **K1** and navigate to the *home* menu, then press **K3** on SELECT:
 
-![](image/play-images/menu-sel.png)  
+![](/docs/norns/image/play-images/menu-sel.png)  
 [*figure 8: selecting a script*](image/play-images/menu-sel.png)
 
 - use **E2** to scroll through installed scripts

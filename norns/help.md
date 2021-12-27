@@ -117,7 +117,7 @@ If you are consistently unable to connect your norns to wifi through the ['Netwo
 
 4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../maiden/#other-access). Once you perform this serial login, try executing `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network:
    
-    ![](image/terminal-nmtui-main.png)
+    ![](/docs/norns/image/terminal-nmtui-main.png)
 
 5. If you are still unable to connect, please email help@monome.org with the following information:
    

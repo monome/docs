@@ -48,7 +48,7 @@ If you do not have access to a router, you can also turn the norns into a WiFi h
 
 Once norns is connected to a network, you can access system updates which fix bugs, add new features, and improve the overall experience.
 
-![](image/WiFi_maiden-images/update.png)  
+![](/docs/norns/image/WiFi_maiden-images/update.png)  
 *[figure 2: update process](image/WiFi_maiden-images/update.png)*
 
 To check for and install updates:
@@ -97,7 +97,7 @@ Open Finder and hit CMD/Apple-K or navigate to `Go > Connect to Server`.
 
 In the top IP address bar, enter: `smb://norns.local` and click Connect:
 
-![](image/smb-mac-connect.png)  
+![](/docs/norns/image/smb-mac-connect.png)  
 *[figure 3: Samba connect address](image/smb-mac-connect.png)*
 
 You may see an "Unsecured Connection" warning, but you can safely ignore it and click Connect.
@@ -109,12 +109,12 @@ Login as a Registered User with the following credentials:
 
 ...and click Connect one last time!
 
-![](image/smb-mac-login.png)  
+![](/docs/norns/image/smb-mac-login.png)  
 *[figure 4: Samba connect dialogue](image/smb-mac-login.png)*
 
 Once connected, you can freely navigate through files on norns:
 
-![](image/smb-mac-tree.png)  
+![](/docs/norns/image/smb-mac-tree.png)  
 *[figure 5: norns as connected network drive](image/smb-mac-tree.png)*
 
 ### connecting to norns via Windows {#Windows}
@@ -144,7 +144,7 @@ Recordings made on norns will be stored under `dust/audio/tape`.
 
 You'll also find an `index.txt` file which logs the TAPE index -- if you wish to reset the auto-generated counter, edit this file to start back at 0.
 
-![](image/smb-mac-tree-tape.png)  
+![](/docs/norns/image/smb-mac-tree-tape.png)  
 *[figure 6: tape folder path](image/smb-mac-tree-tape.png)*
 
 

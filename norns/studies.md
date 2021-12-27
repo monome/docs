@@ -63,7 +63,20 @@ we also highly recommend Zack Scholl's video series, produced in partnership bet
 Quarks.install("SafetyNet")
 ```
 
-here are some additional starting points for learning:
+#### SuperCollider language fundamentals
+{: .no_toc }
+- [written tutorial](https://composerprogrammer.com/teaching/supercollider/sctutorial/tutorial.html#chapter1)
+- [first steps to colliding atoms](https://doc.sccode.org/Tutorials/Getting-Started/02-First-Steps.html)
+- [how to get your code to play](https://doc.sccode.org/Reference/play.html)
+- [what is a function?](https://doc.sccode.org/Reference/Functions.html)
+- [if , while , for , etc](https://doc.sccode.org/Reference/Control-Structures.html)
+- [supercollider server explained](https://doc.sccode.org/Guides/ClientVsServer.html)
+- [j concepts in supercollider](https://doc.sccode.org/Guides/J-concepts-in-SC.html)
+- [how to use an interpreter with supercollider ](https://doc.sccode.org/Guides/How-to-Use-the-Interpreter.html)
+- [node](https://doc.sccode.org/Classes/Node.html)
+- [bus](https://doc.sccode.org/Classes/Bus.html)
+
+some additional starting points for learning:
 
 - [Eli Fieldsteel's *fantastic* YouTube series](https://youtu.be/yRzsOOiJ_p4)
 - [norns SuperCollider engines index](https://norns.community/libs-and-engines#supercollider-engines)
@@ -77,22 +90,6 @@ while you don't need to master the entire Lua language to make the most of norns
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
 - [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)
 - [lua in 15 mins](http://tylerneylon.com/a/learn-lua/)
-
-#### language fundamentals
-{: .no_toc }
-- [written tutorial](https://composerprogrammer.com/teaching/supercollider/sctutorial/tutorial.html#chapter1)
-- [first steps to colliding atoms](https://doc.sccode.org/Tutorials/Getting-Started/02-First-Steps.html)
-- [how to get your code to play](https://doc.sccode.org/Reference/play.html)
-- [what is a function?](https://doc.sccode.org/Reference/Functions.html)
-- [if , while , for , etc](https://doc.sccode.org/Reference/Control-Structures.html)
-- [supercollider server explained](https://doc.sccode.org/Guides/ClientVsServer.html)
-- [j concepts in supercollider](https://doc.sccode.org/Guides/J-concepts-in-SC.html)
-- [how to use an interpreter with supercollider ](https://doc.sccode.org/Guides/How-to-Use-the-Interpreter.html)
-
-#### managing audio
-{: .no_toc }
-- [node](https://doc.sccode.org/Classes/Node.html)
-- [bus](https://doc.sccode.org/Classes/Bus.html)
 
 ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 

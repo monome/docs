@@ -117,7 +117,7 @@ If you are consistently unable to connect your norns to wifi through the ['Netwo
 
 4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../maiden/#other-access). Once you perform this serial login, try executing `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network:
    
-    ![](image/terminal-nmtui-main.png)
+    ![](/docs/norns/image/terminal-nmtui-main.png)
 
 5. If you are still unable to connect, please email help@monome.org with the following information:
    
@@ -327,8 +327,12 @@ wifi is the most straightforward way to back up your norns. These instructions a
 
 If you have a stock norns, connect it to a second computer via [serial](../wifi-files/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
 
-- Make sure the USB stick is detected with `ls /media/usb` (this should show the contents of the USB stick)
-- If it's there, copy your dust folder with `cp -r /home/we/dust /media/usb`
+- Make sure the USB stick is detected with `ls /media`
+	- you should see `usb` listed, in a different color
+	- if you execute `ls /media/usb`, this should show the contents of the USB stick (if there are any)
+- Copy your dust folder with `cp -r /home/we/dust /media/usb`
+	- if you run into a permission issue, try `sudo cp -r /home/we/dust /media/usb`
+	- this will take time! upwards of 15 minutes.
 - Shutdown with `sudo shutdown now`
 
 #### via sd card (shield only)

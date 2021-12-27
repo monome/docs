@@ -1,7 +1,7 @@
 source "https://rubygems.org"
-gemspec
+#gemspec
+gem "jekyll", "~> 4.2.1"
+gem "just-the-docs"
 group :jekyll_plugins do
   gem "jekyll-redirect-from"
-end
-
-gem "webrick", "~> 1.7"
+end 

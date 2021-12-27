@@ -10,7 +10,7 @@ redirect_from: /norns/app/
 
 since 2018, norns has grown beyond our earliest imaginings: all sorts of new functionality, expanded documentation, group tutorials and classes, weekly hangouts, and perhaps most notably a huge explosion of community-contributed scripts. script-making is also art-making, and the inspiring level of sharing has itself built a community.
 
-![](image/community_scripts-images/norns-community.png)
+![](/docs/norns/image/community_scripts-images/norns-community.png)
 
 [norns.community](https://norns.community) is a centralized place for community projects. it was initiated by monome and the vision was shaped by the talents of `@tyleretters` who added sharp visual styling + data design and `@eigen` who created a dynamic discovery mechanism with tagging and gallery images.
 

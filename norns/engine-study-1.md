@@ -85,7 +85,7 @@ You should hear a buzzy tone swept by a filter as our SynthDef plays a 300hz not
 
 ### build and modify arguments {#arguments}
 
-If we were to port this sketch as a norns engine and assigned a key to trigger the synth, it'd eventually become stale because the *pitch*, the envelope's *attack* and *release*, the *noise level*, the starting *filter cutoff*, even the sub-oscillator's division -- these are all **static** values. So, let's introduce a few arguments to our SyntheDef to modify these elements with each execution:
+If we were to port this sketch as a norns engine and assigned a key to trigger the synth, it'd eventually become stale because the *pitch*, the envelope's *attack* and *release*, the *noise level*, the starting *filter cutoff*, even the sub-oscillator's division -- these are all **static** values. So, let's introduce a few arguments to our SynthDef to modify these elements with each execution:
 
 ```
 (

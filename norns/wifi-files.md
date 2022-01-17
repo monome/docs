@@ -77,16 +77,16 @@ Here's the `dust` file tree:
 
 ```
 dust/
-audio/-- audio files
-tape/ -- tape recordings
-...
-code/ -- contains scripts and engines
-awake/
-mlr/
-...
-we/
-data/ -- contains user data created by scripts
-awake/-- for example, pset data
+  audio/          -- audio files
+    tape/             -- tape recordings
+    ...
+  code/           -- contains scripts and engines
+    awake/
+    mlr/
+    ...
+    we/
+  data/           -- contains user data created by scripts
+    awake/            -- for example, pset data
 ```
 
 **`dust` management is best achieved via Samba, a protocol that allows you to directly connect your computer's file browser to norns. If you haven't already, please connect your norns and your computer to the same WiFi network.**

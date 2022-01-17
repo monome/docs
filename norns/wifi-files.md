@@ -175,7 +175,7 @@ When connected via WiFi you can SSH into norns from another computer on the same
 
 #### never type the password again
 
-If you don't have one already, [generate a new ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).  Now run `ssh-copy-id norns.local`. You should see output similar to this and be prompted for a password:
+If you don't have one already, [generate a new ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).  Now run `ssh-copy-id we@norns.local`. You should see output similar to this and be prompted for a password:
 
 ```
 mbp@mbp.local /Users/mbp
@@ -194,7 +194,7 @@ Now you can simply type `ssh we@norns.local` for access:
 
 ```
 mbp@mbp.local /Users/mbp
-% ssh norns
+% ssh we@norns.local
 Linux norns 4.19.127-16-gb1425b1 #1 SMP PREEMPT Mon Oct 26 05:39:00 UTC 2020 armv7l
  ___ ___ ___ ___ ___
 |   | . |  _|   |_ -|
@@ -238,7 +238,7 @@ You'll be asked for login credentials. Login is the same as SSH above.
 
 ### change SMB path
 
-If you wish to add a new SMB mount path (e.g. to develop [norns itself](https://github.com/monome/norns)) modify the config file located at: `/etc/samba/smb.conf`. For example, add this section below the `[dust]` entry to create a `/home/we/norns` mount path:
+If you wish to add a new SMB mount path (e.g. to develop [norns itself](https://github.com/monome/norns)) ssh into norns and modify the config file located at: `/etc/samba/smb.conf`. For example, add this section below the `[dust]` entry to create a `/home/we/norns` mount path:
 
 ```bash
 [norns]

@@ -4,6 +4,7 @@ parent: norns
 has_children: true
 title: WiFi / update / files
 nav_order: 2
+has_toc: false
 ---
 
 # WiFi / update / files

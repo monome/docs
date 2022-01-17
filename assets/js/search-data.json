@@ -1,4 +1,5 @@
 ---
+permalink: /assets/js/_search-data.json
 ---
 {
   {% assign comma = false %}

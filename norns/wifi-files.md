@@ -147,7 +147,6 @@ You'll also find an `index.txt` file which logs the TAPE index -- if you wish to
 ![](../image/smb-mac-tree-tape.png)
 *[figure 6: tape folder path](../image/smb-mac-tree-tape.png)*
 
-
 Feel free to make folders inside `audio` to store various samples, field recordings, single cycle waveforms, etc. Each of those folders can also store subfolders, but please note that you cannot nest more than ten folder layers.
 
 norns records 48khz stereo WAV files -- please only import uncompressed 48kHz files (bit-depth irrelevant).

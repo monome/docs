@@ -13,7 +13,7 @@ sections: [begin](#begin) &mdash; [awake](#awake) &mdash; [pages](#pages) &mdash
 
 ## LEGEND
 
-![](image/norns-legend.png)
+![](/docs/norns/image/norns-legend.png)
 
 ## BEGIN
 
@@ -62,7 +62,7 @@ Tap K1 quickly to toggle between **PLAY** and **NOPLAY**.
 
 You are now at **HOME**.
 
-![](image/screen-home.png)
+![](/docs/norns/image/screen-home.png)
 
 
 In **NOPLAY** mode:
@@ -73,16 +73,16 @@ In **NOPLAY** mode:
 
 Page layout:
 
-![](image/norns-pages.png)
+![](/docs/norns/image/norns-pages.png)
 
 
 ### HOME
 
-![](image/screen-home.png)
+![](/docs/norns/image/screen-home.png)
 
 At **HOME** press K2 to toggle additional system information display:
 
-![](image/screen-info.png)
+![](/docs/norns/image/screen-info.png)
 
 From top-left:
 
@@ -118,7 +118,7 @@ Instead, push-and-hold K3-K2-K1 (in this order) for 10 seconds and the system wi
 
 ### PARAMETERS
 
-![](image/screen-params-200323.png)
+![](/docs/norns/image/screen-params-200323.png)
 
 #### EDIT
 
@@ -126,7 +126,7 @@ Provides control over system audio levels, mix bus, and script parameters.
 
 EDIT begins with a parameter list for the global audio settings. See [AUDIO](#audio) for details on the parameters available in each section.
 
-![](image/screen-params-edit-200323.png)
+![](/docs/norns/image/screen-params-edit-200323.png)
 
 
 - E2 scrolls
@@ -134,14 +134,14 @@ EDIT begins with a parameter list for the global audio settings. See [AUDIO](#au
 
 Scroll past the global audio parameters to reveal the script-level parameters (*nb. some scripts may not have their own parameters*).
 
-![](image/screen-params-script-200323.png)
+![](/docs/norns/image/screen-params-script-200323.png)
 
 - K3 on a separator jumps to next section
 - K1+E2 jumps between separators (plus top line)
 
 #### PSET
 
-![](image/screen-pset-200323.png)
+![](/docs/norns/image/screen-pset-200323.png)
 
 Parameter set saving and loading:
 
@@ -157,14 +157,14 @@ A `*` indicates the currently loaded PSET.
 
 Enable MIDI mapping and control over parameters. If a parameter has a `-` to its right, it's mappable.
 
-![](image/screen-mapselect-200323.png)
+![](/docs/norns/image/screen-mapselect-200323.png)
 
 - E2 navigates
 - K3 opens for mapping
 
 To assign a MIDI control to a parameter, you can either LEARN or manually edit:
 
-![](image/screen-mapdetail-200323.png)
+![](/docs/norns/image/screen-mapdetail-200323.png)
 
 - E2 navigates
 - E3 scrolls values
@@ -173,7 +173,7 @@ To assign a MIDI control to a parameter, you can either LEARN or manually edit:
 
 ### TAPE
 
-![](image/screen-tape.png)
+![](/docs/norns/image/screen-tape.png)
 
 On this page you can record and play directly to and from disk.
 
@@ -195,7 +195,7 @@ REC
 
 When you arm recording, you will have the option to name your file, with default auto-incrementing text.
 
-![](image/screen-tape-filename-200323.png)
+![](/docs/norns/image/screen-tape-filename-200323.png)
 
 REC writes 48khz stereo WAV.
 
@@ -203,7 +203,7 @@ To share / sync audio files between norns and your computer, you'll need to use 
 
 ### LEVELS
 
-![](image/screen-levels.png)
+![](/docs/norns/image/screen-levels.png)
 
 Mixing and VU display happens here.
 
@@ -215,7 +215,7 @@ Mixing and VU display happens here.
 
 Audio routing is shown below:
 
-![](image/norns-audio-route.png)
+![](/docs/norns/image/norns-audio-route.png)
 
 [Technical details about the norns mixer client (crone).](../reference/#crone)
 
@@ -273,13 +273,13 @@ To clock a script from MIDI:
 - move down to CLOCK
 - set it to MIDI
 
-![](image/screen-params-midi-200518.png)
+![](/docs/norns/image/screen-params-midi-200518.png)
 
 ### DEVICES
 
 To ensure a connected MIDI device is recognized by a currently running script, navigate to SYSTEM > DEVICES > MIDI and select your MIDI device:
 
-![](image/screen-system-midi-200518.png)
+![](/docs/norns/image/screen-system-midi-200518.png)
 
 ### MIDI MAP
 
@@ -352,7 +352,7 @@ Scripts can be created and edited using a web browser when norns is connected to
 
 The WIFI nub must be inserted before starting.
 
-![](image/screen-wifi.png)
+![](/docs/norns/image/screen-wifi.png)
 
 To connect to your local network router:
 

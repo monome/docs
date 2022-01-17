@@ -4,16 +4,22 @@ http://monome.org/docs
 
 contributions welcome.
 
-if you have [jekyll](https://jekyllrb.com/) installed, you can build a partially working preview site as follows:
+## developing locally
+
+it is recommended to install [rvm](https://rvm.io/rvm/install) and us ruby 2.7.2.
+
+if running ruby 3.0.0+, `bundle exec jekyll serve` will fail since `webrick` is no longer a bundled gem. execute `bundle add webrick` to resolve.
+
+install [jekyll](https://jekyllrb.com/), then:
 
 ```bash
 git clone https://github.com/monome/docs
 cd docs/
 bundle
 jekyll build
-bundle exec jekyll serve --baseurl '/docs' --watch
+bundle exec jekyll serve --baseurl '/docs' --watch --livereload
 ```
 
-and visiting [http://localhost:4000/docs](http://localhost:4000/docs).
+(execute `./serve.sh` to quickly run last command above)
 
-if running ruby 3.0.0+, `bundle exec jekyll serve` will fail since `webrick` is no longer a bundled gem. execute `bundle add webrick` to resolve.
+visiting [http://localhost:4000/docs](http://localhost:4000/docs) to view the site. note `http://127.0.0.1:4000/docs` will also work, but the "search" will fail due to [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).

@@ -24,7 +24,9 @@ comprehensive lessons on individual elements of norns scripting. through these r
 
 ### norns: core concepts
 
-tutorials written by monome. we recommend one lesson per week. a slower pace makes it easier to experiment and uncover the simplicity of the underlying language (Lua).
+tutorials written by monome.
+
+**for the best learning experience, we recommend one lesson per week.** a slower pace makes it easier to experiment and uncover the simplicity + musicality of the underlying code.
 
 - [first light](../study-0/) // learning to see. edit a script.
 - [many tomorrows](../study-1/) // variables, simple maths, keys + encoders
@@ -35,6 +37,7 @@ tutorials written by monome. we recommend one lesson per week. a slower pace mak
 - [softcut](../softcut/) // a multi-voice sample playback and recording system built into norns
 - [clocks](../clocks/) // create timed and clock-synced function calls: loops, repetition, and delays
 - [grid recipes](../grid-recipes/) // short snippets of code for canonical grid interactions
+- [rude mechanicals](../engine-study-1/) // building norns engines with SuperCollider
 
 ### norns: contributed knowledge
 
@@ -50,7 +53,9 @@ resources developed by other learners, script authors, and designers from our co
 
 SuperCollider is a free and open-source platform for making sound, which powers the synthesis layer of norns. many norns scripts are a combination of SuperCollider (where a synthesis engine is defined) and Lua (where the hardware + UI interactions are defined). SuperCollider can be run on most any computer -- you do not need a norns to dig into these resources!
 
-for those who want to explore creating new synthesis engines for norns, we highly recommend Zack Scholl's video series, produced in partnership between monome and Music Hackspace: [Tone to Drone](https://musichackspace.org/events/tone-to-drone-introduction-to-supercollider-for-monome-norns-live-session/) and [Ample Samples](https://musichackspace.org/events/ample-samples-introduction-to-supercollider-for-monome-norns-live-session/).
+for those who want to explore creating new synthesis engines for norns, we've developed [rude mechanicals](../engine-study-1/), a study which walks through building a norns engine from scratch with SuperCollider and Lua.
+
+we also highly recommend Zack Scholl's video series, produced in partnership between monome and Music Hackspace: [Tone to Drone](https://musichackspace.org/events/tone-to-drone-introduction-to-supercollider-for-monome-norns-live-session/) and [Ample Samples](https://musichackspace.org/events/ample-samples-introduction-to-supercollider-for-monome-norns-live-session/).
 
 **please note** that if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. to protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet), both within SuperCollider on your computer and on your norns. This Quark ensures that the output volume of SuperCollider won't reach levels which would damage your hearing. To add this to your norns, simply enter the following line within the Maiden repl, under the `SuperCollider` tab:
 
@@ -58,7 +63,20 @@ for those who want to explore creating new synthesis engines for norns, we highl
 Quarks.install("SafetyNet")
 ```
 
-here are some additional starting points for learning:
+#### SuperCollider language fundamentals
+{: .no_toc }
+- [written tutorial](https://composerprogrammer.com/teaching/supercollider/sctutorial/tutorial.html#chapter1)
+- [first steps to colliding atoms](https://doc.sccode.org/Tutorials/Getting-Started/02-First-Steps.html)
+- [how to get your code to play](https://doc.sccode.org/Reference/play.html)
+- [what is a function?](https://doc.sccode.org/Reference/Functions.html)
+- [if , while , for , etc](https://doc.sccode.org/Reference/Control-Structures.html)
+- [supercollider server explained](https://doc.sccode.org/Guides/ClientVsServer.html)
+- [j concepts in supercollider](https://doc.sccode.org/Guides/J-concepts-in-SC.html)
+- [how to use an interpreter with supercollider ](https://doc.sccode.org/Guides/How-to-Use-the-Interpreter.html)
+- [node](https://doc.sccode.org/Classes/Node.html)
+- [bus](https://doc.sccode.org/Classes/Bus.html)
+
+some additional starting points for learning:
 
 - [Eli Fieldsteel's *fantastic* YouTube series](https://youtu.be/yRzsOOiJ_p4)
 - [norns SuperCollider engines index](https://norns.community/libs-and-engines#supercollider-engines)
@@ -72,22 +90,6 @@ while you don't need to master the entire Lua language to make the most of norns
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
 - [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)
 - [lua in 15 mins](http://tylerneylon.com/a/learn-lua/)
-
-#### language fundamentals
-{: .no_toc }
-- [written tutorial](https://composerprogrammer.com/teaching/supercollider/sctutorial/tutorial.html#chapter1)
-- [first steps to colliding atoms](https://doc.sccode.org/Tutorials/Getting-Started/02-First-Steps.html)
-- [how to get your code to play](https://doc.sccode.org/Reference/play.html)
-- [what is a function?](https://doc.sccode.org/Reference/Functions.html)
-- [if , while , for , etc](https://doc.sccode.org/Reference/Control-Structures.html)
-- [supercollider server explained](https://doc.sccode.org/Guides/ClientVsServer.html)
-- [j concepts in supercollider](https://doc.sccode.org/Guides/J-concepts-in-SC.html)
-- [how to use an interpreter with supercollider ](https://doc.sccode.org/Guides/How-to-Use-the-Interpreter.html)
-
-#### managing audio
-{: .no_toc }
-- [node](https://doc.sccode.org/Classes/Node.html)
-- [bus](https://doc.sccode.org/Classes/Bus.html)
 
 ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 

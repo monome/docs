@@ -19,3 +19,4 @@ to help bridge the gap for non-coding artists, we've developed and collected a n
 
 - [studies](../studies) // comprehensive tutorials on individual components of norns, highly beginner-friendly
 - [reference](../reference) // an example-centric version of the norns API, for advanced use
+- [dev setup](../dev-setup) // advanced norns development setups

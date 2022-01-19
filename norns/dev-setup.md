@@ -39,11 +39,6 @@ sshfs we@norns:/home/we/dust dust
 please note that many editors provide an equivalent functionality.
 
 
-### maiden-run - automatic reload
-
-[`maiden-run`](https://github.com/ngwese/maiden-run) allows to automatically reload  a script when saving its source code.
-
-
 ## using alternate editors
 
 ### atom

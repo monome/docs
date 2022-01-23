@@ -92,9 +92,7 @@ for spawning a maiden repl, do it using either command:
 
 ### VSCode
 
-norns can be accessed as if locally using [Remote - SSH extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh).
-
-additionally, [@midouest](https://norns.community/en/authors/midouest) made the [norns-repl vscode extension](https://llllllll.co/t/norns-repl-vscode-extension/41382) allowing to spawn and interact with a remote maiden repl.
+[@midouest](https://norns.community/en/authors/midouest) made the [norns-repl vscode extension](https://llllllll.co/t/norns-repl-vscode-extension/41382) allowing to spawn and interact with a remote maiden repl.
 
 
 ### vim / neovim

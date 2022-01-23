@@ -10,33 +10,14 @@ has_toc: false
 
 # norns dev setup
 
-if using [maiden](../maiden) is plenty sufficient to create norns script, some experienced users may want to rely on development tools they are already familiar with.
+sometimes using the [maiden web environment](../maiden) alone is not suffiscient for some tasks such as:
+- browsing norns core in the context of making a [mod](../community-scripts/#mods)
+- developing for norns core
+- interactive supercollider development
 
+in those conditions, some additional development tools can be leveraged.
 
-## remote access via command line
-
-### basics
-
-when accessing norns via the command line (using [SSH / USB serial access](../advanced-access)), scripts can directly be edited this way using locally-installed editors (such an `nano` or `vi`).
-
-this also allows interacting with [maiden from the command line](../maiden/#advanced-access)
-
-this video is a walkthrough of this process:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/S-jhIT4mCcM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
-### sshfs - mount source files locally
-
-`sshfs` allow to locally mount norns filesystem onto a development machine as if it were local. this allows you to use any preferred editor / tools installed locally.
-
-```shell
-mkdir /home/$USER/Documents/norns_mount
-cd /home/$USER/Documents/norns_mount
-sshfs we@norns:/home/we/dust dust
-```
-
-please note that many editors provide an equivalent functionality.
+please also refer to sections on [advanced file & command line access](../advanced-access) as well as how to access [maiden from the command line](../maiden/#advanced-access).
 
 
 ## using alternate editors

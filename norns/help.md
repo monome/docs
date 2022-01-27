@@ -51,7 +51,7 @@ The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 
 
 Before you purchase a new battery, please consider that your norns may not be reporting battery performance accurately. To test, fully drain the battery and then charge it fully.
 
-If performance does not improve, then a direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/2011) or by emailing help@monome.org for a replacement (15 USD, shipping included, only US).
+If performance does not improve, then a direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/2011) or by emailing help@monome.org for a replacement (20 USD, shipping included, only US).
 
 #### encoders
 {: .no_toc }

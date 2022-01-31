@@ -103,8 +103,6 @@ To start with some introductory knowledge for scripting for grids on MacOS, Wind
 
 ## Max/MSP (MacOS + Windows)
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/-1tTABS_Ugs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 The grid was originally designed as a flexible, minimal interface to control Max/MSP patchers. Over the past 15+ years many artists have not only extended this simple purpose into full-blown performance tools -- and due to the communal nature inherent to Max/MSP, have generously shared these patchers + standalone applications with others. This exchange of enthusiasm and care for other artists has always been staggering to us.
 
 While grid's compatibility + potential with Max/MSP remains current, computing has changed quite a bit over the last decade and a half. Therefore, the projects contained in this section may have different levels of stability as OS + host application updates introduce breaking changes. If you feel particularly drawn to a tool which could use a bit of tweaking to get back in working order, that is a fantastic place to learn Max from! 

@@ -27,6 +27,23 @@ Edit scripts with a USB keyboard (included with new modules + [replacements avai
 * 18hp width
 * 26mm depth
 
+## Learning Teletype
+
+The basics of Teletype are quick to learn. The studies will get you started and the manual provides a complete reference.
+
+* [Teletype Studies](studies-1) - guided series of tutorials
+
+* [Teletype Manual](manual) - full manual, also available as a [pdf](manual.pdf)
+
+* [Just Type Studies](jt-1) - a guided series of tutorials on integrating Teletype with Just Friends
+
+* [PDF command reference](TT_commands_3.0.pdf)
+* [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
+
+* [Default scenes](scenes-10/)
+
+You can also access in-module help any time by using ALT-H to toggle help mode.
+
 ## Installation
 
 ### Power
@@ -55,23 +72,6 @@ Teletype cannot use a USB keyboard if it has an internal USB hub, and does not w
 **[Firmware updates](/docs/modular/update) may be available. The currently installed firmware version is displayed at startup.**
 
 It is possible to backup all your presets as part of the module's firmware; see [modular firmware updates](/docs/modular/update/).
-
-## Getting Started
-
-The basics of Teletype are quick to learn. The tutorials will get you started and the manual provides a complete reference.
-
-* [Teletype Studies](studies-1) - guided series of tutorials
-
-* [Teletype Manual](manual) - full manual, also available as a [pdf](manual.pdf)
-
-* [Just Type Studies](jt-1) - a guided series of tutorials on integrating Teletype with Just Friends
-
-* [PDF command reference](TT_commands_3.0.pdf)
-* [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
-
-* [Default scenes](scenes-10/)
-
-You can also access in-module help any time by using ALT-H to toggle help mode.
 
 ## Further
 

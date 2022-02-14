@@ -69,15 +69,6 @@ File management between norns and macOS is best achieved via [Samba/SMB](/docs/n
 
 Thanks to `jlmitch5` for this sftp guide!
 
-<details open markdown="block">
-  <summary>
-    sections
-  </summary>
-  {: .text-delta }
-- TOC
-{:toc}
-</details>
-
 #### connect
 
 This tutorial will help you connect norns to a Mac or Windows computer using [Cyberduck](https://cyberduck.io), so that you can add and update scripts manually on the norns filesystem.  It was written using Cyberduck 6.7.1, macOS 10.13.6, and norns 180828 on September 3, 2018.

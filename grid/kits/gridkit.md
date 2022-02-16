@@ -4,7 +4,7 @@ nav_exclude: true
 ---
 # grid kit
 
-![](/docs/kits/images/gridkit-grid-kit01.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit01.jpg)
 
 ## contents
 
@@ -57,7 +57,7 @@ after you've received your grid kit and leds you'll be ready to start assembling
 
 ### soldering
 
-![](/docs/kits/images/gridkit-grid-kit02.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit02.jpg)
 
 ### orientation
 
@@ -67,11 +67,11 @@ it is essential that you carefully orient the diodes and leds in your grid kit. 
 
 start by soldering all the diodes as they are easier and will get you comfortable with surface mount parts.
 
-![](/docs/kits/images/gridkit-grid-kit03.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit03.jpg)
 
 *add a dot of solder onto one of the pads*
 
-![](/docs/kits/images/gridkit-grid-kit04.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit04.jpg)
 
 *pick up a diode with the tweezers, taking care to orient it correctly. reheat the solder on the pad and push the diode into place. remove the soldering iron while holding the diode until the solder solidifies. now solder the other side by heating the gold pad with the iron and touching another dot of solder.*
 
@@ -87,45 +87,45 @@ after confirming the first led is working correctly, you can attach the remainde
 
 ### removing solder from the star pattern
 
-![](/docs/kits/images/gridkit-grid-kit05.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit05.jpg)
 
 it's likely that in the process you will get some solder on the star pattern that detects key presses. these will need to be removed or those keys will not function properly.
 
-![](/docs/kits/images/gridkit-grid-kit06.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit06.jpg)
 
 *hold your solder wick on top of the affected area. heat up the solder wick using the side of the iron tip. you should see the solder melt and spread out into the wick. if you're having trouble removing a small blob, you can add a little more solder to help the wicking process.*
 
-![](/docs/kits/images/gridkit-grid-kit07.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit07.jpg)
 
 ## hardware assembly
 
-![](/docs/kits/images/gridkit-grid-kit08.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit08.jpg)
 
 *push the keypads into the plate. there are small indents between the keypads where the diodes are recessed. make sure these are all lined up 'vertically' like the diodes.*
 
-![](/docs/kits/images/gridkit-grid-kit09.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit09.jpg)
 
 *place the circuit board on top and using the 1/16" wrench add 9 of the screw caps as shown. you need to leave spaces for where the backplate is attached. no need to screw these in too tight.*
 
-![](/docs/kits/images/gridkit-grid-kit10.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit10.jpg)
 *using the .05" wrench, attach the set screws to the remaining 6 holes. then screw on the hex standoffs until they're finger tight.*
 
-![](/docs/kits/images/gridkit-grid-kit11.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit11.jpg)
 *peel the protective backing off the acrylic backplate. using the remaining 6 screws, attach the backplate to the hex standoffs.*
 
-![](/docs/kits/images/gridkit-grid-kit12.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit12.jpg)
 *peel the rubber feet off their adhesive backing and attach them over the 4 outside screws.*
 
 **note: it's best to test your device beore attaching the rubber feet as they're hard to remove. after you've confirmed all leds and button presses are working, then add the feet.**
 
 ## complete
 
-![](/docs/kits/images/gridkit-grid-kit13.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit13.jpg)
 the grid kit is complete!
 
 the kit is already programmed and ready to be used with a eurorack module, aleph or computer. if this is your first time using a grid with your computer, head to [[begin]] to install the drivers and get started with your new instrument.
 
-![](/docs/kits/images/gridkit-grid-kit14.jpg)
+![](/docs/grid/kits/images/gridkit-grid-kit14.jpg)
 
 ## led brightness
 

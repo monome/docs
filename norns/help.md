@@ -115,7 +115,7 @@ If you are consistently unable to connect your norns to wifi through the ['Netwo
 
 3. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
 
-4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `USB-UART` steps outlined [here](../maiden/#other-access). Once you perform this serial login, try executing `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network:
+4. If norns is still unable to connect to wifi, connect the power cable to your non-norns computer and follow the `serial` steps outlined [here](../advanced-access/#serial). Once you perform this serial login, try executing `nmtui` for a graphical interface of the wifi utilities, which may have better luck connecting to a network:
    
     ![](/docs/norns/image/terminal-nmtui-main.png)
 
@@ -325,7 +325,7 @@ To back up or restore your `dust` folder, follow the steps in the [wifi + files:
 wifi is the most straightforward way to back up your norns. These instructions are provided for times when you are unable to connect norns to wifi (no dongle, no network, etc).
 {: .label}
 
-If you have a stock norns, connect it to a second computer via [serial](../wifi-files/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
+If you have a stock norns, connect it to a second computer via [serial](../advanced-access/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
 
 - Make sure the USB stick is detected with `ls /media`
 	- you should see `usb` listed, in a different color
@@ -364,7 +364,7 @@ Steps:
 5. Run etcher. Select the disk image. Select the Compute Module as the target. Proceed, enter your non-norns computer's password, and wait for it to finish.
 6. Disconnect USB. Flip the switch back to RUN. Put the bottom back on.
 7. If you have a norns with a 32gb CM3+ (purchased October 2020 and thereafter), you will need to expand the file storage.  
-   7a. Re-connect USB, power norns up, and connect via [serial](https://monome.org/docs/norns/wifi-files/#serial) through a terminal.  
+   7a. Re-connect USB, power norns up, and connect via [serial](../advanced-access/#serial) through a terminal.  
    7b. Execute `sudo raspi-config` and enter *sleep* as the password.  
    7c. Navigate down to `Advanced`.  
    7d. Select `Expand Filesystem` and press OK.  
@@ -400,7 +400,7 @@ For this process, we'll use the phrase `execute` to mean "type this text into yo
 - Download and copy the [latest release's`.tgz` update file](https://github.com/monome/norns/releases) to a FAT-formatted USB drive
 - Take note of the `.tgz` file's name, as it is important (eg. `norns210706` is specific to the July 06 2021 update in YYMMDD format)
 - Insert the USB drive into norns and boot up your norns
-- If using a stock norns, connect via [serial](../wifi-files/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh)
+- If using a stock norns, connect via [serial](../advanced-access/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh)
 - Copy file to `~/update/` by executing the following:
 
 ```

@@ -25,11 +25,11 @@ The norns shield is [open source hardware](https://github.com/monome/norns-shiel
 
 ## requirements
 
-- [Raspberry Pi 3B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b) ([$35](https://chicagodist.com/products/raspberry-pi-model-3-b-1-4-ghz)) 3B+ is also fine. **important! other models are not compatible.**
+- [Raspberry Pi](https://www.raspberrypi.com) comes in many versions. Supported: 3B, 3B+, 4, 4B. (Note: software support for 4/4B will be posted shortly). 
 - microSD card - use a high quality brand such as [SanDisk](https://chicagodist.com/products/raspberry-pi-official-noobs-microsd-card?variant=12404373160015) ($10)
-- Power supply - we *highly* recommend [this one](https://chicagodist.com/products/raspberry-pi-2-amp-micro-usb-power-supply). The Pi3B has a micro-USB power port and requires at least 2A and 5.25V ideally supplied through a cable with 24AWG or less. Lower AWG = lower noise & more stable voltage delivery for better performance. **Most consumer USB cables do not meet this spec, so please be sure to keep an eye out**. You can also use a portable USB battery if it's sufficiently large.
+- Power supply - We highly suggest the official power supply for your model of Raspberry Pi. The Pi3B has a micro-USB power port and requires at least 2A and 5.25V ideally supplied through a cable with 24AWG or less. Lower AWG = lower noise & more stable voltage delivery for better performance. **Most consumer USB cables do not meet this spec, so please be sure to keep an eye out**. You can also use a portable USB battery if it's sufficiently large.
 
-*please note: The total cost for this project is ~$330 USD. no soldering is required, only screwdriver assembly done in minutes. Flashing the SD card should take 15 minutes of passive time. If you run into any trouble along the way, we are happy to assist via help@monome.org*
+*please note: The total cost for this project is ~$390 USD. no soldering is required, only screwdriver assembly done in minutes. Flashing the SD card should take 15 minutes of passive time. If you run into any trouble along the way, we are happy to assist via help@monome.org*
 
 ## comparison
 

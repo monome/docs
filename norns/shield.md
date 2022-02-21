@@ -25,7 +25,7 @@ The norns shield is [open source hardware](https://github.com/monome/norns-shiel
 
 ## requirements
 
-- [Raspberry Pi](https://www.raspberrypi.com) comes in many versions. Supported: 3B, 3B+, 4, 4B. (Note: software support for 4/4B will be posted shortly). 
+- [Raspberry Pi](https://www.raspberrypi.com) comes in many versions. Supported: 3B, 3B+, 4B. (Note: software support for 4B will be posted shortly). 
 - microSD card - use a high quality brand such as [SanDisk](https://chicagodist.com/products/raspberry-pi-official-noobs-microsd-card?variant=12404373160015) ($10)
 - Power supply - We highly suggest the official power supply for your model of Raspberry Pi. The Pi3B has a micro-USB power port and requires at least 2A and 5.25V ideally supplied through a cable with 24AWG or less. Lower AWG = lower noise & more stable voltage delivery for better performance. **Most consumer USB cables do not meet this spec, so please be sure to keep an eye out**. You can also use a portable USB battery if it's sufficiently large.
 

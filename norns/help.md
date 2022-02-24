@@ -355,6 +355,8 @@ By far the easiest method to flash the disk image is using [etcher](https://www.
 
 **WARNING**: flashing a disk completely erases the contents and replaces it with a clean install. Be sure to first back up any data you have in `dust`.
 
+If you'd like a visual companion to this process, steps 2 and onward are also demonstrated [in this video](https://vimeo.com/523980765#t=220s).
+
 Steps:
 
 1. Install etcher and download [the norns disk image](https://github.com/monome/norns-image/releases/latest). Extract the disk image on your computer so you have a remaining `.img` file.

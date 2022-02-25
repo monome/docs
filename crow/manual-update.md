@@ -134,3 +134,7 @@ If you get an error:  `Cannot open DFU device 0483:df11`, this means that your c
 - re-attempt [flashing the update](#flashing-the-update)
 
 On Windows 7, you may need to use the "USB Serial (CDC)" driver instead of WinUSB.
+
+### update succeeded, but crow is still not connecting to druid / norns {#not-connecting}
+
+If the update successfully flashed, but your crow is still not connecting to druid or norns, then there's a chance that a loaded script has caused a boot failure. Inside of the zip file you downloaded to manually update crow, you'll notice an `erase_userscript` command for both Windows and MacOS/Linux -- please run whichever file corresponds to your operating system and crow should happily take flight afterward.

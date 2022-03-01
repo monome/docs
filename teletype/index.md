@@ -37,7 +37,7 @@ The basics of Teletype are quick to learn. The studies will get you started and 
 
 * [Just Type Studies](jt-1) - a guided series of tutorials on integrating Teletype with Just Friends
 
-* [PDF command reference](TT_commands_3.0.pdf)
+* [PDF command reference](TT_commands_4.0.pdf)
 * [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
 
 * [Default scenes](scenes-10/)

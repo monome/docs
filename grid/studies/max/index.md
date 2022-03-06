@@ -171,7 +171,7 @@ where the format of the message is:
 
 	/monome/grid/led/row x_offset y d[...]
 
-Here y is 7, the last row. Check out the full OSC spec for more information on this message.
+Here y is 7, the last row. Check out the [full OSC spec](https://monome.org/docs/serialosc/osc/#grid) for more information on this message.
 
 After we clear the row, we turn on the corresponding LED with a normal single-LED message:
 

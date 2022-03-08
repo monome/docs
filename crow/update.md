@@ -46,6 +46,8 @@ If you continue to see `command not found: druid`, there's a chance that your in
 
 Once you're back in the shell you used to install, you should be good to go!
 
+If you see `Error: No such command 'firmware'`, you first need to [update druid](/docs/crow/druid/#update).
+
 ## Windows
 
 Before updating crow you'll need to install the driver for crow's bootloader, and the `libusb1` DLL file so that the PowerShell can talk to crow's bootloader.
@@ -72,7 +74,9 @@ Before updating crow you'll need to install the driver for crow's bootloader, an
 ### Update the Firmware
 
 - Open a new PowerShell as Administrator
-- run `druid firmware` and watch your crow absorb new knowledge
+- Run `druid firmware` and watch your crow absorb new knowledge
+
+If you see `Error: No such command 'firmware'`, you first need to [update druid](/docs/crow/druid/#update).
 
 ## Version
 

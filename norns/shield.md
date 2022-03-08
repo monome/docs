@@ -40,7 +40,7 @@ There are some differences between the norns and norns shield:
 
 Software is fully compatible between the two.
 
-*please note: shield hardware was updated in June 2021 for cleaner audio path and more mechanically robust jacks*
+The norns shield hardware was updated in June 2021 for cleaner audio path and more mechanically robust jacks. It was revised again in early 2022 with a different codec to overcome the global supply crisis. Signal/noise performance between the 2021 and 2022 versions is the same, though the 2022 codec is slightly louder overall.
 
 ## connecting audio
 

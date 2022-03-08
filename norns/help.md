@@ -374,12 +374,9 @@ Steps:
 
 #### shield
 
-Use [etcher](https://www.balena.io/etcher/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card).
+Use [etcher](https://www.balena.io/etcher/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card). Be sure to use a high quality SD card -- if you have any trouble, please try a different card.
 
-Be sure to use a high quality one. If you have trouble, please try a different card.
-{: .label}
-
-Lastly, you'll need to expand the filesystem:  
+After flashing your SD card, you'll need to expand the filesystem:  
 
 1. Open a terminal on a computer connected to the same network as your shield  
 2. Execute: `ssh we@norns.local`  

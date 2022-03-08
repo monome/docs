@@ -343,23 +343,21 @@ For the adventurous, here are steps to surface the ext4 filesystem: [Windows](ht
 
 ### fresh install
 
-*nb. you do NOT need to do a fresh install just to update your norns, unless your norns is currently running 181101 (Nov 01 2018's software) or earlier. to perform a standard update, see [these instructions](https://monome.org/docs/norns/wifi-files/#update). fresh installing will wipe your norns, so back up any data you need before proceeding.*
+This process will install a clean working system.
 
-the latest full images for norns and shield can be downloaded [here](https://github.com/monome/norns-image/releases/latest). please make sure you download + install the correct image, otherwise your unit will not perform correctly.
+**WARNING**: the disk will be completely erased. Be sure to first back up any data you have in `dust`.
 
-full images are not built for every release, so do not worry if the 'latest' full image is not the same as the current update -- you will update from SYSTEM > UPDATE as part of the last step.
+Full images are not built for every release, so do not worry if the 'latest' full image is not the same as the current update -- you will update from SYSTEM > UPDATE as part of the last step.
 
-#### stock norns
+#### standard norns
 
-By far the easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows. If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
-
-**WARNING**: flashing a disk completely erases the contents and replaces it with a clean install. Be sure to first back up any data you have in `dust`.
+The easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows. If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
 
 If you'd like a visual companion to this process, steps 2 and onward are also demonstrated [in this video](https://vimeo.com/523980765#t=220s).
 
 Steps:
 
-1. Install etcher and download [the norns disk image](https://github.com/monome/norns-image/releases/latest). Extract the disk image on your computer so you have a remaining `.img` file.
+1. Install etcher. Download [the norns disk image](https://github.com/monome/norns-image/releases/latest): get the **standard** image. Extract the disk image on your computer so you have a remaining `.img` file.
 2. Remove the four bottom screws of the norns.
 3. Plug the norns power into your laptop.
 4. You'll see a switch through a notch in the circuit board, flip this to DISK.
@@ -376,14 +374,12 @@ Steps:
 
 #### shield
 
-*nb. only Pi 3 and Pi 3b's are supported*
-
 Use [etcher](https://www.balena.io/etcher/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card).
 
 Be sure to use a high quality one. If you have trouble, please try a different card.
 {: .label}
 
-If your SD card seems a lot more full than it should be, you'll need to expand the filesystem:  
+Lastly, you'll need to expand the filesystem:  
 
 1. Open a terminal on a computer connected to the same network as your shield  
 2. Execute: `ssh we@norns.local`  
@@ -394,6 +390,7 @@ If your SD card seems a lot more full than it should be, you'll need to expand t
 6. Lots of activity will happen. When it's done, power down and reboot. If you get any errors, reboot again.
 7. [Consider changing the default password and address](#change-password)
 9. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
+
 
 ### manual / offline update
 

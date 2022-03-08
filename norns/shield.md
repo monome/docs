@@ -25,7 +25,7 @@ The norns shield is [open source hardware](https://github.com/monome/norns-shiel
 
 ## requirements
 
-- [Raspberry Pi](https://www.raspberrypi.com) comes in many versions. Supported: 3B, 3B+, 4B. (Note: software support for 4B will be posted shortly). 
+- [Raspberry Pi](https://www.raspberrypi.com) comes in many versions. Supported: 3B, 3B+, 4B.
 - microSD card - use a high quality brand such as [SanDisk](https://chicagodist.com/products/raspberry-pi-official-noobs-microsd-card?variant=12404373160015) ($10)
 - Power supply - We highly suggest the official power supply for your model of Raspberry Pi. The Pi3B has a micro-USB power port and requires at least 2A and 5.25V ideally supplied through a cable with 24AWG or less. Lower AWG = lower noise & more stable voltage delivery for better performance. **Most consumer USB cables do not meet this spec, so please be sure to keep an eye out**. You can also use a portable USB battery if it's sufficiently large.
 
@@ -50,12 +50,15 @@ To learn more about how to use shield, please refer to the standard norns docume
 
 ## flashing microSD card
 
-Since the Pi uses a microSD card in lieu of internal memory, you'll need to load the norns system (referred to as an **image**) onto the microSD card you intend to use with your Pi. This process (referred to as **flashing**) will erase and replace the microSD card's contents with the norns image. We'll use a program called [balenaEtcher](https://www.balena.io/etcher/), which makes flashing very straightforward:
+Since the Pi uses a microSD card in lieu of internal memory, you'll need to load the norns system (referred to as an **image**) onto the microSD card you intend to use with your Pi. This process (referred to as **flashing**) will erase and replace the microSD card's contents with the norns image. We'll use a program called [Etcher](https://www.balena.io/etcher/), which makes flashing very straightforward:
 
-1. download and install [balenaEtcher](https://www.balena.io/etcher/) on your computer
-2. download the [latest norns shield image](https://github.com/monome/norns-image/releases/latest) to your computer (*nb. the base image might not include the latest software updates*)
+new 2022 shields: use the cs4271 images for pi 3 or pi 4 according to your hardware.
+{: .label}
+
+1. download and install [Etcher](https://www.balena.io/etcher/) on your computer
+2. download the [latest norns shield image](https://github.com/monome/norns-image/releases/latest) to your computer. be sure to select the correct file according to your hardware: pi3 or pi4, and the correct audio codec. older shields use the cs4720, newer ones (version number 220101 or greater printed on the circuit board) use the cs4721.
 3. unzip the shield image (which will result in an `.img` file) and insert your SD card into your computer
-4. run balenaEtcher, which will ask you to direct it to the unzipped shield image and to identify your microSD card as the target -- after that, the program will take care of everything
+4. run Etcher, which will ask you to direct it to the unzipped shield image and to identify your microSD card as the target -- after that, the program will take care of everything
 5. once the process completes, eject the microSD card from your computer and move onto the assembly steps below
 
 *please note: don't forget to [expand your filesystem](#expand-filesystem) after you boot norns for the first time!*

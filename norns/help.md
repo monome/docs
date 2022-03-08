@@ -72,9 +72,9 @@ We do *not* recommend at-home repair, as the encoders are extremely sensitive to
 
 ### extending storage
 
-#### stock norns
+#### standard norns
 
-Many of the original stock norns came equipped with a CM3 (Compute Module 3) which has 4gb of storage. This can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage. Just search `raspberry pi cm3+ 32gb` to find a retailer.
+Many of the original standard norns came equipped with a CM3 (Compute Module 3) which has 4gb of storage. This can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage. Just search `raspberry pi cm3+ 32gb` to find a retailer.
 
 There is no soldering needed, but you will have to disassemble your norns a bit. Please follow this tutorial video:
 
@@ -101,7 +101,7 @@ If you notice that shield doesn't seem to see the entire capacity of your microS
 
 ### wifi troubleshooting
 
-Since shield's Raspberry Pi has built-in wifi, these steps apply to stock norns only
+Since shield's Raspberry Pi has built-in wifi, these steps apply to standard norns only
 {: .label}
 
 If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources.
@@ -191,7 +191,7 @@ shield revision 210330 outputs 1.75V peak-to-peak, which is roughly *consumer li
 NO!
 {: .label .label-red}
 
-norns (both stock and shield) has line-level inputs only -- sending modular signals, which run very hot, through these inputs may result in damage. Please attenuate your modular signals before sending them into norns with an interface module like [Intellijel's Audio Interface](https://www.modulargrid.net/e/intellijel-audio-interface-ii).
+norns (both standard and shield) has line-level inputs only -- sending modular signals, which run very hot, through these inputs may result in damage. Please attenuate your modular signals before sending them into norns with an interface module like [Intellijel's Audio Interface](https://www.modulargrid.net/e/intellijel-audio-interface-ii).
 
 ### how do I send MIDI to/from norns from/to another computer? {#midi-host}
 
@@ -205,9 +205,9 @@ Since norns is a MIDI host and other computers are *also* MIDI hosts, norns is n
 
 No.
 
-The norns OS is primarily developed for/on the stock norns hardware, which makes use of a compute module which has a smaller form factor than the traditional Pi board and does not have any of the additional I/O. This allows stock units to provide pro-audio I/O, a battery, and an overall roomier layout while maintaining a small footprint.
+The norns OS is primarily developed for/on the standard norns hardware, which makes use of a compute module which has a smaller form factor than the traditional Pi board and does not have any of the additional I/O. This allows standard units to provide pro-audio I/O, a battery, and an overall roomier layout while maintaining a small footprint.
 
-Avoiding the additional CPU headroom required to support external video output also allows us to optimize the capabilities of norns, to provide stock and shield users with the same foundational software experience.
+Avoiding the additional CPU headroom required to support external video output also allows us to optimize the capabilities of norns, to provide standard norns and shield users with the same foundational software experience.
 
 ## SOFTWARE
 
@@ -228,7 +228,7 @@ If you experience a freeze that you can't recover from, there's a special button
 
 If multiple attempts of this combination fail, these options are last resorts:
 
-- stock norns have a little white button on the rear side which provides a hard reset
+- standard norns have a little white button on the rear side which provides a hard reset
 
 - shields do not have a reset button, so the only option is to pull power
 
@@ -325,7 +325,7 @@ To back up or restore your `dust` folder, follow the steps in the [wifi + files:
 wifi is the most straightforward way to back up your norns. These instructions are provided for times when you are unable to connect norns to wifi (no dongle, no network, etc).
 {: .label}
 
-If you have a stock norns, connect it to a second computer via [serial](../advanced-access/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
+If you have a standard norns, connect it to a second computer via [serial](../advanced-access/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
 
 - Make sure the USB stick is detected with `ls /media`
 	- you should see `usb` listed, in a different color
@@ -396,7 +396,7 @@ For this process, we'll use the phrase `execute` to mean "type this text into yo
 - Download and copy the [latest release's`.tgz` update file](https://github.com/monome/norns/releases) to a FAT-formatted USB drive
 - Take note of the `.tgz` file's name, as it is important (eg. `norns210706` is specific to the July 06 2021 update in YYMMDD format)
 - Insert the USB drive into norns and boot up your norns
-- If using a stock norns, connect via [serial](../advanced-access/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh)
+- If using a standard norns, connect via [serial](../advanced-access/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh)
 - Copy file to `~/update/` by executing the following:
 
 ```

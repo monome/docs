@@ -219,7 +219,7 @@ Audio routing is shown below:
 
 [Technical details about the norns mixer client (crone).](../reference/#crone)
 
-*nb. DO NOT plug modular-level signals into norns (both stock and shield). The inputs are designed for line levels only, so please attenuate any modular signals before sending them into norns.*
+*nb. DO NOT plug modular-level signals into norns (both standard and shield). The inputs are designed for line levels only, so please attenuate any modular signals before sending them into norns.*
 
 ### AUDIO PARAMETERS
 

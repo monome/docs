@@ -21,14 +21,14 @@ nav_order: 1
 
 ## start
 
-To begin, let's get acquainted with the layouts of both iterations of norns -- stock and shield:
+To begin, let's get acquainted with the layouts of both iterations of norns -- standard and shield:
 
 ![](/docs/norns/image/play-images/norns-legends.png)  
-*[figure 1: stock norns and shield legend](image/play-images/norns-legends.png)*
+*[figure 1: standard norns and shield legend](image/play-images/norns-legends.png)*
 
 ### power on
 
-**stock**
+**standard**
 
 - Hold K1 for four seconds.
 - Until you've performed this process a few times, it might help to look at the light next to the POWER jack. You'll see it transition from white, to peach, to amber -- you can let go of K1 at amber.
@@ -55,7 +55,7 @@ Once you are in the menu interface, use **E1** to switch between the different m
 
 ### power off
 
-**stock**
+**standard**
 
 - Press **K1** and navigate to HOME.
 - Use **E2** to select SLEEP.
@@ -143,7 +143,7 @@ Most norns scripts rely on these types of interactions — re-definable encoders
 
 ## levels
 
-**DO NOT plug modular-level signals into norns (neither stock or shield) -- norns is designed for line levels only.**
+**DO NOT plug modular-level signals into norns (neither standard or shield) -- norns is designed for line levels only.**
 
 To begin our menu dive, let's adjust the audio levels.
 

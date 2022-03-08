@@ -8,7 +8,7 @@ has_toc: false
 
 # grid + norns / norns shield
 
-*nb. we'll use 'norns' throughout this page as a catch-all for both stock and shield -- the differences between the two iterations do not affect software usability or hardware connectivity*
+*nb. we'll use 'norns' throughout this page as a catch-all for both standard norns and shield -- the differences between the two iterations do not affect software usability or hardware connectivity*
 
 ## getting started
 

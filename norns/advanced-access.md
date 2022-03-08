@@ -147,7 +147,7 @@ If things hang and do not connect, try to connect again after restarting norns (
 
 Without WiFi, you can connect to norns via serial / USB-UART by connecting the power cable to your computer.
 
-**Serial / USB-UART connection is only applicable to stock norns, not shield.**
+**Serial / USB-UART connection is only applicable to standard norns, not shield.**
 
 **macOS**:
 

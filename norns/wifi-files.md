@@ -23,7 +23,7 @@ sections
 
 norns and shield are both capable of connecting to existing WiFi networks, or hosting their own as a hotspot.
 
-shield has its own WiFi antenna built in, thanks to the Raspberry Pi. Stock norns doesn't have WiFi built in, so it comes with a USB WiFi adapter. If you need replacements please see [replacement parts](/docs/norns/help/#WiFi-nub).
+shield has its own WiFi antenna built in, thanks to the Raspberry Pi. Standard norns doesn't have WiFi built in, so it comes with a USB WiFi adapter. If you need replacements please see [replacement parts](/docs/norns/help/#WiFi-nub).
 
 The first few minutes of this video walks through how to host a hotspot from norns and how to connect norns to a known WiFi network:
 
@@ -66,7 +66,7 @@ To re-run an update, navigate to **SYSTEM > UPDATE**, then hold **K1** and press
 
 If you encounter this message while attempting to update, it means the amount of storage allocated to norns by the filesystem has less than 400 megabytes currently available.
 
-If you're using a high-capacity card/chip (eg. 32gb), this is likely the result of the filesystem not being expanded after a [fresh install](/docs/norns/help/#fresh-install) (eg. re-flashing the norns to overcome technical issues) or after the initial norns shield assembly (eg. the final [expand](/docs/norns/shield/#explore--expand) steps). Either way, this is normal -- norns can't anticipate how much space it's allowed to allocate for itself, so it retains a minimal installation size until directed otherwise. To expand the filesystem of a stock norns, follow [step 7 of the 'fresh install' docs](/docs/norns/help/#stock-norns-1). To expand the filesystem of a shield, follow [steps 1-8 here](/docs/norns/help/#shield-1).
+If you're using a high-capacity card/chip (eg. 32gb), this is likely the result of the filesystem not being expanded after a [fresh install](/docs/norns/help/#fresh-install) (eg. re-flashing the norns to overcome technical issues) or after the initial norns shield assembly (eg. the final [expand](/docs/norns/shield/#explore--expand) steps). Either way, this is normal -- norns can't anticipate how much space it's allowed to allocate for itself, so it retains a minimal installation size until directed otherwise. To expand the filesystem of a standard norns, follow [step 7 of the 'fresh install' docs](/docs/norns/help/#standard-norns-1). To expand the filesystem of a shield, follow [steps 1-8 here](/docs/norns/help/#shield-1).
 
 If filesystem expansion doesn't resolve the issue (or if you know you have a *lot* of stored audio files), you'll want to transfer files from norns to another computer. See the next section of these docs to learn how to mount norns as a networked drive.
 

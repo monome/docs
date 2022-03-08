@@ -92,8 +92,6 @@ Be sure you include the following block of information at the top of your script
 
 Then, create a new thread under the [norns Library on lines](https://llllllll.co/c/library).
 
-
-
 The URL in your script's brief documentation should point to its corresponding lines Library thread. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
 {: .label}
 

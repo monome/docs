@@ -160,7 +160,6 @@ Restoring from this backup is as simple as copying the contents of the `dust` fo
 
 **note for norns shield users:** on Windows + MacOS, the norns partition on your SD card is unfortunately not accessible by simply inserting it into an SD card reader. For the adventurous, here are steps to surface the `ext4` filesystem: [Windows](https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/) and [MacOS](https://www.maketecheasier.com/mount-access-ext4-partition-mac/).
 
-
 ## where to next?
 
 Now that you know how to get connected to WiFi, your norns is up to date, and you've got some fresh new audio to mangle, let's find some new community scripts through [**maiden**](/docs/norns/maiden)!

@@ -295,8 +295,6 @@ In the simplest terms, everything you hear from the main output is committed to 
 
 ## select
 
-Now that we have a nice *awake* session under our belts, let's explore some of the other scripts on norns!
-
 Tap **K1** and navigate to the *home* menu, then press **K3** on SELECT:
 
 ![](/docs/norns/image/play-images/menu-sel.png)  
@@ -306,6 +304,8 @@ Tap **K1** and navigate to the *home* menu, then press **K3** on SELECT:
 - press **K3** to open a description of the selected script
   - press **K3** again to load the selected script
   - press **K2** to return to the SELECT menu
+
+A fresh norns installation comes with two foundational scripts: *awake*, which we've covered earlier in these docs, and [*first light*](/docs/norns/study-0), a fantastic starting point for those curious about how norns scripts work from a code perspective. If you'd like to jump into any of the [**community scripts**](/docs/norns/community-scripts) available for norns, be sure to connect to [**wifi**](/docs/norns/wifi-files) and access [**maiden**](/docs/norns/maiden) (the norns project manager)!
 
 ### favorites
 
@@ -338,6 +338,6 @@ On all menus:
 
 ## where to next?
 
-Now that you know the basics of navigating the system, adjusting a script's parameters, and recording the results, you should feel free to explore the dozens of community scripts preloaded on your norns. To learn more about the default scripts, check out the [**community scripts**](/docs/norns/community-scripts) page!
+Now that you know the basics of navigating the system, adjusting a script's parameters, and recording the results, you might want to explore the [**community scripts**](/docs/norns/community-scripts) available for norns.
 
-Want to connect to WIFI to download more scripts? Want to transfer TAPE files? Want to make sure norns is up to date? Check out [**wifi + files**](/docs/norns/wifi-files)!
+But first, we'll need to connect to WIFI in order to get norns up to date, transfer TAPE files, and download new community scripts. Please read on to [**wifi + files**](/docs/norns/wifi-files)!

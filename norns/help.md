@@ -162,29 +162,27 @@ To troubleshoot:
 
 **Codec**
 
-The audio codec is a CS4720.
+Standard norns has audio codec CS4270. In 2022, we revised the shield circuit to CS4271, due to global component shortage -- [more info here](https://llllllll.co/t/norns-shield-2022/52960).
 
 The codec is externally clocked with a crystal (for no jitter), and the sample rate is fixed at 48k.
 
 **Inputs**
 
-The input jacks are configured for balanced or unbalanced. Input impedance is 10k.
+The standard norns input jacks are configured for balanced or unbalanced. Input impedance is 10k.
+
+The shield has only one stereo input.
 
 **Outputs**
 
-The output jacks are configured for balanced or unbalanced. Output impedance is 590 ohm.
+The standard norns output jacks are configured for balanced or unbalanced. Output impedance is 590 ohm. Output from the codec is connected to the headphone driver as well.
 
-Output from the codec is connected to the headphone driver as well.
+The shield has only one stereo output. Revision 210330 outputs 1.75V peak-to-peak, which is roughly *consumer line level*.
 
 **Headphone driver**
 
-The headphone driver is a TPA6130A2. Volume is controlled via i2c with a simple protocol, so no driver is necessary, though I think one exists.
+The standard norns headphone driver is a TPA6130A2. Volume is controlled via i2c with a simple protocol, so no driver is necessary. The i2c lines are connected to i2c0.
 
-The i2c lines are connected to i2c0.
-
-**shield output levels**
-
-shield revision 210330 outputs 1.75V peak-to-peak, which is roughly *consumer line level*.
+The shield does not have a separate headphone output.
 
 ### can I plug modular signals into norns directly? {#modular-levels}
 

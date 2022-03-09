@@ -355,20 +355,20 @@ If you'd like a visual companion to this process, steps 2 and onward are also de
 
 Steps:
 
-1. Install etcher. Download [the norns disk image](https://github.com/monome/norns-image/releases/latest): get the **standard** image. Extract the disk image on your computer so you have a remaining `.img` file.
-2. Remove the four bottom screws of the norns.
-3. Plug the norns power into your laptop.
-4. You'll see a switch through a notch in the circuit board, flip this to DISK.
-5. Run etcher. Select the disk image. Select the Compute Module as the target. Proceed, enter your non-norns computer's password, and wait for it to finish.
-6. Disconnect USB. Flip the switch back to RUN. Put the bottom back on.
+1. Install etcher. Download [the norns disk image](https://github.com/monome/norns-image/releases/latest): get the **standard** image. It'll download as a `.tgz` file -- extract it onto your computer so you have a remaining `.img` file.
+2. Power norns down and remove the four bottom screws of the unit.
+3. Plug norns into your laptop using its charge cable.
+4. You'll see a switch through a notch in the norns circuit board. It's currently on `run` -- switch it to `disk`.
+5. Run etcher. Select the disk image. Select the Compute Module as the target. Press `Flash!`, enter your non-norns computer's password, and wait for it to finish.
+6. Once the flash is complete, disconnect USB. Flip the switch on the norns board back to `run`. Secure the bottom back onto the unit.
 7. If you have a norns with a 32gb CM3+ (purchased October 2020 and thereafter), you will need to expand the file storage.  
    7a. Re-connect USB, power norns up, and connect via [serial](../advanced-access/#serial) through a terminal.  
    7b. Execute `sudo raspi-config` and enter *sleep* as the password.  
    7c. Navigate down to `Advanced`.  
    7d. Select `Expand Filesystem` and press OK.  
    7e. After it's completed, put norns to sleep.  
-8. Boot norns + [consider changing the default password and address](#change-password)
-9. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
+8. Boot norns + [connect to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
+9. [consider changing the default password and address](#change-password)
 
 #### shield
 
@@ -383,9 +383,8 @@ After flashing your SD card, you'll need to expand the filesystem:
 4. Navigate to Advanced and hit RETURN  
 5. Select `Expand Filesystem` and hit RETURN  
 6. Lots of activity will happen. When it's done, power down and reboot. If you get any errors, reboot again.
-7. [Consider changing the default password and address](#change-password)
-9. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
-
+7. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
+8. [Consider changing the default password and address](#change-password)
 
 ### manual / offline update
 

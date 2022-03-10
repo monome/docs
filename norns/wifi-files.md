@@ -69,7 +69,15 @@ To check for and install updates:
 
 To re-run an update, navigate to **SYSTEM > UPDATE**, then hold **K1** and press **K3**.
 
-### "disk full. need 400M."
+### running 220129 or earlier? {#220129}
+
+If your norns is running software version `220129` (January 29 2022) or earlier, you **must** reflash your norns to the [latest disk image](https://github.com/monome/norns-image/releases/latest) in order to use the **SYSTEM > UPDATE** menu action. While a bit of a hassle, this gives a consistent base operating system across all norns devices, and makes future updates and support much easier.
+
+To see which version of the norns software you're running, navigate to the **SELECT / SYSTEM / SLEEP** menu and hit K2 to toggle the informational display. Software version is listed on mid-right of your screen, under the currently-running script's name.
+
+If you are running anything *earlier* than `220306` (March 06 2022), be sure to perform a [backup](#backup) and follow the [fresh install instructions](/docs/norns/help/#fresh-install) instructions to get the necessary norns software installed on your device.
+
+### "disk full. need 400M." {#full}
 
 If you encounter this message while attempting to update, it means the amount of storage allocated to norns by the filesystem has less than 400 megabytes currently available.
 

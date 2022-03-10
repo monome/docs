@@ -445,9 +445,25 @@ Once you restart your device, hit K2 on the SELECT / SYSTEM / SLEEP screen and y
 
 Since all norns units come configured with the same username + password, we encourage you to personalize + protect your setup by changing the default hostname and password for the `we` user.
 
-#### login / ssh
+#### via SYSTEM menu {#system-password}
 
-To change the login/ssh password for user `we`, log in to the norns via [ssh](../wifi-files/#ssh) and execute:
+In the norns SYSTEM menu, there's a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH and hotspot.
+
+While you can simply reset this password again via this menu option, we encourage you to set it to something memorable so you don't worry about troubleshooting connectivity in a critical moment.
+
+#### change Samba password {#samba}
+
+The `smb://` remote login password does *not* automatically change when you perform the changes above. To set Samba's login credentials to match the newly set user password, log in to the norns via [ssh](../wifi-files/#ssh) and execute:
+
+```
+sudo smbpasswd -a we
+```
+
+You'll be prompted to set a new SMB password -- we encourage setting it to match with the password you created via the SYSTEM menu.
+
+#### hostname
+
+To change the hostname for maiden access, log in to the norns via [ssh](../wifi-files/#ssh) and execute:
 
 ```
 sudo raspi-config
@@ -455,24 +471,13 @@ sudo raspi-config
 
 This will lead you to the [Raspberry Pi Software Configuration Tool](https://www.raspberrypi.org/documentation/computers/configuration.html), where you can follow these steps:
 
-- press ENTER on `1 Change User Password`
-- enter a new password to log in for the `we` user, press ENTER, re-enter the new password
-- press ENTER on `2 Network Options`
-- press ENTER on `N1 Hostname`
-- press ENTER on `<ok>` and type in a new hostname for your norns device (be sure to keep `.local` at the end!!)
+- press ENTER on `1 System Options`
+- press ENTER on `S4 Hostname`
+- press ENTER on `<ok>` and type in a new hostname for your norns device (no need to type `.local`
 - navigate down to `Finish` and press ENTER -- if asked to reboot, please do
+- the unit will restart after a few seconds
 
 Now, you'll be able to use your new hostname for maiden access (what once was `norns.local` will now be `your_unique_name.local`!) and your new password for ssh access!
-
-#### Samba
-
-The `smb://` remote login password does not automatically change when you perform the changes above. To set Samba's login credentials to match the newly set user password, log in to the norns via [ssh](../wifi-files/#ssh) and execute:
-
-```
-sudo smbpasswd -a we
-```
-
-You'll be prompted to set a new SMB password -- we encourage setting it to match with the password you created in the previous section.
 
 ### taking a screenshot {#png}
 

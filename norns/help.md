@@ -378,13 +378,15 @@ After flashing your SD card, you'll need to expand the filesystem:
 
 1. Open a terminal on a computer connected to the same network as your shield  
 2. Execute: `ssh we@norns.local`  
-	2a. Password: `sleep`
+  Password: `sleep`
 3. Execute: `sudo raspi-config`  
 4. Navigate to Advanced and hit RETURN  
 5. Select `Expand Filesystem` and hit RETURN  
 6. Lots of activity will happen. When it's done, power down and reboot. If you get any errors, reboot again.
 7. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
 8. [Consider changing the default password and address](#change-password)
+
+If you have previously connected to a shield (either by this same IP address or simply `norns.local`) in the past, you may see a warning that the 'remote host identification has changed'. this is because the shield now has a new host key. The error will give you a filepath to your hosts file, but if you are on MacOS you can simply execute `rm -f ~/.ssh/known_hosts` in Terminal to erase the previous hosts file and start fresh.
 
 ### manual / offline update
 

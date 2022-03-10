@@ -349,7 +349,7 @@ Full images are not built for every release, so do not worry if the 'latest' ful
 
 #### standard norns
 
-The easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows. If you prefer the command line see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
+The easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows. If etcher does not work for you, or if you prefer the command line, see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
 
 If you'd like a visual companion to this process, steps 2 and onward are also demonstrated [in this video](https://vimeo.com/523980765#t=220s).
 
@@ -373,6 +373,8 @@ Steps:
 #### shield
 
 Use [etcher](https://www.balena.io/etcher/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card). Be sure to use a high quality SD card -- if you have any trouble, please try a different card.
+
+If etcher does not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
 
 After flashing your SD card, you'll need to expand the filesystem:  
 

@@ -21,9 +21,11 @@ sections
 
 ## connect
 
-norns and shield are both capable of connecting to existing WiFi networks, or hosting their own as a hotspot.
+Both standard norns and shield are capable of connecting to existing WiFi networks, or hosting their own as a hotspot.
 
-shield has its own WiFi antenna built in, thanks to the Raspberry Pi. Standard norns doesn't have WiFi built in, so it comes with a USB WiFi adapter. If you need replacements please see [replacement parts](/docs/norns/help/#WiFi-nub).
+shield has its own WiFi antenna built in, thanks to its Raspberry Pi. Standard norns doesn't have WiFi built in, so it comes with a USB WiFi adapter -- if you need replacements please see [replacement parts](/docs/norns/help/#WiFi-nub).
+
+### connecting norns to a WIFI network {#wifi-connect}
 
 The first few minutes of this video walks through how to host a hotspot from norns and how to connect norns to a known WiFi network:
 
@@ -41,9 +43,14 @@ To connect norns to your local network router:
 
 After a network is added, norns remembers the credentials. Known networks are stored under **CONNECT**. You can remove known networks under **DEL**.
 
+### hosting a hotspot from norns {#hotspot}
+
 If you do not have access to a router, you can also turn the norns into a WiFi hotspot. This will create a new network which you can then connect to with your computer.
-*network name / SSID*: `norns`
+
+*network name / SSID*: `norns`  
 *default password*: `nnnnnnnn`
+
+See [*change default password + address*](#change-password) to change these two credentials for increased security.
 
 ## update
 
@@ -154,11 +161,55 @@ norns records 48khz stereo WAV files -- please only import uncompressed 48kHz fi
 
 ### backup
 
-If you want to make a backup of your scripts, psets or other data simply make a copy of the `dust` folder found in `/home/we` via Samba (as described above) or [SFTP](../sftp).
+*Backup is best done by hosting a hotspot from norns and connecting your destination computer to its network -- this will greatly improve transfer speeds.*
 
-Restoring from this backup is as simple as copying the contents of the `dust` folder from your computer back to the `/home/we/dust` directory on norns.
+If you have edited any scripts to your own needs, or written any scripts of your own, please make sure you’ve copied those files to another computer or web repository.
+
+If you have only downloaded scripts from others (or have already backed up your own scripts/modifications) and wish to retain audio files, script presets, midi mappings, etc, simply copy your entire `audio` and `data` folders, which live inside of `dust`, via Samba (as described above) or [SFTP](../sftp).
+
+Restoring from this backup is as simple as copying the contents of the folders from your non-norns computer back to the `/home/we/dust/audio` and `/home/we/dust/data` directories on norns.
+
+After you restore these files, we encourage downloading fresh copies of the community scripts you want to use.
 
 **note for norns shield users:** on Windows + MacOS, the norns partition on your SD card is unfortunately not accessible by simply inserting it into an SD card reader. For the adventurous, here are steps to surface the `ext4` filesystem: [Windows](https://www.howtogeek.com/112888/3-ways-to-access-your-linux-partitions-from-windows/) and [MacOS](https://www.maketecheasier.com/mount-access-ext4-partition-mac/).
+
+## change default password + address {#change-password}
+
+Since all norns units come configured with the same username + password, we encourage you to personalize + protect your setup by changing the default hostname and password for the `we` user.
+
+### via SYSTEM menu {#system-password}
+
+In the norns SYSTEM menu, there's a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH and hotspot.
+
+While you can simply reset this password again via this menu option, we encourage you to set it to something memorable so you don't worry about troubleshooting connectivity in a critical moment.
+
+### change Samba password {#samba}
+
+The `smb://` remote login password does *not* automatically change when you perform the changes above. To set Samba's login credentials to match the newly set user password, log in to the norns via [ssh](#ssh) and execute:
+
+```
+sudo smbpasswd -a we
+```
+
+You'll be prompted to set a new SMB password -- we encourage setting it to match with the password you created via the SYSTEM menu.
+
+### hostname
+
+To change the hostname for maiden access, log in to the norns via [ssh](#ssh) and execute:
+
+```
+sudo raspi-config
+```
+
+This will lead you to the [Raspberry Pi Software Configuration Tool](https://www.raspberrypi.org/documentation/computers/configuration.html), where you can follow these steps:
+
+- press ENTER on `1 System Options`
+- press ENTER on `S4 Hostname`
+- press ENTER on `<ok>` and type in a new hostname for your norns device (no need to type `.local`
+- navigate down to `Finish` and press ENTER -- if asked to reboot, please do
+- the unit will restart after a few seconds
+
+Now, you'll be able to use your new hostname for maiden access (what once was `norns.local` will now be `your_unique_name.local`!) and your new password for ssh access!
 
 ## where to next?
 

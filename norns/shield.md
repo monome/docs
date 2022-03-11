@@ -65,6 +65,11 @@ new 2022 shields: use the cs4271 images for pi 3 or pi 4 according to your hardw
 
 ## assembly
 
+_Please note:_
+
+- the antistatic bag your shield comes in will already be unsealed -- don't worry, it was opened in our workshop to verify assembly and for a final stage of testing before shipping
+- if your shield was purchased in or after 2022, it has a white sticker on the back -- do not remove it, as it helps keep part of the circuit non-conductive for Pi4's
+
 All you need is a normal phillips-head screwdriver.
 
 Peel the wrapping from the clear acrylic cover -- if you have trouble, try coaxing from a corner. Observe the orientation below to see which way is up and add the four short standoffs, using the four short screws:

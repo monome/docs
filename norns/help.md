@@ -107,7 +107,7 @@ Since shield's Raspberry Pi has built-in wifi, these steps apply to standard nor
 If you are not actively using the wifi nub, it's best not to keep it plugged in. It uses a lot of power, draining both battery and system resources.
 {: .label .label-grey}
 
-If you are consistently unable to connect your norns to wifi through the ['Network Connect' steps outlined here](../play/#network-connect), please perform the following steps:
+If you are consistently unable to connect your norns to wifi through the [connection steps outlined here](/docs/norns/wifi-files/#wifi-connect), please perform the following steps:
 
 1. Try getting very close to your wifi router. Bad signal can make it seem nonfunctional.
 

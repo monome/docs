@@ -37,8 +37,11 @@ To connect norns to your local network router:
 - navigate to **SYSTEM > WiFi**
 - select **ADD**
 - choose your network from the list displayed
-- enter the password (**E2** toggles between top and bottom row, **E3** scrolls character, **K3** selects character)
-- select **OK** when complete
+- enter the password
+  - **E3** toggles between the character selector and the controls at the bottom of the screen
+  - when in the character selector, **E2** scrolls character and **K3** selects it
+  - if you've made a mistake in entry, turn **E3** to highlight the controls row, then turn **E2** to highlight DEL and press **K3** to delete the last character
+- when your password is completely entered, turn **E3** to highlight the controls row, then turn **E2** to highlight OK, and press **K3** to submit the password
 - you should be assigned an IP address shortly after
 
 After a network is added, norns remembers the credentials. Known networks are stored under **CONNECT**. You can remove known networks under **DEL**.

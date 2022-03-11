@@ -50,6 +50,8 @@ After a network is added, norns remembers the credentials. Known networks are st
 
 If you do not have access to a router, you can also turn the norns into a WiFi hotspot. This will create a new network which you can then connect to with your computer.
 
+Navigate to **SYSTEM > WIFI** and select **HOTSPOT**. After a few seconds, norns will begin broadcasting a network. To connect to it from another device:
+
 *network name / SSID*: `norns`  
 *default password*: `nnnnnnnn`
 

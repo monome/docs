@@ -79,9 +79,11 @@ Peel the protective sheet away from the screen. If you have a dust-blower handy,
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly3.png)
 
-Insert your newly-flashed microSD card into the Raspberry Pi and attach the Pi to the corresponding header on the shield. Attach the white case. Add four long screws to secure the case (**please be careful not to over-tighten, as these screws will pull the shield downward and too much pull might crack the acrylic top**). Finally, add the rubber feet:
+Attach the white case. Add four long screws to secure the case (**please be careful not to over-tighten, as these screws will pull the shield downward and too much pull might crack the acrylic top**). Finally, add the rubber feet:
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly4.png)
+
+Lastly, insert your newly-flashed microSD card into the Raspberry Pi and attach the Pi to the corresponding header on the shield. 
 
 ## power on, power off
 

@@ -52,7 +52,7 @@ To learn more about how to use shield, please refer to the standard norns docume
 
 Since the Pi uses a microSD card in lieu of internal memory, you'll need to load the norns system (referred to as an **image**) onto the microSD card you intend to use with your Pi. This process (referred to as **flashing**) will erase and replace the microSD card's contents with the norns image. We'll use a program called [Etcher](https://www.balena.io/etcher/), which makes flashing very straightforward. If etcher does not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
 
-new 2022 shields: use the cs4271 images for pi 3 or pi 4 according to your hardware.
+new 2022 shields (revision 211028): use the cs4271 images for pi 3 or pi 4 according to your hardware.
 {: .label}
 
 1. download and install [Etcher](https://www.balena.io/etcher/) on your computer

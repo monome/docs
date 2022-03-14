@@ -349,17 +349,19 @@ Full images are not built for every release, so do not worry if the 'latest' ful
 
 #### standard norns
 
-The easiest method to flash the disk image is using [etcher](https://www.balena.io/etcher/). It is available for Linux, MacOS, and Windows. If etcher does not work for you, or if you prefer the command line, see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
+The easiest method to flash the disk image is using either [etcher](https://www.balena.io/etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/). They are available for Linux, MacOS, and Windows. If etcher or the Imager do not work for you, or if you prefer the command line, see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
 
-If you'd like a visual companion to this process, steps 2 and onward are also demonstrated [in this video](https://vimeo.com/523980765#t=220s).
+For a visual guide to the Imager, see [this video from the Raspberry Pi Foundation](https://www.youtube.com/watch?v=ntaXWS8Lk34).
+
+If you'd like a visual companion to the etcher process, steps 2 and onward are also demonstrated [in this video from monome](https://vimeo.com/523980765#t=220s).
 
 Steps:
 
-1. Install etcher. Download [the norns disk image](https://github.com/monome/norns-image/releases/latest): get the **standard** image. It'll download as a `.tgz` file -- extract it onto your computer so you have a remaining `.img` file.
+1. Install etcher or the Imager. Download [the norns disk image](https://github.com/monome/norns-image/releases/latest): get the **standard** image. It'll download as a `.tgz` file -- extract it onto your computer so you have a remaining `.img` file.
 2. Power norns down and remove the four bottom screws of the unit.
 3. Plug norns into your laptop using its charge cable.
 4. You'll see a switch through a notch in the norns circuit board. It's currently on `run` -- switch it to `disk`.
-5. Run etcher. Select the disk image. Select the Compute Module as the target. Press `Flash!`, enter your non-norns computer's password, and wait for it to finish.
+5. Run etcher / Imager. Select the disk image. Select the Compute Module as the target. Press `Flash!` / `Write`, enter your non-norns computer's password, and wait for it to finish.
 6. Once the flash is complete, disconnect USB. Flip the switch on the norns board back to `run`. Secure the bottom back onto the unit.
 7. If you have a norns with a 32gb CM3+ (purchased October 2020 and thereafter), you will need to expand the file storage.  
    7a. Re-connect USB, power norns up, and connect via [serial](../advanced-access/#serial) through a terminal.  
@@ -372,9 +374,9 @@ Steps:
 
 #### shield
 
-Use [etcher](https://www.balena.io/etcher/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card). Be sure to use a high quality SD card -- if you have any trouble, please try a different card.
+Use [etcher](https://www.balena.io/etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card). Be sure to use a high quality SD card -- if you have any trouble, please try a different card.
 
-If etcher does not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
+If etcher or the Imager do not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
 
 After flashing your SD card, you'll need to expand the filesystem:  
 

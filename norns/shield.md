@@ -61,7 +61,7 @@ new 2022 shields (revision 211028): use the cs4271 images for pi 3 or pi 4 accor
 2. download the [latest norns shield image](https://github.com/monome/norns-image/releases/latest) to your computer. be sure to select the correct file according to your hardware: pi3 or pi4, and the correct audio codec. older shields use the cs4270, newer ones (version number 211028 or greater printed on the circuit board) use the cs4271.
 3. unzip the shield image (which will result in an `.img` file) and insert your SD card into your computer
 4. run Etcher or the Imager, which will ask you to direct it to the unzipped shield image and to identify your microSD card as the target -- after that, the program will take care of everything
-5. once the process completes, eject the microSD card from your computer and move onto the assembly steps below
+5. once the process completes (allow it to verify!), eject the microSD card from your computer and move onto the assembly steps below
 
 *please note: don't forget to [expand your filesystem](#expand-filesystem) after you boot norns for the first time!*
 
@@ -70,7 +70,8 @@ new 2022 shields (revision 211028): use the cs4271 images for pi 3 or pi 4 accor
 _Please note:_
 
 - the antistatic bag your shield comes in will already be unsealed -- don't worry, it was opened in our workshop to verify assembly and for a final stage of testing before shipping
-- if your shield was purchased in or after 2022, it has a white sticker on the back -- do not remove it, as it helps keep part of the circuit non-conductive for Pi4's
+- if your shield is version `211028` (`21` = 2021, `10` = October, `28` = 28th day) or later, it has a white sticker on the back -- do not remove it, as it helps keep part of the circuit non-conductive for Pi4's
+- if you will be using a Pi4 with your shield, you may need to cut the separators on the side of the white bottom case for optimal fit -- please see [this lines post](https://llllllll.co/t/norns-shield-2022/52960/77?u=dan_derks) for steps to complete an at-home modification
 
 Let's begin! All you need is a normal phillips-head screwdriver.
 
@@ -78,7 +79,7 @@ Peel the wrapping from the clear acrylic cover -- if you have trouble, try coaxi
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly1.png)
 
-The black button caps have square holes that fit snugly over the white buttons. Press down until they click on with a satisfying snap. Then, press the knob caps into the top of the knobs and put the knobs onto the encoders:
+The black button caps have square holes that fit snugly over the white buttons of your shield. Press down until they click on with a satisfying snap. Then, press the knob caps into the top of the knobs and put the knobs onto the encoders:
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly2.png)
 
@@ -86,7 +87,7 @@ Peel the protective sheet away from the screen. If you have a dust-blower handy,
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly3.png)
 
-Attach the Pi to the corresponding header on the shield. Attach the white case. Add four long screws to secure the case (**please be careful not to over-tighten, as these screws will pull the shield downward and too much pull might crack the acrylic top**). Finally, add the rubber feet:
+Attach the Pi to the corresponding header on the shield. Attach the white case. Add four long screws to secure the case (**please be careful not to over-tighten, as these screws will pull the shield downward and too much pull might crack the acrylic top**). If the top-side acrylic does not align with the bottom case, loosen the top-side screws to adjust the alignment and gently screw them back down. Finally, add the rubber feet:
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly4.png)
 

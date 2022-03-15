@@ -50,15 +50,17 @@ To learn more about how to use shield, please refer to the standard norns docume
 
 ## flashing microSD card
 
-Since the Pi uses a microSD card in lieu of internal memory, you'll need to load the norns system (referred to as an **image**) onto the microSD card you intend to use with your Pi. This process (referred to as **flashing**) will erase and replace the microSD card's contents with the norns image. We'll use a program called [Etcher](https://www.balena.io/etcher/), which makes flashing very straightforward. If etcher does not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
+Since the Pi uses a microSD card in lieu of internal memory, you'll need to load the norns system (referred to as an **image**) onto the microSD card you intend to use with your Pi. This process (referred to as **flashing**) will erase and replace the microSD card's contents with the norns image. We'll use a program called [Etcher](https://www.balena.io/etcher/), which makes flashing very straightforward. If etcher does not work for you, try the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/). Each is available for Linux, MacOS, and Windows. Be sure to use a high quality SD card -- if you have any trouble, please try a different card.
+
+If etcher or the Imager do not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
 
 new 2022 shields (revision 211028): use the cs4271 images for pi 3 or pi 4 according to your hardware.
 {: .label}
 
-1. download and install [Etcher](https://www.balena.io/etcher/) on your computer
+1. download and install [Etcher](https://www.balena.io/etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) on your computer
 2. download the [latest norns shield image](https://github.com/monome/norns-image/releases/latest) to your computer. be sure to select the correct file according to your hardware: pi3 or pi4, and the correct audio codec. older shields use the cs4270, newer ones (version number 211028 or greater printed on the circuit board) use the cs4271.
 3. unzip the shield image (which will result in an `.img` file) and insert your SD card into your computer
-4. run Etcher, which will ask you to direct it to the unzipped shield image and to identify your microSD card as the target -- after that, the program will take care of everything
+4. run Etcher or the Imager, which will ask you to direct it to the unzipped shield image and to identify your microSD card as the target -- after that, the program will take care of everything
 5. once the process completes, eject the microSD card from your computer and move onto the assembly steps below
 
 *please note: don't forget to [expand your filesystem](#expand-filesystem) after you boot norns for the first time!*

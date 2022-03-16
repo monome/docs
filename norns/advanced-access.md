@@ -29,6 +29,7 @@ When connected via WiFi you can SSH into norns from another computer on the same
   - using Windows? you might need to [manually enable or install an SSH client](https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/)
 - execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`
 - password: `sleep` (you will not see characters while typing, this is normal), then press ENTER/RETURN
+  - MacOS: if you're presented with a message about the host's authenticity, you can safely add the device's key by entering `yes`
 
 #### never type the password again
 

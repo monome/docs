@@ -359,17 +359,22 @@ Steps:
 
 1. Install etcher or the Imager. Download [the norns disk image](https://github.com/monome/norns-image/releases/latest): get the **standard** image. It'll download as a `.tgz` file -- extract it onto your computer so you have a remaining `.img` file.
 2. Power norns down and remove the four bottom screws of the unit.
-3. Plug norns into your laptop using its charge cable.
-4. You'll see a switch through a notch in the norns circuit board. It's currently on `run` -- switch it to `disk`.
-5. Run etcher / Imager. Select the disk image. Select the Compute Module as the target. Press `Flash!` / `Write`, enter your non-norns computer's password, and wait for it to finish.
-6. Once the flash is complete, disconnect USB. Flip the switch on the norns board back to `run`. Secure the bottom back onto the unit.
-7. If you have a norns with a 32gb CM3+ (purchased October 2020 and thereafter), you will need to expand the file storage.  
-   7a. Re-connect USB, power norns up, and connect via [serial](../advanced-access/#serial) through a terminal.  
-   7b. Execute `sudo raspi-config` and enter *sleep* as the password.  
-   7c. Navigate down to `Advanced`.  
-   7d. Select `Expand Filesystem` and press OK.  
-   7e. After it's completed, put norns to sleep.  
-8. Boot norns + [connect to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
+3. To help simplify the process, please disconnect any other storage devices connected to your computer. Then, plug norns into your computer using its charge cable.  
+4. You'll see a switch through a notch in the norns circuit board. It's currently on `run` -- switch it to `disk`. The LED on the back of norns will turn white and remain on until the 6th step.  
+  - Be aware of the white reset button at the bottom of the unit when you place norns back down -- if it keeps getting triggered, try placing the unit upright on its bottom edge.
+5. Run etcher / Imager. If using etcher, you can simply drag the disk image onto the `+` sign -- if using Imager, click `Choose OS` and `Use custom`, then navigate to the disk image file. In etcher, select the Compute Module as the target -- in Imager, choose the device mounted as `/Volumes/boot`. Press `Flash!` / `Write`, enter your non-norns computer's password, and wait for it to finish + validate.  
+  - If you do not see the Compute Module populate, or if it doesn't initialize properly, try starting fresh by unplugging norns from your computer and restarting your computer. As silly as it sounds, a simple restart has resolved this type of issue in our workshop.
+  - If you're using an adapter and you do not see the Compute Module populate or it doesn't initialize properly, try removing the USB-A connector from the adapter and re-connecting it.
+6. Once the flash and validation are complete, disconnect USB. Flip the switch on the norns board back to `run`. Secure the bottom back onto the unit.
+7. If you have a norns with a 32gb CM3+, you will need to expand the file storage, since the fresh install assumes the lowest capacity (4gb). This only needs to be done once, but it's important after a fresh install -- it lets the system know the capacity of your storage.  
+  - Re-connect USB, power norns up, and connect via [serial](../advanced-access/#serial) through a terminal.  
+  - Execute `sudo raspi-config` and enter *sleep* as the password (if prompted).  
+  - Navigate down to `Advanced Options`.  
+  - Select `Expand Filesystem` and select `OK`.  
+  - Navigate to `Finish` and if prompted to restart, select `OK`. Please note that this will power norns down fully, rather than restart it. That's okay! If you were not presented with an option to restart, simply put norns to sleep after the expansion completes.  
+  - You can verify the expansion has taken place by pressing K2 on the `SELECT / SYSTEM / SLEEP` screen -- `disk` should show around `26000M` (26 gb).  
+8. Boot norns (if you completed the expansion, it will take a bit longer to start than normal), [add your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
+  - if norns tells you it's `up to date.`, it is!
 9. [consider changing the default password and address](#change-password)
 
 #### shield
@@ -451,15 +456,15 @@ Once you restart your device, hit K2 on the SELECT / SYSTEM / SLEEP screen and y
 
 Since all norns units come configured with the same username + password, we encourage you to personalize + protect your setup by changing the default hostname and password for the `we` user.
 
-#### via SYSTEM menu {#system-password}
+#### change SSH password via SYSTEM menu {#system-password}
 
-In the norns SYSTEM menu, there's a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH and hotspot.
+In the norns SYSTEM menu, there's a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH -- this does not change your SMB password (see below) or your hotspot password.
 
-While you can simply reset this password again via this menu option, we encourage you to set it to something memorable so you don't worry about troubleshooting connectivity in a critical moment.
+While you can simply reset this SSH password again via this menu option, we encourage you to set it to something memorable so you don't worry about troubleshooting connectivity in a critical moment.
 
 #### change Samba password {#samba}
 
-The `smb://` remote login password does *not* automatically change when you perform the changes above. To set Samba's login credentials to match the newly set user password, log in to the norns via [ssh](../wifi-files/#ssh) and execute:
+The `smb://` remote login password does *not* automatically change when you perform the changes above. To set Samba's login credentials to match the newly set user password, log in to the norns via [ssh](../advanced-access/#ssh) and execute:
 
 ```
 sudo smbpasswd -a we
@@ -469,7 +474,7 @@ You'll be prompted to set a new SMB password -- we encourage setting it to match
 
 #### hostname
 
-To change the hostname for maiden access, log in to the norns via [ssh](../wifi-files/#ssh) and execute:
+To change the hostname for maiden access, log in to the norns via [ssh](../advanced-access/#ssh) and execute:
 
 ```
 sudo raspi-config
@@ -481,9 +486,13 @@ This will lead you to the [Raspberry Pi Software Configuration Tool](https://www
 - press ENTER on `S4 Hostname`
 - press ENTER on `<ok>` and type in a new hostname for your norns device (no need to type `.local`
 - navigate down to `Finish` and press ENTER -- if asked to reboot, please do
-- the unit will restart after a few seconds
+- the unit will power down after a few seconds (contrary to the above step, it will not restart)
 
-Now, you'll be able to use your new hostname for maiden access (what once was `norns.local` will now be `your_unique_name.local`!) and your new password for ssh access!
+Now, you'll be able to use your new hostname for:
+
+- maiden access: what once was `norns.local` will now be `your_unique_name.local` (you can also use the device's IP address)
+- ssh alias: what was once `norns.local` will now be `your_unique_name.local` (you can also use the device's IP address)
+- hotspot: what was once the `norns` network will now be `your_unique_name`
 
 ### taking a screenshot {#png}
 

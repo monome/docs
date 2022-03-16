@@ -31,6 +31,12 @@ When connected via WiFi you can SSH into norns from another computer on the same
 - password: `sleep` (you will not see characters while typing, this is normal), then press ENTER/RETURN
   - MacOS: if you're presented with a message about the host's authenticity, you can safely add the device's key by entering `yes`
 
+#### 'remote host identification has changed' {#remote-host}
+
+If you have previously connected to a norns (either by this same IP address or simply `norns.local`) in the past, you may see a warning that the ‘remote host identification has changed’. This indicates that the norns now has a new host key, either because it is a different unit than your previously-connected norns or because you performed a [fresh install](/docs/norns/help/#fresh-install).
+
+The error will give you a filepath to your hosts file (`~/.ssh/known_hosts`), from which you can delete the specific norns entries, but if you'd like to erase the hosts file completely and start fresh, execute `rm -f ~/.ssh/known_hosts` in Terminal.
+
 #### never type the password again
 
 If you don't have one already, [generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).  Now run `ssh-copy-id we@norns.local`. You should see output similar to this and be prompted for a password:

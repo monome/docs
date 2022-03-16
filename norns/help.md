@@ -365,6 +365,7 @@ Steps:
 5. Run etcher / Imager. If using etcher, you can simply drag the disk image onto the `+` sign -- if using Imager, click `Choose OS` and `Use custom`, then navigate to the disk image file. In etcher, select the Compute Module as the target -- in Imager, choose the device mounted as `/Volumes/boot`. Press `Flash!` / `Write`, enter your non-norns computer's password, and wait for it to finish + validate.  
   - If you do not see the Compute Module populate, or if it doesn't initialize properly, try starting fresh by unplugging norns from your computer and restarting your computer. As silly as it sounds, a simple restart has resolved this type of issue in our workshop.
   - If you're using an adapter and you do not see the Compute Module populate or it doesn't initialize properly, try removing the USB-A connector from the adapter and re-connecting it.
+  - If you're still facing trouble with Compute Module population, try swapping the cable for a different one.  
 6. Once the flash and validation are complete, disconnect USB. Flip the switch on the norns board back to `run`. Secure the bottom back onto the unit.
 7. If you have a norns with a 32gb CM3+, you will need to expand the file storage, since the fresh install assumes the lowest capacity (4gb). This only needs to be done once, but it's important after a fresh install -- it lets the system know the capacity of your storage.  
   - Re-connect USB, power norns up, and connect via [serial](../advanced-access/#serial) through a terminal.  

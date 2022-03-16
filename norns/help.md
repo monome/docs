@@ -374,7 +374,7 @@ Steps:
   - Navigate to `Finish` and if prompted to restart, select `OK`. Please note that this will power norns down fully, rather than restart it. That's okay! If you were not presented with an option to restart, simply put norns to sleep after the expansion completes.  
   - You can verify the expansion has taken place by pressing K2 on the `SELECT / SYSTEM / SLEEP` screen -- `disk` should show around `26000M` (26 gb).  
 8. Boot norns (if you completed the expansion, it will take a bit longer to start than normal), [add your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
-  - if norns tells you it's `up to date.`, it is!
+  - If you perform `SYSTEM > UPDATE` and norns tells you it's `up to date.`, it is! We recommend this step for times when a disk image might not be compiled for an incremental update cycle.
 9. [consider changing the default password and address](#change-password)
 
 #### shield {#fresh-shield}

@@ -49,7 +49,7 @@ output from the `ls` program.
 
 ## get up to date
 
-open a terminal and connect to norns via [SSH](../wifi-files/#ssh). then
+open a terminal and connect to norns via [SSH](../advanced-access/#ssh). then
 go to the `norns` directory using `cd norns`.
 
 ```bash

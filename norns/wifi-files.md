@@ -199,7 +199,7 @@ While you can simply reset this password again via this menu option, we encourag
 
 ### change Samba password {#samba}
 
-The `smb://` remote login password does *not* automatically change when you perform the changes above. To set Samba's login credentials to match the newly set user password, log in to the norns via [ssh](#ssh) and execute:
+The `smb://` remote login password does *not* automatically change when you perform the changes above. To set Samba's login credentials to match the newly set user password, log in to the norns via [ssh](../advanced-access/#ssh) and execute:
 
 ```
 sudo smbpasswd -a we
@@ -209,7 +209,7 @@ You'll be prompted to set a new SMB password -- we encourage setting it to match
 
 ### hostname
 
-To change the hostname for maiden access, log in to the norns via [ssh](#ssh) and execute:
+To change the hostname for maiden access, log in to the norns via [ssh](../advanced-access/#ssh) and execute:
 
 ```
 sudo raspi-config

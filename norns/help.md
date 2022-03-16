@@ -323,7 +323,7 @@ To back up or restore your `dust` folder, follow the steps in the [wifi + files:
 wifi is the most straightforward way to back up your norns. These instructions are provided for times when you are unable to connect norns to wifi (no dongle, no network, etc).
 {: .label}
 
-If you have a standard norns, connect it to a second computer via [serial](../advanced-access/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../wifi-files/#ssh). Then, insert a USB stick into norns.
+If you have a standard norns, connect it to a second computer via [serial](../advanced-access/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../advanced-access/#ssh). Then, insert a USB stick into norns.
 
 - Make sure the USB stick is detected with `ls /media`
 	- you should see `usb` listed, in a different color
@@ -405,7 +405,7 @@ For this process, we'll use the phrase `execute` to mean "type this text into yo
 - Download and copy the [latest release's`.tgz` update file](https://github.com/monome/norns/releases) to a FAT-formatted USB drive
 - Take note of the `.tgz` file's name, as it is important (eg. `norns210706` is specific to the July 06 2021 update in YYMMDD format)
 - Insert the USB drive into norns and boot up your norns
-- If using a standard norns, connect via [serial](../advanced-access/#serial). If using a shield, connect via [ssh](../wifi-files/#ssh)
+- If using a standard norns, connect via [serial](../advanced-access/#serial). If using a shield, connect via [ssh](../advanced-access/#ssh)
 - Copy file to `~/update/` by executing the following:
 
 ```

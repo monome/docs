@@ -72,7 +72,7 @@ We do *not* recommend at-home repair, as the encoders are extremely sensitive to
 
 ### extending storage
 
-#### standard norns
+#### standard norns {#extending-standard}
 
 Many of the original standard norns came equipped with a CM3 (Compute Module 3) which has 4gb of storage. This can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage. Just search `raspberry pi cm3+ 32gb` to find a retailer.
 
@@ -82,7 +82,7 @@ There is no soldering needed, but you will have to disassemble your norns a bit.
 
 *nb. if you are unable to use the `screen` Terminal commands shown in the video, you can expand your filesystem following the shield steps listed in the next section*
 
-#### shield
+#### shield {#extending-shield}
 
 Since shield's Raspberry Pi runs off of an SD card, which can cover a wide range of capacities, the software doesn't know how much space it's allowed to allocate for itself.
 
@@ -347,7 +347,7 @@ This process will install a clean working system.
 
 Full images are not built for every release, so do not worry if the 'latest' full image is not the same as the current update -- you will update from SYSTEM > UPDATE as part of the last step.
 
-#### standard norns
+#### standard norns {#fresh-standard}
 
 The easiest method to flash the disk image is using either [etcher](https://www.balena.io/etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/). They are available for Linux, MacOS, and Windows. If etcher or the Imager do not work for you, or if you prefer the command line, see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
 
@@ -377,7 +377,7 @@ Steps:
   - if norns tells you it's `up to date.`, it is!
 9. [consider changing the default password and address](#change-password)
 
-#### shield
+#### shield {#fresh-shield}
 
 Use [etcher](https://www.balena.io/etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card). Be sure to use a high quality SD card -- if you have any trouble, please try a different card.
 

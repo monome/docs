@@ -77,7 +77,7 @@ To check for and install updates:
 
 To re-run an update, navigate to **SYSTEM > UPDATE**, then hold **K1** and press **K3**.
 
-### running 220129 or earlier? {#220129}
+### running 220129 or earlier? {#jan292022}
 
 If your norns is running software version `220129` (January 29 2022) or earlier, you **must** reflash your norns to the [latest disk image](https://github.com/monome/norns-image/releases/latest) in order to use the **SYSTEM > UPDATE** menu action. While a bit of a hassle, this gives a consistent base operating system across all norns devices, and makes future updates and support much easier.
 

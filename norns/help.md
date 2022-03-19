@@ -508,7 +508,7 @@ This will lead you to the [Raspberry Pi Software Configuration Tool](https://www
 - press ENTER on `S4 Hostname`
 - press ENTER on `<ok>` and type in a new hostname for your norns device (no need to type `.local`
 - navigate down to `Finish` and press ENTER -- if asked to reboot, please do
-- the unit will power down after a few seconds (contrary to the above step, it will not restart)
+- the unit will power down after a few seconds (if working with a standard norns, the unit will not restart but will simply shut down)
 
 Now, you'll be able to use your new hostname for:
 

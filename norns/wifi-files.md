@@ -34,7 +34,7 @@ The first few minutes of this video walks through how to host a hotspot from nor
 
 To connect norns to your local network router:
 
-- navigate to **SYSTEM > WiFi**  
+- navigate to **SYSTEM > WIFI**  
   - if hotspot is already enabled, select `OFF` and press **K3** to disable it
 - select **ADD** and press **K3**
 - choose your network from the list displayed
@@ -46,6 +46,8 @@ To connect norns to your local network router:
 - you should be assigned an IP address shortly after
 
 After a network is added, norns remembers the credentials. Known networks are stored under **CONNECT**. You can remove known networks under **DEL**.
+
+Having trouble with connectivity? Please see [the WiFi section](/docs/norns/help/#wifi-troubleshooting) of our extended help docs.
 
 ### hosting a hotspot from norns {#hotspot}
 

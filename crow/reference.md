@@ -668,7 +668,7 @@ public.update(name, value [, subkey])
 
 ## cal
 
-crow has hardware to enable self-calibration of the CV inputs & outputs. the calibration procedure is run at the factory, so it's unlikely you'll need to use these features in a script. below are the building blocks for building your own calibration system. the official calibration script is located [here](https://github.com/monome/crow/blob/THREE/util/recalibrate.lua).
+crow has hardware to enable self-calibration of the CV inputs & outputs. the calibration procedure is run at the factory, so it's unlikely you'll need to use these features in a script. below are the building blocks for building your own calibration system. the official calibration script is located [here](https://github.com/monome/crow/blob/main/util/recalibrate.lua).
 ```lua
 cal.save()       -- save current calibration to flash
 cal.source(chan) -- configures output->input multiplexer

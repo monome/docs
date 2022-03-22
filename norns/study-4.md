@@ -9,7 +9,7 @@ permalink: /norns/study-4/
 # physical
 {: .no_toc }
 
-norns studies part 4: grids + midi
+norns studies part 4: grids + midi (also clocks)
 
 <details open markdown="block">
   <summary>
@@ -20,35 +20,72 @@ norns studies part 4: grids + midi
 {:toc}
 </details>
 
+## terminology
+
+Before we dive in, here is some terminology which is mentioned throughout this study:
+
+- **callback function**: A function that norns is aware of, but leaves open to a script redefining. In this study, we'll use callback functions to assign actions to grid + MIDI key presses.
+- **decoupling**: The fundamental design principle of the grid, where keypresses and LEDs are independent from each other -- this allows the grid to display a playhead on a step sequencer, while also displaying each step's note, while also allowing you to change notes before or after the playhead passes.
+- **coroutine**: A powerful concept in Lua, coroutines execute an event in collaboration with other processes. With norns, you'll mainly use coroutines for clock-based events -- to establish a step sequencer in collaboration with the main clock process, which can be driven by internal clock, MIDI, Ableton Link, or a modular synth via [crow](/docs/crow).
+
 ## tactile numbers
 
-it's finally time to turn button pushing into piles of numbers and numbers into blinking lights. plug in a monome grid. let's start off with the command line to introduce the basics:
+It's finally time to turn button pushing into piles of numbers, and numbers into blinking lights. Plug in a monome grid and clear any currently running script (hold **K1** on the `SELECT / SYSTEM / SLEEP` menu and, while holding **K1**, press **K3** when `CLEAR` appears).
+
+Let's start off with the command line to introduce the basics:
 
 ```lua
-g = grid.connect()
+>> g = grid.connect()
 ```
 
-this creates a device table `g`. let's light it up:
+This creates a device table `g`,  which has a collection of methods (demarcated with `:`) and functions designed to handle grid + norns communication. We'll use methods to send commands to the grid and we use functions to parse what comes back.
+
+Let's light things up with two methods, `:led` and `:refresh`:
 
 ```lua
-g:led(1,8,15)
-g:refresh()
+>> g:led(1,8,15)
+>> g:refresh()
 ```
 
-you'll see a light at x,y (1,8) go to full brightness. like the norns screen, (1,1) is the top left and numbers increase to the right and downwards.
+You'll see a light at x/y coordinate (1,8) go to full brightness. Like the norns screen, (1,1) is the top left and numbers increase to the right and downwards.
 
-if you have a grid plugged in and this didn't work, check **SYSTEM > DEVICES > GRID** and make sure your grid is attached to port 1. (more on this later.)
+If you have a grid plugged in and this didn't work, check **SYSTEM > DEVICES > GRID** and make sure your grid is attached to port 1 (more on this later).
 {: .label .label-grey}
 
-Let's see what happens when you push a key:
+The grid device table also has callback functions for what happens when you push a key. Let's assign an action to any grid key press:
 
 ```lua
-g.key = function(x,y,z) print(x,y,z) end
+>> g.key = function(x,y,z) print(x,y,z) end
 ```
 
-you'll now see the x,y,z of each key event, where z is the key press/down (1) and release/up (0). this is how we attach a function with a grid key event. let's put these things together for something slightly more inspiring:
+You'll now see the `x`,`y`, and `z` of each key event, where `z` is the key press/down (1) and release/up (0). Let's put these basic things together for something slightly more inspiring.
+
+**If you've gone through the previous studies:**
+
+- open your uniquely-named study folder in the maiden file browser
+- create a new file in your study folder: locate and click on the folder and then click the + icon in the scripts toolbar
+- rename the file: select the newly-created `untitled.lua` file, then click the pencil icon in the scripts toolbar
+  - after naming it something meaningful to you (only use alphanumeric, underscore and hyphen characters when naming), select the file again to load it into the editor
+
+<details closed markdown="block">
+  <summary>
+    <i>If you haven't gone through the previous studies</i>
+  </summary>
+  {: .text-delta }
+- create a new folder in the `code` directory: click on the `code` directory and then click the folder icon with the plus symbol to create a new folder
+  - name your new folder something meaningful, like `my_studies` (only use alphanumeric, underscore and hyphen characters when naming)
+- create a new file in the folder you created: locate and click on the folder and then click the + icon in the scripts toolbar
+- rename the file: select the newly-created `untitled.lua` file, then click the pencil icon in the scripts toolbar
+  - after naming it something meaningful to you (only use alphanumeric, underscore and hyphen characters when naming), select the file again to load it into the editor
+</details>
+
+The file is blank. Full of possibilities. Type the text below into the editor:
 
 ```lua
+-- study 4
+-- code exercise
+-- tactile numbers
+
 engine.name = 'PolyPerc'
 
 g = grid.connect()
@@ -60,66 +97,68 @@ g.key = function(x,y,z)
 end
 ```
 
-experience the magic of microtonal mashing. try changing the numbers in `engine.hz` for different intervals and ranges. the grid is simply lighting up a key on press and turning it off on release. `15` is the brightness level.
+Experience the magic of microtonal mashing. Try changing the numbers in the `engine.hz` function for different intervals and ranges. The grid is simply lighting up a key on press and turning it off on release, with `15` as the brightness level.
 
 ### expanding
 
-while it's fairly exciting to have made an outer-space instrument with just a couple of lines of code, possibilities are somewhat constrained by only using `g.key` for both sound and grid refreshes. let's decouple key, light, and sound (one of the fundamental design principles of the grid).
+While it's fairly exciting to have made an outer-space instrument with just a couple of lines of code, possibilities are somewhat constrained by only using `g.key` for both sound and grid refreshes. Let's decouple key presses, lights, and sound (one of the fundamental design principles of the grid).
 
-first, let's create a separate `grid_redraw` function and maintain a table of steps.
+First, let's create a separate `grid_redraw` function and maintain a table of steps. Clear any previous code in the editor and start anew with:
 
 ```lua
+-- study 4
+-- expanding
+
 engine.name = 'PolyPerc'
 
 steps = {}
 
 function init()
   for i=1,16 do
-    table.insert(steps,1)
+    table.insert(steps,1) -- every step starts at position 1
   end
   grid_redraw()
 end
 
-g = grid.connect()
+g = grid.connect() -- connect to our grid
 
 g.key = function(x,y,z)
-  if z == 1 then
-    steps[x] = y
-    grid_redraw()
+  if z == 1 then -- if a key is pressed...
+    steps[x] = y -- store its vertical position (y) for that step (x)
+    grid_redraw() -- redraw the grid
   end
 end
 
 function grid_redraw()
-  g:all(0)
+  g:all(0) -- turn all the LEDs off...
   for i=1,16 do
-    g:led(i,steps[i],4)
+    g:led(i,steps[i],4) -- set step positions to brightness 4
   end
-  g:refresh()
+  g:refresh() -- refresh the grid
 end
 ```
 
-introduced here is `g:all()` which sets every grid light to a set brightness. `g:all(0)` clears the grid.
+Introduced here is `g:all()` which sets every grid light to the brightness level provided -- `g:all(0)` clears the grid.
 
-the `grid_redraw` function draws each step on the grid and is called each time we have a key down(in this case, there's no point to refresh on key up). we also call `grid_redraw` on `init` for a nice startup.
+The `grid_redraw` function draws each step on the grid and is called each time we have a key down (in this case, there's no point to refresh on key up). We also call `grid_redraw` on `init` so the grid displays the starting data at startup.
 
-let's take this decoupling a step further by implementing a complete step sequencer.
+Let's take this decoupling a step further by implementing a complete step sequencer, through modifications to our previous code:
 
 ```lua
+-- study 4
+-- expanding
+
 engine.name = 'PolyPerc'
 
 steps = {}
 
 function init()
   for i=1,16 do
-    table.insert(steps,1)
+    table.insert(steps,1) -- every step starts at position 1
   end
   grid_redraw()
-  position = 1
-  counter = metro.init()
-  counter.time = 0.1
-  counter.count = -1
-  counter.event = count
-  counter:start()
+  position = 0
+  counter = clock.run(count)
 end
 
 g = grid.connect()
@@ -134,42 +173,69 @@ end
 function grid_redraw()
   g:all(0)
   for i=1,16 do
-    g:led(i,steps[i],i==position and 15 or 4)
+    g:led(i,steps[i],i == position and 15 or 4)
   end
   g:refresh()
 end
 
 function count()
-  position = (position % 16) + 1
-  engine.hz(steps[position]*100)
-  grid_redraw()
+  while true do -- while the 'counter' is active...
+    clock.sync(1) -- sync every 'beat'
+    position = util.wrap(position+1, 1, 16) -- increment the position by 1, wrap it as 1 to 16
+    engine.hz(steps[position]*100) -- play a note, based on step position
+    grid_redraw() -- and redraw the grid
+  end
 end
 ```
 
-we've added a metro ([see study 3](../study-3/#time-again)). now `grid_redraw` also gets called by the metro counter callback function, which also sounds a note.
+Lots of exciting things to unpack, all centered on *clocks*!
 
-a bonus trick is demonstrated in `grid_redraw`:
+#### clocks
+
+norns has a [global clocking system](/docs/norns/control-clock/#clock), which affords internal + external clocking mechanisms, including MIDI, [crow](/docs/crow), and Ableton Link. Since there's an [extended study on scripting with clocks](/docs/norns/clocks), we won't go too deep here, but in our code above we cover a few basics to get you started.
+
+At the end of our `init`, `counter = clock.run(count)` establishes:
+
+- a clock coroutine named `counter`
+- ...which executes the function `count`:
 
 ```lua
-g:led(i,steps[i],i==position and 15 or 4)
+function count()
+  while true do -- while the 'counter' is active...
+    clock.sync(1) -- sync every 'beat'
+    position = util.wrap(position+1, 1, 16) -- increment the position by 1, wrap it as 1 to 16
+    engine.hz(steps[position]*100) -- play a note, based on step position
+    grid_redraw() -- and redraw the grid
+  end
+end
 ```
 
-see that last part? it takes this form:
+`clock.sync(1)` will sync every 'beat' at the BPM listed under `PARAMETERS > CLOCK > tempo`. Try giving `clock.sync` a different argument to get different feels, like `1/16` or `1/3`.
+
+#### bonus trick
+
+A bonus trick is demonstrated in our `grid_redraw` function:
+
+```lua
+g:led(i,steps[i],i == position and 15 or 4)
+```
+
+That last part takes this form:
 
 _(condition)_ **and** _a_ **or** _b_
 
-here the condition is `i==position` which checks if we're drawing the step of the current position. if true, we use 15 (bright), otherwise 4 (dim).
+In our code, the condition is `i == position` which checks if we're drawing the step of the current position. If true, we use 15 (bright) for that step's LED, otherwise 4 (dim).
 
 ## long live (parts of) the 80's
 
-MIDI is still around and it's still fun. plug in a usb midi controller and get to the command line:
+MIDI has outlived most of the 80's. It's still useful and, most importantly, it's still fun. Plug a USB MIDI controller into norns and head to `SYSTEM > DEVICES > MIDI` to confirm the port it occupies, 1-16. Once you've identified its port, get to the command line:
 
 ```lua
-m = midi.connect()
-m.event = function(data) tab.print(data) end
+>> m = midi.connect(1) -- change 1 for whichever port you want to listen to
+>> m.event = function(data) tab.print(data) end
 ```
 
-push a midi key and you'll see something like:
+Push a MIDI key or turn an encoder and you'll see something like:
 
 ```
 1    144
@@ -180,13 +246,15 @@ push a midi key and you'll see something like:
 3    64
 ```
 
-what? MIDI is a [series of bytes](http://www.gweep.net/~prefect/eng/reference/protocol/midispec.html) which need to be decoded to become useful. we've built some helpers into the library:
+You may be wondering what this is. MIDI is a [series of bytes](http://www.gweep.net/~prefect/eng/reference/protocol/midispec.html) which need to be decoded to become useful.
+
+We've built some MIDI helpers into the library, which will help decipher the incoming MIDI data:
 
 ```lua
-m.event = function(data) tab.print(midi.to_msg(data)) end
+>> m.event = function(data) tab.print(midi.to_msg(data)) end
 ```
 
-using `midi.to_msg` we see that (144,72,127) is converted to:
+Using the `midi.to_msg` helper function, we see that (144,72,127) is converted to:
 
 ```
 ch    1
@@ -195,22 +263,37 @@ note    72
 type    note_on
 ```
 
-which makes more sense. so let's hook up a midi input to the PolyPerc engine:
+This format is a lot more legible.
+
+### incoming MIDI
+
+Let's hook up a MIDI keyboard to the PolyPerc engine. Clear any previous code in the editor and start anew with:
 
 ```lua
+-- study 4
+-- MIDI keyboard input
+
 engine.name = 'PolyPerc'
 
-m = midi.connect()
+m = midi.connect() -- if no argument is provided, we default to port 1
+
+function midi_to_hz(note)
+  local hz = (440 / 32) * (2 ^ ((note - 9) / 12))
+  return hz
+end
+
 m.event = function(data)
   local d = midi.to_msg(data)
   if d.type == "note_on" then
     engine.amp(d.vel / 127)
-    engine.hz((440 / 32) * (2 ^ ((d.note - 9) / 12)))
+    engine.hz(midi_to_hz(d.note))
   end
 end
 ```
 
-we set the engine amplitude to the key velocity (midi is 0-127, so we scale it 0-1), and then trigger a note. that's it! (we'll look at cleaning up that ugly `engine.hz` line later.) how do we get cc input? try adding this:
+We set the engine amplitude to the key velocity (MIDI is 0-127, so we scale it 0-1 by dividing by 127), and then trigger a note. That's it!
+
+Want to get CC input? Try adding this to our `m.event` function:
 
 ```lua
 if d.type == "cc" then
@@ -218,7 +301,19 @@ if d.type == "cc" then
 end
 ```
 
-you can also sort data by midi channel, ie `d.ch`. the types of midi that get turned into messages:
+That will print received CC number and CC value -- try specifying one of the CC values and use `util.linexp` to map the 0 to 127 range to useful values for our cutoff filter, eg.:
+
+```lua
+if d.type == "cc" then
+  if d.cc == 33 -- if CC number is 33 then...
+    engine.cutoff(util.linexp(0,127,300,12000,d.val))
+  end
+end
+```
+
+You can also sort data by MIDI channel, ie `d.ch`.
+
+Here are the types of incoming MIDI that get turned into messages:
 
 - `note_on`
 - `note_off`
@@ -227,40 +322,43 @@ you can also sort data by midi channel, ie `d.ch`. the types of midi that get tu
 - `key_pressure`
 - `channel_pressure`
 
-remember to use `tab.print(midi.to_msg(data))` for decoding any confusing midi input.
+Remember to use `tab.print(midi.to_msg(data))` for decoding any confusing MIDI input!
 
-sending midi means sending out bytes. we can certainly send raw values:
+### sending MIDI
 
-```lua
-m.send{144,60,127}
-```
-
-note the braces, as this is a syntax we haven't seen yet. it's equivalent to `m.send({144,60,127})`. if an argument is a single table, you can skip typing the parens.
-
-this sends note on for note 60 at velocity 127 but it's much easier to use the helper function:
+Sending MIDI means sending out bytes. We can certainly send raw values to a connected device:
 
 ```lua
-m:note_on(60,127)
+>> out_midi = midi.connect(1) -- change 1 for whichever port you want to send to
+>> out_midi.send{144,60,127}
 ```
 
-here's a list of the helper functions for midi out:
+Note the braces, as this is a syntax we haven't seen yet. It's equivalent to `out_midi.send({144,60,127})` -- if an argument is a single table, you can skip typing the parens.
 
-- `:note_on(note,velocity,ch)`
-- `:note_off(note,velocity,ch)`
-- `:cc(cc,val,ch)`
-- `:pitchbend(val,ch)`
-- `:key_pressure(note,val,ch)`
-- `:channel_pressure(val,ch)`
+`out_midi.send{144,60,127}` sends note on (MIDI raw data 0x90 is equal to 144) for note 60 at velocity 127 but it's much easier to use the helper function:
 
-in each case, channel will default to 1 if left off. for note on/off, velocity is optional (100 will be used if none provided).
+```lua
+>> out_midi:note_on(60,127)
+```
+
+Here's a list of the helper methods for midi out:
+
+- `:note_on(note, velocity, channel)`
+- `:note_off(note, velocity, channel)`
+- `:cc(cc, value, channel)`
+- `:pitchbend(value, channel)`
+- `:key_pressure(note, value, channel)`
+- `:channel_pressure(value, channel)`
+
+In each case, channel will default to 1 if left off. For note on/off, velocity is optional  -- 100 will be used if none provided.
 
 ### keeping track of little boxes
 
-*DEVICES* (grids, arcs, midi, and HID) use a virtual port system. physical devices are assigned to a virtual port via the **SYSTEM > DEVICES** menu. new devices are automatically assigned to remaining empty ports.
+*DEVICES* (grids, arcs, midi, and HID) use a virtual port system. Physical devices are assigned to a virtual port via the **SYSTEM > DEVICES** menu. New devices are automatically assigned to remaining empty ports.
 
-by default for grids and midi, when calling `connect()` with no argument, port 1 is used.
+When calling `connect()` with no argument, port 1 is used. This is true of grids, MIDI devices, [arcs](/docs/arc), and HID devices.
 
-this means we can attach multiple devices (again, grids and midi both apply here) and set up multiple device tables for each:
+This means we can attach multiple devices and set up multiple device tables for each:
 
 ```lua
 keys = midi.connect(1)
@@ -268,61 +366,61 @@ ctrl = midi.connect(2)
 transport = midi.connect(2)
 ```
 
-with the sample setup above we could have a keyboard input on port 1, and a cc controller on port 2. these would each get their own `event` functions. but we also made a second device table for port 2, called `transport`. all three of these device tables will work at once. the idea behind the last case being: say you have some cut-paste code you want to use from another script for doing transport control (start/stop/cc). instead of hacking up your midi event functions, you can simply copy the entire unit and it will work alongside other connections to the same port.
+With the sample setup above we could have a keyboard input on port 1, and a CC controller on port 2. These would each get their own `event` functions. But we also made a second device table for port 2, called `transport`. All three of these device tables will work at once. The idea behind the last case being: say you have some cut-paste code you want to use from another script for doing transport control (start/stop/CC). Instead of hacking up your MIDI event functions, you can simply copy the entire unit and it will work alongside other connections to the same port.
 
-this type of device management is workable when scripting on your own, but what if you want to dynamically allocate and reassign handling of data to each port? check out [the norns midi API reference](../reference/midi#example) for an example of flexible assignment.
+This type of device management is workable when scripting on your own, but what if you want to dynamically allocate and reassign handling of data to each port? Check out [the norns midi API reference](../reference/midi#example) for an example of flexible assignment.
 
 ## support your local library
 
-in one of the above examples we use a complex transformation to turn a note number into a frequency (something we demonstrated in study 3). it's a pretty standard musical function, so `@markeats` put it in a library, and here's how we use it:
+In one of the above examples we use a complex transformation to turn a note number into a frequency (something we demonstrated in study 3). It's a pretty standard musical function, so `@markeats` put it in a library, and here's how we use it:
 
 ```lua
 music = require 'musicutil'
 hz = music.note_num_to_freq(60)
 ```
 
-the library is imported with the `require` command, whereafter all of the functions within the library are available. check out the [norns function reference](../api) for the default libraries (the libraries are in upper and lower case like `MusicUtil`). Additional user libraries are also available, but are maintained by individual users. See the lines [Library category](https://llllllll.co/c/library) for more.
+The library is imported with the `require` command, whereafter all of the functions within the library are available. Check out the [norns function reference](../api) for the default libraries. Additional user libraries are also available, but are maintained by individual users. See the lines [Library category](https://llllllll.co/c/library) for more.
 
-## midi sync, Ableton Link, modular clocks
+## MIDI sync, Ableton Link, modular clocks
 
-an often-used feature of midi is the ability to sync devices to a tempo. one device can send clock to another.
+An often-used feature of MIDI is the ability to sync devices to a tempo. One device can send clock to another.
 
-this is accomplished using a series of bytes: 248 (clock tick), 250 (clock start), 251 (clock continue), and 252 (clock stop).
+This is accomplished using a series of bytes: 248 (clock tick), 250 (clock start), 251 (clock continue), and 252 (clock stop).
 
-instead of sorting these bytes out by hand, we can just use the global clock inside of norns, which has handlers built in for internal clocking as well as midi, Ableton Link, and clock signals through crow. the `CLOCK` menu is available in the `PARAMETERS` screen. see the [dedicated clock study](../clocks/) for more detail.
+Instead of sorting these bytes out by hand, we can just use the global clock inside of norns, which has handlers built in for internal clocking as well as midi, Ableton Link, and clock signals through crow. The `CLOCK` menu is available in the `PARAMETERS` screen. see the [dedicated clock study](../clocks/) for more detail.
 
 ### source
 
-this sets the sync source for the global tempo.
+This sets the sync source for the global tempo.
 
 - `internal` sets norns as the clock source
 - `midi` takes any external midi clock via connected USB midi devices
 - `link` enables ableton link sync for the connecting wifi network
 - `crow` takes sync from input 1 of a connected crow device
 
-link has a `link quantum` parameter to set the quantum size.
+Link has a `link quantum` parameter to set the quantum size.
 
 crow additionally has a `crow in div` parameter to specify the number of sub-divisions per beat.
 
-the `tempo` parameter sets the internal and link tempos. this tempo will be automatically updated if set by an external source (midi, crow, or remote link device).
+The `tempo` parameter sets the internal and link tempos. This tempo will be automatically updated if set by an external source (midi, crow, or remote link device).
 
-you can set the tempo in your script by the normal method of setting parameters:
+You can set the tempo in your script by the normal method of setting parameters:
 
 ```lua
-params:set("clock_tempo",100)
+>> params:set("clock_tempo",100)
 ```
 
 ### out
 
-clock signals can be transmitted via midi or crow.
+Clock signals can be transmitted via midi or crow.
 
-`midi out` sets the port number (which midi device, via SYSTEM > DEVICES) on which to transmit.
+`midi out` sets the port number (which MIDI device, via SYSTEM > DEVICES) on which to transmit.
 
 `crow out` sets the output number, and also has a `crow out div` setting for beat subdivisions.
 
 ## example: physical
 
-putting together concepts above. this script is demonstrated in the video up top.
+Putting together concepts above. This script is demonstrated in the video up top.
 
 ```lua
 -- physical
@@ -336,7 +434,6 @@ putting together concepts above. this script is demonstrated in the video up top
 engine.name = 'PolyPerc'
 
 music = require 'musicutil'
-beatclock = require 'beatclock'
 
 steps = {}
 position = 1
@@ -350,7 +447,7 @@ function init()
     table.insert(steps,math.random(8))
   end
   grid_redraw()
-  clock.run(count)
+  counter = clock.run(count)
 end
 
 function enc(n,d)
@@ -416,12 +513,12 @@ end
 ## reference
 ### norns-specific
 - `grid` -- module to manage messages to/from a connected monome grid and send LED state data, see [`grid` API docs](../api/modules/grid) for detailed usage
-- `midi` -- module to manage messages to/from a connected MIDI devices, see [`midi` API docs](../api/modules/midi) and [midi API reference](../reference/midi) for detailed usage
+- `midi` -- module to manage messages to/from connected MIDI devices, see [`midi` API docs](../api/modules/midi) and [MIDI API reference](../reference/midi) for detailed usage
 - `musicutil` -- library to perform standard musical functions, see [`MusicUtil` API docs](https://monome.org/docs/norns/api/modules/lib.MusicUtil.html) for detailed usage
 
 ### general
 - `and` / `or` -- a terse combination of binary operators, see [this tutorial](http://lua-users.org/wiki/TernaryOperator) for detailed usage
-- `require` -- a higher-level function, see [Lua docs](https://www.lua.org/pil/8.1.html) for more details but suffice to say you only need to use `require` when running and loading norns libraries outside of your script folder (inside of your script folder, use `include`)
+- `require` -- a higher-level function, see [Lua docs](https://www.lua.org/pil/8.1.html) for more details but suffice to say you only need to use `require` when running and loading norns libraries outside of your script's folder (like we did with `musicutil`). When loading from inside of your script's folder, use `include`. See the `libraries` section of [the extended reference](/docs/norns/reference/#libraries) for more detail.
 
 ## continued
 {: .no_toc }

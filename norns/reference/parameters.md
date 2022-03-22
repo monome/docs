@@ -40,6 +40,8 @@ permalink: /norns/reference/params
 | params:visible(id)                                              | Returns whether a parameter is visible in the UI menu (boolean)                                                                                                                               |
 | params:write(filename,name)                                     | Save a `.pset` file of all parameters' current states to disk                                                                                                                                 |
 | params:read(filename, silent)                                   | Read a `.pset` file from disk, restoring saved parameter states, with an option to avoid triggering parameters' associated actions                                                            |
+| params.action_write = function(filename)                        | User script callback whenever a parameter write occurs, passes the `.pset`'s filename                                                                                                         |
+| params.action_read = function(filename,name)                    | User script callback whenever a parameter read occurs, passes the `.pset`'s filename and name                                                                                                 |
 | params:default()                                                | Read the default `.pset` file from disk, if available                                                                                                                                         |
 | params:bang()                                                   | Trigger all parameters' associated actions                                                                                                                                                    |
 | params:clear()                                                  | Clear all parameters (system toolkit, not for script usage)                                                                                                                                   |
@@ -106,6 +108,25 @@ function random_grocery()
   params:set("grocery list",math.random(params:get_range("grocery list")[1],params:get_range("grocery list")[2]))  
 end
 ```
+
+#### PSET save/load callback
+
+Params are designed to make MIDI mapping and saving control values for a script very straightforward, using the [PMAP](/docs/norns/control-clock/#pmaps) and [PSET](/docs/norns/play/#saving-presets) functionality. However, you may want to perform additional actions when a PSET is saved or loaded, such as saving or loading non-params data into your script.
+
+`params.action_write` and `params.action_read` are two script-definable callback functions which are triggered whenever a PSET is saved or loaded. Here's a quick overview of their use:
+
+```lua
+function init()
+  params.action_write = function(filename,name)
+    print("finished writing '"..filename.."' as '"..name.."'")
+  end
+  params.action_read = function(filename)
+    print("finished reading '"..filename.."'")
+  end
+end
+```
+
+Run the above and save a few PSETs in the `PARAMETERS > PSET` menu. You'll see the `action_write` callback print after each is saved. Try loading them back and you'll see the `action_read` callback print after each is read.
 
 ### description
 

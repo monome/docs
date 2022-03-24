@@ -13,12 +13,18 @@ A library designed to build sequencers and arpeggiators with very little scaffol
 
 | Syntax                          | Description                                                                                                                      |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| my_seq = sequins{a,b,c...x,y,z} | Create a sequins of values (any data type is allowed)                                                                            |
-| my_seq()                        | Calls the sequins and returns the next value from its table (default increments by 1 with wrapping)                              |
-| my_seq:step(x)                  | Change the default step size from 1 to `x`                                                                                       |
+| my_seq = sequins{a,b,c...x,y,z} | Create a sequins of values (any data type is allowed, including more sequins)                                                                            |
+| my_seq()                        | Call the sequins, advancing by its step size (default 1) then returning the new value. Wraps at edges.                              |
+| my_seq:step(x)                  | Change the step size from default 1 to `x`                                                                                       |
 | my_seq:select(n)                | At the next `my_seq()`, index `n` will be selected and returned                                                                  |
 | my_seq[x] = y                   | Update the value of table index `x` to `y` (does not change the length of the sequins)                                           |
 | my_seq:settable(new_table)      | Swap the current sequins values with an entirely `new_table` (changes the length of the sequins and preserves the current index) |
+
+When using `my_seq()` with nested sequins, the call will "cascade" down and return the innermost value. Example:
+```lua
+my_seq = sequins{sequins{1,2,3},4,5}
+```
+Sequential calls of `my_seq()` will return, in this order: `1, 4, 5, 2, 4, 5, 3, 4, 5`
 
 ### flow-modifiers
 

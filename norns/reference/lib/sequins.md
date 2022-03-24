@@ -22,9 +22,15 @@ A library designed to build sequencers and arpeggiators with very little scaffol
 
 When using `my_seq()` with nested sequins, the call will "cascade" down and return the innermost value. Example:
 ```lua
-my_seq = sequins{sequins{1,2,3},4,5}
+my_seq = sequins{sequins{3,6,9},12,15}
 ```
-Sequential calls of `my_seq()` will return, in this order: `1, 4, 5, 2, 4, 5, 3, 4, 5`
+In this example, `my_seq()` will return 3, then 12, then 15. Next, it will return 6, then 12, then 15. Then 9, 12, 15, etc.
+
+To reference the inner sequin as a table, use its key. Example:
+```lua
+my_seq[1][3]
+```
+will return `9`, regardless of how many times you've called `my_seq()`.
 
 ### flow-modifiers
 

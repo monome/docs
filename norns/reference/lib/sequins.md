@@ -20,18 +20,6 @@ A library designed to build sequencers and arpeggiators with very little scaffol
 | my_seq[x] = y                   | Update the value of table index `x` to `y` (does not change the length of the sequins)                                           |
 | my_seq:settable(new_table)      | Swap the current sequins values with an entirely `new_table` (changes the length of the sequins and preserves the current index) |
 
-When using `my_seq()` with nested sequins, the call will "cascade" down and return the innermost value. Example:
-```lua
-my_seq = sequins{sequins{3,6,9},12,15}
-```
-In this example, `my_seq()` will return 3, then 12, then 15. Next, it will return 6, then 12, then 15. Then 9, 12, 15, etc.
-
-To reference the inner sequin as a table, use its literal key. Example:
-```lua
-my_seq[1][3]
-```
-will return `9`, regardless of how many times you've called `my_seq()`.
-
 ### flow-modifiers
 
 Flow-modifiers are exclusively supported in nested-sequins and can only be modified by recompiling that nested sequins. See example below.
@@ -171,6 +159,18 @@ end
 ```
 
 Complexity can be quickly achieved by nesting multiple `sequins`, as outlined in the top example.
+
+Note that when using `my_seq()` with nested sequins, the call will "cascade" down and return the innermost value. Example:
+```lua
+my_seq = sequins{sequins{3,6,9},12,15}
+```
+In this example, `my_seq()` will return 3, then 12, then 15. Next, it will return 6, then 12, then 15. Then 9, 12, 15, etc.
+
+To reference the inner sequin as a table, use its literal key. Example:
+```lua
+my_seq[1][3]
+```
+will return `9`, regardless of how many times you've called `my_seq()`.
 
 Flow-modifiers can be applied to inner- `sequins` to vary output even more. When calling a sequins object it will *always* return a result, but when a flow-modifier *doesn’t* return a value (eg. `every(2)` only returns a value every second time), the outer-`sequins` will simply request the next value immediately until a value is returned.
 

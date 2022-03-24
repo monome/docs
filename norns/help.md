@@ -410,8 +410,9 @@ After flashing your SD card, you'll need to expand the filesystem:
 1. Open a terminal on a computer connected to the same network as your shield  
 2. Execute: `ssh we@norns.local`  
   Password: `sleep`
+  - if you cannot connect to `we@norns.local`, try replacing `norns.local` with your shield's IP address, discoverable by hitting K2 on the `SELECT / SYSTEM / SLEEP` screen
 3. Execute: `sudo raspi-config`  
-4. Navigate to Advanced and hit RETURN  
+4. Navigate to `Advanced Options` and hit RETURN  
 5. Select `Expand Filesystem` and hit RETURN  
 6. Lots of activity will happen. When it's done, power down and reboot. If you get any errors, reboot again.
 7. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)

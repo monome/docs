@@ -26,7 +26,7 @@ my_seq = sequins{sequins{3,6,9},12,15}
 ```
 In this example, `my_seq()` will return 3, then 12, then 15. Next, it will return 6, then 12, then 15. Then 9, 12, 15, etc.
 
-To reference the inner sequin as a table, use its key. Example:
+To reference the inner sequin as a table, use its literal key. Example:
 ```lua
 my_seq[1][3]
 ```

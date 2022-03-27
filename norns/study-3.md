@@ -861,7 +861,7 @@ After a read, the norns system will cycle through every parameter to set its val
 
 ### controlspec templates
 
-In our `parameters pt.3` code, we assumed a lot about what range would be useful for controlling a filter cutoff -- to help guide us, norns comes with a number of *controlspec* templates which we can call on for easier parameter definition. These templates are listed in the [API docs](http://dndrks-shield.local/doc/modules/controlspec.html#Presets).
+In our `parameters pt.3` code, we assumed a lot about what range would be useful for controlling a filter cutoff -- to help guide us, norns comes with a number of *controlspec* templates which we can call on for easier parameter definition. These templates are listed in the [API docs](https://monome.org/docs/norns/api/modules/controlspec.html#Presets).
 
 We could rewrite the `init` of our `parameters pt.3` to utilize the `constrolspec.FREQ` template:
 

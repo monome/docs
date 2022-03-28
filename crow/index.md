@@ -24,7 +24,7 @@ A collaboration by [Whimsical Raps](https://www.whimsicalraps.com) and monome.
 - Eurorack, 2hp width, 41mm depth
 - Power consumption: 60mA @ +12v, -15mA @ -12V, no 5V
 - 2 input, 4 output, 16bit [-5V,10V] range
-- Rear panel digital communication bus (ii)
+- Rear panel digital communication bus via [ii/i2c](/docs/ansible/i2c/#what-is-i2c--ii) (cables available [here](https://www.adafruit.com/product/266))
 - full Lua scripting environment
 
 

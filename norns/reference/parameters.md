@@ -109,11 +109,27 @@ function random_grocery()
 end
 ```
 
-#### PSET save/load callback
+### parameter types
 
-Params are designed to make MIDI mapping and saving control values for a script very straightforward, using the [PMAP](/docs/norns/control-clock/#pmaps) and [PSET](/docs/norns/play/#saving-presets) functionality. However, you may want to perform additional actions when a PSET is saved or loaded, such as saving or loading non-params data into your script.
+norns can support many types of parameter declarations, to facilitate the 'right' type of control for the musical task at hand.
 
-`params.action_write` and `params.action_read` are two script-definable callback functions which are triggered whenever a PSET is saved or loaded. Here's a quick overview of their use:
+The types, with linked examples, are:
+
+- [number](./parameters/number)
+- [option](./parameters/option)
+- [control](./parameters/control)
+- [file](./parameters/file)
+- taper
+- trigger
+- binary
+- text
+
+
+### PSET save/load callback
+
+Parameters are designed to make MIDI mapping and saving control values for a script very straightforward, using the [PMAP](/docs/norns/control-clock/#pmaps) and [PSET](/docs/norns/play/#saving-presets) functionality. However, you may find that you need to generate and save data which doesn't fit the parameters model, like tables of sequencer steps (though `awake` does show [how to efficiently work with patterns as parameters](https://github.com/tehn/awake/blob/73d4accfc090aaab58f1586eaf4d9cf54d3cff01/awake.lua#L62-L86)).
+
+If you wish to perform additional actions when a PSET is saved or loaded, such as saving or loading non-params data into your script, `params.action_write` and `params.action_read` are two script-definable callback functions which are triggered whenever a PSET is saved or loaded. Here's a quick overview of their use:
 
 ```lua
 function init()
@@ -128,9 +144,87 @@ end
 
 Run the above and save a few PSETs in the `PARAMETERS > PSET` menu. You'll see the `action_write` callback print after each is saved. Try loading them back and you'll see the `action_read` callback print after each is read.
 
+When paired with other norns utilities, like `tab.save` and `tab.load`, the `params.action_write` / `params.action_read` combination can help you save/restore script-generated tables while keeping the parameters UI clear, eg:
+
+```lua
+MusicUtil = require 'musicutil' -- see https://monome.org/docs/norns/reference/lib/musicutil
+engine.name = 'PolyPerc' -- an included norns engine
+s = require 'sequins' -- see https://monome.org/docs/norns/reference/lib/sequins
+
+function init()
+  base_note = math.random(30,50)
+  my_seq = s{}
+  notes_array = MusicUtil.generate_scale_of_length(base_note, "dorian", 16)
+  generate_random_notes()
+  play = false
+  
+  -- here, we set our PSET callbacks:
+  params.action_write = function(filename,name)
+    print("finished writing '"..filename.."' as '"..name.."'")
+    os.execute("mkdir -p ".._path.data..'/params-example/'..name..'/')
+    tab.save(note_data,_path.data..'/params-example/'..name..'/notes.data')
+  end
+  params.action_read = function(filename)
+    print("finished reading '"..filename.."'")
+    local loaded_file = io.open(filename, "r")
+    if loaded_file then
+      io.input(loaded_file)
+      local pset_name = string.sub(io.read(), 4, -1) -- grab the PSET name from the top of the PSET file
+      io.close(loaded_file)
+       -- save to 'data/params-example/[the PSET's name]/notes.data':
+      note_data = tab.load(_path.data..'/params-example/'..pset_name..'/notes.data')
+      my_seq:settable(note_data) -- send this restored table to the sequins
+    end
+  end
+  
+end
+
+function generate_random_notes()
+  note_data = {}
+  for j = 1,64 do
+    -- auto-generate 64 steps of notes:
+    note_data[j] = MusicUtil.snap_note_to_array(math.random(base_note, base_note+28),notes_array)
+  end
+  my_seq:settable(note_data) -- send this table of notes to the sequins
+end
+
+function play_notes()
+  while true do
+    clock.sync(1/3)
+    engine.hz(MusicUtil.note_num_to_freq(my_seq())) -- PolyPerc accepts 'hz' arguments
+    redraw()
+  end
+end
+
+function key(n,z)
+  if n == 3 and z == 1 then
+    -- a simple start/stop mechanism
+    -- can also be set to MIDI/Link transport: https://monome.org/docs/norns/clocks/#transport-callbacks
+    play = not play
+    if play then
+      sequencer = clock.run(play_notes)
+    else
+      clock.cancel(sequencer)
+      my_seq:reset()
+    end
+    redraw()
+  end
+end
+
+function redraw()
+  screen.clear()
+  screen.move(120,55)
+  screen.text_right(play and "K3: stop" or "K3: play")
+  screen.move(30,30)
+  screen.text(my_seq.ix..": "..note_data[my_seq.ix])
+  screen.update()
+end
+```
+
+
 ### description
 
-Params are a fundamental component of the norns toolkit. They allow you to associate controls and data to variables and functions within your scripts. They offer MIDI mapping and OSC addresses, as well as state save and restore.
+Parameters are a fundamental component of the norns toolkit. They allow you to associate controls and data to variables and functions within your scripts. They offer MIDI mapping and OSC addresses, as well as state save and restore.
 
 For more information about UI interactions with params, see [the play docs](/docs/norns/play/#parameters).
 

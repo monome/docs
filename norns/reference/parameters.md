@@ -162,6 +162,7 @@ function init()
   params.action_write = function(filename,name)
     print("finished writing '"..filename.."' as '"..name.."'")
     os.execute("mkdir -p ".._path.data..'/params-example/'..name..'/')
+    -- save to 'data/params-example/[the PSET's name]/notes.data':
     tab.save(note_data,_path.data..'/params-example/'..name..'/notes.data')
   end
   params.action_read = function(filename)
@@ -171,7 +172,7 @@ function init()
       io.input(loaded_file)
       local pset_name = string.sub(io.read(), 4, -1) -- grab the PSET name from the top of the PSET file
       io.close(loaded_file)
-       -- save to 'data/params-example/[the PSET's name]/notes.data':
+      -- load saved PSET note data into our note_data table:
       note_data = tab.load(_path.data..'/params-example/'..pset_name..'/notes.data')
       my_seq:settable(note_data) -- send this restored table to the sequins
     end

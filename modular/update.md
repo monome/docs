@@ -23,13 +23,17 @@ get a normal, inexpensive USB A-A cable such as [p/n 1175-1035-ND on digikey](ht
 
 *nb. if you run into verification troubles at any point through this process, please refer to the steps in this [Apple support article](https://support.apple.com/en-us/HT202491) to resolve!*
 
-use [homebrew](http://brew.sh) to install dfu-programmer. go to the homebrew page and scroll down to "Install Homebrew" where you'll paste a line of text into Terminal.
+we'll use [Homebrew](http://brew.sh) to install dfu-programmer. to get Homebrew installed on your Mac, go to the homebrew page and scroll down to "Install Homebrew" where it will prompt you to paste a line of text into Terminal.
 
-after this is installed, you should be able to simply type:
+after Homebrew is installed, be sure to run any `Next steps` that it presents to you.
+
+then, you should be able to simply type:
 
 	brew install dfu-programmer
 
-get the firmware from the links at the top of the page. remember where these are stored on your computer. inside, there's a script called `update_firmware.command` within the named module folder.
+(if you see `brew: command not found`, this means the commands Homebrew asked you to run in the **Next steps** did not get executed and Homebrew is not executible. please try installing homebrew again.)
+
+now, we can move on to the firmware. download the firmware from the links at the top of this page. remember where these are stored on your computer. inside, there's a script called `update_firmware.command` within the named module folder.
 
 connect the USB A-A cable to your computer and the module. on the module, hold down the front panel button while powering up to launch the bootloader. the leds may be lit or not; don't worry.
 

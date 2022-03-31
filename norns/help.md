@@ -385,7 +385,8 @@ Steps:
   - Be aware of the white reset button at the bottom of the unit when you place norns back down -- if it keeps getting triggered, try placing the unit upright on its bottom edge.
 5. Run etcher / Imager. If using etcher, you can simply drag the disk image onto the `+` sign -- if using Imager, click `Choose OS` and `Use custom`, then navigate to the disk image file. In etcher, select the Compute Module as the target -- in Imager, choose the device mounted as `/Volumes/boot`. Press `Flash!` / `Write`, enter your non-norns computer's password, and wait for it to finish + validate.  
   - If you do not see the Compute Module populate, or if it doesn't initialize properly, try starting fresh by unplugging norns from your computer and restarting your computer. As silly as it sounds, a simple restart has resolved this type of issue in our workshop.
-  - If you're using an adapter and you do not see the Compute Module populate or it doesn't initialize properly, try removing the USB-A connector from the adapter and re-connecting it.
+  - If you're on a USB-C Mac, we have seen connection issues when using hubs be resolved by using Apple's official USB-C-to-A adapter.
+  - If you're using a USB adapter and you do not see the Compute Module populate or it doesn't initialize properly, try removing the USB-A connector from the adapter and re-connecting it.
   - If you're still facing trouble with Compute Module population, try swapping the cable for a different one.  
 6. Once the flash and validation are complete, disconnect USB. Flip the switch on the norns board back to `run`. Secure the bottom back onto the unit.
 7. If you have a norns with a 32gb CM3+, you will need to expand the file storage, since the fresh install assumes the lowest capacity (4gb). This only needs to be done once, but it's important after a fresh install -- it lets the system know the capacity of your storage.  

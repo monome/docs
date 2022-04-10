@@ -668,7 +668,7 @@ public.update(name, value [, subkey])
     -- (optional) 3rd argument allows table updates --> public.name[subkey] = value
 ```
 
-**norns only:**, remember to prepend `norns.` when using the above functions. example: `norns.crow.public.discover()`
+**norns scripting:** remember to prepend `norns.` when using the above functions. example: `norns.crow.public.discover()`
 
 ## cal
 

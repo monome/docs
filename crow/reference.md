@@ -511,6 +511,7 @@ end
 ## ii
 
 crow has functions for *leading* most available ii devices:
+
 ```lua
 ii.help()          -- prints a list of supported ii devices
 ii.<device>.help() -- prints available functions for <device>
@@ -584,6 +585,7 @@ crow has weak pullups for the `ii` line. they are on by default & should probabl
 ```lua
 ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups. on by default
 ```
+functions for crow as an `ii` *follower* are handled by the `ii` leader (norns, teletype, etc.) in their own languages.
 
 ### just friends
 
@@ -659,12 +661,14 @@ public.view.output[n]( [state] ) -- set state of nth output view
 when implementing public support on a USB host, these functions enable automated discovery & synchronization of variables.
 ```lua
 -- remote fns to be called by remote host, not a crow userscript
-public.discover() -- request a list of all declared public vars
+public.discover() -- print a list of all declared public vars to the console
     -- terminated with the key '_end'
 public.update(name, value [, subkey])
     -- equivalent to 'public.name = value' but also triggers any 'action'
     -- (optional) 3rd argument allows table updates --> public.name[subkey] = value
 ```
+
+**norns scripting:** remember to prepend `norns.` when using the above functions. example: `norns.crow.public.discover()`
 
 ## cal
 

@@ -385,20 +385,21 @@ Steps:
   - Be aware of the white reset button at the bottom of the unit when you place norns back down -- if it keeps getting triggered, try placing the unit upright on its bottom edge.
 5. Run etcher / Imager. If using etcher, you can simply drag the disk image onto the `+` sign -- if using Imager, click `Choose OS` and `Use custom`, then navigate to the disk image file. In etcher, select the Compute Module as the target -- in Imager, choose the device mounted as `/Volumes/boot`. Press `Flash!` / `Write`, enter your non-norns computer's password, and wait for it to finish + validate.  
   - If you do not see the Compute Module populate, or if it doesn't initialize properly, try starting fresh by unplugging norns from your computer and restarting your computer. As silly as it sounds, a simple restart has resolved this type of issue in our workshop.
-  - If you're on a USB-C Mac, we have seen connection issues when using hubs be resolved by using Apple's official USB-C-to-A adapter.
-  - If you're using a USB adapter and you do not see the Compute Module populate or it doesn't initialize properly, try removing the USB-A connector from the adapter and re-connecting it.
-  - If you're still facing trouble with Compute Module population, try swapping the cable for a different one.  
+  - If you're using a USB adapter or hub and you do not see the Compute Module populate or it doesn't initialize properly, try removing the USB-A connector from the adapter and re-connecting it. If you're on a USB-C Mac, we have seen connection issues when using hubs resolved by using Apple's official USB-C-to-A adapter. 
+  - Try swapping the cable for a different one.
+  - If you're at this point and running MacOS with [homebrew](https://brew.sh/) installed, try installing `rpiboot` using [these command line instructions](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md#mac-os).  
 6. Once the flash and validation are complete, disconnect USB. Flip the switch on the norns board back to `run`. Secure the bottom back onto the unit.
-7. If you have a norns with a 32gb CM3+, you will need to expand the file storage, since the fresh install assumes the lowest capacity (4gb). This only needs to be done once, but it's important after a fresh install -- it lets the system know the capacity of your storage.  
-  - Re-connect USB, power norns up, and connect via [serial](../advanced-access/#serial) through a terminal.  
+7. Boot norns (if you completed the expansion, it will take a bit longer to start than normal), [add your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
+  - If you perform `SYSTEM > UPDATE` and norns tells you it's `up to date.`, it is! We recommend this step for times when a disk image might not be compiled for an incremental update cycle.
+8. If you have a norns with a 32gb CM3+, you will need to expand the file storage, since the fresh install assumes the lowest capacity (4gb). This only needs to be done once, but it's important after a fresh install -- it lets the system know the capacity of your storage.  
+  - Connect via [SSH](../advanced-access/#ssh) through a terminal.  
   - Execute `sudo raspi-config` and enter *sleep* as the password (if prompted).  
   - Navigate down to `Advanced Options`.  
   - Select `Expand Filesystem` and select `OK`.  
-  - Navigate to `Finish` and if prompted to restart, select `OK`. Please note that this will power norns down fully, rather than restart it. That's okay! If you were not presented with an option to restart, simply put norns to sleep after the expansion completes.  
+  - Navigate to `Finish` and if prompted to restart, select `OK`. Please note that this will power norns down fully, rather than restart it. That's okay! If you were not presented with an option to restart, simply put norns to sleep after the expansion completes.
+  - Please note: norns will take a few minutes to fully boot after the filesystem expansion
   - You can verify the expansion has taken place by pressing K2 on the `SELECT / SYSTEM / SLEEP` screen -- `disk` should show around `26000M` (26 gb).  
-8. Boot norns (if you completed the expansion, it will take a bit longer to start than normal), [add your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
-  - If you perform `SYSTEM > UPDATE` and norns tells you it's `up to date.`, it is! We recommend this step for times when a disk image might not be compiled for an incremental update cycle.
-9. [consider changing the default password and address](#change-password)
+9. [Consider changing the default password and address](#change-password)
 
 #### shield {#fresh-shield}
 

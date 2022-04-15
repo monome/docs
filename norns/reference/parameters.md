@@ -24,7 +24,6 @@ permalink: /norns/reference/params
 | params:add_binary(id, name, behavior, default)                  | Create a parameter set for either momentary, toggle, or trigger behavior with a default state                                                                                                 |
 | params:print()                                                  | Print the index, name, and value for each parameter to the REPL                                                                                                                               |
 | params:list()                                                   | Print the names of each parameter to the REPL                                                                                                                                                 |
-| params.lookup[id]                                               | Returns the index of a given parameter's string id (note the square brackets and the `.` - this is a table call, not a function)                                                                                                                                            |
 | params:get_id(index)                                            | Returns the string id of a given parameter's index                                                                                                                                            |
 | params:string(id)                                               | Returns the string associated with the current value for a given parameter's id                                                                                                               |
 | params:set(id,val,silent)                                       | Set a parameter's value, with optional action execution                                                                                                                                       |
@@ -40,11 +39,19 @@ permalink: /norns/reference/params
 | params:visible(id)                                              | Returns whether a parameter is visible in the UI menu (boolean)                                                                                                                               |
 | params:write(filename,name)                                     | Save a `.pset` file of all parameters' current states to disk                                                                                                                                 |
 | params:read(filename, silent)                                   | Read a `.pset` file from disk, restoring saved parameter states, with an option to avoid triggering parameters' associated actions                                                            |
-| params.action_write = function(filename)                        | User script callback whenever a parameter write occurs, passes the `.pset`'s filename                                                                                                         |
-| params.action_read = function(filename,name)                    | User script callback whenever a parameter read occurs, passes the `.pset`'s filename and name                                                                                                 |
 | params:default()                                                | Read the default `.pset` file from disk, if available                                                                                                                                         |
 | params:bang()                                                   | Trigger all parameters' associated actions                                                                                                                                                    |
 | params:clear()                                                  | Clear all parameters (system toolkit, not for script usage)                                                                                                                                   |
+
+### additional tools
+
+The function calls listed above are supplemented by additional helpers + extensions, which are formatted differently.
+
+| Syntax                                        | Description                                                                                         |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| params.lookup[id]                             | A table call (note the square brackets) which returns the index of a given parameter's string id    |
+| params.action_write = function(filename)      | User script callback whenever a parameter write occurs, which passes the `.pset`'s filename         |
+| params.action_read = function(filename, name) | User script callback whenever a parameter read occurs, which passes the `.pset`'s filename and name |
 
 ### example
 
@@ -124,7 +131,6 @@ The types, with linked examples, are:
 - binary
 - text
 
-
 ### PSET save/load callback
 
 Parameters are designed to make MIDI mapping and saving control values for a script very straightforward, using the [PMAP](/docs/norns/control-clock/#pmaps) and [PSET](/docs/norns/play/#saving-presets) functionality. However, you may find that you need to generate and save data which doesn't fit the parameters model, like tables of sequencer steps (though `awake` does show [how to efficiently work with patterns as parameters](https://github.com/tehn/awake/blob/73d4accfc090aaab58f1586eaf4d9cf54d3cff01/awake.lua#L62-L86)).
@@ -157,7 +163,7 @@ function init()
   notes_array = MusicUtil.generate_scale_of_length(base_note, "dorian", 16)
   generate_random_notes()
   play = false
-  
+
   -- here, we set our PSET callbacks:
   params.action_write = function(filename,name)
     print("finished writing '"..filename.."' as '"..name.."'")
@@ -177,7 +183,7 @@ function init()
       my_seq:settable(note_data) -- send this restored table to the sequins
     end
   end
-  
+
 end
 
 function generate_random_notes()
@@ -221,7 +227,6 @@ function redraw()
   screen.update()
 end
 ```
-
 
 ### description
 

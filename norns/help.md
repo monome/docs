@@ -388,6 +388,7 @@ Steps:
   - If you're using a USB adapter or hub and you do not see the Compute Module populate or it doesn't initialize properly, try removing the USB-A connector from the adapter and re-connecting it. If you're on a USB-C Mac, we have seen connection issues when using hubs resolved by using Apple's official USB-C-to-A adapter. 
   - Try swapping the cable for a different one.
   - If you're at this point and running MacOS with [homebrew](https://brew.sh/) installed, try installing `rpiboot` using [these command line instructions](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md#mac-os).  
+  - If you're installing for the first time onto a fresh CM3+ using Windows, you'll likely need to install the Raspberry Pi boot drivers and run `rpiboot` before you can image it. Follow [these instructions on the Raspberry Pi site](https://www.raspberrypi.com/documentation/computers/compute-module.html#windows-installer) to make the new CM3+ show up as a USB mass storage device.
 6. Once the flash and validation are complete, disconnect USB. Flip the switch on the norns board back to `run`. Secure the bottom back onto the unit.
 7. Boot norns (if you completed the expansion, it will take a bit longer to start than normal), [add your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
   - If you perform `SYSTEM > UPDATE` and norns tells you it's `up to date.`, it is! We recommend this step for times when a disk image might not be compiled for an incremental update cycle.

@@ -41,6 +41,7 @@ To connect norns to your local network router:
 - enter the password
   - **E3** toggles between the character selector and the controls at the bottom of the screen
   - when in the character selector, **E2** scrolls character and **K3** selects it
+    - both lowercase and uppercase letters are available, as network passwords are case-sensitive
   - if you've made a mistake in entry, turn **E3** to highlight the controls row, then turn **E2** to highlight DEL and press **K3** to delete the last character
 - when your password is completely entered, turn **E3** to highlight the controls row, then turn **E2** to highlight OK, and press **K3** to submit the password
 - you should be assigned an IP address shortly after

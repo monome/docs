@@ -129,18 +129,18 @@ We use `ii.self.call4` to pass four arguments from Teletype:
 
 Once the script is running, we can connect crow's first three outs to a mixer to hear a three voice chord.
 
-Let's execute the following in Teletype's LIVE mode:
+Let's execute the following in Teletype's LIVE mode to affect the oscillators:
 
-- `CROW.C4 1 64 100 1` to change output 1's oscillator pitch to MIDI note 64, at level 1, with 'linear' shape
-- `CROW.C4 2 71 150 2` to change output 2's oscillator pitch to MIDI note 71, at level 1.5, with 'sine' shape
-- `CROW.C4 3 60 80 5` to change output 3's oscillator pitch to MIDI note 60, at level 0.8, with 'now' shape
+- `CROW.C4 1 64 100 1` to change output 1's pitch to MIDI note 64, at level 1, with 'linear' shape
+- `CROW.C4 2 71 150 2` to change output 2's pitch to MIDI note 71, at level 1.5, with 'sine' shape
+- `CROW.C4 3 60 80 5` to change output 3's pitch to MIDI note 60, at level 0.8, with 'now' shape
 
 To extend this interaction, try filling Teletype's patterns with MIDI notes and iterate through them LIVE or in scenes, eg:
 
 - `CROW.C4 2 PN.NEXT 1 100`
 - `CROW.C4 1 + 60 PN.NEXT 0 100` (if we want to specify base notes in our patterns, eg. `0 4 7`)
 
-Or use variables in Teletype to free up horizontal space for additional fun, eg. random wave shapes:
+Or use variables in Teletype to free up horizontal space for additional fun, eg. random waveshapes:
 
 ```bash
 C + 60 PN.NEXT 2

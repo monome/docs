@@ -22,4 +22,4 @@ bundle exec jekyll serve --baseurl '/docs' --watch --livereload
 
 (execute `./serve.sh` to quickly run last command above)
 
-visiting [http://localhost:4000/docs](http://localhost:4000/docs) to view the site. note `http://127.0.0.1:4000/docs` will also work, but the "search" will fail due to [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
+visiting [http://localhost:4000/docs/](http://localhost:4000/docs/) to view the site. note `http://127.0.0.1:4000/docs` will also work, but the "search" will fail due to [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).

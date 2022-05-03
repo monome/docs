@@ -9,7 +9,7 @@ has_toc: false
 
 # scripting
 
-Scripts describe to crow how it should function in a particular patch. Through scripts, crow's identity morphs between [quantizer](https://github.com/monome/bowery/blob/main/snippets/quantize.lua), [euclidean sequencer](https://github.com/monome/bowery/blob/main/euclidean.lua), [clock divider](https://github.com/monome/bowery/blob/main/snippets/clock_divider.lua), or [interrelated lfo generator](https://github.com/monome/bowery/blob/main/snippets/acquaintances.lua).
+Scripts describe to crow how it should function in a particular moment. Through scripts, crow's identity can morph between [quantizer](https://github.com/monome/bowery/blob/main/snippets/quantize.lua), [euclidean sequencer](https://github.com/monome/bowery/blob/main/euclidean.lua), [clock divider](https://github.com/monome/bowery/blob/main/snippets/clock_divider.lua), or [interrelated lfo generator](https://github.com/monome/bowery/blob/main/snippets/acquaintances.lua).
 
 You don't need to know how to program before you're able to write a script. Wanting to learn is the only true prerequisite, the same as any other language. 
 

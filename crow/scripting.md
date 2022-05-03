@@ -13,7 +13,7 @@ Scripts describe to crow how it should function in a particular patch. Through s
 
 You don't need to know how to program before you're able to write a script. Wanting to learn is the only true prerequisite, the same as any other language. 
 
-We've developed and collected a number of crow-specific resources. Through these pages, you'll learn more about the approachable programming interface at the core of crow, across a number of different environments:
+We've developed and collected a number of crow-specific resources. Through these pages, you'll learn more about the approachable programming interface at the core of crow, across different environments:
 
 - [scripting with druid](../scripting-druid) // writing text-based crow scripts with a laptop or desktop computer
 - [scripting with norns](../norns) // integrating crow into norns scripts far beyond clocking

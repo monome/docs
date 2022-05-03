@@ -12,9 +12,9 @@ permalink: /crow/teletype/
 # expansion and more: crow + Teletype
 {: .no_toc }
 
-When connected via [ii/i2c](/docs/ansible/i2c/#what-is-i2c--ii), crow can be used as a simple [Teletype](/docs/teletype) expander, adding two additional inputs and four additional outputs. However, crow can also dramatically extend Teletype's purposefully restricted approach to scripting, by leveraging crow's robust implementation of Lua. In these docs, we'll cover basic methods for calling some of crow's built-in functions from Teletype as well as special scripting techniques to stretch both modules.
+When connected via [ii/i2c](/docs/ansible/i2c/#what-is-i2c--ii), crow can be used as a simple [Teletype](/docs/teletype) expander, adding two inputs and four outputs. However, by leveraging crow's robust implementation of Lua, crow can also dramatically extend Teletype's purposefully-restricted approach to scripting. In these docs, we'll cover basic methods for calling some of crow's built-in functions from Teletype as well as special scripting techniques to stretch both modules.
 
-Before heading in, make sure to clear any script running on your crow, as Teletype won't overwrite already-running code and you might get unexpected results from these examples.
+Teletype won't overwrite already-running crow code, so make sure to clear any script running on your crow before heading in. Otherwise, you might get unexpected results from these examples.
 
 <details open markdown="block">
   <summary>
@@ -27,7 +27,7 @@ Before heading in, make sure to clear any script running on your crow, as Telety
 
 ## essentials
 
-Like Teletype's built-in outputs, any voltage value in the following examples is 14-bit, so we need to use Teletype's lookup tables to help translate, eg:
+Like Teletype's built-in outputs, any voltage value in the following examples is 14-bit, so we need to use Teletype's lookup tables to help translate to crow, eg:
 
 - `V x`: lookup volt value `x` (0-10)
 - `VV x`: lookup precision volt value `x` (0-1000, for 0.00 to 10.00 volts)
@@ -39,7 +39,7 @@ Like Teletype's built-in outputs, any voltage value in the following examples is
 
 - `CROW.V 1 V 2` to set crow output 1 to 2 volts
 - `CROW.V 1 VV 238` to set crow output 1 to 2.38 volts
-- `CROW.V 1 N 7` to set crow output 1 to seven semitones
+- `CROW.V 1 N 7` to set crow output 1 to the voltage equivalent of seven semitones
 
 ### slewing cv
 
@@ -238,7 +238,7 @@ Let's execute the following in Teletype's LIVE mode:
 
 ## managing multiple crows {#multiple-crows}
 
-If you have multiple crows on the same i2c bus as Teletype (up to four are supported), you might want to specify which crow to target. You can either direct Teletype to only speak to one crow, or you can specify a crow for specific commands.
+If you have multiple crows on the same i2c bus as Teletype (up to four are supported), you can direct Teletype to only speak to one crow, target a crow for just specific commands, or send commands to all crows on the bus.
 
 **CROW.SEL x**: Sets target crow unit to `x`, `1` (default) to `4`
 

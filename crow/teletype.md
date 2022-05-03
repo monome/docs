@@ -1,18 +1,33 @@
 ---
 layout: default
+parent: scripting
+grand_parent: crow
+has_children: false
 title: scripting with teletype
-parent: crow
-nav_order: 6
+nav_order: 3
+has_toc: false
 permalink: /crow/teletype/
 ---
 
+# expansion and more: crow + Teletype
+{: .no_toc }
+
 When connected via [ii/i2c](/docs/ansible/i2c/#what-is-i2c--ii), crow can be used as a simple [Teletype](/docs/teletype) expander, adding two additional inputs and four additional outputs. However, crow can also dramatically extend Teletype's purposefully restricted approach to scripting, by leveraging crow's robust implementation of Lua. In these docs, we'll cover basic methods for calling some of crow's built-in functions from Teletype as well as special scripting techniques to stretch both modules.
 
-Before heading in, make sure to clear any script running on your crow, as Teletype won't overwrite a running script and you might not get expected results from these examples.
+Before heading in, make sure to clear any script running on your crow, as Teletype won't overwrite already-running code and you might get unexpected results from these examples.
 
-## essentials {#essentials}
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
-Like Teletype's built-in outputs, any voltage argument in the following examples is 14-bit, so we'll want to use Teletype's lookup tables to help translate, eg:
+## essentials
+
+Like Teletype's built-in outputs, any voltage value in the following examples is 14-bit, so we need to use Teletype's lookup tables to help translate, eg:
 
 - `V x`: lookup volt value `x` (0-10)
 - `VV x`: lookup precision volt value `x` (0-1000, for 0.00 to 10.00 volts)
@@ -67,7 +82,7 @@ Like Teletype's built-in outputs, any voltage argument in the following examples
 
 **CROW.RST**: Calls the function `crow.reset()` on crow, returning it to its default state
 
-## extended scripting {#extended}
+## extended scripting
 
 While crow is certainly useful as a Teletype hardware extension using the OPs above, the i2c connectivity between crow and Teletype shines brightest when a script running on crow can send and receive data to/from Teletype and vice versa.
 
@@ -82,7 +97,57 @@ Calls are useful to send arguments from Teletype to crow. There are four call ty
 **CROW.C3 x y z**: Calls the function `ii.self.call3(x, y, z)` on crow  
 **CROW.C4 x y z t**: Calls the function `ii.self.call4(x, y, z, t)` on crow
 
-#### example
+#### example 1
+
+In our [essentials](#essentials) examples, we demonstrated the **CROW.LFO** operator at audio-rate. The conversion to exponential range, as well as sequencing a crow output as an oscillator, may seem a bit daunting from Teletype but is very approachable using Lua on crow.
+
+To start, run this script on crow, which will establish crow outputs 1, 2 and 3 as oscillators with different waveshapes (for an overview of crow's `oscillate` action, see the [script reference](/docs/crow/reference/#actions)):
+
+```lua
+function init()
+  shapes = {'linear','sine','logarithmic','exponential','now','wait','over','under','rebound'}
+  output[1](oscillate(note_num_to_freq(60),1,shapes[1]))
+  output[2](oscillate(note_num_to_freq(67),1,shapes[5]))
+  output[3](oscillate(note_num_to_freq(71),1,shapes[4]))
+end
+
+function note_num_to_freq(note_num) -- helper to convert MIDI to Hz
+  return 13.75 * (2 ^ ((note_num - 9) / 12))
+end
+
+function ii.self.call4(out,note,level,shape)
+  output[out](oscillate(note_num_to_freq(note),level/100,shapes[shape]))
+end
+```
+
+We use `ii.self.call4` to pass four arguments from Teletype:
+
+- `out` to specify an output on crow
+- `note` to specify a MIDI note value
+- `level` to adjust volume (which is divided by 100 to give Teletype floating point control)
+- `shape` to switch the waveshape (see the `shapes` table in our `init` function)
+
+Once the script is running, we can connect crow's first three outs to a mixer to hear a three voice chord.
+
+Let's execute the following in Teletype's LIVE mode:
+
+- `CROW.C4 1 64 100 1` to change output 1's oscillator pitch to MIDI note 64, at level 1, with 'linear' shape
+- `CROW.C4 2 71 150 2` to change output 2's oscillator pitch to MIDI note 71, at level 1.5, with 'sine' shape
+- `CROW.C4 3 60 80 5` to change output 3's oscillator pitch to MIDI note 60, at level 0.8, with 'now' shape
+
+To extend this interaction, try filling Teletype's patterns with MIDI notes and iterate through them LIVE or in scenes, eg:
+
+- `CROW.C4 2 PN.NEXT 1 100`
+- `CROW.C4 1 + 60 PN.NEXT 0 100` (if we want to specify base notes in our patterns, eg. `0 4 7`)
+
+Or use variables in Teletype to free up horizontal space for additional fun, eg. random wave shapes:
+
+```bash
+C + 60 PN.NEXT 2
+CROW.C4 3 C 100 RAND 8
+``` 
+
+#### example 2
 
 In our [essentials](#essentials) examples, we relied on Teletype's expectations of crow's capabilities to create events. While crow's [dynamic variables](/docs/crow/reference/#dynamic-variables) are a very exciting component of crow scripting, there's no way for Teletype to conceive of what OPs would be necessary or useful to crow's endlessly re-definable functions. This is where calls come in -- we can establish logic inside of our crow script and simply rely on Teletype to feed new values in.
 

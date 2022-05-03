@@ -1,8 +1,11 @@
 ---
 layout: default
-parent: crow
+parent: scripting
+grand_parent: crow
+has_children: false
 title: scripting with norns
-nav_order: 5
+nav_order: 2
+has_toc: false
 permalink: /crow/norns/
 ---
 

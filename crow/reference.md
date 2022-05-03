@@ -1,8 +1,11 @@
 ---
 layout: default
+parent: scripting
+grand_parent: crow
+has_children: false
 title: script reference
-parent: crow
-nav_order: 7
+nav_order: 4
+has_toc: false
 permalink: /crow/reference/
 ---
 

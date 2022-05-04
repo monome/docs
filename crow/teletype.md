@@ -97,7 +97,7 @@ Calls are useful to send arguments from Teletype to crow. There are four call ty
 **CROW.C3 x y z**: Calls the function `ii.self.call3(x, y, z)` on crow  
 **CROW.C4 x y z t**: Calls the function `ii.self.call4(x, y, z, t)` on crow
 
-#### example 1
+#### eg. Teletype sequencing crow as an oscillator {#example-1}
 
 In our [essentials](#essentials) examples, we demonstrated the **CROW.LFO** operator at audio-rate. The conversion to exponential range, as well as sequencing a crow output as an oscillator, may seem a bit daunting from Teletype but is very approachable using Lua on crow.
 
@@ -147,7 +147,7 @@ C + 60 PN.NEXT 2
 CROW.C4 3 C 100 RAND 8
 ``` 
 
-#### example 2
+#### eg.:Teletype controlling a crow script's dynamic variables {#example-2}
 
 In our [essentials](#essentials) examples, we relied on Teletype's expectations of crow's capabilities to create events. While crow's [dynamic variables](/docs/crow/reference/#dynamic-variables) are a very exciting component of crow scripting, there's no way for Teletype to conceive of what OPs would be necessary or useful to crow's endlessly re-definable functions. This is where calls come in -- we can establish logic inside of our crow script and simply rely on Teletype to feed new values in.
 
@@ -194,7 +194,7 @@ Queries are useful to send arguments from Teletype to crow, with crow returning 
 **CROW.Q2 x y**: Returns the result of calling the function `crow.self.query2(x, y)`  
 **CROW.Q3 x y z**: Returns the result of calling the function `crow.self.query3(x, y, z)`  
 
-#### example
+#### eg. populating Teletype patterns with sequins {#example-3}
 
 Crow has a built-in sequencer/arpeggiator library named [`sequins`](https://monome.org/docs/crow/reference/#sequins), which can be used to iterate through table data to quickly fill Teletype's patterns.
 

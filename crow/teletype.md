@@ -147,7 +147,7 @@ C + 60 PN.NEXT 2
 CROW.C4 3 C 100 RAND 8
 ``` 
 
-#### eg.:Teletype controlling a crow script's dynamic variables {#example-2}
+#### eg. Teletype controlling a crow script's dynamic variables {#example-2}
 
 In our [essentials](#essentials) examples, we relied on Teletype's expectations of crow's capabilities to create events. While crow's [dynamic variables](/docs/crow/reference/#dynamic-variables) are a very exciting component of crow scripting, there's no way for Teletype to conceive of what OPs would be necessary or useful to crow's endlessly re-definable functions. This is where calls come in -- we can establish logic inside of our crow script and simply rely on Teletype to feed new values in.
 

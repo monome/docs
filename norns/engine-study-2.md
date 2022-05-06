@@ -49,9 +49,10 @@ To reduce complexity, *Moonshine* polled the values of our synth at the time of 
 
 This study will aim to build upon our understanding of SuperCollider's relationship to norns scripting by:
 
-- breaking our SuperCollider files into separate *class* and CroneEngine files
+- breaking our SuperCollider files into separate *class* and *CroneEngine* files
 - using Groups in SuperCollider to manage realtime parameter changes to a playing voice
-- modeling two approaches to polyphony -- one in SuperCollider, the other in Lua
+- modeling an approach to polyphony and voice distribution in SuperCollider
+- structuring a template for Lua parameters
 
 ## part 1: building our class and CroneEngine files {#part-1}
 

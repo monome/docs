@@ -44,7 +44,7 @@ We'll start by building a basic synth definition in SuperCollider, which we'll t
 
 ### make a sound {#sound}
 
-Type this text into a blank SuperCollder file:
+Type this text into a blank SuperCollider file:
 
 ```
 (

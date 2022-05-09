@@ -36,8 +36,8 @@ This section assume two things are true:
     - execute `ls -lrt /dev/tty.usb*`  
     - if you get `ls: /dev/tty.usb*: No such file or directory` back, then your grid/arc is not connecting and you should try a different USB cable.
     - successful responses will look like:
-	    - `crw-rw-rw-  1 root  wheel   20,   6 Nov  8 08:08 /dev/tty.usbserial-m1100368`  
-    	- `crw-rw-rw-  1 root  wheel    9,   4 Oct 28 09:54 /dev/tty.usbmodemm44094551`
+      - `crw-rw-rw-  1 root  wheel   20,   6 Nov  8 08:08 /dev/tty.usbserial-m1100368`  
+      - `crw-rw-rw-  1 root  wheel    9,   4 Oct 28 09:54 /dev/tty.usbmodemm44094551`
 
  **If you are running macOS 10.14 or earlier, then there are some additional troubleshooting steps to pursue:**
 

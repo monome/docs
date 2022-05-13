@@ -7,7 +7,7 @@ permalink: /norns/engine-study-2/
 # skilled labor
 {: .no_toc }
 
-*norns engine study 2: expanding an engine, building classes, realtime changes, managing polyphony*
+*norns engine study 2: expanding an engine, building classes, realtime changes, envelopes, polyphony*
 
 SuperCollider is a free and open-source platform for making sound, which powers the synthesis layer of norns. Many norns scripts are a combination of SuperCollider (where a synthesis engine is defined) and Lua (where the hardware + UI interactions are defined).
 
@@ -39,15 +39,15 @@ Quarks.install("SafetyNet")
 
 ## where we were, where we'll go
 
-The *Moonshine* engine we built in [rude mechanicals](/docs/norns/engine-study-1/) showcased a few key elements of norns engine development:
+The *Moonshine* engine we built in [rude mechanicals](/docs/norns/engine-study-1/#moonshine-engine) showcased a few key elements of norns engine development:
 
 - using a SuperCollider `Dictionary` to hold our parameters
 - leveraging SuperCollider's built-in functions like `.keysDo` to establish norns-specific commands
 - building a Lua file to bundle with your engine, to easily integrate it into another script
 
-To reduce complexity at the start of the learning journey, *Moonshine* polled the values of our parameters when a voice was triggered -- this meant that changes to the filter cutoff, for example, wouldn't be articulated on an already-playing voice, but would serve as the starting point for the next note event. And while the engine was technically polyphonic, this was more a virtue of not establishing any specific way to handle individual voices.
+To reduce complexity at the start of the learning journey, *Moonshine* polled our parameter values as a voice was triggered -- this meant that changes to the level, for example, wouldn't be articulated on an already-playing voice, but would serve as the starting point for the next note event. And while the engine was technically polyphonic, this was more a virtue of not establishing any specific way to handle individual voices.
 
-This study will aim to build upon our understanding of SuperCollider's relationship to norns scripting by:
+This study will build on our understanding of SuperCollider's relationship to norns scripting by:
 
 - breaking our SuperCollider files into separate *class* and *CroneEngine* files
 - using Groups in SuperCollider to manage realtime parameter changes to a playing voice
@@ -57,24 +57,30 @@ This study will aim to build upon our understanding of SuperCollider's relations
 
 ## part 1: building our class and CroneEngine files {#part-1}
 
-In [rude mechanicals](/docs/norns/engine-study-1/), we combined our SynthDef declarations and all the required norns plumbing into a single file (`Engine_Moonshine.sc`). This meant that our synth would work on norns but couldn't be loaded on a non-norns computer (like your laptop) without modification. As we develop engines, this becomes an annoyance -- it'd be easier to simply do our SuperCollider coding on our non-norns computer, where we can quickly test out changes to its shape, without engaging in a cycle of copying/pasting our SynthDef between the CroneEngine file and a throwaway SuperCollider file.
-
-So, in order to extend our *Moonshine* engine, we'll rely on SuperCollider's handling of [objects](https://doc.sccode.org/Guides/Intro-to-Objects.html) -- this allows us to define a *class* to hold the sound-making bits separate from the code which only norns requires. This means our SuperCollider code will be portable between norns and any other computer.
-
-To start, open SuperCollider on your non-norns computer and create a new SuperCollider file.
+In [rude mechanicals](/docs/norns/engine-study-1/), we combined our SynthDef declarations and all the required norns plumbing into a single file (`Engine_Moonshine.sc`). This meant that our synth would work on norns but couldn't be loaded on a non-norns computer (like your laptop) without modification. As we develop engines, this becomes an annoyance -- it'd be easier to simply write our SuperCollider code on our non-norns computer, where we can quickly test out changes to its shape, without engaging in a monotonous cycle of copying/pasting our SynthDef between the CroneEngine file and a throwaway SuperCollider file.
 
 ### class file
+
+In order to extend our *Moonshine* engine, we'll rely on SuperCollider's handling of [objects](https://doc.sccode.org/Guides/Intro-to-Objects.html). We'll start by defining a *class* to hold the sound-making bits separate from the code which only norns requires, making our synthesis code portable between norns and any other computer.
+
+To start, open SuperCollider on your non-norns computer and create a new SuperCollider file.
 
 Let's adapt our [previous Moonshine code](/docs/norns/engine-study-1/#moonshine-engine) to a standard class structure.
 
 #### first adaptation {#class_example-1}
 
-Rather than walk through each step here, we've added annotations to the code which will hopefully clarify any ambiguity:
+Rather than walk through each step, we've added annotations to the code which will hopefully clarify any ambiguity:
+
+<details closed markdown="block">
+
+<summary>
+SC class exercise 1: first adaptation
+</summary>
 
 ```
-// exercise 1: first adaptation
+// SC class exercise 1: first adaptation
 // a class does all the heavy lifting
-// it defines our SynthDefs and handles variables, etc.
+// it defines our SynthDefs, handles variables, etc.
 
 Moonshine {
 
@@ -142,8 +148,9 @@ Moonshine {
 
 }
 ```
+</details>
 
-To keep working on this class definition on our non-norns computer, we'll need to save it in a place where SuperCollider can find it. According to the [SuperCollider docs for Writing Classes](https://doc.sccode.org/Guides/WritingClasses.html):
+To move forward, we'll need to save this class definition in a place on our non-norns computer where SuperCollider can find it. According to the [SuperCollider docs for Writing Classes](https://doc.sccode.org/Guides/WritingClasses.html):
 
 > NOTE: Class definitions are statically compiled when you launch SuperCollider or "recompile the library." This means that class definitions must be saved into a file with the extension .sc, in a disk location where SuperCollider looks for classes. Saving into the main class library (SCClassLibrary) is generally not recommended. It's preferable to use either the user or system extension directories.
 > 
@@ -152,9 +159,9 @@ To keep working on this class definition on our non-norns computer, we'll need t
 > Platform.systemExtensionDir; // Extensions available to all users on the machine
 > ```
 
-So, choose whether you want the class definition available to *your user account* or *all users* of your machine and execute one of the two stated invocations to learn where on your computer that specific `Extensions` folder lives.
+So, choose whether you want the class definition available to *your user account* or *all users* of your machine and execute one of the two stated invocations to learn where that specific `Extensions` folder lives.
 
-Once you confirm the `Extensions` folder's location, save the class definition as `moonshine.sc` to that location.
+Once you confirm the `Extensions` folder's location, save the class definition as `moonshine.sc` to it.
 
 Now, to have your class definition useable in SuperCollider, recompile the class library via `Language > Recompile Class Library`.
 
@@ -168,9 +175,7 @@ x = Moonshine.new();
 
 // execute one line at a time:
 x.trigger(400);
-
 x.setParam(\release,3);
-
 x.trigger(400/3);
 ```
 
@@ -178,12 +183,18 @@ If everything was successful, you should hear the Moonshine synth when you execu
 
 #### second adaptation: make real-time changes with Groups {#class_example-2}
 
-You might notice that `x.setParam(\pan,-1)` doesn't hard-pan any currently-playing voices to the left -- rather, it queues up a change for the *next* voice we `.trigger`. To allow instantaneous control over our synth, we'll turn to SuperCollider's Groups, which are useful for controlling a number of synths and propagating changes to them instantly.
+You might notice that `x.setParam(\pan,-1)` doesn't hard-pan any currently-playing voices to the left -- rather, it queues up a change for the *next* voice we `.trigger`. To allow instantaneous control over our synth, we'll turn to SuperCollider's [Groups](https://doc.sccode.org/Classes/Group.html), which are useful for controlling many synths at once and propagating changes to them instantly.
 
 Here's our second adaptation, with changes demarcated by `NEW:` comments:
 
+<details closed markdown="block">
+
+<summary>
+SC class exercise 2: second adaptation
+</summary>
+
 ```
-// exercise 2: second adaptation
+// SC class exercise 2: second adaptation
 // using a Group for instantaneous control
 
 Moonshine {
@@ -263,6 +274,7 @@ Moonshine {
 
 }
 ```
+</details>
 
 Now, if we recompile our class library via `Language > Recompile Class Library`, we should be able to execute the following in SuperCollider and hear our active voices pan as they decay:
 
@@ -291,20 +303,27 @@ x.setParam(\cutoff,rrand(30,12000).postln);
 
 If everything was successful, the `x.setParam` changes should have immediate effect on the currently-playing Moonshine voices. What we now have is a sort of paraphonic synth architecture, where all voices share a single set of parameter control.
 
-#### third adaptation: 8-voice polyphony + parameter slewing {#class_example-3}
+#### third (and final) adaptation: 8-voice polyphony + more {#class_example-3}
 
-The results of the second adaptation is more controllable than our initial shape, but we've traded polyphony (where each voice has its own signal path) for an architecture where all voices share a single set of controls. In our final adaptation, let's specify a few goals:
+The second adaptation is more controllable than our first, but we've traded polyphony (where each voice has its own signal path) for an architecture where all voices share a single set of controls. For our final adaptation, let's specify a few goals:
 
 - 8-voice polyphony
 - if a voice is re-triggered, it cuts itself off
 - allow a voice's frequency to be changed while it's decaying, versus exclusively via re-triggering
+- provide an option for turning the filter envelope off/on
 - give each voice its own controllable parameters, but with a way to unify control over a single parameter
 - slew changes to synth frequency, noise level, synth amplitude, and panning
 
 Here's our third adaptation, with changes demarcated by `NEW:` comments:
 
+<details closed markdown="block">
+
+<summary>
+SC class exercise 3: third (and final) adaptation
+</summary>
+
 ```
-// exercise 3: third adaptation
+// SC class exercise 3: third (and final) adaptation
 // 8-voice polyphony + smoothing
 
 Moonshine {
@@ -332,7 +351,7 @@ Moonshine {
 				SynthDef("Moonshine", {
 					arg stopGate = 1,
 					freq, sub_div,
-					cutoff, resonance,
+					cutoff, resonance, cutoff_env, // NEW: add 'cutoff_env'
 					attack, release,
 					amp, noise_amp, pan,
 					// NEW: add slews to different parameters
@@ -354,7 +373,12 @@ Moonshine {
 						doneAction: 2
 					);
 					// NEW: integrate slew using '.lag3'
-					var filter = MoogFF.ar(in: mix, freq: cutoff * envelope, gain: resonance);
+					var filter = MoogFF.ar(
+						in: mix,
+						// NEW: add a comparison to know whether to use the cutoff value, or to envelope:
+						freq: Select.kr(cutoff_env > 0, [cutoff, cutoff * envelope]),
+						gain: resonance
+					);
 					// NEW: integrate slew using '.lag3'
 					var signal = Pan2.ar(filter*envelope,pan.lag3(pan_slew));
 					// NEW: bring 'amp' to final output calculation + integrate slew using '.lag3'
@@ -390,11 +414,13 @@ Moonshine {
 				\sub_div, 2,
 				\noise_amp, 0.1,
 				\cutoff, 8000,
+				\cutoff_env, 1,
 				\resonance, 3,
 				\attack, 0,
 				\release, 0.4,
 				\amp, 0.5,
 				\pan, 0,
+				\freq_slew, 0.0,
 				\amp_slew, 0.05,
 				\noise_slew, 0.05,
 				\pan_slew, 0.5;
@@ -460,6 +486,8 @@ Moonshine {
 }
 ```
 
+</details>
+
 Now, if we recompile our class library via `Language > Recompile Class Library`, we should be able to execute the following in SuperCollider and hear our active voices take individual life:
 
 ```
@@ -505,11 +533,17 @@ x.trigger(\4,200*2);
 )
 ```
 
-If everything was successful, it should feel like there's a *lot* of control over each voice. Every parameter can be unified using `\all`, or each voice can have its own settings using `\x` notation. This class definition feels pretty complete, so let's move onto our CroneEngine file!
+If everything was successful, there should be a *lot* of control over each voice. Every parameter change can be proliferated to all voices using `\all`, or each voice can have its own settings using `\x` notation. This class definition feels pretty complete, so let's move onto our CroneEngine file!
 
 ### CroneEngine file
 
 The CroneEngine file is what norns needs in order to shuttle meaningful engine commands and their values between Supercollider and Lua. We just spent a lot of time in our class definition file, so thankfully we don't need to spend much longer on the CroneEngine file!
+
+<details closed markdown="block">
+
+<summary>
+CroneEngine file
+</summary>
 
 ```
 Engine_Moonshine : CroneEngine {
@@ -530,7 +564,7 @@ Engine_Moonshine : CroneEngine {
 
 		// NEW: build an 'engine.trig(x,y)' command,
 		// x: voice, y: hz
-		this.addCommand(\trig, "if", { arg msg;
+		this.addCommand(\trig, "sf", { arg msg;
 			var voiceKey = msg[1].asSymbol;
 			var hz = msg[2].asFloat;
 			kernel.trigger(voiceKey,hz);
@@ -541,7 +575,7 @@ Engine_Moonshine : CroneEngine {
 		// and pass it the voice and value
 		kernel.global_voiceKeys.do({ arg voiceKey;
 			kernel.params[voiceKey].keysValuesDo({ arg paramKey;
-				this.addCommand(paramKey, "if", {arg msg;
+				this.addCommand(paramKey, "sf", {arg msg;
 					kernel.setParam(msg[1].asSymbol,paramKey.asSymbol,msg[2].asFloat);
 				});
 			});
@@ -575,6 +609,8 @@ Engine_Moonshine : CroneEngine {
 } // CroneEngine
 ```
 
+</details>
+
 That's it! Since we did so much planning inside of our class definition, our CroneEngine file pretty much just needs to invoke the class file and then create commands to surface to the Lua layer. Save it as `Engine_Moonshine.sc` somewhere you can find it easily, as we'll port everything we've done over to norns in the next section.
 
 ### bring it all onto norns
@@ -600,8 +636,15 @@ Now that our `Moonshine` engine is installed on norns (and we've done a proper `
 
 Navigate to your `code/engine_study/` folder on norns and create a new Lua file named `moonshine_sequins.lua` and enter the following text into it:
 
+<details closed markdown="block">
+
+<summary>
+SC engine study 2: three-voice Moonshine sequins
+</summary>
+
 ```lua
--- 3-voice Moonshine sequins example
+-- SC engine study 2:
+-- 3-voice Moonshine sequins
 
 engine.name = 'Moonshine'
 -- nb. single or double quotes doesn't matter, just don't mix + match pairs!
@@ -674,26 +717,30 @@ function redraw()
 end
 ```
 
+</details>
+
 Now, if we run this script and press K3, our sequence will toggle on and off.
 
 You'll notice that when we run our script, maiden prints all of the commands registered via our `Engine_Moonshine.sc` file's `this.addCommand` functions to the matron window:
 
 ```bash
 ___ engine commands ___
-amp	 	if
-amp_slew	 	if
-attack	 	if
-cutoff	 	if
+amp	 	sf
+amp_slew	 	sf
+attack	 	sf
+cutoff	 	sf
+cutoff_env	 	sf
 free_all_notes	 	
-freq	 	if
-noise_amp	 	if
-noise_slew	 	if
-pan	 	if
-pan_slew	 	if
-release	 	if
-resonance	 	if
-sub_div	 	if
-trig	 	if
+freq	 	sf
+freq_slew	 	sf
+noise_amp	 	sf
+noise_slew	 	sf
+pan	 	sf
+pan_slew	 	sf
+release	 	sf
+resonance	 	sf
+sub_div	 	sf
+trig	 	sf
 ```
 
 This type of heads-up display of what parameters can be controlled via Lua, and what arguments it expects, is super helpful! From here, we can simply execute live-code commands via maiden's command line, while the sequins iterate, eg:
@@ -714,52 +761,251 @@ So, to cleanly + portably integrate our engine into the norns ecosystem, let's b
 
 We'll name this file `moonshine.lua` and we'll want it to live in our `code > engine_study > lib` folder -- so either create it there via maiden or import your externally-created `moonshine.lua` file to that location:
 
+<details closed markdown="block">
+
+<summary>
+Moonshine Lua file
+</summary>
+
 ```lua
+-- this file easily adds Moonshine parameters to a host script
+-- save it as 'moonshine.lua' under 'code > engine_study > lib'
+
 local Moonshine = {}
+local ControlSpec = require 'controlspec'
 local Formatters = require 'formatters'
 
--- first, we'll collect all of our commands into norns-friendly ranges
-local specs = {
-  ["amp"] = controlspec.new(0, 2, "lin", 0, 1, ""),
-  ["sub_div"] = controlspec.new(1, 10, "lin", 1, 2, ""),
-  ["noise_level"] = controlspec.new(0, 1, "lin", 0, 0.3, ""),
-  ["cutoff"] = controlspec.new(0.1, 20000, 'exp', 0, 1300, "Hz"),
-  ["resonance"] = controlspec.new(0, 4, "lin", 0, 2, ""),
-  ["attack"] = controlspec.new(0.003, 8, "exp", 0, 0, "s"),
-  ["release"] = controlspec.new(0.003, 8, "exp", 0, 1, "s"),
-  ["pan"] = controlspec.PAN
-}
+-- helper function to round and format parameter value text:
+function round_form(param,quant,form)
+  return(util.round(param,quant)..form)
+end
 
--- this table establishes an order for parameter initialization:
-local param_names = {"amp","sub_div","noise_level","cutoff","resonance","attack","release","pan"}
+-- first, we'll collect all of our commands into a table of norns-friendly ranges.
+-- since all the voices share the same parameter names,
+--   we can just iterate on this table and cleanly build 16 parameters across 9 voices.
+local specs = {
+  {type = "separator", name = "synthesis"},
+  {id = 'amp', name = 'level', type = 'control', min = 0, max = 2, warp = 'lin', default = 1, formatter = function(param) return (round_form(param:get()*100,1,"%")) end},
+  {id = 'sub_div', name = 'sub division', type = 'number', min = 1, max = 10, default = 1},
+  {id = 'noise_amp', name = 'noise level', type = 'control', min = 0, max = 2, warp = 'lin', default = 0, formatter = function(param) return (round_form(param:get()*100,1,"%")) end},
+  {id = 'cutoff', name = 'filter cutoff', type = 'control', min = 20, max = 24000, warp = 'exp', default = 1200, formatter = function(param) return (round_form(param:get(),0.01," hz")) end},
+  {id = 'cutoff_env', name = 'filter envelope', type = 'number', min = 0, max = 1, default = 1, formatter = function(param) return (param:get() == 1 and "on" or "off") end},
+  {id = 'resonance', name = 'filter q', type = 'control', min = 0, max = 4, warp = 'lin', default = 2, formatter = function(param) return (round_form(util.linlin(0,4,0,100,param:get()),1,"%")) end},
+  {id = 'attack', name = 'attack', type = 'control', min = 0.001, max = 10, warp = 'exp', default = 0, formatter = function(param) return (round_form(param:get(),0.01," s")) end},
+  {id = 'release', name = 'release', type = 'control', min = 0.001, max = 10, warp = 'exp', default = 0.3, formatter = function(param) return (round_form(param:get(),0.01," s")) end},
+  {id = 'pan', name = 'pan', type = 'control', min = -1, max = 1, warp = 'lin', default = 0, formatter = Formatters.bipolar_as_pan_widget},
+  {type = "separator", name = "slews"},
+  {id = 'freq_slew', name = 'frequency slew', type = 'control', min = 0.001, max = 10, warp = 'exp', default = 0, formatter = function(param) return (round_form(param:get(),0.01," s")) end},
+  {id = 'amp_slew', name = 'level slew', type = 'control', min = 0.001, max = 10, warp = 'exp', default = 0, formatter = function(param) return (round_form(param:get(),0.01," s")) end},
+  {id = 'noise_slew', name = 'noise level slew', type = 'control', min = 0.001, max = 10, warp = 'exp', default = 0.05, formatter = function(param) return (round_form(param:get(),0.01," s")) end},
+  {id = 'pan_slew', name = 'pan slew', type = 'control', min = 0.001, max = 10, warp = 'exp', default = 0.5, formatter = function(param) return (round_form(param:get(),0.01," s")) end},
+}
 
 -- initialize parameters:
 function Moonshine.add_params()
-  params:add_group("Moonshine",#param_names)
-
-  for i = 1,#param_names do
-    local p_name = param_names[i]
-    params:add{
-      type = "control",
-      id = "Moonshine_"..p_name,
-      name = p_name,
-      controlspec = specs[p_name],
-      formatter = p_name == "pan" and Formatters.bipolar_as_pan_widget or nil,
-      -- every time a parameter changes, we'll send it to the SuperCollider engine:
-      action = function(x) engine[p_name](x) end
-    }
+  params:add_separator("Moonshine")
+  local voices = {"all",1,2,3,4,5,6,7,8}
+  for i = 1,#voices do
+    params:add_group("voice ["..voices[i].."]",#specs)
+    for j = 1,#specs do
+      local p = specs[j]
+      if p.type == 'control' then
+        params:add_control(
+          voices[i].."_"..p.id,
+          p.name,
+          ControlSpec.new(p.min, p.max, p.warp, 0, p.default),
+          p.formatter
+        )
+      elseif p.type == 'number' then
+        params:add_number(
+          voices[i].."_"..p.id,
+          p.name,
+          p.min,
+          p.max,
+          p.default,
+          p.formatter
+        )
+      elseif p.type == "option" then
+        params:add_option(
+          voices[i].."_"..p.id,
+          p.name,
+          p.options,
+          p.default
+        )
+      elseif p.type == 'separator' then
+        params:add_separator(p.name)
+      end
+      if p.type ~= 'separator' then
+        params:set_action(voices[i].."_"..p.id, function(x)
+          engine[p.id](voices[i],x)
+          if voices[i] == "all" then -- it's nice to echo 'all' changes back to the parameters themselves
+            for other_voices = 2,9 do
+              -- send value changes silently, since '\all' changes values on SuperCollider's side:
+              params:set(voices[other_voices].."_"..p.id, x, true)
+            end
+          end
+        end)
+      end
+    end
   end
-  
   params:bang()
-end
-
--- a single-purpose triggering command fire a note
-function Moonshine.trig(hz)
-  if hz ~= nil then
-    engine.hz(hz)
-  end
 end
 
  -- we return these engine-specific Lua functions back to the host script:
 return Moonshine
 ```
+
+</details>
+
+### import, initialize, play {#import}
+
+Now that our engine's timbral commands are all self-contained as norns parameters, a host script can import + initialize `Moonshine` very easily. Let's build off of our previous `moonshine_sequins.lua` [example](#sequins-example):
+
+<details closed markdown="block">
+
+<summary>
+SC engine study 2: import, initialize, play
+</summary>
+
+```lua
+-- SC engine study 2:
+-- import, initialize, play
+
+engine.name = 'Moonshine'
+
+-- let's assign the 'lib/moonshine' file to a script variable:
+moonshine_setup = include 'lib/moonshine'
+-- nb. single or double quotes doesn't matter, just don't mix + match pairs!
+
+s = require 'sequins'
+-- see https://monome.org/docs/norns/reference/lib/sequins for more info
+
+function init()
+  -- this is an alias for the 'Moonshine.add_params()' function, with our script variable:
+  moonshine_setup.add_params()
+  
+  mults = {
+    s{1, 2.25, s{0.25, 1.5, 3.5, 2, 3, 0.75} }, -- create a sequins of hz multiples for voice 1
+    s{0.25, 1.25, s{2/3, 3.5, 1/3} }, -- create a sequins of hz multiples for voice 2
+    s{2, 1.25, s{3.5, 1.5, 2.25, 0.5} } -- create a sequins of hz multiples for voice 3
+  }
+  
+  playing = false
+  base_hz = 200
+  
+  sequence = {}
+  
+  -- melody lines:
+  sequence[1] = clock.run(
+    function()
+      while true do
+        clock.sync(1/4)
+        if playing then
+          for i = 1,2 do
+            engine.trig(i, base_hz * mults[i]() * math.random(2))
+          end
+        end
+      end
+    end
+  )
+  
+  -- bass line:
+  sequence[2] = clock.run(
+    function()
+      while true do
+        clock.sync(3)
+        if playing then
+          engine.trig(3, base_hz * mults[3]())
+          clock.sync(1)
+          engine.freq(3, base_hz * mults[3]())
+        end
+      end
+    end
+  )
+  
+  -- some initial parameters:
+  for i = 1,2 do
+    params:set(i.."_amp",0.5)
+    params:set(i.."_attack",0)
+    params:set(i.."_release",0.3)
+    params:set(i.."_pan",i == 1 and -1 or 1)
+    params:set(i.."_cutoff",2300)
+  end
+  params:set("3_amp",0.65)
+  params:set("3_cutoff",16000)
+  params:set("3_attack",clock.get_beat_sec()*2.5)
+  params:set("3_release",clock.get_beat_sec()*0.75)
+  params:set("3_freq_slew",clock.get_beat_sec()/2)
+  params:set("3_pan_slew", clock.get_beat_sec()*2)
+end
+
+function key(n,z)
+  if n == 3 and z == 1 then
+    playing = not playing
+    for i = 1,3 do
+      mults[i]:reset() -- resets sequins index to 1
+    end
+    if not playing then
+        engine.free_all_notes()
+      end
+    redraw()
+  end
+end
+
+function redraw()
+  screen.clear()
+  screen.move(64,32)
+  screen.text(playing and "K3: turn off" or "K3: turn on")
+  screen.update()
+end
+```
+
+</details>
+
+## part 3: explore + extend
+
+That was a *lot* to cover -- if you've made it to this point, **thank you** for digging in so openly and we really hope this text helped model a few key tools to continue sharpening as you work with norns + SuperCollider.
+
+For SuperCollider:
+
+- keep your SynthDefs and your CroneEngine boilerplate files separated, so you can easily work with your synths on any non-norns computer
+- try Groups to build class files which allow realtime changes to active sounds
+- try `.lag` variants to slew value changes on active voices
+- try `Select.kr` to replicate if-then statements in a SynthDef
+- try Dictionaries in your class files to proliferate parameters across many voices
+
+For norns:
+
+- be mindful of how script authors will control your engine + build clear commands
+- bundle a `lib` file with your engine, which handles all the parameter initialization and control for it -- this will make it easy for other artists to adopt your synth into their scripts
+- take advantage of the flexibility of norns parameter formatting to build parameters with clear names, ranges, and descriptors
+
+You can also download the final versions of our class, Crone Engine, Lua parameter container, and example script here: [`engine_study_2.zip`](/docs/norns/engine_study_2.zip)
+
+### next assignment: MIDI
+
+We got to a pretty complete [sequins](/docs/norns/reference/lib/sequins)-powered example in the previous section, but perhaps you'd rather trigger the synth with a keyboard -- that'd be a fantastic extension! To get started, check out these scripting resources:
+
+- [norns study 4](/docs/norns/study-4/#long-live-parts-of-the-80s), which has a full breakdown of incoming + outgoing MIDI
+- [musicutil's extended reference page](/docs/norns/reference/lib/musicutil), which will help you convert incoming MIDI to the Hz values `engine.trigger(x,hz)` and `engine.freq(x,hz)` are expecting
+
+You'll also might want to modify the Moonshine class and CroneEngine files to add `note_on` and `note_off` commands, instead of relying on the fixed-envelope approach of `trig`. If you're feeling nervous, start by checking out how other norns engines manage these types of commands and compare that to Moonshine's structure. You'll also want to change the SynthDef's envelope for `Env.adsr(attackTime, decayTime, sustainLevel, releaseTime, peakLevel, curve, bias)`. Having your Moonshine class file on your non-norns computer is going to come in handy as you modify, recompile, and test these changes.
+
+This type of open exploration is the fun stuff! Modifying existing code is a really rewarding way to build collaboratively across time, even if you've never met the author. Plus, you'll always have a strong base to return to if things get funky.
+
+### further
+
+If you feel prepared to explore both SuperCollider and Lua more deeply (and hopefully you do!), here are a few jumping-off points to extend the `Moonshine` engine:
+
+- show parameter values on the screen
+- create an on-norns interaction for parameter manipulation in the main script UI
+- create a separate envelope for filter cutoff modulation
+
+To continue exploring + creating new synthesis engines for norns, we highly recommend:
+
+-  Zack Scholl's incredible resources for SuperCollider + norns explorations:
+	-  [Tone to Drone](https://musichackspace.org/events/tone-to-drone-introduction-to-supercollider-for-monome-norns-live-session/) (produced in partnership between monome and Music Hackspace)
+	-  [Ample Samples](https://musichackspace.org/events/ample-samples-introduction-to-supercollider-for-monome-norns-live-session/) (produced in partnership between monome and Music Hackspace)
+  - [Zack's #supercollider blog entries](https://schollz.com/tags/supercollider/)
+- [Eli Fieldsteel's *fantastic* YouTube series](https://youtu.be/yRzsOOiJ_p4)
+- [norns SuperCollider engines index](https://norns.community/libs-and-engines#supercollider-engines)

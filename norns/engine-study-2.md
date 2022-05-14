@@ -32,10 +32,18 @@ If you haven't already, please [download SuperCollider](https://supercollider.gi
 Quarks.install("SafetyNet")
 ```
 
-<!--Now, let's do a little norns housekeeping before digging into SuperCollider:
+## hidden text
 
-- create a folder inside of `code` named `engine_study_2`
-- create a folder inside of `engine_study_2` named `lib`-->
+To keep things relatively navigable, we've compressed big chunks of code into the following interaction:
+
+<details closed markdown="block">
+
+<summary>
+<~~ click to expand
+</summary>
+Hello! This is how big chunks of code will be presented throughout the study.  
+Please be sure to expand them as you come across them, otherwise the study will feel like it's missing a lot of crucial information.
+</details>
 
 ## where we were, where we'll go
 

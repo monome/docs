@@ -230,6 +230,14 @@ Avoiding the additional CPU headroom required to support external video output a
 
 ## SOFTWARE
 
+### gathering system logs {#logs}
+
+In the event of an inexplicable issue, norns can dump the output of its logging mechanism to a text file. Logs capture the current and previous boots, which includes matron, SuperCollider, and OS issues. Navigate to `SYSTEM > LOG` and press K3 -- this will create a file at `dust/data/system.log` which can then be copied via maiden or downloaded via [SMB](../fileshare/) / [SFTP](../sftp/).
+
+This information can be extremely helpful for community script authors, since it will reliably present any script-level errors, which can be difficult to capture through maiden's REPL window.
+
+If you have a recurring issue which you believe is hardware or system failure, unrelated to any script, please include this file with your support request to help@monome.org
+
 ### recovering from freezes {#frozen}
 
 If you experience a freeze that you can't recover from, there's a special button combination which will gently restart the software.

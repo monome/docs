@@ -77,8 +77,12 @@ Let's adapt our [previous Moonshine code](/docs/norns/engine-study-1/#moonshine-
 
 #### first adaptation {#class_example-1}
 
-Rather than walk through each step, we've added annotations to the code which will hopefully clarify any ambiguity:
+Rather than walk through each step, we've added comments to the code which will hopefully clarify any ambiguity. Here are a few new language features which are introduced:
 
+- When a variable is prepended with `<`, that means it's accessible outside of the class file by virtue of being a 'getter'. See [**Getters and Setters**](https://doc.sccode.org/Guides/WritingClasses.html#Getters%20and%20Setters) in the official SuperCollider docs for more info.
+- When an asterisk `*` is used, it denotes a function which is specific to the class -- eg. `*initClass` is called whenever SuperCollider starts and the class is initialized. See [the `*initClass` section](https://doc.sccode.org/Classes/Class.html#*initClass) of the official SuperCollider docs for more info.
+- When `++` is used, it represents concatenation in an array. See [**Array and Collection operators**](https://depts.washington.edu/dxscdoc/Help/Overviews/SymbolicNotations.html#Array%20and%20Collection%20operators) in the University of Washington SuperCollider docs for more info.
+ 
 <details closed markdown="block">
 
 <summary>
@@ -97,6 +101,8 @@ Moonshine {
 	// see 'Getters and Setters' at https://doc.sccode.org/Guides/WritingClasses.html for more info
 	var <params;
 
+	// in SuperCollider, asterisks denote functions which are specific to the class.
+	// '*initClass' is called when the class is initialized: https://doc.sccode.org/Classes/Class.html#*initClass
 	*initClass {
 		StartUp.add {
 			var s = Server.default;
@@ -127,11 +133,12 @@ Moonshine {
 	} // *initClass
 
 	*new { // when this class is initialized...
-		^super.new.init; // ...run the init below.
+		^super.new.init; // ...run the 'init' below.
 	}
 
 	init {
-		// build a list of our sound-shaping parameters, with default values:
+		// build a list of our sound-shaping parameters, with default values
+		// (see https://doc.sccode.org/Classes/Dictionary.html for more about Dictionaries):
 		params = Dictionary.newFrom([
 			\sub_div, 2,
 			\noise_level, 0.1,
@@ -145,11 +152,13 @@ Moonshine {
 	}
 
 	// these methods will populate in SuperCollider when we instantiate the class
-	// 'trigger' to play a note with the current 'params' settings:
+	//   'trigger' to play a note with the current 'params' settings:
 	trigger { arg hz;
 		Synth.new("Moonshine", [\freq, hz] ++ params.getPairs);
+		// '++ params.getPairs' iterates through all the 'params' above,
+		//   and sends them as [key, value] pairs
 	}
-	// 'setParam' to set one of our 'params' to a new value:
+	//   'setParam' to set one of our 'params' to a new value:
 	setParam { arg paramKey, paramValue;
 		params[paramKey] = paramValue;
 	}
@@ -169,7 +178,9 @@ To move forward, we'll need to save this class definition in a place on our non-
 
 So, choose whether you want the class definition available to *your user account* or *all users* of your machine and execute one of the two stated invocations to learn where that specific `Extensions` folder lives.
 
-Once you confirm the `Extensions` folder's location, save the class definition as `moonshine.sc` to it.
+If you want to save the file to make it available to only your user account, it might be easiest to save the file as `moonshine.sc` to an easily-accessible location from SuperCollider, then drag + drop it into the `Extension` folder via File Explorer / Finder. *nb. MacOS users can simply copy/paste the location SuperCollider prints to the Post window into Finder > Go > Go to Folder to drop into that location*
+
+If you want to save the file to make it available to all users on the machine, use `File > Save As Extension` and SuperCollider will navigate to the location for you, where you can save the file as `moonshine.sc`.
 
 Now, to have your class definition useable in SuperCollider, recompile the class library via `Language > Recompile Class Library`.
 
@@ -183,8 +194,12 @@ x = Moonshine.new();
 
 // execute one line at a time:
 x.trigger(400);
-x.setParam(\release,3);
+x.setParam(\release,7);
 x.trigger(400/3);
+x.setParam(\pan,-1);
+x.trigger(400/2.5);
+x.setParam(\pan,1);
+x.trigger(400/1.25);
 ```
 
 If everything was successful, you should hear the Moonshine synth when you execute the `x.trigger(hz)` commands and you should be able to adjust parameter values for the next `.trigger` with `x.setParam(paramKey, paramValue)`.
@@ -290,7 +305,7 @@ Now, if we recompile our class library via `Language > Recompile Class Library`,
 // execute this line to start up Moonshine:
 x = Moonshine.new();
 
-// execute this bundle:
+// execute this bundle to trigger four voices:
 (
 x.setParam(\release,30);
 x.trigger(200/3);
@@ -301,11 +316,10 @@ x.trigger(200*2);
 
 // execute one line at a time:
 x.setParam(\pan,1);
-
 x.setParam(\pan,-1);
 
+// execute each many times as the notes decay:
 x.setParam(\pan,rrand(-1.0,1.0).postln);
-
 x.setParam(\cutoff,rrand(30,12000).postln);
 ```
 
@@ -502,7 +516,8 @@ Now, if we recompile our class library via `Language > Recompile Class Library`,
 // execute this line to start up Moonshine:
 x = Moonshine.new();
 
-// execute this bundle:
+// execute this bundle to trigger four voices,
+//  each with their own release lengths:
 (
 x.setParam(\all,\pan_slew,6);
 x.setParam(\1,\release,0.2);
@@ -515,8 +530,12 @@ x.trigger(\3,200);
 x.trigger(\4,200*2);
 )
 
+// execute this bundle many times while the notes decay
+//  to perform slewed changes to the frequency value:
+(
 x.setParam(\all,\freq_slew,0.3);
 x.setParam(\all,\freq,200 * rrand(1,8));
+)
 
 // execute this bundle:
 (// for each global_voiceKey...
@@ -632,7 +651,7 @@ If you didn't complete the previous study:
 - create a folder inside of `code` named `engine_study`
 - create a folder inside of `engine_study` named `lib`
 
-Under `lib`, we'll want to drop in copies of our `moonshine.sc` and `Moonshine_Engine.sc` files. Once they're imported, use `SYSTEM > RESTART` on norns to recompile its SuperCollider library and get the Lua layer synced with the new engine files.
+Under `lib`, we'll want to drop in copies of our `moonshine.sc` and `Engine_Moonshine.sc` files. Once they're imported, use `SYSTEM > RESTART` on norns to recompile its SuperCollider library and get the Lua layer synced with the new engine files.
 
 Alright, take a break! You've done a lot of typing and experimenting for one sitting. We'll see you back here soon.
 
@@ -812,19 +831,19 @@ local specs = {
 -- initialize parameters:
 function Moonshine.add_params()
   params:add_separator("Moonshine")
-  local voices = {"all",1,2,3,4,5,6,7,8}
-  for i = 1,#voices do
-    params:add_group("voice ["..voices[i].."]",#specs)
-    for j = 1,#specs do
-      local p = specs[j]
-      if p.type == 'control' then
-        params:add_control(
-          voices[i].."_"..p.id,
-          p.name,
-          ControlSpec.new(p.min, p.max, p.warp, 0, p.default),
-          p.formatter
+  local voices = {"all",1,2,3,4,5,6,7,8} -- match the engine's expected arguments for commands
+  for i = 1,#voices do -- for each voice...
+    params:add_group("voice ["..voices[i].."]",#specs) -- add a PARAMS group, eg. 'voice [all]'
+    for j = 1,#specs do -- for each of the lines in the 'specs' table above, do this:
+      local p = specs[j] -- (creates an alias for the line's contents)
+      if p.type == 'control' then -- if the 'type' in the current 'specs' line is 'control', do this:
+        params:add_control( -- add a control using:
+          voices[i].."_"..p.id, -- the 'id' in the line
+          p.name, -- the name in the line
+          ControlSpec.new(p.min, p.max, p.warp, 0, p.default), -- the controlspec values in the line ('min', 'max', 'warp', and 'default')
+          p.formatter -- the formatter in the line
         )
-      elseif p.type == 'number' then
+      elseif p.type == 'number' then -- otherwise, if the 'type' is 'number', do this:
         params:add_number(
           voices[i].."_"..p.id,
           p.name,
@@ -833,20 +852,26 @@ function Moonshine.add_params()
           p.default,
           p.formatter
         )
-      elseif p.type == "option" then
+      elseif p.type == "option" then -- otherwise, if the 'type' is 'option', do this:
         params:add_option(
           voices[i].."_"..p.id,
           p.name,
           p.options,
           p.default
         )
-      elseif p.type == 'separator' then
+      elseif p.type == 'separator' then -- otherwise, if the 'type' is 'separator', do this:
         params:add_separator(p.name)
       end
+      
+      -- if the parameter type isn't a separator, then we want to assign it an action to control the engine:
       if p.type ~= 'separator' then
         params:set_action(voices[i].."_"..p.id, function(x)
-          engine[p.id](voices[i],x)
+          -- use the line's 'id' as the engine command, eg. engine.amp or engine.cutoff_env,
+          --  and send the voice and the value:
+          engine[p.id](voices[i],x) -- 
           if voices[i] == "all" then -- it's nice to echo 'all' changes back to the parameters themselves
+            -- since 'all' voice corresponds to the first entry in 'voices' table,
+            --   we iterate the other parameter groups as 2 through 9:
             for other_voices = 2,9 do
               -- send value changes silently, since '\all' changes values on SuperCollider's side:
               params:set(voices[other_voices].."_"..p.id, x, true)
@@ -854,8 +879,10 @@ function Moonshine.add_params()
           end
         end)
       end
+      
     end
   end
+  -- activate the parameters' current values:
   params:bang()
 end
 
@@ -865,9 +892,11 @@ return Moonshine
 
 </details>
 
+Something to note about the above code is that it uses a table to hold all of the parameter commands we want to control -- this type of central data repository helps us quickly establish 144 parameters in less than 100 lines of code. Tables are a uniquely helpful feature of Lua -- we can iterate through them without trouble, and even nest their iteration to create many layers of control and data throughout our script. See [norns study 3](/docs/norns/study-3/#more-tangled) and the [Tables Tutorial from lua-users](http://lua-users.org/wiki/TablesTutorial) for more insight.
+
 ### import, initialize, play {#import}
 
-Now that our engine's timbral commands are all self-contained as norns parameters, a host script can import + initialize `Moonshine` very easily. Let's build off of our previous `moonshine_sequins.lua` [example](#sequins-example):
+Now that our engine's timbral commands are all self-contained as norns parameters, a host script can import + initialize `Moonshine` very easily. Let's build off of our previous `moonshine_sequins.lua` [example](#sequins-example) to play with these changes:
 
 <details closed markdown="block">
 
@@ -876,12 +905,8 @@ SC engine study 2: import, initialize, play
 </summary>
 
 ```lua
--- SC engine study 2:
--- import, initialize, play
-
 engine.name = 'Moonshine'
 
--- let's assign the 'lib/moonshine' file to a script variable:
 moonshine_setup = include 'lib/moonshine'
 -- nb. single or double quotes doesn't matter, just don't mix + match pairs!
 
@@ -889,21 +914,15 @@ s = require 'sequins'
 -- see https://monome.org/docs/norns/reference/lib/sequins for more info
 
 function init()
-  -- this is an alias for the 'Moonshine.add_params()' function, with our script variable:
   moonshine_setup.add_params()
-  
   mults = {
     s{1, 2.25, s{0.25, 1.5, 3.5, 2, 3, 0.75} }, -- create a sequins of hz multiples for voice 1
     s{0.25, 1.25, s{2/3, 3.5, 1/3} }, -- create a sequins of hz multiples for voice 2
     s{2, 1.25, s{3.5, 1.5, 2.25, 0.5} } -- create a sequins of hz multiples for voice 3
   }
-  
   playing = false
   base_hz = 200
-  
   sequence = {}
-  
-  -- melody lines:
   sequence[1] = clock.run(
     function()
       while true do
@@ -917,7 +936,6 @@ function init()
     end
   )
   
-  -- bass line:
   sequence[2] = clock.run(
     function()
       while true do
@@ -931,15 +949,15 @@ function init()
     end
   )
   
-  -- some initial parameters:
+  -- some default parameters:
   for i = 1,2 do
-    params:set(i.."_amp",0.5)
+    params:set(i.."_amp",0.65)
     params:set(i.."_attack",0)
     params:set(i.."_release",0.3)
     params:set(i.."_pan",i == 1 and -1 or 1)
     params:set(i.."_cutoff",2300)
   end
-  params:set("3_amp",0.65)
+  params:set("3_amp",0.55)
   params:set("3_cutoff",16000)
   params:set("3_attack",clock.get_beat_sec()*2.5)
   params:set("3_release",clock.get_beat_sec()*0.75)
@@ -969,6 +987,8 @@ end
 ```
 
 </details>
+
+As the sequences run, head to the `PARAMETERS > EDIT` screen to change our newly-minted parameters! Any changes to `voice [1]`, `voice [2]`, and `voice [3]` will be immediately heard -- you can also use `voice [all]` to proliferate changes to all three voices at once!
 
 ## part 3: explore + extend
 

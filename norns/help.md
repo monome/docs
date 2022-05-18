@@ -209,7 +209,7 @@ The shield does not have a separate headphone output.
 
 While the standard aluminum norns is a fully-isolated pro-audio device, norns shield has a necessarily different footprint and construction. As a consumer-level audio device, there are cases where the norns shield can experience interference from the underlying Pi unit, which creates noise in the audio lines.
 
-Over its many iterations, we have worked to reduce these issues -- revision `210330` improved audio isolation over the previous two releases (`191106` and `200323`), which `211028` (the latest model) retained.
+Over the shield's many iterations, we have worked to reduce these issues -- revision `210330` improved audio isolation over the previous two releases (`191106` and `200323`), which `211028` (the latest model) retained.
 
 If you experience noise on a `211028` unit, this is most likely the WIFI antenna on the Pi creating interference. To protect against this, each `211028` board was shipped with a white sticker covering the components in closest proximity to the Pi's USB + Ethernet ports:
 
@@ -218,6 +218,8 @@ If you experience noise on a `211028` unit, this is most likely the WIFI antenna
 If you experience consistent noise, either visually represented on the `in` VU meter on the LEVELS screen or generally when listening to the shield's output, disassemble the unit and check the state of this sticker.
 
 If the sticker has been removed, or if it has worn down, or is just not effectively shielding against the strength of your Pi's WIFI antenna, it can be replaced with a few layers of electrical tape.
+
+Also, reassembling the unit with a little more looseness might also help -- over-tightening the enclosure screws can contribute to unexpected noise + interference.
 
 If there is still interference when WIFI is on and networking while monitoring is necessary, we recommend turning WIFI off (via SYSTEM > WIFI) and plugging directly into your router via the Pi's Ethernet jack. This will completely bypass the Pi's antenna and any related interference in the audio lines.
 

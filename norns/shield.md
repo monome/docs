@@ -85,7 +85,7 @@ The black button caps have square holes that fit snugly over the white buttons o
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly2.png)
 
-Peel the protective sheet away from the screen. If you have a dust-blower handy, remove any residual debris on the inside of the acrylic and on the screen. The acrylic assembly will fit over the top, poking the threads through the circuit board. Flip it over and add the longer standoffs. The short standoffs go near the audio jacks. Hand-tightening is sufficient:
+Peel the protective sheet away from the screen. **If your shield is a `211028` model, do *not* remove the white sticker on the back of the board.** If you have a dust-blower handy, remove any residual debris on the inside of the acrylic and on the screen. The acrylic assembly will fit over the top, poking the threads through the circuit board. Flip it over and add the longer standoffs. The short standoffs go near the audio jacks. Hand-tightening is sufficient:
 
 ![](https://monome.org/docs/norns/image/norns-shield-assembly3.png)
 

@@ -11,7 +11,7 @@ permalink: /norns/engine-study-2/
 
 SuperCollider is a free and open-source platform for making sound, which powers the synthesis layer of norns. Many norns scripts are a combination of SuperCollider (where a synthesis engine is defined) and Lua (where the hardware + UI interactions are defined).
 
-This study is meant to extend the topics covered in [rude mechanicals](/docs/norns/engine-study-1/), which outlines starting points for engine development on norns, using SuperCollider. Like that study, we'll assume here that you've already got a bit of familiarity with SuperCollider -- if not, be sure to check out [learning SuperCollider](/docs/norns/studies/#learning-supercollider) for helpful learning resources and come back here after some experimentation.
+This study extends the topics covered in [rude mechanicals](/docs/norns/engine-study-1/), which outlines starting points for engine development on norns, using SuperCollider. As with that study, we'll assume that you've already got a bit of familiarity with SuperCollider -- if not, be sure to check out [learning SuperCollider](/docs/norns/studies/#learning-supercollider) for helpful resources and come back here after some experimentation.
 
 <details open markdown="block">
   <summary>
@@ -26,7 +26,7 @@ This study is meant to extend the topics covered in [rude mechanicals](/docs/nor
 
 If you haven't already, please [download SuperCollider](https://supercollider.github.io) on your primary non-norns computer. Though we'll eventually end up at norns, being able to quickly execute snippets of SuperCollider code during the experimentation stages will provide the foundation necessary for engine construction.
 
-**Please note** that if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. To protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet), both within SuperCollider on your computer and on your norns. This Quark ensures that the output volume of SuperCollider won't reach levels which would damage your hearing. To add SafetyNet to your norns, simply execute the following line from the maiden REPL, under the `SuperCollider` tab:
+**Please note** that if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. To protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet) within SuperCollider both on your computer and your norns. This Quark ensures that the output volume of SuperCollider won't reach levels which would damage your hearing. To add SafetyNet to your norns, simply execute the following line from the maiden REPL, under the `SuperCollider` tab:
 
 ```lua
 Quarks.install("SafetyNet")
@@ -53,7 +53,7 @@ The *Moonshine* engine we built in [rude mechanicals](/docs/norns/engine-study-1
 - leveraging SuperCollider's built-in functions like `.keysDo` to establish norns-specific commands
 - building a Lua file to bundle with your engine, to easily integrate it into another script
 
-To reduce complexity at the start of the learning journey, *Moonshine* polled our parameter values as a voice was triggered -- this meant that changes to the level, for example, wouldn't be articulated on an already-playing voice, but would serve as the starting point for the next note event. And while the engine was technically polyphonic, this was more a virtue of not establishing any specific way to handle individual voices.
+To reduce complexity at the start of the learning journey, *Moonshine* polled our parameter values as a voice was triggered -- this meant that changes to the level parameter, for example, wouldn't be articulated on an already-playing voice, but would serve as the starting point for the next note event. And while the engine was technically polyphonic, this was more a virtue of not establishing any specific way to handle individual voices.
 
 This study will build on our understanding of SuperCollider's relationship to norns scripting by:
 
@@ -80,8 +80,9 @@ Let's adapt our [previous Moonshine code](/docs/norns/engine-study-1/#moonshine-
 Rather than walk through each step, we've added comments to the code which will hopefully clarify any ambiguity. Here are a few new language features which are introduced:
 
 - When a variable is prepended with `<`, that means it's accessible outside of the class file by virtue of being a 'getter'. See [**Getters and Setters**](https://doc.sccode.org/Guides/WritingClasses.html#Getters%20and%20Setters) in the official SuperCollider docs for more info.
-- When an asterisk `*` is used, it denotes a function which is specific to the class -- eg. `*initClass` is called whenever SuperCollider starts and the class is initialized. See [the `*initClass` section](https://doc.sccode.org/Classes/Class.html#*initClass) of the official SuperCollider docs for more info.
+- When an asterisk `*` is used, it denotes a function which is specific to the class -- eg. `*initClass` is called whenever SuperCollider starts and the class is initialized. See [**the `*initClass` section**](https://doc.sccode.org/Classes/Class.html#*initClass) of the official SuperCollider docs for more info.
 - When `++` is used, it represents concatenation in an array. See [**Array and Collection operators**](https://depts.washington.edu/dxscdoc/Help/Overviews/SymbolicNotations.html#Array%20and%20Collection%20operators) in the University of Washington SuperCollider docs for more info.
+  - Arrays in SuperCollider have a lot in common with Lua's tables. In the code below, we'll create a Dictionary of key/value pairs called `params` to hold our synth's parameter states -- toward the end, we'll create a `setParam` method which uses a `paramKey` argument to index the `params` table. See [**Array**](https://doc.sccode.org/Classes/Array.html) in the official SuperCollider docs for more info.
  
 <details closed markdown="block">
 
@@ -178,9 +179,10 @@ To move forward, we'll need to save this class definition in a place on our non-
 
 So, choose whether you want the class definition available to *your user account* or *all users* of your machine and execute one of the two stated invocations to learn where that specific `Extensions` folder lives.
 
-If you want to save the file to make it available to only your user account, it might be easiest to save the file as `moonshine.sc` to an easily-accessible location from SuperCollider, then drag + drop it into the `Extension` folder via File Explorer / Finder. *nb. MacOS users can simply copy/paste the location SuperCollider prints to the Post window into Finder > Go > Go to Folder to drop into that location*
+If you want to make the class available only to your user account, it might be easiest to save the file as `moonshine.sc` to a quickly-accessible location from SuperCollider, then drag + drop it into the `Extension` folder via File Explorer / Finder.  
+*nb. MacOS users can simply copy/paste the location SuperCollider prints to the Post window into Finder > Go > Go to Folder to drop into that location*
 
-If you want to save the file to make it available to all users on the machine, use `File > Save As Extension` and SuperCollider will navigate to the location for you, where you can save the file as `moonshine.sc`.
+If you want to make the class available to all users on the machine, use `File > Save As Extension` and SuperCollider will navigate to the location for you, where you can save the file as `moonshine.sc`.
 
 Now, to have your class definition useable in SuperCollider, recompile the class library via `Language > Recompile Class Library`.
 
@@ -335,6 +337,14 @@ The second adaptation is more controllable than our first, but we've traded poly
 - provide an option for turning the filter envelope off/on
 - give each voice its own controllable parameters, but with a way to unify control over a single parameter
 - slew changes to synth frequency, noise level, synth amplitude, and panning
+
+In the code below, we'll introduce a few new gestures:
+
+- To establish a 'local' scope variable, we'll utilize a `classvar`. From [the University of Washington's SuperCollider docs](depts.washington.edu/dxscdoc/Help/Reference/Classes.html): "Class variables are values that are shared by all objects in the class. Class variables [...] may only be directly accessed by methods of the class."
+- Since we want to establish 8 separate voices, we'll set up dictionaries for each voice. We'll use `.do` to iterate a function with each entry Dictionary entry, which is comparable to `for i = 1,#params do` in Lua. See [**Control Structures**](https://depts.washington.edu/dxscdoc/Help/Reference/Control-Structures.html#do) in the University of Washington's SuperCollider docs.
+- We'll introduce slews using SuperCollider's [**`Lag3` UGen**](https://doc.sccode.org/Classes/Lag3.html), which creates smooth transitions while saving CPU.
+- We'll also use boolean expressions to build if/else statements. See [**Boolean Expressions**](http://sc3howto.blogspot.com/2010/05/boolean-expressions.html) at *How to Program in SuperCollider* for more info.
+
 
 Here's our third adaptation, with changes demarcated by `NEW:` comments:
 

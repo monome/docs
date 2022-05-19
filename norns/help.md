@@ -250,7 +250,7 @@ Avoiding the additional CPU headroom required to support external video output a
 
 ### gathering system logs {#logs}
 
-In the event of an inexplicable issue, norns can dump the output of its logging mechanism to a text file. Logs capture the current and previous boots, which includes matron, SuperCollider, and operating system messages. Navigate to `SYSTEM > LOG` and press K3 -- this will create a file at `dust/data/system.log` which can then be copied via maiden or downloaded via [SMB](../fileshare/) / [SFTP](../sftp/).
+In the event of an inexplicable issue, norns can dump the output of its logging mechanism to a text file. Logs capture the current and previous boots, which includes matron, SuperCollider, and operating system messages. Navigate to `SYSTEM > LOG` and press K3 -- this will create a file at `dust/data/system.log` which can then be copied via maiden or downloaded via [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp).
 
 This information can be extremely helpful for community script authors, since it will reliably present any script-level errors, which can be difficult to capture through maiden's REPL window.
 
@@ -556,7 +556,7 @@ With your norns powered-on and connected to the same wifi network as your comput
 _norns.screen_export_png("/home/we/dust/<FILENAME>.png")
 ```
 
-Use [SMB](../fileshare/) or [SFTP](../sftp/) to connect to norns and download the PNGs you just created from the `dust` folder. You'll notice the PNG is kinda tiny and the colors are inverted. Let's fix that with [ImageMagick](https://imagemagick.org/script/download.php).
+Use [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp) to connect to norns and download the PNGs you just created from the `dust` folder. You'll notice the PNG is kinda tiny and the colors are inverted. Let's fix that with [ImageMagick](https://imagemagick.org/script/download.php).
 
 With ImageMagick installed on your computer, [download this bash script](../norns-convert_screenshots.bash) and place it in the same folder as your downloaded screenshots. In terminal, `cd` to the folder and execute:
 

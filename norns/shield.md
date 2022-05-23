@@ -126,6 +126,7 @@ Once you're settled in, you might notice that shield doesn't seem to see the ent
   - Linux: use your favorite
 - type: `ssh we@norns.local` and press Enter
   - if you have previously connected to this shield in the past, you may see a warning that the 'remote host identification has changed'. this is because the shield now has a new host key. the error will give you a filepath to your hosts file, but if you are on MacOS you can simply execute `rm -f ~/.ssh/known_hosts` in Terminal to erase the previous hosts file and start fresh.
+  - if you see any warnings about a 'key fingerprint', you can safely continue connecting (eg. enter 'yes')
 - this will prompt you for a password, which is: `sleep`
 - type: `df -h` and press Enter
   - the information returned to you next to `/dev/root` will show the current allocated Size of the card

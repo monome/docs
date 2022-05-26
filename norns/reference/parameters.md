@@ -228,6 +228,26 @@ function redraw()
 end
 ```
 
+### bundling PSETs with a script
+
+When sharing a script with others, it may be desirable to bundle it with pre-made PSETs to give artists a collection of known starting points.
+
+As you ready your script for sharing, you can use the standard PSET save UI in norns to build and name PSETs -- they will be saved under your device's `dust/data/(script)` folder. Then, create a `dust/code/(script)/data` folder and copy the generated PSET files from `dust/data/(script)` into it.
+
+Behind the scenes, norns checks if a `dust/data/(script)` folder already exists on a script's first run -- if it doesn't, norns then checks if a `dust/code/(script)/data` folder exists. If it does and the folder has any `.pset` files in it, norns copies them from `code/(script)/data` to `dust/data/(script)`, which surfaces the PSETs in the on-screen UI menu.
+
+As the PSET-bundled script is first loaded onto a norns which doesn't already have a corresponding `dust/data/(script)` folder, you will see the following print to matron:
+
+```lua
+# script clear
+# script load: /home/we/dust/code/(script)/(script).lua
+### initializing data folder
+### copied default psets
+# script run
+```
+
+To test, you can simply delete your `dust/data/(script)` folder *after* copying the `.pset` files to `dust/code/(script)/data`, and a fresh boot of the script will copy all the bundled PSETs into `dust/data/(script)`.
+
 ### description
 
 Parameters are a fundamental component of the norns toolkit. They allow you to associate controls and data to variables and functions within your scripts. They offer MIDI mapping and OSC addresses, as well as state save and restore.

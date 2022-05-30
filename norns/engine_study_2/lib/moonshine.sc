@@ -5,14 +5,12 @@ Moonshine {
 
 	// NEW: add local 'voiceKeys' variable to register each voice name separately
 	classvar <voiceKeys;
-	// NEW: add 'global_voiceKeys' variable with a getter to send the local 'voiceKeys' externally
-	var <global_voiceKeys;
 
 	var <params;
+	// [eb] why snake case for these? (just wondering)
 	var <all_voices;
 	// NEW: add 'single_voice' variable to control + track single voices
 	var <single_voice;
-
 
 	*initClass {
 		// NEW: create voiceKey indices for as many voices as we want control over,
@@ -104,7 +102,7 @@ Moonshine {
 	}
 
 
-	trigger { arg voiceKey, hz;
+	trigger { arg voiceKey, freq;
 		// NEW: if the voice is '/all'...
 		if( voiceKey == \all,{
 		// NEW: then do the following for all the voiceKeys:
@@ -113,20 +111,20 @@ Moonshine {
 				if( vK != \all,{
 					// NEW: if the voice is already playing, gracefully release it
 					single_voice[vK].set(\stopGate, -1.05); // -1.05 is 'forced release' with 50ms cutoff time
-					// NEW: set '\freq' parameter for each voice to incoming 'hz' value
-					params[vK][\freq] = hz;
+					// NEW: set '\freq' parameter for each voice to incoming 'freq' value
+					params[vK][\freq] = freq;
 					// NEW: make sure to index each of our tables with our 'voiceKey'
-					Synth.new("Moonshine", [\freq, hz] ++ params[vK].getPairs, single_voice[vK]);
+					Synth.new("Moonshine", [\freq, freq] ++ params[vK].getPairs, single_voice[vK]);
 				});
 			});
 		}, // NEW: else, if the voice is not '\all':
 		{
 			// NEW: if this voice is already playing, gracefully release it
 			single_voice[voiceKey].set(\stopGate, -1.05); // -1.05 is 'forced release' with 50ms cutoff time
-			// NEW: set '\freq' parameter for this voice to incoming 'hz' value
-			params[voiceKey][\freq] = hz;
+			// NEW: set '\freq' parameter for this voice to incoming 'freq' value
+			params[voiceKey][\freq] = freq;
 			// NEW: make sure to index each of our tables with our 'voiceKey'
-			Synth.new("Moonshine", [\freq, hz] ++ params[voiceKey].getPairs, single_voice[voiceKey]);
+			Synth.new("Moonshine", [\freq, freq] ++ params[voiceKey].getPairs, single_voice[voiceKey]);
 		});
 	}
 

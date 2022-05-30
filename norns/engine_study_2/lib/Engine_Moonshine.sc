@@ -75,7 +75,7 @@ Engine_Moonshine : CroneEngine {
 	0.06.wait;
 	*/
 
-
+		kernel.free;
 	} // free
 
 

@@ -111,7 +111,8 @@ Moonshine {
 			s.waitForBoot {
 				// this is just our SynthDef from 'rude mechanicals':
 				SynthDef("Moonshine", {
-					arg freq, sub_div, noise_level,
+					arg out = 0,
+					freq, sub_div, noise_level,
 					cutoff, resonance,
 					attack, release,
 					amp, pan;
@@ -127,7 +128,7 @@ Moonshine {
 
 					var signal = Pan2.ar(filter*envelope,pan);
 
-					Out.ar(0,signal);
+					Out.ar(out,signal);
 				}).add;
 			} // s.waitForBoot
 		} // StartUp
@@ -154,8 +155,8 @@ Moonshine {
 
 	// these methods will populate in SuperCollider when we instantiate the class
 	//   'trigger' to play a note with the current 'params' settings:
-	trigger { arg hz;
-		Synth.new("Moonshine", [\freq, hz] ++ params.getPairs);
+	trigger { arg freq;
+		Synth.new("Moonshine", [\freq, freq] ++ params.getPairs);
 		// '++ params.getPairs' iterates through all the 'params' above,
 		//   and sends them as [key, value] pairs
 	}
@@ -186,9 +187,9 @@ If you want to make the class available to all users on the machine, use `File >
 
 Now, to have your class definition useable in SuperCollider, recompile the class library via `Language > Recompile Class Library`.
 
-#### invoke the class
+#### instantiate the class
 
-When the library recompiles, we should be able to invoke `Moonshine` and its associated methods like any other class in SuperCollider. To try it out, open a blank SuperCollider file and type + live-execute (`Ctrl-Enter` or `CMD-RETURN` on macOS) the following:
+When the library recompiles, we should be able to instantiate the `Moonshine` Class and its associated methods like any other class in SuperCollider. To try it out, open a blank SuperCollider file and type + live-execute (`Ctrl-Enter` or `CMD-RETURN` on macOS) the following:
 
 ```
 // execute this line to start up Moonshine:
@@ -225,8 +226,8 @@ SC class exercise 2: second adaptation
 Moonshine {
 
 	var <params;
-	// NEW: add 'all_voices' variable to register each voice to a control group
-	var <all_voices;
+	// NEW: add 'allVoices' variable to register each voice to a control group
+	var <allVoices;
 
 	*initClass {
 		StartUp.add {
@@ -235,7 +236,8 @@ Moonshine {
 			s.waitForBoot {
 
 				SynthDef("Moonshine", {
-					arg freq, sub_div, noise_level,
+					arg out = 0,
+					freq, sub_div, noise_level,
 					cutoff, resonance,
 					attack, release,
 					amp, pan;
@@ -251,7 +253,7 @@ Moonshine {
 
 					var signal = Pan2.ar(filter*envelope,pan);
 
-					Out.ar(0,signal);
+					Out.ar(out,signal);
 				}).add;
 			}
 		}
@@ -276,25 +278,25 @@ Moonshine {
 			\pan, 0;
 		]);
 
-		// NEW: register 'all_voices' as a Group on the Server
-		all_voices = Group.new(s);
+		// NEW: register 'allVoices' as a Group on the Server
+		allVoices = Group.new(s);
 	}
 
 
-	trigger { arg hz;
-		// NEW: set the target of every Synth voice to the 'all_voices' Group
-		Synth.new("Moonshine", [\freq, hz] ++ params.getPairs, all_voices);
+	trigger { arg freq;
+		// NEW: set the target of every Synth voice to the 'allVoices' Group
+		Synth.new("Moonshine", [\freq, freq] ++ params.getPairs, allVoices);
 	}
 
 	setParam { arg paramKey, paramValue;
 		// NEW: send changes to the paramKey, paramValue pair immediately to all voices
-		all_voices.set(paramKey, paramValue);
+		allVoices.set(paramKey, paramValue);
 		params[paramKey] = paramValue;
 	}
 
 	// NEW: free our Group when the class is freed
 	free {
-		all_voices.free;
+		allVoices.free;
 	}
 
 }
@@ -322,7 +324,7 @@ x.setParam(\pan,-1);
 
 // execute each many times as the notes decay:
 x.setParam(\pan,rrand(-1.0,1.0).postln);
-x.setParam(\cutoff,rrand(30,12000).postln);
+x.setParam(\cutoff,rrand(1000,12000).postln);
 ```
 
 If everything was successful, the `x.setParam` changes should have immediate effect on the currently-playing Moonshine voices. What we now have is a sort of paraphonic synth architecture, where all voices share a single set of parameter control.
@@ -331,7 +333,7 @@ If everything was successful, the `x.setParam` changes should have immediate eff
 
 The second adaptation is more controllable than our first, but we've traded polyphony (where each voice has its own signal path) for an architecture where all voices share a single set of controls. For our final adaptation, let's specify a few goals:
 
-- 8-voice polyphony
+- 8-voice polyphony (with an option to send a value to all voices at once)
 - if a voice is re-triggered, it cuts itself off
 - allow a voice's frequency to be changed while it's decaying, versus exclusively via re-triggering
 - provide an option for turning the filter envelope off/on
@@ -342,6 +344,8 @@ In the code below, we'll introduce a few new gestures:
 
 - To establish a 'local' scope variable, we'll utilize a `classvar`. From [the University of Washington's SuperCollider docs](depts.washington.edu/dxscdoc/Help/Reference/Classes.html): "Class variables are values that are shared by all objects in the class. Class variables [...] may only be directly accessed by methods of the class."
 - Since we want to establish 8 separate voices, we'll set up dictionaries for each voice. We'll use `.do` to iterate a function with each entry Dictionary entry, which is comparable to `for i = 1,#params do` in Lua. See [**Control Structures**](https://depts.washington.edu/dxscdoc/Help/Reference/Control-Structures.html#do) in the University of Washington's SuperCollider docs.
+- To simplify the single + 'all' voice controls, we'll include two helper functions inside of the class -- we'll pass `freq` arguments to `playVoice` from `trigger` and parameter values to `adjustVoice` from `setParam`.
+  - While we can do things differently / more efficiently, we don't want to introduce too many variables in this tutorial. This implementation aims for simplicity over optimal performance.
 - We'll introduce slews using SuperCollider's [**`Lag3` UGen**](https://doc.sccode.org/Classes/Lag3.html), which creates smooth transitions while saving CPU.
 - We'll also use boolean expressions to build if/else statements. See [**Boolean Expressions**](http://sc3howto.blogspot.com/2010/05/boolean-expressions.html) at *How to Program in SuperCollider* for more info.
 
@@ -362,13 +366,11 @@ Moonshine {
 
 	// NEW: add local 'voiceKeys' variable to register each voice name separately
 	classvar <voiceKeys;
-	// NEW: add 'global_voiceKeys' variable with a getter to send the local 'voiceKeys' externally
-	var <global_voiceKeys;
 
 	var <params;
-	var <all_voices;
-	// NEW: add 'single_voice' variable to control + track single voices
-	var <single_voice;
+	var <allVoices;
+	// NEW: add 'singleVoice' variable to control + track single voices
+	var <singleVoice;
 
 
 	*initClass {
@@ -381,7 +383,7 @@ Moonshine {
 			s.waitForBoot {
 
 				SynthDef("Moonshine", {
-					arg stopGate = 1,
+					arg out = 0, stopGate = 1,
 					freq, sub_div,
 					cutoff, resonance, cutoff_env, // NEW: add 'cutoff_env'
 					attack, release,
@@ -414,7 +416,7 @@ Moonshine {
 					// NEW: integrate slew using '.lag3'
 					var signal = Pan2.ar(filter*envelope,pan.lag3(pan_slew));
 					// NEW: bring 'amp' to final output calculation + integrate slew using '.lag3'
-					Out.ar(0,signal * amp.lag3(amp_slew));
+					Out.ar(out, signal * amp.lag3(amp_slew));
 				}).add;
 			}
 		}
@@ -428,18 +430,16 @@ Moonshine {
 
 		var s = Server.default;
 
-		all_voices = Group.new(s);
+		allVoices = Group.new(s);
 
-		// NEW: create a 'single_voice' Dictionary to control each voice individually
-		single_voice = Dictionary.new;
+		// NEW: create a 'singleVoice' Dictionary to control each voice individually
+		singleVoice = Dictionary.new;
 		// NEW: 'params' will hold parameters for our individual voices
 		params = Dictionary.new;
-		// NEW: copy 'voiceKeys' (which is local to the class definition) in a public getter
-		global_voiceKeys = voiceKeys;
 		// NEW: for each of the 'voiceKeys'...
 		voiceKeys.do({ arg voiceKey;
-			// NEW: create a single_voice entry in the 'all_voices' group...
-			single_voice[voiceKey] = Group.new(all_voices);
+			// NEW: create a singleVoice entry in the 'allVoices' group...
+			singleVoice[voiceKey] = Group.new(allVoices);
 			// NEW: and add unique copies of the parameters to each voice
 			params[voiceKey] = Dictionary.newFrom([
 				\freq,400,
@@ -460,31 +460,37 @@ Moonshine {
 		});
 	}
 
+	// NEW: helper function to manage voices
+	playVoice { arg voiceKey, freq;
+		// NEW: if this voice is already playing, gracefully release it
+		singleVoice[voiceKey].set(\stopGate, -1.05); // -1.05 is 'forced release' with 50ms cutoff time
+		// NEW: set '\freq' parameter for this voice to incoming 'freq' value
+		params[voiceKey][\freq] = freq;
+		// NEW: make sure to index each of our tables with our 'voiceKey'
+		Synth.new("Moonshine", [\freq, freq] ++ params[voiceKey].getPairs, singleVoice[voiceKey]);
+	}
 
-	trigger { arg voiceKey, hz;
+	trigger { arg voiceKey, freq;
 		// NEW: if the voice is '/all'...
 		if( voiceKey == \all,{
 		// NEW: then do the following for all the voiceKeys:
 			voiceKeys.do({ arg vK;
 				// NEW: don't trigger an actual synth for '\all', but do it for the other voiceKeys
 				if( vK != \all,{
-					// NEW: if the voice is already playing, gracefully release it
-					single_voice[vK].set(\stopGate, -1.05); // -1.05 is 'forced release' with 50ms cutoff time
-					// NEW: set '\freq' parameter for each voice to incoming 'hz' value
-					params[vK][\freq] = hz;
-					// NEW: make sure to index each of our tables with our 'voiceKey'
-					Synth.new("Moonshine", [\freq, hz] ++ params[vK].getPairs, single_voice[vK]);
+					// NEW: 'this.' allows us to call functions from other functions within our class
+					this.playVoice(vK, freq);
 				});
 			});
 		}, // NEW: else, if the voice is not '\all':
 		{
-			// NEW: if this voice is already playing, gracefully release it
-			single_voice[voiceKey].set(\stopGate, -1.05); // -1.05 is 'forced release' with 50ms cutoff time
-			// NEW: set '\freq' parameter for this voice to incoming 'hz' value
-			params[voiceKey][\freq] = hz;
-			// NEW: make sure to index each of our tables with our 'voiceKey'
-			Synth.new("Moonshine", [\freq, hz] ++ params[voiceKey].getPairs, single_voice[voiceKey]);
+			// NEW: play the specified voice
+			this.playVoice(voiceKey, freq);
 		});
+	}
+
+	adjustVoice { arg voiceKey, paramKey, paramValue;
+		singleVoice[voiceKey].set(paramKey, paramValue);
+		params[voiceKey][paramKey] = paramValue
 	}
 
 	setParam { arg voiceKey, paramKey, paramValue;
@@ -494,25 +500,26 @@ Moonshine {
 			voiceKeys.do({ arg vK;
 				// NEW: don't set values for '\all', but do it for the other voiceKeys
 				if( vK != \all,{
-					single_voice[vK].set(paramKey, paramValue);
-					params[vK][paramKey] = paramValue
+					this.adjustVoice(vK, paramKey, paramValue);
 				});
 			});
 		}, // NEW: else, if the voice is not '\all':
 		{
-			// NEW: send changes to the correct 'single_voice' index,
+			// NEW: send changes to the correct 'singleVoice' index,
 			// which will immediately affect the 'voiceKey' synth
-			single_voice[voiceKey].set(paramKey, paramValue);
-			// NEW: proliferate the new values to the 'voiceKey'-indexed Dictionary
-			params[voiceKey][paramKey] = paramValue;
+			this.adjustVoice(voiceKey, paramKey, paramValue);
 		});
 	}
 
-	// NEW: since each 'single_voice' is a sub-Group of 'all_voices',
-	// we can simply pass a '\stopGate' to the 'all_voices' Group.
+	// NEW: since each 'singleVoice' is a sub-Group of 'allVoices',
+	// we can simply pass a '\stopGate' to the 'allVoices' Group.
 	// IMPORTANT SO OUR SYNTHS DON'T RUN PAST THE SCRIPT'S LIFE
 	freeAllNotes {
-		all_voices.set(\stopGate, -1.05);
+		allVoices.set(\stopGate, -1.05);
+	}
+
+	free {
+		allVoices.free;
 	}
 
 }
@@ -548,8 +555,9 @@ x.setParam(\all,\freq,200 * rrand(1,8));
 )
 
 // execute this bundle:
-(// for each global_voiceKey...
-x.global_voiceKeys.do({ arg voiceKey;
+(
+// for each of Moonshine's voiceKeys, do...
+Moonshine.voiceKeys.do({ arg voiceKey;
 	// if the voiceKey is not '\all' then...
 	if( voiceKey != \all,{
 		// set '\pan' and '\cutoff' to random values
@@ -595,8 +603,8 @@ Engine_Moonshine : CroneEngine {
 
 	alloc { // allocate memory to the following:
 
-		// NEW: since Moonshine is now a class definition on norns,
-		// we can just invoke it:
+		// NEW: since Moonshine is now a supercollider Class,
+		// we can just construct an instance of it
 		kernel = Moonshine.new(Crone.server);
 
 		// NEW: build an 'engine.trig(x,y)' command,
@@ -608,25 +616,14 @@ Engine_Moonshine : CroneEngine {
 		});
 
 		// NEW: since each voice shares the same parameters,
-		// we can build a general function for each parameter
-		// and pass it the voice and value
-		kernel.global_voiceKeys.do({ arg voiceKey;
+		//   we can define a command for each parameter that accepts a voice index
+		Moonshine.voiceKeys.do({ arg voiceKey;
 			kernel.params[voiceKey].keysValuesDo({ arg paramKey;
 				this.addCommand(paramKey, "sf", {arg msg;
 					kernel.setParam(msg[1].asSymbol,paramKey.asSymbol,msg[2].asFloat);
 				});
 			});
 		});
-
-		// NEW: alternate way of add controls for parameters.
-		// mirror the 'setParam' function of our class definition
-		// and pass voice key, parameter name, and value
-		/*this.addCommand(\set_param, "ssf", { arg msg;
-			var voiceKey = msg[1].asSymbol;
-			var paramKey = msg[2].asSymbol;
-			var paramValue = msg[3].asFloat;
-			kernel.setParam(voiceKey, paramKey, paramValue);
-		});*/
 
 		// NEW: add a command to free all the voices
 		this.addCommand(\free_all_notes, "", {
@@ -637,11 +634,15 @@ Engine_Moonshine : CroneEngine {
 
 
 	// NEW: when the script releases the engine,
-	// free all the currently-playing notes.
+	//   free all the currently-playing notes and groups.
 	// IMPORTANT
 	free {
 		kernel.freeAllNotes;
+		// groups are lightweight but they are still persistent on the server and nodeIDs are finite,
+		//   so they do need to be freed:
+		kernel.allVoices.free;
 	} // free
+
 
 } // CroneEngine
 ```

@@ -1,4 +1,4 @@
-// exercise 3: third adaptation
+// SC class exercise 3: third (and final) adaptation
 // 8-voice polyphony + smoothing
 
 Moonshine {
@@ -7,10 +7,10 @@ Moonshine {
 	classvar <voiceKeys;
 
 	var <params;
-	// [eb] why snake case for these? (just wondering)
-	var <all_voices;
-	// NEW: add 'single_voice' variable to control + track single voices
-	var <single_voice;
+	var <allVoices;
+	// NEW: add 'singleVoice' variable to control + track single voices
+	var <singleVoice;
+
 
 	*initClass {
 		// NEW: create voiceKey indices for as many voices as we want control over,
@@ -22,7 +22,7 @@ Moonshine {
 			s.waitForBoot {
 
 				SynthDef("Moonshine", {
-					arg stopGate = 1,
+					arg out = 0, stopGate = 1,
 					freq, sub_div,
 					cutoff, resonance, cutoff_env, // NEW: add 'cutoff_env'
 					attack, release,
@@ -55,7 +55,7 @@ Moonshine {
 					// NEW: integrate slew using '.lag3'
 					var signal = Pan2.ar(filter*envelope,pan.lag3(pan_slew));
 					// NEW: bring 'amp' to final output calculation + integrate slew using '.lag3'
-					Out.ar(0,signal * amp.lag3(amp_slew));
+					Out.ar(out, signal * amp.lag3(amp_slew));
 				}).add;
 			}
 		}
@@ -69,18 +69,16 @@ Moonshine {
 
 		var s = Server.default;
 
-		all_voices = Group.new(s);
+		allVoices = Group.new(s);
 
-		// NEW: create a 'single_voice' Dictionary to control each voice individually
-		single_voice = Dictionary.new;
+		// NEW: create a 'singleVoice' Dictionary to control each voice individually
+		singleVoice = Dictionary.new;
 		// NEW: 'params' will hold parameters for our individual voices
 		params = Dictionary.new;
-		// NEW: copy 'voiceKeys' (which is local to the class definition) in a public getter
-		global_voiceKeys = voiceKeys;
 		// NEW: for each of the 'voiceKeys'...
 		voiceKeys.do({ arg voiceKey;
-			// NEW: create a single_voice entry in the 'all_voices' group...
-			single_voice[voiceKey] = Group.new(all_voices);
+			// NEW: create a singleVoice entry in the 'allVoices' group...
+			singleVoice[voiceKey] = Group.new(allVoices);
 			// NEW: and add unique copies of the parameters to each voice
 			params[voiceKey] = Dictionary.newFrom([
 				\freq,400,
@@ -101,6 +99,15 @@ Moonshine {
 		});
 	}
 
+	// NEW: helper function to manage voices
+	playVoice { arg voiceKey, freq;
+		// NEW: if this voice is already playing, gracefully release it
+		singleVoice[voiceKey].set(\stopGate, -1.05); // -1.05 is 'forced release' with 50ms cutoff time
+		// NEW: set '\freq' parameter for this voice to incoming 'freq' value
+		params[voiceKey][\freq] = freq;
+		// NEW: make sure to index each of our tables with our 'voiceKey'
+		Synth.new("Moonshine", [\freq, freq] ++ params[voiceKey].getPairs, singleVoice[voiceKey]);
+	}
 
 	trigger { arg voiceKey, freq;
 		// NEW: if the voice is '/all'...
@@ -109,23 +116,20 @@ Moonshine {
 			voiceKeys.do({ arg vK;
 				// NEW: don't trigger an actual synth for '\all', but do it for the other voiceKeys
 				if( vK != \all,{
-					// NEW: if the voice is already playing, gracefully release it
-					single_voice[vK].set(\stopGate, -1.05); // -1.05 is 'forced release' with 50ms cutoff time
-					// NEW: set '\freq' parameter for each voice to incoming 'freq' value
-					params[vK][\freq] = freq;
-					// NEW: make sure to index each of our tables with our 'voiceKey'
-					Synth.new("Moonshine", [\freq, freq] ++ params[vK].getPairs, single_voice[vK]);
+					// NEW: 'this.' allows us to call functions from other functions within our class
+					this.playVoice(vK, freq);
 				});
 			});
 		}, // NEW: else, if the voice is not '\all':
 		{
-			// NEW: if this voice is already playing, gracefully release it
-			single_voice[voiceKey].set(\stopGate, -1.05); // -1.05 is 'forced release' with 50ms cutoff time
-			// NEW: set '\freq' parameter for this voice to incoming 'freq' value
-			params[voiceKey][\freq] = freq;
-			// NEW: make sure to index each of our tables with our 'voiceKey'
-			Synth.new("Moonshine", [\freq, freq] ++ params[voiceKey].getPairs, single_voice[voiceKey]);
+			// NEW: play the specified voice
+			this.playVoice(voiceKey, freq);
 		});
+	}
+
+	adjustVoice { arg voiceKey, paramKey, paramValue;
+		singleVoice[voiceKey].set(paramKey, paramValue);
+		params[voiceKey][paramKey] = paramValue
 	}
 
 	setParam { arg voiceKey, paramKey, paramValue;
@@ -135,25 +139,26 @@ Moonshine {
 			voiceKeys.do({ arg vK;
 				// NEW: don't set values for '\all', but do it for the other voiceKeys
 				if( vK != \all,{
-					single_voice[vK].set(paramKey, paramValue);
-					params[vK][paramKey] = paramValue
+					this.adjustVoice(vK, paramKey, paramValue);
 				});
 			});
 		}, // NEW: else, if the voice is not '\all':
 		{
-			// NEW: send changes to the correct 'single_voice' index,
+			// NEW: send changes to the correct 'singleVoice' index,
 			// which will immediately affect the 'voiceKey' synth
-			single_voice[voiceKey].set(paramKey, paramValue);
-			// NEW: proliferate the new values to the 'voiceKey'-indexed Dictionary
-			params[voiceKey][paramKey] = paramValue;
+			this.adjustVoice(voiceKey, paramKey, paramValue);
 		});
 	}
 
-	// NEW: since each 'single_voice' is a sub-Group of 'all_voices',
-	// we can simply pass a '\stopGate' to the 'all_voices' Group.
+	// NEW: since each 'singleVoice' is a sub-Group of 'allVoices',
+	// we can simply pass a '\stopGate' to the 'allVoices' Group.
 	// IMPORTANT SO OUR SYNTHS DON'T RUN PAST THE SCRIPT'S LIFE
 	freeAllNotes {
-		all_voices.set(\stopGate, -1.05);
+		allVoices.set(\stopGate, -1.05);
+	}
+
+	free {
+		allVoices.free;
 	}
 
 }

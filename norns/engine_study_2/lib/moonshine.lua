@@ -76,7 +76,7 @@ function Moonshine.add_params()
             -- since 'all' voice corresponds to the first entry in 'voices' table,
             --   we iterate the other parameter groups as 2 through 9:
             for other_voices = 2,9 do
-              -- send value changes silently, since '\all' changes values on SuperCollider's side:
+              -- send value changes silently, since 'all' changes all values on SuperCollider's side:
               params:set(voices[other_voices].."_"..p.id, x, true)
             end
           end
@@ -85,6 +85,7 @@ function Moonshine.add_params()
       
     end
   end
+  -- activate the parameters' current values:
   params:bang()
 end
 

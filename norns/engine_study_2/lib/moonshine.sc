@@ -6,16 +6,18 @@ Moonshine {
 	// NEW: add local 'voiceKeys' variable to register each voice name separately
 	classvar <voiceKeys;
 
-	var <params;
-	var <allVoices;
-	// NEW: add 'singleVoice' variable to control + track single voices
-	var <singleVoice;
 
+	// NEW: establish 'globalParams' list for all voices
+	var <globalParams;
+	// NEW: establish 'voiceParams' to track the state of each 'globalParams' entry for each voice
+	var <voiceParams;
+	var <voiceGroup;
+	// NEW: add 'singleVoices' variable to control + track single voices
+	var <singleVoices;
 
 	*initClass {
-		// NEW: create voiceKey indices for as many voices as we want control over,
-		// including an '\all' index to easily send one value to the same parameter on every voice
-		voiceKeys = [ \1, \2, \3, \4, \5, \6, \7, \8, \all];
+		// NEW: create voiceKey indices for as many voices as we want control over
+		voiceKeys = [ \1, \2, \3, \4, \5, \6, \7, \8 ];
 		StartUp.add {
 			var s = Server.default;
 
@@ -69,58 +71,58 @@ Moonshine {
 
 		var s = Server.default;
 
-		allVoices = Group.new(s);
+		voiceGroup = Group.new(s);
 
-		// NEW: create a 'singleVoice' Dictionary to control each voice individually
-		singleVoice = Dictionary.new;
-		// NEW: 'params' will hold parameters for our individual voices
-		params = Dictionary.new;
+		// NEW: create a 'globalParams' Dictionary to hold the parameters common to each voice
+		globalParams = Dictionary.newFrom([
+			\freq, 400,
+			\sub_div, 2,
+			\noise_amp, 0.1,
+			\cutoff, 8000,
+			\cutoff_env, 1,
+			\resonance, 3,
+			\attack, 0,
+			\release, 0.4,
+			\amp, 0.5,
+			\pan, 0,
+			\freq_slew, 0.0,
+			\amp_slew, 0.05,
+			\noise_slew, 0.05,
+			\pan_slew, 0.5;
+		]);
+
+		// NEW: create a 'singleVoices' Dictionary to control each voice individually
+		singleVoices = Dictionary.new;
+		// NEW: 'voiceParams' will hold parameters for our individual voices
+		voiceParams = Dictionary.new;
 		// NEW: for each of the 'voiceKeys'...
 		voiceKeys.do({ arg voiceKey;
-			// NEW: create a singleVoice entry in the 'allVoices' group...
-			singleVoice[voiceKey] = Group.new(allVoices);
-			// NEW: and add unique copies of the parameters to each voice
-			params[voiceKey] = Dictionary.newFrom([
-				\freq,400,
-				\sub_div, 2,
-				\noise_amp, 0.1,
-				\cutoff, 8000,
-				\cutoff_env, 1,
-				\resonance, 3,
-				\attack, 0,
-				\release, 0.4,
-				\amp, 0.5,
-				\pan, 0,
-				\freq_slew, 0.0,
-				\amp_slew, 0.05,
-				\noise_slew, 0.05,
-				\pan_slew, 0.5;
-			]);
+			// NEW: create a 'singleVoices' entry in the 'voiceGroup'...
+			singleVoices[voiceKey] = Group.new(voiceGroup);
+			// NEW: and add unique copies of the globalParams to each voice
+			voiceParams[voiceKey] = Dictionary.newFrom(globalParams);
 		});
 	}
 
 	// NEW: helper function to manage voices
 	playVoice { arg voiceKey, freq;
 		// NEW: if this voice is already playing, gracefully release it
-		singleVoice[voiceKey].set(\stopGate, -1.05); // -1.05 is 'forced release' with 50ms cutoff time
+		singleVoices[voiceKey].set(\stopGate, -1.05); // -1.05 is 'forced release' with 50ms (0.05s) cutoff time
 		// NEW: set '\freq' parameter for this voice to incoming 'freq' value
-		params[voiceKey][\freq] = freq;
+		voiceParams[voiceKey][\freq] = freq;
 		// NEW: make sure to index each of our tables with our 'voiceKey'
-		Synth.new("Moonshine", [\freq, freq] ++ params[voiceKey].getPairs, singleVoice[voiceKey]);
+		Synth.new("Moonshine", [\freq, freq] ++ voiceParams[voiceKey].getPairs, singleVoices[voiceKey]);
 	}
 
 	trigger { arg voiceKey, freq;
-		// NEW: if the voice is '/all'...
-		if( voiceKey == \all,{
-		// NEW: then do the following for all the voiceKeys:
+		// NEW: if the voice is 'all'...
+		if( voiceKey == 'all',{
+		// NEW: then do the following for all of the voiceKeys:
 			voiceKeys.do({ arg vK;
-				// NEW: don't trigger an actual synth for '\all', but do it for the other voiceKeys
-				if( vK != \all,{
-					// NEW: 'this.' allows us to call functions from other functions within our class
-					this.playVoice(vK, freq);
-				});
+				// NEW: use 'this.' to call functions specific to this instance
+				this.playVoice(vK, freq);
 			});
-		}, // NEW: else, if the voice is not '\all':
+		}, // NEW: else, if the voice is not 'all':
 		{
 			// NEW: play the specified voice
 			this.playVoice(voiceKey, freq);
@@ -128,37 +130,35 @@ Moonshine {
 	}
 
 	adjustVoice { arg voiceKey, paramKey, paramValue;
-		singleVoice[voiceKey].set(paramKey, paramValue);
-		params[voiceKey][paramKey] = paramValue
+		singleVoices[voiceKey].set(paramKey, paramValue);
+		voiceParams[voiceKey][paramKey] = paramValue
 	}
 
 	setParam { arg voiceKey, paramKey, paramValue;
-		// NEW: if the voice is '/all'...
-		if( voiceKey == \all,{
-			// NEW: then do the following for all the voiceKeys:
+		// NEW: if the voiceKey is 'all'...
+		if( voiceKey == 'all',{
+			// NEW: then do the following for all of the voiceKeys:
 			voiceKeys.do({ arg vK;
-				// NEW: don't set values for '\all', but do it for the other voiceKeys
-				if( vK != \all,{
-					this.adjustVoice(vK, paramKey, paramValue);
-				});
+				this.adjustVoice(vK, paramKey, paramValue);
 			});
-		}, // NEW: else, if the voice is not '\all':
+		}, // NEW: else, if the voiceKey is not 'all':
 		{
-			// NEW: send changes to the correct 'singleVoice' index,
+			// NEW: send changes to the correct 'singleVoices' index,
 			// which will immediately affect the 'voiceKey' synth
 			this.adjustVoice(voiceKey, paramKey, paramValue);
 		});
 	}
 
-	// NEW: since each 'singleVoice' is a sub-Group of 'allVoices',
-	// we can simply pass a '\stopGate' to the 'allVoices' Group.
+	// NEW: since each 'singleVoices' is a sub-Group of 'voiceGroup',
+	//   we can simply pass a '\stopGate' to the 'voiceGroup' Group.
 	// IMPORTANT SO OUR SYNTHS DON'T RUN PAST THE SCRIPT'S LIFE
 	freeAllNotes {
-		allVoices.set(\stopGate, -1.05);
+		voiceGroup.set(\stopGate, -1.05);
 	}
 
 	free {
-		allVoices.free;
+		// IMPORTANT
+		voiceGroup.free;
 	}
 
 }

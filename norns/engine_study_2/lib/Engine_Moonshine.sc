@@ -11,24 +11,22 @@ Engine_Moonshine : CroneEngine {
 	alloc { // allocate memory to the following:
 
 		// NEW: since Moonshine is now a supercollider Class,
-		// we can just construct an instance of it
+		//   we can just construct an instance of it
 		kernel = Moonshine.new(Crone.server);
 
 		// NEW: build an 'engine.trig(x,y)' command,
-		// x: voice, y: hz
+		//   x: voice, y: freq
 		this.addCommand(\trig, "sf", { arg msg;
 			var voiceKey = msg[1].asSymbol;
-			var hz = msg[2].asFloat;
-			kernel.trigger(voiceKey,hz);
+			var freq = msg[2].asFloat;
+			kernel.trigger(voiceKey,freq);
 		});
 
-		// NEW: since each voice shares the same parameters,
+		// NEW: since each voice shares the same parameters ('globalParams'),
 		//   we can define a command for each parameter that accepts a voice index
-		Moonshine.voiceKeys.do({ arg voiceKey;
-			kernel.params[voiceKey].keysValuesDo({ arg paramKey;
-				this.addCommand(paramKey, "sf", {arg msg;
-					kernel.setParam(msg[1].asSymbol,paramKey.asSymbol,msg[2].asFloat);
-				});
+		kernel.globalParams.keysValuesDo({ arg paramKey;
+			this.addCommand(paramKey, "sf", {arg msg;
+				kernel.setParam(msg[1].asSymbol,paramKey.asSymbol,msg[2].asFloat);
 			});
 		});
 

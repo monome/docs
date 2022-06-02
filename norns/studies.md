@@ -38,7 +38,7 @@ tutorials written by monome.
 - [clocks](../clocks/) // create timed and clock-synced function calls: loops, repetition, and delays
 - [grid recipes](../grid-recipes/) // short snippets of code for canonical grid interactions
 - [rude mechanicals](../engine-study-1/) // introduction to building norns engines with SuperCollider
-- [skilled labor](../engine-study-2/) // extended study of norns engines (polyphony, realtime parameter changes, Class files, SuperCollider language features)
+- [skilled labor](../engine-study-2/) // extended study of norns engine development
 
 ### norns: contributed knowledge
 

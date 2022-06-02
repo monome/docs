@@ -636,7 +636,7 @@ Engine_Moonshine : CroneEngine {
 		kernel.freeAllNotes;
 		// groups are lightweight but they are still persistent on the server and nodeIDs are finite,
 		//   so they do need to be freed:
-		kernel.allVoices.free;
+		kernel.voiceGroup.free;
 	} // free
 
 

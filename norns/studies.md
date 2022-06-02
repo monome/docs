@@ -37,7 +37,8 @@ tutorials written by monome.
 - [softcut](../softcut/) // a multi-voice sample playback and recording system built into norns
 - [clocks](../clocks/) // create timed and clock-synced function calls: loops, repetition, and delays
 - [grid recipes](../grid-recipes/) // short snippets of code for canonical grid interactions
-- [rude mechanicals](../engine-study-1/) // building norns engines with SuperCollider
+- [rude mechanicals](../engine-study-1/) // introduction to building norns engines with SuperCollider
+- [skilled labor](../engine-study-2/) // extended study of norns engines (polyphony, realtime parameter changes, Class files, SuperCollider language features)
 
 ### norns: contributed knowledge
 

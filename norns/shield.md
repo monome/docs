@@ -36,7 +36,7 @@ The norns shield is [open source hardware](https://github.com/monome/norns-shiel
 There are some differences between the norns and norns shield:
 
 - norns has a battery, 1/4" mono jacks, a separate headphone jack and driver, very high quality audio, serial connection over power port
-- norns shield has 1/8" (interchangeably referred to as 3.5mm) stereo jacks (headphones work on the output jack) and an ethernet port
+- norns shield has 1/8" (interchangeably referred to as 3.5mm) stereo jacks (headphones work on the output jack) expandable storage (microSD) built-in wifi and an ethernet port
 
 Software is fully compatible between the two.
 

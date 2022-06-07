@@ -96,12 +96,12 @@ end
 
 ### description
 
-The `metro` module provides a script with **30** high-resolution counters, useful for event execution on a high-resolution tick, for either a fixed number of ticks or to run without end.
+The `metro` module provides a script with **30** high-resolution counters, useful for event execution on a reliable seconds-based tick, for either a fixed number of ticks or to run without end.
 
-`meteo` provides high-resolution counting, accurately representing time over many cycles with little to no jitter. This makes it the perfect time-tracking mechanism for modules like [`pattern_time`](/docs/norns/reference/lib/pattern_time), where events are expected to record and play back exactly as entered.
+`meteo` accurately represents 'linear' time over many cycles with little to no jitter. This makes it the perfect time-tracking mechanism for modules like [`pattern_time`](/docs/norns/reference/lib/pattern_time), where events are expected to record and play back exactly as entered.
 
 So when should a script use the [`clock` module](/docs/norns/reference/clock) and when should it use a `metro`? 
 
 Typically, `clock` is used for working within musical time, where the overall sense of accuracy is defined by the cohesion of multiple devices rather than by any one device's independent adherence to a strict tick -- since musical time benefits from all devices fluidly accommodating for their individual timing jitters through MIDI, Link, or crow (see the [control + clock](/docs/norns/control-clock/) section of the main norns docs for more detail), then consider `clock` the flexible, syncable timing module for syncing events to musical beats.
 
-Though `clock` *does* have a time-based mode with `clock.sleep(seconds)`, that is best used for short-term scheduling (like in our example above), where the prolonged repeated execution of an event on a regular time interval is not necessary (or is fine to slightly drift over time). Again, `clock` is absolutely timing-reliable for syncing to *beats* -- eg. `clock.sync(1)` will *always* sync an event's execution to the next beat-tick. `metro` should be used for situations where events needs to be executed at high-resolution regardless of musical time -- eg. screen / grid redraws, or scripting your own free-running LFOs.
+Though `clock` *does* have a time-based mode with `clock.sleep(seconds)`, that is best used for short-term scheduling (like in our example above), where the prolonged repeated execution of an event on a regular time interval is not necessary (or is fine to slightly drift over time). Again, `clock` is absolutely timing-reliable for syncing to *beats* -- eg. `clock.sync(1)` will *always* sync an event's execution to the next beat-tick. `metro` should be used for situations where events needs to be executed at high-resolution regardless of beat-synced intervals -- eg. screen / grid redraws, or scripting your own free-running LFOs.

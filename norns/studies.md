@@ -32,7 +32,7 @@ tutorials written by monome.
 - [many tomorrows](../study-1/) // variables, simple maths, keys + encoders
 - [patterning](../study-2/) // screen drawing, for/while loops, tables
 - [spacetime](../study-3/) // functions, parameters, time
-- [physical](../study-4/) // incorporating grids + midi
+- [physical](../study-4/) // incorporating grids, midi, clock syncing
 - [streams](../study-5/) // system polls, osc, file storage
 - [softcut](../softcut/) // a multi-voice sample playback and recording system built into norns
 - [clocks](../clocks/) // create timed and clock-synced function calls: loops, repetition, and delays

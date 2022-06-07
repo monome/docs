@@ -9,7 +9,7 @@ permalink: /norns/study-4/
 # physical
 {: .no_toc }
 
-norns studies part 4: grids + midi (also clocks)
+norns studies part 4: grids, midi, clock syncing
 
 <details open markdown="block">
   <summary>

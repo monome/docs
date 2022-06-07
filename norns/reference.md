@@ -33,7 +33,7 @@ to access the complete norns API, you can either:
 | [grid](grid)                                                          | Connect a script to a hardware [grid](https://monome.org/docs/grid)                 |
 | [hid (api)](/docs/norns/api/modules/hid.html)                         | Connect a script to HID hardware                                                    |
 | [keyboard](keyboard)                                                  | Decipher keyboard (typing, not piano) input                                         |
-| [metro (api)](/docs/norns/api/modules/metro.html)                     | High-resolution time-based counter                                                  |
+| [metro](metro)                                                        | High-resolution time-based counter                                                  |
 | [midi](midi)                                                          | Connect a script to MIDI hardware                                                   |
 | [osc](osc)                                                            | Connect a script to OSC streams                                                     |
 | [params](params)                                                      | Create script parameters, displayed in the PARAMETERS menu                          |

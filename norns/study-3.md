@@ -998,7 +998,7 @@ Just like our previous practice with `params`, a `metro` can also be established
 
 function init()
   position = 0
-  counter = metro.init(count,1,-1) -- arguments are (action, time, count)
+  counter = metro.init(count,1,-1) -- arguments are (event, time, count)
   counter:start()
 end
 

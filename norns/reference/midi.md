@@ -39,7 +39,7 @@ permalink: /norns/reference/midi
 | midi.vports     | Returns all remembered MIDI devices : table                                                     |
 | midi.vports[x]  | Returns information about this remembered MIDI device (`.name` and control functions) : table   |
 
-### example
+### example: targeting a selectable device
 
 ```lua
 function init()
@@ -51,8 +51,10 @@ function init()
 
   for i = 1,#midi.vports do -- query all ports
     midi_device[i] = midi.connect(i) -- connect each device
-    local full_name = 
-    table.insert(midi_device_names,"port "..i..": "..util.trim_string_to_width(midi_device[i].name,40)) -- register its name
+    table.insert( -- register its name:
+      midi_device_names, -- table to insert to
+      "port "..i..": "..util.trim_string_to_width(midi_device[i].name,80) -- value to insert
+    )
   end
   
   params:add_option("midi target", "midi target",midi_device_names,1)
@@ -91,8 +93,157 @@ function redraw()
   if not key3_hold then
     screen.text("press K3 to send note "..random_note)
   else
-    screen.text("release K3 to kill note "..random_note)
+    screen.text("release K3 to end note "..random_note)
   end
+  screen.update()
+end
+```
+
+### example: targeting multiple devices
+
+```lua
+s = require 'sequins'
+MU = require 'musicutil'
+
+engine.name = 'PolySub' -- just to auralize sequences
+
+function init()
+  -- set some engine params:
+  engine.ampRel(0.1)
+  engine.ampAtk(0.005)
+  engine.hzLag(0)
+  
+  target_device_count = 3 -- target 3 connected devices, feel free to change!
+  
+  scale = "Major Pentatonic" -- for scale generation
+  
+  midi_device = {} -- container for connected midi devices
+  midi_device_names = {} -- container for their names
+  
+  -- container for individual sequence parameters
+  sequence = {
+    target = {}, -- which MIDI port to target
+    notes = {}, -- the note pool for the sequence
+    sync_val = {}, -- the clock sync value
+    clock = {} -- the iterating clock
+  }
+  
+  for i = 1,target_device_count do
+    sequence.target[i] = i -- target device slot (i)
+    -- MU.generate_scale(base_note, scale_name, octaves)
+    local this_scale = MU.generate_scale(50 - (math.random(-2,1) * 12), scale, 2)
+    sequence.notes[i] = s.new(this_scale) -- build a sequins of generated notes
+    sequence.sync_val[i] = 3/math.random(11) -- randomly assign tick value per sequence
+  end
+  
+  refresh_midi_devices()
+  
+  params:add_separator("multiple midi device example")
+  
+  for i = 1,target_device_count do -- for each MIDI target...
+    params:add_group("output "..i,4)
+    
+    -- create a parameter to change its target:
+    params:add_option("target "..i, "device", midi_device_names, i)
+    params:set_action("target "..i, function(x) sequence.target[i] = x end)
+    -- and channel and velocity value
+    params:add_number("channel "..i, "channel", 1, 16, 1)
+    params:add_number("velocity "..i, "velocity", 0, 127, 63)
+    
+    -- sequins step size allows skipping within sequence
+    params:add_number("sequins step size "..i, "sequins step size", -10, 10, 1)
+    params:set_action("sequins step size "..i, function(x) sequence.notes[i]:step(x) end)
+  end
+  
+  -- sequences start off
+  transport_state = "off"
+  
+  -- common redraw mechanism
+  redraw_timer = metro.init(draw_screen,1/15,-1)
+  screen_dirty = true
+  redraw_timer:start()
+  
+end
+
+function start_sequences()
+  if transport_state == "off" then
+    transport_state = "on"
+    for i = 1,#sequence.target do
+      -- for each sequence, create a clock:
+      sequence.clock[i] = clock.run(iterate_sequence, i)
+    end
+  end
+end
+
+function stop_sequences()
+  if transport_state == "on" then
+    transport_state = "off"
+    for i = 1,#sequence.target do
+      -- for each sequence, cancel its clock:
+      clock.cancel(sequence.clock[i])
+      -- reset the sequins index:
+      sequence.notes[i].ix = 1
+      -- stop the engine:
+      engine.stop(i)
+    end
+  end
+end
+
+function iterate_sequence(i)
+  while true do
+    clock.sync(sequence.sync_val[i])
+    local played_note = sequence.notes[i]()
+    local velocity = params:get("velocity "..i)
+    local channel = params:get("channel "..i)
+    
+    midi_device[i]:note_on(played_note, velocity, channel)
+    engine.start(i,MU.note_num_to_freq(played_note))
+    
+    clock.sleep(0.1) -- after 100 ms, perform note off:
+    midi_device[i]:note_off(played_note, 0, channel)
+    engine.stop(i)
+    
+    screen_dirty = true
+  end
+end
+
+function refresh_midi_devices()
+  for i = 1,#midi.vports do -- query all ports
+    midi_device[i] = midi.connect(i) -- connect each device
+    table.insert( -- register its name:
+      midi_device_names, -- table to insert to
+      "port "..i..": "..util.trim_string_to_width(midi_device[i].name,40) -- value to insert
+    )
+  end
+end
+
+function key(n,z)
+  if n == 3 and z == 1 then
+    -- toggle sequence on/off
+    if transport_state == "off" then
+      start_sequences()
+    else
+      stop_sequences()
+    end
+    screen_dirty = true
+  end
+end
+
+function draw_screen()
+  if screen_dirty then
+    redraw()
+    screen_dirty = false
+  end
+end
+
+function redraw()
+  screen.clear()
+  for i = 1,target_device_count do
+    screen.move(0,10*i)
+    screen.text("sequence "..i..": "..sequence.notes[i].data[sequence.notes[i].ix])
+  end
+  screen.move(128,58)
+  screen.text_right("K3: turn "..(transport_state == "on" and "off" or "on"))
   screen.update()
 end
 ```

@@ -125,7 +125,8 @@ function init()
     target = {}, -- which MIDI port to target
     notes = {}, -- the note pool for the sequence
     sync_val = {}, -- the clock sync value
-    clock = {} -- the iterating clock
+    clock = {}, -- the iterating clock
+    selected = 1
   }
   
   for i = 1,target_device_count do
@@ -217,6 +218,17 @@ function refresh_midi_devices()
   end
 end
 
+function enc(n,d)
+  if n == 2 then
+    -- change selected sequence
+    sequence.selected = util.clamp(sequence.selected+d, 1, target_device_count)
+  elseif n == 3 then
+    -- change selected sequence's step size
+    params:delta("sequins step size "..sequence.selected, d)
+  end
+  screen_dirty = true
+end
+
 function key(n,z)
   if n == 3 and z == 1 then
     -- toggle sequence on/off
@@ -239,11 +251,15 @@ end
 function redraw()
   screen.clear()
   for i = 1,target_device_count do
+    screen.level(sequence.selected == i and 15 or 5)
     screen.move(0,10*i)
     screen.text("sequence "..i..": "..sequence.notes[i].data[sequence.notes[i].ix])
+    screen.move(128,10*i)
+    screen.text_right("step size: "..params:get("sequins step size "..i))
   end
   screen.move(128,58)
-  screen.text_right("K3: turn "..(transport_state == "on" and "off" or "on"))
+  screen.level(15)
+  screen.text_right("K3: turn all "..(transport_state == "on" and "off" or "on"))
   screen.update()
 end
 ```

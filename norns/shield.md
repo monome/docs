@@ -99,7 +99,8 @@ Lastly, insert your newly-flashed microSD card into the Raspberry Pi.
 
 ON:
 
-- attach a high quality Raspberry Pi power supply that provides at least 2A at 5V to the micro USB port on the Pi
+- locate the port on the Pi labeled `POWER` or `PWR IN`. this will be micro-USB or USB-C, depending on your Pi edition.
+- attach a high quality Raspberry Pi power supply that provides at least 2A at 5V to this port.
 - the red light on the Pi will be steady, while the not-red light will flash
 - in a few seconds, you’ll see a sparkle animation on the screen
 

@@ -73,6 +73,7 @@ To check for and install updates:
 - connect to a WiFi network (updates cannot be performed via norns-powered hotspot)
 - navigate to **SYSTEM > UPDATE** and press **K3**
 - norns will check for available updates
+  - *nb. if this takes a while, confirm norns is connected to WIFI and/or perform a SYSTEM > RESTART*
 - if norns finds an update, press **K3** to confirm installation
 - after installation, press any key to safely shut norns down
 

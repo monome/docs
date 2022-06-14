@@ -33,6 +33,8 @@ The interface includes a meta-navigator in the far-left sidebar, which from bott
 - access the [*project manager*](#project-manager), where you can manage, discover, and install community scripts on your norns
 - toggle the [*repl*](#repl) (read-eval-print-loop), where your scripts + the system both print useful information
 - toggle the [*file viewer*](#file-viewer), where you can view and select scripts to edit
+  - note that maiden only has read/write access to files within `/home/we/dust`: `audio`, `code` and `data` -- no other system files can be accessed.
+  - use [SFTP](/docs/norns/advanced-access/#sftp) for accessing files outside of `/home/we/dust`
 
 Let's start with the *project manager*, so we can download some new community scripts!
 
@@ -147,11 +149,14 @@ This will disconnect maiden, but once matron has restarted you can reconnect.
 Sometimes, scripts don't make it into the community catalog. To fetch a script that's only hosted on a developer's GitHub:
 
 - copy the URL of the lone project (eg. `https://github.com/tehn/test-update`)
-- in maiden's repl, enter:
+- in maiden's REPL, execute:
 
 ```lua
 ;install https://github.com/tehn/test-update
 ```
+
+eg.  
+![](/docs/norns/image/wifi_maiden-images/install-repl.png)
 
 If the fetch was successful, you'll see:
 
@@ -171,6 +176,69 @@ install failed: project test-update already exists in /home/we/dust/code
 ```
 
 In which case, you just need to remove the redundant script and re-fetch.
+
+### troubleshooting + collecting logs {#logging}
+
+Along your norns journey, you may encounter [errors](/docs/norns/help/#error-messages) printed to the norns screen like:
+
+- `error: load fail`
+- `error: missing <EngineName>`
+- `error: SUPERCOLLIDER FAIL`
+
+These errors are straightforward to address when their cause is known -- but since the norns screen is only 128 x 64 pixels, robust error logging must find a different avenue. This is where maiden's `matron` (which manages the Lua scripting layer) and `supercollider` (which manages the synth engine layer) tabs come into play:
+
+![](/docs/norns/image/wifi_maiden-images/matron-hover.png)
+
+![](/docs/norns/image/wifi_maiden-images/sc-hover.png)
+
+If you run into *any* errors using a script (either your own or someone else's), maiden will print messages to each of these REPLs, depending on which layer is experiencing an issue. This extends beyond the script's initialization -- if a variable is miscalculated during play and causes instability within a script, for example, maiden will present these errors as well.
+
+If you don't have maiden running at the time of the error, or you're unable to connect to maiden for some reason while reproducing the issue, or you're experiencing an error that repeats in a loop and can't catch it -- don't worry!  
+You can export the `matron` and `supercollider` error text for the previous boot by navigating to `SYSTEM > LOG` on your norns and pressing K3 twice, which will create a file at `dust/data/system.log` and can be copied via maiden or downloaded via [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp).
+
+If an error occurs you're using someone else's script, it can be easy to assume others will know what's wrong if you describe the general error (eg. "I'm excited to play with this script, but norns says 'error: SUPERCOLLIDER FAIL' when I try to run it"). However, those who want to help will only be able to if you share the specific errors with them -- whether they're copied and pasted from the `matron` and `supercollider` tabs, or you share a fresh `system.log` file as described above. 
+
+Providing this information will make it easier for others to understand the specific causes of the trouble you're experiencing and empower them to suggest helpful next steps.
+
+#### example reading
+
+While you collect this information, you might also find that certain situations produce very clear messages -- for example, here's the `supercollider` REPL's output during a common occurrence of `error: SUPERCOLLIDER FAIL` / `error: DUPLICATE ENGINES`:
+
+![](/docs/norns/image/wifi_maiden-images/sc-error.png)
+
+```
+compiling class library...
+	Found 738 primitives.
+	Compiling directory '/usr/local/share/SuperCollider/SCClassLibrary'
+	Compiling directory '/usr/local/share/SuperCollider/Extensions'
+	Compiling directory '/home/we/.local/share/SuperCollider/Extensions'
+	Compiling directory '/home/we/norns/sc/core'
+	Compiling directory '/home/we/norns/sc/engines'
+	Compiling directory '/home/we/dust'
+ERROR: duplicate Class found: 'Engine_PolyPerc' 
+/home/we/norns/sc/engines/Engine_PolyPerc.sc
+/home/we/dust/code/other-stuff-i-installed/PolyPerc.sc
+ERROR: There is a discrepancy.
+numClassDeps 1517   gNumClasses 3032
+```
+
+While the first 8 lines may not mean much (they get printed every time SuperCollider loads on norns), there *is* a cluster of errors which can be deciphered:
+
+```
+ERROR: duplicate Class found: 'Engine_PolyPerc' 
+/home/we/norns/sc/engines/Engine_PolyPerc.sc
+/home/we/dust/code/other-stuff-i-installed/PolyPerc.sc
+```
+
+When chunked, we can better notice the information presented by SuperCollider:
+
+- there's a duplicate of `PolyPerc`
+- the first one is at `/home/we/norns/sc/engines/`, named `Engine_PolyPerc.sc`
+- the other is at `/home/we/dust/code/other-stuff-i-installed/`, named `PolyPerc.sc`
+
+It may help to remind that maiden accesses and manages files and folders within `/home/we/dust/` (`audio`, `code` and `data`), but not any other system folders. So, the `/home/we/dust/code/other-stuff-i-installed/` location must have been created when another script was installed. Also, `PolyPerc` is installed by default on norns at `/home/we/norns/sc/engines/`, which is a location we cannot access via maiden.
+
+To resolve the issue, we'll either want to delete the one installed in the `/home/we/dust/code/other-stuff-i-installed/` folder or delete that whole folder altogether.
 
 ## file viewer
 

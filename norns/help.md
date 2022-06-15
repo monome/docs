@@ -345,13 +345,18 @@ If you're able to load maiden, there are two tabs in the main REPL area (above t
 
 If a newly-renamed script throws a `file not found` error in maiden, it is likely because the system has not registered the name change -- even though you see the new name in the UI. Perform a hard refresh on your browser ([how?](https://fabricdigital.co.nz/assets/How-to-hard-refresh-browser-infographic.jpg)).
 
+#### not an error: 'm.read: /home/we/dust/data/<script_name>/<script_name>.pmap not read.' {#not-an-error}
+
+This is not an error. We're including it here because it often gets mistaken for one, as it can accompany other issues with a script load.
+
+This message is only reporting that the script has never (successfully) been run before. It will go away once the norns system creates a default .pmap for that script, which happens the first time the script is cleanly exited.
+
 ### reboot via maiden
 
-To reboot matron, the Lua layer of norns, execute `;restart` in the `matron` tab of the maiden REPL.
-
-To reboot SuperCollider, the synthesis layer of norns, execute `;restart` in the `supercollider` tab of the maiden REPL.
-
 To perform a quick reboot of the entire norns stack (for instance, when installing a script with a synth engine), reboot SuperCollider *then* reboot matron.
+
+To reboot matron, the Lua layer of norns, execute `;restart` in the `matron` tab of the maiden REPL.  
+To reboot SuperCollider, the synthesis layer of norns, execute `;restart` in the `supercollider` tab of the maiden REPL.
 
 ## DATA MANAGEMENT
 

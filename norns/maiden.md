@@ -248,6 +248,8 @@ This panel lets you select the text you're editing in EDITOR.
 
 There are top bar icons for various actions: **New**, **Delete**, **Duplicate**, **New Folder**, and **Rename**.
 
+*nb. If you rename a file, make sure to retain its extension (eg. `.lua`) as you replace the filename. Otherwise, maiden will not know what type of file it is and will not load it as expected.*
+
 The `>`'s can be expanded to reveal a file tree. When you select a file, it will show in the EDITOR:
 
 ![](/docs/norns/image/maiden-carrot.png)

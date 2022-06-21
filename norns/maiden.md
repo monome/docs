@@ -197,7 +197,13 @@ If you run into *any* errors using a script (either your own or someone else's),
 
 If an error occurs during play, it can be easy to assume others will know what's wrong if you describe the general message (eg. "I'm excited to play with this script, but norns says 'error: SUPERCOLLIDER FAIL' when I try to run it"). However, those who want to help will only be able to if you share a more complete report of errors with them. To help collect all the debugging information required, we've included a simple logging mechanism directly on norns!
 
-To export the `matron` and `supercollider` error text for the *previous* boot by navigating to `SYSTEM > LOG` on your norns and pressing K3 twice, which will create a file at `dust/data/system.log` and can be copied via maiden or downloaded via [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp). *nb. If you are experiencing the issue for the first time, power-cycle your device before attempting to gather logs.*
+To export the `matron` and `supercollider` error text for the *previous* boot:
+
+- navigate to `SYSTEM > LOG` on your norns
+- press **K3** twice to create a log file at `dust/data/system.log`
+- copy the log text to your computer via maiden or downloaded the file via [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp)
+
+*nb. If you are experiencing the issue for the first time, power-cycle your device before attempting to gather logs.*
 
 This `system.log` export can be more helpful than copying/pasting errors from maiden, as it will also include system configuration information which might be causing trouble which the maiden errors wouldn't include. It's also helpful if you don't have maiden running at the time of the error, or you're unable to connect to maiden for some reason while reproducing the issue, or you're experiencing an error that repeats in a loop and can't catch it.
 

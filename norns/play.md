@@ -314,6 +314,16 @@ When you entered the SELECT menu, you might've noticed an asterisk next to *awak
 To add a favorite, turn **E3** clockwise on any script in the SELECT menu.  
 To remove a favorite, turn **E3** counter-clockwise on any already-favorited script.
 
+### clear script
+
+To clear the script running on norns:
+
+- navigate to the *home* menu
+- if SELECT is not highlighted, use **E2** to highlight it
+- hold **K1** on SELECT and you'll see `CLEAR`
+- while holding **K1**, press **K3** to clear the currently-running script
+- release **K1** and you'll see `NONE` where the previously-running script's name used to be
+
 ## keyboard
 
 Many of the top-layer menus are also navigable with an attached USB keyboard. Current support is minimal, [contributions welcome](https://github.com/monome/norns).

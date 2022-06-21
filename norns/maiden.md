@@ -177,7 +177,7 @@ install failed: project test-update already exists in /home/we/dust/code
 
 In which case, you just need to remove the redundant script and re-fetch.
 
-### troubleshooting + collecting logs {#logging}
+### troubleshooting {#troubleshooting}
 
 Along your norns journey, you may encounter [errors](/docs/norns/help/#error-messages) printed to the norns screen like:
 
@@ -193,10 +193,13 @@ These errors are straightforward to address when their cause is known -- but sin
 
 If you run into *any* errors using a script (either your own or someone else's), maiden will print messages to each of these REPLs, depending on which layer is experiencing an issue. This extends beyond the script's initialization -- if a variable is miscalculated during play and causes instability within a script, for example, maiden will present these errors as well.
 
-If you don't have maiden running at the time of the error, or you're unable to connect to maiden for some reason while reproducing the issue, or you're experiencing an error that repeats in a loop and can't catch it -- don't worry!  
-You can export the `matron` and `supercollider` error text for the previous boot by navigating to `SYSTEM > LOG` on your norns and pressing K3 twice, which will create a file at `dust/data/system.log` and can be copied via maiden or downloaded via [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp).
+#### collecting logs {#logs}
 
-If an error occurs you're using someone else's script, it can be easy to assume others will know what's wrong if you describe the general error (eg. "I'm excited to play with this script, but norns says 'error: SUPERCOLLIDER FAIL' when I try to run it"). However, those who want to help will only be able to if you share the specific errors with them -- whether they're copied and pasted from the `matron` and `supercollider` tabs, or you share a fresh `system.log` file as described above. 
+If an error occurs during play, it can be easy to assume others will know what's wrong if you describe the general message (eg. "I'm excited to play with this script, but norns says 'error: SUPERCOLLIDER FAIL' when I try to run it"). However, those who want to help will only be able to if you share a more complete report of errors with them. To help collect all the debugging information required, we've included a simple logging mechanism directly on norns!
+
+To export the `matron` and `supercollider` error text for the *previous* boot by navigating to `SYSTEM > LOG` on your norns and pressing K3 twice, which will create a file at `dust/data/system.log` and can be copied via maiden or downloaded via [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp). *nb. If you are experiencing the issue for the first time, power-cycle your device before attempting to gather logs.*
+
+This `system.log` export can be more helpful than copying/pasting errors from maiden, as it will also include system configuration information which might be causing trouble which the maiden errors wouldn't include. It's also helpful if you don't have maiden running at the time of the error, or you're unable to connect to maiden for some reason while reproducing the issue, or you're experiencing an error that repeats in a loop and can't catch it.
 
 Providing this information will make it easier for others to understand the specific causes of the trouble you're experiencing and empower them to suggest helpful next steps.
 

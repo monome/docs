@@ -26,6 +26,8 @@ comprehensive lessons on individual elements of norns scripting. through these r
 
 tutorials written by monome.
 
+*nb. all of these resources assume you're on the latest version of the norns software. if you have any questions about updating, please see [this section of the docs](/docs/norns/wifi-files/#update). note that if you are running software version `220129` or earlier, you will need to complete a fresh installation -- [more details here](/docs/norns/wifi-files/#jan292022).*
+
 **for the best learning experience, we recommend one lesson per week.** a slower pace makes it easier to experiment and uncover the simplicity + musicality of the underlying code.
 
 - [first light](../study-0/) // learning to see. edit a script.

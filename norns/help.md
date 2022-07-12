@@ -146,7 +146,15 @@ If you are consistently unable to connect your shield to WiFi through the [conne
 
 If you've hit the end of this list without success, we recommend searching online for your specific router and confirming whether there's any known configuration steps for your Pi model and your router. Network connectivity relies on the Pi itself, rather than the norns software stack.
 
-### norns shield boot troubleshooting
+### boot troubleshooting
+
+#### standard norns {#boot-standard}
+
+If your norns does not seem to booting, it's possible that either the Compute Module (CM3) is not seated correctly, or the screen ribbon is pressing against the CM3 when its fully assembled and shorting the chip.
+
+Follow along with the dissassembly video [here](https://vimeo.com/523980765). Re-seating the CM3 will simply involve ejecting it (shown ~2:30 in the video), aligning it confidently, and placing it in again. As you reassemble the unit, before you screw the board back to the enclosure, check to see if it will power as expected -- the board will be loosely tethered by the screen ribbon and the battery connector. If it boots, then you'll need to ensure that the folds on the screen ribbon are tight -- this should help reduce the pressure against the CM3. Just fold them a bit tighter and, as a final test, try screwing the board back to the enclosure to verify that the ribbon is no longer pushing the chip down.
+
+#### norns shield {#boot-shield}
 
 If your shield does not seem to be booting, the first thing to check is if the "startup tone" is occurring from your shield's output. Connect headphones or a speaker to shield's output (demarcated by the outward-facing arrow) and power it up -- within 20 seconds or so, you should hear a sine-like tone which indicates the norns OS has been successfully loaded.
 

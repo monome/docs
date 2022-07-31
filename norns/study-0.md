@@ -475,27 +475,29 @@ Query the value of the table at a random index (mixed):
 
 Instead of a windy chime with variation, let's have the wind make a regular strum.
 
-Let's take a look at the `wind` section starting at [line 58](https://github.com/monome/firstlight/blob/main/firstlight.lua#L58-L74). In particular, [lines 59 through 73](https://github.com/monome/firstlight/blob/main/firstlight.lua#L59-L73):
+Let's take a look at the contents of the `wind` function, starting at [line 58](https://github.com/monome/firstlight/blob/main/firstlight.lua#L58-L74):
 
 ```lua
-while(true) do
-  light = 15
-  if chimes then
-    for i = 1,notes.length do
-      if math.random() > 0.2 then
-        local position = math.random(notes.length)
-        notes:select(position)
-        local frequency = notes()
-        engine.hz(frequency)
+wind = function()
+  while(true) do
+    light = 15
+    if chimes then
+      for i = 1,notes.length do
+        if math.random() > 0.2 then
+          local position = math.random(notes.length)
+          notes:select(position)
+          local frequency = notes()
+          engine.hz(frequency)
+        end
+        clock.sleep(0.1)
       end
-      clock.sleep(0.1)
     end
+    clock.sleep(math.random(3,9))
   end
-  clock.sleep(math.random(3,9))
 end
 ```
 
-What this bit does:
+What the inner bit does:
 
 - while the `wind` clock is running:
 - `light` is set to full-bright (the wind lines on the screen)
@@ -512,19 +514,21 @@ What this bit does:
 
 This creates the nice random scattered effect and creates uneven timing, with a random selection of notes each time.
 
-We used `clock.sleep` above, which allows us to specify an amount of seconds we'd like the clock to pause for until it performs the next action. Let's make things more regularly spaced by replacing this mechanism with a bpm-synced approach:
+We used `clock.sleep` above, which allows us to specify an amount of seconds we'd like the clock to pause for until it performs the next action. Let's make things more regularly spaced by replacing the `wind` mechanism with a bpm-synced approach:
 
 ```lua
-while(true) do
-  light = 15
-  if chimes then
-    for i = 1,notes.length do
-      local frequency = notes()
-      engine.hz(frequency)
-      clock.sync(1)
+wind = function()
+  while(true) do
+    light = 15
+    if chimes then
+      for i = 1,notes.length do
+        local frequency = notes()
+        engine.hz(frequency)
+        clock.sync(1)
+      end
     end
+    clock.sync(4)
   end
-  clock.sync(4)
 end
 ```
 

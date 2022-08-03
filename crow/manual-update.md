@@ -135,6 +135,10 @@ If you get an error:  `Cannot open DFU device 0483:df11`, this means that your c
 
 On Windows 7, you may need to use the "USB Serial (CDC)" driver instead of WinUSB.
 
+### Linux
+
+If you're having trouble flashing crow's firmware on Manjaro / Arch Linux, there's a chance your crow toolchain needs to be rebuilt following [these steps](https://gist.github.com/ninayanez/77479ebac61599158464a3129d851e63) (thank you @ninayanez!).
+
 ### update succeeded, but crow is still not connecting to druid / norns {#not-connecting}
 
 If the update successfully flashed, but your crow is still not connecting to druid or norns, then there's a chance that a loaded script has caused a boot failure. Inside of the zip file you downloaded to manually update crow, you'll notice an `erase_userscript` command for both Windows and MacOS/Linux -- please [force the bootloader](#Force) and then run whichever file corresponds to your operating system. crow should happily take flight afterward.

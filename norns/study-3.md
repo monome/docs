@@ -604,7 +604,7 @@ Besides editing in the menu, let's do some things with code (evaluate through ei
 params:set("velocity", 110)
 print("velocity is " .. params:get("velocity"))
 params:delta("velocity", 20)
-print("tempo is now " .. params:get("velocity"))
+print("velocity is now " .. params:get("velocity"))
 ```
 
 Note the colon (`:`) for the parameter functions. For the curious, these are *class functions*, a feature of Object Oriented Programming [that we can use in Lua](https://www.tutorialspoint.com/lua/lua_object_oriented.htm) (heads up: *not* super beginner-friendly, so don't worry about the 'why').

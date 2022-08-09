@@ -37,8 +37,9 @@ permalink: /norns/reference/params
 | params:hide(id)                                                 | Hides the specified parameter in the UI menu, but parameter index and data is still retained. Use `_menu.rebuild_params()` after hiding to dynamically rebuild the menu UI.                   |
 | params:show(id)                                                 | Shows the specified parameter in the UI menu, after it is hidden (not required for default parameter building). Use `_menu.rebuild_params()` after hiding to dynamically rebuild the menu UI. |
 | params:visible(id)                                              | Returns whether a parameter is visible in the UI menu (boolean)                                                                                                                               |
-| params:write(filename,name)                                     | Save a `.pset` file of all parameters' current states to disk                                                                                                                                 |
+| params:write(filename, name)                                    | Save a `.pset` file of all parameters' current states to disk                                                                                                                                 |
 | params:read(filename, silent)                                   | Read a `.pset` file from disk, restoring saved parameter states, with an option to avoid triggering parameters' associated actions                                                            |
+| params:delete(filename, name, pset_number)                      | Delete a `.pset` file from disk                                                                                                                                                               |
 | params:default()                                                | Read the default `.pset` file from disk, if available                                                                                                                                         |
 | params:bang()                                                   | Trigger all parameters' associated actions                                                                                                                                                    |
 | params:clear()                                                  | Clear all parameters (system toolkit, not for script usage)                                                                                                                                   |
@@ -47,11 +48,12 @@ permalink: /norns/reference/params
 
 The function calls listed above are supplemented by additional helpers + extensions, which are formatted differently.
 
-| Syntax                                        | Description                                                                                         |
-| --------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| params.lookup[id]                             | A table call (note the square brackets) which returns the index of a given parameter's string id    |
-| params.action_write = function(filename)      | User script callback whenever a parameter write occurs, which passes the `.pset`'s filename         |
-| params.action_read = function(filename, name) | User script callback whenever a parameter read occurs, which passes the `.pset`'s filename and name |
+| Syntax                                                       | Description                                                                                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| params.lookup[id]                                            | A table call (note the square brackets) which returns the index of a given parameter's string id                          |
+| params.action_write = function(filename, name, pset_number)  | User script callback whenever a parameter write occurs, which passes the `.pset`'s filename + UI name + PSET number       |
+| params.action_read = function(filename, silent, pset_number) | User script callback whenever a parameter read occurs, which passes the `.pset`'s filename + `silent` state + PSET number |
+| params.action_delete = function(filename, name, pset_number) | User script callback whenever a parameter delete occurs, which passes the `.pset`'s filename + name + PSET number         |
 
 ### example
 
@@ -131,26 +133,28 @@ The types, with linked examples, are:
 - binary
 - text
 
-### PSET save/load callback
+### PSET save/load/delete callback
 
 Parameters are designed to make MIDI mapping and saving control values for a script very straightforward, using the [PMAP](/docs/norns/control-clock/#pmaps) and [PSET](/docs/norns/play/#saving-presets) functionality. However, you may find that you need to generate and save data which doesn't fit the parameters model, like tables of sequencer steps (though `awake` does show [how to efficiently work with patterns as parameters](https://github.com/tehn/awake/blob/73d4accfc090aaab58f1586eaf4d9cf54d3cff01/awake.lua#L62-L86)).
 
-If you wish to perform additional actions when a PSET is saved or loaded, such as saving or loading non-params data into your script, `params.action_write` and `params.action_read` are two script-definable callback functions which are triggered whenever a PSET is saved or loaded. Here's a quick overview of their use:
+If you wish to perform additional actions when a PSET is saved, loaded or deleted, such as managing non-params data into your script, `params.action_write` /  `params.action_read` / `params.action_delete` are script-definable callback functions which are triggered whenever a PSET is saved, loaded, or deleted. Here's a quick overview of their use:
 
 ```lua
 function init()
-  params.action_write = function(filename,name)
-    print("finished writing '"..filename.."' as '"..name.."'")
+  params.action_write = function(filename,name,number)
+    print("finished writing '"..filename.."' as '"..name.."' and PSET number: "..number)
   end
-  params.action_read = function(filename)
-    print("finished reading '"..filename.."'")
+  params.action_read = function(filename,silent,number)
+    print("finished reading '"..filename.."' as PSET number: "..number)
   end
+  params.action_delete = function(filename,name,number)
+    print("finished deleting '"..filename.."' as '"..name.."' and PSET number: "..number)
 end
 ```
 
-Run the above and save a few PSETs in the `PARAMETERS > PSET` menu. You'll see the `action_write` callback print after each is saved. Try loading them back and you'll see the `action_read` callback print after each is read.
+Run the above and save a few PSETs in the `PARAMETERS > PSET` menu. You'll see the `action_write` callback print after each is saved. Try loading them back and you'll see the `action_read` callback print after each is read. Try deleting any and you'll see the `action_delete` callback print after each is deleted.
 
-When paired with other norns utilities, like `tab.save` and `tab.load`, the `params.action_write` / `params.action_read` combination can help you save/restore script-generated tables while keeping the parameters UI clear, eg:
+When paired with other norns utilities, like `tab.save` and `tab.load`, `params.action_write` / `params.action_read` / `params.action_delete` can help you manage script-generated tables while keeping the parameters UI clear, eg:
 
 ```lua
 MusicUtil = require 'musicutil' -- see https://monome.org/docs/norns/reference/lib/musicutil
@@ -165,23 +169,19 @@ function init()
   play = false
 
   -- here, we set our PSET callbacks:
-  params.action_write = function(filename,name)
-    print("finished writing '"..filename.."' as '"..name.."'")
-    os.execute("mkdir -p ".._path.data..'/params-example/'..name..'/')
-    -- save to 'data/params-example/[the PSET's name]/notes.data':
-    tab.save(note_data,_path.data..'/params-example/'..name..'/notes.data')
+  params.action_write = function(filename,name,number)
+    print("finished writing '"..filename.."' as '"..name.."'", number)
+    os.execute("mkdir -p "..norns.state.data.."/"..number.."/")
+    tab.save(note_data,norns.state.data.."/"..number.."/note.data")
   end
-  params.action_read = function(filename)
-    print("finished reading '"..filename.."'")
-    local loaded_file = io.open(filename, "r")
-    if loaded_file then
-      io.input(loaded_file)
-      local pset_name = string.sub(io.read(), 4, -1) -- grab the PSET name from the top of the PSET file
-      io.close(loaded_file)
-      -- load saved PSET note data into our note_data table:
-      note_data = tab.load(_path.data..'/params-example/'..pset_name..'/notes.data')
-      my_seq:settable(note_data) -- send this restored table to the sequins
-    end
+  params.action_read = function(filename,silent,number)
+    print("finished reading '"..filename.."'", number)
+    note_data = tab.load(norns.state.data.."/"..number.."/note.data")
+    my_seq:settable(note_data) -- send this restored table to the sequins
+  end
+  params.action_delete = function(filename,name,number)
+    print("finished deleting '"..filename, number)
+    norns.system_cmd("rm -r "..norns.state.data.."/"..number.."/")
   end
 
 end

@@ -521,21 +521,11 @@ Once you restart your device, hit K2 on the SELECT / SYSTEM / SLEEP screen and y
 
 Since all norns units come configured with the same username + password, we encourage you to personalize + protect your setup by changing the default hostname and password for the `we` user.
 
-#### change SSH password via SYSTEM menu {#system-password}
+#### change passwords via SYSTEM menu {#system-password}
 
-In the norns SYSTEM menu, there's a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH -- this does not change your SMB password (see below) or your hotspot password.
+In the norns SYSTEM menu, there's a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH, as well as your SMB + hotspot passwords.
 
-While you can simply reset this SSH password again via this menu option, we encourage you to set it to something memorable so you don't worry about troubleshooting connectivity in a critical moment.
-
-#### change Samba password {#samba}
-
-The `smb://` remote login password does *not* automatically change when you perform the changes above. To set Samba's login credentials to match the newly set user password, log in to the norns via [ssh](../advanced-access/#ssh) and execute:
-
-```
-sudo smbpasswd -a we
-```
-
-You'll be prompted to set a new SMB password -- we encourage setting it to match with the password you created via the SYSTEM menu.
+While you can simply reset this password again via this menu option, we encourage you to set it to something memorable so you don't worry about troubleshooting connectivity in a critical moment.
 
 #### hostname
 

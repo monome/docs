@@ -6,7 +6,7 @@ permalink: /norns/reference/lib/lfo
 
 ## lfo
 
-`lfo` provides a single-clock framework for generating movement (beat-synced or free) inside of a script, using a syntax similar to [`pattern_time`](/docs/norns/reference/lib/pattern_time) and [`parameters`](/docs/norns/reference/parameters). It also includes easy methods to generate `PARAMETER` UI menu controls for any of the registered LFOs. This library is only accessible by a script -- since it uses a [`lattice`](/docs/norns/reference/lib/lattice) structure, it cannot currently be invoked in a mod.
+`lfo` provides a single-clock framework for generating movement (beat-synced or free) inside of a script, using a syntax similar to [`pattern_time`](/docs/norns/reference/lib/pattern_time) and [`params`](/docs/norns/reference/params). It also includes easy methods to generate `PARAMETER` UI menu controls for any of the registered LFOs. This library is only accessible by a script -- since it uses a [`lattice`](/docs/norns/reference/lib/lattice) structure, it cannot currently be invoked in a mod.
 
 {: .no_toc }
 

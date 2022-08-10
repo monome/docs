@@ -8,41 +8,41 @@ permalink: /norns/reference/params
 
 ### functions
 
-| Syntax                                                          | Description                                                                                                                                                                                   |
-| --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| params.new(id,name)                                             | Create a parameter from scratch (not typical, but useful to have)                                                                                                                             |
-| params:add_separator(name)                                      | Create a horizontal line with a title in the parameters menu to demarcate a section of controls (users can press K3 if selected to jump through separators)                                   |
-| params:add_group(name,n)                                        | Group `n` controls under `name`, to help collapse parameter menu navigation. Note that groups cannot be made within groups (no nesting).                                                      |
-| params:add(args)                                                | Create a parameter by passing an argument table                                                                                                                                               |
-| params:add_number(id, name, min, max, default, formatter, wrap) | Create a parameter set for numbers                                                                                                                                                            |
-| params:add_option(id, name, options, default)                   | Create a parameter set for option selection (options must be passed as a table)                                                                                                               |
-| params:add_control(id, name, controlspec, formatter)            | Create a parameter set for controlspec formatting (see [controlspec](/docs/norns/reference/controlspec) for more details)                                                                     |
-| params:add_file(id, name, path)                                 | Create a parameter set for file selection                                                                                                                                                     |
-| params:add_text(id, name, text)                                 | Create a parameter set for text entry                                                                                                                                                         |
-| params:add_taper(id, name, min, max, default, k, units)         | Create a parameter set for non-linear movement                                                                                                                                                |
-| params:add_trigger(id, name)                                    | Create a parameter set for an "on/off" action trigger                                                                                                                                         |
-| params:add_binary(id, name, behavior, default)                  | Create a parameter set for either momentary, toggle, or trigger behavior with a default state                                                                                                 |
-| params:print()                                                  | Print the index, name, and value for each parameter to the REPL                                                                                                                               |
-| params:list()                                                   | Print the names of each parameter to the REPL                                                                                                                                                 |
-| params:get_id(index)                                            | Returns the string id of a given parameter's index                                                                                                                                            |
-| params:string(id)                                               | Returns the string associated with the current value for a given parameter's id                                                                                                               |
-| params:set(id,val,silent)                                       | Set a parameter's value, with optional action execution                                                                                                                                       |
-| params:set_raw (index, v, silent)                               | Set a parameter's controlspec raw value, with optional action execution                                                                                                                       |
-| params:get(id)                                                  | Returns a parameter's current number value                                                                                                                                                    |
-| params:get_raw(id)                                              | Returns a parameter's controlspec raw value                                                                                                                                                   |
-| params:set_action(id, function)                                 | Assign an action to a parameter's changes                                                                                                                                                     |
-| params:t(index)                                                 | Returns a given parameter's type                                                                                                                                                              |
-| params:get_range(index)                                         | Returns the min/max range of a parameter                                                                                                                                                      |
-| params:get_allow_pmap(index)                                    | Returns whether a parameter is able to be MIDI-mapped (boolean)                                                                                                                               |
-| params:hide(id)                                                 | Hides the specified parameter in the UI menu, but parameter index and data is still retained. Use `_menu.rebuild_params()` after hiding to dynamically rebuild the menu UI.                   |
-| params:show(id)                                                 | Shows the specified parameter in the UI menu, after it is hidden (not required for default parameter building). Use `_menu.rebuild_params()` after hiding to dynamically rebuild the menu UI. |
-| params:visible(id)                                              | Returns whether a parameter is visible in the UI menu (boolean)                                                                                                                               |
-| params:write(filename, name)                                    | Save a `.pset` file of all parameters' current states to disk                                                                                                                                 |
-| params:read(filename, silent)                                   | Read a `.pset` file from disk, restoring saved parameter states, with an option to avoid triggering parameters' associated actions                                                            |
-| params:delete(filename, name, pset_number)                      | Delete a `.pset` file from disk                                                                                                                                                               |
-| params:default()                                                | Read the default `.pset` file from disk, if available                                                                                                                                         |
-| params:bang()                                                   | Trigger all parameters' associated actions                                                                                                                                                    |
-| params:clear()                                                  | Clear all parameters (system toolkit, not for script usage)                                                                                                                                   |
+| Syntax                                                          | Description                                                                                                                                                                                     |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| params.new(id, name)                                            | Create a parameter from scratch (not typical, but useful to have)                                                                                                                               |
+| params:add_separator(id, name)                                  | Create a horizontal line with a title in the parameters menu to demarcate a section of controls (users can press K3 on any selected separator to jump through the menu's additional separators) |
+| params:add_group(id, name, n)                                   | Group `n` controls under `name`, to help collapse parameter menu navigation. Note that groups cannot be made within groups (no nesting).                                                        |
+| params:add(args)                                                | Create a parameter by passing an argument table                                                                                                                                                 |
+| params:add_number(id, name, min, max, default, formatter, wrap) | Create a parameter set for numbers                                                                                                                                                              |
+| params:add_option(id, name, options, default)                   | Create a parameter set for option selection (options must be passed as a table)                                                                                                                 |
+| params:add_control(id, name, controlspec, formatter)            | Create a parameter set for controlspec formatting (see [controlspec](/docs/norns/reference/controlspec) for more details)                                                                       |
+| params:add_file(id, name, path)                                 | Create a parameter set for file selection                                                                                                                                                       |
+| params:add_text(id, name, text)                                 | Create a parameter set for text entry                                                                                                                                                           |
+| params:add_taper(id, name, min, max, default, k, units)         | Create a parameter set for non-linear movement                                                                                                                                                  |
+| params:add_trigger(id, name)                                    | Create a parameter set for an "on/off" action trigger                                                                                                                                           |
+| params:add_binary(id, name, behavior, default)                  | Create a parameter set for either momentary, toggle, or trigger behavior with a default state                                                                                                   |
+| params:print()                                                  | Print the index, name, and value for each parameter to the REPL                                                                                                                                 |
+| params:list()                                                   | Print the names of each parameter to the REPL                                                                                                                                                   |
+| params:get_id(index)                                            | Returns the string id of a given parameter's index                                                                                                                                              |
+| params:string(id)                                               | Returns the string associated with the current value for a given parameter's id                                                                                                                 |
+| params:set(id,val,silent)                                       | Set a parameter's value, with optional action execution                                                                                                                                         |
+| params:set_raw (index, v, silent)                               | Set a parameter's controlspec raw value, with optional action execution                                                                                                                         |
+| params:get(id)                                                  | Returns a parameter's current number value                                                                                                                                                      |
+| params:get_raw(id)                                              | Returns a parameter's controlspec raw value                                                                                                                                                     |
+| params:set_action(id, function)                                 | Assign an action to a parameter's changes                                                                                                                                                       |
+| params:t(index)                                                 | Returns a given parameter's type                                                                                                                                                                |
+| params:get_range(index)                                         | Returns the min/max range of a parameter                                                                                                                                                        |
+| params:get_allow_pmap(index)                                    | Returns whether a parameter is able to be MIDI-mapped (boolean)                                                                                                                                 |
+| params:hide(id)                                                 | Hides the specified parameter in the UI menu, but parameter index and data is still retained. Use `_menu.rebuild_params()` after hiding to dynamically rebuild the menu UI.                     |
+| params:show(id)                                                 | Shows the specified parameter in the UI menu, after it is hidden (not required for default parameter building). Use `_menu.rebuild_params()` after hiding to dynamically rebuild the menu UI.   |
+| params:visible(id)                                              | Returns whether a parameter is visible in the UI menu (boolean)                                                                                                                                 |
+| params:write(filename, name)                                    | Save a `.pset` file of all parameters' current states to disk                                                                                                                                   |
+| params:read(filename, silent)                                   | Read a `.pset` file from disk, restoring saved parameter states, with an option to avoid triggering parameters' associated actions                                                              |
+| params:delete(filename, name, pset_number)                      | Delete a `.pset` file from disk                                                                                                                                                                 |
+| params:default()                                                | Read the default `.pset` file from disk, if available                                                                                                                                           |
+| params:bang()                                                   | Trigger all parameters' associated actions                                                                                                                                                      |
+| params:clear()                                                  | Clear all parameters (system toolkit, not for script usage)                                                                                                                                     |
 
 ### additional tools
 
@@ -62,12 +62,12 @@ MusicUtil = require "musicutil"
 math.randomseed(os.time())
 
 function init()
-  params:add_separator("test script")
-  params:add_group("example group",3)
+  params:add_separator("test_script_header", "test script")
+  params:add_group("example_group", "example group", 3)
   for i = 1,3 do
     params:add{
       type = "option",
-      id = "example "..i,
+      id = "example_"..i,
       name = "parameter "..i,
       options = {"hi","hello","bye"},
       default = i
@@ -83,11 +83,11 @@ function init()
     true -- wrap
     )
   local groceries = {"green onions","shitake","brown rice","pop tarts","chicken thighs","apples"}
-  params:add_option("grocery list","grocery list",groceries,1)
+  params:add_option("grocery_list","grocery list",groceries,1)
   params:add_control("frequency","frequency",controlspec.FREQ)
-  params:add_file("clip sample", "clip sample")
-  params:set_action("clip sample", function(file) load_sample(file) end)
-  params:add_text("named thing", "my name is:", "")
+  params:add_file("clip_sample", "clip sample")
+  params:set_action("clip_sample", function(file) load_sample(file) end)
+  params:add_text("named_thing", "my name is:", "")
   params:add_taper("taper_example", "taper", 0.5, 6.2, 3.3, 0, "%")
   params:add_separator()
   params:add_trigger("trig", "press K3 here")
@@ -114,7 +114,8 @@ function load_sample(file)
 end
 
 function random_grocery()
-  params:set("grocery list",math.random(params:get_range("grocery list")[1],params:get_range("grocery list")[2]))  
+  local ranged_list = params:get_range("grocery_list")
+  params:set("grocery_list",math.random(ranged_list[1],ranged_list[2]))
 end
 ```
 
@@ -122,7 +123,7 @@ end
 
 norns can support many types of parameter declarations, to facilitate the 'right' type of control for the musical task at hand.
 
-The types, with linked examples, are:
+The types, with a few linked examples, are:
 
 - [number](./parameters/number)
 - [option](./parameters/option)
@@ -132,6 +133,119 @@ The types, with linked examples, are:
 - trigger
 - binary
 - text
+
+### IDs + collisions
+
+Every parameter has its own ID, as well as a display string, which helps differentiate scripting syntax from what you see in the `PARAMETERS` UI menu.
+
+eg.
+
+```lua
+params:add_number(
+  'a_special_number', -- ID, used for scripting
+  '*special number*', -- name, displayed in PARAMETERS UI menu
+  0, -- min
+  127, -- max
+  63 -- default
+)
+```
+
+A parameter's ID is special -- it's how the norns system communicates back and forth with the parameter the ID represents.
+
+If a script overwrites a parameter's ID, norns will make some noise about it because some aspects of the previous instance of the ID are overwritten, which can cause unexpected results in a  script. For example:
+
+```lua
+function init()
+  params:add_number(
+    'a_special_number', -- ID, used for scripting
+    '*special number*', -- name, displayed in PARAMETERS UI menu
+    0, -- min
+    127, -- max
+    63 -- default
+  )
+  params:add_number(
+    'a_special_number', -- ID, used for scripting
+    '*another special number*', -- name, displayed in PARAMETERS UI menu
+    0, -- min
+    10, -- max
+    4 -- default
+  )
+  print(params:get('a_special_number'))
+end
+```
+
+Will cause the following to print to matron:
+
+```bash
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!! ERROR: parameter ID collision: a_special_number
+! please contact the script maintainer - this will cause a load failure in future updates
+! BEWARE! clobbering a script or mod param
+```
+
+But more importantly, `print(params:get('a_special_number'))` will never reference the earlier instance of `a_special_number` -- it returns `4` at the script load, because `a_special_number`'s original default value of 63 was overwritten by a new default value of 4.
+
+Separators and groups also have ID's, to assist with visibility (using `params:hide` and `params:show`, in conjunction with `_menu.rebuild_params()`). Since these parameter types don't reference actions, if IDs for either of these two parameter types are reused for another separator or group, norns will automatically 'steal' the ID and print a notice to matron. For example:
+
+```lua
+function init()
+  params:add_separator('number_separator', 'first number')
+  params:add_number(
+    'a_special_number', -- ID, used for scripting
+    '*special number*', -- name, displayed in PARAMETERS UI menu
+    0, -- min
+    127, -- max
+    63 -- default
+  )
+  params:add_separator('number_separator', 'second number')
+  params:add_number(
+    'another_special_number', -- ID, used for scripting
+    '*another special number*', -- name, displayed in PARAMETERS UI menu
+    0, -- min
+    10, -- max
+    4 -- default
+  )
+  print(params:get('a_special_number'), params:get('another_special_number'))
+end
+```
+
+Will print:
+
+```bash
+! stealing separator ID <number_separator> from earlier separator
+```
+
+If the separator or group uses a parameter ID already established for another parameter type, norns will *not* steal it. For example:
+
+```lua
+function init()
+  params:add_separator('number_separator', 'first number')
+  params:add_number(
+    'a_special_number', -- ID, used for scripting
+    '*special number*', -- name, displayed in PARAMETERS UI menu
+    0, -- min
+    127, -- max
+    63 -- default
+  )
+  params:add_separator('reverb', 'second number') -- uses a system parameter ID!
+  params:add_number(
+    'another_special_number', -- ID, used for scripting
+    '*another special number*', -- name, displayed in PARAMETERS UI menu
+    0, -- min
+    10, -- max
+    4 -- default
+  )
+  print(params:get('a_special_number'), params:get('another_special_number'))
+end
+```
+
+Will print:
+
+```bash
+! separator ID <reverb> collides with a non-separator parameter, will not overwrite
+```
+
+*nb. while norns allows spaces in a parameter ID, it is best practice to use underscores*
 
 ### PSET save/load/delete callback
 

@@ -72,15 +72,31 @@ We do *not* recommend at-home repair, as the encoders are extremely sensitive to
 
 ### extending storage
 
-#### standard norns {#extending-standard}
+#### standard norns: CM3+ upgrade {#standard-cm3-upgrade}
 
-Many of the original standard norns came equipped with a CM3 (Compute Module 3) which has 4gb of storage. This can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage. Just search `raspberry pi cm3+ 32gb` to find a retailer.
+Many of the original standard norns came equipped with a CM3 (Compute Module 3) which has 4gb of storage. This can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage.
 
 There is no soldering needed, but you will have to disassemble your norns a bit. Please follow this tutorial video:
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/523980765?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 *nb. if you are unable to use the `screen` Terminal commands shown in the video, you can expand your filesystem following the shield steps listed in the next section*
+
+#### standard norns {#extending-standard}
+
+Since 2021, all norns are built with a CM3+ which offers 32gb of storage. Their full capacity is expanded in the workshop before their initial shipment, but if you've recently reinstalled the norns software on your device, you will need to expand the filesystem in order for the full 32gb to be available.
+
+- open a terminal on a computer connected to the same network as your norns
+  - if you are using Windows, you might need to [install the SSH client](https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/)
+- execute: `ssh we@norns.local`
+  - if this doesn't find your norns, you can also use `ssh we@IP_ADDRESS_OF_SHIELD`, eg. `ssh we@192.168.1.100`
+- password: `sleep` (you will not see characters while typing, this is normal), press ENTER/RETURN
+- execute: `sudo raspi-config`
+- navigate to `Advanced Options` and hit ENTER/RETURN
+- select `Expand Filesystem` and hit ENTER/RETURN
+- lots of activity will happen and you'll be notified that the 'root partition has been resized'. hit ENTER/RETURN on `<Ok>`
+- hit the right arrow twice to navigate to `Finish` and you'll be asked to reboot -- select `<Yes>` (note that norns will power down and will not reboot automatically)
+- turn your norns back on and you should ~26000M under `disk` when you hit K2 on the `SELECT / SYSTEM / SLEEP` screen
 
 #### shield {#extending-shield}
 

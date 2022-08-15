@@ -190,6 +190,12 @@ If you do not hear a startup tone, the norns OS is not booting. The best next st
 
 ### grid connectivity troubleshooting
 
+#### norns running on battery {#grid-battery}
+
+When grid is plugged into a norns running on its internal battery (rather than off its power supply), the power draw to boot grid can overwhelm norns and result in a shutdown. This does not always occur and can be dependent on the current battery level, so the best practice for working with a grid + norns on battery is to boot norns with the grid plugged in.
+
+#### grid not connecting {#grid-connect}
+
 If you've recently received a new grid, you may find that scripts do not seem to be connecting to it.
 
 To troubleshoot:
@@ -201,7 +207,6 @@ To troubleshoot:
   - press `K3` on slot 2, select `none`, press `K3`
   - ..repeat for any slot that doesn't say `none`
   - connect your new grid + it should populate slot 1!
-
 
 ### audio input/output hardware specs {#audio-specs}
 

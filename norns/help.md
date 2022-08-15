@@ -72,6 +72,21 @@ We do *not* recommend at-home repair, as the encoders are extremely sensitive to
 
 ### extending storage
 
+#### remove logs {#remove logs}
+
+If your norns seems more full than it ought to be (nb. check if there's any larger-than-expected TAPE files first), there's a chance that the logging system has added superfluous files to your storage.
+
+To confirm:
+
+- open a terminal on a computer connected to the same network as your norns
+  - if you are using Windows, you might need to [install the SSH client](https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/)
+- execute: `ssh we@norns.local`
+  - if this doesn't find your norns, you can also use `ssh we@IP_ADDRESS_OF_SHIELD`, eg. `ssh we@192.168.1.100`
+- password: `sleep` (you will not see characters while typing, this is normal), press ENTER/RETURN
+- execute `sudo du -h /var/log`
+- if `/var/log/journal` is showing as larger than ~20 megabytes, you can safely remove the files inside by executing: `sudo rm -rf /var/log/journal`
+- execute `sudo du -h /var/log` to confirm the space has been reclaimed
+
 #### standard norns: CM3+ upgrade {#standard-cm3-upgrade}
 
 Many of the original standard norns came equipped with a CM3 (Compute Module 3) which has 4gb of storage. This can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage.

@@ -32,7 +32,7 @@ To begin, let's get acquainted with the layouts of both iterations of norns -- s
 
 - Hold K1 for four seconds.
 - Until you've performed this process a few times, it might help to look at the light next to the POWER jack. You'll see it transition from white, to peach, to amber -- you can let go of K1 at amber.
-- In a few seconds, you'll see a sparkle animation on the screen. norns is on.
+- In a few seconds, you'll see a sparkle animation on the screen and you'll hear a [sinelike startup tone](https://github.com/monome/norns/blob/71772c6ea43c90f15e7a5d3b7755d4beacc64c5b/sc/core/Crone.sc#L96). norns is on.
 
 **shield**
 
@@ -40,7 +40,7 @@ To begin, let's get acquainted with the layouts of both iterations of norns -- s
 - Attach [a high quality Raspberry Pi power supply](https://www.adafruit.com/product/1995) that provides at least 2A at 5V to the micro USB port on the Pi.
   - If using a power supply which has a detachable USB cable, make sure the cable is 24AWG or less. Lower AWG = lower noise & more stable voltage delivery for better performance.
 - The red light on the Pi will be steady, while the not-red light will flash.
-- In a few seconds, you'll see a sparkle animation on the screen. norns is on.
+- In a few seconds, you'll see a sparkle animation on the screen and you'll hear a [sinelike startup tone](https://github.com/monome/norns/blob/71772c6ea43c90f15e7a5d3b7755d4beacc64c5b/sc/core/Crone.sc#L96). norns is on.
 
 After norns powers up, it will launch the last script that was loaded. On a fresh norns, this will be *awake*, a set of looping sequencers with delay.
 

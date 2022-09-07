@@ -89,9 +89,22 @@ If the input is rising, the value reported will be 1. If falling, it will be 0.
 
 The last parameter when setting the mode can have three values: `"rising"`, `"falling"`, or "`both"`.
 
-### None
+### Query
 
-We can still manually query the input with mode set to `"none"`.
+*What if we want to manually query the input voltage?*
+
+Note that in the years since the original example which follows this text was written, changes to the norns + crow codebases have temporarily created [an issue](https://github.com/monome/crow/pull/463#issuecomment-1089382249) which return unusable results like `unused event: ^^stream(1,0.950221)`.
+
+Thankfully, we can simply send the correct syntax to crow directly using `crow.send`, eg:
+
+```lua
+crow.send("input[1].query = function() stream_handler(1, input[1].volts) end")
+crow.send("input[2].query = function() stream_handler(2, input[2].volts) end")
+```
+
+#### original example (for historical purposes) {#query-original}
+
+We can manually query the input with `mode` set to `"none"`.
 
 ```lua
 function process_stream(v)

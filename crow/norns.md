@@ -98,8 +98,15 @@ Note that in the years since the original example which follows this text was wr
 Thankfully, we can simply send the correct syntax to crow directly using `crow.send`, eg:
 
 ```lua
+function process_stream(v)
+  print("input stream: "..v)
+end
+
+crow.input[1].stream = process_stream
+crow.input[1].mode("none")
+
 crow.send("input[1].query = function() stream_handler(1, input[1].volts) end")
-crow.send("input[2].query = function() stream_handler(2, input[2].volts) end")
+crow.input[1].query()
 ```
 
 #### original example (for historical purposes) {#query-original}

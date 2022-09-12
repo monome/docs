@@ -65,8 +65,8 @@ See [*change default password + address*](#change-password) to change these two 
 
 Once norns is connected to a network, you can access system updates which fix bugs, add new features, and improve the overall experience.
 
-![](../image/WiFi_maiden-images/update.png)
-*[figure 2: update process](../image/WiFi_maiden-images/update.png)*
+![](../image/wifi_maiden-images/update.png)
+*[figure 2: update process](../image/wifi_maiden-images/update.png)*
 
 To check for and install updates:
 

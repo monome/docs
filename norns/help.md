@@ -445,20 +445,22 @@ Full images are not built for every release, so do not worry if the 'latest' ful
 
 #### standard norns {#fresh-standard}
 
-The easiest method to flash the disk image is using either [etcher](https://www.balena.io/etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/). They are available for Linux, MacOS, and Windows. If etcher or the Imager do not work for you, or if you prefer the command line, see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
+The easiest method to flash the disk image is using either [Etcher](https://www.balena.io/etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/). They are available for Linux, MacOS, and Windows. If Etcher or the Imager do not work for you, or if you prefer the command line, see [this guide](https://github.com/monome/norns-image/blob/master/readme-usbdisk.md).
 
 For a visual guide to the Imager, see [this video from the Raspberry Pi Foundation](https://www.youtube.com/watch?v=ntaXWS8Lk34).
 
-If you'd like a visual companion to the etcher process, steps 2 and onward are also demonstrated [in this video from monome](https://vimeo.com/523980765#t=220s).
+If you'd like a visual companion to the Etcher process, steps 2 and onward are also demonstrated [in this video from monome](https://vimeo.com/523980765#t=220s).
+
+If Etcher or the Imager do not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
 
 Steps:
 
-1. Install etcher or the Imager. Download [the norns disk image](https://github.com/monome/norns-image/releases/latest): get the **standard** image. It'll download as a `.tgz` file -- extract it onto your computer so you have a remaining `.img` file.
+1. Install Etcher or the Imager. Download [the norns disk image](https://github.com/monome/norns-image/releases/latest): get the **standard** image. It'll download as a `.tgz` file -- extract it onto your computer so you have a remaining `.img` file.
 2. Power norns down and remove the four bottom screws of the unit.
 3. To help simplify the process, please disconnect any other storage devices connected to your computer. Then, plug norns into your computer using its charge cable.  
 4. You'll see a switch through a notch in the norns circuit board. It's currently on `run` -- switch it to `disk`. The LED on the back of norns will turn white and remain on until the 6th step.  
   - Be aware of the white reset button at the bottom of the unit when you place norns back down -- if it keeps getting triggered, try placing the unit upright on its bottom edge.
-5. Run etcher / Imager. If using etcher, you can simply drag the disk image onto the `+` sign -- if using Imager, click `Choose OS` and `Use custom`, then navigate to the disk image file. In etcher, select the Compute Module as the target -- in Imager, choose the device mounted as `/Volumes/boot`. Press `Flash!` / `Write`, enter your non-norns computer's password, and wait for it to finish + validate.  
+5. Run Etcher / Imager. If using Etcher, you can simply drag the disk image onto the `+` sign -- if using Imager, click `Choose OS` and `Use custom`, then navigate to the disk image file. In Etcher, select the Compute Module as the target -- in Imager, choose the device mounted as `/Volumes/boot`. Press `Flash!` / `Write`, enter your non-norns computer's password, and wait for it to finish + validate.  
   - If you do not see the Compute Module populate, or if it doesn't initialize properly, try starting fresh by unplugging norns from your computer and restarting your computer. As silly as it sounds, a simple restart has resolved this type of issue in our workshop.
   - If you're using a USB adapter or hub and you do not see the Compute Module populate or it doesn't initialize properly, try removing the USB-A connector from the adapter and re-connecting it. If you're on a USB-C Mac, we have seen connection issues when using hubs resolved by using Apple's official USB-C-to-A adapter. 
   - Try swapping the cable for a different one.
@@ -479,9 +481,9 @@ Steps:
 
 #### shield {#fresh-shield}
 
-Use [etcher](https://www.balena.io/etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card). Be sure to use a high quality SD card -- if you have any trouble, please try a different card.
+Use [Etcher](https://www.balena.io/Etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card). Be sure to use a high quality SD card -- if you have any trouble, please try a different card.
 
-If etcher or the Imager do not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
+If Etcher or the Imager do not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
 
 After flashing your SD card, you'll need to expand the filesystem:  
 

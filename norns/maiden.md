@@ -144,7 +144,7 @@ If you need to restart the matron/crone environment for any reason (ie, the menu
 
 This will disconnect maiden, but once matron has restarted you can reconnect.
 
-### installing scripts from GitHub {#fetch}
+### installing scripts from GitHub (WIFI connection required) {#fetch}
 
 Sometimes, scripts don't make it into the community catalog. To fetch a script that's only hosted on a developer's GitHub:
 
@@ -176,6 +176,24 @@ install failed: project test-update already exists in /home/we/dust/code
 ```
 
 In which case, you just need to remove the redundant script and re-fetch.
+
+### manually installing scripts {#manual}
+
+If you're unable to connect to maiden + its project manager, you can still install scripts manually via [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp) by downloading the files onto a non-norns computer and migrating them to the `code` folder on norns.
+
+To get started, locate the GitHub repository for the script you wish to install and download the project's zip file to your non-norns computer:
+
+![](/docs/norns/image/wifi_maiden-images/manual-download.png)
+
+Unzip the file onto your non-norns computer:
+
+![](/docs/norns/image/wifi_maiden-images/unzip.png)
+
+Rename the resulting folder to remove any instance of `-main` or `-master` -- in other words, we want the script folder to only reflect the script's name:
+
+![](/docs/norns/image/wifi_maiden-images/rename.png)
+
+Now, you're ready to migrate the folder to norns! Connect to norns via [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp) and drag + drop the renamed script folder to the `code` folder of your norns, alongside all the other scripts on your device. Restart your unit to ensure any engine changes are registered and you should be able to start playing!
 
 ### troubleshooting {#troubleshooting}
 

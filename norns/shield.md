@@ -131,7 +131,7 @@ Once you're settled in, you might notice that shield doesn't seem to see the ent
 - type: `df -h` and press Enter
   - the information returned to you next to `/dev/root` will show the current allocated Size of the card
   - if you see `3.6G` and your microSD card is actually larger than 4 GB, please follow the rest of the steps in this section! otherwise, if the allocated Size is close to your card's capacity, then there's no need to continue.
-- type: `sudo raspi-config` and press Enter
+- type: `sudo raspi-config` and press Enter (*or* type: `sudo raspi-config --expand-rootfs; sudo shutdown -r now` and press Enter to skip to the last step without a GUI)
 - navigate to `Advanced Options` and press Enter
 - select `Expand Filesystem` and press Enter
 - dismiss the alert by pressing Enter, navigate to Finish (press keyboard right arrow twice) and press Enter

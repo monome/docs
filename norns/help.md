@@ -106,7 +106,7 @@ Since 2021, all norns are built with a CM3+ which offers 32gb of storage. Their 
 - execute: `ssh we@norns.local`
   - if this doesn't find your norns, you can also use `ssh we@IP_ADDRESS_OF_SHIELD`, eg. `ssh we@192.168.1.100`
 - password: `sleep` (you will not see characters while typing, this is normal), press ENTER/RETURN
-- execute: `sudo raspi-config`
+- execute: `sudo raspi-config` (*or* execute: `sudo raspi-config --expand-rootfs; sudo shutdown -r now` to skip to the last step without a GUI)
 - navigate to `Advanced Options` and hit ENTER/RETURN
 - select `Expand Filesystem` and hit ENTER/RETURN
 - lots of activity will happen and you'll be notified that the 'root partition has been resized'. hit ENTER/RETURN on `<Ok>`
@@ -124,7 +124,7 @@ If you notice that shield doesn't seem to see the entire capacity of your microS
 - execute: `ssh we@norns.local`
   - if this doesn't find your shield, you can also use `ssh we@IP_ADDRESS_OF_SHIELD`, eg. `ssh we@192.168.1.100`
 - password: `sleep` (you will not see characters while typing, this is normal), press ENTER/RETURN
-- execute: `sudo raspi-config`
+- execute: `sudo raspi-config` (*or* execute: `sudo raspi-config --expand-rootfs; sudo shutdown -r now` to skip to the last step without a GUI)
 - navigate to `Advanced` and hit ENTER/RETURN
 - select `expand filesystem` and hit ENTER/RETURN
 - lots of activity will happen. when it's done, power down and reboot. if you get any errors, reboot again.
@@ -471,7 +471,7 @@ Steps:
   - If you perform `SYSTEM > UPDATE` and norns tells you it's `up to date.`, it is! We recommend this step for times when a disk image might not be compiled for an incremental update cycle.
 8. If you have a norns with a 32gb CM3+, you will need to expand the file storage, since the fresh install assumes the lowest capacity (4gb). This only needs to be done once, but it's important after a fresh install -- it lets the system know the capacity of your storage.  
   - Connect via [SSH](../advanced-access/#ssh) through a terminal.  
-  - Execute `sudo raspi-config` and enter *sleep* as the password (if prompted).  
+  - Execute: `sudo raspi-config` (*or* execute: `sudo raspi-config --expand-rootfs; sudo shutdown -r now` to skip to the last step without a GUI)
   - Navigate down to `Advanced Options`.  
   - Select `Expand Filesystem` and select `OK`.  
   - Navigate to `Finish` and if prompted to restart, select `OK`. Please note that this will power norns down fully, rather than restart it. That's okay! If you were not presented with an option to restart, simply put norns to sleep after the expansion completes.
@@ -491,7 +491,7 @@ After flashing your SD card, you'll need to expand the filesystem:
 2. Execute: `ssh we@norns.local`  
   Password: `sleep`
   - if you cannot connect to `we@norns.local`, try replacing `norns.local` with your shield's IP address, discoverable by hitting K2 on the `SELECT / SYSTEM / SLEEP` screen
-3. Execute: `sudo raspi-config`  
+3. Execute: `sudo raspi-config` (*or* execute: `sudo raspi-config --expand-rootfs; sudo shutdown -r now` to skip to the last step without a GUI)
 4. Navigate to `Advanced Options` and hit RETURN  
 5. Select `Expand Filesystem` and hit RETURN  
 6. Lots of activity will happen. When it's done, power down and reboot. If you get any errors, reboot again.

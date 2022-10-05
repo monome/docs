@@ -10,8 +10,6 @@ has_toc: false
 
 # norns
 
-[norns shield](../norns/shield) assembly guide.
-
 ### resources:
 
 - [first](norns-first.pdf): a quick, printable introduction.
@@ -22,6 +20,7 @@ has_toc: false
 - [control + clock](../norns/control-clock): integrate norns with other tools (eg. MIDI controllers and external synths).
 - [scripting](../norns/scripting): scripting studies, tutorials, and reference material.
 - [help](../norns/help): deeper device and system troubleshooting.
+- [norns shield](../norns/shield)
 
 current version: [latest](https://l.llllllll.co/norns)
 

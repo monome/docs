@@ -8,10 +8,10 @@ permalink: /norns/reference/osc
 
 ### functions
 
-| Syntax                                  | Description                                                                                                                                                                                                                                                                                                                                                                                                               |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| osc.event(path,{args},{host_IP,port})   | Action which is executed when OSC messages are received by norns. `path` is a string which prepends the incoming values. `{args}` are a table of incoming values. `{host_IP,port}` is a table which identifies the source address. Can be redefined by script. Two paths are reserved for parameter menu manipulation (`/param/param_id val`)+ hardware key/encoder manipulation (`/remote/key val` or `/remote/enc val`) |
-| osc.send({dest_IP, port}, path, {args}) | Send a table of OSC data from norns to another networked device. `{dest_IP,port}` is a table which identifies the destination address.`path` is a string which prepends the outgoing values. `{args}` are a table of outgoing values.                                                                                                                                                                                     |
+| Syntax                                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| osc.event(path,{args},{host_IP,port})   | Action which is executed when OSC messages are received by norns. `path` is a string which prepends the incoming values. `{args}` are a table of incoming values. `{host_IP,port}` is a table which identifies the source address. Can be redefined by script. Two paths are reserved for parameter menu manipulation (`/param/param_id val`)+ hardware key/encoder manipulation (`/remote/key n val` or `/remote/enc n d`) |
+| osc.send({dest_IP, port}, path, {args}) | Send a table of OSC data from norns to another networked device. `{dest_IP,port}` is a table which identifies the destination address.`path` is a string which prepends the outgoing values. `{args}` are a table of outgoing values.                                                                                                                                                                                       |
 
 ### example
 
@@ -61,6 +61,9 @@ function init()
 end
 
 function osc.event(path,args,from)
+  -- since our Max patch is sending parameter value changes directly
+  --  via '/params/x_axis' and '/params/y_axis',
+  --  we'll only need to intercept its 'send' path:
   if path == "send" then
     print("external IP "..from[1])
     external_osc_IP = from[1]
@@ -97,6 +100,7 @@ Connect a script to other OSC-enabled devices across a network. Provides scaffol
 `osc.event` is a static callback function which reflects incoming OSC events from an external source. These events are formatted as:
 
 - `path`: a string that prepends a table of data, to add significance to the data, eg. "/cutoff", etc.
+  - *nb. see below for built-in OSC mapping of any script parameter*
 - `args`: a table of values which follow the path, which a script can separate by index and pass to other functions within the script
 - `from`: a table which includes the source device's IP address and port, which help identify the device to norns
 

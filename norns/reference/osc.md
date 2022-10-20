@@ -8,10 +8,10 @@ permalink: /norns/reference/osc
 
 ### functions
 
-| Syntax                                  | Description                                                                                                                                                                                                                                                    |
-| --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| osc.event(path,{args},{host_IP,port})   | Action which is executed when OSC messages are received by norns. `path` is a string which prepends the incoming values. `{args}` are a table of incoming values. `{host_IP,port}` is a table which identifies the source address. Can be redefined by script. |
-| osc.send({dest_IP, port}, path, {args}) | Send a table of OSC data from norns to another networked device. `{dest_IP,port}` is a table which identifies the destination address.`path` is a string which prepends the outgoing values. `{args}` are a table of outgoing values.                          |
+| Syntax                                  | Description                                                                                                                                                                                                                                                                                                                                                                                                               |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| osc.event(path,{args},{host_IP,port})   | Action which is executed when OSC messages are received by norns. `path` is a string which prepends the incoming values. `{args}` are a table of incoming values. `{host_IP,port}` is a table which identifies the source address. Can be redefined by script. Two paths are reserved for parameter menu manipulation (`/param/param_id val`)+ hardware key/encoder manipulation (`/remote/key val` or `/remote/enc val`) |
+| osc.send({dest_IP, port}, path, {args}) | Send a table of OSC data from norns to another networked device. `{dest_IP,port}` is a table which identifies the destination address.`path` is a string which prepends the outgoing values. `{args}` are a table of outgoing values.                                                                                                                                                                                     |
 
 ### example
 
@@ -26,11 +26,11 @@ local Graph = require "graph" -- for on-screen visual
 function init()
   external_osc_IP = nil -- to track the external device's IP
   screen_dirty = true
-  
+
   demo_graph = Graph.new(0, 127, "lin", 0, 127, "lin", "point", true, true)
   demo_graph:set_position_and_size(3, 3, 122, 58)
   demo_graph:add_point(1, 0)
-  
+
   params:add_number("x_axis","x axis",0,127,0)
   params:set_action("x_axis",
     function(x)
@@ -38,7 +38,7 @@ function init()
       screen_dirty = true
     end
   )
-  
+
   params:add_number("y_axis","y axis",0,127,0)
   params:set_action("y_axis",
     function(y)
@@ -46,7 +46,7 @@ function init()
       screen_dirty = true
     end
   )
-  
+
   redraw_clock = clock.run(
     function()
       while true do
@@ -57,15 +57,11 @@ function init()
       end
     end
   )
-  
+
 end
 
 function osc.event(path,args,from)
-  if path == "/x" then
-    params:set("x_axis",args[1])
-  elseif path == "/y" then
-    params:set("y_axis",args[1])
-  elseif path == "send" then
+  if path == "send" then
     print("external IP "..from[1])
     external_osc_IP = from[1]
   end
@@ -100,7 +96,7 @@ Connect a script to other OSC-enabled devices across a network. Provides scaffol
 
 `osc.event` is a static callback function which reflects incoming OSC events from an external source. These events are formatted as:
 
-- `path`: a string that prepends a table of data, to add significance to the data, eg. "/x", "/y", "/cutoff", etc.
+- `path`: a string that prepends a table of data, to add significance to the data, eg. "/cutoff", etc.
 - `args`: a table of values which follow the path, which a script can separate by index and pass to other functions within the script
 - `from`: a table which includes the source device's IP address and port, which help identify the device to norns
 
@@ -115,3 +111,13 @@ norns *only* listens to OSC events through port `10111`
 
 norns can send to any OSC port which your destination device accepts
 {: .label}
+
+### mapping OSC control over parameters + hardware {#map}
+
+norns has a special OSC formatter reserved for mapping script parameters: `/params/param_id val`.
+
+The `param_id` display can be toggled in the norns parameters menu by holding K1 and pressing K3 -- this brings norns in and out of MAP mode.
+
+In our example, we set up parameter IDs `x_axis` and `y_axis`, so if norns receives `/params/x_axis 60`, it will change the `x_axis` parameter to 60.
+
+The encoders and keys can also be manipulated via OSC using `/remote/enc` and `remote/key`. `enc` expects a delta value (eg. `/remote/enc 1 -1` will 'turn' encoder 1 to the left). `key` expects a `1` or `0` for 'press' or 'release' (eg. `/remote/key 3 1` will 'press' key 3 and `/remote/key 3 0` will 'release' it).

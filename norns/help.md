@@ -84,7 +84,7 @@ To confirm:
   - if this doesn't find your norns, you can also use `ssh we@IP_ADDRESS_OF_SHIELD`, eg. `ssh we@192.168.1.100`
 - password: `sleep` (you will not see characters while typing, this is normal), press ENTER/RETURN
 - execute `sudo du -h /var/log`
-- if `/var/log/journal` is showing as larger than ~20 megabytes, you can safely remove the files inside by executing: `sudo rm -rf /var/log/journal`
+- if `/var/log/journal` is showing as larger than 20 megabytes, you can safely clean up the files inside by executing: `sudo journalctl --vacuum-size=20M`
 - execute `sudo du -h /var/log` to confirm the space has been reclaimed
 
 #### standard norns: CM3+ upgrade {#standard-cm3-upgrade}

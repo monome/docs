@@ -72,7 +72,7 @@ We do *not* recommend at-home repair, as the encoders are extremely sensitive to
 
 ### extending storage
 
-#### remove logs {#remove logs}
+#### remove logs
 
 If your norns seems more full than it ought to be (nb. check if there's any larger-than-expected TAPE files first), there's a chance that the logging system has added superfluous files to your storage.
 

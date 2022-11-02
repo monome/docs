@@ -17,10 +17,12 @@ isms ("*-isms*", \i\z\m\s\) is a eurorack modular synth case with an integrated 
 
 ## specifications
 
-[high resolution panel diagram](/images/isms-panel.pdf)  
-[manual with full panel descriptions](/images/isms-manual.pdf)
+### pdfs
 
-highlights:
+[manual with full panel descriptions](/images/isms-manual.pdf)  
+[high resolution panel diagram](/images/isms-panel.pdf)  
+
+### highlights
 
 - vactrol-based gates
 - output mixer and jacks
@@ -31,7 +33,7 @@ highlights:
 - headphone driver
 - high-capacity clean power design
 
-technical:
+### technical
 
 - 24" x 6.75" x 1.75" — 6 lbs. — steel
 - 120hp — 41mm module depth

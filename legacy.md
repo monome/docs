@@ -11,3 +11,4 @@ has_toc: false
 - [earthsea](../earthsea)
 - [walk](../walk)
 - [aleph](../aleph)
+- [isms](../isms)

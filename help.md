@@ -36,4 +36,4 @@ when shipping anything to us, be sure to include a printed sheet inside the box 
 
 looking for the old forum? it's read-only, at [archive.monome.org/community](http://archive.monome.org/community/index.html)
 
-and, the elusive [isms](/isms) -- a vision of modular, collaboration with [whimsical raps](http://whimsicalraps.com).
+and, the elusive [isms](/docs/isms) -- a vision of modular, collaboration with [whimsical raps](http://whimsicalraps.com).

@@ -18,6 +18,8 @@ Since grid is part of the fundamental design of norns, it has immediate integrat
 
 norns has four USB-A ports. Any port can host a grid, so feel free to connect your grid's USB cable to any available port on norns. As you connect, you'll see a lightburst on your grid, which indicates it's receiving power from norns.
 
+**please note:** if your standard norns is running on battery, plugging grid in might rudely shut the unit down -- this is expected in situations where the battery is not providing as much power as the grid is asking for upon connection. To work around this, please be sure to either plug the grid in before booting on battery *or* have the norns unit plugged into its power supply when connecting grid after boot.
+
 #### software configuration
 
 To ensure that norns has registered your grid, navigate to `SYSTEM > DEVICES > GRID`. Here, you'll see something similar to:

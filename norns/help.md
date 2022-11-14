@@ -385,7 +385,6 @@ If you're able to load maiden, there are two tabs in the main REPL area (above t
 
 - You might have a [duplicate engine](#duplicate-engines).
 - You might be [missing a required engine](#load-fail).
-- If an update was recently applied, it may be necessary to [manually re-apply it](#manual--offline-update-).
 - If this doesn't help, you may need to re-flash your norns with a clean image (after backing up any of your data).
 - If this doesn't fix it, there may be a hardware issue: e-mail help@monome.org.
 
@@ -503,61 +502,6 @@ After flashing your SD card, you'll need to expand the filesystem:
 8. [Consider changing the default password and address](#change-password)
 
 If you have previously connected to a shield (either by this same IP address or simply `norns.local`) in the past, you may see a warning that the 'remote host identification has changed'. this is because the shield now has a new host key. The error will give you a filepath to your hosts file, but if you are on MacOS you can simply execute `rm -f ~/.ssh/known_hosts` in Terminal to erase the previous hosts file and start fresh.
-
-### manual / offline update
-
-For this process, we'll use the phrase `execute` to mean "type this text into your terminal and press return/enter to run it."
-
-- Download and copy the [latest release's`.tgz` update file](https://github.com/monome/norns/releases) to a FAT-formatted USB drive
-- Take note of the `.tgz` file's name, as it is important (eg. `norns210706` is specific to the July 06 2021 update in YYMMDD format)
-- Insert the USB drive into norns and boot up your norns
-- If using a standard norns, connect via [serial](../advanced-access/#serial). If using a shield, connect via [ssh](../advanced-access/#ssh)
-- Copy file to `~/update/` by executing the following:
-
-```
-sudo cp /media/usb0/*.tgz ~/update/
-```
-
-- Once you see the command prompt again, enter the update folder by executing:
-
-```
-cd ~/update
-```
-
-- Remember that special filename (eg. `norns210706`)? We'll need it to unpack to the update folder by executing:
-
-```
-tar xzvf norns210706.tgz
-```
-
-- You'll see a flurry of activity, but after a few dozen seconds you'll get to the command prompt again. Now, we'll go into the the update folder by executing:
-
-```
-cd 210706
-./update.sh
-```
-*nb. make sure to replace `210706` in the above with the date reflected in the file you downloaded. If you're in doubt, simply execute `ls` and you'll be shown two files: the `.tgz` and the folder it unpacked. We want to copy the name of the folder exactly.*
-
-You'll see something similar to the following printed in your terminal:
-
-```bash
-[ ok ] Restarting nmbd (via systemctl): nmbd.service.
-[ ok ] Restarting smbd (via systemctl): smbd.service.
-CM3
-'/home/we/maiden/dist/sources/base.json' -> '/home/we/dust/data/sources/base.json'
-'/home/we/maiden/dist/sources/community.json' -> '/home/we/dust/data/sources/community.json'
-ln: failed to create symbolic link '/home/we/bin/maiden': File exists
-ln: failed to create symbolic link '/home/we/bin/maiden-repl': File exists
-```
-
-*nb. those last two failures are benign*
-
-- Finally, execute `sudo shutdown now` and norns will shut down
-
-If performing these steps on a shield, you won't see the standard shutdown message reminding you to wait until the non-red LED goes out -- you still need to wait!
-{: .label .label-red}
-
-Once you restart your device, hit K2 on the SELECT / SYSTEM / SLEEP screen and you should see the update's date listed on the right side of the screen!
 
 ### change default password + address {#change-password}
 

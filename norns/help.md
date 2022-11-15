@@ -32,7 +32,16 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 
 ## HARDWARE
 
-### replacing parts
+### replacing parts - norns standard
+
+#### screen + screen protector
+{: .no_toc }
+
+The norns screen is a Newhaven Display 2.7" Graphic OLED Module with Molex Connector. Every standard norns comes built with the white model (`NHD-2.7-12864WDW3-M`), though it may be swapped out for yellow (`NHD-2.7-12864WDY3-M`). Either can be ordered online from many electronic component distributors.
+
+The screen protector is a custom-cut piece of acrylic. Email help@monome.org for a replacement -- 15 USD, shipping included, only US (or can be bundled with an existing international purchase).
+
+When installing either, be sure to handle from the sides -- wiping away debris or oil from the viewing area can cause damage, even with a microfiber cloth. For the least amount of frustration, also be sure to have an air blower nearby -- dust can quickly accumulate in this process, which is easiest to remove with a quick shot of concentrated air.
 
 #### wifi nub
 {: .no_toc }
@@ -51,7 +60,7 @@ The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 
 
 Before you purchase a new battery, please consider that your norns may not be reporting battery performance accurately. To test, fully drain the battery and then charge it fully.
 
-If performance does not improve, then a direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/2011) or by emailing help@monome.org for a replacement (20 USD, shipping included, only US).
+If performance does not improve, then a direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/2011) or by emailing help@monome.org for a replacement (20 USD, shipping included, only US or can be bundled with an existing international purchase).
 
 #### encoders
 {: .no_toc }

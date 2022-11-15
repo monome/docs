@@ -34,14 +34,12 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 
 ### replacing parts - norns standard
 
-#### screen + screen protector
+#### screen
 {: .no_toc }
 
 The norns screen is a Newhaven Display 2.7" Graphic OLED Module with Molex Connector. Every standard norns comes built with the white model (`NHD-2.7-12864WDW3-M`), though it may be swapped out for yellow (`NHD-2.7-12864WDY3-M`). Either can be ordered online from many electronic component distributors.
 
-The screen protector is a custom-cut piece of acrylic. Email help@monome.org for a replacement -- 5 USD + shipping, only US (or can be bundled with an existing international purchase).
-
-When installing either, be sure to handle from the sides -- wiping away debris or oil from the viewing area can cause damage, even with a microfiber cloth. For the least amount of frustration, also be sure to have an air blower nearby -- dust can quickly accumulate in this process, which is easiest to remove with a quick shot of concentrated air.
+When installing, be sure to handle from the sides -- wiping away debris or oil from the viewing area can cause damage, even with a microfiber cloth. For the least amount of frustration, also be sure to have an air blower nearby -- dust can quickly accumulate in this process, which is easiest to remove with a quick shot of concentrated air.
 
 #### wifi nub
 {: .no_toc }

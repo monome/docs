@@ -32,7 +32,7 @@ dfu-util -V
 Download the `crow-vx.x.x.zip` file.
 
 
-## Entering the bootloader
+## Entering the bootloader {#enter-bootloader}
 
 ### Activate
 
@@ -117,9 +117,21 @@ If you get an error: `'dfu-util' is not recognized as an internal or external co
 
 ### macOS
 
+#### 'unidentified developer' error {#error-macos-unidentified}
+
 If you get an error that your system will not open `osx_linux-update_firmware.command` because it is from an unidentified developer, right-click the file and select Open and you'll be able to manually allow the updater to run. If for some reason this doesn't work, please navigate to System Preferences > Security & Privacy and you'll see a message about `osx_linux-update_firmware.command` being blocked, with the option to Open Anyway. Click this button and the updater will run.
 
 If the updater asks you for a password in Terminal, simply enter the admin password you use to log into your Mac. It is not being stored or transmitted, it's just an authorization.
+
+#### 'operation not permitted' error {#error-macos-operation}
+
+The `.command` file is just a shortcut way to enter text into terminal without having to type it. If you see `dfu-util: Could not open file crow.bin for reading: Operation not permitted` when running `osx_linux-update_firmware.command`, you can manually run the commands directly through Terminal:
+
+- get crow prepped for a firmware update by [entering the bootloader](#enter-bootloader)
+- in a Terminal window, type `cd`, press <kbd>Spacebar</kbd>, and then drag the `crow.bin` folder onto Terminal, which will auto-fill the path
+- erase the `crow.bin` part of the path and press <kbd>⏎ Enter</kbd>
+- now copy/paste `sudo dfu-util -a 0 -s 0x08020000 -R -D crow.bin -d ,0483:df11` into Terminal and press <kbd>⏎ Enter</kbd>
+- enter your password to begin the flash process
 
 ### Windows
 

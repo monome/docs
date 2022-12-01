@@ -260,6 +260,11 @@ function key(n,z)
 end
 ```
 
+While running the above, we hear a 200hz tone when we press K3 and a 100hz tone when we release K3. This is all worked out in our `key` function, where we state that if K3 is pressed (`z` = `1`) or released (`z` = `0`), to send `(100 + 100 * z)` to our engine.
+
+When we press K3, `z` is equal to `1`, so we'll send `(100 + 100 * 1)` to our engine.  
+When we release K3, `z` is equal to `0`, so we'll send `(100 + 100 * 0)` to our engine.
+
 ### controlling flow
 
 Code is basically a definition of flow -- what should happen when and how? In a lot of ways, code is like a musical score.

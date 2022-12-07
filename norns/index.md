@@ -41,7 +41,7 @@ norns is open source and continues to grow with the generous efforts of many con
 
 - 128 x 64 OLED, 16-level bright white huge pixels.
 - 3 rotary encoders, standard resolution.
-- 3 keys.</li>
+- 3 keys.
 - rear status LED indicating power and disk access.
 
 **interconnect**
@@ -71,7 +71,7 @@ norns is open source and continues to grow with the generous efforts of many con
 
 - 6.2" x 4.0" x 0.8"
 - 1.2 lbs.
-- milled aluminum, hard anodized
+- milled aluminum, hard anodized.
 - units produced before 2022 are grey.
 - units produced during and after 2022 are black.
 
@@ -90,7 +90,7 @@ additional + extended knowledge:
 
 - [scripting](../norns/scripting): scripting studies, tutorials, and reference material.
 - [help](../norns/help): deeper device and system troubleshooting.
-- [norns shield](../norns/shield): information about norns DIY circuit (open-source / discontinued)
+- [norns shield](../norns/shield): information about norns DIY circuit
 
 current version: [latest](https://l.llllllll.co/norns)
 

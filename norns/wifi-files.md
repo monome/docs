@@ -23,7 +23,7 @@ sections
 
 Both standard norns and shield are capable of connecting to existing WiFi networks, or hosting their own as a hotspot.
 
-shield has its own WiFi antenna built in, thanks to its Raspberry Pi. Standard norns doesn't have WiFi built in, so it comes with a USB WiFi adapter -- if you need replacements please see [replacement parts](/docs/norns/help/#WiFi-nub).
+shield has its own WiFi antenna built in (3B: 2.4Ghz, 3B+/4: 2.4Ghz and 5Ghz), thanks to its Raspberry Pi. Standard norns doesn't have WiFi built in, so it comes with a 2.4GHz USB WiFi adapter -- if you need replacements please see [replacement parts](/docs/norns/help/#WiFi-nub).
 
 ### connecting norns to a WIFI network {#wifi-connect}
 

@@ -146,19 +146,21 @@ If you are not actively using the WiFi nub, it's best not to keep it plugged in.
 
 If you are consistently unable to connect your norns to WiFi through the [connection steps outlined here](/docs/norns/wifi-files/#wifi-connect), please perform the following steps:
 
-1. If your network name has any apostrophes, it might be interpretted as a [*prime*](https://en.wikipedia.org/wiki/Prime_(symbol)), which would cause connection failure. Removing apostrophes from network names has helped resolve most issues with connectivity.
+1. Confirm that your router is broadcasting a 2.4GHz band -- the WiFi nub does not support 5GHz.
 
-2. Try getting very close to your WiFi router. Bad signal can make it seem nonfunctional.
+2. If your network name has any apostrophes, it might be interpretted as a [*prime*](https://en.wikipedia.org/wiki/Prime_(symbol)), which would cause connection failure. Removing apostrophes from network names has helped resolve most issues with connectivity.
 
-3. Plug the WiFi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected. If your nub is defective, please email help@monome.org for a replacement.
+3. Try getting very close to your WiFi router. Bad signal can make it seem nonfunctional.
 
-4. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
+4. Plug the WiFi nub into a non-norns computer (laptop/desktop ; MacOS/Windows/Linux) and confirm that the nub functions as expected. If your nub is defective, please email help@monome.org for a replacement.
 
-5. If norns is still unable to connect to WiFi, connect the power cable to your non-norns computer and follow the `serial` steps outlined [here](../advanced-access/#serial). Once you perform this serial login, try executing `nmtui` for a graphical interface of the WiFi utilities, which may have better luck connecting to a network:
+5. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
+
+6. If norns is still unable to connect to WiFi, connect the power cable to your non-norns computer and follow the `serial` steps outlined [here](../advanced-access/#serial). Once you perform this serial login, try executing `nmtui` for a graphical interface of the WiFi utilities, which may have better luck connecting to a network:
    
     ![](/docs/norns/image/terminal-nmtui-main.png)
 
-6. If you are still unable to connect, please email help@monome.org with the following information:
+7. If you are still unable to connect, please email help@monome.org with the following information:
    
    - Whether your nub was able to successfully connect with a non-norns computer
    - Screenshots of the terminal screens in step 5

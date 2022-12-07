@@ -6,7 +6,7 @@ has_children: true
 has_toc: false
 ---
 
-![](../norns/image/norns-black.jpeg)
+![](../norns/image/norns-grey.jpeg)
 
 # norns
 
@@ -26,37 +26,36 @@ using *engines* written with [SuperCollider](https://supercollider.github.io), y
 
 edit scripts through the [maiden](https://monome.org/docs/norns/maiden/) web interface over WiFi, or load norns as a network drive and use your preferred development environment. everything is stored internally on the device. once editing is done, instruments can be immediately run from the onboard selector.
 
-norns is designed to be changed, encouraging customization and invention. we've created [studies](../norns/scripting) to help get started, or you can just browse the [library of prebuilt instruments](https://norns.community) made possible with the support of a vibrant international community.
+norns is designed to be changed, encouraging customization and invention. we've created [studies with lots of code examples](../norns/scripting) to help get started, or you can browse the [library of prebuilt instruments](https://norns.community) made possible with the support of a vibrant international community.
 
 norns is open source and continues to grow with the generous efforts of many contributors.
 
 ## specifications
 
-### audio
-
+**audio**
 
 - 1/4". 2 output. 2 input. all line level.
 - 1/4" headphone with gain.
 
-### interface
+**interface**
 
 - 128 x 64 OLED, 16-level bright white huge pixels.
 - 3 rotary encoders, standard resolution.
 - 3 keys.</li>
 - rear status LED indicating power and disk access.
 
-### interconnect
+**interconnect**
 
 - 4 x USB ports for devices. can be expanded with a powered USB hub.
 - supports up to 16 MIDI devices, 4 grids, 4 arcs, 4 HID.
 - serial tty via USB-mini.
 
-### power
+**power**
 
-- power/charge via USB-mini. high output USB power supply included.
+- power/charge via USB-mini. high output USB power supply included (5.25V / 2A).
 - internal lipo battery 2250mAh.
 
-### processing</h3> 
+**processing**
 
 - units produced before 2021 have a compute module 3 (cm3).
 - units produced during and after 2021 have a compute module 3+ (cm3+).
@@ -64,11 +63,11 @@ norns is open source and continues to grow with the generous efforts of many con
 - storage: 4gb (cm3) / 32gb (cm3+).
 - cs4270 i2s audio codec (low latency).
 
-### os
+**os**
 
 - linux with realtime kernel.
 
-### physical
+**physical**
 
 - 6.2" x 4.0" x 0.8"
 - 1.2 lbs.
@@ -95,7 +94,7 @@ additional + extended knowledge:
 
 current version: [latest](https://l.llllllll.co/norns)
 
-###contributing
+### contributing
 
 norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. Check out the [github repo](https://github.com/monome/norns). To try out the latest changes to the code, you can read about [compiling norns](../norns/compiling). There's also a guide on [extending norns](../norns/extending) if you have new functionality you'd like to add.
 

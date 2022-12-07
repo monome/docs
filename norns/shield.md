@@ -12,7 +12,7 @@ has_toc: false
 
 A DIY circuit which extends a normal Raspberry Pi, turning it into a norns.
 
-The norns shield is [open source hardware](https://github.com/monome/norns-shield). monome sells a complete kit so that you can get straight to making sound with code.
+The norns shield is [open source hardware](https://github.com/monome/norns-shield).
 
 <details open markdown="block">
   <summary>

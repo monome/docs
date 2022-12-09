@@ -200,6 +200,8 @@ At the top of this menu are controls for each component of the global audio chai
 
 Scrolling down further, we find some of the script's parameters. These are chosen by the script's author and can be adjusted by using **E3**.
 
+**To fine-adjust a parameter, hold K3 as you turn E3.** If the parameter is linearly or exponentially scaled (eg. LEVELS > OUTPUT), this will adjust the value by 1/20th of its usual delta step.
+
 ### saving presets
 
 To recall and build on the changes you've made in a future session, we can save a script's parameter state as a PSET (preset).

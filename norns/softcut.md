@@ -38,6 +38,8 @@ softcut.position(1,1)
 softcut.play(1,1)
 ```
 
+(if we wanted to play and record one-off instead of looping we would still have to set the `loop_start` and `loop_end` to tell softcut which section of the buffer to use.)
+
 the buffers are blank. load a file (wav/aif/etc):
 
 ```lua

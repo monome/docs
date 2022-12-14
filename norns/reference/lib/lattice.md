@@ -11,40 +11,41 @@ The `lattice` allows you to perform a function repeatedly, typically useful for 
 
 ### control
 
-| Syntax                                 | Description                                                    |
-| -------------------------------------- | -------------------------------------------------------------- |
-| my_lattice = lattice:new{args}         | Create a new lattice.                                          |
-| my_lattice:stop()                      | Stop the lattice.                                              |
-| my_lattice:start()                     | Start the lattice.                                             |
-| my_lattice:toggle()                    | Start or stop the lattice.                                     |
-| my_lattice:destroy()                   | Destroy the lattice.                                                                                     |
-| my_lattice:pulse()                     | Advance the lattice manually, if `my_lattice.auto` is `false`. |
-| my_sprocket = lattice:new_sprocket{args} | Create a new sprocket in this lattice.                          |
-| my_sprocket:stop()                      | Stop the sprocket.                                              |
-| my_sprocket:start()                     | Start the sprocket.                                             |
-| my_sprocket:toggle()                    | Start or stop the sprocket.                                     |
-| my_sprocket:destroy()                   | Destroy the sprocket.                                           |
-| my_sprocket:set_division(number)        | Change division of the sprocket.                                |
-| my_sprocket:set_action(function)        | Change the action of the sprocket.                              |
-| my_sprocket:set_swing(swing)            | Change the swing percentage (0-100%)                           |
-| my_sprocket:set_delay(delay)            | Change the delay of sprocket (0.0 - 1)                          |
+| Syntax                                   | Description                                                    |
+| ---------------------------------------- | -------------------------------------------------------------- |
+| my_lattice = lattice:new{args}           | Create a new lattice.                                          |
+| my_lattice:stop()                        | Stop the lattice.                                              |
+| my_lattice:start()                       | Start the lattice.                                             |
+| my_lattice:toggle()                      | Start or stop the lattice.                                     |
+| my_lattice:destroy()                     | Destroy the lattice.                                           |
+| my_lattice:pulse()                       | Advance the lattice manually, if `my_lattice.auto` is `false`. |
+| my_sprocket = lattice:new_sprocket{args} | Create a new sprocket in this lattice.                         |
+| my_sprocket:stop()                       | Stop the sprocket.                                             |
+| my_sprocket:start()                      | Start the sprocket.                                            |
+| my_sprocket:toggle()                     | Start or stop the sprocket.                                    |
+| my_sprocket:destroy()                    | Destroy the sprocket.                                          |
+| my_sprocket:set_division(number)         | Change division of the sprocket.                               |
+| my_sprocket:set_action(function)         | Change the action of the sprocket.                             |
+| my_sprocket:set_swing(swing)             | Change the swing percentage (0-100%)                           |
+| my_sprocket:set_delay(delay)             | Change the delay of sprocket (0.0 - 1)                         |
 
 ### query
 
 A `lattice` has no formal getter functions. Here are the arguments `lattice:new{args}` and `lattice:new_sprocket{args}` utilize, which can be queried with the following syntax:
 
-| Syntax                        | Description                                               |
-| ----------------------------- | --------------------------------------------------------- |
-| my_lattice.auto               | State of auto advance, default `true` : boolean           |
-| my_lattice.enabled            | State of lattice, default `true` : boolean                |
-| my_lattice.ppqn               | The number of pulses per quarter cycle of this superclock, defaults to `96` : number            |
-| my_lattice.sprockets           | sprockets spawned by this lattice, by ID : table           |
-| my_lattice.sprocket_id_counter | Last-spawned sprocket ID : number                          |
-| my_lattice.transport          | Current transport position : number                       |
-| my_sprocket.action             | Function assigned to sprocket : function                   |
-| my_sprocket.division           | Division of the sprocket, default `1/4` : number           |
-| my_sprocket.enabled            | State of sprocket, default `true` : boolean                |
-| my_sprocket.id                 | Auto-assigned sprocket ID : number                         |
+| Syntax                         | Description                                                                                                 |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| my_lattice.auto                | State of auto advance, default `true` : boolean                                                             |
+| my_lattice.enabled             | State of lattice, default `true` : boolean                                                                  |
+| my_lattice.ppqn                | The number of pulses per quarter cycle of this superclock, defaults to `96` : number                        |
+| my_lattice.sprockets           | sprockets spawned by this lattice, by ID : table                                                            |
+| my_lattice.sprocket_id_counter | Last-spawned sprocket ID : number                                                                           |
+| my_lattice.transport           | Current transport position : number                                                                         |
+| my_sprocket.action             | Function assigned to sprocket : function                                                                    |
+| my_sprocket.division           | Division of the sprocket, default `1/4` : number                                                            |
+| my_sprocket.order              | Order of the sprocket's `action` execution when it shares a pulse with other sprockets, default `3`: number |
+| my_sprocket.enabled            | State of sprocket, default `true` : boolean                                                                 |
+| my_sprocket.id                 | Auto-assigned sprocket ID : number                                                                          |
 
 ### example
 
@@ -230,11 +231,11 @@ will print:
 
 ```bash
 # script init
-< quarter notes in 4/4 >	482
-< quarter notes in 4/4 >	962
-< quarter notes in 4/4 >	1442
-< quarter notes in 4/4 >	1922
-!! whole notes in 4/4 !!	1922
+< quarter notes in 4/4 >    482
+< quarter notes in 4/4 >    962
+< quarter notes in 4/4 >    1442
+< quarter notes in 4/4 >    1922
+!! whole notes in 4/4 !!    1922
 ```
 
 but this reordering:
@@ -263,11 +264,11 @@ will print:
 
 ```bash
 # script init
-< quarter notes in 4/4 >	482
-< quarter notes in 4/4 >	962
-< quarter notes in 4/4 >	1442
-!! whole notes in 4/4 !!	1922
-< quarter notes in 4/4 >	1922
+< quarter notes in 4/4 >    482
+< quarter notes in 4/4 >    962
+< quarter notes in 4/4 >    1442
+!! whole notes in 4/4 !!    1922
+< quarter notes in 4/4 >    1922
 ```
 
 We can manage the order directly by specifying a sprocket's `order` upon creation, which determines the order of action execution on shared pulses, eg:
@@ -297,11 +298,11 @@ comparing_priorities:start()
 will print:
 
 ```
-< quarter notes in 4/4 >	480
-< quarter notes in 4/4 >	960
-< quarter notes in 4/4 >	1440
-< quarter notes in 4/4 >	1920
-!! whole notes in 4/4 !!	1921
+< quarter notes in 4/4 >    480
+< quarter notes in 4/4 >    960
+< quarter notes in 4/4 >    1440
+< quarter notes in 4/4 >    1920
+!! whole notes in 4/4 !!    1921
 ```
 
 Since the quarter note has `order = 1` and the whole note has `order = 2`, the quarter note's action will always execute *just* before the whole note's.

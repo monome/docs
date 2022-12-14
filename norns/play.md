@@ -326,28 +326,6 @@ To clear the script running on norns:
 - while holding **K1**, press **K3** to clear the currently-running script
 - release **K1** and you'll see `NONE` where the previously-running script's name used to be
 
-## keyboard
-
-Many of the top-layer menus are also navigable with an attached USB keyboard. Current support is minimal, [contributions welcome](https://github.com/monome/norns).
-
-When the screen UI is on the menus interface:
-
-- `F1`: LEVELS
-
-- `F2`: TAPE
-
-- `F3`: HOME
-
-- `F4`: PARAMETERS
-
-On all menus:
-
-- `arrow up` / `arrow down`: E2 with delta +/- 1
-
-- `pageup` / `pagedown`: E2 with delta +/- 6
-
-- `arrow left` / `arrow right`: K2 / K3
-
 ## where to next?
 
 Now that you know the basics of navigating the system, adjusting a script's parameters, and recording the results, you might want to explore the [**community scripts**](/docs/norns/community-scripts) available for norns.

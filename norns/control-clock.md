@@ -119,6 +119,27 @@ An example entry:
 
 You'll notice that these entries are identical to the ones located on the mapping screen.
 
+## keyboard
+
+The system menus are also navigable with an attached USB keyboard.  
+[Contributions to extend functionality are welcome](https://github.com/monome/norns).
+
+To access the system menus:
+
+- `F1`: LEVELS
+- `F2`: TAPE
+- `F3`: HOME
+- `F4`: PARAMETERS
+
+To toggle between script interface and system menus: `F5`
+
+While in the system menus:
+
+- `arrow up` / `arrow down`: E2 with delta +/- 1 (while held)
+- `pageup` / `pagedown`: E2 with delta +/- 6 (while held)
+- `+` / `-`: adjusts selected parameter value up/down (while held)
+- `arrow left` / `arrow right`: K2 / K3
+
 ## OSC
 
 [Open Sound Control (OSC)](https://en.wikipedia.org/wiki/Open_Sound_Control) is a network protocol for sending messages supported by numerous sound and media applications.

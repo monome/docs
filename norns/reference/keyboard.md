@@ -13,6 +13,11 @@ permalink: /norns/reference/keyboard
 | keyboard.code(code,value) | User script callback for keypresses : function          |
 | keyboard.char(character)  | User script callback for specific characters : function |
 
+#### OSC
+
+You can also transmit keyboard values to norns via OSC using `/remote/brd n val`.   
+See the [OSC reference](/docs/norns/reference/osc) for more details.
+
 ### query
 
 | Syntax                 | Description                                       |

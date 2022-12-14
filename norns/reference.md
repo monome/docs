@@ -164,7 +164,7 @@ try 'SYSTEM > UPDATE'
 And this will print to maiden:
 
 ```bash
-### SCRIPT ERROR: version 2212104 required
+### SCRIPT ERROR: version 221214 required
 ### try 'SYSTEM > UPDATE'
 ### or check for new disk image
 ```

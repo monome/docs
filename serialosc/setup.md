@@ -9,15 +9,43 @@ nav_order: 1
 
 # grid and arc basic setup
 
-### [&rarr; download serialosc](https://github.com/monome/serialosc/releases/latest) (be sure to restart your device afterward)
+## install serialosc
 
-serialosc runs in the background and converts serial communication (over USB) into [OSC](/docs/serialosc/osc). applications can query serialosc to connect to the grid and arc.
+serialosc runs in the background and converts serial communication (over USB) into [OSC](/docs/serialosc/osc).  
+applications can query serialosc to connect to the grid and arc.
 
-**linux: see the [linux setup guide](/docs/serialosc/linux)**
+### install via homebrew
 
-**raspberry pi: see the [raspbian setup guide](/docs/serialosc/raspbian)**
+**recommended for M1 + M2 CPUs!**
 
-**technical: [grid serial references](/docs/serialosc/serial.txt) + [osc references](/docs/serialosc/osc/)**
+*nb. If you have installed serialosc on this device via the direct download method below, please make sure to locate and delete any existing install (and reboot) to ensure it is no longer running before installing via homebrew.*
+
+- install [homebrew](https://brew.sh) on your Mac (or Linux) computer
+- execute `brew install serialosc` to install serialosc
+- execute `brew services start serialosc` to start serialosc
+- execute `brew services list` to confirm serialosc is running
+
+successful `brew services list` output looks like:
+
+```
+Name        Status    User     File
+serialosc   started   <you>   ~/Library/LaunchAgents/homebrew.mxcl.serialosc.plist
+```
+
+### install via direct download
+
+[&rarr; download serialosc](https://github.com/monome/serialosc/releases/latest) (be sure to restart your device afterward)
+
+## additional docs
+
+**[linux setup guide](/docs/serialosc/linux)**
+
+**[raspbian setup guide](/docs/serialosc/raspbian)**
+
+**technical:**
+
+- **[grid serial references](/docs/serialosc/serial.txt)**
+- **[osc references](/docs/serialosc/osc/)**
 
 ## troubleshooting
 

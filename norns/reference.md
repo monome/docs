@@ -110,6 +110,65 @@ function cleanup()
 end
 ```
 
+## setting minimum required version
+
+Each norns update brings new features, both for scripting and general usability. If you share a script which relies on the features of a particular norns update, you can specify a minimum version requirement which will display a message on the norns screen if the script is loaded on a previous version of the software.
+
+To specify a minimum version required, set `norns.version.required` to the **YYMMDD** value before the `init()` of your script, eg:
+
+```lua
+-- a small welcome
+-- v1 @monome
+
+norns.version.required = 221214 -- can be a number or string, formatted YYMMDD
+
+function init()
+  print('hello, welcome to the script')
+  
+  screen_level = 0
+  
+  clock.run(
+    function()
+      while true do
+        clock.sleep(1/8)
+        screen_level = util.wrap(screen_level+1,0,15)
+        redraw()
+      end
+    end
+  )
+  
+end
+
+function redraw()
+  screen.clear()
+  
+  screen.level(screen_level)
+  screen.rect(10,12,108,40)
+  screen.fill()
+  
+  screen.level(15-screen_level)
+  screen.move(64,32)
+  screen.text_center('welcome!')
+  
+  screen.update()
+end
+```
+
+If this script is loaded on a norns running software earlier than `221214`, you'll see this on the norns screen:
+
+```bash
+error: version 221214 required
+try 'SYSTEM > UPDATE'
+```
+
+And this will print to maiden:
+
+```bash
+### SCRIPT ERROR: version 2212104 required
+### try 'SYSTEM > UPDATE'
+### or check for new disk image
+```
+
 ## libraries
 
 Lua libraries can be used by using `include("path/to/library")`, remember not to include `.lua` in the library name.

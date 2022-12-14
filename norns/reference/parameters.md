@@ -363,6 +363,65 @@ As the PSET-bundled script is first loaded onto a norns which doesn't already ha
 
 To test, you can simply delete your `dust/data/(script)` folder *after* copying the `.pset` files to `dust/code/(script)/data`, and a fresh boot of the script will copy all the bundled PSETs into `dust/data/(script)`.
 
+### adjusting parameter attributes after creation
+
+Any created parameter can be adjusted after it has been built by using `params:lookup_param(index)`.
+
+For example:
+
+```lua
+function init()
+  params:add_option('colors', 'colors', {'Red','Yellow','Blue'}, 1)
+end
+```
+
+Using maiden's command line, we can query the `a_list` parameter object:
+
+```lua
+>> tab.print(params:lookup_param('colors'))
+options	table: 0x4fa7a0
+id	colors
+selected	1
+name	colors
+allow_pmap	true
+save	true
+count	3
+action	function: 0x69a458
+default	1
+t	2
+```
+
+We can then modify the object with scripting:
+
+```lua
+function init()
+  color_options = {
+    {'Red','Yellow','Blue'}, -- color_options[1]
+    {'Orange', 'Green', 'Violet'}, -- color_options[2]
+    {'Red-Orange', 'Yellow-Orange', 'Yellow-Green', 'Blue-Green', 'Blue-Violet', 'Red-Violet'}, -- color_options[3]
+  }
+  params:add_option('colors', 'colors', color_options[1], 1)
+  
+  params:add_option('color_set', 'color set', {'Primary','Secondary','Tertiary'}, 1)
+  params:set_action('color_set',
+    function(x)
+      local color_param = params:lookup_param('colors')
+      color_param.options = color_options[x]
+      color_param.count = #color_options[x]
+      color_param.selected = 1
+    end
+  )
+end
+```
+
+While scripting parameters after the script is running can be tons of fun, It's important to be mindful of the nuances of the object that you're modifying! For example:
+
+- if we don't change the `color_param.count`, we can't select past the third color in our `Tertiary` color set
+
+- if we don't reset `color_param.selected`, then we will receive errors if our currently selected color is beyond the number of options in our new color set
+
+When in doubt, use `tab.print` to understand the parameter object you're hoping to modify, or study [the params source code](https://github.com/monome/norns/tree/main/lua/core/params).
+
 ### description
 
 Parameters are a fundamental component of the norns toolkit. They allow you to associate controls and data to variables and functions within your scripts. They offer MIDI mapping and OSC addresses, as well as state save and restore.

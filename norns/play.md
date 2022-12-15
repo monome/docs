@@ -36,21 +36,12 @@ To begin, let's get acquainted with the layouts of both iterations of norns -- s
 **shield**
 
 - Confirm that you've followed all of the steps in the [norns shield assembly guide](../shield).
-- Attach [a high quality Raspberry Pi power supply](https://www.adafruit.com/product/1995) that provides at least 2A at 5V to the micro USB port on the Pi.
+- Attach [a high quality Raspberry Pi power supply](https://www.adafruit.com/product/1995) that provides at least 2A at 5V to the power input on the Pi (Pi 3: micro-USB / Pi 4L USB-C)
   - If using a power supply which has a detachable USB cable, make sure the cable is 24AWG or less. Lower AWG = lower noise & more stable voltage delivery for better performance.
 - The red light on the Pi will be steady, while the not-red light will flash.
 - In a few seconds, you'll see a sparkle animation on the screen and you'll hear a [sinelike startup tone](https://github.com/monome/norns/blob/71772c6ea43c90f15e7a5d3b7755d4beacc64c5b/sc/core/Crone.sc#L96). norns is on.
 
 After norns powers up, it will launch the last script that was loaded. On a fresh norns, this will be *awake*, a set of looping sequencers with delay.
-
-There are two layers to the norns UI -- a multi-page menu interface and a script's playable interface. A quick tap of **K1** is how you swap focus between these layers. In the diagram below, a quick **K1** tap toggles between the multi-page menu layer (top row) and the current script's playable interface (bottom image).
-
-While you are inside of the playable interface, the encoders and keys perform script-specific actions.
-
-Once you are in the menu interface, use **E1** to switch between the different menus (LEVELS, TAPE, HOME, PARAMETERS). We'll explore each of these menus in the rest of the docs!
-
-![](/docs/norns/image/play-images/menu-nav.png)  
-[*figure 2: interface layers*](image/play-images/menu-nav.png)
 
 ### power off
 
@@ -140,6 +131,17 @@ Try plugging in a grid and you'll gain a playable physical interface to manage t
 
 Most norns scripts rely on these types of interactions — re-definable encoders, two-button presses in the form of hold-one-press-the-other, turning an encoder while a modifier button is held, etc.
 
+## interface layers
+
+There are two layers to the norns UI -- a multi-page menu interface and a script's playable interface. A quick tap of **K1** is how you swap focus between these layers. In the diagram below, a quick **K1** tap toggles between the multi-page menu layer (top row) and the current script's playable interface (bottom image).
+
+While you are inside of the playable interface, the encoders and keys perform script-specific actions.
+
+Once you are in the menu interface, use **E1** to switch between the different menus (LEVELS, TAPE, HOME, PARAMETERS). We'll explore each of these menus in the rest of the docs!
+
+![](/docs/norns/image/play-images/menu-nav.png)  
+[*figure 2: interface layers*](image/play-images/menu-nav.png)
+
 ## levels
 
 **DO NOT plug modular-level signals into norns (neither standard or shield) -- norns is designed for line levels only.**
@@ -170,6 +172,8 @@ The horizontal notch represents unity. All levels can go to +6dB.
   <dt><b>tp</b></dt>
   <dd>adjusts the level of a playing tape, which is fed into the global mix as well as softcut</dd>
 </dl>
+
+*For audio input/output hardware specs, see [the extended help docs](/docs/norns/help/#audio-specs).*
 
 ## parameters
 
@@ -250,8 +254,10 @@ Jump to the menus interface and use **E1** to navigate to the tape screen.
   - folders end with `/`, without a duration
   - clips end with their filetype (eg. `.wav`) and a duration
   - want to import more clips into your norns? see [**wifi + files**](/docs/norns/wifi-files).
+- turn **E3** clockwise to preview a highlighted file. turn **E3** counter-clockwise to stop the preview.
+- press **K3** to load the clip
 
-PLAY expects 48khz files (both stereo and mono supported). WAV, AIFF, FLAC and other uncompressed header / sample formats supported by libsndfile will all work (including RAW).
+*nb. PLAY expects 48khz files (both stereo and mono supported). WAV, AIFF, FLAC and other uncompressed header / sample formats supported by libsndfile will all work (including RAW).*
 
 **start/stop loop**
 
@@ -296,7 +302,7 @@ In the simplest terms, everything you hear from the main output is committed to 
 
 ## select
 
-Tap **K1** and navigate to the *home* menu, then press **K3** on SELECT:
+Navigate to the *home* menu, then press **K3** on SELECT:
 
 ![](/docs/norns/image/play-images/menu-sel.png)  
 [*figure 8: selecting a script*](image/play-images/menu-sel.png)

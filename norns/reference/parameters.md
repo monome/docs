@@ -5,6 +5,16 @@ permalink: /norns/reference/params
 ---
 
 ## params
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ### functions
 
@@ -371,27 +381,77 @@ For example:
 
 ```lua
 function init()
-  params:add_option('colors', 'colors', {'Red','Yellow','Blue'}, 1)
+  params:add{
+    type = 'control',
+    id = 'loop_start',
+    name = 'loop start',
+    controlspec = controlspec.def{
+      min = 0,
+      max = 10,
+      warp = 'lin',
+      step = 1/100,
+      default = 0,
+      units = 's',
+      quantum = 0.01
+    }
+  }
 end
 ```
 
-Using maiden's command line, we can query the `a_list` parameter object:
+Using maiden's command line, we can query the `loop_start` parameter object:
 
 ```lua
->> tab.print(params:lookup_param('colors'))
-options	table: 0x4fa7a0
-id	colors
-selected	1
-name	colors
+>> tab.print(params:lookup_param('loop_start'))
+action	function: 0x44d328
+t	3
 allow_pmap	true
+name	loop start
+controlspec	table: 0x425aa8
+raw	  0
 save	true
-count	3
-action	function: 0x69a458
-default	1
-t	2
+id	loop_start
 ```
 
-We can then modify the object with scripting:
+And we can further inspect the parameter's `controlspec` def:
+
+```lua
+>> tab.print(params:lookup_param('loop_start').controlspec)
+wrap	false
+maxval	10
+quantum	0.01
+minval	0
+step	0.01
+warp	table: 0x490218
+units	s
+default	0
+```
+
+We can then modify the object with scripting (also, switching to `params:add_control` to reduce verbosity):
+
+```lua
+function init()
+  params:add_option('loop_length','loop length', {'10 seconds','60 seconds'}, 1)
+  params:set_action('loop_length',
+    function(x)
+      if x == 1 then
+        params:lookup_param('loop_end').controlspec.maxval = 10
+        params:lookup_param('loop_end').controlspec.quantum = 1/100
+      elseif x == 2 then
+        params:lookup_param('loop_end').controlspec.maxval = 60
+        params:lookup_param('loop_end').controlspec.quantum = 1/600
+      end
+    end
+  )
+  params:add_control('loop_start', 'loop start', controlspec.new(0,10,'lin',1/100,0,'s',1/100))
+  params:add_control('loop_end', 'loop end', controlspec.new(0,10,'lin',1/100,10,'s',1/100))
+end
+```
+
+While scripting parameters after the script is running can be tons of fun, it's important to be mindful of the nuances of the object that you're modifying!
+
+In the above example, we want changes to the `loop_end` parameter to delta +/- 0.1 seconds. When the controlspec's `maxval` is 10, our `quantum` of 1/100 yields 0.1 second changes (since 10 * 0.01 is 0.1). But when we change our `maxval` to 60, a `quantum` of 1/100 means each delta will increment or decrement by 1/100 *of the full 60 second range* -- this yields 0.6 second changes. So, we need to adjust the `quantum` to `1/600` when the range is 60 seconds, and we need to return the `quantum` to `1/100` when the range is 10 seconds.
+
+Here's another example:
 
 ```lua
 function init()
@@ -414,7 +474,7 @@ function init()
 end
 ```
 
-While scripting parameters after the script is running can be tons of fun, It's important to be mindful of the nuances of the object that you're modifying! For example:
+Again, it's important to be mindful of the nuances of the object that you're modifying! For example:
 
 - if we don't change the `color_param.count`, we can't select past the third color in our `Tertiary` color set
 

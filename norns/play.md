@@ -7,7 +7,6 @@ nav_order: 1
 ---
 
 # play
-
 {: .no_toc }
 
 <details open markdown="block">

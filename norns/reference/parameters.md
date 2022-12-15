@@ -5,6 +5,16 @@ permalink: /norns/reference/params
 ---
 
 ## params
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ### functions
 
@@ -25,6 +35,7 @@ permalink: /norns/reference/params
 | params:print()                                                  | Print the index, name, and value for each parameter to the REPL                                                                                                                                 |
 | params:list()                                                   | Print the names of each parameter to the REPL                                                                                                                                                   |
 | params:get_id(index)                                            | Returns the string id of a given parameter's index                                                                                                                                              |
+| params:lookup_param(index)                                      | Returns the param object at index; useful for useful for meta-programming tasks like changing a param once created                                                                              |
 | params:string(id)                                               | Returns the string associated with the current value for a given parameter's id                                                                                                                 |
 | params:set(id,val,silent)                                       | Set a parameter's value, with optional action execution                                                                                                                                         |
 | params:set_raw (index, v, silent)                               | Set a parameter's controlspec raw value, with optional action execution                                                                                                                         |
@@ -361,6 +372,115 @@ As the PSET-bundled script is first loaded onto a norns which doesn't already ha
 ```
 
 To test, you can simply delete your `dust/data/(script)` folder *after* copying the `.pset` files to `dust/code/(script)/data`, and a fresh boot of the script will copy all the bundled PSETs into `dust/data/(script)`.
+
+### adjusting parameter attributes after creation
+
+Any created parameter can be adjusted after it has been built by using `params:lookup_param(index)`.
+
+For example:
+
+```lua
+function init()
+  params:add{
+    type = 'control',
+    id = 'loop_start',
+    name = 'loop start',
+    controlspec = controlspec.def{
+      min = 0,
+      max = 10,
+      warp = 'lin',
+      step = 1/100,
+      default = 0,
+      units = 's',
+      quantum = 0.01
+    }
+  }
+end
+```
+
+Using maiden's command line, we can query the `loop_start` parameter object:
+
+```lua
+>> tab.print(params:lookup_param('loop_start'))
+action	function: 0x44d328
+t	3
+allow_pmap	true
+name	loop start
+controlspec	table: 0x425aa8
+raw	  0
+save	true
+id	loop_start
+```
+
+And we can further inspect the parameter's `controlspec` def:
+
+```lua
+>> tab.print(params:lookup_param('loop_start').controlspec)
+wrap	false
+maxval	10
+quantum	0.01
+minval	0
+step	0.01
+warp	table: 0x490218
+units	s
+default	0
+```
+
+We can then modify the object with scripting (also, switching to `params:add_control` to reduce verbosity):
+
+```lua
+function init()
+  params:add_option('loop_length','loop length', {'10 seconds','60 seconds'}, 1)
+  params:set_action('loop_length',
+    function(x)
+      if x == 1 then
+        params:lookup_param('loop_end').controlspec.maxval = 10
+        params:lookup_param('loop_end').controlspec.quantum = 1/100
+      elseif x == 2 then
+        params:lookup_param('loop_end').controlspec.maxval = 60
+        params:lookup_param('loop_end').controlspec.quantum = 1/600
+      end
+    end
+  )
+  params:add_control('loop_start', 'loop start', controlspec.new(0,10,'lin',1/100,0,'s',1/100))
+  params:add_control('loop_end', 'loop end', controlspec.new(0,10,'lin',1/100,10,'s',1/100))
+end
+```
+
+While scripting parameters after the script is running can be tons of fun, it's important to be mindful of the nuances of the object that you're modifying!
+
+In the above example, we want changes to the `loop_end` parameter to delta +/- 0.1 seconds. When the controlspec's `maxval` is 10, our `quantum` of 1/100 yields 0.1 second changes (since 10 * 0.01 is 0.1). But when we change our `maxval` to 60, a `quantum` of 1/100 means each delta will increment or decrement by 1/100 *of the full 60 second range* -- this yields 0.6 second changes. So, we need to adjust the `quantum` to `1/600` when the range is 60 seconds, and we need to return the `quantum` to `1/100` when the range is 10 seconds.
+
+Here's another example:
+
+```lua
+function init()
+  color_options = {
+    {'Red','Yellow','Blue'}, -- color_options[1]
+    {'Orange', 'Green', 'Violet'}, -- color_options[2]
+    {'Red-Orange', 'Yellow-Orange', 'Yellow-Green', 'Blue-Green', 'Blue-Violet', 'Red-Violet'}, -- color_options[3]
+  }
+  params:add_option('colors', 'colors', color_options[1], 1)
+  
+  params:add_option('color_set', 'color set', {'Primary','Secondary','Tertiary'}, 1)
+  params:set_action('color_set',
+    function(x)
+      local color_param = params:lookup_param('colors')
+      color_param.options = color_options[x]
+      color_param.count = #color_options[x]
+      color_param.selected = 1
+    end
+  )
+end
+```
+
+Again, it's important to be mindful of the nuances of the object that you're modifying! For example:
+
+- if we don't change the `color_param.count`, we can't select past the third color in our `Tertiary` color set
+
+- if we don't reset `color_param.selected`, then we will receive errors if our currently selected color is beyond the number of options in our new color set
+
+When in doubt, use `tab.print` to understand the parameter object you're hoping to modify, or study [the params source code](https://github.com/monome/norns/tree/main/lua/core/params).
 
 ### description
 

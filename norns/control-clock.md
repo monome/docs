@@ -119,6 +119,28 @@ An example entry:
 
 You'll notice that these entries are identical to the ones located on the mapping screen.
 
+## keyboard
+
+An attached USB keyboard can be used to enter text anywhere across the norns system (eg. WIFI passwords, PSET filenames, TAPE names, etc). You can manage the keyboard layout via `SYSTEM > DEVICES > KEYBOARD LAYOUT`, where you'll find [27 country codes](https://github.com/monome/norns/blob/197dbdbee5aa999e3dcf5718a11b62b2a57d1369/lua/core/keyboard.lua#L12-L38).
+
+A number of hotkeys are also available. To access the system menus:
+
+- `F1`: LEVELS
+- `F2`: TAPE
+- `F3`: HOME
+- `F4`: PARAMETERS
+
+To toggle between script interface and system menus: `F5`
+
+While in the system menus:
+
+- `arrow up` / `arrow down`: E2 with delta +/- 1 (while held)
+- `pageup` / `pagedown`: E2 with delta +/- 6 (while held)
+- `+` / `-`: adjusts selected parameter value up/down (while held)
+- `arrow left` / `arrow right`: K2 / K3
+
+[Contributions to extend functionality are welcome](https://github.com/monome/norns).
+
 ## OSC
 
 [Open Sound Control (OSC)](https://en.wikipedia.org/wiki/Open_Sound_Control) is a network protocol for sending messages supported by numerous sound and media applications.

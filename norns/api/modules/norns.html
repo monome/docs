@@ -33,6 +33,7 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
 </ul>
 
 
@@ -53,9 +54,9 @@
   <li><a href="../modules/keyboard.html">keyboard</a></li>
   <li><a href="../modules/metro.html">metro</a></li>
   <li><a href="../modules/midi.html">midi</a></li>
-  <li><a href="../modules/norns.html">norns</a></li>
+  <li><strong>norns</strong></li>
   <li><a href="../modules/osc.html">osc</a></li>
-  <li><strong>params.control</strong></li>
+  <li><a href="../modules/params.control.html">params.control</a></li>
   <li><a href="../modules/paramset.html">paramset</a></li>
   <li><a href="../modules/poll.html">poll</a></li>
   <li><a href="../modules/screen.html">screen</a></li>
@@ -95,64 +96,55 @@
 
 <div id="content">
 
-<h1>Module <code>params.control</code></h1>
-<p>Control class</p>
+<h1>Module <code>norns</code></h1>
+<p>System utilities</p>
 <p></p>
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Control.new">Control.new (id, name, controlspec, formatter, allow_pmap)</a></td>
-	<td class="summary">constructor.</td>
+	<td class="name" nowrap><a href="#none">none ()</a></td>
+	<td class="summary">do nothing.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Control:map_value">Control:map_value (value)</a></td>
-	<td class="summary">map_value.</td>
+	<td class="name" nowrap><a href="#blank">blank ()</a></td>
+	<td class="summary">draw a blank screen.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Control:get">Control:get ()</a></td>
-	<td class="summary">get.</td>
+	<td class="name" nowrap><a href="#shutdown">shutdown ()</a></td>
+	<td class="summary">shutdown</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Control:get_raw">Control:get_raw ()</a></td>
-	<td class="summary">get_raw.</td>
+	<td class="name" nowrap><a href="#system_cmd">system_cmd (cmd, callback)</a></td>
+	<td class="summary">add cmd to queue</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Control:unmap_value">Control:unmap_value (value)</a></td>
-	<td class="summary">unmap_value.</td>
+	<td class="name" nowrap><a href="#system_glob">system_glob (pattern)</a></td>
+	<td class="summary">find pathnames matching a pattern</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Control:set">Control:set (value, silent)</a></td>
-	<td class="summary">set.</td>
+	<td class="name" nowrap><a href="#rerun">rerun ()</a></td>
+	<td class="summary">rerun the current script</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#platform">platform</a></td>
+	<td class="summary">platform detection
+ 0 = UNKNOWN
+ 1 = OTHER
+ 2 = CM3 (norns)
+ 3 = PI3 (norns shield)</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Control:set_raw">Control:set_raw (value, silent)</a></td>
-	<td class="summary">set_raw.</td>
+	<td class="name" nowrap><a href="#is_norns">is_norns</a></td>
+	<td class="summary">true if we are running on norns (CM3)</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Control:get_delta">Control:get_delta ()</a></td>
-	<td class="summary">get_delta.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Control:delta">Control:delta (d)</a></td>
-	<td class="summary">delta.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Control:set_default">Control:set_default ()</a></td>
-	<td class="summary">set_default.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Control:bang">Control:bang ()</a></td>
-	<td class="summary">bang.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Control:get_range">Control:get_range ()</a></td>
-	<td class="summary">get_range.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Control:string">Control:string ()</a></td>
-	<td class="summary">string.</td>
+	<td class="name" nowrap><a href="#is_shield">is_shield</a></td>
+	<td class="summary">true if we are running on norns shield (PI3)</td>
 	</tr>
 </table>
 
@@ -164,34 +156,66 @@
 
     <dl class="function">
     <dt>
-    <a name = "Control.new"></a>
-    <strong>Control.new (id, name, controlspec, formatter, allow_pmap)</strong>
+    <a name = "none"></a>
+    <strong>none ()</strong>
     </dt>
     <dd>
-    constructor.
+    do nothing.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "blank"></a>
+    <strong>blank ()</strong>
+    </dt>
+    <dd>
+    draw a blank screen.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "shutdown"></a>
+    <strong>shutdown ()</strong>
+    </dt>
+    <dd>
+    shutdown
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "system_cmd"></a>
+    <strong>system_cmd (cmd, callback)</strong>
+    </dt>
+    <dd>
+    add cmd to queue
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">id</span>
-            <span class="types"><a class="type" href="../modules/params.control.html#Control:string">string</a></span>
-
+        <li><span class="parameter">cmd</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         shell command to execute
         </li>
-        <li><span class="parameter">name</span>
-            <span class="types"><a class="type" href="../modules/params.control.html#Control:string">string</a></span>
-
-        </li>
-        <li><span class="parameter">controlspec</span>
-            <span class="types"><span class="type">ControlSpec</span></span>
-
-        </li>
-        <li><span class="parameter">formatter</span>
-            <span class="types"><span class="type">function</span></span>
-
-        </li>
-        <li><span class="parameter">allow_pmap</span>
-            <span class="types"><span class="type">boolean</span></span>
-
+        <li><span class="parameter">callback</span>
+            <span class="types">optional <span class="type">func</span></span>
+         the callback will be called with the output of the
+ command after it completes. if the callback is nil, then print the output
+ instead.
         </li>
     </ul>
 
@@ -201,218 +225,91 @@
 
 </dd>
     <dt>
-    <a name = "Control:map_value"></a>
-    <strong>Control:map_value (value)</strong>
+    <a name = "system_glob"></a>
+    <strong>system_glob (pattern)</strong>
     </dt>
     <dd>
-    map_value.
- takes 0-1 and returns value scaled by controlspec.
+    find pathnames matching a pattern
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">value</span>
+        <li><span class="parameter">pattern</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
 
         </li>
     </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:get"></a>
-    <strong>Control:get ()</strong>
-    </dt>
-    <dd>
-    get.
- returns mapped value.
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:get_raw"></a>
-    <strong>Control:get_raw ()</strong>
-    </dt>
-    <dd>
-    get_raw.
- get 0-1.
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:unmap_value"></a>
-    <strong>Control:unmap_value (value)</strong>
-    </dt>
-    <dd>
-    unmap_value.
- takes a scaled value and returns 0-1, quantized to step.
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">value</span>
-
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:set"></a>
-    <strong>Control:set (value, silent)</strong>
-    </dt>
-    <dd>
-    set.
- accepts a mapped value
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">value</span>
-
-        </li>
-        <li><span class="parameter">silent</span>
-
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:set_raw"></a>
-    <strong>Control:set_raw (value, silent)</strong>
-    </dt>
-    <dd>
-    set_raw.
- set 0-1.
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">value</span>
-
-        </li>
-        <li><span class="parameter">silent</span>
-
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:get_delta"></a>
-    <strong>Control:get_delta ()</strong>
-    </dt>
-    <dd>
-    get_delta.
- get increment used for delta()
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:delta"></a>
-    <strong>Control:delta (d)</strong>
-    </dt>
-    <dd>
-    delta.
- add delta to current value. checks controlspec for mapped vs not.
- default division of delta for 100 steps range.
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">d</span>
-
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:set_default"></a>
-    <strong>Control:set_default ()</strong>
-    </dt>
-    <dd>
-    set_default.
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:bang"></a>
-    <strong>Control:bang ()</strong>
-    </dt>
-    <dd>
-    bang.
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:get_range"></a>
-    <strong>Control:get_range ()</strong>
-    </dt>
-    <dd>
-    get_range.
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Control:string"></a>
-    <strong>Control:string ()</strong>
-    </dt>
-    <dd>
-    string.
-
-
 
     <h3>Returns:</h3>
     <ol>
 
-        formatted string
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{string,...}</a></span>
+        a table of matching pathnames
     </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rerun"></a>
+    <strong>rerun ()</strong>
+    </dt>
+    <dd>
+    rerun the current script
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "platform"></a>
+    <strong>platform</strong>
+    </dt>
+    <dd>
+    platform detection
+ 0 = UNKNOWN
+ 1 = OTHER
+ 2 = CM3 (norns)
+ 3 = PI3 (norns shield)
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_norns"></a>
+    <strong>is_norns</strong>
+    </dt>
+    <dd>
+    true if we are running on norns (CM3)
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_shield"></a>
+    <strong>is_shield</strong>
+    </dt>
+    <dd>
+    true if we are running on norns shield (PI3)
+
+
+
 
 
 

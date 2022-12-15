@@ -47,11 +47,13 @@
   <li><a href="../modules/core.crow.quote.html">core.crow.quote</a></li>
   <li><a href="../modules/encoders.html">encoders</a></li>
   <li><a href="../modules/engine.html">engine</a></li>
+  <li><a href="../modules/gamepad.html">gamepad</a></li>
   <li><a href="../modules/grid.html">grid</a></li>
   <li><a href="../modules/hid.html">hid</a></li>
   <li><a href="../modules/keyboard.html">keyboard</a></li>
   <li><a href="../modules/metro.html">metro</a></li>
   <li><a href="../modules/midi.html">midi</a></li>
+  <li><a href="../modules/norns.html">norns</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
   <li><a href="../modules/params.control.html">params.control</a></li>
   <li><strong>paramset</strong></li>
@@ -75,6 +77,7 @@
   <li><a href="../modules/lib.Graph.html">lib.Graph</a></li>
   <li><a href="../modules/lib.intonation.html">lib.intonation</a></li>
   <li><a href="../modules/Lattice.html">Lattice</a></li>
+  <li><a href="../modules/lib.lfo.html">lib.lfo</a></li>
   <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
   <li><a href="../modules/lib.MusicUtil.html">lib.MusicUtil</a></li>
   <li><a href="../modules/lib.pattern.html">lib.pattern</a></li>
@@ -102,14 +105,6 @@
 	<tr>
 	<td class="name" nowrap><a href="#ParamSet.new">ParamSet.new (id, name)</a></td>
 	<td class="summary">constructor.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#ParamSet:add_separator">ParamSet:add_separator (name)</a></td>
-	<td class="summary">add separator.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#ParamSet:add_group">ParamSet:add_group (name, n)</a></td>
-	<td class="summary">add parameter group.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#ParamSet:add">ParamSet:add (args)</a></td>
@@ -146,6 +141,14 @@
 	<tr>
 	<td class="name" nowrap><a href="#ParamSet:add_binary">ParamSet:add_binary (id, name, behavior, default)</a></td>
 	<td class="summary">add binary</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ParamSet:add_separator">ParamSet:add_separator (id, name)</a></td>
+	<td class="summary">add separator.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ParamSet:add_group">ParamSet:add_group (id, name, n)</a></td>
+	<td class="summary">add parameter group.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#ParamSet:print">ParamSet:print ()</a></td>
@@ -224,6 +227,10 @@
 	<td class="summary">read from disk.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#ParamSet:delete">ParamSet:delete (filename, name)</a></td>
+	<td class="summary">delete from disk.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#ParamSet:default">ParamSet:default ()</a></td>
 	<td class="summary">read default pset if present.</td>
 	</tr>
@@ -260,57 +267,6 @@
         </li>
         <li><span class="parameter">name</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "ParamSet:add_separator"></a>
-    <strong>ParamSet:add_separator (name)</strong>
-    </dt>
-    <dd>
-    add separator.
- name is optional.
- separators have their own parameter index and
- can be hidden or added to a paremeter group.
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">name</span>
-            <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "ParamSet:add_group"></a>
-    <strong>ParamSet:add_group (name, n)</strong>
-    </dt>
-    <dd>
-    add parameter group.
- groups cannot be nested,
- i.e. a group cannot be made within a group.
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">name</span>
-            <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
-        </li>
-        <li><span class="parameter">n</span>
-            <span class="types"><span class="type">int</span></span>
 
         </li>
     </ul>
@@ -401,11 +357,11 @@
     <ul>
         <li><span class="parameter">id</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (no spaces)
         </li>
         <li><span class="parameter">name</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (can contain spaces)
         </li>
         <li><span class="parameter">options</span>
 
@@ -432,11 +388,11 @@
     <ul>
         <li><span class="parameter">id</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (no spaces)
         </li>
         <li><span class="parameter">name</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (can contain spaces)
         </li>
         <li><span class="parameter">controlspec</span>
             <span class="types"><span class="type">controlspec</span></span>
@@ -464,11 +420,11 @@
     <ul>
         <li><span class="parameter">id</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (no spaces)
         </li>
         <li><span class="parameter">name</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (can contain spaces)
         </li>
         <li><span class="parameter">path</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
@@ -519,11 +475,11 @@
     <ul>
         <li><span class="parameter">id</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (no spaces)
         </li>
         <li><span class="parameter">name</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (can contain spaces)
         </li>
         <li><span class="parameter">min</span>
             <span class="types"><span class="type">number</span></span>
@@ -563,11 +519,11 @@
     <ul>
         <li><span class="parameter">id</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (no spaces)
         </li>
         <li><span class="parameter">name</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (can contain spaces)
         </li>
     </ul>
 
@@ -588,11 +544,11 @@
     <ul>
         <li><span class="parameter">id</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (no spaces)
         </li>
         <li><span class="parameter">name</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
-
+         (can contain spaces)
         </li>
         <li><span class="parameter">behavior</span>
             <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
@@ -600,6 +556,74 @@
         </li>
         <li><span class="parameter">default</span>
             <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ParamSet:add_separator"></a>
+    <strong>ParamSet:add_separator (id, name)</strong>
+    </dt>
+    <dd>
+    add separator.
+ id and name are optional.
+ if neither id or name are provided,
+ separator will be named 'separator'
+ and will not have a unique parameter index.
+ separators which have their own parameter index
+ can be hidden / shown.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">id</span>
+            <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
+         (no spaces)
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
+         (can contain spaces)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ParamSet:add_group"></a>
+    <strong>ParamSet:add_group (id, name, n)</strong>
+    </dt>
+    <dd>
+    add parameter group.
+ groups cannot be nested,
+ i.e. a group cannot be made within a group.
+ id and name are optional.
+ if neither id or name are provided,
+ group will be named 'group'
+ and will not have a unique parameter index.
+ groups which have their own parameter index
+ can be hidden / shown.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">id</span>
+            <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
+         (no spaces)
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
+         (can contain spaces)
+        </li>
+        <li><span class="parameter">n</span>
+            <span class="types"><span class="type">int</span></span>
 
         </li>
     </ul>
@@ -1015,6 +1039,30 @@
 
 </dd>
     <dt>
+    <a name = "ParamSet:delete"></a>
+    <strong>ParamSet:delete (filename, name)</strong>
+    </dt>
+    <dd>
+    delete from disk.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">filename</span>
+         either an absolute path, a number (for [scriptname]-[number].pset in local data folder) or nil (for default [scriptname].pset in local data folder)
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="../modules/paramset.html#ParamSet:string">string</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "ParamSet:default"></a>
     <strong>ParamSet:default ()</strong>
     </dt>
@@ -1063,7 +1111,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-10-08 15:48:35 </i>
+<i style="float:right;">Last updated 2022-12-15 09:11:43 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

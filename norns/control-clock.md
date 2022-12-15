@@ -121,10 +121,9 @@ You'll notice that these entries are identical to the ones located on the mappin
 
 ## keyboard
 
-The system menus are also navigable with an attached USB keyboard.  
-[Contributions to extend functionality are welcome](https://github.com/monome/norns).
+An attached USB keyboard can be used to enter text anywhere across the norns system (eg. WIFI passwords, PSET filenames, TAPE names, etc). You can manage the keyboard layout via `SYSTEM > DEVICES > KEYBOARD LAYOUT`, where you'll find [27 country codes](https://github.com/monome/norns/blob/197dbdbee5aa999e3dcf5718a11b62b2a57d1369/lua/core/keyboard.lua#L12-L38).
 
-To access the system menus:
+A number of hotkeys are also available. To access the system menus:
 
 - `F1`: LEVELS
 - `F2`: TAPE
@@ -139,6 +138,8 @@ While in the system menus:
 - `pageup` / `pagedown`: E2 with delta +/- 6 (while held)
 - `+` / `-`: adjusts selected parameter value up/down (while held)
 - `arrow left` / `arrow right`: K2 / K3
+
+[Contributions to extend functionality are welcome](https://github.com/monome/norns).
 
 ## OSC
 

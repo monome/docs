@@ -117,40 +117,12 @@ Each norns update brings new features, both for scripting and general usability.
 To specify a minimum version required, set `norns.version.required` to the **YYMMDD** value before the `init()` of your script, eg:
 
 ```lua
--- a small welcome
--- v1 @monome
+-- minimum required version check
 
 norns.version.required = 221214 -- can be a number or string, formatted YYMMDD
 
 function init()
-  print('hello, welcome to the script')
-  
-  screen_level = 0
-  
-  clock.run(
-    function()
-      while true do
-        clock.sleep(1/8)
-        screen_level = util.wrap(screen_level+1,0,15)
-        redraw()
-      end
-    end
-  )
-  
-end
-
-function redraw()
-  screen.clear()
-  
-  screen.level(screen_level)
-  screen.rect(10,12,108,40)
-  screen.fill()
-  
-  screen.level(15-screen_level)
-  screen.move(64,32)
-  screen.text_center('welcome!')
-  
-  screen.update()
+  print('hello, welcome to the script')  
 end
 ```
 

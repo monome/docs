@@ -7,15 +7,15 @@ nav_exclude: true
 
 ### 2021 grid
 
-completely reworked. clear white light. variable brightness. snappy, easy keypress. slightly thinner, certainly lighter. uses fewer components, consumes less power. bus powered. usb-c.
+completely reworked. clear white light. 16-step variable brightness. snappy, easy keypress. slightly thinner, certainly lighter. uses fewer components, consumes less power. bus powered. usb-c.
 
 ### 2016 arc
 
-matches the 2015 grid. bright warm white light. variable brightness. two-tone all-aluminum assembly. super thin. bus powered. mini-usb.
+matches the 2015 grid. bright warm white light. 16-step variable brightness. two-tone all-aluminum assembly. super thin. bus powered. mini-usb.
 
 ### 2015 grid
 
-128 only. bright warm white light. variable brightness. two-tone all-aluminum assembly. super thin. bus powered. mini-usb.
+128 only. bright warm white light. 16-step variable brightness. two-tone all-aluminum assembly. super thin. bus powered. mini-usb.
 
 ### 2014 grid kit
 
@@ -39,7 +39,7 @@ solid-block milled walnut enclosures, plate embedded. orange LEDs. bournes encod
 
 ### 2011 grids
 
-solid-block milled walnut enclosures, plate embedded. 4-step per-LED variable brightness introduced (slightly buggy– minor flickering on some units.) orange LEDs. tilt upgrade offered later (no longer available). all bus powered. standard usb plug.
+solid-block milled walnut enclosures, plate embedded. 4-step per-LED variable brightness introduced (slightly buggy – minor flickering on some units). orange LEDs. tilt upgrade offered later (no longer available). all bus powered. standard usb plug.
 
 ### monome kit aka mk -- 2010
 
@@ -47,11 +47,11 @@ modular grid kit, logic board supported 8×8, 8×16, or 16×16. 40h keypad size.
 
 ### grayscale 64, 128 -- 2010-2012
 
-white LEDs, silicone over steel enclosure, framed aluminum plate. tilt sensor. bus powered.
+white LEDs (monobright), silicone over steel enclosure, framed aluminum plate. tilt sensor. bus powered.
 
 ### “series” 64, 128, 256 -- 2007-2010
 
-smaller keypads than the 40h. mitred-frame walnut enclosure, plate embedded/framed within enclosure, orange LEDs. rubber “noodle” slip guard on bottom. burned brand “monome” on bottom. 256 and 128 shipped with external power supply. bus power upgrade offered later. 64 bus powered and included tilt sensor. 256 and 128 not tilt upgradeable.
+smaller keypads than the 40h. mitred-frame walnut enclosure, plate embedded/framed within enclosure, orange LEDs (monobright). rubber “noodle” slip guard on bottom. burned brand “monome” on bottom. 256 and 128 shipped with external power supply. bus power upgrade offered later. 64 bus powered and included tilt sensor. 256 and 128 not tilt upgradeable.
 
 ### 40h kit -- 2007-2010
 
@@ -59,11 +59,11 @@ smaller keypads than the 40h. mitred-frame walnut enclosure, plate embedded/fram
 
 ### 40h special edition -- 2007
 
-8×8, orange LEDs, various colored enclosures, powercoated white top plates, built-in tilt sensor. 16 units made.
+8×8, orange LEDs (monobright), various colored enclosures, powercoated white top plates, built-in tilt sensor. 16 units made.
 
 ### 40h -- 2006-2007
 
-8×8, green LEDs, black silicone enclosure, edge-exposed aluminum plate. exposed ADC ports internally, could be used for tilt as a user modification.
+8×8, green LEDs (monobright), black silicone enclosure, edge-exposed aluminum plate. exposed ADC ports internally, could be used for tilt as a user modification.
 
 
 

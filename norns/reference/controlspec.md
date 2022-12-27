@@ -57,14 +57,14 @@ function init()
   params:add_control("delay_time","delay time",del)
 
   freq_L = controlspec.def{
-    min=0.00,
-    max=5.0,
-    warp='lin',
-    step=0.01,
-    default=2.5,
-    quantum=0.01,
-    wrap=false,
-    units='khz'
+    min = 0.00, -- the minimum value
+    max = 5.0, -- the maximum value
+    warp = 'lin', -- a shaping option for the raw value
+    step = 0.01, -- output value quantization
+    default = 2.5, -- default value
+    units = 'khz', -- displayed on PARAMS UI
+    quantum = 0.01, -- each delta will change raw value by this much
+    wrap = false -- wrap around on overflow (true) or clamp (false)
   }
  params:add_control("filter_frequency_L","filter frequency L",freq_L)
 

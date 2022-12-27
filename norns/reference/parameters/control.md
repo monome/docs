@@ -49,9 +49,9 @@ function init()
     warp = 'exp',
     step = 0.01,
     default = 2031,
+    units = 'hz'
     quantum = 0.01,
     wrap = false,
-    units = 'hz'
   }
   params:add_control("filter_cutoff","filter cutoff",filter_spec)
   params:set_action("filter_cutoff", function(freq) engine.cutoff(freq) end)
@@ -79,7 +79,7 @@ s = require 'sequins'
 
 function init()
   
-  params:add_control("filter_cutoff","filter cutoff", controlspec.new(1000,6000,'exp',0.01,2031,0.01,false,'hz'))
+  params:add_control("filter_cutoff","filter cutoff", controlspec.new(1000,6000,'exp',0.01,2031,'hz',0.01,false))
   params:set_action("filter_cutoff", function(freq) engine.cutoff(freq) end)
   params:bang()
   

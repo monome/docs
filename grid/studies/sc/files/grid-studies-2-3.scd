@@ -5,13 +5,14 @@ Server.default = Server.local;
 
 s.waitForBoot({
 
-~m.useDevice(0);
+	~m.useDevice(0);
 
-OSCFunc.newMatching(
-		{ arg message, time, addr, recvPort;
+	OSCFunc.newMatching(
+		{ arg message;
 			~m.ledset(message[1], message[2], message[3]);
-
-		}, "/monome/grid/key");
+		},
+		"/monome/grid/key";
+	);
 
 });
 

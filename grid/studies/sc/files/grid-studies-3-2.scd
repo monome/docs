@@ -5,12 +5,12 @@ Server.default = Server.local;
 
 s.waitForBoot({
 
-~step = Array.fill(96, {0});
-~play_position = 0;
+	~step = Array.fill(96, {0});
+	~play_position = -1;
 
-~m.useDevice(0);
+	~m.useDevice(0);
 
-OSCFunc.newMatching(
+	OSCFunc.newMatching(
 		{ arg message, time, addr, recvPort;
 
 			if((message[3] == 1) && (message[2] < 6), {
@@ -20,38 +20,40 @@ OSCFunc.newMatching(
 					{~step[pos] = 1}
 				);
 			})
-		}, "/monome/grid/key");
+		},
+		"/monome/grid/key"
+	);
 
 
-d = {
+	d = {
 		var highlight;
 		for(0,15, {arg x;
-			if(x==~play_position,
-					{highlight = 1},
-					{highlight = 0});
+			if(x == ~play_position,
+				{highlight = 4},
+				{highlight = 0});
 
 			for(0,5, {arg y;
-				~m.levset(x,y,(~step[y*16+x] * 11) + (highlight * 4));
+				~m.levset(x,y,(~step[y*16+x] * 11) + (highlight));
 			});
 		})
 	};
 
-t = Routine({
-	var interval = 0.125;
-	loop {
-		if(~play_position == 15,
-				{~play_position = 0;},
-				{~play_position = ~play_position + 1;}
+	t = Routine({
+		var interval = 0.125;
+		loop {
+			if(~play_position == 15,
+				{~play_position = 0},
+				{~play_position = ~play_position + 1}
 			);
 
-		d.value;
+			d.value;
 
-		interval.yield;
-	}
+			interval.yield;
+		}
 
-});
+	});
 
-t.play();
+	t.play();
 
 });
 

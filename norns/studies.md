@@ -46,7 +46,7 @@ tutorials written by monome.
 
 resources developed by other learners, script authors, and designers from our community.
 
-- [norns study group](https://discord.com/invite/y2TYJ4ts) // a community run discord server for asynchronous and video study sessions
+- [norns study group](https://discord.gg/Y2fmdZBAfp) // a community run discord server for asynchronous and video study sessions
 - [athenaeum](https://github.com/northern-information/athenaeum) // a repository of study, spike, and sample scripts from [Tyler Etters](https://nor.the-rn.info)
 - [norns: tutorial](https://llllllll.co/t/norns-tutorial/23241) // chunked examples that reveal the idiosyncrasies of the core norns concepts from [Devine Lu Linvega](https://xxiivv.com)
 - [norns development](https://github.com/p3r7/awesome-monome-norns/blob/main/README.md#development-general) // general development notes from Jordan Besly's [awesome monome norns](https://github.com/p3r7/awesome-monome-norns) repo

@@ -12,7 +12,7 @@ SynthDef(\singrain, { |freq = 440, amp = 0.2, sustain = 1|
 s.waitForBoot({
 
 	~step = Array.fill(96, {0});
-	~play_position = 0;
+	~play_position = -1;
 	~next_position = 0;
 	~cutting = 0;
 	~keys_held = 0;
@@ -24,10 +24,11 @@ s.waitForBoot({
 
 	OSCFunc.newMatching(
 		{ arg message, time, addr, recvPort;
+			var x = message[1], y = message[2], z = message[3];
 
 			// toggles
-			if((message[3] == 1) && (message[2] < 6), {
-				var pos = message[1] + (message[2] * 16);
+			if((z == 1) && (y < 6), {
+				var pos = x + (y * 16);
 				if(~step[pos] == 1,
 					{~step[pos] = 0},
 					{~step[pos] = 1}
@@ -35,23 +36,23 @@ s.waitForBoot({
 			});
 
 			// count bottom row keys
-			if(message[2] == 7,
-				if(message[3] == 1,
+			if(y == 7,
+				if(z == 1,
 					{~keys_held = ~keys_held + 1;},
 					{~keys_held = ~keys_held - 1;});
 			);
 
 			// loop and cut
-			if((message[3] == 1) && (message[2] == 7), {
+			if((z == 1) && (y == 7), {
 				if(~keys_held == 1, {
-					~next_position = message[1];
+					~next_position = x;
 					~cutting = 1;
-					~key_last = message[1];
+					~key_last = x;
 				},
 				{
 					~loop_start = ~key_last;
-					~loop_end = message[1];
-					~loop_end.postln;
+					~loop_end = x;
+					("start: " ++ ~loop_start ++ " // end: " ++ ~loop_end).postln;
 				});
 			});
 	}, "/monome/grid/key");
@@ -93,13 +94,9 @@ s.waitForBoot({
 			if(~cutting == 1,
 				{~play_position = ~next_position; ~cutting = 0;},
 				{
-					if(~play_position == 15,
-						{~play_position = 0;},
-						{
-							if(~play_position == ~loop_end,
-								{~play_position = ~loop_start;},
-								{~play_position = ~play_position + 1;});
-						}
+					if(~play_position == ~loop_end,
+						{~play_position = ~loop_start;},
+						{~play_position = ~play_position + 1;}
 					);
 				};
 			);

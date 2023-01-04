@@ -11,16 +11,19 @@ SynthDef(\singrain, { |freq = 440, amp = 0.2, sustain = 1|
 
 s.waitForBoot({
 
-	~step = Array.fill(96, {0});
-	~play_position = 0;
-
 	~m.useDevice(0);
+	~step = Array.fill(~m.rws-2 * ~m.cls, {0});
+	~play_position = -1;
+
+	~cols = ~m.cls-1;
+	~rows = ~m.rws-1;
 
 	OSCFunc.newMatching(
 		{ arg message, time, addr, recvPort;
+			var x = message[1], y = message[2], z = message[3];
 
-			if((message[3] == 1) && (message[2] < 6), {
-				var pos = message[1] + (message[2] * 16);
+			if((z == 1) && (y <= (~rows-2)), {
+				var pos = x + (y * 16);
 				if(~step[pos] == 1,
 					{~step[pos] = 0},
 					{~step[pos] = 1}
@@ -30,40 +33,39 @@ s.waitForBoot({
 		"/monome/grid/key"
 	);
 
-
 	d = {
 		var highlight;
-		for(0,15, {arg x;
+		for(0,~cols, {arg x;
 			if(x == ~play_position,
 				{highlight = 4},
 				{highlight = 0});
 
-			for(0,5, {arg y;
+			for(0,~rows-2, {arg y;
 				~m.levset(x,y,(~step[y*16+x] * 11) + (highlight));
 			});
 
 			// set trigger row background
-			~m.levset(x,6,4);
+			~m.levset(x,~rows-1,4);
 		});
 
 		// show triggers
-		for(0,5, {arg t;
+		for(0,~rows-2, {arg t;
 			if(~step[(t*16) + ~play_position] == 1,
-				{~m.levset(t,6,15);}
-			)
-		})
+				{~m.levset(t,~rows-1,15);}
+			);
+		});
 	};
 
 	t = Routine({
 		var interval = 0.125;
 		loop {
-			if(~play_position == 15,
+			if(~play_position == ~cols,
 				{~play_position = 0;},
 				{~play_position = ~play_position + 1;}
 			);
 
 			// TRIGGER SOMETHING
-			for(0,5, {arg t;
+			for(0,~rows-2, {arg t;
 				if(~step[(t*16) + ~play_position] == 1,
 					{
 						Synth(\singrain, [

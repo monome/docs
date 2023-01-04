@@ -178,28 +178,38 @@ s.waitForBoot({
 
 The most basic decoupled interaction is a toggle.
 
-We turn the grid into a huge bank of toggles by creating an [Array](https://doc.sccode.org/Classes/Array.html) to store data. It needs to be the same size as our grid. We'll call this `step` and initialize it full of zeros.
+We turn the grid into a huge bank of toggles by creating an [Array](https://doc.sccode.org/Classes/Array.html) to store data. It needs to be the same size as our grid, so we'll use the `cls` and `rws` methods to gather our grid size. We'll call this array `step` and initialize it full of zeros.
 
 ```js
-~step = Array.fill(128, {0});
+~step = Array.fill(~m.cls * ~m.rws, {0});
 ```
 
-Now we need our key input code to switch the states by embedding this into our `OSCFunc`:
+We'll also use `var`s `x`, `y`, and `z` (key state) to parse our incoming grid messages and use these to switch the states by embedding this into our `OSCFunc`:
 
 ```js
-if(message[3] == 1, {
-	var pos = message[1] + (message[2] * 16);
-	if(~step[pos] == 1,
-		{~step[pos] = 0},
-		{~step[pos] = 1}
-	);
-	d.value(message[1], message[2]);
-})
+OSCFunc.newMatching(
+	{ arg message, time, addr, recvPort;
+		// we don't need all of these args for everything,
+		// but be aware of their existence!
+		var x = message[1], y = message[2], z = message[3];
+		
+		if(z == 1, {
+			var pos = x + (y*16);
+			if(~step[pos] == 1,
+				{~step[pos] = 0},
+				{~step[pos] = 1}
+			);
+			d.value(x,y);
+		})
+	},
+	"/monome/grid/key"
+	
+);
 ```
 
 `message[3]` is the key state (down or up). Here we do something only on key down (where the value == 1). We calculate the position, and then change the value of the `step` based on its previous state.
 
-We refresh the grid in function `d` which is executed with `d.value;`:
+We refresh the grid with function `d`, which is executed with `d.value(x,y);`:
 
 ```js
 d = { arg x, y;
@@ -227,16 +237,16 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 
 *See [grid-studies-3-1.scd](files/grid-studies-3-1.scd) for this step.*
 
-We already have a full bank of toggles set up. Let's shrink down the bank to just the top 6 rows. First `step` can be reduced to 96 elements. And then we'll adjust the key detection so toggling only happens if `y` is less than 6:
+We already have a full bank of toggles set up. Let's shrink down the bank to exclude the bottom two rows. We'll first reduce `step`, then we'll adjust the key detection so toggling only happens if `y` is outside of the bottom two rows:
 
 ```js
-if((message[3] == 1) && (message[2] < 6), {
-	var pos = message[1] + (message[2] * 16);
+if((z == 1) && (y < (~m.rws-2)), {
+	var pos = x + (y * 16);
 	if(~step[pos] == 1,
 		{~step[pos] = 0},
 		{~step[pos] = 1}
 	);
-	d.value(message[1], message[2]);
+	d.value(x,y);
 });
 ```
 
@@ -246,13 +256,25 @@ That will get us started.
 
 *See [grid-studies-3-2.scd](files/grid-studies-3-2.scd) for this step.*
 
-Let's make a timer routine that moves a virtual playhead.
+To make our interface adaptive to any size grid, we query the number of rows and columns with `~m.rws` and `~m.cls`. You might've noticed that these return 1-indexed numbers, however.
+
+Since most of our SuperCollider functions will be 0-indexed, let's make it easy on ourselves and introduce 0-indexed versions of our row and column totals at the top:
+
+```js
+// 'cls' + 'rws' return as 1-indexed,
+// but we need 0-indexed for most of our functions!
+~cols = ~m.cls-1;
+~rows = ~m.rws-1;
+```
+
+Now, let's get into fun stuff!  
+Let's make a timer routine that moves a virtual playhead:
 
 ```js
 t = Routine({
 	var interval = 0.125;
 	loop {
-		if(~play_position == 15,
+		if(~play_position == ~cols,
 			{~play_position = 0},
 			{~play_position = ~play_position + 1}
 		);
@@ -263,23 +285,21 @@ t = Routine({
 	}
 	
 });
-
-t.play();
 ```
 
-This routine runs at a timing interval specified by the variable `interval`. The `play_position` is advanced, rolling back to 0 after 15. We redraw the grid each time the play head moves.
+This routine runs at a timing interval specified by the variable `interval`. The `play_position` is advanced, rolling back to 0 after it hits the last column. We redraw the grid each time the play head moves.
 
 For the redraw we add highlighting for the play position. Note how `levset`'s multiplication by 15 has been decreased to 11, to provide another mid-level brightness. We now have a series of brightness levels helping to indicate playback, lit keys, and currently active keys:
 
 ```js
 d = {
 	var highlight;
-	for(0,15, {arg x;
+	for(0,~cols, {arg x;
 		if(x == ~play_position,
 			{highlight = 4},
 			{highlight = 0});
 		
-		for(0,5, {arg y;
+		for(0,~rows-2, {arg y;
 			~m.levset(x,y,(~step[y*16+x] * 11) + (highlight));
 		});
 	})
@@ -299,37 +319,37 @@ Drawing the trigger row happens in `d` (at `// show triggers`):
 ```js
 d = {
 	var highlight;
-	for(0,15, {arg x;
+	for(0,~cols, {arg x;
 		if(x == ~play_position,
 			{highlight = 4},
 			{highlight = 0});
 		
-		for(0,5, {arg y;
+		for(0,~rows-2, {arg y;
 			~m.levset(x,y,(~step[y*16+x] * 11) + (highlight));
 		});
 		
 		// set trigger row background
-		~m.levset(x,6,4);
+		~m.levset(x,~rows-1,4);
 	});
 	
 	// show triggers
-	for(0,5, {arg t;
+	for(0,~rows-2, {arg t;
 		if(~step[(t*16) + ~play_position] == 1,
-			{~m.levset(t,6,15);}
-		)
-	})
+			{~m.levset(t,~rows-1,15);}
+		);
+	});
 };
 ```
 
 - we create a dim row (level 4 is fairly dim)
 - we search through the `step` array at the current play position, showing a bright indicator for each on state
-- this displays a sort of horizontal correlation of rows (or "channels") 1-6
+- this displays a sort of horizontal correlation of rows (or "channels"), with the topmost at far left
 
 We then trigger a sound, if the channel is toggled on, inside `t`:
 
 ```js
 // TRIGGER SOMETHING
-for(0,5, {arg t;
+for(0,~rows-2, {arg t;
 	if(~step[(t*16) + ~play_position] == 1,
 		{
 			Synth(\singrain, [
@@ -354,14 +374,14 @@ First, we add a position display to the 8th row, inside `d`:
 
 ```js
 // play position
-		~m.levset(~play_position,7,15);
+~m.levset(~play_position,~rows-1,15);
 ```
 
 We clear this row first, a few lines prior:
 
 ```js
 // clear play position row
-		~m.levset(x,7,0);
+~m.levset(x,~rows,0);
 ```
 
 Now we look for key presses in the last row, in the key function:
@@ -369,9 +389,10 @@ Now we look for key presses in the last row, in the key function:
 ```js
 OSCFunc.newMatching(
 	{ arg message, time, addr, recvPort;
+		var x = message[1], y = message[2], z = message[3];
 		
-		if((message[3] == 1) && (message[2] < 6), {
-			var pos = message[1] + (message[2] * 16);
+		if((z == 1) && (y <= (~rows-2)), {
+			var pos = x + (y * 16);
 			if(~step[pos] == 1,
 				{~step[pos] = 0},
 				{~step[pos] = 1}
@@ -379,8 +400,8 @@ OSCFunc.newMatching(
 		});
 		
 		// cut to a new position
-		if((message[3] == 1) && (message[2] == 7), {
-			~next_position = message[1];
+		if((z== 1) && (y == ~rows), {
+			~next_position = x;
 			~cutting = 1;
 		});
 	},
@@ -388,10 +409,10 @@ OSCFunc.newMatching(
 );
 ```
 
-We've added two variables, `cutting` and `next_position`. Check out the changed code where we check the cut position inside our timer:
+We've added two global variables, `cutting` and `next_position`. Check out the changed code where we check the cut position inside our timer:
 
-~~~
-if(~play_position == 15,
+```js
+if(~play_position == ~cols,
 	{~play_position = 0;},
 	{
 		if(~cutting == 1,
@@ -399,7 +420,7 @@ if(~play_position == 15,
 			{~play_position = ~play_position + 1;})
 	};
 );
-~~~
+```
 
 Now, pressing keys on the bottom row will cue the next position to be played. Note that we set `cutting = 0` after each cut so that each press only affects the timer once.
 
@@ -419,8 +440,8 @@ Lastly, we'll implement setting the loop start and end points with a two-press g
 We then count keys held on the bottom row:
 
 ```js
-if(message[2] == 7,
-	if(message[3] == 1,
+if(y == 7,
+	if(z == 1,
 		{~keys_held = ~keys_held + 1;},
 		{~keys_held = ~keys_held - 1;});
 );
@@ -430,16 +451,23 @@ if(message[2] == 7,
 
 ```js
 // loop and cut
-if((message[3] == 1) && (message[2] == 7), {
-	if(~keys_held == 1,{
-		~next_position = message[1];
+if((z == 1) && (y == 7), {
+	if(~keys_held == 1, {
+		~next_position = x;
 		~cutting = 1;
-		~key_last = message[1];
+		~key_last = x;
 	},
 	{
-		~loop_start = ~key_last;
-		~loop_end = message[1];
-		~loop_end.postln;
+		if( ~key_last < x,
+			{
+				~loop_start = ~key_last;
+				~loop_end = x;
+			},
+			{
+				// exercise: define what should happen if the loop is negative!
+			}
+		);
+		("start: " ++ ~loop_start ++ " // end: " ++ ~loop_end).postln;
 	});
 });
 ```
@@ -451,13 +479,9 @@ We then modify the position change code:
 if(~cutting == 1,
 	{~play_position = ~next_position; ~cutting = 0;},
 	{
-		if(~play_position == 15,
-			{~play_position = 0;},
-			{
-				if(~play_position == ~loop_end,
-					{~play_position = ~loop_start;},
-					{~play_position = ~play_position + 1;});
-			}
+		if(~play_position == ~loop_end,
+			{~play_position = ~loop_start;},
+			{~play_position = (~play_position + 1).wrap(0,15)}
 		);
 	};
 );

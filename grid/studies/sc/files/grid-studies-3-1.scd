@@ -5,20 +5,21 @@ Server.default = Server.local;
 
 s.waitForBoot({
 
-	~step = Array.fill(96, {0});
-
 	~m.useDevice(0);
+	~step = Array.fill(~m.rws-2 * ~m.cls, {0});
 
 	OSCFunc.newMatching(
-		{ arg message, time, addr, recvPort;
+		{
+			arg message, time, addr, recvPort;
+			var x = message[1], y = message[2], z = message[3];
 
-			if((message[3] == 1) && (message[2] < 6), {
-				var pos = message[1] + (message[2] * 16);
+			if((z == 1) && (y < (~m.rws-2)), {
+				var pos = x + (y * 16);
 				if(~step[pos] == 1,
 					{~step[pos] = 0},
 					{~step[pos] = 1}
 				);
-				d.value(message[1], message[2]);
+				d.value(x,y);
 			});
 		},
 		"/monome/grid/key"

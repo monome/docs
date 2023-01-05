@@ -256,50 +256,45 @@ That will get us started.
 
 *See [grid-studies-3-2.scd](files/grid-studies-3-2.scd) for this step.*
 
-To make our interface adaptive to any size grid, we query the number of rows and columns with `~m.rws` and `~m.cls`. You might've noticed that these return 1-indexed numbers, however.
+To make our interface adaptive to any size grid (eg. we don't want to count to 16 steps on 64 grid with 8 columns), we can query the number of rows and columns with `~m.rws` and `~m.cls`.
 
-Since most of our SuperCollider functions will be 0-indexed, let's make it easy on ourselves and introduce 0-indexed versions of our row and column totals at the top:
+You might've noticed that these methods return 1-indexed numbers, however. Since most of our SuperCollider functions will be 0-indexed, let's make it easy on ourselves and introduce 0-indexed versions of our row and column totals at the top:
 
 ```js
 // 'cls' + 'rws' return as 1-indexed,
 // but we need 0-indexed for most of our functions!
-~cols = ~m.cls-1;
-~rows = ~m.rws-1;
+~lastCol = ~m.cls-1;
+~lastRow = ~m.rws-1;
 ```
 
 Now, let's get into fun stuff!  
-Let's make a timer routine that moves a virtual playhead:
+Let's make a timer routine that moves a virtual playhead across the grid:
 
 ```js
 t = Routine({
 	var interval = 0.125;
 	loop {
-		if(~play_position == ~cols,
-			{~play_position = 0},
-			{~play_position = ~play_position + 1}
-		);
-		
+		~play_position = (~play_position + 1).wrap(0,~lastCol);
 		d.value;
-		
 		interval.yield;
 	}
-	
 });
 ```
 
-This routine runs at a timing interval specified by the variable `interval`. The `play_position` is advanced, rolling back to 0 after it hits the last column. We redraw the grid each time the play head moves.
+This routine runs at a timing interval specified by the variable `interval`. The `play_position` is advanced, rolling back to 0 after it hits the last column (using SuperCollider's helpful `.wrap(lo, hi)` method). We redraw the grid each time the play head moves.
 
-For the redraw we add highlighting for the play position. Note how `levset`'s multiplication by 15 has been decreased to 11, to provide another mid-level brightness. We now have a series of brightness levels helping to indicate playback, lit keys, and currently active keys:
+For the redraw we add highlighting for the play position. Note how `levset`'s previous multiplication by 15 has been decreased to 11, to provide another mid-level brightness. We now have a series of brightness levels helping to indicate playback, lit keys, and currently active keys:
 
 ```js
 d = {
 	var highlight;
-	for(0,~cols, {arg x;
+	for(0,~lastCol, {arg x;
 		if(x == ~play_position,
 			{highlight = 4},
 			{highlight = 0});
 		
-		for(0,~rows-2, {arg y;
+		// show playhead
+		for(0,~lastRow-2, {arg y;
 			~m.levset(x,y,(~step[y*16+x] * 11) + (highlight));
 		});
 	})
@@ -312,44 +307,47 @@ As we copy steps to the grid, we check if we're updating a column that is the pl
 
 *See [grid-studies-3-3.scd](files/grid-studies-3-3.scd) for this step.*
 
-When the playhead advances to a new column we want something to happen which corresponds to the toggled-on steps. We'll do two things: we'll show separate visual feedback on the grid in the second-to-last row (we'll call it a 'trigger row'), and we'll make some sound.
+When the playhead advances to a new column, we want something to happen which corresponds to the toggled-on steps. Let's do two things: show separate visual feedback on the grid in the second-to-last row (we'll call it a 'trigger row'), and make some sound.
 
-Drawing the trigger row happens in `d` (at `// show triggers`):
+Drawing the trigger row happens in `d`, at `// show triggers`:
 
 ```js
 d = {
 	var highlight;
-	for(0,~cols, {arg x;
+	for(0,~lastCol, {arg x;
 		if(x == ~play_position,
 			{highlight = 4},
 			{highlight = 0});
 		
-		for(0,~rows-2, {arg y;
+		// show playhead
+		for(0,~lastRow-2, {arg y;
 			~m.levset(x,y,(~step[y*16+x] * 11) + (highlight));
 		});
 		
 		// set trigger row background
-		~m.levset(x,~rows-1,4);
+		~m.levset(x,~lastRow-1,4);
 	});
 	
 	// show triggers
-	for(0,~rows-2, {arg t;
+	for(0,~lastRow-2, {arg t;
 		if(~step[(t*16) + ~play_position] == 1,
-			{~m.levset(t,~rows-1,15);}
+			{~m.levset(t,~lastRow-1,15);}
 		);
 	});
 };
 ```
 
+In the snippet above:
+
 - we create a dim row (level 4 is fairly dim)
 - we search through the `step` array at the current play position, showing a bright indicator for each on state
 - this displays a sort of horizontal correlation of rows (or "channels"), with the topmost at far left
 
-We then trigger a sound, if the channel is toggled on, inside `t`:
+If the channel is toggled on, we then trigger the Synth (which we defined at the start of our file), inside `t`:
 
 ```js
 // TRIGGER SOMETHING
-for(0,~rows-2, {arg t;
+for(0,~lastRow-2, {arg t;
 	if(~step[(t*16) + ~play_position] == 1,
 		{
 			Synth(\singrain, [
@@ -363,35 +361,36 @@ for(0,~rows-2, {arg t;
 });
 ```
 
-If `step` is toggled on (`== 1`) at the `play_position` we trigger a sound. The frequency corresponds to the row position.
+If any vertical toggle in `step` is toggled on (`== 1`) at the `play_position` we trigger a sound. The frequency corresponds to the row position.
 
 ### 3.4 cutting
 
 *See [grid-studies-3-4.scd](files/grid-studies-3-4.scd) for this step.*
 
 We will now use the bottom row to dynamically cut the playback position.  
-First, we add a position display to the 8th row, inside `d`:
 
-```js
-// play position
-~m.levset(~play_position,~rows-1,15);
-```
-
-We clear this row first, a few lines prior:
+First, we clear the last row:
 
 ```js
 // clear play position row
-~m.levset(x,~rows,0);
+~m.levset(x,~lastRow,0);
 ```
 
-Now we look for key presses in the last row, in the key function:
+And a few lines later, inside `d`, we add a position display to the last row:
+
+```js
+// show play position
+~m.levset(~play_position,~lastRow,15);
+```
+
+We look for key presses in the last row, in the key function:
 
 ```js
 OSCFunc.newMatching(
 	{ arg message, time, addr, recvPort;
 		var x = message[1], y = message[2], z = message[3];
 		
-		if((z == 1) && (y <= (~rows-2)), {
+		if((z == 1) && (y <= (~lastRow-2)), {
 			var pos = x + (y * 16);
 			if(~step[pos] == 1,
 				{~step[pos] = 0},
@@ -400,7 +399,7 @@ OSCFunc.newMatching(
 		});
 		
 		// cut to a new position
-		if((z== 1) && (y == ~rows), {
+		if((z== 1) && (y == ~lastRow), {
 			~next_position = x;
 			~cutting = 1;
 		});
@@ -409,20 +408,16 @@ OSCFunc.newMatching(
 );
 ```
 
-We've added two global variables, `cutting` and `next_position`. Check out the changed code where we check the cut position inside our timer:
+We've added two global variables, `cutting` and `next_position`. Check out the changed code where we check the cut position inside our step timer:
 
 ```js
-if(~play_position == ~cols,
-	{~play_position = 0;},
-	{
-		if(~cutting == 1,
-			{~play_position = ~next_position; ~cutting = 0;},
-			{~play_position = ~play_position + 1;})
-	};
+if(~cutting == 1,
+	{~play_position = ~next_position; ~cutting = 0;},
+	{~play_position = (~play_position + 1).wrap(0,~lastCol);}
 );
 ```
 
-Now, pressing keys on the bottom row will cue the next position to be played. Note that we set `cutting = 0` after each cut so that each press only affects the timer once.
+Now, pressing keys on the bottom row will cue the next position to be played. Note that we set `cutting = 0` after each cut so that each press only affects the timer **once**.
 
 ### 3.5 loop
 
@@ -434,13 +429,14 @@ Lastly, we'll implement setting the loop start and end points with a two-press g
 ~keys_held = 0;
 ~key_last = 0;
 ~loop_start = 0;
-~loop_end = 15;
+~loop_end = ~lastCol;
 ```
 
 We then count keys held on the bottom row:
 
 ```js
-if(y == 7,
+// count bottom row keys
+if(y == ~lastRow,
 	if(z == 1,
 		{~keys_held = ~keys_held + 1;},
 		{~keys_held = ~keys_held - 1;});
@@ -451,7 +447,7 @@ if(y == 7,
 
 ```js
 // loop and cut
-if((z == 1) && (y == 7), {
+if((z == 1) && (y == ~lastRow), {
 	if(~keys_held == 1, {
 		~next_position = x;
 		~cutting = 1;
@@ -472,7 +468,7 @@ if((z == 1) && (y == 7), {
 });
 ```
 
-We then modify the position change code:
+We then modify the position change code, so that cutting to a position outside of the loop will play through freely until the `loop_end` is reached, when it will cycle back to the `loop_start`:
 
 ```js
 // update position
@@ -481,9 +477,9 @@ if(~cutting == 1,
 	{
 		if(~play_position == ~loop_end,
 			{~play_position = ~loop_start;},
-			{~play_position = (~play_position + 1).wrap(0,15)}
+			{~play_position = (~play_position + 1).wrap(0,~lastCol)}
 		);
-	};
+	}
 );
 ```
 
@@ -494,8 +490,8 @@ Done!
 
 ### suggested exercises
 
-- "record" keypresses in the "trigger" row to the toggle matrix.
 - display the loop range on the bottom row of the grid.
+- "record" keypresses in the "trigger" row to the toggle matrix.
 - use the rightmost key in the "trigger" row as an "alt" key.
 	- if "alt" is held while pressing a toggle, clear the entire row.
 	- if "alt" is held while pressing the play row, reverse the direction of play.
@@ -505,8 +501,8 @@ Done!
 
 *SuperCollider* was written by James McCartney and is now maintained [as a GPL project by various people](http://supercollider.sourceforge.net).
 
-*monom* was written by and is maintained by [Ezra Buchla](http://catfact.net).
+*monom* was written by [Raja Das and Joseph Rangel](https://github.com/Karaokaze/MonoM_SCs), maintained by [Ezra Buchla](https://github.com/catfact/monom/), and updated by [dan derks](https://dndrks.com).
 
-This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](https://monome.org). Huge thanks to Raja Das for his very extensive Monoming with SuperCollider Tutorial.
+This tutorial was written by [Brian Crabtree](http://nnnnnnnn.org) and [dan derks](https://dndrks.com) for [monome.org](https://monome.org). Huge thanks to Raja Das for his very extensive 'Monoming with SuperCollider Tutorial'.
 
-Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [help@monome.org](mailto:help@monome.org).

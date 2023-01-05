@@ -17,14 +17,13 @@ s.waitForBoot({
 	~play_position = -1;
 	~next_position;
 	~cutting = 0;
+	~lastCol = ~m.cls-1;
+	~lastRow = ~m.rws-1;
+
 	~keys_held = 0;
 	~key_last = 0;
-
-	~cols = ~m.cls-1;
-	~rows = ~m.rws-1;
-
 	~loop_start = 0;
-	~loop_end = ~cols;
+	~loop_end = ~lastCol;
 
 	~m.useDevice(0);
 
@@ -33,7 +32,7 @@ s.waitForBoot({
 			var x = message[1], y = message[2], z = message[3];
 
 			// toggles
-			if((z == 1) && (y <= (~rows-2)), {
+			if((z == 1) && (y <= (~lastRow-2)), {
 				var pos = x + (y * 16);
 				if(~step[pos] == 1,
 					{~step[pos] = 0},
@@ -42,14 +41,14 @@ s.waitForBoot({
 			});
 
 			// count bottom row keys
-			if(y == ~rows,
+			if(y == ~lastRow,
 				if(z == 1,
 					{~keys_held = ~keys_held + 1;},
 					{~keys_held = ~keys_held - 1;});
 			);
 
 			// loop and cut
-			if((z == 1) && (y == ~rows), {
+			if((z == 1) && (y == ~lastRow), {
 				if(~keys_held == 1, {
 					~next_position = x;
 					~cutting = 1;
@@ -73,49 +72,51 @@ s.waitForBoot({
 
 	d = {
 		var highlight;
-		for(0,~cols, {arg x;
+		for(0,~lastCol, {arg x;
 			if(x == ~play_position,
 				{highlight = 1},
 				{highlight = 0});
 
-			for(0,~rows-2, {arg y;
+			for(0,~lastRow-2, {arg y;
 				~m.levset(x,y,(~step[y*16+x] * 11) + (highlight * 4));
 			});
 
 			// set trigger row background
-			~m.levset(x,~rows-1,4);
+			~m.levset(x,~lastRow-1,4);
 
 			// clear play position row
-			~m.levset(x,~rows,0);
+			~m.levset(x,~lastRow,0);
 		});
-
-		// play position
-		~m.levset(~play_position,~rows,15);
 
 		// show triggers
 		for(0,5, {arg t;
 			if(~step[(t*16) + ~play_position] == 1,
-				{~m.levset(t,~rows-1,15);}
+				{~m.levset(t,~lastRow-1,15);}
 			)
 		});
+
+
+		// show play position
+		~m.levset(~play_position,~lastRow,15);
 	};
 
 	t = Routine({
 		var interval = 0.125;
 		loop {
+
 			// update position
 			if(~cutting == 1,
 				{~play_position = ~next_position; ~cutting = 0;},
 				{
 					if(~play_position == ~loop_end,
 						{~play_position = ~loop_start;},
-						{~play_position = (~play_position + 1).wrap(0,~cols)}
+						{~play_position = (~play_position + 1).wrap(0,~lastCol)}
 					);
-				};
+				}
 			);
 
 			// TRIGGER SOMETHING
-			for(0,~rows-2, {arg t;
+			for(0,~lastRow-2, {arg t;
 				if(~step[(t*16) + ~play_position] == 1,
 					{
 						Synth(\singrain, [

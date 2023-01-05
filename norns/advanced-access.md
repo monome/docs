@@ -25,6 +25,8 @@ Sometimes, it might be necessary to interface with more of the bare-metal compon
 
 When connected via WiFi you can SSH into norns from another computer on the same network at the IP address shown in SYSTEM.
 
+**If your [hostname](https://monome.org/docs/norns/wifi-files/#hostname) isn't `norns`, remember make the appropriate substitution when copy/pasting commands from this section!**
+
 - open a Terminal on a Mac/Win/Linux computer
   - using Windows? you might need to [manually enable or install an SSH client](https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/)
 - execute `ssh we@norns.local` or `ssh we@<IP_ADDRESS_SHOWN_IN_SYSTEM>`

@@ -499,7 +499,7 @@ Done!
 
 ## Credits
 
-*SuperCollider* was written by James McCartney and is now maintained [as a GPL project by various people](http://supercollider.sourceforge.net).
+*SuperCollider* was written by James McCartney and is now maintained [as a GPL project by various people](https://supercollider.github.io).
 
 *monom* was written by [Raja Das and Joseph Rangel](https://github.com/Karaokaze/MonoM_SCs), maintained by [Ezra Buchla](https://github.com/catfact/monom/), and updated by [dan derks](https://dndrks.com).
 

@@ -57,7 +57,7 @@ Let's create a variable, `~m`, to initialize the `MonomeGrid` class:
 ~m = MonomeGrid.new("/grid", 0);
 ```
 
-The arguments to the initializer are *prefix* and *grid rotation*. Any string can be used for the *prefix*, as long as its formatted with no spaces and leads with `/` (eg. `"/g"`).
+The arguments to the initializer are *prefix* and *grid rotation*. Any string can be used for the *prefix*, as long as its formatted with no spaces and leads with `/` (eg. `"/g"` or `"/128"` or `"/walnut256"`).
 
 Now that the class is initialized to a variable, let's connect to a grid:
 
@@ -101,7 +101,7 @@ In [grid-studies-2-1.scd](files/grid-studies-2-1.scd) we define the function to 
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new("/128", 0);
+~m = MonomeGrid.new("/grid", 0);
 
 s.waitForBoot({
 
@@ -145,7 +145,7 @@ Instead of printing the key output, we can show the key state on the grid quite 
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new("/128", 0);
+~m = MonomeGrid.new("/grid", 0);
 
 s.waitForBoot({
 

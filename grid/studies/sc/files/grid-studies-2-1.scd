@@ -1,7 +1,7 @@
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new("/128", 0);
+~m = MonomeGrid.new("/grid", 0);
 
 s.waitForBoot({
 

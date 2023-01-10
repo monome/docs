@@ -27,8 +27,6 @@ s.waitForBoot({
 	~loop_start = 0;
 	~loop_end = ~lastCol;
 
-	~m.connect(0);
-
 	~m.key({ arg x,y,z;
 
 		// toggles

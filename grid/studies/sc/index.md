@@ -22,7 +22,7 @@ SuperCollider is an environment and programming language for real time audio syn
 - install [`serialosc`](/docs/serialosc/setup)
 - [download SuperCollider](https://supercollider.github.io/)
 - [download this study's code examples](files/grid-studies-sc.zip)
-- [download the `MonomeGrid` library]()
+- [download the `monomeSC` library](https://github.com/monome/monomeSC/releases/latest)
 
 If you're new to SuperCollider, it will be *very* beneficial to work through the 'Getting Started' tutorial which is within SuperCollider's help file documentation ([also on their docs site](https://doc.sccode.org/Tutorials/Getting-Started/00-Getting-Started-With-SC.html)).
 
@@ -37,11 +37,12 @@ As you go through each study, you'll find it useful to stop the running code so 
 
 ## library setup
 
-To set up the SuperCollider library for monome devices:
+To install the SuperCollider library for monome grid devices:
 
-- unzip the downloaded `monomeSC` folder
+- download + unzip the [latest release](https://github.com/monome/monomeSC/releases/latest) of `monomeSC`
 - in SuperCollider, select `File > Open user support directory`
-- move or copy the `monomeSC` folder into the `Extensions` folder (it might not exist, in which case you will need to create it)
+- move or copy the `monomeSC` folder into the `Extensions` folder
+  - if `Extensions` does not exist, please create it
 - in SuperCollider, recompile the class library (`Language > Recompile Class Library`)
   - macOS: <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
   - Windows / Linux: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>

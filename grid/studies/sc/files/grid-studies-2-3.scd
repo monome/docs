@@ -1,18 +1,16 @@
 (
 Server.default = Server.local;
 
-~m = MonoM.new("/monome", 0);
+~m = MonomeGrid.new("/128", 0);
 
 s.waitForBoot({
 
-	~m.useDevice(0);
+	~m.connect(0);
 
-	OSCFunc.newMatching(
-		{ arg message;
-			~m.ledset(message[1], message[2], message[3]);
-		},
-		"/monome/grid/key";
-	);
+	~m.key({
+		arg x,y,z;
+		~m.led(x,y,z*15);
+	});
 
 });
 

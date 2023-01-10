@@ -7,33 +7,30 @@ SynthDef(\singrain, { |freq = 440, amp = 0.2, sustain = 1|
 	Out.ar(0, sig ! 2);    // sig ! 2 is the same as [sig, sig]
 }).add;
 
-~m = MonoM.new("/monome", 0);
+~m = MonomeGrid.new("/monome", 0);
 
 s.waitForBoot({
 
-	~m.useDevice(0);
-	~step = Array.fill(~m.rws-2 * ~m.cls, {0});
+	var draw, timer;
+
+	~m.connect(0);
+	~step = Array.fill(~m.cols * ~m.rows-2, {0});
 	~play_position = -1;
 
-	~lastCol = ~m.cls-1;
-	~lastRow = ~m.rws-1;
+	~lastCol = ~m.cols-1;
+	~lastRow = ~m.rows-1;
 
-	OSCFunc.newMatching(
-		{ arg message, time, addr, recvPort;
-			var x = message[1], y = message[2], z = message[3];
+	~m.key({ arg x,y,z;
+		if((z == 1) && (y <= (~lastRow-2)), {
+			var pos = x + (y * 16);
+			if(~step[pos] == 1,
+				{~step[pos] = 0},
+				{~step[pos] = 1}
+			);
+		});
+	});
 
-			if((z == 1) && (y <= (~lastRow-2)), {
-				var pos = x + (y * 16);
-				if(~step[pos] == 1,
-					{~step[pos] = 0},
-					{~step[pos] = 1}
-				);
-			})
-		},
-		"/monome/grid/key"
-	);
-
-	d = {
+	draw = {
 		var highlight;
 		for(0,~lastCol, {arg x;
 			if(x == ~play_position,
@@ -42,22 +39,22 @@ s.waitForBoot({
 
 			// show playhead
 			for(0,~lastRow-2, {arg y;
-				~m.levset(x,y,(~step[y*16+x] * 11) + (highlight));
+				~m.led(x,y,(~step[y*16+x] * 11) + (highlight));
 			});
 
 			// set trigger row background
-			~m.levset(x,~lastRow-1,4);
+			~m.led(x,~lastRow-1,4);
 		});
 
 		// show triggers
 		for(0,~lastRow-2, {arg t;
 			if(~step[(t*16) + ~play_position] == 1,
-				{~m.levset(t,~lastRow-1,15);}
+				{~m.led(t,~lastRow-1,15);}
 			);
 		});
 	};
 
-	t = Routine({
+	timer = Routine({
 		var interval = 0.125;
 		loop {
 
@@ -77,14 +74,14 @@ s.waitForBoot({
 				)
 			});
 
-			d.value;
+			draw.value;
 
 			interval.yield;
 		}
 
 	});
 
-	t.play();
+	timer.play();
 
 });
 

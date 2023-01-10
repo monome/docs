@@ -22,10 +22,11 @@ SuperCollider is an environment and programming language for real time audio syn
 - install [`serialosc`](/docs/serialosc/setup)
 - [download SuperCollider](https://supercollider.github.io/)
 - [download this study's code examples](files/grid-studies-sc.zip)
+- [download the `MonomeGrid` library]()
 
 If you're new to SuperCollider, it will be *very* beneficial to work through the 'Getting Started' tutorial which is within SuperCollider's help file documentation ([also on their docs site](https://doc.sccode.org/Tutorials/Getting-Started/00-Getting-Started-With-SC.html)).
 
-### clearing conflicts
+### clearing conflicts {#clear}
 
 As you go through each study, you'll find it useful to stop the running code so your grid presses don't have conflicting actions:
 
@@ -38,39 +39,39 @@ As you go through each study, you'll find it useful to stop the running code so 
 
 To set up the SuperCollider library for monome devices:
 
-- [download the `monom` library](https://github.com/catfact/monom/archive/master.zip) + unzip the file
+- unzip the downloaded `monomeSC` folder
 - in SuperCollider, select `File > Open user support directory`
-- move or copy the `monom-master` folder into the `Extensions` folder (it might not exist, in which case you will need to create it)
+- move or copy the `monomeSC` folder into the `Extensions` folder (it might not exist, in which case you will need to create it)
 - in SuperCollider, recompile the class library (`Language > Recompile Class Library`)
   - macOS: <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
   - Windows / Linux: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 
 ## 1. connect {#connect}
 
-The `MonoM` class facilitates easy connection and communication with grids.
+The `MonomeGrid` class facilitates easy connection and communication with grids.
 
-Let's create a variable, `~m`, to initialize the `MonoM` class:
+Let's create a variable, `~m`, to initialize the `MonomeGrid` class:
 
 ```js
-~m = MonoM.new("/monome", 0);
+~m = MonomeGrid.new("/grid", 0);
 ```
 
-The arguments to the initializer are *prefix* and *grid rotation*. Any string can be used for the *prefix*, as long as its formatted with no spaces and leads with `/` (eg. `"/m"`).
+The arguments to the initializer are *prefix* and *grid rotation*. Any string can be used for the *prefix*, as long as its formatted with no spaces and leads with `/` (eg. `"/g"`).
 
 Now that the class is initialized to a variable, let's connect to a grid:
 
 ```js
-~m.useDevice(0);
+~m.connect(0);
 ```
 
 Here the first monome device found is attached. Please note that there needs to be a slight delay in between initializing the new device and connecting to it. Waiting until the server starts provides the necessary time buffer:
 
 ```js
 (
-~m = MonoM.new("/monome", 0);
+~m = MonomeGrid.new("/grid", 0);
 
 s.waitForBoot({
-	~m.useDevice(0);
+	~m.connect(0);
 });
 )
 ```
@@ -85,11 +86,11 @@ The library communicates with *serialosc* to discover attached devices using OSC
 
 ### 2.1 key input {#key-input}
 
-We read grid key input by creating an OSC responder. Three parameters are received, in order:
+We read grid key input by utilizing the `key` method. Three parameters are received, in order:
 
 ```js
-x : horizontal position (0-15)
-y : vertical position (0-7)
+x : horizontal position (cartesian coordinates, 0-indexed)
+y : vertical position (cartesian coordinates, 0-indexed)
 z : state (1 = key down, 0 = key up)
 ```
 
@@ -99,44 +100,33 @@ In [grid-studies-2-1.scd](files/grid-studies-2-1.scd) we define the function to 
 (
 Server.default = Server.local;
 
-~m = MonoM.new("/monome", 0);
+~m = MonomeGrid.new("/128", 0);
 
 s.waitForBoot({
 
-	~m.useDevice(0);
+	~m.connect(0);
 
-	OSCFunc.newMatching(
-		{ arg message;
-			message.postln;
-		},
-		"/monome/grid/key"
-	);
+	~m.key({
+		arg x,y,z;
+		[x,y,z].postln;
+	});
 
 });
 
 )
 ```
 
-Please note:
-
-- `/monome/grid/key` is the OSC pattern this function responds to
-  - since we assigned `~m` to the string `"/monome"`, the OSC matching string must be prepended with the same
-  - if we used `~m = MonoM.new("/m", 0);`, then our OSC matching string would be `"/m/grid/key"`
-- the `message` data is formatted as `[ /monome/grid/key, 4, 5, 1 ]`. in the next section, we'll pull apart `message` to use the `x`, `y`, and `z` with `message[1]`, `message[2]` and `message[3]`
-  - SuperCollider is 0-indexed! so `message[1]` corresponds to the *x* value, `message[2]` to the *y*, and `message[3]` to the *state*
-  - grid coordinates are also counted from 0! eg. releasing the third key in the second row would result in `[ /monome/grid/key, 2, 1, 0 ]`
-
 ### 2.2 LED output {#led-output}
 
 Updating a single LED takes the form:
 
 ```js
-~m.levset(x, y, val)
+~m.led(x, y, val)
 ```
 
 Where `val` ranges from 0 (off) to 15 (full brightness), with variable levels in between.
 
-To toggle a single LED to on or full bright:
+To toggle a single LED to on or full bright, with no in-between values:
 
 ```js
 ~m.ledset(x, y, state);
@@ -148,25 +138,23 @@ Where `state` ranges from 0 (off) to 1 (full brightness).
 
 *See [grid-studies-2-3.scd](files/grid-studies-2-3.scd) for this step.*
 
-Instead of printing the key output, we can show the key state on the grid quite simply. Stop your running code and execute:
+Instead of printing the key output, we can show the key state on the grid quite simply. [Stop your running code](#clear) and execute:
 
 ```js
 (
 Server.default = Server.local;
 
-~m = MonoM.new("/monome", 0);
+~m = MonomeGrid.new("/128", 0);
 
 s.waitForBoot({
-	
-	~m.useDevice(0);
-	
-	OSCFunc.newMatching(
-		{ arg message;
-			~m.ledset(message[1], message[2], message[3]);
-		},
-		"/monome/grid/key";
-	);
-	
+
+	~m.connect(0);
+
+	~m.key({
+		arg x,y,z;
+		~m.led(x,y,z*15);
+	});
+
 });
 
 )
@@ -178,46 +166,38 @@ s.waitForBoot({
 
 The most basic decoupled interaction is a toggle.
 
-We turn the grid into a huge bank of toggles by creating an [Array](https://doc.sccode.org/Classes/Array.html) to store data. It needs to be the same size as our grid, so we'll use the `cls` and `rws` methods to gather our grid size. We'll call this array `step` and initialize it full of zeros.
+We turn the grid into a huge bank of toggles by creating an [Array](https://doc.sccode.org/Classes/Array.html) to store data. It needs to be the same size as our grid, so we'll use the `cols` and `rows` accessors to gather our grid size. We'll call this array `step` and initialize it full of zeros.
 
 ```js
-~step = Array.fill(~m.cls * ~m.rws, {0});
+~step = Array.fill(~~m.cols * ~m.rows, {0});
 ```
 
-We'll also use `var`s `x`, `y`, and `z` (key state) to parse our incoming grid messages and use these to switch the states by embedding this into our `OSCFunc`:
+We'll also use our incoming grid messages to switch the corresponding `step` LED states:
 
 ```js
-OSCFunc.newMatching(
-	{ arg message, time, addr, recvPort;
-		// we don't need all of these args for everything,
-		// but be aware of their existence!
-		var x = message[1], y = message[2], z = message[3];
-		
-		if(z == 1, {
-			var pos = x + (y*16);
-			if(~step[pos] == 1,
-				{~step[pos] = 0},
-				{~step[pos] = 1}
-			);
-			d.value(x,y);
-		})
-	},
-	"/monome/grid/key"
-	
-);
+~m.key({ arg x,y,z;
+	if(z == 1, {
+		var pos = x + (y*16);
+		if(~step[pos] == 1,
+			{~step[pos] = 0},
+			{~step[pos] = 1}
+		);
+		redraw.value(x,y);
+	});
+});
 ```
 
-`message[3]` is the key state (down or up). Here we do something only on key down (where the value == 1). We calculate the position, and then change the value of the `step` based on its previous state.
+Remember, `z` is the key state (down or up), so we do something only on key down (where `z == 1`). We calculate the position, and then change the value of the `step` based on its previous state.
 
-We refresh the grid with function `d`, which is executed with `d.value(x,y);`:
+We refresh the grid with function `draw` (a variable we establish toward the start of the sketch), which is executed with `draw.value(x,y);`:
 
 ```js
-d = { arg x, y;
-	~m.levset(x,y,~step[y*16+x] * 15);
+draw = { arg x, y;
+	~m.led(x,y,~step[y*16+x] * 15);
 };
 ```
 
-In `d`, we set LED level for the toggled position -- we multiply the `~step` value per position by 15 which gives us 0 (off) or 15 (full brightness).
+In `draw`, we set LED level for the toggled position -- we multiply the `~step` value per position by 15 which gives us 0 (off) or 15 (full brightness).
 
 
 ## 3. further
@@ -240,13 +220,15 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 We already have a full bank of toggles set up. Let's shrink down the bank to exclude the bottom two rows. We'll first reduce `step`, then we'll adjust the key detection so toggling only happens if `y` is outside of the bottom two rows:
 
 ```js
-if((z == 1) && (y < (~m.rws-2)), {
-	var pos = x + (y * 16);
-	if(~step[pos] == 1,
-		{~step[pos] = 0},
-		{~step[pos] = 1}
-	);
-	d.value(x,y);
+~m.key({ arg x,y,z;
+	if((z == 1) && (y < (~m.rows-2)), {
+		var pos = x + (y * 16);
+		if(~step[pos] == 1,
+			{~step[pos] = 0},
+			{~step[pos] = 1}
+		);
+		draw.value(x,y);
+	});
 });
 ```
 
@@ -256,26 +238,26 @@ That will get us started.
 
 *See [grid-studies-3-2.scd](files/grid-studies-3-2.scd) for this step.*
 
-To make our interface adaptive to any size grid (eg. we don't want to count to 16 steps on 64 grid with 8 columns), we can query the number of rows and columns with `~m.rws` and `~m.cls`.
+To make our interface adaptive to any size grid (eg. we don't want to count to 16 steps on 64 grid with 8 columns), we can query the number of rows and columns with the `rows` and `cols` accessors.
 
-You might've noticed that these methods return 1-indexed numbers, however. Since most of our SuperCollider functions will be 0-indexed, let's make it easy on ourselves and introduce 0-indexed versions of our row and column totals at the top:
+However, you might've noticed that these methods return 1-indexed numbers. Since most of our SuperCollider functions will be 0-indexed, let's make it easy on ourselves and introduce 0-indexed versions of our row and column totals at the top:
 
 ```js
-// 'cls' + 'rws' return as 1-indexed,
+// 'cols' + 'rows' return as 1-indexed,
 // but we need 0-indexed for most of our functions!
-~lastCol = ~m.cls-1;
-~lastRow = ~m.rws-1;
+~lastCol = ~m.cols-1;
+~lastRow = ~m.rows-1;
 ```
 
 Now, let's get into fun stuff!  
-Let's make a timer routine that moves a virtual playhead across the grid:
+Let's make a timer routine that moves a virtual playhead across the grid (we declare a `timer` variable toward the start of the sketch):
 
 ```js
-t = Routine({
+timer = Routine({
 	var interval = 0.125;
 	loop {
 		~play_position = (~play_position + 1).wrap(0,~lastCol);
-		d.value;
+		draw.value;
 		interval.yield;
 	}
 });
@@ -283,10 +265,10 @@ t = Routine({
 
 This routine runs at a timing interval specified by the variable `interval`. The `play_position` is advanced, rolling back to 0 after it hits the last column (using SuperCollider's helpful `.wrap(lo, hi)` method). We redraw the grid each time the play head moves.
 
-For the redraw we add highlighting for the play position. Note how `levset`'s previous multiplication by 15 has been decreased to 11, to provide another mid-level brightness. We now have a series of brightness levels helping to indicate playback, lit keys, and currently active keys:
+For the redraw we add highlighting for the play position. Note how `led`'s previous multiplication by 15 has been decreased to 11, to provide another mid-level brightness. We now have a series of brightness levels helping to indicate playback, lit keys, and currently active keys:
 
 ```js
-d = {
+draw = {
 	var highlight;
 	for(0,~lastCol, {arg x;
 		if(x == ~play_position,
@@ -295,13 +277,13 @@ d = {
 		
 		// show playhead
 		for(0,~lastRow-2, {arg y;
-			~m.levset(x,y,(~step[y*16+x] * 11) + (highlight));
+			~m.led(x,y,(~step[y*16+x] * 11) + (highlight));
 		});
 	})
 };
 ```
 
-As we copy steps to the grid, we check if we're updating a column that is the play position (`if(x == ~play_position,`...). If so, we set the highlight value to 4. By adding this value during `levset`, we'll get a nice effect of an overlaid translucent bar.
+As we copy steps to the grid, we check if we're updating a column that is the play position (`if(x == ~play_position,`...). If so, we set the highlight value to 4. By adding this value inside of `led`, we'll get a nice effect of an overlaid translucent bar.
 
 ### 3.3 triggers
 
@@ -309,10 +291,10 @@ As we copy steps to the grid, we check if we're updating a column that is the pl
 
 When the playhead advances to a new column, we want something to happen which corresponds to the toggled-on steps. Let's do two things: show separate visual feedback on the grid in the second-to-last row (we'll call it a 'trigger row'), and make some sound.
 
-Drawing the trigger row happens in `d`, at `// show triggers`:
+Drawing the trigger row happens in `draw`, at `// show triggers`:
 
 ```js
-d = {
+draw = {
 	var highlight;
 	for(0,~lastCol, {arg x;
 		if(x == ~play_position,
@@ -321,17 +303,17 @@ d = {
 		
 		// show playhead
 		for(0,~lastRow-2, {arg y;
-			~m.levset(x,y,(~step[y*16+x] * 11) + (highlight));
+			~m.led(x,y,(~step[y*16+x] * 11) + (highlight));
 		});
 		
 		// set trigger row background
-		~m.levset(x,~lastRow-1,4);
+		~m.led(x,~lastRow-1,4);
 	});
 	
 	// show triggers
 	for(0,~lastRow-2, {arg t;
 		if(~step[(t*16) + ~play_position] == 1,
-			{~m.levset(t,~lastRow-1,15);}
+			{~m.led(t,~lastRow-1,15);}
 		);
 	});
 };
@@ -343,7 +325,7 @@ In the snippet above:
 - we search through the `step` array at the current play position, showing a bright indicator for each on state
 - this displays a sort of horizontal correlation of rows (or "channels"), with the topmost at far left
 
-If the channel is toggled on, we then trigger the Synth (which we defined at the start of our file), inside `t`:
+If the channel is toggled on, we then trigger the Synth (which we defined at the start of our file), inside of `timer`:
 
 ```js
 // TRIGGER SOMETHING
@@ -373,39 +355,34 @@ First, we clear the last row:
 
 ```js
 // clear play position row
-~m.levset(x,~lastRow,0);
+~m.led(x,~lastRow,0);
 ```
 
 And a few lines later, inside `d`, we add a position display to the last row:
 
 ```js
 // show play position
-~m.levset(~play_position,~lastRow,15);
+~m.led(~play_position,~lastRow,15);
 ```
 
 We look for key presses in the last row, in the key function:
 
 ```js
-OSCFunc.newMatching(
-	{ arg message, time, addr, recvPort;
-		var x = message[1], y = message[2], z = message[3];
-		
-		if((z == 1) && (y <= (~lastRow-2)), {
-			var pos = x + (y * 16);
-			if(~step[pos] == 1,
-				{~step[pos] = 0},
-				{~step[pos] = 1}
-			);
-		});
-		
-		// cut to a new position
-		if((z== 1) && (y == ~lastRow), {
-			~next_position = x;
-			~cutting = 1;
-		});
-	},
-	"/monome/grid/key"
-);
+~m.key({ arg x,y,z;
+	if((z == 1) && (y <= (~lastRow-2)), {
+		var pos = x + (y * 16);
+		if(~step[pos] == 1,
+			{~step[pos] = 0},
+			{~step[pos] = 1}
+		);
+	});
+	
+	// cut to a new position
+	if((z== 1) && (y == ~lastRow), {
+		~next_position = x;
+		~cutting = 1;
+	});
+});
 ```
 
 We've added two global variables, `cutting` and `next_position`. Check out the changed code where we check the cut position inside our step timer:
@@ -501,7 +478,7 @@ Done!
 
 *SuperCollider* was written by James McCartney and is now maintained [as a GPL project by various people](https://supercollider.github.io).
 
-*monom* was written by [Raja Das and Joseph Rangel](https://github.com/Karaokaze/MonoM_SCs), maintained by [Ezra Buchla](https://github.com/catfact/monom/), and updated by [dan derks](https://dndrks.com).
+*monom* was written by [Raja Das and Joseph Rangel](https://github.com/Karaokaze/Monom_SCs), was maintained by [Ezra Buchla](https://github.com/catfact/monom/), and has been updated in 2023 by [dan derks](https://dndrks.com).
 
 This tutorial was written by [Brian Crabtree](http://nnnnnnnn.org) and [dan derks](https://dndrks.com) for [monome.org](https://monome.org). Huge thanks to Raja Das for his very extensive 'Monoming with SuperCollider Tutorial'.
 

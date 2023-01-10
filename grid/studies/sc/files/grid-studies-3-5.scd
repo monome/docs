@@ -7,70 +7,70 @@ SynthDef(\singrain, { |freq = 440, amp = 0.2, sustain = 1|
 	Out.ar(0, sig ! 2);    // sig ! 2 is the same as [sig, sig]
 }).add;
 
-~m = MonoM.new("/monome", 0);
+~m = MonomeGrid.new("/monome", 0);
 
 s.waitForBoot({
 
-	~m.useDevice(0);
+	var draw, timer;
 
-	~step = Array.fill(~m.rws-2 * ~m.cls, {0});
+	~m.connect(0);
+
+	~step = Array.fill(~m.cols * ~m.rows-2, {0});
 	~play_position = -1;
 	~next_position;
 	~cutting = 0;
-	~lastCol = ~m.cls-1;
-	~lastRow = ~m.rws-1;
+	~lastCol = ~m.cols-1;
+	~lastRow = ~m.rows-1;
 
 	~keys_held = 0;
 	~key_last = 0;
 	~loop_start = 0;
 	~loop_end = ~lastCol;
 
-	~m.useDevice(0);
+	~m.connect(0);
 
-	OSCFunc.newMatching(
-		{ arg message, time, addr, recvPort;
-			var x = message[1], y = message[2], z = message[3];
+	~m.key({ arg x,y,z;
 
-			// toggles
-			if((z == 1) && (y <= (~lastRow-2)), {
-				var pos = x + (y * 16);
-				if(~step[pos] == 1,
-					{~step[pos] = 0},
-					{~step[pos] = 1}
-				);
-			});
-
-			// count bottom row keys
-			if(y == ~lastRow,
-				if(z == 1,
-					{~keys_held = ~keys_held + 1;},
-					{~keys_held = ~keys_held - 1;});
+		// toggles
+		if((z == 1) && (y <= (~lastRow-2)), {
+			var pos = x + (y * 16);
+			if(~step[pos] == 1,
+				{~step[pos] = 0},
+				{~step[pos] = 1}
 			);
+		});
 
-			// loop and cut
-			if((z == 1) && (y == ~lastRow), {
-				if(~keys_held == 1, {
-					~next_position = x;
-					~cutting = 1;
-					~key_last = x;
-				},
-				{
-					if( ~key_last < x,
-						{
-							~loop_start = ~key_last;
-							~loop_end = x;
-						},
-						{
-							// exercise: define what should happen if the loop is negative!
-						}
-					);
-					("start: " ++ ~loop_start ++ " // end: " ++ ~loop_end).postln;
-				});
+		// count bottom row keys
+		if(y == ~lastRow,
+			if(z == 1,
+				{~keys_held = ~keys_held + 1;},
+				{~keys_held = ~keys_held - 1;});
+		);
+
+		// loop and cut
+		if((z == 1) && (y == ~lastRow), {
+			if(~keys_held == 1, {
+				~next_position = x;
+				~cutting = 1;
+				~key_last = x;
+			},
+			{
+				if( ~key_last < x,
+					{
+						~loop_start = ~key_last;
+						~loop_end = x;
+					},
+					{
+						// exercise: define what should happen if the loop is negative!
+					}
+				);
+				("start: " ++ ~loop_start ++ " // end: " ++ ~loop_end).postln;
 			});
-	}, "/monome/grid/key");
+		});
+	});
 
 
-	d = {
+	draw = {
 		var highlight;
 		for(0,~lastCol, {arg x;
 			if(x == ~play_position,
@@ -78,29 +78,29 @@ s.waitForBoot({
 				{highlight = 0});
 
 			for(0,~lastRow-2, {arg y;
-				~m.levset(x,y,(~step[y*16+x] * 11) + (highlight * 4));
+				~m.led(x,y,(~step[y*16+x] * 11) + (highlight * 4));
 			});
 
 			// set trigger row background
-			~m.levset(x,~lastRow-1,4);
+			~m.led(x,~lastRow-1,4);
 
 			// clear play position row
-			~m.levset(x,~lastRow,0);
+			~m.led(x,~lastRow,0);
 		});
 
 		// show triggers
 		for(0,5, {arg t;
 			if(~step[(t*16) + ~play_position] == 1,
-				{~m.levset(t,~lastRow-1,15);}
+				{~m.led(t,~lastRow-1,15);}
 			)
 		});
 
 
 		// show play position
-		~m.levset(~play_position,~lastRow,15);
+		~m.led(~play_position,~lastRow,15);
 	};
 
-	t = Routine({
+	timer = Routine({
 		var interval = 0.125;
 		loop {
 
@@ -129,14 +129,14 @@ s.waitForBoot({
 				)
 			});
 
-			d.value;
+			draw.value;
 
 			interval.yield;
 		}
 
 	});
 
-	t.play();
+	timer.play();
 
 });
 

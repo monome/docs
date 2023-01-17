@@ -96,9 +96,17 @@ To confirm:
 - if `/var/log/journal` is showing as larger than 20 megabytes, you can safely clean up the files inside by executing: `sudo journalctl --vacuum-size=20M`
 - execute `sudo du -h /var/log` to confirm the space has been reclaimed
 
-#### standard norns: CM3+ upgrade {#standard-cm3-upgrade}
+#### standard norns: confirming Compute Module model
 
 Many of the original standard norns came equipped with a CM3 (Compute Module 3) which has 4gb of storage. This can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage.
+
+To confirm which chip your norns has installed, [connect via SSH](../advanced-access/#ssh) and execute `pinout`, which will return the name (and a cute illustration!) of your installed Compute Module:
+
+![](/docs/norns/image/help-images/pinout.png)
+
+If you do not have a CM3+ installed, the steps in the next section walk through the upgrade procedure (assuming you have a CM3+ chip handy).
+
+#### standard norns: CM3+ upgrade {#standard-cm3-upgrade}
 
 There is no soldering needed, but you will have to disassemble your norns a bit. Please follow this tutorial video:
 
@@ -108,7 +116,7 @@ There is no soldering needed, but you will have to disassemble your norns a bit.
 
 #### standard norns {#extending-standard}
 
-Since 2021, all norns are built with a CM3+ which offers 32gb of storage. Their full capacity is expanded in the workshop before their initial shipment, but if you've recently reinstalled the norns software on your device, you will need to expand the filesystem in order for the full 32gb to be available.
+All new norns built since 2021 come with a CM3+ which offers 32gb of storage. Their full capacity is expanded in the workshop before their initial shipment, but if you've recently reinstalled the norns software on your device, you will need to expand the filesystem in order for the full 32gb to be available.
 
 - open a terminal on a computer connected to the same network as your norns
   - if you are using Windows, you might need to [install the SSH client](https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/)

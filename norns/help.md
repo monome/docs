@@ -96,7 +96,7 @@ To confirm:
 - if `/var/log/journal` is showing as larger than 20 megabytes, you can safely clean up the files inside by executing: `sudo journalctl --vacuum-size=20M`
 - execute `sudo du -h /var/log` to confirm the space has been reclaimed
 
-#### standard norns: confirming Compute Module model
+#### standard norns: confirming Compute Module model {#confirm-cm3}
 
 Many of the original standard norns came equipped with a CM3 (Compute Module 3) which has 4gb of storage. This can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage.
 

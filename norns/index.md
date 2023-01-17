@@ -59,6 +59,7 @@ norns is open source and continues to grow with the generous efforts of many con
 
 - all units produced before 2021 have a compute module 3 (cm3).
 - a-stock units produced during and after 2021 have a compute module 3+ (cm3+), a few 2021 b-stock units have cm3's.
+  - [follow these steps to confirm which your compute module your unit has installed](/docs/norns/help/#confirm-cm3)
 - quad-core 1.2ghz, 1gb RAM.
 - storage: 4gb (cm3) / 32gb (cm3+).
 - cs4270 i2s audio codec (low latency).

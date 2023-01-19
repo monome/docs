@@ -315,6 +315,21 @@ Avoiding the additional CPU headroom required to support external video output a
 
 ## SOFTWARE
 
+### 'available' scripts do not appear in maiden {#available}
+
+![](/docs/norns/image/help-images/blank_available.png)
+
+If you are not seeing any scripts populate under maiden's [available](/docs/norns/maiden/#available) tab:
+
+- confirm both norns and your other computer are connected to the same [wifi network](/docs/norns/wifi-files/#connect)
+- confirm that you are on [the latest version](/docs/norns/wifi-files/#update) of the core norns software
+- connect to maiden and confirm that the following files exist under `data/sources`: `base.json` and `community.json`
+  - if they do not exist, or the files themselves are empty, import [fresh copies](https://github.com/monome/maiden/tree/main/sources) of each
+- if the `data/catalogs` folder does not exist, create it
+- restart your device
+
+Following the steps above should create the necessary circumstances for the `community` and `base` catalogs to populate.
+
 ### gathering system logs {#logs}
 
 In the event of an inexplicable issue, norns can dump the output of its logging mechanism to a text file. Logs capture the current and previous boots, which includes matron, SuperCollider, and operating system messages. Navigate to `SYSTEM > LOG` and press K3 -- this will create a file at `dust/data/system.log` which can then be copied via maiden or downloaded via [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp).

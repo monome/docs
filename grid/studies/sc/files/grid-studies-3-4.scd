@@ -7,13 +7,13 @@ SynthDef(\singrain, { |freq = 440, amp = 0.2, sustain = 1|
 	Out.ar(0, sig ! 2);    // sig ! 2 is the same as [sig, sig]
 }).add;
 
-~m = MonomeGrid.new("/grid", 0);
+~m = MonomeGrid.new();
 
 s.waitForBoot({
 
 	var draw, timer;
 
-	~m.connect(0);
+	~m.connect();
 
 	~step = Array.fill(~m.cols * ~m.rows-2, {0});
 	~play_position = -1;

@@ -54,10 +54,10 @@ The `MonomeGrid` class facilitates easy connection and communication with grids.
 Let's create a variable, `~m`, to initialize the `MonomeGrid` class:
 
 ```js
-~m = MonomeGrid.new("/grid", 0);
+~m = MonomeGrid.new(0);
 ```
 
-The arguments to the initializer are *prefix* and *grid rotation*. Any string can be used for the *prefix*, as long as its formatted with no spaces and leads with `/` (eg. `"/g"` or `"/128"` or `"/walnut256"`).
+The `0` argument to the initializer is *grid rotation*. If none is provided, `MonomeGrid` will assume 0 rotation. Check out the `MonomeGrid` help file for additional rotation options!
 
 Now that the class is initialized to a variable, let's connect to a grid:
 
@@ -65,11 +65,13 @@ Now that the class is initialized to a variable, let's connect to a grid:
 ~m.connect(0);
 ```
 
-Here the first monome device found is attached. Please note that there needs to be a slight delay in between initializing the new device and connecting to it. Waiting until the server starts provides the necessary time buffer:
+Here the first monome grid device found is attached. If no device number is provided, `MonomeGrid` will connect to the first gird device found.
+
+Please note that there needs to be a slight delay in between initializing the new device and connecting to it. Waiting until the server starts provides the necessary time buffer:
 
 ```js
 (
-~m = MonomeGrid.new("/grid", 0);
+~m = MonomeGrid.new(0);
 
 s.waitForBoot({
 	~m.connect(0);
@@ -101,11 +103,11 @@ In [grid-studies-2-1.scd](files/grid-studies-2-1.scd) we define the function to 
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new("/grid", 0);
+~m = MonomeGrid.new(0); // 0 means no rotation
 
 s.waitForBoot({
 
-	~m.connect(0);
+	~m.connect(0); // 0 means the first-connected device
 
 	~m.key({
 		arg x,y,z;
@@ -145,7 +147,7 @@ Instead of printing the key output, we can show the key state on the grid quite 
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new("/grid", 0);
+~m = MonomeGrid.new(0);
 
 s.waitForBoot({
 

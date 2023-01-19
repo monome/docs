@@ -1,11 +1,11 @@
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new("/grid", 0);
+~m = MonomeGrid.new(0); // 0 means no rotation
 
 s.waitForBoot({
 
-	~m.connect(0);
+	~m.connect(0); // 0 means the first-connected device
 
 	~m.key({
 		arg x,y,z;

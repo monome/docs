@@ -1,13 +1,13 @@
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new("/grid", 0);
+~m = MonomeGrid.new(); // if we don't want to change rotation, we can leave the argument out
 
 s.waitForBoot({
 
 	var draw, timer;
 
-	~m.connect(0);
+	~m.connect(); // if we don't want to connect to a second device, we can leave the argument out
 	~step = Array.fill(~m.cols * ~m.rows-2, {0});
 	~play_position = -1;
 

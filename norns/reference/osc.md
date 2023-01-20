@@ -93,6 +93,22 @@ function redraw()
 end
 ```
 
+**a note about slashes**
+
+Leading slashes for OSC messages are canonical and best practice, but they are not *technically* required by norns for successful interpretation of incoming messages via OSC.
+
+In our example above, Max transmits `"send computer IP + port to norns"` whenever the message object is clicked -- norns separates each word into its own string and logs it as:
+
+- `path`: `"send"`
+- `args[1]`: `"computer"`
+- `args[2]`: `"IP"`
+- `args[3]`: `"+"`
+- `args[4]`: `"port"`
+- `args[5]`: `"to"`
+- `args[6]`: `"norns"`
+
+In our Lua code, we intercept the case when `path == "send"`, then abandon the `args` and focus on where the message is coming from (via the `from` table).
+
 ### description
 
 Connect a script to other OSC-enabled devices across a network. Provides scaffolding for incoming and outgoing OSC functions.

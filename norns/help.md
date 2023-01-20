@@ -44,7 +44,9 @@ When installing, be sure to handle from the sides -- wiping away debris or oil f
 #### wifi nub
 {: .no_toc }
 
-If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a replacement (10 USD, shipping included, only US).
+**In order to use hotspot functionality, please be sure to purchase a replacement WIFI adapter with the Ralink RT5370 chipset.**
+
+If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a replacement (10 USD, shipping included, only US). 
 
 If you have experienced signal strength issues and wish to replace your wifi dongle completely, you may wish to purchase a [high gain antenna adapter](https://www.amazon.com/Panda-Wireless-PAU06-300Mbps-Adapter/dp/B00JDVRCI0).
 
@@ -94,9 +96,17 @@ To confirm:
 - if `/var/log/journal` is showing as larger than 20 megabytes, you can safely clean up the files inside by executing: `sudo journalctl --vacuum-size=20M`
 - execute `sudo du -h /var/log` to confirm the space has been reclaimed
 
-#### standard norns: CM3+ upgrade {#standard-cm3-upgrade}
+#### standard norns: confirming Compute Module model {#confirm-cm3}
 
 Many of the original standard norns came equipped with a CM3 (Compute Module 3) which has 4gb of storage. This can be replaced with a CM3+ (Compute Module 3+) for up to 32gb of storage.
+
+To confirm which chip your norns has installed, [connect via SSH](../advanced-access/#ssh) and execute `pinout`, which will return the name (and a cute illustration!) of your installed Compute Module:
+
+![](/docs/norns/image/help-images/pinout.png)
+
+If you do not have a CM3+ installed, the steps in the next section walk through the upgrade procedure (assuming you have a CM3+ chip handy).
+
+#### standard norns: CM3+ upgrade {#standard-cm3-upgrade}
 
 There is no soldering needed, but you will have to disassemble your norns a bit. Please follow this tutorial video:
 
@@ -106,7 +116,7 @@ There is no soldering needed, but you will have to disassemble your norns a bit.
 
 #### standard norns {#extending-standard}
 
-Since 2021, all norns are built with a CM3+ which offers 32gb of storage. Their full capacity is expanded in the workshop before their initial shipment, but if you've recently reinstalled the norns software on your device, you will need to expand the filesystem in order for the full 32gb to be available.
+All new norns built since 2021 come with a CM3+ which offers 32gb of storage. Their full capacity is expanded in the workshop before their initial shipment, but if you've recently reinstalled the norns software on your device, you will need to expand the filesystem in order for the full 32gb to be available.
 
 - open a terminal on a computer connected to the same network as your norns
   - if you are using Windows, you might need to [install the SSH client](https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/)
@@ -304,6 +314,21 @@ The norns OS is primarily developed for/on the standard norns hardware, which ma
 Avoiding the additional CPU headroom required to support external video output also allows us to optimize the capabilities of norns, to provide standard norns and shield users with the same foundational software experience.
 
 ## SOFTWARE
+
+### 'available' scripts do not appear in maiden {#available}
+
+![](/docs/norns/image/help-images/blank_available.png)
+
+If you are not seeing any scripts populate under maiden's [available](/docs/norns/maiden/#available) tab:
+
+- confirm both norns and your other computer are connected to the same [wifi network](/docs/norns/wifi-files/#connect)
+- confirm that you are on [the latest version](/docs/norns/wifi-files/#update) of the core norns software
+- connect to maiden and confirm that the following files exist under `data/sources`: `base.json` and `community.json`
+  - if they do not exist, or the files themselves are empty, import [fresh copies](https://github.com/monome/maiden/tree/main/sources) of each
+- if the `data/catalogs` folder does not exist, create it
+- restart your device
+
+Following the steps above should create the necessary circumstances for the `community` and `base` catalogs to populate.
 
 ### gathering system logs {#logs}
 

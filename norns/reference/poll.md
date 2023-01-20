@@ -22,6 +22,8 @@ permalink: /norns/reference/poll
 ### example
 
 ```lua
+-- !! polls should always be established within a script's 'init'!!
+
 function init()
 
   last_pitch = 0
@@ -81,22 +83,37 @@ end
 
 ### description
 
-`poll`s report basic data from the audio subsystem, for use within a script. Trigger script events based on incoming amplitude, or capture the pitch and match it with a synth engine. See [study 5](/docs/norns/study-5/#numerical-superstorm) for additional examples.
+Polls report basic data from the audio subsystem, for use within a script. Trigger script events based on incoming amplitude, or capture the pitch and match it with a synth engine. See [study 5](/docs/norns/study-5/#numerical-superstorm) for additional examples.
 
-Available polls:
+Here are the pre-built polls, made available by the norns system:
 
-- `amp_in_l` -- returns the amplitude of the incoming signal as a percentage of the largest amplitude that can be captured before clipping
-
+- `amp_in_l`: returns the amplitude of the incoming signal as a percentage of the largest amplitude that can be captured before clipping
 - `amp_in_r`
-
-- `amp_out_l` -- returns the amplitude of the outgoing signal as a percentage of the largest amplitude that can be captured before clipping
-
+- `amp_out_l`: returns the amplitude of the outgoing signal (output from a loaded engine, *not* softcut, monitor, or the general norns output level) as a percentage of the largest amplitude that can be captured before clipping
 - `amp_out_r`
-
 - `cpu_avg`
-
 - `cpu_peak`
-
-- `pitch_in_l` -- returns pitch value in Hz
-
+- `pitch_in_l`: returns pitch value in Hz
 - `pitch_in_r`
+
+### writing your own polls
+
+Writing your own polls is an incredibly useful technique for reporting information from a SuperCollider engine back to the Lua scripting layer.
+
+Polls can be declared in an engine file using `this.addPoll`, eg.
+
+```js
+this.addPoll(\outputAmpL, {
+	// 'getSynchronous' lets us query a SuperCollider variable from Lua
+	var ampL = kernel.amplitude[0].getSynchronous;
+	ampL
+});
+```
+
+The above relies on a bit of coordination, so let's rewrite the `amp_in_l` and `amp_in_r` polls, but with additional control over each channel's gain:
+
+- [`lib/ExamplePoll.sc`](/reference-files/poll/poll-example/lib/ExamplePoll.sc): a Class file which uses SuperCollider's `Amplitude.kr` UGen to track the incoming amplitude of both channels
+- [`lib/Engine_ExamplePoll.sc`](/reference-files/poll/poll-example/lib/Engine_ExamplePoll.sc): wraps the `ExamplePoll.sc` Class file into the norns engine template, adding polls for each channel to report their amplitude back to the Lua scripting layer
+- [`poll-example.lua`](/reference-files/poll/poll-example/poll-example.lua): initializes our polls and represents the incoming amplitude data as two independent circles on the screen
+
+([download all files as a zip](/reference-files/poll/poll-example.zip) -- be sure to restart norns after!)

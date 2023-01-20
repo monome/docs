@@ -37,7 +37,7 @@ As you go through each study, you'll find it useful to stop the running code so 
 
 ## library setup
 
-To install the SuperCollider library for monome grid devices:
+To install the `monomeSC` SuperCollider library for monome grid devices:
 
 - download + unzip the [latest release](https://github.com/monome/monomeSC/releases/latest) of `monomeSC`
 - in SuperCollider, select `File > Open user support directory`
@@ -476,12 +476,11 @@ Done!
 	- if "alt" is held while pressing a toggle, clear the entire row.
 	- if "alt" is held while pressing the play row, reverse the direction of play.
 
-
-## Credits
+### credits
 
 *SuperCollider* was written by James McCartney and is now maintained [as a GPL project by various people](https://supercollider.github.io).
 
-*monom* was written by [Raja Das and Joseph Rangel](https://github.com/Karaokaze/Monom_SCs), was maintained by [Ezra Buchla](https://github.com/catfact/monom/), and has been updated in 2023 by [dan derks](https://dndrks.com).
+The original *monom* SuperCollider library was written by [Raja Das and Joseph Rangel](https://github.com/Karaokaze/Monom_SCs), was maintained by [Ezra Buchla](https://github.com/catfact/monom/), and was re-built into `monomeSC` in 2023 by [dan derks](https://dndrks.com).
 
 This tutorial was written by [Brian Crabtree](http://nnnnnnnn.org) and [dan derks](https://dndrks.com) for [monome.org](https://monome.org). Huge thanks to Raja Das for his very extensive 'Monoming with SuperCollider Tutorial'.
 

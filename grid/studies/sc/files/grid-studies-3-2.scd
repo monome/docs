@@ -1,57 +1,56 @@
 (
 Server.default = Server.local;
 
-~m = MonoM.new("/monome", 0);
+~m = MonomeGrid.new(); // if we don't want to change rotation, we can leave the argument out
 
 s.waitForBoot({
 
-~step = Array.fill(96, {0});
-~play_position = 0;
+	var draw, timer;
 
-~m.useDevice(0);
+	~m.connect(); // if we don't want to connect to a second device, we can leave the argument out
+	~step = Array.fill(~m.cols * ~m.rows-2, {0});
+	~play_position = -1;
 
-OSCFunc.newMatching(
-		{ arg message, time, addr, recvPort;
+	// 'cols' + 'rows' return as 1-indexed,
+	// but we need 0-indexed for most of our functions!
+	~lastCol = ~m.cols-1;
+	~lastRow = ~m.rows-1;
 
-			if((message[3] == 1) && (message[2] < 6), {
-				var pos = message[1] + (message[2] * 16);
-				if(~step[pos] == 1,
-					{~step[pos] = 0},
-					{~step[pos] = 1}
-				);
-			})
-		}, "/monome/grid/key");
+	~m.key({ arg x,y,z;
+		if((z == 1) && (y <= (~lastRow - 2)), {
+			var pos = x + (y * 16);
+			if(~step[pos] == 1,
+				{~step[pos] = 0},
+				{~step[pos] = 1}
+			);
+		});
+	});
 
 
-d = {
+	draw = {
 		var highlight;
-		for(0,15, {arg x;
-			if(x==~play_position,
-					{highlight = 1},
-					{highlight = 0});
+		for(0,~lastCol, {arg x;
+			if(x == ~play_position,
+				{highlight = 4},
+				{highlight = 0});
 
-			for(0,5, {arg y;
-				~m.levset(x,y,(~step[y*16+x] * 11) + (highlight * 4));
+			// show playhead
+			for(0,~lastRow-2, {arg y;
+				~m.led(x,y,(~step[y*16+x] * 11) + (highlight));
 			});
 		})
 	};
 
-t = Routine({
-	var interval = 0.125;
-	loop {
-		if(~play_position == 15,
-				{~play_position = 0;},
-				{~play_position = ~play_position + 1;}
-			);
+	timer = Routine({
+		var interval = 0.125;
+		loop {
+			~play_position = (~play_position + 1).wrap(0,~lastCol);
+			draw.value;
+			interval.yield;
+		}
+	});
 
-		d.value;
-
-		interval.yield;
-	}
-
-});
-
-t.play();
+	timer.play();
 
 });
 

@@ -1,37 +1,28 @@
 (
 Server.default = Server.local;
 
-~m = MonoM.new("/monome", 0);
+~m = MonomeGrid.new(0);
 
 s.waitForBoot({
 
-~step = Array.fill(96, {0});
-~play_position = 0;
+	var draw;
 
-~m.useDevice(0);
+	~m.connect(0);
+	~step = Array.fill(~m.cols * ~m.rows-2, {0});
 
-OSCFunc.newMatching(
-		{ arg message, time, addr, recvPort;
+	~m.key({ arg x,y,z;
+		if((z == 1) && (y < (~m.rows-2)), {
+			var pos = x + (y * 16);
+			if(~step[pos] == 1,
+				{~step[pos] = 0},
+				{~step[pos] = 1}
+			);
+			draw.value(x,y);
+		});
+	});
 
-			if((message[3] == 1) && (message[2] < 6), {
-				var pos = message[1] + (message[2] * 16);
-				if(~step[pos] == 1,
-					{~step[pos] = 0},
-					{~step[pos] = 1}
-				);
-				d.value;
-			});
-		}, "/monome/grid/key");
-
-
-d = {
-		for(0,5, {arg y;
-			for(0,15, {arg x;
-				~m.levset(x,y,~step[y*16+x] * 15);
-			})
-		})
-
-
+	draw = { arg x, y;
+		~m.led(x,y,~step[y*16+x] * 15);
 	};
 
 });

@@ -440,7 +440,7 @@ if((z == 1) && (y == ~lastRow), {
 				~loop_end = x;
 			},
 			{
-				// exercise: define what should happen if the loop is negative!
+			// exercise: define what should happen if the loop is negative!
 			}
 		);
 		("start: " ++ ~loop_start ++ " // end: " ++ ~loop_end).postln;

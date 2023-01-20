@@ -480,7 +480,7 @@ Done!
 
 *SuperCollider* was written by James McCartney and is now maintained [as a GPL project by various people](https://supercollider.github.io).
 
-The original *monom* SuperCollider library was written by [Raja Das and Joseph Rangel](https://github.com/Karaokaze/Monom_SCs), was maintained by [Ezra Buchla](https://github.com/catfact/monom/), and was re-built into `monomeSC` in 2023 by [dan derks](https://dndrks.com).
+The original `monom` SuperCollider library was written by [Raja Das and Joseph Rangel](https://github.com/Karaokaze/Monom_SCs), was maintained by [Ezra Buchla](https://github.com/catfact/monom/), and was re-built into `monomeSC` in 2023 by [dan derks](https://dndrks.com).
 
 This tutorial was written by [Brian Crabtree](http://nnnnnnnn.org) and [dan derks](https://dndrks.com) for [monome.org](https://monome.org). Huge thanks to Raja Das for his very extensive 'Monoming with SuperCollider Tutorial'.
 

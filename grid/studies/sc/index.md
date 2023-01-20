@@ -49,7 +49,16 @@ To install the `monomeSC` SuperCollider library for monome grid devices:
 
 ## 1. connect {#connect}
 
-The `MonomeGrid` class facilitates easy connection and communication with grids.
+### grid connection
+
+After setting up the library, connect your grid to your computer and boot SuperCollider. If you run into any trouble connecting to your grid from SuperCollider, a quick recompiling should solve it:
+
+- macOS: <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
+- Windows / Linux: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
+
+### initial contact
+
+The `MonomeGrid` class facilitates easy communication with grids, modeled after the [norns scripting API](/docs/norns/reference/grid).
 
 Let's create a variable, `~m`, to initialize the `MonomeGrid` class:
 

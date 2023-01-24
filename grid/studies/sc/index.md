@@ -66,8 +66,6 @@ If you run into this message, or have any other trouble communicating with your 
 - macOS: <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 - Windows / Linux: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 
-You can also execute 
-
 ### initial contact
 
 The `MonomeGrid` class facilitates easy communication with grids, modeled after the [norns scripting API](/docs/norns/reference/grid).

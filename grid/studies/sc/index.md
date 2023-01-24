@@ -369,7 +369,7 @@ for(0,~lastRow-2, {arg t;
 
 If any vertical toggle in `step` is toggled on (`== 1`) at the `play_position` we trigger a sound. The frequency corresponds to the row position.
 
-### 3.4 cutting
+### 3.4 dynamic cuts
 
 *See [grid-studies-3-4.scd](files/grid-studies-3-4.scd) for this step.*
 
@@ -382,7 +382,7 @@ First, we clear the last row:
 ~m.led(x,~lastRow,0);
 ```
 
-And a few lines later, inside `d`, we add a position display to the last row:
+And a few lines later, we add a position display to the last row:
 
 ```js
 // show play position

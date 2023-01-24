@@ -43,7 +43,7 @@ To install the `monomeSC` SuperCollider library for monome grid devices:
 - in SuperCollider, select `File > Open user support directory`
 - move or copy the `monomeSC` folder into the `Extensions` folder
   - if `Extensions` does not exist, please create it
-- in SuperCollider, recompile the class library (`Language > Recompile Class Library`)
+- in SuperCollider, recompile the Class Library (`Language > Recompile Class Library`)
   - macOS: <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
   - Windows / Linux: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 
@@ -51,10 +51,22 @@ To install the `monomeSC` SuperCollider library for monome grid devices:
 
 ### grid connection
 
-After setting up the library, connect your grid to your computer and boot SuperCollider. If you run into any trouble connecting to your grid from SuperCollider, a quick recompiling should solve it:
+After setting up the library, connect your grid to your computer and boot SuperCollider.
+
+As SuperCollider boots up, it initializes the `MonomeGrid` class, which is how we'll get grids and SuperCollider to communicate. If the hardware isn't connected when the software boots, then `MonomeGrid` won't be able to index it for use. When you try to connect to your grid via SuperCollider, you'll see this message in the console:
+
+```js
+!! no monome grid detected !!
+  connect a grid and execute MonomeGrid.initClass() ,
+  or Recompile Class Library
+```
+
+If you run into this message, or have any other trouble communicating with your grid from SuperCollider, quickly recompiling the Class Library should solve the issue:
 
 - macOS: <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 - Windows / Linux: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
+
+You can also execute 
 
 ### initial contact
 

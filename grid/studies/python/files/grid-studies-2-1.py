@@ -4,39 +4,65 @@ import asyncio
 import monome
 
 class GridStudies(monome.GridApp):
+
+    global gridConnected
+    global firstConnection
+
     def __init__(self):
         super().__init__()
+    
+    # track connection status:
+    def connectGrid(state, self):
+        GridStudies.gridConnected = state
+        try:
+            GridStudies.firstConnection
+            GridStudies.firstConnection = False
+        except:
+            GridStudies.firstConnection = True
+            playTask = asyncio.create_task(self.play())
 
+    # when grid is plugged in via USB:
     def on_grid_ready(self):
-        self.step = [[0 for col in range(self.grid.width)] for row in range(6)]
+        global width
+        width = self.grid.width
+        global height
+        height = self.grid.height
+        global canvasFloor
+        canvasFloor = height-2
 
-        asyncio.async(self.play())
+        GridStudies.connectGrid(True, self)
+        if GridStudies.firstConnection:
+            self.step = [[0 for col in range(width)] for row in range(canvasFloor)]
+
+    # when grid is physically disconnected:
+    def on_grid_disconnect(self, *args):
+        GridStudies.connectGrid(False, self)
 
     async def play(self):
         while True:
-            self.draw()
-
             await asyncio.sleep(0.1)
-
-    def draw(self):
-        buffer = monome.GridBuffer(self.grid.width, self.grid.height)
-
-        # display steps
-        for x in range(self.grid.width):
-            for y in range(6):
-                buffer.led_level_set(x, y, self.step[y][x] * 11)
-
-        # update grid
-        buffer.render(self.grid)
+            self.draw()
 
     def on_grid_key(self, x, y, s):
         # toggle steps
-        if s == 1 and y < 6:
+        if s == 1 and y < canvasFloor:
             self.step[y][x] ^= 1
             self.draw()
 
-if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
+    def draw(self):
+        buffer = monome.GridBuffer(width, height)
+        
+        # display steps
+        for x in range(width):
+            for y in range(canvasFloor):
+                buffer.led_level_set(x, y, self.step[y][x] * 11)
+
+        # update grid
+        if GridStudies.gridConnected:
+            buffer.render(self.grid)
+        
+async def main():
+    loop = asyncio.get_running_loop()
     grid_studies = GridStudies()
 
     def serialosc_device_added(id, type, port):
@@ -46,5 +72,8 @@ if __name__ == '__main__':
     serialosc = monome.SerialOsc()
     serialosc.device_added_event.add_handler(serialosc_device_added)
 
-    loop.run_until_complete(serialosc.connect())
-    loop.run_forever()
+    await serialosc.connect()
+    await loop.create_future()
+
+if __name__ == '__main__':
+    asyncio.run(main())

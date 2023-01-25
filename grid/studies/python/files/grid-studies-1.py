@@ -4,15 +4,16 @@ import asyncio
 import monome
 
 class GridStudies(monome.GridApp):
+    
     def __init__(self):
         super().__init__()
 
     def on_grid_key(self, x, y, s):
         print("key:", x, y, s)
-        self.grid.led_level_set(x, y, s*15)
+        self.grid.led_level_set(x, y, s * 15)
 
-if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
+async def main():
+    loop = asyncio.get_running_loop()
     grid_studies = GridStudies()
 
     def serialosc_device_added(id, type, port):
@@ -22,5 +23,8 @@ if __name__ == '__main__':
     serialosc = monome.SerialOsc()
     serialosc.device_added_event.add_handler(serialosc_device_added)
 
-    loop.run_until_complete(serialosc.connect())
-    loop.run_forever()
+    await serialosc.connect()
+    await loop.create_future()
+
+if __name__ == '__main__':
+    asyncio.run(main())

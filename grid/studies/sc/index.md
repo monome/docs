@@ -35,7 +35,7 @@ As you go through each study, you'll find it useful to stop the running code so 
 
 [See the SuperCollider docs for more info.](https://doc.sccode.org/Guides/SCIde.html#Evaluating%20code)
 
-## library setup
+## library setup {#setup}
 
 To install the `monomeSC` SuperCollider library for monome grid devices:
 
@@ -47,7 +47,7 @@ To install the `monomeSC` SuperCollider library for monome grid devices:
   - macOS: <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
   - Windows / Linux: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 
-## 1. connect {#connect}
+## 1. connect
 
 ### grid connection
 
@@ -100,13 +100,13 @@ s.waitForBoot({
 
 The library communicates with *serialosc* to discover attached devices using OSC. For a detailed description of how the mechanism and protocol work, see [the serialosc technical docs](/docs/serialosc/osc/) and [grid serial reference](/docs/serialosc/serial.txt) -- please note that neither of these documents are required for this study, but they _are_ good background for creating your own grid communication libraries.
 
-## 2. basics {#basics}
+## 2. basics {#2}
 
 *See [grid-studies-2-1.scd](files/grid-studies-2-1.scd) for this section.*
 
 ![](images/grid-studies-sc-2.png)
 
-### 2.1 key input {#key-input}
+### 2.1 key input {#2-1}
 
 We read grid key input by utilizing the `key` method. Three parameters are received, in order:
 
@@ -138,7 +138,7 @@ s.waitForBoot({
 )
 ```
 
-### 2.2 LED output {#led-output}
+### 2.2 LED output {#2-2}
 
 Updating a single LED takes the form:
 
@@ -156,7 +156,7 @@ To toggle a single LED to on or full bright, with no in-between values:
 
 Where `state` ranges from 0 (off) to 1 (full brightness).
 
-### 2.3 coupled interaction
+### 2.3 coupled interaction {#2-3}
 
 *See [grid-studies-2-3.scd](files/grid-studies-2-3.scd) for this step.*
 
@@ -182,36 +182,19 @@ s.waitForBoot({
 )
 ```
 
-### 2.4 decoupled interaction
+### 2.4 decoupled interaction {#2-4}
 
 *See [grid-studies-2-4.scd](files/grid-studies-2-4.scd) for this step.*
 
-The most basic decoupled interaction is a toggle.
+Decoupled interaction means drawing LED state independent of physical contact with any of the keys. The most basic decoupled interaction is a toggle.
 
 We turn the grid into a huge bank of toggles by creating an [Array](https://doc.sccode.org/Classes/Array.html) to store data. It needs to be the same size as our grid, so we'll use the `cols` and `rows` accessors to gather our grid size. We'll call this array `step` and initialize it full of zeros.
 
 ```js
-~step = Array.fill(~~m.cols * ~m.rows, {0});
+~step = Array.fill(~m.cols * ~m.rows, {0});
 ```
 
-We'll also use our incoming grid messages to switch the corresponding `step` LED states:
-
-```js
-~m.key({ arg x,y,z;
-	if(z == 1, {
-		var pos = x + (y*16);
-		if(~step[pos] == 1,
-			{~step[pos] = 0},
-			{~step[pos] = 1}
-		);
-		redraw.value(x,y);
-	});
-});
-```
-
-Remember, `z` is the key state (down or up), so we do something only on key down (where `z == 1`). We calculate the position, and then change the value of the `step` based on its previous state.
-
-We refresh the grid with function `draw` (a variable we establish toward the start of the sketch), which is executed with `draw.value(x,y);`:
+We refresh the grid with function `draw` (a variable we establish toward the start of the `grid-studies-2-4.scd`):
 
 ```js
 draw = { arg x, y;
@@ -221,8 +204,24 @@ draw = { arg x, y;
 
 In `draw`, we set LED level for the toggled position -- we multiply the `~step` value per position by 15 which gives us 0 (off) or 15 (full brightness).
 
+We'll also use our incoming grid messages to set the corresponding `step` LED states, which are sent to our `draw` function with `draw.value(x,y)`:
 
-## 3. further
+```js
+~m.key({ arg x,y,z;
+	if(z == 1, {
+		var pos = x + (y*16);
+		if(~step[pos] == 1,
+			{~step[pos] = 0},
+			{~step[pos] = 1}
+		);
+		draw.value(x,y);
+	});
+});
+```
+
+Remember, `z` is the key state (down or up), so we do something only on key down (where `z == 1`). We calculate the position, and then change the value of the `step` based on its previous state.
+
+## 3. further {#3}
 
 Now we'll show how basic grid applications are developed by creating a step sequencer. We will add features incrementally:
 
@@ -235,7 +234,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 - Adjust playback loop with two-key gesture in position row.
 
 
-### 3.1 toggles
+### 3.1 toggles {#3-1}
 
 *See [grid-studies-3-1.scd](files/grid-studies-3-1.scd) for this step.*
 
@@ -256,7 +255,7 @@ We already have a full bank of toggles set up. Let's shrink down the bank to exc
 
 That will get us started.
 
-### 3.2 play
+### 3.2 play {#3-2}
 
 *See [grid-studies-3-2.scd](files/grid-studies-3-2.scd) for this step.*
 
@@ -307,7 +306,7 @@ draw = {
 
 As we copy steps to the grid, we check if we're updating a column that is the play position (`if(x == ~play_position,`...). If so, we set the highlight value to 4. By adding this value inside of `led`, we'll get a nice effect of an overlaid translucent bar.
 
-### 3.3 triggers
+### 3.3 triggers {#3-3}
 
 *See [grid-studies-3-3.scd](files/grid-studies-3-3.scd) for this step.*
 
@@ -367,7 +366,7 @@ for(0,~lastRow-2, {arg t;
 
 If any vertical toggle in `step` is toggled on (`== 1`) at the `play_position` we trigger a sound. The frequency corresponds to the row position.
 
-### 3.4 dynamic cuts
+### 3.4 dynamic cuts {#3-4}
 
 *See [grid-studies-3-4.scd](files/grid-studies-3-4.scd) for this step.*
 
@@ -418,7 +417,7 @@ if(~cutting == 1,
 
 Now, pressing keys on the bottom row will cue the next position to be played. Note that we set `cutting = 0` after each cut so that each press only affects the timer **once**.
 
-### 3.5 loop
+### 3.5 loop {#3-5}
 
 *See [grid-studies-3-5.scd](files/grid-studies-3-5.scd) for this step.*
 
@@ -499,8 +498,8 @@ Done!
 
 *SuperCollider* was written by James McCartney and is now maintained [as a GPL project by various people](https://supercollider.github.io).
 
-The original `monom` SuperCollider library was written by [Raja Das and Joseph Rangel](https://github.com/Karaokaze/Monom_SCs), was maintained by [Ezra Buchla](https://github.com/catfact/monom/), and was re-built into `monomeSC` in 2023 by [dan derks](https://dndrks.com).
+The original `monom` SuperCollider library was written by [Raja Das and Joseph Rangel](https://github.com/Karaokaze/Monom_SCs), was maintained by [Ezra Buchla](https://github.com/catfact/monom/), and was re-built into `monomeSC` in 2023 by [Dan Derks](https://dndrks.com).
 
-This tutorial was written by [Brian Crabtree](http://nnnnnnnn.org) and [dan derks](https://dndrks.com) for [monome.org](https://monome.org). Huge thanks to Raja Das for his very extensive 'Monoming with SuperCollider Tutorial'.
+This tutorial was written by [Brian Crabtree](http://nnnnnnnn.org) and [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org). Huge thanks to Raja Das for his very extensive 'Monoming with SuperCollider Tutorial'.
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [help@monome.org](mailto:help@monome.org).

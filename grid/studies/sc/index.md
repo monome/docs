@@ -100,13 +100,13 @@ s.waitForBoot({
 
 The library communicates with *serialosc* to discover attached devices using OSC. For a detailed description of how the mechanism and protocol work, see [the serialosc technical docs](/docs/serialosc/osc/) and [grid serial reference](/docs/serialosc/serial.txt) -- please note that neither of these documents are required for this study, but they _are_ good background for creating your own grid communication libraries.
 
-## 2. basics {#2-basics}
+## 2. basics {#basics}
 
 *See [grid-studies-2-1.scd](files/grid-studies-2-1.scd) for this section.*
 
 ![](images/grid-studies-sc-2.png)
 
-### 2.1 key input {#2-1-key-input}
+### 2.1 key input {#key-input}
 
 We read grid key input by utilizing the `key` method. Three parameters are received, in order:
 
@@ -138,7 +138,7 @@ s.waitForBoot({
 )
 ```
 
-### 2.2 LED output {#2-2-led-output}
+### 2.2 LED output {#led-output}
 
 Updating a single LED takes the form:
 
@@ -156,7 +156,7 @@ To toggle a single LED to on or full bright, with no in-between values:
 
 Where `state` ranges from 0 (off) to 1 (full brightness).
 
-### 2.3 coupled interaction {#2-3-coupled-interaction}
+### 2.3 coupled interaction {#coupled-interaction}
 
 *See [grid-studies-2-3.scd](files/grid-studies-2-3.scd) for this step.*
 
@@ -182,7 +182,7 @@ s.waitForBoot({
 )
 ```
 
-### 2.4 decoupled interaction {#2-4-decoupled-interaction}
+### 2.4 decoupled interaction {#decoupled-interaction}
 
 *See [grid-studies-2-4.scd](files/grid-studies-2-4.scd) for this step.*
 
@@ -221,7 +221,7 @@ We'll also use our incoming grid messages to set the corresponding `step` LED st
 
 Remember, `z` is the key state (down or up), so we do something only on key down (where `z == 1`). We calculate the position, and then change the value of the `step` based on its previous state.
 
-## 3. further {#3-further}
+## 3. further {#further}
 
 Now we'll show how basic grid applications are developed by creating a step sequencer. We will add features incrementally:
 
@@ -234,7 +234,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 - Adjust playback loop with two-key gesture in position row.
 
 
-### 3.1 toggles {#3-1-toggles}
+### 3.1 toggles {#toggles}
 
 *See [grid-studies-3-1.scd](files/grid-studies-3-1.scd) for this step.*
 
@@ -255,7 +255,7 @@ We already have a full bank of toggles set up. Let's shrink down the bank to exc
 
 That will get us started.
 
-### 3.2 play {#3-2-play}
+### 3.2 play {#play}
 
 *See [grid-studies-3-2.scd](files/grid-studies-3-2.scd) for this step.*
 
@@ -306,7 +306,7 @@ draw = {
 
 As we copy steps to the grid, we check if we're updating a column that is the play position (`if(x == ~play_position,`...). If so, we set the highlight value to 4. By adding this value inside of `led`, we'll get a nice effect of an overlaid translucent bar.
 
-### 3.3 triggers {#3-3-triggers}
+### 3.3 triggers {#triggers}
 
 *See [grid-studies-3-3.scd](files/grid-studies-3-3.scd) for this step.*
 
@@ -366,7 +366,7 @@ for(0,~lastRow-2, {arg t;
 
 If any vertical toggle in `step` is toggled on (`== 1`) at the `play_position` we trigger a sound. The frequency corresponds to the row position.
 
-### 3.4 dynamic cuts {#3-4-dynamic-cuts}
+### 3.4 dynamic cuts {#dynamic-cuts}
 
 *See [grid-studies-3-4.scd](files/grid-studies-3-4.scd) for this step.*
 
@@ -417,7 +417,7 @@ if(~cutting == 1,
 
 Now, pressing keys on the bottom row will cue the next position to be played. Note that we set `cutting = 0` after each cut so that each press only affects the timer **once**.
 
-### 3.5 loop {#3-5-loop}
+### 3.5 loop {#loop}
 
 *See [grid-studies-3-5.scd](files/grid-studies-3-5.scd) for this step.*
 

@@ -156,7 +156,7 @@ To toggle a single LED to on or full bright, with no in-between values:
 
 Where `state` ranges from 0 (off) to 1 (full brightness).
 
-### 2.3 coupled interaction {#2-3-coupled-interaction}
+### 2.3 coupled interaction {#coupled-interaction}
 
 *See [grid-studies-2-3.scd](files/grid-studies-2-3.scd) for this step.*
 

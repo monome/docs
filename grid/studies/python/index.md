@@ -17,7 +17,7 @@ Once Python is installed, you can install the *pymonome* library through your te
 
 Download the code examples here: [github.com/monome/grid-studies-python/releases/latest](https://github.com/monome/grid-studies-python/releases/latest)
 
-## 1. Connect and Basics {#1-connect}
+## 1. Connect and Basics {#connect}
 
 *See grid-studies-1.py for this section.*
 
@@ -112,7 +112,7 @@ class GridStudies(monome.GridApp):
 
 The constructor here simply calls the parent constructor without arguments. Because there is no additional code in the constructor, it can be omitted entirely, but we still have it declared in case we'll want to add some additional initialization logic to the application later.
 
-### 1.1 Key Input {#1-1-key-input}
+### 1.1 Key Input {#key-input}
 
 The library calls the method `on_grid_key()` upon receiving input from the grid. It has three parameters.
 
@@ -127,7 +127,7 @@ def on_grid_key(self, x, y, s):
 	print("key:", x, y, s)
 ```
 
-### 1.2 LED Output {#1-2-led-output}
+### 1.2 LED Output {#led-output}
 
 `GridStudies` is inherited from `monome.GridApp` which is a base class for grid-based applications. It exposes the grid via the `grid` property so we can actually do something with the hardware, such as setting an LED value by calling `self.grid.led_level_set()`.
 
@@ -139,7 +139,7 @@ Here we send a new LED update per key event. Since `s` is either 0 or 1, when we
 
 If we're simply interested in displaying presses, this is fine enough. But for scripts where we want to display more layers of information, this directly-address-each-LED style isn't very efficient. Let's improve it in the next section!
 
-## 2. Further {#2-further}
+## 2. Further {#further}
 
 Now we'll show how basic grid applications are developed by creating a step sequencer. We will add features incrementally:
 
@@ -151,7 +151,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 - Jump to playback position when key pressed in the position row.
 - Adjust playback loop with two-key gesture in position row.
 
-### Structure {#2-structure}
+### Structure {#structure}
 
 Moving forward, we'll refresh the grid display on a timer, which will later also serve as the play head. We also want to ensure a few things are true about our application:
 
@@ -199,7 +199,7 @@ def on_grid_disconnect(self, *args):
 
 We establish `self.connected` so we can use the grid's connected state as a variable for other parts of our script. We also establish `self.firstConnection` so we can track whether this is the first time the grid has connected to this script, which determines whether we should create the loop that drives the script's main functionality.
 
-### Schedule, Process, Display {#2-schedule-process-display}
+### Schedule, Process, Display {#schedule-process-display}
 
 We schedule `play()` for execution as a [Task](https://docs.python.org/3/library/asyncio-task.html#creating-tasks) using the `playTask = asyncio.create_task(self.play())` once a grid has had its first connection.
 
@@ -233,7 +233,7 @@ Buffer-based rendering is *much* more efficient than addressing LEDs directly, b
 
 Let's begin by building a bank of toggles for the sequencer.
 
-### 2.1 Toggles {#2-1-toggles}
+### 2.1 Toggles {#toggles}
 
 *See grid-studies-2-1.py for this section.*
 
@@ -288,7 +288,7 @@ def draw(self):
 
 That'll get us started.
 
-### 2.2 Play {#2-2}
+### 2.2 Play {#play}
 
 *See grid-studies-2-2.py for this section.*
 
@@ -324,7 +324,7 @@ for x in range(width):
 
 During this loop which copies steps to the grid, we check if we're updating a column that is the play position. If so, we increase the highlight value. By adding this value during the copy we'll get a nice effect of an overlaid translucent bar.
 
-### 2.3 Triggers
+### 2.3 Triggers {#triggers}
 
 *See grid-studies-2-3.py for this section.*
 
@@ -362,7 +362,7 @@ def trigger(self, i):
 
 This could of course do something much more exciting, such as generate MIDI notes, animate robot arms, set off fireworks, etc.
 
-### 2.4 Dynamic Cuts {#2-4}
+### 2.4 Dynamic Cuts {#dynamic-cuts}
 
 *See grid-studies-2-4.py for this section.*
 
@@ -401,7 +401,7 @@ async def play(self):
 
 Now, when pressing keys on the bottom row it will cue the next position to be played.
 
-### 2.5 Loop {#2-5}
+### 2.5 Loop {#loop}
 
 *See grid-studies-2-5.py for this section.*
 

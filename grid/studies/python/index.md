@@ -17,11 +17,13 @@ Once Python is installed, you can install the *pymonome* library through your te
 
 Download the code examples here: [github.com/monome/grid-studies-python/releases/latest](https://github.com/monome/grid-studies-python/releases/latest)
 
-## 1. Connect and Basics {#1}
+## 1. Connect and Basics {#1-connect}
 
 *See grid-studies-1.py for this section.*
 
 ```python
+#! /usr/bin/env python3
+
 import asyncio
 import monome
 
@@ -52,7 +54,7 @@ if __name__ == '__main__':
     asyncio.run(main())
 ```
 
-The *pymonome* library simplifies communication with the grid.
+The *pymonome* library simplifies communication with the grid by communicating directly with serialosc. For a detailed description of how the serialosc mechanism and protocol work, see [the serialosc protocol docs](/docs/serialosc/osc/).
 
 Note that the preceding example consists of two parts. First, we describe the class `GridStudies`, which inherits `monome.GridApp`. This class defines the behavior and properties of our grid-based application. Next, we set up the *serialosc* client, instantiate the application, and start the main loop.
 
@@ -95,9 +97,9 @@ Then, we [create a Future object](https://docs.python.org/3/library/asyncio-even
 await loop.create_future()
 ```
 
-After the loop is started, the library connects the first discovered device to our `GridStudies` object which is the primary definition of this application.
+After the loop is started in the script's final two lines, the library connects the first discovered device to our `GridStudies` object which is the primary definition of this application.
 
-For a detailed description of how the serialosc mechanism and protocol work, see [the serialosc protocol docs](/docs/serialosc/osc/).
+For additional information on the 'name-main' idiom employed in the final two lines of all the study scripts, [see this article](https://realpython.com/if-name-main-python/)
 
 Let's take a look at our application class:
 
@@ -110,7 +112,7 @@ class GridStudies(monome.GridApp):
 
 The constructor here simply calls the parent constructor without arguments. Because there is no additional code in the constructor, it can be omitted entirely, but we still have it declared in case we'll want to add some additional initialization logic to the application later.
 
-### 1.1 Key Input {#1-1}
+### 1.1 Key Input {#1-1-key-input}
 
 The library calls the method `on_grid_key()` upon receiving input from the grid. It has three parameters.
 
@@ -125,7 +127,7 @@ def on_grid_key(self, x, y, s):
 	print("key:", x, y, s)
 ```
 
-### 1.2 LED Output {#1-2}
+### 1.2 LED Output {#1-2-led-output}
 
 `GridStudies` is inherited from `monome.GridApp` which is a base class for grid-based applications. It exposes the grid via the `grid` property so we can actually do something with the hardware, such as setting an LED value by calling `self.grid.led_level_set()`.
 
@@ -135,9 +137,9 @@ self.grid.led_level_set(x, y, s * 15)
 
 Here we send a new LED update per key event. Since `s` is either 0 or 1, when we multiply it by 15 we get off or full brightness. We set the LED location according to the position incoming key press, `x` and `y`.
 
-You'll notice this isn't very efficient, however -- the animation is sluggish as you press more keys. This is expected for this style of scripting, where we address the LEDs individually and directly. Let's improve it in the next section!
+If we're simply interested in displaying presses, this is fine enough. But for scripts where we want to display more layers of information, this directly-address-each-LED style isn't very efficient. Let's improve it in the next section!
 
-## 2. Further {#2}
+## 2. Further {#2-further}
 
 Now we'll show how basic grid applications are developed by creating a step sequencer. We will add features incrementally:
 
@@ -149,31 +151,29 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 - Jump to playback position when key pressed in the position row.
 - Adjust playback loop with two-key gesture in position row.
 
-### Structure {#structure}
+### Structure {#2-structure}
 
 Moving forward, we'll refresh the grid display on a timer, which will later also serve as the play head. We also want to ensure a few things are true about our application:
 
-- it will start the action when a grid is plugged in for the first time
-- it won't stop performing or reset variables if the initiating grid is disconnected, like when hot-swapping it into another interface or module
-- it won't run into errors when it no longer detects a physical connection to a grid
+- the action should start when a grid is plugged in for the first time
+- if the grid is disconnected, the action should continue without error
+- variables managed by the grid should persist for the application's life, even if the grid connection is lost (like when changing applications or hot-swapping to another device)
 
 Below is the basic structure that facilitates this criteria:
 
 ```python
-global gridConnected
-global firstConnection
-
 def __init__(self):
     super().__init__()
 
 # track connection status:
 def connectGrid(state, self):
-    GridStudies.gridConnected = state
+    self.connected = state
     try:
-        GridStudies.firstConnection
-        GridStudies.firstConnection = False
+        self.firstConnection
+        self.firstConnection = False
     except:
-        GridStudies.firstConnection = True
+        self.firstConnection = True
+        # self.play() refers to a function defined further down
         playTask = asyncio.create_task(self.play())
 
 # when grid is plugged in via USB:
@@ -186,8 +186,9 @@ def on_grid_ready(self):
     canvasFloor = height-2
 
     GridStudies.connectGrid(True, self)
-    if GridStudies.firstConnection:
-        self.step = [[0 for col in range(width)] for row in range(canvasFloor)]
+    if self.firstConnection:
+	    # if this is the first connection, create a blank slate:
+		self.step = [[0 for col in range(width)] for row in range(canvasFloor)]
 
 # when grid is physically disconnected:
 def on_grid_disconnect(self, *args):
@@ -196,7 +197,9 @@ def on_grid_disconnect(self, *args):
 
 `on_grid_ready` and `on_grid_disconnect` are two callback functions built into the *pymonome* library, which respond when a grid is physically connected or disconnected to the host computer.
 
-### Schedule, Process, Display {#schedule-process-display}
+We establish `self.connected` so we can use the grid's connected state as a variable for other parts of our script. We also establish `self.firstConnection` so we can track whether this is the first time the grid has connected to this script, which determines whether we should create the loop that drives the script's main functionality.
+
+### Schedule, Process, Display {#2-schedule-process-display}
 
 We schedule `play()` for execution as a [Task](https://docs.python.org/3/library/asyncio-task.html#creating-tasks) using the `playTask = asyncio.create_task(self.play())` once a grid has had its first connection.
 
@@ -230,13 +233,14 @@ Buffer-based rendering is *much* more efficient than addressing LEDs directly, b
 
 Let's begin by building a bank of toggles for the sequencer.
 
-### 2.1 Toggles {#2-1}
+### 2.1 Toggles {#2-1-toggles}
 
 *See grid-studies-2-1.py for this section.*
 
 First we'll establish what should happen when a grid is connected, via `on_grid_ready()`:
 
 ```python
+# when grid is plugged in via USB:
 def on_grid_ready(self):
     global width
     width = self.grid.width
@@ -246,14 +250,15 @@ def on_grid_ready(self):
     canvasFloor = height-2
 
     GridStudies.connectGrid(True, self)
-    if GridStudies.firstConnection:
+    if self.firstConnection:
+        # if this is the first connection, create a blank slate:
         self.step = [[0 for col in range(width)] for row in range(canvasFloor)]
 ```
 
-- create a global variables for `width`, `height`, and `canvasFloor`, which will determine the range of keys which can be toggled
-- assign `canvasFloor` to the height of the grid, excepting the last two rows
-- announce the grid has been connected to the `connectGrid` function, which tracks whether to start our `play` timer
-- if this is a first-time connection, create a new array called `step` that can hold step data for every row besides the last two
+- we create a global variables for `width`, `height`, and `canvasFloor`, which will determine the range of keys which can be toggled
+- we assign `canvasFloor` to the height of the grid, excepting the last two rows
+- we announce the grid has been connected to the class's `connectGrid` function, which tracks whether to start our `play` timer
+- if this is a first-time connection, we create a new array called `step` that can hold step data for every row besides the last two
 
 On key input we'll look for key-down events in every row besides the last two, log their state, and draw the LED display:
 
@@ -277,7 +282,7 @@ def draw(self):
             buffer.led_level_set(x, y, self.step[y][x] * 11)
 
     # update grid
-    if GridStudies.gridConnected:
+    if self.connected:
         buffer.render(self.grid)
 ```
 
@@ -298,7 +303,7 @@ async def play(self):
         else:
             self.play_position += 1
 
-        if GridStudies.gridConnected:
+        if self.connected:
             self.draw()
 ```
 

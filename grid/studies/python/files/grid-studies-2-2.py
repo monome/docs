@@ -4,21 +4,18 @@ import asyncio
 import monome
 
 class GridStudies(monome.GridApp):
-    
-    global gridConnected
-    global firstConnection
 
     def __init__(self):
         super().__init__()
     
     # track connection status:
     def connectGrid(state, self):
-        GridStudies.gridConnected = state
+        self.connected = state
         try:
-            GridStudies.firstConnection
-            GridStudies.firstConnection = False
+            self.firstConnection
+            self.firstConnection = False
         except:
-            GridStudies.firstConnection = True
+            self.firstConnection = True
             playTask = asyncio.create_task(self.play())
 
     # when grid is plugged in via USB:
@@ -31,7 +28,7 @@ class GridStudies(monome.GridApp):
         canvasFloor = height-2
         
         GridStudies.connectGrid(True, self)
-        if GridStudies.firstConnection:
+        if self.firstConnection:
             self.step = [[0 for col in range(width)] for row in range(canvasFloor)]
             self.play_position = -1
 
@@ -47,7 +44,7 @@ class GridStudies(monome.GridApp):
             else:
                 self.play_position += 1
  
-            if GridStudies.gridConnected:
+            if self.connected:
                 self.draw()
 
     def draw(self):

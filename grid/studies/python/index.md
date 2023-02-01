@@ -28,7 +28,6 @@ import asyncio
 import monome
 
 class GridStudies(monome.GridApp):
-    
     def __init__(self):
         super().__init__()
 
@@ -105,7 +104,6 @@ Let's take a look at our application class:
 
 ```python
 class GridStudies(monome.GridApp):
-
 	def __init__(self):
 		super().__init__()
 ```
@@ -137,7 +135,7 @@ self.grid.led_level_set(x, y, s * 15)
 
 Here we send a new LED update per key event. Since `s` is either 0 or 1, when we multiply it by 15 we get off or full brightness. We set the LED location according to the position incoming key press, `x` and `y`.
 
-If we're simply interested in displaying presses, this is fine enough. But for scripts where we want to display more layers of information, this directly-address-each-LED style isn't very efficient. Let's improve it in the next section!
+If we're simply interested in displaying presses, this is fine enough. But for scripts where we want to display more layers of information, this approach of directly addressing and redrawing each individual LED isn't very efficient. Let's improve upon our approach in the next section!
 
 ## 2. Further {#further}
 
@@ -162,46 +160,59 @@ Moving forward, we'll refresh the grid display on a timer, which will later also
 Below is the basic structure that facilitates this criteria:
 
 ```python
-def __init__(self):
-    super().__init__()
+#! /usr/bin/env python3
 
-# track connection status:
-def connectGrid(state, self):
-    self.connected = state
-    try:
-        self.firstConnection
-        self.firstConnection = False
-    except:
-        self.firstConnection = True
-        # self.play() refers to a function defined further down
-        playTask = asyncio.create_task(self.play())
+import asyncio
+import monome
 
-# when grid is plugged in via USB:
-def on_grid_ready(self):
-    global width
-    width = self.grid.width
-    global height
-    height = self.grid.height
-    global canvasFloor
-    canvasFloor = height-2
+class GridStudies(monome.GridApp):
+    def __init__(self):
+        super().__init__()
+        # .. initialize other instance variables ..
+        self.width = 0
+        self.height = 0
+        # build a task to further the action:
+        self.play_task = asyncio.ensure_future(self.play())
 
-    GridStudies.connectGrid(True, self)
-    if self.firstConnection:
-	    # if this is the first connection, create a blank slate:
-		self.step = [[0 for col in range(width)] for row in range(canvasFloor)]
+    # when grid is plugged in via USB:
+    def on_grid_ready(self):
+        # .. update instance variables ..
+        self.width = 0
+        self.height = 0
+        self.connected = True
+        # draw our interface:
+        self.draw()
 
-# when grid is physically disconnected:
-def on_grid_disconnect(self, *args):
-    GridStudies.connectGrid(False, self)
+    # when grid is physically disconnected:
+    def on_grid_disconnect(self, *args):
+        self.connected = False
+
+    async def play(self):
+        while True:
+            await asyncio.sleep(0.1)
+            # .. perform actions ..
+            self.draw()
+
+    def on_grid_key(self, x, y, s):
+        # .. define grid press action ..
+
+    def draw(self):
+        buffer = monome.GridBuffer(self.width, self.height)
+
+        # .. change display state ..
+
+        # update grid
+        if self.connected:
+            buffer.render(self.grid)
 ```
 
 `on_grid_ready` and `on_grid_disconnect` are two callback functions built into the *pymonome* library, which respond when a grid is physically connected or disconnected to the host computer.
 
-We establish `self.connected` so we can use the grid's connected state as a variable for other parts of our script. We also establish `self.firstConnection` so we can track whether this is the first time the grid has connected to this script, which determines whether we should create the loop that drives the script's main functionality.
+We establish `self.connected` so we can use the grid's connected state as a variable for other parts of our script.
 
 ### Schedule, Process, Display {#schedule-process-display}
 
-We schedule `play()` for execution as a [Task](https://docs.python.org/3/library/asyncio-task.html#creating-tasks) using the `playTask = asyncio.create_task(self.play())` once a grid has had its first connection.
+In our application's initialization, we schedule `play()` for execution using `self.play_task = asyncio.ensure_future(self.play())`,
 
 The body of the `while True:` loop within the `play` function will be executed every `0.1` seconds. `self.draw()` is where we refresh the grid display.
 
@@ -209,24 +220,22 @@ Key presses will be processed as they come in:
 
 ```python
 def on_grid_key(self, x, y, s):
-	# toggle steps
-	if s == 1 and y < canvasFloor:
-		self.step[y][x] ^= 1
-		self.draw()
+        # .. define grid press action ..
 ```
 
 Finally, we'll use a subclass called `GridBuffer` for managing the display state. This section creates a buffer based on grid size (which is queried and stored as `width` and `height` in our `on_grid_ready` function):
 
 ```python
 def draw(self):
-	buffer = monome.GridBuffer(width, height)
+	buffer = monome.GridBuffer(self.width, self.height)
 ```
 
 Instead of updating single LEDs at a time, we'll draw the entire grid and then render that to the hardware at the end of our `draw` function:
 
 ```python
 # update grid
-buffer.render(self.grid)
+if self.connected:
+    buffer.render(self.grid)
 ```
 
 Buffer-based rendering is *much* more efficient than addressing LEDs directly, because it collects individual LED messages into a single `map` array, which refreshes the display by 8x8 quadrants. For a 16x8 grid, two `buffer`-collected `map` messages takes the place of 128 individual `self.grid.led_level_set` messages.
@@ -242,30 +251,24 @@ First we'll establish what should happen when a grid is connected, via `on_grid_
 ```python
 # when grid is plugged in via USB:
 def on_grid_ready(self):
-    global width
-    width = self.grid.width
-    global height
-    height = self.grid.height
-    global canvasFloor
-    canvasFloor = height-2
-
-    GridStudies.connectGrid(True, self)
-    if self.firstConnection:
-        # if this is the first connection, create a blank slate:
-        self.step = [[0 for col in range(width)] for row in range(canvasFloor)]
+    self.width = self.grid.width
+    self.height = self.grid.height
+    self.sequencer_rows = self.height-2
+    self.connected = True
+    self.draw()
 ```
 
-- we create a global variables for `width`, `height`, and `canvasFloor`, which will determine the range of keys which can be toggled
-- we assign `canvasFloor` to the height of the grid, excepting the last two rows
-- we announce the grid has been connected to the class's `connectGrid` function, which tracks whether to start our `play` timer
-- if this is a first-time connection, we create a new array called `step` that can hold step data for every row besides the last two
+- we create instance variables for `width`, `height`, and `sequencerRows`, which will determine the range of keys which can be toggled
+- we assign `sequencerRows ` to the height of the grid, excepting the last two rows
+- we track the grid's connected state with `connected`
+- we redraw the grid interface
 
 On key input we'll look for key-down events in every row besides the last two, log their state, and draw the LED display:
 
 ```python
 def on_grid_key(self, x, y, s):
     # toggle steps
-    if s == 1 and y < canvasFloor:
+    if s == 1 and y < self.sequencer_rows:
         self.step[y][x] ^= 1
         self.draw()
 ```
@@ -274,11 +277,11 @@ Inside of `draw()`, we build the LED display from scratch each time we need to r
 
 ```python
 def draw(self):
-    buffer = monome.GridBuffer(width, height)
-    
+    buffer = monome.GridBuffer(self.width, self.height)
+
     # display steps
-    for x in range(width):
-        for y in range(canvasFloor):
+    for x in range(self.width):
+        for y in range(self.sequencer_rows):
             buffer.led_level_set(x, y, self.step[y][x] * 11)
 
     # update grid
@@ -298,7 +301,8 @@ On each iteration inside `play()` we wait for `0.1` seconds to pass before we in
 async def play(self):
     while True:
         await asyncio.sleep(0.1)
-        if self.play_position == width - 1:
+
+        if self.play_position == self.width - 1:
             self.play_position = 0
         else:
             self.play_position += 1
@@ -307,22 +311,22 @@ async def play(self):
             self.draw()
 ```
 
-For the `draw`, we add highlighting for the play position:
+In `draw`, we add highlighting for the play position:
 
 ```python
 # display steps
-for x in range(width):
+for x in range(self.width):
     # highlight the play position
     if x == self.play_position:
         highlight = 4
     else:
         highlight = 0
 
-    for y in range(canvasFloor):
+    for y in range(self.sequencer_rows):
         buffer.led_level_set(x, y, self.step[y][x] * 11 + highlight)
 ```
 
-During this loop which copies steps to the grid, we check if we're updating a column that is the play position. If so, we increase the highlight value. By adding this value during the copy we'll get a nice effect of an overlaid translucent bar.
+While copying steps to the grid in a loop, we check if we're updating a column that is the play position. If so, we increase the highlight value. By adding this value during the copy we'll get a nice effect of an overlaid translucent bar.
 
 ### 2.3 Triggers {#triggers}
 
@@ -334,26 +338,26 @@ Drawing the trigger row happens entirely in the `draw()`:
 
 ```python
 # draw trigger bar and on-states
-for x in range(width):
-    buffer.led_level_set(x, canvasFloor, 4)
+for x in range(self.width):
+    buffer.led_level_set(x, self.sequencer_rows, 4)
 
-for y in range(canvasFloor):
+for y in range(self.sequencer_rows):
     if self.step[y][self.play_position] == 1:
-        buffer.led_level_set(self.play_position, canvasFloor, 15)
+        buffer.led_level_set(self.play_position, self.sequencer_rows, 15)
 ```
 
-First we create a dim row (level 4 is fairly dim). Then we search through the `step` array at the current play position, showing a bright indicator for each on state. This displays a sort of horizontal correlation of rows (or "channels") 1-6 current state.
+First we create a dim glow underneath our sequencer canvas with level `4`. Then we search through the `step` array at the current play position, showing a bright indicator for each *on* state. This displays a sort of horizontal correlation of the "channel"'s current state.
 
 For the screen drawing, we create a function `trigger()` which gets passed values of activated steps. This is what we do, inside `play()` right after we change `play_position`:
 
 ```python
 # TRIGGER SOMETHING
-for y in range(canvasFloor):
+for y in range(self.sequencer_rows):
     if self.step[y][self.play_position] == 1:
         self.trigger(y)
 ```
 
-And then `trigger()` itself:
+Which references `trigger()`:
 
 ```python
 def trigger(self, i):
@@ -366,11 +370,11 @@ This could of course do something much more exciting, such as generate MIDI note
 
 *See grid-studies-2-4.py for this section.*
 
-We will now use the bottom row to dynamically cut the playback position. First let's add a position display to the last row, which will be inside `draw()`:
+We will now use the bottom row to dynamically cut the playback position. First let's add a position display underneath our sequencer canvas, which will be inside `draw()`:
 
 ```python
 # draw play position
-buffer.led_level_set(self.play_position, canvasFloor+1, 15)
+buffer.led_level_set(self.play_position, self.sequencer_rows+1, 15)
 ```
 
 Now we look for key presses in the last row, in the `on_grid_key` function:
@@ -393,7 +397,7 @@ async def play(self):
         
         if self.cutting:
             self.play_position = self.next_position
-        elif self.play_position == width - 1:
+        elif self.play_position == self.width - 1:
             self.play_position = 0
         else:
             self.play_position += 1
@@ -409,9 +413,9 @@ Lastly, we'll implement setting the loop start and end points with a two-press g
 
 ```python
 def on_grid_ready(self):
-    ...
+    # ...
     self.loop_start = 0
-    self.loop_end = width - 1
+    self.loop_end = self.width - 1
     self.keys_held = 0
     self.key_last = 0
 ```
@@ -420,7 +424,7 @@ We count keys held on the bottom row thusly:
 
 ```python
 # cut and loop
-elif y == height-1:
+elif y == self.height-1:
     self.keys_held = self.keys_held + (s * 2) - 1
     ...
 ```
@@ -446,9 +450,11 @@ We then modify the position change code:
 ```python
 async def play(self):
     while True:
+        await asyncio.sleep(0.1)
+
         if self.cutting:
             self.play_position = self.next_position
-        elif self.play_position == width - 1:
+        elif self.play_position == self.width - 1:
             self.play_position = 0
         elif self.play_position == self.loop_end:
             self.play_position = self.loop_start

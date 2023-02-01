@@ -4,7 +4,6 @@ import asyncio
 import monome
 
 class GridStudies(monome.GridApp):
-    
     def __init__(self):
         super().__init__()
 

@@ -5,7 +5,7 @@ nav_exclude: true
 has_toc: false
 ---
 
-<iframe src="http://player.vimeo.com/video/75520925?title=0&amp;byline=0&amp;portrait=0" height="474" width="860" allowfullscreen="" frameborder="0"></iframe>
+<div class="vid"><iframe src="https://player.vimeo.com/video/75520925?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # aleph
 {: .no_toc }

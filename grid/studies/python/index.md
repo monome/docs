@@ -11,7 +11,7 @@ Python is a widely used general-purpose, high-level programming language. Its de
 
 This tutorial assumes a basic familiarity with the Python langauge and its programing workflow. If you're very new to Python, check out the [Python Tutorial](https://docs.python.org/3/tutorial/).
 
-This tutorial has been updated to reflect changes in **Python 3.11.1**. For the previous **Python 3.5** tutorial, click here. See [python.org](https://www.python.org/) for downloads and more information about different versions.
+This tutorial has been updated to reflect changes in **Python 3.11.1**. For the previous **Python 3.5** tutorial, [click here](https://github.com/monome/docs/blob/1c564edfc2986177452df34144820267b9a57b9c/grid/studies/python/index.md). See [python.org](https://www.python.org/) for downloads and more information about different versions.
 
 Once Python is installed, you can install the *pymonome* library through your terminal of choice by executing: `pip3 install pymonome`
 

@@ -4,11 +4,21 @@ nav_exclude: true
 redirect_from: /grid-studies/python/
 ---
 
-# Grid Studies: Python
+# grid studies: Python
+{: .no_toc }
 
-Python is a widely used general-purpose, high-level programming language. Its design philosophy emphasizes code readability, and its syntax allows programmers to express concepts in fewer lines of code than would be possible in languages such as C++ or Java. The language provides constructs intended to enable clear programs on both a small and large scale. (from [Wikipedia](http://en.wikipedia.org/wiki/Python_(programming_language)))
+Python is a widely used general-purpose, high-level programming language. Its design philosophy emphasizes code readability, and its syntax allows programmers to express concepts in fewer lines of code than would be possible in languages such as C++ or Java. The language provides constructs intended to enable clear programs on both a small and large scale (from [Wikipedia](http://en.wikipedia.org/wiki/Python_(programming_language))).
 
-## Prerequisites
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
+## prerequisites
 
 This tutorial assumes a basic familiarity with the Python langauge and its programing workflow. If you're very new to Python, check out the [Python Tutorial](https://docs.python.org/3/tutorial/).
 
@@ -18,9 +28,9 @@ Once Python is installed, you can install the *pymonome* library through your te
 
 Download the code examples here: [github.com/monome/grid-studies-python/releases/latest](https://github.com/monome/grid-studies-python/releases/latest)
 
-## 1. Connect and Basics {#connect}
+## 1.connect and basics {#connect}
 
-*See grid-studies-1.py for this section.*
+*See [grid-studies-1.py](files/grid-studies-1.py) for this section.*
 
 ```python
 #! /usr/bin/env python3
@@ -111,7 +121,7 @@ class GridStudies(monome.GridApp):
 
 The constructor here simply calls the parent constructor without arguments. Because there is no additional code in the constructor, it can be omitted entirely, but we still have it declared in case we'll want to add some additional initialization logic to the application later.
 
-### 1.1 Key Input {#key-input}
+### 1.1 key input {#key-input}
 
 The library calls the method `on_grid_key()` upon receiving input from the grid. It has three parameters.
 
@@ -126,7 +136,7 @@ def on_grid_key(self, x, y, s):
 	print("key:", x, y, s)
 ```
 
-### 1.2 LED Output {#led-output}
+### 1.2 LED output {#led-output}
 
 `GridStudies` is inherited from `monome.GridApp` which is a base class for grid-based applications. It exposes the grid via the `grid` property so we can actually do something with the hardware, such as setting an LED value by calling `self.grid.led_level_set()`.
 
@@ -138,7 +148,7 @@ Here we send a new LED update per key event. Since `s` is either 0 or 1, when we
 
 If we're simply interested in displaying presses, this is fine enough. But for scripts where we want to display more layers of information, this approach of directly addressing and redrawing each individual LED isn't very efficient. Let's improve upon our approach in the next section!
 
-## 2. Further {#further}
+## 2. further {#further}
 
 Now we'll show how basic grid applications are developed by creating a step sequencer. We will add features incrementally:
 
@@ -150,7 +160,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 - Jump to playback position when key pressed in the position row.
 - Adjust playback loop with two-key gesture in position row.
 
-### Structure {#structure}
+### structure {#structure}
 
 Moving forward, we'll refresh the grid display on a timer, which will later also serve as the play head. We also want to ensure a few things are true about our application:
 
@@ -243,9 +253,9 @@ Buffer-based rendering is *much* more efficient than addressing LEDs directly, b
 
 Let's begin by building a bank of toggles for the sequencer.
 
-### 2.1 Toggles {#toggles}
+### 2.1 toggles {#toggles}
 
-*See grid-studies-2-1.py for this section.*
+*See [grid-studies-2-1.py](files/grid-studies-2-1.py) for this section.*
 
 First we'll establish what should happen when a grid is connected, via `on_grid_ready()`:
 
@@ -292,9 +302,9 @@ def draw(self):
 
 That'll get us started.
 
-### 2.2 Play {#play}
+### 2.2 play {#play}
 
-*See grid-studies-2-2.py for this section.*
+*See [grid-studies-2-2.py](files/grid-studies-2-2.py) for this section.*
 
 On each iteration inside `play()` we wait for `0.1` seconds to pass before we increment `play_position` to move onto the next step. This value must be wrapped to 0 if it's at the end.
 
@@ -329,9 +339,9 @@ for x in range(self.width):
 
 While copying steps to the grid in a loop, we check if we're updating a column that is the play position. If so, we increase the highlight value. By adding this value during the copy we'll get a nice effect of an overlaid translucent bar.
 
-### 2.3 Triggers {#triggers}
+### 2.3 triggers {#triggers}
 
-*See grid-studies-2-3.py for this section.*
+*See [grid-studies-2-3.py](files/grid-studies-2-3.py) for this section.*
 
 When the playhead advances to a new column we want something to happen which corresponds to the toggled-on values. We'll do two things: we'll show separate visual feedback on the grid in the second-to-last (trigger) row, and we'll print something to the command line.
 
@@ -367,9 +377,9 @@ def trigger(self, i):
 
 This could of course do something much more exciting, such as generate MIDI notes, animate robot arms, set off fireworks, etc.
 
-### 2.4 Dynamic Cuts {#dynamic-cuts}
+### 2.4 dynamic cuts {#dynamic-cuts}
 
-*See grid-studies-2-4.py for this section.*
+*See [grid-studies-2-4.py](files/grid-studies-2-4.py) for this section.*
 
 We will now use the bottom row to dynamically cut the playback position. First let's add a position display underneath our sequencer canvas, which will be inside `draw()`:
 
@@ -406,9 +416,9 @@ async def play(self):
 
 Now, when pressing keys on the bottom row it will cue the next position to be played.
 
-### 2.5 Loop {#loop}
+### 2.5 loop {#loop}
 
-*See grid-studies-2-5.py for this section.*
+*See [grid-studies-2-5.py](files/grid-studies-2-5.py) for this section.*
 
 Lastly, we'll implement setting the loop start and end points with a two-press gesture: pressing and holding the start point, and pressing an end point while still holding the first key. We'll need to add a variable to count keys held, one to track the last key pressed, and variables to store the loop positions.
 
@@ -466,9 +476,9 @@ async def play(self):
 Done!
 
 
-## Closing
+## closing
 
-### Suggested Exercises
+### suggested exercises
 
 - Repurpose the `on_grid_disconnect` method to stop playback and reset variables when the grid is disconnected.
 - "Record" keypresses in the "trigger" row to the toggle matrix.
@@ -477,7 +487,7 @@ Done!
     - If "alt" is held while pressing a toggle, clear the entire row.
     - If "alt" is held while pressing the play row, reverse the direction of play.
 
-## Credits
+## credits
 
 Python was designed by Guido van Rossum and is maintained by the [Python Software Foundation](https://python.org).
 

@@ -98,7 +98,7 @@ end
 
 The `metro` module provides a script with **30** high-resolution counters, useful for event execution on a reliable seconds-based tick, for either a fixed number of ticks or to run without end.
 
-`meteo` accurately represents 'linear' time over many cycles with little to no jitter. This makes it the perfect time-tracking mechanism for modules like [`pattern_time`](/docs/norns/reference/lib/pattern_time), where events are expected to record and play back exactly as entered.
+`metro` accurately represents 'linear' time over many cycles with little to no jitter. This makes it the perfect time-tracking mechanism for modules like [`pattern_time`](/docs/norns/reference/lib/pattern_time), where events are expected to record and play back exactly as entered.
 
 So when should a script use the [`clock` module](/docs/norns/reference/clock) and when should it use a `metro`? 
 

@@ -3,127 +3,128 @@ layout: default
 nav_exclude: true
 ---
 
-# Grid Studies: Max
+# grid studies: Max
+{: .no_toc }
 
 Max is a full kit of creative tools for sound, graphics, music and interactivity in a visual environment. Patching together *objects* the user can create complex interactions between software and hardware devices. The rapid and immediate nature of graphical programming lends itself well to developing for grids, making it the longtime tool of choice for monome grid-based software.
 
 This tutorial will show the basics of interfacing with the grid including how a simple, yet immediate sequencer platform can be made with a small amount of code.
 
-## Prerequisites
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
+## prerequisites
+
+- install [`serialosc`](/docs/serialosc/setup)
+- download + install [Max](https://cycling74.com/downloads/)
+- download [the code examples](files/grid-studies-max.zip)
 
 This lesson assumes a basic understanding of the Max patching interface. If you're absolutely new to Max it may be helpful to first go through some of the most excellent Max tutorials in-app `Help > Max Documentation`.
 
-Download Max 8: [cycling74.com/downloads](https://cycling74.com/downloads/)
-
-Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
-
-Download the code examples here: [files/grid-studies-max.zip](files/grid-studies-max.zip)
-
-## 1. Connect
+## 1. connect
 
 *See grid-studies-1-1.maxpat for this section.*
 
-To communicate with grids we trade OSC messages with serialosc. serialosc translates OSC messages to streams of numbers over USB.
+To communicate with grids, we trade OSC messages with serialosc, which translates OSC to streams of numbers over USB. First we will show how to talk to serialosc from Max.
 
-First we will show how to talk to serialosc.
+Open Max and create a new patcher.
 
-Open Max and start a new patcher.
-
-Create a new object (press N) and type `bpatcher serialosc` and then hit enter. A bpatcher window will appear, resize this to match the long rectangle.
+Instantiate a new object (press N) and type `bpatcher serialosc` and then hit enter. A `[bpatcher]` window will appear. Resize it to match the long rectangle below:
 
 ![](images/grid-studies-1-1-1.png)
 
-Plug in your grid and it will appear in the serialosc box. If you connect more than one grid, you can choose which device to communicate with via the dropdown.
+Plug in your grid and it will appear in the menu. If you connect more than one grid, you can choose which device to communicate with via the dropdown.
 
-Note: this box you've embedded isn't serialosc itself, which is an invisible daemon on your computer. This box is a helper patcher to simplify using serialosc. We'll refer to this helper as serialosc, hopefully without much confusion.
+Note: this box you've embedded isn't serialosc itself, which is an invisible daemon on your computer. This box is a helper patcher to simplify *using* serialosc. Throughout this study, we'll refer to this helper as `[serialosc]`, hopefully without much confusion.
 
+## 2. basics {#basics}
 
-
-## 2. Basics
-
-Messages are sent to serialosc through the top left inlet, and received out the bottom left outlet.
+Messages are sent to `[serialosc]` through the top left inlet, and are received from the bottom left outlet.
 
 *See grid-studies-2-1.maxpat for this section.*
 
+### 2.1 key input {#key-input}
 
-### 2.1 Key input
-
-To see what is coming from the grid, create a `print` object and connect the left outlet of serialosc to it. Open the max console (Window -> Max Console) and press some keys on the grid. OSC data will be displayed on the console.
+To see what is coming from the grid, create a `[print]` object and connect the left outlet of `[serialosc]` to it. Open the max console (Window -> Max Console) and press some keys on the grid. OSC data will be displayed on the console.
 
 Examining the output, key data fits this form:
 
-	/monome/grid/key x y z
+```
+/monome/grid/key x y z
+```
 
-Where x,y is the position and z indicates key down (1) or key up (0). Note here that x,y position is 'zero referenced' so 0,0 is the upper-left key and 15,7 is the lower-right.
+Where `x` and `y` are the Cartesian position and `z` indicates key down (1) or key up (0). Note here that x,y position is 'zero referenced' so 0,0 is the upper-left key and 15,7 is the lower-right (on a 16x8 grid).
 
 Other messages (such as connect and disconnect) come from this same outlet, so we want to filter for the key messages.
 
-Change the `print` object to `route /monome/grid/key` and then see the output from the route.
+Change the `[print]` object to `[route /monome/grid/key]` and use a `[message]` object to see the output from the route.
 
-We now have a list of 3 numbers according to each key action. Use an unpack to break this down further into individual numbers.
+We now have a list of 3 numbers according to each key action. We could use an `[unpack]` to break this down further into individual numbers, but for now create a `[matrixctrl]` object the same dimensions as your grid with `[matrixctrl @columns 16 @rows 8]`.
 
-Create a 16x8 matrixctrl object by typing:
-
-	matrixctrl @columns 16 @rows 8
-
-Connect the output of the route to this `matrixctrl` for a graphical display of the grid's key state.
+Connect the output of the `[route]` to this `[matrixctrl]` for a graphical display of the grid's key state in Max.
 
 ![](images/grid-studies-2-1-1.png)
 
 ### 2.2 LED output
 
-Above the serialosc box create a message (push M) and type:
+Above `[serialosc]`, create a message (push M) and type:
 
-	/monome/grid/led/set 2 0 1
+```
+/monome/grid/led/set 2 0 1
+```
 
 Connect this to the left inlet of serialosc.
 
-Clicking this box will light up LED 2 in row 0. The message format is:
+Once connected, clicking this message will light up LED 2 in row 0. The message format is:
 
-	/monome/grid/led/set x y z
+```
+/monome/grid/led/set x y z
+```
 
-This is similar to the key input message, where z is on (1) or off (0).
+This is similar to the key input message, where `z` is on (1) or off (0).
 
-Using Max's list methods, use `$1 $2 $3` to change LEDs more dynamically. With a single message box as a sort of funnel, we can change various positions with message boxes, toggles, and a `matrixctrl`.
+With Max's replaceable arguments, we can use `$1 $2 $3` to change LEDs more dynamically. With a single message box as a sort of funnel, we can change various positions with message boxes, toggles, or another `[matrixctrl]`.
 
 To clear the entire grid, use the following message:
 
-	/monome/grid/led/all 0
+```
+/monome/grid/led/all 0
+```
 
 ![](images/grid-studies-2-2-1.png)
 
 
-### 2.3 Coupled interaction
+### 2.3 coupled interaction {#coupled-interaction}
 
-Connect the output of
-
-	route /monome/grid/key
-
-to the `matrixctrl` which above serialosc which changes LEDs.
+Connect the output of `[route /monome/grid/key]` to the `[matrixctrl]` above `[serialosc]` (the one which changes the LEDs).
 
 You now have a coupled interface, where the key state is reflected by the the LEDs.
 
 ![](images/grid-studies-2-3-1.png)
 
-### 2.4 Decoupled interaction
+### 2.4 decoupled interaction {#decoupled-interaction}
 
-The most fundamental decoupled interface is an array of toggles. We can accomplish this easily by ignoring the key up state, switching the LED state only on key down.
+The most fundamental decoupled interface is an array of toggles. We can accomplish this easily by ignoring the key up state, switching the LED state *only* on key down.
 
-Remove the connection to the LED-driving `matrixctrl`. We can filter out key-up messages by re-arranging the order of the key output, using a route object:
+Remove the connection to the LED-driving `[matrixctrl]`. We can filter out key-up messages by re-arranging the order of the key output, using a `[route]` object:
 
-	$3 $1 $2
+TODO: IMAGE
 
-	route 1
+By moving the key state (`z`, here as `$3`) to the front, the route object will only pass messages where this first number is equal to 1. What comes out of route is just `x` and `y`. We can use this to toggle our `[matrixctrl]` by adding `inc` to the end of the message:
 
-By moving the key state (z, here as `$3`) to the front, the route object will only pass messages where this first number is equal to 1. What comes out of route is just x and y. We can use this to toggle a matrixctrl by adding `inc` to the end of the message thusly:
+```
+$1 $2 inc
+```
 
-	$1 $2 inc
-
-Connect this to the input of the `matrixctrl` and we have a toggle bank.
+Connect this to the input of the `[matrixctrl]` and we have a toggle bank.
 
 ![](images/grid-studies-2-4-1.png)
-
-
 
 ## 3.0 Further
 

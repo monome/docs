@@ -1,9 +1,8 @@
 inlets = 3; // second inlet: LED messages, third inlet: metro
-outlets = 10;
+outlets = 12;
 
 var in_port;
 var prefix;
-var grid_size;
 
 var autoconnect = 0;
 var connected = 0;
@@ -11,6 +10,8 @@ var connected = 0;
 var serials = [];
 var devices = [];
 var ports = [];
+var cols = [];
+var rows = [];
 
 var quad_dirty = new Array(0,0,0,0);
 var led_quads = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -18,9 +19,6 @@ var led_quads = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 				[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 				[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 				];
-				
-var led_Xoffsets = new Array(0,8,0,8);
-var led_Yoffsets = new Array(0,0,8,8);
 
 function clamp(n,minimum,maximum) {
 	return Math.min(Math.max(n, minimum), maximum)
@@ -52,17 +50,23 @@ function insert_row(x_offset,y,n1,n2) {
 	n1 = Math.min(Math.max(n1, 0), 255)
 	decoded = n1.toString(2).split('').reverse();
 	x_adjust = Math.floor(x_offset/8);
+	y_adjust = y;
+	quad_adjust = 0;
 	
-	if(x_adjust < 2) {
+	if(x_adjust < 2) {	
+		if(y >= 8) {
+			y_adjust = y-8;
+			quad_adjust = 2;
+		}
+		
 		for(i = 0; i < 8; i++){
 			if(decoded[i] == null){
 				decoded[i] = 0
 			}
 		}
-		for(i = 8*y; i < (8*y)+decoded.length; i++){
-			led_quads[x_adjust][i] = decoded[i-(8*y)] * 15;
-			//post(led_quads[x_adjust][i]);
-			quad_dirty[x_adjust] = 1;
+		for(i = 8*y_adjust; i < (8*y_adjust)+decoded.length; i++){
+			led_quads[x_adjust + quad_adjust][i] = decoded[i-(8*y_adjust)] * 15;
+			quad_dirty[x_adjust + quad_adjust] = 1;
 		}
 		if(n2 != null){
 			decoded = n2.toString(2).split('').reverse();
@@ -71,9 +75,9 @@ function insert_row(x_offset,y,n1,n2) {
 					decoded[i] = 0
 				}
 			}
-			for(i = 8*y; i < (8*y)+decoded.length; i++){
-				led_quads[x_adjust+1][i] = decoded[i-(8*y)] * 15;
-				quad_dirty[x_adjust+1] = 1;
+			for(i = 8*y_adjust; i < (8*y_adjust)+decoded.length; i++){
+				led_quads[x_adjust + quad_adjust + 1][i] = decoded[i-(8*y_adjust)] * 15;
+				quad_dirty[x_adjust + quad_adjust + 1] = 1;
 			}
 		}
 	}
@@ -82,7 +86,7 @@ function insert_row(x_offset,y,n1,n2) {
 function insert_col(x,y_offset,n1,n2) {
 	n1 = Math.min(Math.max(n1, 0), 255)
 	decoded = n1.toString(2).split('').reverse();
-	y_adjust = Math.floor(y_offset/8); // TODO: should go vertical, not horizontal
+	y_adjust = Math.floor(y_offset/8);
 	offset = false;
 	
 	if (y_adjust != 0){
@@ -106,7 +110,7 @@ function insert_col(x,y_offset,n1,n2) {
 			if (offset == false){
 				led_quads[1][(i*8)+(x-8)] = decoded[i] * 15;
 			}else{
-				led_quads[4][(i*8)+(x-8)] = decoded[i] * 15;
+				led_quads[3][(i*8)+(x-8)] = decoded[i] * 15;
 			}
 		}
 	}
@@ -128,8 +132,17 @@ function insert_col(x,y_offset,n1,n2) {
 			}
 		}
 		for(i = 0; i < decoded.length; i++){
-			led_quads[y_adjust+1][(i*8)+x] = decoded[i] * 15;
-			quad_dirty[y_adjust+1] = 1;
+			if(x < 8){
+				if (offset == false){
+					led_quads[2][(i*8)+x] = decoded[i] * 15;
+					quad_dirty[2] = 1;
+				}
+			}else{
+				if (offset == false){
+					led_quads[3][(i*8)+(x-8)] = decoded[i] * 15;
+					quad_dirty[3] = 1;
+				}
+			}
 		}
 	}
 }
@@ -240,6 +253,12 @@ function rescan() {
 	ports = [];
 	devices = [];
 	serials = [];
+	rows = [];
+	cols = [];
+	
+	for (i=0; i<4 ; i++) {
+		quad_dirty[i] = 1
+	}
 }
 
 
@@ -273,6 +292,13 @@ function osc() {
 		connected = 0;
 	}
 	
+	else if(arguments[0] == "/sys/size") {
+		cols.push(arguments[1]);
+		rows.push(arguments[2]);
+		outlet(10, arguments[1]);
+		outlet(11, arguments[2]);
+	}
+	
 }
 
 
@@ -285,6 +311,8 @@ function menu(i) {
 		
 		outlet(4, serials[i-1]);
 		outlet(5, devices[i-1]);
+		outlet(10, cols[i-1]);
+		outlet(11, rows[i-1]);
 		
 		autoconnect = 0;
 		connected = serials[i-1];

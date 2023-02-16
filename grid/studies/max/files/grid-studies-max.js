@@ -15,6 +15,10 @@ var trig = new Array(6);
 var leds = new Array(128);
 var buffer = new Array(64);
 
+var cols = 16;
+var rows = 8;
+var quads = 2;
+
 
 // initialize by clearing toggle states
 function init() {
@@ -22,16 +26,27 @@ function init() {
 		states[i1] = 0;
 }
 
+function set_size(cols, rows) {
+	cols = cols;
+	rows = rows;
+	states = new Array((cols * rows) - (2*cols));
+	trig = new Array(rows-2);
+	leds = new Array(cols * rows);
+	if(rows > 8){
+		quads = 4;
+	}
+}
+
 // key decoding
 function key(x, y, z) {
 	// toggle for key-down on rows 0-5
-	if(y < 6 && z == 1) {
+	if(y < rows-2 && z == 1) {
 		states[x + y*16] ^= 1;
 		
 		redraw();
 	}
 	// jump and set loop for row 7
-	else if(y == 7) {
+	else if(y == rows-1) {
 		// track key count
 		if(z == 0) key_count--;
 		else if(z == 1) key_count++;

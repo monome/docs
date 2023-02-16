@@ -150,16 +150,23 @@ function insert_col(x,y_offset,n1,n2) {
 function row_level() {
 	if(arguments.length > 2){
 		x_offset = arguments[0];
-		y = arguments[1];
 		x_adjust = Math.floor(x_offset/8);
+		y = arguments[1];
+		y_adjust = y;
+		quad_adjust = 0;
+		
 		if(arguments.length == 10 || arguments.length == 18){
+			if(y >= 8) {
+				y_adjust = y-8;
+				quad_adjust = 2;
+			}
 			for(i = 2; i < arguments.length; i++){
 				if(i < 10){
-					led_quads[x_adjust][i-2 + (8*y)] = arguments[i];
-					quad_dirty[x_adjust] = 1;
+					led_quads[x_adjust + quad_adjust][i-2 + (8*y_adjust)] = arguments[i];
+					quad_dirty[x_adjust + quad_adjust] = 1;
 				} else {
-					led_quads[x_adjust+1][i-10 + (8*y)] = arguments[i];
-					quad_dirty[x_adjust+1] = 1;
+					led_quads[x_adjust + quad_adjust + 1][i-10 + (8*y_adjust)] = arguments[i];
+					quad_dirty[x_adjust + quad_adjust + 1] = 1;
 				}	
 			}		
 		}		
@@ -170,18 +177,29 @@ function col_level() {
 	if(arguments.length > 2){
 		x = arguments[0];
 		y_offset = arguments[1];
-		x_adjust = Math.floor(x/8) + Math.floor(y_offset/8);
+		x_adjust = Math.floor(x/8);
 		y_adjust = Math.floor(y_offset/8);
+		
 		if(arguments.length == 10 || arguments.length == 18){
-			for(i = 2; i < arguments.length; i++){
-				if(i < 10){
-					led_quads[x_adjust][((8*(i-2)) + x) - (8*x_adjust)] = arguments[i];
-					quad_dirty[x_adjust] = 1;
-				} else {
-					led_quads[x_adjust+1][(8*(i-10)) + x - (8*x_adjust)] = arguments[i];
-					quad_dirty[x_adjust+1] = 1;
-				}	
-			}		
+			
+			if(y_adjust == 0){
+				for(i = 2; i < arguments.length; i++){
+					if(i < 10){
+						led_quads[x_adjust][((8*(i-2)) + x) - (8*x_adjust)] = arguments[i];
+						quad_dirty[x_adjust] = 1;
+					} else {
+						led_quads[x_adjust+2][(8*(i-10)) + x - (8*x_adjust)] = arguments[i];
+						quad_dirty[x_adjust+2] = 1;
+					}	
+				}
+			}else{
+				for(i = 2; i < arguments.length; i++){
+					if(i < 10){
+						led_quads[x_adjust+2][((8*(i-2)) + x) - (8*x_adjust)] = arguments[i];
+						quad_dirty[x_adjust+2] = 1;
+					}
+				}
+			}												
 		}		
 	}
 }

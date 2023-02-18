@@ -432,6 +432,20 @@ This is not an error. We're including it here because it often gets mistaken for
 
 This message is only reporting that the script has never (successfully) been run before. It will go away once the norns system creates a default .pmap for that script, which happens the first time the script is cleanly exited.
 
+### deeper debugging
+
+We'll see errors from the running script print to [maiden's REPL](https://monome.org/docs/norns/maiden/#repl). But since maiden only allows us to scroll back through a limited history and occasionally will suppress errors (for example if we're [developing a mod](https://monome.org/docs/norns/community-scripts/#mods)), that sometimes won't be enough.
+
+If we want to see a more encompassing realtime view of error messages from the running script, mods, and SuperCollider, we can log into our our norns directly via [SSH](https://github.com/docs/norns/advanced-access/#ssh) and issue the following command:
+
+```
+journalctl -f
+```
+
+This will not only show the last few system messages (including errors), but it will update as new ones occur.
+
+When we're done, we can close the stream by hitting `Ctrl+C`. Be sure to also close the SSH connection to your norns by executing `exit`.
+
 ### reboot via maiden
 
 To perform a quick reboot of the entire norns stack (for instance, when installing a script with a synth engine), reboot SuperCollider *then* reboot matron.

@@ -527,20 +527,6 @@ function key(n,z)
 
 **Be sure to keep an eye on the REPL for errors.**
 
-### deeper debugging
-
-A lot of the time we'll see errors occur in maiden. But sometimes that won't be enough. For example, maiden only allows you to scroll back through messages so far, and occasionally (for exmaple if you're [developing a mod](https://monome.org/docs/norns/community-scripts/#mods)) maiden will hide any errors.
-
-If we want to see more error messages (and much more besides) we need to log into our our norns directly via ssh. Then we can issue the following command:
-
-```
-journalctl -f
-```
-
-This will show the last few system messages (including error messages) and sit there waiting for any more. Anything from our `print` statements will also show up here.
-
-When we're done we can exit the messages by hitting `Ctrl-C`. Then we also need to log out of our norns.
-
 ## example: many tomorrows
 
 Putting together the concepts above, this script is demonstrated in the video up top.

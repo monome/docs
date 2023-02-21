@@ -30,33 +30,6 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 {:toc}
 </details>
 
-## GENERAL KNOWLEDGE {#more-faq}
-
-### buying used
-
-While monome's [warranty](https://monome.org/policy.html) only covers direct sales, we will still do everything we can to keep our devices out of landfills. We offer incredibly reasonable repairs through our workshop (for norns, typically $90 USD + shipping) and guidance for any applicable at-home service. Just reach out to us by emailing help@monome.org with a description of the issue, including any photos or videos which would help us precisely identify the best course of action.
-
-Please note that we cannot offer hardware support or repairs for norns shields which were not fabricated and assembled by monome or 'fates' devices. Please reach out to the seller for post-purchase support.
-
-Before purchasing, be sure to confirm with the seller the storage capacity of the unit. Here are [instructions for standard norns](#confirm-cm3); shields have swappable SD cards.
-
-When you receive your unit, we highly recommend starting with a [fresh installation of the core software](/docs/norns/help/#fresh-install). This will help avoid poor initial experiences due to the previous owner's software configurations.
-
-From there:
-
-- [connect norns to WIFI](/docs/norns/wifi-files/#connect)
-- [perform a system update](/docs/norns/wifi-files/#update)
-- once norns is connected to your WIFI, use a browser on a computer connected to the same network to connect to [maiden](/docs/norns/maiden/), which opens a communication channel between your computer and norns
-- access the [project manager](/docs/norns/maiden/#project-manager) and you'll see all the community scripts available for installation
-
-### etc
-
-- Imported audio must be 48khz, bit depth is irrelevant.
-- Line noise while usb charge + audio input are both coming from the same laptop (ground loop) can be defeated with [an isolator](https://llllllll.co/t/external-grid-power-ext5v-alternative/3260).
-- If a connected MIDI controller is not functioning as expected, it may be due to a known limitation in scripts that do not explicitly allow for MIDI control from channels other than channel 1. Either reassign your MIDI controller to channel 1 or insert this [bit of code](https://llllllll.co/t/norns-scripting-best-practices/23606/2) into a script.
-- All grid editions will work with norns, but some apps may be coded for varibright levels that your hardware may not support.
-- norns does not have built-in bluetooth + the OS is not currently designed to take advantage of bluetooth.
-
 ## HARDWARE
 
 ### replacing parts - norns standard
@@ -657,3 +630,30 @@ For example:
 ```bash
 magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr.png
 ```
+
+## GENERAL KNOWLEDGE {#more-faq}
+
+### buying used
+
+While monome's [warranty](https://monome.org/policy.html) only covers direct sales, we will still do everything we can to keep our devices out of landfills. We offer incredibly reasonable repairs through our workshop (for norns, typically $90 USD + shipping) and guidance for any applicable at-home service. Just reach out to us by emailing help@monome.org with a description of the issue, including any photos or videos which would help us precisely identify the best course of action.
+
+Please note that we cannot offer hardware support or repairs for norns shields which were not fabricated and assembled by monome or 'fates' devices. Please reach out to the seller for post-purchase support.
+
+Before purchasing, be sure to confirm with the seller the storage capacity of the unit. Here are [instructions for standard norns](#confirm-cm3); shields have swappable SD cards.
+
+When you receive your unit, we highly recommend starting with a [fresh installation of the core software](/docs/norns/help/#fresh-install). This will help avoid poor initial experiences due to the previous owner's software configurations.
+
+From there:
+
+- [connect norns to WIFI](/docs/norns/wifi-files/#connect)
+- [perform a system update](/docs/norns/wifi-files/#update)
+- once norns is connected to your WIFI, use a browser on a computer connected to the same network to connect to [maiden](/docs/norns/maiden/), which opens a communication channel between your computer and norns
+- access the [project manager](/docs/norns/maiden/#project-manager) and you'll see all the community scripts available for installation
+
+### etc
+
+- Imported audio must be 48khz, bit depth is irrelevant.
+- Line noise while usb charge + audio input are both coming from the same laptop (ground loop) can be defeated with [an isolator](https://llllllll.co/t/external-grid-power-ext5v-alternative/3260).
+- If a connected MIDI controller is not functioning as expected, it may be due to a known limitation in scripts that do not explicitly allow for MIDI control from channels other than channel 1. Either reassign your MIDI controller to channel 1 or insert this [bit of code](https://llllllll.co/t/norns-scripting-best-practices/23606/2) into a script.
+- All grid editions will work with norns, but some apps may be coded for varibright levels that your hardware may not support.
+- norns does not have built-in bluetooth + the OS is not currently designed to take advantage of bluetooth.

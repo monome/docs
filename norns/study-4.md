@@ -305,7 +305,7 @@ That will print received CC number and CC value -- try specifying one of the CC 
 
 ```lua
 if d.type == "cc" then
-  if d.cc == 33 -- if CC number is 33 then...
+  if d.cc == 33 then -- if CC number is 33 then...
     engine.cutoff(util.linexp(0,127,300,12000,d.val))
   end
 end

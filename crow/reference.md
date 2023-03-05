@@ -559,6 +559,8 @@ ii.jf.tr(1, 1)   -- sets just friends' 1st trigger to the on state
 ```
 generally `ii` arguments corresponding to pitch, are specified in volts (like `input` and `output`), times are specified in seconds (like `.slew` and `ASL`). other parameters use regular numbers.
 
+### duplicate ii devices
+
 multiple ii devices of the same type are supported (eg. txi, er301, jf):
 ```lua
 ii.txi[1].get('param',1) -- get the first param of the first device
@@ -572,6 +574,8 @@ ii.txi.event( e, value ) -- 'e' is a table of: { name, device, arg }
     end
 end
 ```
+
+### raw ii access
 
 if you are working with an unsupported ii device, or you are developing a new device that will support `ii`, you can use the `ii.raw` functions:
 ```lua
@@ -596,6 +600,21 @@ crow has weak pullups for the `ii` line. they are on by default & should probabl
 ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups. on by default
 ```
 functions for crow as an `ii` *follower* are handled by the `ii` leader (norns, teletype, etc.) in their own languages.
+
+### setting the ii address
+
+if you have more than one crow on your ii bus, you can set each device (up to 4) to have it's own unique address:
+
+```lua
+print(ii.address) --> prints 1 by default, but can be 1-4
+ii.address = 2    -- set this crow to address 2
+```
+
+now you can communicate to the devices explicitly with square-bracket syntax:
+```lua
+ii.crow[1].volts(1,2.9) -- set output[1] on crow[1] to 2.9V
+ii.crow[2].volts(1,4.2) -- set output[1] on crow[2] to 4.2V
+```
 
 ### just friends
 

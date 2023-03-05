@@ -65,10 +65,10 @@ function process_stream(v)
 end
 
 crow.input[1].stream = process_stream
-crow.input[1].mode("stream", 0.25)
+crow.input[1].mode("stream", 0.1)
 ```
 
-`process_stream` will be called every 0.25 seconds, printing the value of crow input 1.
+`process_stream` will be called every 0.1 seconds, printing the value of crow input 1.
 
 ### Change
 
@@ -80,10 +80,10 @@ function process_change(v)
 end
 
 crow.input[1].change = process_change
-crow.input[1].mode("change", 2.0, 0.25, "both")
+crow.input[1].mode("change", 1.0, 0.1, "both")
 ```
 
-`process_change` will be called whenever input 1 crosses 2.0 volts with a hysteresis of 0.25.
+`process_change` will be called whenever input 1 crosses 1.0 volts with a hysteresis of 0.1.
 
 If the input is rising, the value reported will be 1. If falling, it will be 0.
 
@@ -93,25 +93,7 @@ The last parameter when setting the mode can have three values: `"rising"`, `"fa
 
 *What if we want to manually query the input voltage?*
 
-Note that in the years since the original example which follows this text was written, changes to the norns + crow codebases have temporarily created [an issue](https://github.com/monome/crow/pull/463#issuecomment-1089382249) which return unusable results like `unused event: ^^stream(1,0.950221)`.
-
-Thankfully, we can simply send the correct syntax to crow directly using `crow.send`, eg:
-
-```lua
-function process_stream(v)
-  print("input stream: "..v)
-end
-
-crow.input[1].stream = process_stream
-crow.input[1].mode("none")
-
-crow.send("input[1].query = function() stream_handler(1, input[1].volts) end")
-crow.input[1].query()
-```
-
-#### original example (for historical purposes) {#query-original}
-
-We can manually query the input with `mode` set to `"none"`.
+We can manually query the input when `mode` is set to `"none"`.
 
 ```lua
 function process_stream(v)

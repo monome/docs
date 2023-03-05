@@ -29,7 +29,7 @@ input[n].query  -- send input n's value to the host -> ^^stream(channel, volts)
 available modes are: `'none'`, `'stream'`, `'change'`, `'window'`, `'scale'`, `'volume'`, `'peak'`, `'freq'`
 
 ```lua
-input[n].mode = 'stream' -- set input n to stream with default time
+input[n].mode = 'stream' -- set input n to stream with default time (0.1s)
 
 input[n].mode( 'none' )         -- set input n to 'none' mode (ie. disable events)
 

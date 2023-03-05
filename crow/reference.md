@@ -398,6 +398,62 @@ seq:condr(pred) -- conditionally produces a value if pred() returns true, and ca
 seq:reset() -- resets all flow-modifiers as well as table indices
 ```
 
+### sequins strings
+
+if you want to sequence through a string of characters, sequins has a shortcut for that:
+```lua
+seq = sequins{'a', 'b', 'c', 'd'} -- normal style
+seq = sequins"abcd" -- string-style
+```
+
+### sequins transformers
+
+transformers attach a function to your sequins. whenever a value is taken from the sequins it will first be transformed by the attached `map` function:
+```lua
+seq = sequins{0,4,7,10}:map(function(n) return n/12 end) -- outputs voltages instead of notes
+
+-- a single arithmetic operation like above can be done with the operator shortcut
+seq = sequins{0,4,7,10}/12
+
+-- you can chain a second sequence to the right of your operation
+seq = sequins{0,4,7,10} + sequins{0,12,24}
+
+-- cancel the active transformer with an empty :map() call
+seq:map()
+```
+
+the `map` transformer can be any lua function. the function will be passed the next sequins value as it's argument, and must return a new value in it's place.
+
+### copying and baking
+
+you can make a complete copy of sequins with the `:copy()` method, or you can 'resample' the sequins values with `bake`:
+```lua
+seq = sequins{1,1,2,3,5,8}
+
+-- make a direct copy which duplicates any flow modifiers & transformers
+copy = seq:copy()
+
+-- bake the next 16 values from seq into a new sequins called cookie.
+-- note that all flow-modifiers & transformers no longer apply to the baked sequins
+cookie = seq:bake(16) -- argument selects number of values to sample
+```
+
+### sequins helpers
+
+```lua
+seq = sequins{1,2,3}
+
+-- pretty-print
+print(seq) --> s[1]{1,2,3}. prints the current data & running state of the sequins
+
+-- length operator
+#seq --> 3. if using nested sequins, each nest counts for 1 element
+
+-- peek
+seq:peek() -- returns the current value, without advancing the sequins.
+
+```
+
 ## metro
 
 crow has 8 metros, each able to run at a it's own timebase and trigger a defined event. metros are best used when you want a fixed action to occur at a regular interval.

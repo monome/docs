@@ -595,12 +595,6 @@ ii.event_raw = function(addr, cmd, data)
 end
 ```
 
-crow has weak pullups for the `ii` line. they are on by default & should probably stay on. if you have some reason to turn them off you can do so with:
-```lua
-ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups. on by default
-```
-functions for crow as an `ii` *follower* are handled by the `ii` leader (norns, teletype, etc.) in their own languages.
-
 ### setting the ii address
 
 if you have more than one crow on your ii bus, you can set each device (up to 4) to have it's own unique address:
@@ -615,6 +609,19 @@ now you can communicate to the devices explicitly with square-bracket syntax:
 ii.crow[1].volts(1,2.9) -- set output[1] on crow[1] to 2.9V
 ii.crow[2].volts(1,4.2) -- set output[1] on crow[2] to 4.2V
 ```
+
+### ii advanced settings
+
+crow provides the necessary pullup current for the `ii` bus. these are on by default & should probably stay on. if you have some reason to turn them off you can do so with:
+```lua
+ii.pullup( state ) -- turns on (true, default) or off (false) the hardware i2c pullups.
+```
+
+crow runs the `ii` bus at a modest speed to ensure maximum stability and reliability. if you are sending a huge amount of information on the `ii` bus and need more speed (about 4x) you can use:
+```lua
+ii.fastmode( state ) -- turns on (true) or off (false, default) the maximum speed transmission.
+```
+
 
 ### just friends
 

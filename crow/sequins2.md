@@ -1,3 +1,8 @@
+---
+layout: default
+nav_exclude: true
+---
+
 # sequins v2
 
 the sequins library is designed for building sequencers, arpeggiators and all sorts of other pattern systems. this new version adds to the original with `transformers` for simple pattern synthesis, and also streamlines some syntax for character-patterns.

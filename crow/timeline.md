@@ -1,3 +1,8 @@
+---
+layout: default
+nav_exclude: true
+---
+
 # timeline
 
 `timeline` is all about sequencing events in time. i often noticed that i was writing out the same clock routines to get a basic rhythm going and i knew there was a better way! `timeline` is built on top of `clock`, so all the usual details for controlling tempo and clock-source apply here as well.

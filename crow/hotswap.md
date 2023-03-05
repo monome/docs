@@ -1,3 +1,8 @@
+---
+layout: default
+nav_exclude: true
+---
+
 # hotswap
 
 this new library is designed for live-coding style interactions. it builds some simple syntax helpers for the `sequins` and `timeline` libraries so you can modify your composition on the fly. before diving in here, it's highly recommended to have a solid grip on how both of those libraries work!

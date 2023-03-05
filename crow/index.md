@@ -54,13 +54,14 @@ Learn to map your own flight paths with *stage two* and *stage three* of the [sc
 
 [Max](https://cycling74.com) is a powerful visual coding language that has integrations with [Ableton Live](https://www.ableton.com/en/live/max-for-live/).
 
-We have created Max for Live devices to integrate crow with Live, including: Live-synced clocks, MIDI-to-v/8, CC-to-Voltage, LFO's, executing Lua code directly in Live, parameter mapping your crow scripts, and triggering Lua chunks with MIDI.
-
 Using the custom `[crow]` object in Max 8, create your own Live-controllable devices or standalone utilities.
 
-Visit the [Max and Max for Live repo on GitHub](https://github.com/monome/crow-max)
+We have also created Max for Live devices to integrate crow with Ableton Live, including: synced clocks, MIDI-to-v/8, CC-to-voltage (which can be mapped to any software modulation source), i2c communication with [Just Friends](https://www.whimsicalraps.com/products/just-friends?variant=5586981781533), executing Lua code directly in Live, parameter mapping your crow scripts, and triggering Lua chunks with MIDI.
 
-### birdsong (scripting reference)
+Want to learn more? [Check out the docs.](/docs/crow/max-m4l/)  
+Afterward, visit the [Max and Max for Live repo on GitHub](https://github.com/monome/crow-max) to get started.
+
+### scripting reference
 
 If you are writing or modifying norns apps, standalone scripts, or Max patches, you will want to become fluent in the language of the birds. Visit the [scripting reference](reference) to become a crow whisperer
 

@@ -11,7 +11,7 @@ permalink: /crow/reference/
 
 # Reference
 
-[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [delay](#delay) --- [clock](#clock) --- [ii/i2c](#ii) --- [public](#public) --- [cal](#cal) --- [globals](#globals)
+[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [delay](#delay) --- [clock](#clock) --- [timeline](#timeline) --- [hotswap](#hotswap) --- [ii/i2c](#ii) --- [public](#public) --- [cal](#cal) --- [random](#random) --- [globals](#globals)
 
 ## input
 
@@ -68,6 +68,11 @@ input[n].mode( 'peak', threshold, hysteresis ) -- set input n to:
 input[1].mode( 'freq', time ) -- set input 1 to:
     -- 'freq':  calculate the frequency of a connected oscillator.
     -- time:    rate at which frequency is reported.
+
+-- NOTE: 'clock' mode uses the same detection as 'change' mode.
+input[n].mode( 'clock', division) -- set input n to:
+    -- 'clock':  uses the input to drive the internal clock module's tempo
+    -- division: the rate at which the clock will arrive. eg 1/4 for 4 ticks per beat
 ```
 
 table calling the input will set the mode with named parameters:
@@ -330,6 +335,8 @@ dyn{k=v}
 
 ## sequins
 
+[sequins details](../sequins2)
+
 sequins are lua tables with associated behaviour. the sequins library is designed for building sequencers and arpeggiators with short scripts.
 
 ```lua
@@ -391,6 +398,62 @@ seq:condr(pred) -- conditionally produces a value if pred() returns true, and ca
 
 -- with nested sequins, you can restart the arrangement
 seq:reset() -- resets all flow-modifiers as well as table indices
+```
+
+### sequins strings
+
+if you want to sequence through a string of characters, sequins has a shortcut for that:
+```lua
+seq = sequins{'a', 'b', 'c', 'd'} -- normal style
+seq = sequins"abcd" -- string-style
+```
+
+### sequins transformers
+
+transformers attach a function to your sequins. whenever a value is taken from the sequins it will first be transformed by the attached `map` function:
+```lua
+seq = sequins{0,4,7,10}:map(function(n) return n/12 end) -- outputs voltages instead of notes
+
+-- a single arithmetic operation like above can be done with the operator shortcut
+seq = sequins{0,4,7,10}/12
+
+-- you can chain a second sequence to the right of your operation
+seq = sequins{0,4,7,10} + sequins{0,12,24}
+
+-- cancel the active transformer with an empty :map() call
+seq:map()
+```
+
+the `map` transformer can be any lua function. the function will be passed the next sequins value as it's argument, and must return a new value in it's place.
+
+### copying and baking
+
+you can make a complete copy of sequins with the `:copy()` method, or you can 'resample' the sequins values with `bake`:
+```lua
+seq = sequins{1,1,2,3,5,8}
+
+-- make a direct copy which duplicates any flow modifiers & transformers
+copy = seq:copy()
+
+-- bake the next 16 values from seq into a new sequins called cookie.
+-- note that all flow-modifiers & transformers no longer apply to the baked sequins
+cookie = seq:bake(16) -- argument selects number of values to sample
+```
+
+### sequins helpers
+
+```lua
+seq = sequins{1,2,3}
+
+-- pretty-print
+print(seq) --> s[1]{1,2,3}. prints the current data & running state of the sequins
+
+-- length operator
+#seq --> 3. if using nested sequins, each nest counts for 1 element
+
+-- peek
+seq:peek() -- returns the current value, without advancing the sequins.
+
 ```
 
 ## metro
@@ -465,6 +528,8 @@ _ = clock.get_beats       -- get count of beats since the clock started
 _ = clock.get_beat_sec    -- get the length of a beat in seconds
 ```
 
+the clock can also be driven by one of crow's inputs using the 'clock' [input mode](#input-modes). in this mode, setting `clock.tempo` has no effect, but the current input tempo can be queried with `clock.tempo`.
+
 the clock can be stopped & started, and events can occur when doing either. the clock starts running when crow awakens. note start/stopping the clock does not affect `clock.sleep` calls.
 
 ```
@@ -510,6 +575,102 @@ function oneshot(seconds)
 end
 ```
 
+## timeline
+
+[timeline details](../timeline)
+
+create rhythmic loops, long-form scores, or sequences of timed events. a timeline is written as a table of times and events. there are 3 modes each with their own uses & specifics:
+
+creat a `:loop` by writing the duration of an event, and providing a function to do the action. you can have any number of duration-event pairs in the table:
+```lua
+t1 = timeline.loop{duration, event, duration, event ...}
+
+-- looping can be conditional with :unless
+t2 = timeline.loop{1, kick, 2, snare}:unless(function() input[1].volts > 2 end)
+
+-- the loop can run a fixed number of repetitions with :times
+t3 = timeline.loop{0.55, hihat, 0.45, hihat}:times(16)
+```
+
+a `:score` uses 'timestamps' written in beats. it will only run one time.
+```lua
+t4 = timeline.score{0, intro, 32, verse}
+
+-- the score can be looped with the 'reset' message
+t5 = timeline.score{0, intro, 32, verse, 64, 'reset'}
+
+-- the 'reset' message can also be returned from a function
+t6 = timeline.score{ 0, intro
+                   , 32, verse
+                   , 64, function() if math.random() > 0.5 then return 'reset' end}
+```
+
+or sequence in `:real`time, where timestamps are written in absolute seconds:
+```lua
+t7 = timeline.real{0, note_1, 0.33 note_2, 0.5 note_3}
+
+-- reals can also be 'reset'
+t8 = timeline.real{0, note_1, 0.33 note_2, 0.5 note_3, 1.2, 'reset'}
+``` 
+
+### timeline control
+
+all timelines start immediately, unless you use the `:queue()` pre-method. you can then `:play()` the timeline to begin. `:stop()` will immediately halt a running timeline, and `:play()` will restart a timeline whether it is currently playing or stopped.
+```lua
+tt = timeline.queue:loop{2, kick, 2, snare} -- won't start!
+tt:play() -- begins the queued timeline
+
+tt:stop() -- halts the tt loop
+tt:play() -- restarts the tt loop
+```
+
+before beginning playback, all timelines will wait until the next launch-quantization tick. this defaults to 1 (aka `clock.sync(1)`), but can be modified globally, or on a per-timeline basis:
+```lua
+-- quantize this timeline to the next multiple of 8 beats
+tt = timeline.launch(8):loop{2, kick, 2, snare}
+
+-- disable launch quantization for *all* timelines
+timeline.launch_default = 0
+```
+
+all running timelines can be stopped (though also stops any running `clock` routines):
+```lua
+timeline.cleanup()
+```
+
+### timeline: function tables & sequins
+
+the events in a timeline are typically functions, but you can also provide a table where the first element is a function, and later elements are arguments to that function. every time the event is called, the function will be re-evaluated with the provided arguments:
+
+```lua
+-- print 'bang!' every beat
+tt = timeline.loop{1, {print, "bang!"}}
+```
+
+both times and arguments in a function-table can be provided as sequins. each time the line is executed any sequins will be called, advancing them to the next value:
+```lua
+-- play a rhythmic arpeggio via just friends over ii
+tt = timeline.loop{sequins{3,3,2}, {ii.jf.play_note, sequins{0,4,7,11}/12, 2}}
+```
+
+## hotswap
+
+[hotswap details](../hotswap)
+
+hotswap is a special table where you can place your sequins & timelines. if you re-assign an existing element of this table, hotswap will maintain the current playback position. ideal for live-coding:
+```lua
+-- the sequins is overwritten, but the playhead is preserved
+hotswap.seq = sequins{1,2,3}
+hotswap.seq() --> 1
+hotswap.seq() --> 2
+hotswap.seq = sequins{4,5,6,7}
+hotswap.seq() --> 6
+
+-- this timeline continues running with the timing & notes being updated as it plays
+hotswap.tt = timeline.loop{sequins{3,3,2}, {ii.jf.play_note, sequins{0,4,7,11}/12, 2}}
+hotswap.tt = timeline.loop{sequins{3,2,2,1}, {ii.jf.play_note, sequins{0,4,7,10}/12, 2}}
+hotswap.tt = timeline.loop{sequins{3,2,3}, {ii.jf.play_note, sequins{0,3,7,10}/12, 2}}
+```
 
 ## ii
 
@@ -552,6 +713,8 @@ ii.jf.tr(1, 1)   -- sets just friends' 1st trigger to the on state
 ```
 generally `ii` arguments corresponding to pitch, are specified in volts (like `input` and `output`), times are specified in seconds (like `.slew` and `ASL`). other parameters use regular numbers.
 
+### duplicate ii devices
+
 multiple ii devices of the same type are supported (eg. txi, er301, jf):
 ```lua
 ii.txi[1].get('param',1) -- get the first param of the first device
@@ -565,6 +728,8 @@ ii.txi.event( e, value ) -- 'e' is a table of: { name, device, arg }
     end
 end
 ```
+
+### raw ii access
 
 if you are working with an unsupported ii device, or you are developing a new device that will support `ii`, you can use the `ii.raw` functions:
 ```lua
@@ -584,11 +749,33 @@ ii.event_raw = function(addr, cmd, data)
 end
 ```
 
-crow has weak pullups for the `ii` line. they are on by default & should probably stay on. if you have some reason to turn them off you can do so with:
+### setting the ii address
+
+if you have more than one crow on your ii bus, you can set each device (up to 4) to have it's own unique address:
+
 ```lua
-ii.pullup( state ) -- turns on (true) or off (false) the hardware i2c pullups. on by default
+print(ii.address) --> prints 1 by default, but can be 1-4
+ii.address = 2    -- set this crow to address 2
 ```
-functions for crow as an `ii` *follower* are handled by the `ii` leader (norns, teletype, etc.) in their own languages.
+
+now you can communicate to the devices explicitly with square-bracket syntax:
+```lua
+ii.crow[1].volts(1,2.9) -- set output[1] on crow[1] to 2.9V
+ii.crow[2].volts(1,4.2) -- set output[1] on crow[2] to 4.2V
+```
+
+### ii advanced settings
+
+crow provides the necessary pullup current for the `ii` bus. these are on by default & should probably stay on. if you have some reason to turn them off you can do so with:
+```lua
+ii.pullup( state ) -- turns on (true, default) or off (false) the hardware i2c pullups.
+```
+
+crow runs the `ii` bus at a modest speed to ensure maximum stability and reliability. if you are sending a huge amount of information on the `ii` bus and need more speed (about 4x) you can use:
+```lua
+ii.fastmode( state ) -- turns on (true) or off (false, default) the maximum speed transmission.
+```
+
 
 ### just friends
 
@@ -688,6 +875,27 @@ _ = cal.output[n].offset  -- get output offset
 _ = cal.output[n].scale   -- get output scale
 cal.output[n].offset = _  -- set output offset
 cal.output[n].scale = _   -- set output scale
+```
+
+## random
+
+[random details](../seededrandom)
+
+random values are available via the `math.random` function. these values are truly random and generated by analog hardware.
+```lua
+math.random() -- a floating point value between 0.0 and 1.0
+math.random(max) -- an integer from 1 to max inclusive
+math.random(min,max) -- an integer from min to max inclusive
+```
+
+pseudo-random values are also available via `math.srandom`. the syntax is identical to `math.random` but can be "seeded" first (hence the name seeded-random):
+```lua
+math.srandomseed(math.random() * 2^31) -- seed the generator with a truly random number
+math.srandom() -- a pseudo-random number between 0.0 and 1.0
+
+-- curating seeds lets you do fun & repeatable sequences
+math.srandomseed(42) -- creates a magic sequence
+math.srandomseed(unique_id()) -- creates a sequence specific to your crow's hardware
 ```
 
 ## globals

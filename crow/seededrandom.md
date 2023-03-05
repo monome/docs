@@ -43,7 +43,7 @@ This little script will start 3 different LFOs on the first 3 outputs of crow:
 
 The `init` function will use your crow's unique identifier number to start the LFOs in a way specific to your particular module. this could be a nice thing when sharing a patch with others (though can be hard to test!).
 
-in `druid` you can now create new 'presets' of LFOs by passing different numbers to the `randomize` function. If you just want truly random values, call `randomize(math.random*2^31)` which will re-seed with a random number. but if you're going to this trouble, you might as well save the value you pass in, so you can recall those same settings if they're nice!
+In `druid` you can now create new 'presets' of LFOs by passing different numbers to the `randomize` function. If you just want truly random values, call `randomize(math.random*2^31)` which will re-seed with a random number. but if you're going to this trouble, you might as well save the value you pass in, so you can recall those same settings if they're nice!
 
 ```lua
 >>> druid

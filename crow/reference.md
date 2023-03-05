@@ -11,7 +11,7 @@ permalink: /crow/reference/
 
 # Reference
 
-[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [delay](#delay) --- [clock](#clock) --- [ii/i2c](#ii) --- [public](#public) --- [cal](#cal) --- [random](#random) --- [globals](#globals)
+[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [delay](#delay) --- [clock](#clock) --- [timeline](#timeline) --- [hotswap](#hotswap) --- [ii/i2c](#ii) --- [public](#public) --- [cal](#cal) --- [random](#random) --- [globals](#globals)
 
 ## input
 
@@ -335,6 +335,8 @@ dyn{k=v}
 
 ## sequins
 
+[sequins details](../sequins2)
+
 sequins are lua tables with associated behaviour. the sequins library is designed for building sequencers and arpeggiators with short scripts.
 
 ```lua
@@ -573,6 +575,102 @@ function oneshot(seconds)
 end
 ```
 
+## timeline
+
+[timeline details](../timeline)
+
+create rhythmic loops, long-form scores, or sequences of timed events. a timeline is written as a table of times and events. there are 3 modes each with their own uses & specifics:
+
+creat a `:loop` by writing the duration of an event, and providing a function to do the action. you can have any number of duration-event pairs in the table:
+```lua
+t1 = timeline.loop{duration, event, duration, event ...}
+
+-- looping can be conditional with :unless
+t2 = timeline.loop{1, kick, 2, snare}:unless(function() input[1].volts > 2 end)
+
+-- the loop can run a fixed number of repetitions with :times
+t3 = timeline.loop{0.55, hihat, 0.45, hihat}:times(16)
+```
+
+a `:score` uses 'timestamps' written in beats. it will only run one time.
+```lua
+t4 = timeline.score{0, intro, 32, verse}
+
+-- the score can be looped with the 'reset' message
+t5 = timeline.score{0, intro, 32, verse, 64, 'reset'}
+
+-- the 'reset' message can also be returned from a function
+t6 = timeline.score{ 0, intro
+                   , 32, verse
+                   , 64, function() if math.random() > 0.5 then return 'reset' end}
+```
+
+or sequence in `:real`time, where timestamps are written in absolute seconds:
+```lua
+t7 = timeline.real{0, note_1, 0.33 note_2, 0.5 note_3}
+
+-- reals can also be 'reset'
+t8 = timeline.real{0, note_1, 0.33 note_2, 0.5 note_3, 1.2, 'reset'}
+``` 
+
+### timeline control
+
+all timelines start immediately, unless you use the `:queue()` pre-method. you can then `:play()` the timeline to begin. `:stop()` will immediately halt a running timeline, and `:play()` will restart a timeline whether it is currently playing or stopped.
+```lua
+tt = timeline.queue:loop{2, kick, 2, snare} -- won't start!
+tt:play() -- begins the queued timeline
+
+tt:stop() -- halts the tt loop
+tt:play() -- restarts the tt loop
+```
+
+before beginning playback, all timelines will wait until the next launch-quantization tick. this defaults to 1 (aka `clock.sync(1)`), but can be modified globally, or on a per-timeline basis:
+```lua
+-- quantize this timeline to the next multiple of 8 beats
+tt = timeline.launch(8):loop{2, kick, 2, snare}
+
+-- disable launch quantization for *all* timelines
+timeline.launch_default = 0
+```
+
+all running timelines can be stopped (though also stops any running `clock` routines):
+```lua
+timeline.cleanup()
+```
+
+### timeline: function tables & sequins
+
+the events in a timeline are typically functions, but you can also provide a table where the first element is a function, and later elements are arguments to that function. every time the event is called, the function will be re-evaluated with the provided arguments:
+
+```lua
+-- print 'bang!' every beat
+tt = timeline.loop{1, {print, "bang!"}}
+```
+
+both times and arguments in a function-table can be provided as sequins. each time the line is executed any sequins will be called, advancing them to the next value:
+```lua
+-- play a rhythmic arpeggio via just friends over ii
+tt = timeline.loop{sequins{3,3,2}, {ii.jf.play_note, sequins{0,4,7,11}/12, 2}}
+```
+
+## hotswap
+
+[hotswap details](../hotswap)
+
+hotswap is a special table where you can place your sequins & timelines. if you re-assign an existing element of this table, hotswap will maintain the current playback position. ideal for live-coding:
+```lua
+-- the sequins is overwritten, but the playhead is preserved
+hotswap.seq = sequins{1,2,3}
+hotswap.seq() --> 1
+hotswap.seq() --> 2
+hotswap.seq = sequins{4,5,6,7}
+hotswap.seq() --> 6
+
+-- this timeline continues running with the timing & notes being updated as it plays
+hotswap.tt = timeline.loop{sequins{3,3,2}, {ii.jf.play_note, sequins{0,4,7,11}/12, 2}}
+hotswap.tt = timeline.loop{sequins{3,2,2,1}, {ii.jf.play_note, sequins{0,4,7,10}/12, 2}}
+hotswap.tt = timeline.loop{sequins{3,2,3}, {ii.jf.play_note, sequins{0,3,7,10}/12, 2}}
+```
 
 ## ii
 
@@ -780,6 +878,8 @@ cal.output[n].scale = _   -- set output scale
 ```
 
 ## random
+
+[random details](../seededrandom)
 
 random values are available via the `math.random` function. these values are truly random and generated by analog hardware.
 ```lua

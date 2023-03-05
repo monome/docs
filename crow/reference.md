@@ -68,6 +68,11 @@ input[n].mode( 'peak', threshold, hysteresis ) -- set input n to:
 input[1].mode( 'freq', time ) -- set input 1 to:
     -- 'freq':  calculate the frequency of a connected oscillator.
     -- time:    rate at which frequency is reported.
+
+-- NOTE: 'clock' mode uses the same detection as 'change' mode.
+input[n].mode( 'clock', division) -- set input n to:
+    -- 'clock':  uses the input to drive the internal clock module's tempo
+    -- division: the rate at which the clock will arrive. eg 1/4 for 4 ticks per beat
 ```
 
 table calling the input will set the mode with named parameters:
@@ -464,6 +469,8 @@ _ = clock.tempo           -- get tempo value (BPM)
 _ = clock.get_beats       -- get count of beats since the clock started
 _ = clock.get_beat_sec    -- get the length of a beat in seconds
 ```
+
+the clock can also be driven by one of crow's inputs using the 'clock' [input mode](#input-modes). in this mode, setting `clock.tempo` has no effect, but the current input tempo can be queried with `clock.tempo`.
 
 the clock can be stopped & started, and events can occur when doing either. the clock starts running when crow awakens. note start/stopping the clock does not affect `clock.sleep` calls.
 

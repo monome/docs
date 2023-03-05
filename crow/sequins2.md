@@ -11,7 +11,7 @@ The sequins library is designed for building sequencers, arpeggiators and all so
 
 ## sequins strings
 
-Now onto the new new!
+Now onto the new!
 
 This feature is inspired by [foxdot](https://foxdot.org)'s sample patterns as I first saw in a [Flash Crash performance by mgs](https://youtu.be/A0ryZjW90Bo?t=258). Here we take just the core idea of a string encoding different events with different characters.
 

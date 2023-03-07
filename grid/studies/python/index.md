@@ -116,7 +116,7 @@ Let's take a look at our application class:
 ```python
 class GridStudies(monome.GridApp):
     def __init__(self):
-    super().__init__()
+        super().__init__()
 ```
 
 The constructor here simply calls the parent constructor without arguments. Because there is no additional code in the constructor, it can be omitted entirely, but we still have it declared in case we'll want to add some additional initialization logic to the application later.

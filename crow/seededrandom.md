@@ -3,11 +3,11 @@ layout: default
 nav_exclude: true
 ---
 
-# seeded vs true random
+# Seeded vs true random
 
-crow's microcontroller has a true-random-number-generator on board. this is the random source that is hooked up to the `math.random` function and should reliably produce numbers with high entropy.
+crow's microcontroller has a true-random-number-generator on board. This is the random source that is hooked up to the `math.random` function and should reliably produce numbers with high entropy.
 
-this is different to most CPUs that generate pseudo-randomness from a seed number (often the current up-time of the system) and then apply a series of transformations for the appearance of randomness. while this approach doesn't generate a truly random sequence, it can be very useful because of the "seed" approach.
+This is different to most CPUs that generate pseudo-randomness from a seed number (often the current up-time of the system) and then apply a series of transformations for the appearance of randomness. while this approach doesn't generate a truly random sequence, it can be very useful because of the "seed" approach.
 
 crow 4.0 introduces two new functions allowing for this pseudo-randomness generation:
 
@@ -18,9 +18,9 @@ math.srandom(5) --> random integer between 0 and 5 inclusive
 math.srandom(3,10) --> random integer between 3 and 10 inclusive
 ```
 
-where this seeded-random option becomes more interesting is by setting the seed (with `math.srandomseed`) with a known number. re-seeding the pseudo-random generator with the same number will cause `math.srandom` to produce the same sequence of values.
+Where this seeded-random option becomes more interesting is by setting the seed (with `math.srandomseed`) with a known number. Re-seeding the pseudo-random generator with the same number will cause `math.srandom` to produce the same sequence of values.
 
-one way this could be used is in a function that randomizes the parameters of your script. start with a function that writes new values to your variables, and pass it a "seed" value to be applied before randomizing. a very simple script would be something like:
+One way this could be used is in a function that randomizes the parameters of your script. Start with a function that writes new values to your variables, and pass it a "seed" value to be applied before randomizing. A very simple script would be something like:
 
 ```lua
 function init()
@@ -36,14 +36,14 @@ function randomize(seed)
 end
 ```
 
-this little script will start 3 different LFOs on the first 3 outputs of crow:
+This little script will start 3 different LFOs on the first 3 outputs of crow:
 * output 1 will have random speed between 0.1 and 1.1Hz
 * output 2 will have random amplitude between 1 and 5V (in 1V steps)
 * output 3 will have a randomly selected shape
 
-the `init` function will use your crow's unique identifier number to start the lfos in a way specific to your particular module. this could be a nice thing when sharing a patch with others (though can be hard to test!).
+The `init` function will use your crow's unique identifier number to start the LFOs in a way specific to your particular module. this could be a nice thing when sharing a patch with others (though can be hard to test!).
 
-in `druid` you can now create new 'presets' of lfos by passing different numbers to the `randomize` function. if you just want truly random values, call `randomize(math.random*2^31)` which will re-seed with a random number. but if you're going to this trouble, you might as well save the value you pass in, so you can recall those same settings if they're nice!
+In `druid` you can now create new 'presets' of LFOs by passing different numbers to the `randomize` function. If you just want truly random values, call `randomize(math.random*2^31)` which will re-seed with a random number. but if you're going to this trouble, you might as well save the value you pass in, so you can recall those same settings if they're nice!
 
 ```lua
 >>> druid

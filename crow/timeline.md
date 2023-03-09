@@ -177,17 +177,17 @@ timeline.loop{ 1, {note, sequins{0,2,4,6,8,10}, 2}}
 
 These examples all use a single time-event pair, but you're free to use `sequins` in a longer sequence -- perhaps adding a simple rhythm alteration for your new math rock band!
 
-## Pre- & Post- Methods
+## Pre-Methods
 
 Similar to `sequins`, a `timeline` can have *methods* applied to modify the behavior of the main function (`loop`, `score`, or `real`).
 
-However, `timeline` differs from `sequins` in that it can have methods applied *before* and *after* the main function.
+However, `timeline` differs from `sequins` in that it can have methods applied *before* and *after* the main function. In this section, we'll talk about the *pre*-methods, which are about changing when a timeline will begin.
 
-Pre-methods are about changing when a timeline will begin, whereas post-methods are about how they run, or when they will stop. You chain these modifications together with the `:` character, passing the `timeline` object down through each stage of modification.
+You can chain these modifications together with the `:` character, passing the `timeline` object down through each stage of modification.
 
 As of now, there are only two pre-methods: `queue` and `launch`.
 
-With pre-methods, it's important to remember that the order matters. You'll only use `queue` or `launch` at the *beginning*, and everything else will follow the main `loop` function.
+With pre-methods, it's important to remember that the order matters. You'll only use `queue` or `launch` at the *beginning*, and everything else will follow the main function.
 
 ### Playback Control Using Pre-Methods {#playback-control}
 
@@ -278,6 +278,8 @@ If you need to stop all the running timelines you can run `timeline.cleanup()` t
 ## `loop` Post-Methods
 
 **Note: as of now, only `loop` functions can have post-methods applied.**
+
+Post-methods determine how a `loop` runs, or when it will stop.
 
 By default, `loop` will repeat the time-event table endlessly. You can stop the timeline at any moment with the `:stop()` method, but you can also make the looping programmatic with the following post-methods:
 

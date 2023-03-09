@@ -20,7 +20,7 @@ All the events can be launched quantized to the clock, and can all be programmat
 We'll start with a simple clock pulse, sent every beat on output 1:
 ```lua
 -- timeline version
-timeline.loop{1, function() output[1](pulse())}
+timeline.loop{1, function() output[1](pulse()) end}
 ```
 When we call the three core `timeline` functions, we always use curly braces. We're passing a table of elements to the `loop` function: first a time duration (used by `clock.sync`), then a function to be called. Think of the time element as a *duration* of beats that the event runs over.
 

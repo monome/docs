@@ -185,9 +185,9 @@ However, `timeline` differs from `sequins` in that it can have methods applied *
 
 Pre-methods are about changing when a timeline will begin, whereas post-methods are about how they run, or when they will stop. You chain these modifications together with the `:` character, passing the `timeline` object down through each stage of modification.
 
-As of now, there are only two pre-methods: `queue` and `launch`. 
+As of now, there are only two pre-methods: `queue` and `launch`.
 
-With these pre-methods, it's important to remember that the order matters. You'll only use `queue` or `launch` at the *beginning*, and everything else will follow the main `timeline` function (again, `loop`, `score`, or `real`).
+With pre-methods, it's important to remember that the order matters. You'll only use `queue` or `launch` at the *beginning*, and everything else will follow the main `loop` function.
 
 ### Playback Control Using Pre-Methods {#playback-control}
 
@@ -275,9 +275,11 @@ As you can see in [playback control](#playback-control) section above, you save 
 
 If you need to stop all the running timelines you can run `timeline.cleanup()` to stop all running timelines. Beware that this will also stop *any* running `clock` routines, even if they weren't started by `timeline`!
 
-## Post-Methods for 'loop'
+## `loop` Post-Methods
 
-By default `loop` will repeat the time-event table endlessly. You can stop the timeline at any moment with the `:stop()` method, but you can also make the looping programmatic with the following post-methods:
+**Note: as of now, only `loop` functions can have post-methods applied.**
+
+By default, `loop` will repeat the time-event table endlessly. You can stop the timeline at any moment with the `:stop()` method, but you can also make the looping programmatic with the following post-methods:
 
 ### `:unless`
 
@@ -309,9 +311,9 @@ timeline.loop{4, random_note}:times(8) -- play 8 random notes, one note every 4 
 
 Note: adding a `times` post-method will always play the timeline at least once. Passing values to `times` that are less than 1 are effectively the same as 1.
 
-## `"reset"` Keyword
+## `score` and `real`: `"reset"` Keyword {#reset-keyword}
 
-The `score` and `real` event types don't have any post-methods, but they do have one special feature: the `"reset"` keyword.
+Though the `score` and `real` event types don't have any post-methods, they *do* have one special feature: the `"reset"` keyword.
 
 If you have a `score` or `real` that you would like to repeat endlessly, you can set the last event in your table to be the string `"reset"`. This will immediately jump to the beginning of the timeline and start again.
 

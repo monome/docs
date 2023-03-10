@@ -285,7 +285,7 @@ By default, `loop` will repeat the time-event table endlessly. You can stop the 
 
 ### `:unless`
 
-`:unless(predicate)` takes a "predicate" -- a true or false value -- or a function that produces one. Whenever the predicate evaLuates as `true`, the timeline will stop! 
+`:unless(predicate)` takes a "predicate" -- a true or false value -- or a function that produces one. Whenever the predicate evaluates as `true`, the timeline will stop! 
 
 If you want a `loop` that only runs once, you can apply `:unless(true)` to the end of the loop. On the other hand, if the predicate is a function, it will allow you to stop the loop based on the result of the function call. This could be used for probabilistic looping:
 

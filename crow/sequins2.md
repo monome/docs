@@ -6,7 +6,7 @@ nav_exclude: true
 # sequins v2
 {: .no_toc }
 
-The `sequins` library is designed for building sequencers, arpeggiators and all sorts of other pattern systems. This new version adds to the original with `transformers` for simple pattern synthesis, and also streamlines some syntax for character-patterns.
+The `sequins` library is designed for building sequencers, arpeggiators and all sorts of other pattern systems. This new version adds to the original with *transformers* for simple pattern synthesis, and also streamlines some syntax for character-patterns.
 
 For a quick refresher on v1, see [the scripting reference](/docs/crow/reference/#sequins) and [its entry in the norns reference](/docs/norns/reference/lib/sequins).
 

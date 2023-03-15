@@ -26,6 +26,7 @@ permalink: /crow/reference/
 `input` is a table representing the 2 CV inputs
 
 ### input Queries
+{: .no_toc }
 
 ```lua
 _ = input[n].volts  -- returns the current value on input n
@@ -33,6 +34,7 @@ input[n].query  -- send input n's value to the host -> ^^stream(channel, volts)
 ```
 
 ### input Modes
+{: .no_toc }
 
 Available modes are:
 
@@ -105,6 +107,7 @@ input[n]{ mode = 'stream'
 ```
 
 ### Default Values
+{: .no_toc }
 
 Unless specified at invocation, each mode argument has the following default values:
 
@@ -119,6 +122,7 @@ div        = 1/4
 ```
 
 ### Event Handlers + Callbacks
+{: .no_toc }
 
 The default behavior is that the modes call a specific event, sending to the host:
 
@@ -149,12 +153,14 @@ input[n]{ mode   = 'stream'
 `output` is a table representing the 4 CV outputs
 
 ### Setting CV
+{: .no_toc }
 
 ```lua
 output[n].volts = 3.0 -- set output n to 3 volts instantly
 ```
 
 ### Slewing CV
+{: .no_toc }
 
 ```lua
 -- default slew is 0.0
@@ -165,6 +171,7 @@ _ = output[n].volts   -- inspect the instantaneous voltage of output n
 ```
 
 ### Shaping CV
+{: .no_toc }
 
 ```lua
 -- default shape is 'linear'
@@ -185,6 +192,7 @@ Available options:
 - `'rebound'`: emulate a bouncing ball toward the destination
 
 ### Quantize to Scales
+{: .no_toc }
 
 Outputs can be quantized with a flexible scale system. These scales are applied *after* slew or actions, so they can be used to convert LFOs into arpeggios.
 
@@ -206,6 +214,7 @@ output[n].scale( {1/1, 9/8, 5/4, 4/3, 3/2 11/8}, 'ji' )
 ```
 
 ### clock Mode
+{: .no_toc }
 
 Outputs can be set to output pulses at divisions of the clock. See [clock](#clock) for details.
 
@@ -222,6 +231,7 @@ output[n].clock_div = 1/4 -- update the clock division without re-syncing the cl
 After the clock is assigned, the output `action` can be changed from the default `pulse` to any other shape (see below).
 
 ### action
+{: .no_toc }
 
 Outputs can have `action`s, not just voltages and slew times. An `action` is a sequence of voltage slopes, like an LFO or envelope.
 
@@ -253,6 +263,7 @@ output[1]( false ) -- enter release phase
 ```
 
 #### Default Values
+{: .no_toc }
 
 Unless specified at invocation, each action argument has the following default values:
 
@@ -292,6 +303,7 @@ oscillate
 ```
 
 ### done Event
+{: .no_toc }
 
 Assign a function to be executed when an ASL action is completed:
 
@@ -460,6 +472,7 @@ seq = s{1, 2, s{3, 4}}
 ```
 
 ### modifiers
+{: .no_toc }
 
 To enable more complex arrangement, the standard interleaved flow of nested `sequins` can be modified. Modifications are applied as 'method chains' operating over a `sequins` object.
 
@@ -485,6 +498,7 @@ seq:reset() -- resets all flow-modifiers as well as table indices
 ```
 
 ### sequins Strings
+{: .no_toc }
 
 If you want to sequence through a string of characters, `sequins` has a shortcut for that:
 
@@ -494,6 +508,7 @@ seq = sequins"abcd" -- string-style
 ```
 
 ### sequins Transformers
+{: .no_toc }
 
 Transformers attach a function to your `sequins`. Whenever a value is taken from the sequins it will first be transformed by the attached `map` function:
 
@@ -513,6 +528,7 @@ seq:map()
 The `map` transformer can be any Lua function. The function will be passed the next sequins value as its argument, and must return a new value in its place.
 
 ### Copying and Baking
+{: .no_toc }
 
 You can make a complete copy of `sequins` with the `:copy()` method, or you can 'resample' the `sequins` values with `bake`:
 
@@ -528,6 +544,7 @@ cookie = seq:bake(16) -- argument selects number of values to sample
 ```
 
 ### sequins Helpers
+{: .no_toc }
 
 ```lua
 seq = sequins{1,2,3}
@@ -594,7 +611,8 @@ clock.sync(beats)                  -- sleep until next sync at intervals "beats"
 clock.cleanup()                    -- kill all currently-running clocks
 ```
 
-### Tempo and Timing:
+### Tempo and Timing
+{: .no_toc }
 
 ```lua
 clock.tempo = t           -- assign clock tempo to t beats-per-minute
@@ -673,6 +691,7 @@ delay( action, time, [repeats] ) -- delays execution of action (a function)
 Create rhythmic loops, long-form scores, or sequences of timed events. A `timeline` is written as a table of times and events. There are 3 modes each with their own uses & specifics.
 
 ### :loop
+{: .no_toc }
 
 Create a `:loop` by writing the duration of an event, and providing a function to do the action. You can have any number of duration-event pairs in the table:
 
@@ -687,6 +706,7 @@ t3 = timeline.loop{0.55, hihat, 0.45, hihat}:times(16)
 ```
 
 ### :score
+{: .no_toc }
 
 A `:score` uses 'timestamps' written in beats. Tt will only run one time.
 
@@ -703,6 +723,7 @@ t6 = timeline.score{ 0, intro
 ```
 
 ### :real
+{: .no_toc }
 
 Sequence in `:real`time, where timestamps are written in absolute seconds:
 
@@ -714,6 +735,7 @@ t8 = timeline.real{0, note_1, 0.33 note_2, 0.5 note_3, 1.2, 'reset'}
 ``` 
 
 ### timeline Control
+{: .no_toc }
 
 All `timeline`s start immediately, unless you use the `:queue()` pre-method. You can then `:play()` the `timeline` to begin. `:stop()` will immediately halt a running `timeline`, and a subsequent `:play()` will restart a `timeline` whether it is currently playing or stopped.
 
@@ -742,6 +764,7 @@ timeline.cleanup()
 ```
 
 ### Function Tables & sequins
+{: .no_toc }
 
 The events in a `timeline` are typically functions, but you can also provide a table where the first element is a function, and later elements are arguments to that function. Every time the event is called, the function will be re-evaluated with the provided arguments:
 
@@ -819,6 +842,7 @@ ii.jf.tr(1, 1)   -- sets just friends' 1st trigger to the on state
 Generally `ii` arguments corresponding to pitch, are specified in volts (like `input` and `output`), times are specified in seconds (like `.slew` and `ASL`). other parameters use regular numbers.
 
 ### Duplicate ii Devices
+{: .no_toc }
 
 Multiple ii devices of the same type are supported (eg. txi, er301, jf):
 
@@ -836,6 +860,7 @@ end
 ```
 
 ### Raw ii Access
+{: .no_toc }
 
 If you are working with an unsupported ii device, or you are developing a new device that will support `ii`, you can use the `ii.raw` functions:
 
@@ -857,6 +882,7 @@ end
 ```
 
 ### Setting the ii Address
+{: .no_toc }
 
 If you have more than one crow on your ii bus, you can set each device (up to 4) to have its own unique address:
 
@@ -873,6 +899,7 @@ ii.crow[2].volts(1,4.2) -- set output[1] on crow[2] to 4.2V
 ```
 
 ### ii Advanced Settings
+{: .no_toc }
 
 crow runs the `ii` bus at a modest speed to ensure maximum stability and reliability. If you are sending a huge amount of information on the `ii` bus and need more speed (about 4x) you can use:
 
@@ -886,7 +913,8 @@ crow provides the necessary pullup current for the `ii` bus. These are on by def
 ii.pullup( state ) -- turns on (true, default) or off (false)
 ```
 
-### just friends
+### Just Friends
+{: .no_toc }
 
 For a long-form description of the i2c relationship between crow + Just Friends, please see the [extended reference](https://github.com/whimsicalraps/Just-Friends/blob/main/Just-Type.md).
 
@@ -952,6 +980,7 @@ end
 ```
 
 ### .view
+{: .no_toc }
 
 `public.view` is a special set of public parameters that keep a remote device informed of the state of the input and output jacks. Transmission is heavily throttled to reduce USB overhead.
 
@@ -963,6 +992,7 @@ public.view.output[n]( [state] ) -- set state of nth output view
 ```
 
 ### Discovery + Synchronization
+{: .no_toc }
 
 When implementing public support on a USB host, these functions enable automated discovery & synchronization of variables.
 

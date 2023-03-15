@@ -8,15 +8,6 @@ nav_exclude: true
 
 This new library is designed for live-coding style interactions. It provides some simple syntax helpers for the [`sequins`](/docs/crow/sequins) and [`timeline`](/docs/crow/sequins) libraries so you can modify your compositions on the fly. Before diving in here, it's highly recommended to have a solid grip on how both of these other libraries work!
 
-<details open markdown="block">
-  <summary>
-    sections
-  </summary>
-  {: .text-delta }
-- TOC
-{:toc}
-</details>
-
 Fundamentally, `hotswap` is just a global table that you can save your sequins & timelines into. Using some lua magic (metatables), we're able to *update* a sequins or timeline as it's playing, preserving the current state of that object. Let's start with a sequins object in a `clock` routine that plays a melody to the outputs:
 
 ```lua
@@ -59,7 +50,7 @@ And now we can update it via druid without missing a beat!
 
 The arpeggio will switch to a minor 7th seamlessly, no matter when you call it!
 
-## `hotswap` + `timeline`
+## hotswap and timeline
 
 To get to the true power of `hotswap` though, we'll use it for a [`timeline`](/docs/crow/timeline) object rather than just a `sequins`. We'll create the arpeggio as before, but add another `sequins` to create a more complex rhythm:
 

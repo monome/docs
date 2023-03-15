@@ -20,9 +20,11 @@ permalink: /crow/update/
 
 ## Latest
 
-To check the current version of your crow inside of druid, type `^^version` into the command line.
+The latest crow firmware is always announced on [the 'releases' section of crow's GitHub repository](https://github.com/monome/crow/releases).  
+To check the version of your crow's firmware, open druid and execute `^^version`.
 
-### 4.0.1
+### 4.0.1 Changelog
+{: .no_toc }
 
 *Huge thanks to all the contributors!*
 
@@ -52,7 +54,7 @@ To check the current version of your crow inside of druid, type `^^version` into
 - changing `clock.tempo` while `clock` routines are running no longer skips events  
 - true random generator recovers when becoming insufficiently entropic  
 
-## druid
+## Update via druid
 
 New firmware can be checked and installed directly through druid. Make sure you have the [latest version of druid](https://monome.org/docs/crow/druid/#update), which supports this feature.
 
@@ -98,7 +100,7 @@ Once you're back in the shell you used to install, you should be good to go!
 
 If you see `Error: No such command 'firmware'`, you first need to [update druid](/docs/crow/druid/#update).
 
-### Windows troubleshooting
+### Windows Troubleshooting
 
 #### Update the Firmware
 
@@ -111,7 +113,7 @@ If you see `Error: No such command 'firmware'`, you first need to [update druid]
 
 If you continue to run into trouble, you'll likely need to install the driver for crow's bootloader and the `libusb1` DLL file so that the PowerShell can talk to crow's bootloader. This process is outlined in the following sections. Once completed, try `druid firmware` again.
 
-#### Install the WinUSB driver using Zadig
+#### Install the WinUSB Driver Using Zadig
 
 - put crow in bootloader mode: open `druid`, send `^^b` (crow will disconnect from druid), enter `q` to quit.
 - download [Zadig](https://zadig.akeo.ie)
@@ -128,7 +130,7 @@ If you continue to run into trouble, you'll likely need to install the driver fo
 - add the new `Drivers` folder to your `PATH` variable. [Instructions here](https://monome.org/docs/crow/druid/#windows-errors).
 - extract the DLL file, and place it in the folder you just created
 
-## norns
+## Update via norns
 
 You can use the [`fledge`](https://github.com/monome/fledge) script on norns to update a connected crow to its latest firmware.
 

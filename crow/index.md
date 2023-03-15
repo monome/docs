@@ -36,7 +36,7 @@ If you would like to use the [ii](/docs/modular/ii) functionality, be sure to ob
 
 ### norns
 
-crow integrates seamlessly with norns as a CV and [ii](/docs/modular/ii) interface. By default, crow can be a norns clocking source or destination. [Many scripts have additional crow functionality](https://llllllll.co/search?expanded=true&q=tags%3Acrow%2Bnorns%20order%3Alatest).
+crow integrates seamlessly with norns as a CV and [ii](/docs/modular/ii) interface. By default, crow can be a norns clocking source or destination. [Many scripts have additional crow functionality](https://norns.community/t/crow).
 
 Want to script on your own? See the full [crow studies](norns) for a complete guide
 
@@ -63,10 +63,11 @@ Afterward, visit the [Max and Max for Live repo on GitHub](https://github.com/mo
 
 If you are writing or modifying norns scripts, standalone druid snippets, or Max patches, you'll want to visit the [scripting reference](reference) to become fluent in the language of the birds.
 
-## Updates + Development
+## Updates
 
-We are working all the time. Check out the [newest firmware version](https://github.com/monome/crow/releases/latest).  
-To update, visit the step-by-step [bootloader instructions](update).
+To update crow, review [the step-by-step instructions](update).
+
+## Development
 
 crow continues to evolve and you can follow development on GitHub: [https://github.com/monome/crow](https://github.com/monome/crow)  
 crow is open-source and is built on the efforts of other open-source projects. Contributions are welcome.

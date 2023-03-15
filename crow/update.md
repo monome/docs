@@ -26,7 +26,7 @@ To check the current version of your crow inside of druid, type `^^version` into
 
 *Huge thanks to all the contributors!*
 
-#### NEW
+**NEW**
 
 - `timeline` library: [DOCS](https://monome.org/docs/crow/timeline/)  
 - `sequins`: transformers: [DOCS](https://monome.org/docs/crow/sequins2/#transformers)  
@@ -37,7 +37,7 @@ To check the current version of your crow inside of druid, type `^^version` into
 - extended `disting` ii interface (thanks @jroo, @ryland)  
 - method for peeking the current sequins value (thanks @tyleretters)  
 
-#### FIXED
+**FIXED**
 
 - ASL segments now correctly handle `'log'` shapes (thanks @beels)  
 - dsp samplerate was incorrect. ASL now runs at the correct speed  

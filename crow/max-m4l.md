@@ -10,7 +10,6 @@ permalink: /crow/max-m4l/
 
 # Max and Max for Live
 
-
 [Max](https://cycling74.com) is a powerful visual coding language that has integrations with [Ableton Live](https://www.ableton.com/en/live/max-for-live/).
 
 We have created a custom `[crow]` object and several helpful abstractions for Max, to welcome crow into your existing and future patches.
@@ -29,7 +28,7 @@ After downloading the entire `crow-max-and-m4l` repo, extract the zip file and y
 
 Open `Max` > `Options` > `File Preferences` > highlight `User Library` > the rightmost icon in the bottom bar should illuminate. Clicking this icon will open the User Library folder, where you can drop the `crow_max` folder.
 
-If you are performing an update of an existing `crow_max` installation, you can simply allow the system to replace the existing files. If you somehow have previous **beta** crow files in your User Library (or anywhere along your Max search path), please delete them and start fresh with `crow_max`.
+If you are performing an update of an existing `crow_max` installation, you can simply allow the system to replace the existing files. If you have previous crow files in your User Library (or anywhere along your Max search path), please delete them and start fresh with `crow_max`.
 
 Restart Max and you should be able to instantiate the `crow` object!
 
@@ -57,23 +56,14 @@ In addition to the `crow` object, there are many helper objects which can aid in
 - `crow.adsr`: easily configure and trigger an ADSR envelope on one of crow's outputs
 - `crow.var`: assign a value, table, variable, or function return to a variable (or to an element of a table)
 - `crow.function`: tell crow to execute a function, or generate a function call to pass to another `crow.` object.
-- `crow.makefunction`: convert a value, variable, or function call into an anonymous function that returns the original value/variable/function call.
+- `crow.dyn`: quickly format a dynamic variable.
 - `crow.n2v`: convert semitones to V/oct voltage levels.
-
-### ^^bootloader
-To help make flashing [new crow firmware](https://github.com/monome/crow/releases) easy, we've included a straightforward Max patch that walks through the necessary steps:
-
-![](../images/max-bootloader.png)
-
-You can either open it from inside the `crow_max` folder **or** by opening a new patcher in Max and instantiating a `^^bootloader` object (lock the patch and double-click the object to open the bootloader helper).
-
-After loading new firmware, you will need to re-establish the connection between Max and the crow module but there is no need to reboot your modular.
 
 ## Max for Live
 
 ### Install
 
-*nb. Max installation is **not** required to use the devices in `crow_m4l`.*
+*Max installation is **not** required to use the devices in `crow_m4l`.*
 
 After downloading the entire `crow-max-and-m4l` repo, extract the zip file and you should get two unique folders: `crow_max` and `crow_m4l`.
 

@@ -7,17 +7,22 @@ permalink: /crow/faq/
 ---
 
 # crow questions
+{: .no_toc }
 
-- [dictionary](#dictionary)
-- [scripting](#scripting)
-- [hardware](#hardware)
-- [i2c](#i2c-head)
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
-## dictionary of crow terms<a name="dictionary"></a>
+## dictionary of crow terms {#dictionary}
 
 ### i2c
 
-i2c is a communication bus - it’s a way for devices to talk to each other, similar to MIDI or USB. In the monome ecosystem, an i2c protocol called "ii" provides a convenient way to send commands & data between modules. In some situations reducing what could be many patch-cable connections down to a single i2c cable hidden behind the module. For example, crow can send unique synthesis commands to [Just Friends](https://www.whimsicalraps.com/products/just-friends), accessible only with the ii protocol.
+[i2c](/docs/modular/ii) is a communication bus - it’s a way for devices to talk to each other, similar to MIDI or USB. In the monome ecosystem, an i2c protocol called "ii" provides a convenient way to send commands & data between modules. In some situations reducing what could be many patch-cable connections down to a single i2c cable hidden behind the module. For example, crow can send unique synthesis commands to [Just Friends](https://www.whimsicalraps.com/products/just-friends), accessible only with the ii protocol.
 
 ### druid
 
@@ -61,7 +66,7 @@ Using the scripting reference, you could:
 - write a norns script that tells crow to wait for triggers at its inputs to create different types of envelopes
 - you can upload a full script to crow so that it knows what it’s meant to do when it's not connected to a computer or norns, and it would just await external triggers or control voltage at its inputs
 
-## scripting<a name="scripting"></a>
+## scripting
 
 ### how large a script can I run or store on crow in standalone?
 
@@ -104,7 +109,7 @@ The `[sprintf]` object is the easiest way to format messages to crow. Using the 
 - we send the string to `[prepend tell_crow]` to format the instruction
 - and finally, we send that formatted message to `[crow]`!
 
-## hardware<a name="hardware"></a>
+## hardware
 
 ### one of crow's inputs doesn't seem to respond to triggers
 

@@ -18,7 +18,6 @@ crow also stores a complete script, so that without a USB connection it can cont
 
 A collaboration by [Whimsical Raps](https://www.whimsicalraps.com) and monome.
 
-
 ## Specifications
 
 - Eurorack, 2hp width, 41mm depth
@@ -26,7 +25,6 @@ A collaboration by [Whimsical Raps](https://www.whimsicalraps.com) and monome.
 - 2 input, 4 output, 16bit [-5V,10V] range
 - Rear panel digital communication bus via [ii/i2c](/docs/ansible/i2c/#what-is-i2c--ii) (cables available [here](https://www.adafruit.com/product/266))
 - full Lua scripting environment
-
 
 ## Installation
 
@@ -38,13 +36,13 @@ If you would like to use the [ii](/docs/modular/ii) functionality, be sure to ob
 
 ### norns
 
-On October 1st 2019, we released a norns [update](../norns/#update) which allows crow to integrate seamlessly as a CV and [ii](/docs/modular/ii) interface. [Many scripts have already been updated to utilize crow](https://llllllll.co/search?expanded=true&q=tags%3Acrow%2Bnorns%20order%3Alatest).
+crow integrates seamlessly with norns as a CV and [ii](/docs/modular/ii) interface. By default, crow can be a norns clocking source or destination. [Many scripts have additional crow functionality](https://norns.community/t/crow).
 
 Want to script on your own? See the full [crow studies](norns) for a complete guide
 
 ### computer + druid
 
-You can use your terminal to access [druid](druid), a small utility for communicating with crow. druid helps you engage crow in realtime interaction and also upload full scripts (coded in Lua), providing an interactive platform for designing new patterns in a modular synth.
+You can use your computer's terminal to access [druid](druid), a small utility for communicating with crow. druid helps you engage crow in realtime interaction and also upload full scripts (coded in Lua), providing an interactive platform for designing new patterns in a modular synth.
 
 Want to see what others have scripted? Visit [bowery](https://github.com/monome/bowery), the druid script collection, and complete *stage one* of the [scripting tutorial](scripting) to learn how to upload scripts.
 
@@ -58,37 +56,24 @@ Using the custom `[crow]` object in Max 8, create your own Live-controllable dev
 
 We have also created Max for Live devices to integrate crow with Ableton Live, including: synced clocks, MIDI-to-v/8, CC-to-voltage (which can be mapped to any software modulation source), i2c communication with [Just Friends](https://www.whimsicalraps.com/products/just-friends?variant=5586981781533), executing Lua code directly in Live, parameter mapping your crow scripts, and triggering Lua chunks with MIDI.
 
-Want to learn more? [Check out the docs.](/docs/crow/max-m4l/)  
+Want to learn more? [Check out the docs](/docs/crow/max-m4l/).  
 Afterward, visit the [Max and Max for Live repo on GitHub](https://github.com/monome/crow-max) to get started.
 
 ### scripting reference
 
-If you are writing or modifying norns apps, standalone scripts, or Max patches, you will want to become fluent in the language of the birds. Visit the [scripting reference](reference) to become a crow whisperer
+If you are writing or modifying norns scripts, standalone druid snippets, or Max patches, you'll want to visit the [scripting reference](reference) to become fluent in the language of the birds.
 
 ## Updates
 
-We are working all the time. Check out the [newest firmware version](https://github.com/monome/crow/releases/latest).
-
-To update, visit the step by step [bootloader instructions](update).
-
-## Help
-
-Answers to frequently asked questions can be found in [crow questions](faq).
-
-Community discussion happens at [llllllll.co](https://llllllll.co). Come say hello!
-
-Contact *help@monome.org* with further questions.
-
-## Calibration
-
-There are also a subset of commands for managing the state of the device and contents of flash memory. crow ships pre-calibrated, but it is possible to re-run the automatic calibration.
-See the [technical](technical) page for further details.
-
+To update crow, review [the step-by-step instructions](update).
 
 ## Development
 
-crow continues to evolve and you can follow development on github:
+crow continues to evolve and you can follow development on GitHub: [https://github.com/monome/crow](https://github.com/monome/crow)  
+crow is open-source and is built on the efforts of other open-source projects. Contributions are welcome.
 
-[https://github.com/monome/crow](https://github.com/monome/crow)
+## Further
 
-crow is open-source and is built on the efforts of other open source projects. Contributions are welcome.
+Answers to frequently asked questions can be found in [crow questions](faq).  
+Community discussion happens at [llllllll.co](https://llllllll.co). Come say hello!  
+Contact *help@monome.org* for direct support.

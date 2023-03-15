@@ -10,23 +10,43 @@ permalink: /crow/reference/
 ---
 
 # Reference
+{: .no_toc }
 
-[input](#input) --- [output](#output) --- [asl](#asl) --- [sequins](#sequins) --- [metro](#metro) --- [delay](#delay) --- [clock](#clock) --- [timeline](#timeline) --- [hotswap](#hotswap) --- [ii/i2c](#ii) --- [public](#public) --- [cal](#cal) --- [random](#random) --- [globals](#globals)
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## input
 
 `input` is a table representing the 2 CV inputs
 
-### input queries
+### input Queries
 
 ```lua
 _ = input[n].volts  -- returns the current value on input n
 input[n].query  -- send input n's value to the host -> ^^stream(channel, volts)
 ```
 
-### input modes
+### input Modes
 
-available modes are: `'none'`, `'stream'`, `'change'`, `'window'`, `'scale'`, `'volume'`, `'peak'`, `'freq'`
+Available modes are:
+
+- `'none'`
+- `'stream'`
+- `'change'`
+- `'window'`
+- `'scale'`
+- `'volume'`
+- `'peak'`
+- `'freq'` (input 1 only!)
+- `'clock'`
+
+Usage examples:
 
 ```lua
 input[n].mode = 'stream' -- set input n to stream with default time (0.1s)
@@ -75,7 +95,7 @@ input[n].mode( 'clock', division) -- set input n to:
     -- division: the rate at which the clock will arrive. eg 1/4 for 4 ticks per beat
 ```
 
-table calling the input will set the mode with named parameters:
+A table calling the input will set the mode with named parameters:
 
 ```lua
 -- set input n to stream every 0.2 seconds
@@ -84,21 +104,38 @@ input[n]{ mode = 'stream'
         }
 ```
 
-the default behaviour is that the modes call a specific event, sending to the host:
+### Default Values
+
+Unless specified at invocation, each mode argument has the following default values:
+
+```lua
+time       = 0.1
+threshold  = 1.0
+hysteresis = 0.1
+direction  = 'both'
+temp       = 12
+scaling    = 1.0
+div        = 1/4
+```
+
+### Event Handlers + Callbacks
+
+The default behavior is that the modes call a specific event, sending to the host:
 
 ```lua
 'stream' -> ^^stream(channel, volts)
 'change' -> ^^change(channel, state)
 ```
 
-you can customize the event handlers:
+You can customize the event handlers:
 
 ```lua
 input[1].stream = function(volts) <your_inline_function> end
 input[1].change = change_handler_function
 ```
 
-using table call syntax, you can set the event handler at the same time:
+Using table call syntax, you can set the event handler at the same time:
+
 ```lua
 -- set input n to stream every 0.2 seconds & print the value
 input[n]{ mode   = 'stream'
@@ -111,24 +148,26 @@ input[n]{ mode   = 'stream'
 
 `output` is a table representing the 4 CV outputs
 
-### setting cv
+### Setting CV
 
 ```lua
 output[n].volts = 3.0 -- set output n to 3 volts instantly
 ```
 
-### slewing cv
+### Slewing CV
 
 ```lua
+-- default slew is 0.0
 output[n].slew  = 0.1 -- sets output n's slew time to 0.1 seconds.
 output[n].volts = 2.0 -- tell output n to move toward 2.0 volts, over the slew time
 
 _ = output[n].volts   -- inspect the instantaneous voltage of output n
 ```
 
-### shaping cv
+### Shaping CV
 
 ```lua
+-- default shape is 'linear'
 output[n].shape = 'expo' -- travel to the .volts destination with a non-linear path
 output[n].slew  = 0.1
 output[n].volts = 2.0
@@ -145,9 +184,9 @@ Available options:
 - `'under'`: move away from the destination, then smoothly ramp up
 - `'rebound'`: emulate a bouncing ball toward the destination
 
-### quantize to scales
+### Quantize to Scales
 
-outputs can be quantized with a flexible scale system. these scales are applied *after* slew or actions, so they can be used to eg. convert lfo's into arpeggios.
+Outputs can be quantized with a flexible scale system. These scales are applied *after* slew or actions, so they can be used to convert LFOs into arpeggios.
 
 ```lua
 output[n].scale( {scale}, temperament, scaling )
@@ -166,11 +205,12 @@ output[n].scale = {0,7,2,9} -- note: scale can be out of order to create arpeggi
 output[n].scale( {1/1, 9/8, 5/4, 4/3, 3/2 11/8}, 'ji' )
 ```
 
-### clock mode
+### clock Mode
 
-outputs can be set to output pulses at divisions of the clock. see [clock](#clock) for details.
+Outputs can be set to output pulses at divisions of the clock. See [clock](#clock) for details.
 
 ```
+-- division defaults to 1
 output[n]:clock(division) -- set output to clock mode with division
   -- division is in the same units as for clock.sync(division)
 
@@ -179,11 +219,11 @@ output[n]:clock('none') -- disable the output clock
 output[n].clock_div = 1/4 -- update the clock division without re-syncing the clock
 ```
 
-after the clock is assigned, the output `action` can be changed from the default `pulse` to any other shape (see below).
+After the clock is assigned, the output `action` can be changed from the default `pulse` to any other shape (see below).
 
-### actions
+### action
 
-outputs can have `actions`, not just voltages and slew times. an `action` is a sequence of voltage slopes, like an lfo or envelope.
+Outputs can have `action`s, not just voltages and slew times. An `action` is a sequence of voltage slopes, like an LFO or envelope.
 
 ```lua
 output[n].action = lfo() -- set output n's action to be a default LFO
@@ -192,7 +232,7 @@ output[n]()              -- call the output table to start the action- starts th
 output[n]( lfo() )       -- shortcut to set the action and start immediately
 ```
 
-a small set of actions are included (from `asllib.lua`):
+A small set of actions are included (from [`asllib.lua`](https://github.com/monome/crow/blob/main/lua/asllib.lua)):
 
 ```lua
 lfo( time, level, shape )           -- low frequency oscillator
@@ -203,7 +243,7 @@ adsr( attack, decay, sustain, release, shape ) -- ADSR envelope
 oscillate( freq, level, shape)      -- audio rate oscillator
 ```
 
-actions can take 'directives' to control them. the `adsr` action needs a `false` directive in order to enter the release phase:
+Actions can take 'directives' to control them. The `adsr` action needs a `false` directive in order to enter the release phase:
 
 ```lua
 output[1].action = adsr()
@@ -212,9 +252,48 @@ output[1]( true )  -- re-start attack phase from the current location
 output[1]( false ) -- enter release phase
 ```
 
-### done event
+#### Default Values
 
-assign a function to be executed when an ASL action is completed
+Unless specified at invocation, each action argument has the following default values:
+
+```lua
+lfo
+  -- time: 1
+  -- level: 5
+  -- shape: 'sine'
+
+pulse
+  -- time: 0.01
+  -- level: 5
+  -- polarity: 1
+  
+ramp
+  -- time: 1
+  -- skew: 0.25
+  -- level: 5
+  
+ar
+  -- attack: 0.05
+  -- release: 0.5
+  -- level: 7
+  -- shape: 'log'
+  
+adsr
+  -- attack: 0.05
+  -- decay: 0.3
+  -- sustain: 2
+  -- release: 2
+  -- shape: 'linear'
+
+oscillate
+  -- freq: 1
+  -- level: 5
+  -- shape: 'sine'
+```
+
+### done Event
+
+Assign a function to be executed when an ASL action is completed:
 
 ```lua
 output[1].done = function() print 'done!' end
@@ -222,7 +301,7 @@ output[1].done = function() print 'done!' end
 
 ## ASL
 
-actions above are implemented using the `ASL` mini-language. you can write your own action functions to further customize your scripts.
+The actions above are implemented using the `ASL` mini-language. You can write your own action functions to further customize your scripts.
 
 ```lua
 -- a basic triangle lfo
@@ -234,7 +313,7 @@ function lfo( time, level )
 end
 ```
 
-everything is built on the primitive `to( destination, time, shape )` which takes a destination and time pair (and optional shape), sending the output along a gradient. ASL is just some syntax to tie these short trips into a journey.
+Everything is built on the primitive `to( destination, time, shape )` which takes a destination and time pair (and optional shape), sending the output along a gradient. ASL is just some syntax to tie these short trips into a journey.
 
 ```lua
 -- an ASL is composed of a sequence of 'to' calls in a table
@@ -250,7 +329,7 @@ myjourney = { to(1,1)
 output[1]( myjourney )
 ```
 
-shape types for the third parameter are [listed above](#shaping-cv).
+`shape` types for `to`'s third parameter are [listed above](#shaping-cv).
 
 ASL provides some constructs for doing musical things:
 
@@ -265,11 +344,11 @@ asl._if( pred, { <asl> } ) -- only execute the sequence if `pred` is true
 asl._while( pred, { <asl> } ) -- `loop` the sequence so long as `pred` is true
 ```
 
-See [asllib.lua](https://github.com/monome/crow/blob/main/lua/asllib.lua) to see these constructs in use.
+Open [asllib.lua](https://github.com/monome/crow/blob/main/lua/asllib.lua) to see these constructs in use.
 
-### dynamic variables
+### dynamic Variables
 
-ASLs are *descriptions* not programs, meaning variables are fixed when the ASL is created. an ASL can be unfixed by using `dynamic` variables. these named variables can be updated by a script or from the REPL, and will be used by the running ASL.
+ASLs are *descriptions* not programs, meaning variables are fixed when the ASL is created. An ASL can be unfixed by using `dynamic` variables. these named variables can be updated by a script or from the REPL, and will be used by the running ASL.
 
 ```lua
 -- a standard lfo
@@ -293,7 +372,8 @@ output[1].action = loop{ to( 1, dyn{time=1}/2)
 output[1].dyn.time = 2 -- set the overall LFO time to 2seconds
 ```
 
-in addition to modifying dynamics from a script, or the REPL, one can attach mutations to a `dyn`. mutations are applied every time the dynamic is used in the script.
+In addition to modifying dynamics from a script, or the REPL, one can attach mutations to a `dyn`. Mutations are applied every time the dynamic is used in the script.
+
 ```lua
 -- ramp lfo, decelerating from 0.1 seconds to infinity
 output[1].action =
@@ -324,8 +404,9 @@ output[1].action =
       }
 output[1].dyn.time = 0.5 -- sets dyn.time to 0.5
 output[1].dyn.time = 2.1 -- wraps dyn.time to 0.2
+```
 
-
+```lua
 -- reference usage
 dyn{k=v}
   :step(inc) -- add 'inc' to the dynamic value on each access
@@ -335,9 +416,9 @@ dyn{k=v}
 
 ## sequins
 
-[sequins details](../sequins2)
+*Please see [`sequins` details](../sequins2) for a full tutorial.*
 
-sequins are lua tables with associated behaviour. the sequins library is designed for building sequencers and arpeggiators with short scripts.
+`sequins` are Lua tables with associated behavior. The `sequins` library is designed for building sequencers and arpeggiators with short scripts.
 
 ```lua
 seq = sequins{1,2,3} -- create a sequins of 3 values, and save it as seq
@@ -378,9 +459,12 @@ seq = s{1, 2, s{3, 4}}
     -- eg: seq() --> 1, 2, 3, 1, 2, 4 ...
 ```
 
-to enable more complex arrangement, the standard interleaved flow of nested sequins can be modified. modifications are applied as 'method chains' operating over a sequins object.
+### modifiers
 
-when calling a sequins object it will *always* return a result. when a flow-modifier *doesn't* return a value (eg every(2) only returns a value every second time), the outer-sequins will simply request the next value immediately until a value is returned.
+To enable more complex arrangement, the standard interleaved flow of nested `sequins` can be modified. Modifications are applied as 'method chains' operating over a `sequins` object.
+
+When calling a `sequins` object it will *always* return a result. When a flow-modifier *doesn't* return a value (eg. `every(2)` only returns a value every second time), the outer-`sequins` will simply request the next value immediately until a value is returned.
+
 ```lua
 -- flow-modifiers that might return a value, or might skip
 seq:every(n)   -- produce a value every nth call
@@ -400,17 +484,19 @@ seq:condr(pred) -- conditionally produces a value if pred() returns true, and ca
 seq:reset() -- resets all flow-modifiers as well as table indices
 ```
 
-### sequins strings
+### sequins Strings
 
-if you want to sequence through a string of characters, sequins has a shortcut for that:
+If you want to sequence through a string of characters, `sequins` has a shortcut for that:
+
 ```lua
 seq = sequins{'a', 'b', 'c', 'd'} -- normal style
 seq = sequins"abcd" -- string-style
 ```
 
-### sequins transformers
+### sequins Transformers
 
-transformers attach a function to your sequins. whenever a value is taken from the sequins it will first be transformed by the attached `map` function:
+Transformers attach a function to your `sequins`. Whenever a value is taken from the sequins it will first be transformed by the attached `map` function:
+
 ```lua
 seq = sequins{0,4,7,10}:map(function(n) return n/12 end) -- outputs voltages instead of notes
 
@@ -424,11 +510,12 @@ seq = sequins{0,4,7,10} + sequins{0,12,24}
 seq:map()
 ```
 
-the `map` transformer can be any lua function. the function will be passed the next sequins value as it's argument, and must return a new value in it's place.
+The `map` transformer can be any Lua function. The function will be passed the next sequins value as its argument, and must return a new value in its place.
 
-### copying and baking
+### Copying and Baking
 
-you can make a complete copy of sequins with the `:copy()` method, or you can 'resample' the sequins values with `bake`:
+You can make a complete copy of `sequins` with the `:copy()` method, or you can 'resample' the `sequins` values with `bake`:
+
 ```lua
 seq = sequins{1,1,2,3,5,8}
 
@@ -440,7 +527,7 @@ copy = seq:copy()
 cookie = seq:bake(16) -- argument selects number of values to sample
 ```
 
-### sequins helpers
+### sequins Helpers
 
 ```lua
 seq = sequins{1,2,3}
@@ -458,7 +545,7 @@ seq:peek() -- returns the current value, without advancing the sequins.
 
 ## metro
 
-crow has 8 metros, each able to run at a it's own timebase and trigger a defined event. metros are best used when you want a fixed action to occur at a regular interval.
+crow has 8 `metro`s, each able to run at its own timebase and trigger a defined event. `metro`s are best used when you want a fixed action to occur at a regular interval.
 
 ```lua
 -- start a timer that prints a number every second, counting up each time
@@ -491,23 +578,11 @@ metro[1].event = a_different_function
 mycounter.time = 0.1
 ```
 
-## delay
-
-delay takes a function and executes it in the future. by default it is only executed once, but can optionally be repeated. delay is the most basic of the timing systems, ideally used when simply delaying execution of an action. for more complex time management, use `metro` or `clock`.
-
-NOTE: if using `delay` and `metro` simultaneously, metros must be initialized with `metro.init` and not directly indexed.
-
-```lua
-delay( action, time, [repeats] ) -- delays execution of action (a function)
-                                 -- by time (in seconds)
-                                 -- (optional) repeat the delay action repeats times
-```
-
 ## clock
 
-the clock system facilitates various time-based functionality: repeating functions, synchronizing multiple functions, delaying functions. `clock` is preferable to `metro` when synchronizing to the global timebase, or for irregular time intervals.
+The `clock` system facilitates various time-based functionality: repeating functions, synchronizing multiple functions, delaying functions. `clock` is preferable to `metro` when synchronizing to the global timebase, or for irregular time intervals.
 
-clocks work by running a function in a 'coroutine'. these functions are special because they can call `clock.sleep(seconds)` and `clock.sync(beats)` to pause execution, but are otherwise just normal functions. to run a special clock function, you don't call it like a normal function, but instead pass it to `clock.run` which manages the coroutine for you.
+`clock`s work by running a function in a 'coroutine'. These functions are special because they can call `clock.sleep(seconds)` and `clock.sync(beats)` to pause execution, but are otherwise just normal functions. To run a special clock function, you don't call it like a normal function, but instead pass it to `clock.run` which manages the coroutine for you.
 
 ```
 coro_id = clock.run(func [, args]) -- run function "func", and optional [args] get passed
@@ -519,7 +594,7 @@ clock.sync(beats)                  -- sleep until next sync at intervals "beats"
 clock.cleanup()                    -- kill all currently-running clocks
 ```
 
-clock tempo & timing:
+### Tempo and Timing:
 
 ```lua
 clock.tempo = t           -- assign clock tempo to t beats-per-minute
@@ -528,9 +603,9 @@ _ = clock.get_beats       -- get count of beats since the clock started
 _ = clock.get_beat_sec    -- get the length of a beat in seconds
 ```
 
-the clock can also be driven by one of crow's inputs using the 'clock' [input mode](#input-modes). in this mode, setting `clock.tempo` has no effect, but the current input tempo can be queried with `clock.tempo`.
+crow's clock can also be driven by one of crow's inputs using the 'clock' [input mode](#input-modes). In this mode, setting `clock.tempo` has no effect, but the current input tempo can be queried with `clock.tempo`.
 
-the clock can be stopped & started, and events can occur when doing either. the clock starts running when crow awakens. note start/stopping the clock does not affect `clock.sleep` calls.
+The clock can be stopped & started, and events can occur when doing either. The clock starts running when crow awakens. Note start/stopping the clock does not affect `clock.sleep` calls.
 
 ```
 clock.start( [beat] )     -- start clock (optional: start counting from 'beat')
@@ -540,9 +615,11 @@ clock.transport.start = start_handler -- assign a function to be called when the
 clock.transport.stop = stop_handler   -- assign a function to be called when the clock stops
 ```
 
-example (looping):
+Looping example script:
 
 ```lua
+-- looping example script
+
 function init()
   x = 0
   clock.run(forever) -- start a clock which will run the forever function
@@ -556,9 +633,11 @@ function forever()
 end
 ```
 
-example (one-shot):
+One-shot example script:
 
 ```lua
+-- one-shot example script
+
 function init()
   output[2].action = adsr()
   dur = 0.6 -- how many seconds should the sustain phase last?
@@ -575,13 +654,28 @@ function oneshot(seconds)
 end
 ```
 
+## delay
+
+`delay` takes a function and executes it in the future. By default it is only executed once, but can optionally be repeated. `delay` is the most basic of the timing systems, ideally used when simply delaying execution of an action. For more complex time management, use `metro` or `clock`.
+
+NOTE: if using `delay` and `metro` simultaneously, metros must be initialized with `metro.init` and not directly indexed.
+
+```lua
+delay( action, time, [repeats] ) -- delays execution of action (a function)
+                                 -- by time (in seconds)
+                                 -- (optional) repeat the delay action repeats times
+```
+
 ## timeline
 
-[timeline details](../timeline)
+*Please see [`timeline` details](../timeline) for a full tutorial.*
 
-create rhythmic loops, long-form scores, or sequences of timed events. a timeline is written as a table of times and events. there are 3 modes each with their own uses & specifics:
+Create rhythmic loops, long-form scores, or sequences of timed events. A `timeline` is written as a table of times and events. There are 3 modes each with their own uses & specifics.
 
-creat a `:loop` by writing the duration of an event, and providing a function to do the action. you can have any number of duration-event pairs in the table:
+### :loop
+
+Create a `:loop` by writing the duration of an event, and providing a function to do the action. You can have any number of duration-event pairs in the table:
+
 ```lua
 t1 = timeline.loop{duration, event, duration, event ...}
 
@@ -592,7 +686,10 @@ t2 = timeline.loop{1, kick, 2, snare}:unless(function() input[1].volts > 2 end)
 t3 = timeline.loop{0.55, hihat, 0.45, hihat}:times(16)
 ```
 
-a `:score` uses 'timestamps' written in beats. it will only run one time.
+### :score
+
+A `:score` uses 'timestamps' written in beats. Tt will only run one time.
+
 ```lua
 t4 = timeline.score{0, intro, 32, verse}
 
@@ -605,7 +702,10 @@ t6 = timeline.score{ 0, intro
                    , 64, function() if math.random() > 0.5 then return 'reset' end}
 ```
 
-or sequence in `:real`time, where timestamps are written in absolute seconds:
+### :real
+
+Sequence in `:real`time, where timestamps are written in absolute seconds:
+
 ```lua
 t7 = timeline.real{0, note_1, 0.33 note_2, 0.5 note_3}
 
@@ -613,9 +713,10 @@ t7 = timeline.real{0, note_1, 0.33 note_2, 0.5 note_3}
 t8 = timeline.real{0, note_1, 0.33 note_2, 0.5 note_3, 1.2, 'reset'}
 ``` 
 
-### timeline control
+### timeline Control
 
-all timelines start immediately, unless you use the `:queue()` pre-method. you can then `:play()` the timeline to begin. `:stop()` will immediately halt a running timeline, and `:play()` will restart a timeline whether it is currently playing or stopped.
+All `timeline`s start immediately, unless you use the `:queue()` pre-method. You can then `:play()` the `timeline` to begin. `:stop()` will immediately halt a running `timeline`, and a subsequent `:play()` will restart a `timeline` whether it is currently playing or stopped.
+
 ```lua
 tt = timeline.queue:loop{2, kick, 2, snare} -- won't start!
 tt:play() -- begins the queued timeline
@@ -624,7 +725,8 @@ tt:stop() -- halts the tt loop
 tt:play() -- restarts the tt loop
 ```
 
-before beginning playback, all timelines will wait until the next launch-quantization tick. this defaults to 1 (aka `clock.sync(1)`), but can be modified globally, or on a per-timeline basis:
+Before beginning playback, all `timeline`s will wait until the next launch-quantization tick. This defaults to 1 (akin to `clock.sync(1)`), but can be modified globally, or on a per-`timeline` basis:
+
 ```lua
 -- quantize this timeline to the next multiple of 8 beats
 tt = timeline.launch(8):loop{2, kick, 2, snare}
@@ -633,21 +735,23 @@ tt = timeline.launch(8):loop{2, kick, 2, snare}
 timeline.launch_default = 0
 ```
 
-all running timelines can be stopped (though also stops any running `clock` routines):
+All running `timeline`s can be forcibly stopped, though this also stops any running `clock` routines:
+
 ```lua
 timeline.cleanup()
 ```
 
-### timeline: function tables & sequins
+### Function Tables & sequins
 
-the events in a timeline are typically functions, but you can also provide a table where the first element is a function, and later elements are arguments to that function. every time the event is called, the function will be re-evaluated with the provided arguments:
+The events in a `timeline` are typically functions, but you can also provide a table where the first element is a function, and later elements are arguments to that function. Every time the event is called, the function will be re-evaluated with the provided arguments:
 
 ```lua
--- print 'bang!' every beat
-tt = timeline.loop{1, {print, "bang!"}}
+-- print 'boop!' every beat
+tt = timeline.loop{1, {print, "boop!"}}
 ```
 
-both times and arguments in a function-table can be provided as sequins. each time the line is executed any sequins will be called, advancing them to the next value:
+Both times and arguments in a function-table can be provided as `sequins`. Each time the line is executed any `sequins` will be called, advancing them to the next value:
+
 ```lua
 -- play a rhythmic arpeggio via just friends over ii
 tt = timeline.loop{sequins{3,3,2}, {ii.jf.play_note, sequins{0,4,7,11}/12, 2}}
@@ -655,9 +759,10 @@ tt = timeline.loop{sequins{3,3,2}, {ii.jf.play_note, sequins{0,4,7,11}/12, 2}}
 
 ## hotswap
 
-[hotswap details](../hotswap)
+*Please see [`hotswap` details](../hotswap) for a full tutorial.*
 
-hotswap is a special table where you can place your sequins & timelines. if you re-assign an existing element of this table, hotswap will maintain the current playback position. ideal for live-coding:
+`hotswap` is a special table where you can place your `sequins` & `timeline`s. If you re-assign an existing element of this table, `hotswap` will maintain the current playback position. ideal for live-coding:
+
 ```lua
 -- the sequins is overwritten, but the playhead is preserved
 hotswap.seq = sequins{1,2,3}
@@ -681,7 +786,7 @@ ii.help()          -- prints a list of supported ii devices
 ii.<device>.help() -- prints available functions for <device>
 ```
 
-when leading the ii bus, you can send commands, or query values:
+When leading the ii bus, you can send commands, or query values:
 ```lua
 -- mydevice is the name of the recipient, eg: 'jf' in ii.jf.play_note()
 
@@ -711,11 +816,12 @@ end
 ii.jf.get 'ramp' -- will trigger the above .event function
 ii.jf.tr(1, 1)   -- sets just friends' 1st trigger to the on state
 ```
-generally `ii` arguments corresponding to pitch, are specified in volts (like `input` and `output`), times are specified in seconds (like `.slew` and `ASL`). other parameters use regular numbers.
+Generally `ii` arguments corresponding to pitch, are specified in volts (like `input` and `output`), times are specified in seconds (like `.slew` and `ASL`). other parameters use regular numbers.
 
-### duplicate ii devices
+### Duplicate ii Devices
 
-multiple ii devices of the same type are supported (eg. txi, er301, jf):
+Multiple ii devices of the same type are supported (eg. txi, er301, jf):
+
 ```lua
 ii.txi[1].get('param',1) -- get the first param of the first device
 ii.txi[2].get('param',1) -- get the first param of the second device
@@ -729,9 +835,10 @@ ii.txi.event( e, value ) -- 'e' is a table of: { name, device, arg }
 end
 ```
 
-### raw ii access
+### Raw ii Access
 
-if you are working with an unsupported ii device, or you are developing a new device that will support `ii`, you can use the `ii.raw` functions:
+If you are working with an unsupported ii device, or you are developing a new device that will support `ii`, you can use the `ii.raw` functions:
+
 ```lua
 -- both set & get commands are sent using ii.raw
 ii.raw(addr, bytes [, rx_len])
@@ -749,41 +856,44 @@ ii.event_raw = function(addr, cmd, data)
 end
 ```
 
-### setting the ii address
+### Setting the ii Address
 
-if you have more than one crow on your ii bus, you can set each device (up to 4) to have it's own unique address:
+If you have more than one crow on your ii bus, you can set each device (up to 4) to have its own unique address:
 
 ```lua
 print(ii.address) --> prints 1 by default, but can be 1-4
 ii.address = 2    -- set this crow to address 2
 ```
 
-now you can communicate to the devices explicitly with square-bracket syntax:
+Now you can communicate to the devices explicitly with square-bracket syntax:
+
 ```lua
 ii.crow[1].volts(1,2.9) -- set output[1] on crow[1] to 2.9V
 ii.crow[2].volts(1,4.2) -- set output[1] on crow[2] to 4.2V
 ```
 
-### ii advanced settings
+### ii Advanced Settings
 
-crow provides the necessary pullup current for the `ii` bus. these are on by default & should probably stay on. if you have some reason to turn them off you can do so with:
-```lua
-ii.pullup( state ) -- turns on (true, default) or off (false) the hardware i2c pullups.
-```
+crow runs the `ii` bus at a modest speed to ensure maximum stability and reliability. If you are sending a huge amount of information on the `ii` bus and need more speed (about 4x) you can use:
 
-crow runs the `ii` bus at a modest speed to ensure maximum stability and reliability. if you are sending a huge amount of information on the `ii` bus and need more speed (about 4x) you can use:
 ```lua
 ii.fastmode( state ) -- turns on (true) or off (false, default) the maximum speed transmission.
 ```
 
+crow provides the necessary pullup current for the `ii` bus. These are on by default and **should probably stay on**. If you have some reason to turn them off you can do so with:
+
+```lua
+ii.pullup( state ) -- turns on (true, default) or off (false)
+```
 
 ### just friends
 
-for a longform description of the i2c relationship between crow + Just Friends, please see the [extended reference](https://github.com/whimsicalraps/Just-Friends/blob/main/Just-Type.md).
+For a long-form description of the i2c relationship between crow + Just Friends, please see the [extended reference](https://github.com/whimsicalraps/Just-Friends/blob/main/Just-Type.md).
 
 ## public
 
-public variables are the automatic method for exposing crow variables to a connected USB host device. public variables are kept synchronized across both devices, and may be modified by either device.
+`public` variables are the automatic method for exposing crow variables to a connected USB host device. `public` variables are kept synchronized across both devices, and may be modified by either device.
+
 ```lua
 -- create a public variable 'name' and set it to 'init_value'
 public{name = init_value}
@@ -807,7 +917,8 @@ public.myseq() -- get the next value from the sequins
     -- remote hosts (eg norns) can support changing the 'playhead'
 ```
 
-metadata can be attached to public variables, informing a remote device how that value should be modified. it allows support for explicit datatypes, number ranges, options, and actions that are called when a value is remotely updated.
+Metadata can be attached to public variables, informing a remote device how that value should be modified. it allows support for explicit datatypes, number ranges, options, and actions that are called when a value is remotely updated.
+
 ```lua
 -- declare a range so a remote host won't allow out-of-bounds values
 public{volts = 0}:range(-5, 10) -- limit voltage to crow's hardware range
@@ -840,7 +951,10 @@ function update_speed(value) -- value is passed in by the action
 end
 ```
 
-`public.view` is a special set of public parameters that keep a remote device informed of the state of the input and output jacks. transmission is heavily throttled to reduce USB overhead.
+### .view
+
+`public.view` is a special set of public parameters that keep a remote device informed of the state of the input and output jacks. Transmission is heavily throttled to reduce USB overhead.
+
 ```lua
 -- (optional) argument is true/false for on/off. no arg activates view.
 public.view.all( [state] )       -- set state of all input & output views
@@ -848,7 +962,10 @@ public.view.input[n]( [state] )  -- set state of nth input view
 public.view.output[n]( [state] ) -- set state of nth output view
 ```
 
-when implementing public support on a USB host, these functions enable automated discovery & synchronization of variables.
+### Discovery + Synchronization
+
+When implementing public support on a USB host, these functions enable automated discovery & synchronization of variables.
+
 ```lua
 -- remote fns to be called by remote host, not a crow userscript
 public.discover() -- print a list of all declared public vars to the console
@@ -858,11 +975,14 @@ public.update(name, value [, subkey])
     -- (optional) 3rd argument allows table updates --> public.name[subkey] = value
 ```
 
-**norns scripting:** remember to prepend `norns.` when using the above functions. example: `norns.crow.public.discover()`
+**Note for norns scripting:** remember to prepend `norns.` when using the above functions. example: `norns.crow.public.discover()`
 
 ## cal
 
-crow has hardware to enable self-calibration of the CV inputs & outputs. the calibration procedure is run at the factory, so it's unlikely you'll need to use these features in a script. below are the building blocks for building your own calibration system. the official calibration script is located [here](https://github.com/monome/crow/blob/main/util/recalibrate.lua).
+crow has hardware to enable self-calibration of the CV inputs & outputs. The calibration procedure is run at the workshop, so it's unlikely you'll need to use these features in a script.
+
+Below are the building blocks for building your own calibration system. the official calibration script is located [here](https://github.com/monome/crow/blob/main/util/recalibrate.lua).
+
 ```lua
 cal.save()       -- save current calibration to flash
 cal.source(chan) -- configures output->input multiplexer
@@ -877,18 +997,20 @@ cal.output[n].offset = _  -- set output offset
 cal.output[n].scale = _   -- set output scale
 ```
 
-## random
+## Random Values
 
-[random details](../seededrandom)
+*Please see [`random` details](../seededrandom) for a full explanation.*
 
-random values are available via the `math.random` function. these values are truly random and generated by analog hardware.
+Random values are available via the `math.random` function. These values are truly random and generated by analog hardware.
+
 ```lua
 math.random() -- a floating point value between 0.0 and 1.0
 math.random(max) -- an integer from 1 to max inclusive
 math.random(min,max) -- an integer from min to max inclusive
 ```
 
-pseudo-random values are also available via `math.srandom`. the syntax is identical to `math.random` but can be "seeded" first (hence the name seeded-random):
+Pseudo-random values are also available via `math.srandom`. The syntax is identical to `math.random` but can be "seeded" first (hence the name seeded-random):
+
 ```lua
 math.srandomseed(math.random() * 2^31) -- seed the generator with a truly random number
 math.srandom() -- a pseudo-random number between 0.0 and 1.0
@@ -898,30 +1020,41 @@ math.srandomseed(42) -- creates a magic sequence
 math.srandomseed(unique_id()) -- creates a sequence specific to your crow's hardware
 ```
 
-## globals
+## Other Globals
 
 ```lua
 -- deactivate input modes, zero outputs and slews, and free all metros
 -- equivalent to restarting crow, but supresses any active userscript
 crow.reset()
+```
 
+```lua
 tell( event, <args> ) -> ^^event(arg1, ...) -- send a formatted message to host
 quote(...) -- returns a string-representation of it's arguments
   -- the string is a reconstructed lua chunk, that can be loaded as lua
   -- primarily useful for sending lua tables to a USB host with tell()
+```
 
-time() -- returns a count of milliseconds since crow was turned on
-
+```lua
 _, _, _ = unique_id() -- returns 3 numbers unique to each crow
   -- the first number is the most unique, and will likely be unique
   -- use all 3 if you need to ensure uniqueness between crows
+```
 
+```lua
+time() -- returns a count of milliseconds since crow was turned on
+```
+
+```lua
 cputime() -- prints a count of main loops per dsp block. higher == lower cpu
+```
 
+```lua
 justvolts(fraction [, offset]) -- convert a just ratio to it's volt-per-octave representation
   -- fraction can be a single ratio, or a table of ratios
   -- in case of a table, a new table of voltages is returned
   -- (optional) offset shifts the results by a just ratio (ie transposition)
+  
 just12(fraction [, offset]) -- same as justvolts, but output is in '12TET' semitone form
 
 hztovolts(freq [, reference]) -- convert a frequency to a voltage

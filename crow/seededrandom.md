@@ -3,7 +3,7 @@ layout: default
 nav_exclude: true
 ---
 
-# Seeded vs true random
+# Seeded vs True Random
 
 crow's microcontroller has a true-random-number-generator on board. This is the random source that is hooked up to the `math.random` function and should reliably produce numbers with high entropy.
 

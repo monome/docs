@@ -10,6 +10,15 @@ permalink: /crow/manual-update/
 
 Flashing the crow requires setting up `dfu-util` on your laptop, downloading the new firmware, and getting crow connected in bootloader mode.
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## Setup dfu-util<a name="setup"></a>
 
 - Linux: `apt-get install dfu-util` (or similar)

@@ -4,6 +4,15 @@ nav_exclude: true
 permalink: /modular/ii
 ---
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ##  what is ii and I2C?
 
 **ii** is a flexible communication protocol which

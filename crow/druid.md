@@ -8,19 +8,29 @@ has_children: no
 ---
 
 # druid
+{: .no_toc }
 
 ![](../images/druid-start.png)
 
-To communicate with crow we'll use `druid`, a command-line tool that lets you send & receive text, as well as run & upload scripts.
+To communicate with crow we'll use `druid`, a command-line tool that lets you send and receive text, as well as run and upload scripts.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## preparation
 
-First we'll collect & install a few tools, starting with `Python` which is the environment that runs `druid`. Don't worry, you don't ever have to type any Python code into `druid`.
+First we'll collect and install a few tools, starting with `Python` which is the environment that runs `druid`. Don't worry, you don't ever have to type any Python code into `druid`.
 
-`druid` requires Python 3.6+, but let's get the most recent version (3.8 as of this writing, November 2019):
+`druid` requires Python 3.6+, but let's get the most recent version (3.11 as of this writing, March 2023):
 
 - macOS: [download from the Python website](https://www.python.org/downloads/)
-- Windows: search `Python 3.8` in the Microsoft Store (it's free)
+- Windows: search `Python 3.11` in the Microsoft Store (it's free)
 	- the Microsoft Store is the most straightforward way to install Python on Windows, but if you choose to install from the Python website directly then please follow [these instructions](https://docs.google.com/document/d/11Bnly-JOBh4_mWSyIGmEIpE_YO-6VH179KSHEWTZr2M/edit)
 - Linux: in a terminal run `sudo apt-get install python3 python3-pip` or equivalent
 
@@ -36,9 +46,7 @@ Check if Python is installed and working:
 python3 -V
 ```
 
-Which should print `Python 3.8` or something similar. If this doesn't work for you, try removing the `3` and just run `python -V`.
-
-No luck? Post to the [lines thread](https://llllllll.co/t/crow-help-druid/25864) & we'll figure it out (and update this doc).
+Which should print `Python 3.11` or something similar. If this doesn't work for you, try removing the `3` and just run `python -V`.
 
 Now it's time to install `druid`!
 
@@ -59,7 +67,7 @@ NB: If you see an error like "ERROR: Could not install packages due to an Enviro
 sudo pip3 install monome-druid
 ```
 
-*Close & reopen your terminal*, then run `druid` to start scripting.
+*Close and reopen your terminal*, then run `druid` to start scripting.
 
 ### update
 
@@ -127,9 +135,9 @@ You should see druid open with the following message up top:
 <crow connected>
 ```
 
-If you see `<crow disconnected>` instead, make sure your modular case with crow is turned on, and the USB cable is connected. If everything is connected but still not connecting, close your Terminal application & restart it.
+If you see `<crow disconnected>` instead, make sure your modular case with crow is turned on, and the USB cable is connected. If everything is connected but still not connecting, close your Terminal application and restart it.
 
-If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device.
+If `druid` responds with `can't open serial port` you probably don't have the required permissions to open the device. See below.
 
 ### Permissions
 
@@ -159,6 +167,8 @@ It's possible to send lines of text to druid (which are forwarded to crow) using
 
 This allows you to execute crow commands from outside of druid, for example within your text editor.
 
+Though other scriptable editors should be able to send data to a websocket, we'll explore `vim` as an example.
+
 In `vim` here's how to bind the keystroke `CTRL-\` which executes the current line:
 
 ```
@@ -172,5 +182,3 @@ vmap <F5> :w<Home>silent <End> !sed -e '1i\```' -e '$a\```' <bar> websocat ws://
 ```
 
 Copy either or both of the lines above to your `.vimrc` to make it permanent. This command requires [websocat](https://github.com/vi/websocat).
-
-Other scriptable editors should be able to send data to a websocket--- we'll collect examples here as they are created.

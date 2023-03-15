@@ -11,17 +11,25 @@ permalink: /crow/norns/
 
 ![](../images/crow-norns.png)
 
-# Rising: Crow Studies
+# Rising: crow Studies
 
-Crow serves as a CV and ii interface for norns.
+crow serves as a CV and [ii](/docs/modular/ii) interface for norns.
 
-It may be helpful to first explore the [norns studies](../../norns/study-1) to provide context for how to integrate crow's new functionality.
+Before venturing further, it may be helpful to first explore the [norns studies](/docs/norns/studies) to provide context for how to integrate crow's functionality.
 
 Download: [github.com/monome/crow-studies](https://github.com/monome/crow-studies)
 
-(Note: be sure your norns is [updated](../../norns/#update) to version 191016 or later.)
+crow will automatically be detected and interfaced upon connection to norns.  
+Presently, only a single crow is supported.
 
-Crow will automatically be detected and interfaced upon connection to norns. Presently only a single crow is supported.
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## 1. Output
 
@@ -117,18 +125,6 @@ Run `3-ii.lua`.
 
 Attach a Just Friends via [ii](/docs/modular/ii). Be sure to align the GND pins. K2 will play an ascending note, K3 plays a random note.
 
-The ii bus requires pullup resistance, which can be toggled by crow:
-
-```lua
-crow.ii.pullup(true)
-```
-
-If your ii bus is already pulled up (by Teletype or a powered bus board, for example), you can erase this line (as pullup is off by default), or explicitly turn off pullups like this:
-
-```lua
-crow.ii.pullup(false)
-```
-
 To change JF's mode and play a note:
 
 ```lua
@@ -215,7 +211,7 @@ Each time `query` is called, crow will send a value to the function `receive`. T
 
 Run `5-construct.lua`. Crow outputs 1-4 are 5-segment looping envelopes, each with its own unique shape and trajectory. E1 will change the timebase from which these LFOs are constructed. K2 will construct new LFOs at the specified timebase. K3 will restart the LFOs from 0V. The current Voltage output is displayed as meters on the left.
 
-crow can speak a slope language, affectionately referenced as **a/s/l**. In the previous script, we learned how a/s/l's `to` command can be used to create multipoint envelopes using Voltage and time. `to` also has a third argument for shape, which defines *how* we move from Voltage to Voltage across time. If we do not define the shape, `to` commands default to linear movement.
+crow can speak a slope language, referred to as **ASL**. In the previous script, we learned how ASL `to` command can be used to create multipoint envelopes using Voltage and time. `to` also has a third argument for shape, which defines *how* we move from voltage to voltage across time. If we do not define the shape, `to` commands default to linear movement.
 
 *nb. This script uses some extended techniques, so don't worry if it feels a little heady.*
 

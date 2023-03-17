@@ -1,26 +1,22 @@
 ---
 layout: default
 parent: grid
-title: + norns
+title: norns
 nav_order: 1
 has_toc: false
 ---
 
-# grid + norns / norns shield
-
-*nb. we'll use 'norns' throughout this page as a catch-all for both standard norns and shield -- the differences between the two iterations do not affect software usability or hardware connectivity*
+# grid and norns
 
 ## getting started
 
-Since grid is part of the fundamental design of norns, it has immediate integration without installing additional packages. However if you've either been using norns / norns shield without a grid, or you're approaching them both for the first time, a bit of setup guidance might be helpful.
-
-#### physical connection
+### physical connection
 
 norns has four USB-A ports. Any port can host a grid, so feel free to connect your grid's USB cable to any available port on norns. As you connect, you'll see a lightburst on your grid, which indicates it's receiving power from norns.
 
-**please note:** if your standard norns is running on battery, plugging grid in might rudely shut the unit down -- this is expected in situations where the battery is not providing as much power as the grid is asking for upon connection. To work around this, please be sure to either plug the grid in before booting on battery *or* have the norns unit plugged into its power supply when connecting grid after boot.
+**please note:** if your standard norns is running on battery, plugging grid in might shut the unit down -- this is expected in situations where the battery is not providing as much power as the grid is asking for upon connection. To work around this, please be sure to either plug the grid in before booting on battery *or* have the norns unit plugged into its power supply when connecting grid after boot.
 
-#### software configuration
+### software configuration
 
 To ensure that norns has registered your grid, navigate to `SYSTEM > DEVICES > GRID`. Here, you'll see something similar to:
 
@@ -33,13 +29,13 @@ GRID
 4. none
 ```
 
-#### what should I use grid + norns for first?
+#### what should I use grid and norns for first?
 
 A great starting point is [awake](/docs/norns/play/#awake), which is the script that norns runs after its very first boot-up.
 
-`awake` is a good one to start with because the grid interface mirrors the sequence that you see on the screen -- after loading, you'll see your grid come alive with a playhead + some programmed notes. Press some pads to change notes! That's it :)
+`awake` is a good one to start with because the grid interface mirrors the sequence that you see on the screen -- after loading, you'll see your grid come alive with a playhead and some programmed notes. Press some pads to change notes.
 
-Want more? Check out the *community script selections* at the bottom of this page!
+For additional scripts check out the *community script selections* at the bottom of this page.
 
 ### FAQ
 
@@ -49,7 +45,7 @@ If you have a [2021 grid](/docs/grid/editions), norns needs to be running the la
 
 If your grid is not automatically detected upon startup, please follow the steps listed [here](https://monome.org/docs/grid/grid-norns/#how-do-i-manage-the-virtual-ports-on-my-norns) on the first port under `SYSTEM > DEVICES > GRID`.
 
-Still running into trouble with your grid + norns? Please email `help@monome.org` and we'll work it out!
+E-mail `help@monome.org` with additional trouble.
 
 #### why are there four `GRID` ports?
 
@@ -136,12 +132,12 @@ If you want to adapt a script's LED brightness, [norns study 4](/docs/norns/stud
 
 ## community scripts selections
 
-After you [learn how to import apps into your norns](/docs/norns/maiden), here are a few starting points for exploring grid + norns.
+After you [learn how to import apps into your norns](/docs/norns/maiden), here are a few starting points for exploring grid and norns.
 
 - [bistro](https://llllllll.co/t/bistro/45349): a “press cafe” remake (based on [the Max/MSP patch](https://www.youtube.com/watch?v=kj7YScVp_a8) originally by `@stretta`)
 - [arcologies](https://llllllll.co/t/arcologies/35752): an interactive environment for designing 2d sound arcologies
 - [buoys](https://llllllll.co/t/buoys-v1-2-0/37639): tidal influencer/activator/lightshow
 - [loom](https://llllllll.co/t/loom/21091): surprisingly controllable generative sequencer -- notes are played when threads moving across the X and Y axis collide
-- [mlr](https://llllllll.co/t/mlr-norns/21145): the original live sample-cutting platform -- load samples or record live audio, then re-pitch + chop + record gestures
+- [mlr](https://llllllll.co/t/mlr-norns/21145): the original live sample-cutting platform -- load samples or record live audio, then re-pitch and chop and record gestures
 
 Check out the `grid` tag on [norns.community](https://norns.community/t/grid) for many more.

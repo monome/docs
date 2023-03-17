@@ -16,7 +16,7 @@ Resources for connecting to:
 
 - [norns](grid-norns) - sound computer made by monome
 - [modular](grid-modular) - eurorack modules which support the grid
-- [computer](grid-computer) - MacOS, Windows, and Linux
+- [computer](grid-computer) - macOS, Windows, and Linux
 
 Additional information:
 

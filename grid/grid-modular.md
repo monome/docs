@@ -1,13 +1,13 @@
 ---
 layout: default
 parent: grid
-title: + modular
+title: modular
 nav_order: 3
 ---
 
 # grid + modular
 
-As modular synths became more accessible + ubiquitous in the mid-2010's, the opportunity to explore how grids could provide new compositional capabilities in a modular system presented itself. The first three grid-compatible modules each attempted to enable unique perspectives + approaches via control voltage (CV):
+As modular synths became more accessible and ubiquitous in the mid-2010's, the opportunity to explore how grids could provide new compositional capabilities in a modular system presented itself. The first three grid-compatible modules each attempted to enable unique perspectives and approaches via control voltage (CV):
 
 - [White Whale](/docs/whitewhale) (and its alternative firmware, an early version of [Kria](/docs/ansible/kria)) is the result of a decade of step-sequencer experiments for grid
 - [Meadowphysics](/docs/meadowphysics) is a polyrhythmic, rule-based sequencer for CV triggers (which paired nicely with [Teletype](/docs/teletype))
@@ -64,7 +64,7 @@ Further info:
 
 Though these modules are [discontinued](/docs/legacy), they each have a rich afterlife.
 
-- varibright + monobright grids supported
+- varibright and monobright grids supported
 - 64 (8x8) supported
 - 128 (8x16) preferred
 - 256 (16x16) supported

@@ -6,40 +6,21 @@ has_children: true
 has_toc: false
 ---
 
-![](images/grid-stone-1800.jpg)
+![](images/grid.jpg)
 
-## history
+An open, tactile instrument that allows the user to imagine and define its function.
 
-This is grid, the first instrument made by monome.
+The monome grid by default does nothing. Connected to a computer or module, interaction is determined by the chosen application: sequencer, sample cutter, tone map, polyrhythm machine. We’ve put together studies to help you create your own.
 
-It has 128 keys (though it's also been 64 and 256) which are decoupled from their light, allowing both tactile and visual play. It's enclosed in sturdy aluminum (though it's also been walnut, steel, and silicone).
+Resources for connecting to:
 
-## what does it do?
+- [norns](grid-norns) - sound computer made by monome
+- [modular](grid-modular) - eurorack modules which support the grid
+- [computer](grid-computer) - MacOS, Windows, and Linux
 
-grid connects through USB to personal computers, modular synths, and sound computers like [norns](/docs/norns). It is a highly flexible interface for applications within each of these environments.
+Additional information:
 
-grid communicates with applications to do a wide range of things: control MIDI devices, sequence modular synthesizers, cut samples, provide an isometric keyboard to software synths, change faders, visualize streams of data, etc. This core flexibility makes it hard to point to one use case and say "it does this."
-
-In short, grid doesn't do much on its own. It's inherently modeless, adapting to the immediate needs of the artist through a host application. Through one, it might do traditional MIDI controller things. Through another, it might facilitate + visualize realtime buffer manipulation. The host determines grid's usefulness in a specific context.
-
-## how do I use it?
-
-Most artists approach grid through two doors, often simultaneously: as an instrumentalist (using applications made by others) or as a designer (creating applications for others). There are applications for [laptops + desktops](/docs/grid/grid-computer/#applications) and applications for [norns](/docs/grid/grid-norns/#applications). If you have access to a modular synth, grid also connects to [modules](grid-modular), which are also reprogrammable.
-
-Over the last 15 years, grid has connected instrumentalists + designers to create an ecosystem of applications. This exchange of ideas and energy has, in turn, created a [community](https://llllllll.co).
-
-However you choose to approach it, grid is lasting -- both in construction and in response to your needs. It has no obsolescence because it has no preconceptions. As your needs / context / musical goals change, grid remains useful.
-
-## further info
-
-- [grid + norns / norns shield](grid-norns) - information specifically about connecting grid with norns + norns shield
-- [grid + modular](grid-modular) - information specifically about grid's connectivity options in a modular synth
-- [grid + computer](grid-computer) - information specifically about connecting grid with general-purpose computers
 - [editions](editions) - information about different device generations
 - [disassembly](disassembly) - guides for disassembling the hardware
 - [care](care) - some suggestions for device maintenance (tl;dr: don't rest other gear on top of grid, as it will discolor pads)
 - [bus power upgrade](buspowerupgrade) - some early grid models had external power, they can be updated
-
-## grids in education
-
-We offer institutional package pricing and workshops extending from the Grid Studies series of tutorials. Please contact `help@monome.org` for further details and to discuss how we can best introduce grid to your students.

@@ -30,6 +30,11 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+</ul>
 
 
 <h2>Modules</h2>
@@ -39,28 +44,24 @@
   <li><a href="../modules/clock.html">clock</a></li>
   <li><a href="../modules/controlspec.html">controlspec</a></li>
   <li><a href="../modules/crow.html">crow</a></li>
+  <li><a href="../modules/core.crow.public.html">core.crow.public</a></li>
+  <li><a href="../modules/core.crow.quote.html">core.crow.quote</a></li>
   <li><a href="../modules/encoders.html">encoders</a></li>
   <li><a href="../modules/engine.html">engine</a></li>
+  <li><a href="../modules/gamepad.html">gamepad</a></li>
   <li><a href="../modules/grid.html">grid</a></li>
   <li><a href="../modules/hid.html">hid</a></li>
+  <li><a href="../modules/keyboard.html">keyboard</a></li>
   <li><a href="../modules/metro.html">metro</a></li>
   <li><a href="../modules/midi.html">midi</a></li>
+  <li><a href="../modules/norns.html">norns</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
   <li><a href="../modules/params.control.html">params.control</a></li>
-  <li><a href="../modules/params.file.html">params.file</a></li>
-  <li><a href="../modules/params.group.html">params.group</a></li>
-  <li><a href="../modules/params.number.html">params.number</a></li>
-  <li><a href="../modules/params.option.html">params.option</a></li>
-  <li><a href="../modules/params.separator.html">params.separator</a></li>
-  <li><a href="../modules/params.taper.html">params.taper</a></li>
-  <li><a href="../modules/params.text.html">params.text</a></li>
-  <li><strong>params.trigger</strong></li>
   <li><a href="../modules/paramset.html">paramset</a></li>
   <li><a href="../modules/poll.html">poll</a></li>
   <li><a href="../modules/screen.html">screen</a></li>
   <li><a href="../modules/script.html">script</a></li>
   <li><a href="../modules/softcut.html">softcut</a></li>
-  <li><a href="../modules/crow.asl.html">crow.asl</a></li>
   <li><a href="../modules/lib.BeatClock.html">lib.BeatClock</a></li>
   <li><a href="../modules/lib.container.defaulttable.html">lib.container.defaulttable</a></li>
   <li><a href="../modules/lib.container.deque.html">lib.container.deque</a></li>
@@ -76,12 +77,17 @@
   <li><a href="../modules/lib.formatters.html">lib.formatters</a></li>
   <li><a href="../modules/lib.Graph.html">lib.Graph</a></li>
   <li><a href="../modules/lib.intonation.html">lib.intonation</a></li>
+  <li><a href="../modules/Lattice.html">Lattice</a></li>
+  <li><a href="../modules/lib.lfo.html">lib.lfo</a></li>
   <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
   <li><a href="../modules/lib.MusicUtil.html">lib.MusicUtil</a></li>
   <li><a href="../modules/lib.pattern.html">lib.pattern</a></li>
-  <li><a href="../modules/tabutil.html">tabutil</a></li>
+  <li><a href="../modules/lib.sequins.html">lib.sequins</a></li>
+  <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
   <li><a href="../modules/lib.test.luaunit.html">lib.test.luaunit</a></li>
   <li><a href="../modules/lib.textentry.html">lib.textentry</a></li>
+  <li><a href="../modules/lib.textentry_kbd.html">lib.textentry_kbd</a></li>
+  <li><strong>lib.timeline</strong></li>
   <li><a href="../modules/lib.UI.html">lib.UI</a></li>
   <li><a href="../modules/lib.util.html">lib.util</a></li>
   <li><a href="../modules/lib.voice.html">lib.voice</a></li>
@@ -91,23 +97,173 @@
 
 <div id="content">
 
-<h1>Module <code>params.trigger</code></h1>
-<p>Trigger class</p>
+<h1>Module <code>lib.timeline</code></h1>
+<p>timeline sequencer
+ hotrod some clock & sequins structures for rapid playability</p>
 <p></p>
 
 
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#TL.loop">TL.loop (t)</a></td>
+	<td class="summary">loop
+ standalone</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#TL.score">TL.score (t)</a></td>
+	<td class="summary">score
+ standalone</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#TL.real">TL.real (t)</a></td>
+	<td class="summary">real
+ standalone</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#TL.mms">TL.mms</a></td>
+	<td class="summary">metamethods</td>
+	</tr>
+</table>
 
 <br/>
 <br/>
 
 
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "TL.loop"></a>
+    <strong>TL.loop (t)</strong>
+    </dt>
+    <dd>
+    loop
+ standalone
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "TL.score"></a>
+    <strong>TL.score (t)</strong>
+    </dt>
+    <dd>
+    score
+ standalone
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "TL.real"></a>
+    <strong>TL.real (t)</strong>
+    </dt>
+    <dd>
+    real
+ standalone
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "TL.mms"></a>
+    <strong>TL.mms</strong>
+    </dt>
+    <dd>
+    metamethods
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">stop</span>
+
+        </li>
+        <li><span class="parameter">unless</span>
+
+        </li>
+        <li><span class="parameter">times</span>
+
+        </li>
+        <li><span class="parameter">once</span>
+
+        </li>
+        <li><span class="parameter">loop</span>
+
+        </li>
+        <li><span class="parameter">score</span>
+
+        </li>
+        <li><span class="parameter">real</span>
+
+        </li>
+        <li><span class="parameter">play</span>
+
+        </li>
+        <li><span class="parameter">iter</span>
+
+        </li>
+        <li><span class="parameter">hotswap</span>
+
+        </li>
+        <li><span class="parameter">launch</span>
+
+        </li>
+        <li><span class="parameter">queue</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-01-11 12:07:48 </i>
+<i style="float:right;">Last updated 2023-03-17 18:42:40 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

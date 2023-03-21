@@ -482,16 +482,11 @@ When calling a `sequins` object it will *always* return a result. When a flow-mo
 -- flow-modifiers that might return a value, or might skip
 seq:every(n)   -- produce a value every nth call
 seq:times(n)   -- only produce a value the first n times it's called
-seq:once()     -- just a shortuct for :times(1)
-seq:cond(pred) -- conditionally produces a value if pred() returns true
 
 -- flow-modifiers that will capture focus
 -- these are 'greedy' modifiers, keeping the spotlight on them
 seq:count(n) -- produce n values in a row without letting other sequins give a value
 seq:all()    -- like count(#self), returns all values of seq before returning 
-
--- modifiers that may return a value, and capture focus
-seq:condr(pred) -- conditionally produces a value if pred() returns true, and captures focus
 
 -- with nested sequins, you can restart the arrangement
 seq:reset() -- resets all flow-modifiers as well as table indices

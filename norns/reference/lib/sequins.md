@@ -30,7 +30,6 @@ Flow-modifiers are exclusively supported in nested-sequins and can only be modif
 | --------------- | ----------------------------------------------------------------------------------- |
 | my_seq:every(n) | Produce a value every `n`th call                                                    |
 | my_seq:times(n) | Only produce a value the first `n` times it's called                                |
-| my_seq:once()   | Alias for `my_seq():times(1)`                                                       |
 | my_seq:count(n) | Produce `n` values from inner-sequins before releasing focus to the outer-sequins   |
 | my_seq:all()    | Iterate through all values in inner-sequins before releasing focus to outer-sequins |
 | my_seq:reset()  | Reset all flow modifiers and table indices                                          |

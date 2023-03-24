@@ -119,19 +119,19 @@ function init()
 
   -- alternate between two notes:
   simple = tl.loop{
-    1, {send_hz, mu.note_num_to_freq(root)},
-    1, {send_hz, mu.note_num_to_freq(root+11)}
+    1, {send_note, root},
+    1, {send_note, root+11}
   }
 
   -- let's queue up some flourishes:
   one = tl.queue():score{
-    0, {send_hz, mu.note_num_to_freq(root+7)},
-    5, {send_hz, mu.note_num_to_freq(root+19)},
+    0, {send_note, root+7},
+    5, {send_note, root+19},
     8, 'reset'
   }
   two = tl.queue():loop{
-    1.5, {send_hz, mu.note_num_to_freq(root+9)},
-    0.75, {send_hz, mu.note_num_to_freq(root+14)},
+    1.5, {send_note, root+9},
+    0.75, {send_note, root+14},
   }
   cutoffs = tl.queue():loop{
     0.25, function() cutoff = cutoff+20 engine.cutoff(cutoff) end
@@ -147,7 +147,7 @@ function init()
 
 end
 
-function send_hz(hz)
-  engine.hz(hz)
+function send_note(note)
+  engine.hz(mu.note_num_to_freq(note))
 end
 ```

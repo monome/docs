@@ -54,7 +54,7 @@ An LFO is made of the following attributes:
 
 - `baseline`: string which represents the base value from which the LFO's movement is calculated. options are `min`, `center`, or `max` (default `min`)
 
-- `reset_target`: string which determines the LFO reset behavior. options are `floor` or `ceiling`, which determine whether the reset will return the LFO to its lowest or highest point (default `floor`)
+- `reset_target`: string which determines the LFO reset behavior. Options are `floor`, `ceiling`, `mid: falling`, and `mid: risiung`; this determines which point the reset will return the LFO to (default `floor`)
 
 - `ppqn`: number which represents the resolution of the LFO. defaults to `96` but can be brought down (ideally in equal divisions of 96) to reduce CPU consumption / sample rate
 
@@ -79,7 +79,7 @@ function init()
   hz_vals = s{400,600,200,350}
   sync_vals = s{1,1/3,1/2,1/6,2}
   clock.run(iter)
-  
+
   -- establish an LFO variable for a specific purpose:
   cutoff_lfo = _lfos:add{
     shape = 'saw', -- shape
@@ -91,7 +91,7 @@ function init()
     -- pass our 'scaled' value (bounded by min/max and depth) to the engine:
     action = function(scaled, raw) engine.cutoff(scaled) end -- action, always passes scaled and raw values
   }
-  
+
   cutoff_lfo:start() -- start our LFO, complements ':stop()'
 end
 
@@ -121,7 +121,7 @@ function init()
   hz_vals = s{400,600,200,350}
   sync_vals = s{1,1/3,1/2,1/6,2}
   clock.run(iter)
-  
+
   -- establish an LFO variable:
   -- LFO.new(shape, min, max, depth, mode, period, action)
   cutoff_lfo = _lfos.new(
@@ -134,7 +134,7 @@ function init()
     -- pass our 'scaled' value (bounded by min/max and depth) to the engine:
     function(scaled, raw) engine.cutoff(scaled) end -- action, always passes scaled and raw values
   )
-  
+
   cutoff_lfo:start() -- start our LFO, complements ':stop()'
 end
 
@@ -162,7 +162,7 @@ To go further, there are additional `:set` and `:get` methods, which connect
 - `mode`: string `clocked` or `free`
 - `period`: number; if mode is 'clocked' then number represents beats; if mode is 'free' then number represents seconds
 - `baseline`: string `min`, `center`, `max`
-- `reset_target`: string `floor` or `ceiling`, determines whether the LFO returns to bottom or top of the shape
+- `reset_target`: string `floor`, `ceiling`, `mid: falling`, `mid: rising`; determines whether the LFO value returns to bottom, top, halfway going downward, or halfway going upward
 - `ppqn`: number representing the resolution of the LFO
 - `action`: function for callback, which receives both the scaled (between min and max, adjusted by depth and offset) and raw value (`0` to `1`)
 
@@ -184,9 +184,9 @@ function init()
   hz_vals = s{400,600,200,350}
   sync_vals = s{1,1/3,1/2,1/6,2}
   clock.run(iter)
-  
+
   screen_dirty = true
-  
+
   -- establish an LFO variable for a specific purpose:
   cutoff_lfo = _lfos.new()
   cutoff_lfo:set('shape', 'sine')
@@ -196,7 +196,7 @@ function init()
   cutoff_lfo:set('mode', 'free')
   cutoff_lfo:set('period', 2)
   cutoff_lfo:set('action', function(scaled,raw) engine.cutoff(scaled) screen_dirty = true end)
-  
+
   redraw_screen = metro.init(check_dirty,1/15,-1)
   redraw_screen:start()
 end
@@ -264,16 +264,16 @@ function init()
   hz_vals = s{400,600,200,350}
   sync_vals = s{1,1/3,1/2,1/6,2}
   clock.run(iter)
-  
+
   screen_dirty = true
-  
+
   -- IMPORTANT! set your LFO's 'min' and 'max' *before* adding params, so they can scale appropriately:
   cutoff_lfo = _lfos:add{min = 200, max = 5000}
   -- now we can add params:
   cutoff_lfo:add_params('cutoff_lfo', 'cutoff', 'LFOs')
-  
+
   cutoff_lfo:set('action', function(scaled, raw) engine.cutoff(scaled) end)
-  
+
   redraw_screen = metro.init(check_dirty,1/15,-1)
   redraw_screen:start()
 end
@@ -315,9 +315,9 @@ function init()
   hz_vals = s{400,600,200,350}
   sync_vals = s{1,1/3,1/2,1/6,2}
   clock.run(iter)
-  
+
   screen_dirty = true
-  
+
   -- IMPORTANT! set your LFO's 'min' and 'max' *before* adding params, so they can scale appropriately:
   cutoff_lfo = _lfos:add{min = 200, max = 5000}
   -- 14 parameters for LFOs + 1 separator for each:
@@ -325,11 +325,11 @@ function init()
   -- now we can add our params
   cutoff_lfo:add_params('cutoff_lfo', 'cutoff')
   cutoff_lfo:set('action', function(scaled, raw) engine.cutoff(scaled) screen_dirty = true end)
-  
+
   release_lfo = _lfos:add{min = 0.03, max = 2}
   release_lfo:add_params('release_lfo', 'release')
   release_lfo:set('action', function(s,r) engine.release(s) screen_dirty = true end)
-  
+
   redraw_screen = metro.init(check_dirty,1/15,-1)
   redraw_screen:start()
 end

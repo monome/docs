@@ -342,7 +342,7 @@ The SYSTEM menu contains a number of helpful entries:
 - `WIFI` manages network connectivity, including hotspot mode, wireless access, and ethernet. See [WiFi / update / files](/docs/norns/wifi-files/) for more info.
 - `MODS` are small chunks of code to create custom modifications to the core workings of the norns system software. See [mods](/docs/norns/community-scripts/#mods) for more info.
 - `SETTINGS` allows you to:
-  - `RESET` your norns back to its workshop settings, erasing your favorites, disabling all mods, and restoring global audio levels to their defaults.
+  - `RESET` your norns back to its default settings, erasing your favorites, disabling all mods, and restoring global audio levels to their defaults.
   - change your [`PASSWORD`](/docs/norns/wifi-files/#settings-password) for SSH, SMB, and hotspot
   - toggle the on-screen `BATTERY WARNING` on and off
 - `RESTART` will restart the unit without erasing any settings

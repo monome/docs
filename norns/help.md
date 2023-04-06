@@ -601,13 +601,13 @@ Now, you'll be able to use your new hostname for:
 
 Capturing a screenshot of your norns can be a helpful tool for creating illustrative documentation or sharing UI ideas.
 
-With your norns powered-on and connected to the same wifi network as your computer, connect to maiden. Then, execute this line in maiden's REPL (replacing `<file>` with something unique):
+With your norns powered-on and connected to the same wifi network as your computer, connect to maiden. Then, execute this line in maiden's REPL (replacing `"file"` with a unique string):
 
 ```lua
-screen.export_png(<file>)
+screen.export_png("file")
 ```
 
-This will create a screenshot at `dust/data/<script>/<file>.png`. If no script is loaded, screenshots will simply be saved to `data`. Then, use [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp) to connect to norns and download the PNGs.
+This will create a screenshot at `dust/data/<script>/"file".png`. If no script is loaded, screenshots will simply be saved to `data`. Then, use [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp) to connect to norns and download the PNGs.
 
 ## GENERAL KNOWLEDGE {#more-faq}
 

@@ -44,7 +44,7 @@ When installing, be sure to handle from the sides -- wiping away debris or oil f
 #### wifi nub
 {: .no_toc }
 
-**In order to use hotspot functionality, please be sure to purchase a replacement WIFI adapter with the Ralink RT5370 chipset.**
+**In order to use hotspot functionality, please be sure to purchase a replacement WiFi adapter with the Ralink RT5370 chipset.**
 
 If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a replacement (10 USD, shipping included, only US). 
 
@@ -238,17 +238,17 @@ While the standard aluminum norns is a fully-isolated pro-audio device, norns sh
 
 Over the shield's many iterations, we have worked to reduce these issues -- revision `210330` improved audio isolation over the previous two releases (`191106` and `200323`), which `211028` (the latest model) retained.
 
-If you experience noise on a `211028` unit, this is most likely the WIFI antenna on the Pi creating interference. To protect against this, each `211028` board was shipped with a white sticker covering the components in closest proximity to the Pi's USB + Ethernet ports:
+If you experience noise on a `211028` unit, this is most likely the WiFi antenna on the Pi creating interference. To protect against this, each `211028` board was shipped with a white sticker covering the components in closest proximity to the Pi's USB + Ethernet ports:
 
 ![](/docs/norns/image/norns-shield-white-sticker.png)
 
 If you experience consistent noise, either visually represented on the `in` VU meter on the LEVELS screen or generally when listening to the shield's output, disassemble the unit and check the state of this sticker.
 
-If the sticker has been removed, or if it has worn down, or is just not effectively shielding against the strength of your Pi's WIFI antenna, it can be replaced with a few layers of electrical tape.
+If the sticker has been removed, or if it has worn down, or is just not effectively shielding against the strength of your Pi's WiFi antenna, it can be replaced with a few layers of electrical tape.
 
 Also, reassembling the unit with a little more looseness might also help -- over-tightening the enclosure screws can contribute to unexpected noise + interference.
 
-If there is still interference when WIFI is on and networking while monitoring is necessary, we recommend turning WIFI off (via SYSTEM > WIFI) and plugging directly into your router via the Pi's Ethernet jack. This will completely bypass the Pi's antenna and any related interference in the audio lines.
+If there is still interference when WiFi is on and networking while monitoring is necessary, we recommend turning WiFi off (via SYSTEM > WIFI) and plugging directly into your router via the Pi's Ethernet jack. This will completely bypass the Pi's antenna and any related interference in the audio lines.
 
 ### can I plug modular signals into norns directly? {#modular-levels}
 
@@ -591,9 +591,9 @@ When you receive your unit, we highly recommend starting with a [fresh installat
 
 From there:
 
-- [connect norns to WIFI](/docs/norns/wifi-files/#connect)
+- [connect norns to WiFi](/docs/norns/wifi-files/#connect)
 - [perform a system update](/docs/norns/wifi-files/#update)
-- once norns is connected to your WIFI, use a browser on a computer connected to the same network to connect to [maiden](/docs/norns/maiden/), which opens a communication channel between your computer and norns
+- once norns is connected to WiFi, use a browser on a computer connected to the same network to connect to [maiden](/docs/norns/maiden/), which opens a communication channel between your computer and norns
 - access the [project manager](/docs/norns/maiden/#project-manager) and you'll see all the community scripts available for installation
 
 ### etc

@@ -346,11 +346,11 @@ The SYSTEM menu contains a number of helpful entries:
   - change your [`PASSWORD`](/docs/norns/wifi-files/#settings-password) for SSH, SMB, and hotspot
   - toggle the on-screen `BATTERY WARNING` on and off
 - `RESTART` will restart the unit without erasing any settings
-- `UPDATE` will perform a [system update](/docs/norns/wifi-files/#update), if you're connected to WIFI.
+- `UPDATE` will perform a [system update](/docs/norns/wifi-files/#update), if you're connected to WiFi.
 - `LOG` will export any messages and errors initiated by matron (the Lua layer), SuperCollider, and the general Linux system. If something isn't performing as expected, this mechanism is the most helpful tool for diagnosing trouble. See [the logs section of the *maiden* docs](/docs/norns/maiden/#logs) for more info.
 
 ## where to next?
 
 Now that you know the basics of navigating the system, adjusting a script's parameters, and recording the results, you might want to explore the [**community scripts**](/docs/norns/community-scripts) available for norns.
 
-But first, we'll need to connect to WIFI in order to get norns up to date, transfer TAPE files, and download new community scripts. Please read on to [**WiFi / update / files**](/docs/norns/wifi-files)!
+But first, we'll need to connect to WiFi in order to get norns up to date, transfer TAPE files, and download new community scripts. Please read on to [**WiFi / update / files**](/docs/norns/wifi-files)!

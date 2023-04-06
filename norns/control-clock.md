@@ -121,7 +121,7 @@ You'll notice that these entries are identical to the ones located on the mappin
 
 ## keyboard
 
-An attached USB keyboard can be used to enter text anywhere across the norns system (eg. WIFI passwords, PSET filenames, TAPE names, etc). You can manage the keyboard layout via `SYSTEM > DEVICES > KEYBOARD LAYOUT`, where you'll find [27 country codes](https://github.com/monome/norns/blob/197dbdbee5aa999e3dcf5718a11b62b2a57d1369/lua/core/keyboard.lua#L12-L38).
+An attached USB keyboard can be used to enter text anywhere across the norns system (eg. WiFi passwords, PSET filenames, TAPE names, etc). You can manage the keyboard layout via `SYSTEM > DEVICES > KEYBOARD LAYOUT`, where you'll find [27 country codes](https://github.com/monome/norns/blob/197dbdbee5aa999e3dcf5718a11b62b2a57d1369/lua/core/keyboard.lua#L12-L38).
 
 A number of hotkeys are also available. To access the system menus:
 
@@ -145,7 +145,7 @@ While in the system menus:
 
 [Open Sound Control (OSC)](https://en.wikipedia.org/wiki/Open_Sound_Control) is a network protocol for sending messages supported by numerous sound and media applications.
 
-OSC allows you to control norns over WIFI using applications like Max/MSP, TouchOSC, Clean OSC, OSCulator, or Wekinator. You can create custom control surfaces to extend your gestural interactions with norns -- eg. rather than using MIDI faderbank to change reverb damping, you could use a biometric sensor or Wiimote.
+OSC allows you to control norns over WiFi using applications like Max/MSP, TouchOSC, Clean OSC, OSCulator, or Wekinator. You can create custom control surfaces to extend your gestural interactions with norns -- eg. rather than using MIDI faderbank to change reverb damping, you could use a biometric sensor or Wiimote.
 
 All of the [audio parameters](https://monome.org/docs/norns/play/#audio-parameters) have OSC names. To see them, navigate to `PARAMETERS > MAP`:
 
@@ -204,7 +204,7 @@ For more detail on norns + OSC scripting, please see [study 5](/docs/norns/study
 
 ## clock
 
-norns benefits from a global clock system. This helps makes it straightforward to pass a clock signal from an external source to a norns script, to pass the norns internal clock to a modular synth, or sync norns and Ableton Live over WIFI.
+norns benefits from a global clock system. This helps makes it straightforward to pass a clock signal from an external source to a norns script, to pass the norns internal clock to a modular synth, or sync norns and Ableton Live over WiFi.
 
 Please ensure that your MIDI devices are connected as needed by following the steps in [**connect**](#connect)
 {: .label .label-grey}
@@ -221,7 +221,7 @@ The global clock can be driven from four different sources.
 
 - internal: advances independently
 - midi: an incoming MIDI clock signal will advance
-- link: if Ableton Live and norns are on the same WIFI network, enabling Link in Live will sync norns + Live in mutual following
+- link: if Ableton Live and norns are on the same WiFi network, enabling Link in Live will sync norns + Live in mutual following
 - crow: pulses from a modular synth into a USB-connected [crow](/docs/crow) will advance
 
 **tempo**

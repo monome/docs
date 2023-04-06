@@ -25,7 +25,7 @@ Both standard norns and shield are capable of connecting to existing WiFi networ
 
 shield has its own WiFi antenna built in (3B: 2.4Ghz, 3B+/4: 2.4Ghz and 5Ghz), thanks to its Raspberry Pi. Standard norns doesn't have WiFi built in, so it comes with a 2.4GHz USB WiFi adapter -- if you need replacements please see [replacement parts](/docs/norns/help/#WiFi-nub).
 
-### connecting norns to a WIFI network {#wifi-connect}
+### connecting norns to a WiFi network {#wifi-connect}
 
 The first few minutes of this video walks through how to host a hotspot from norns and how to connect norns to a known WiFi network:
 
@@ -73,7 +73,7 @@ To check for and install updates:
 - connect to a WiFi network (updates cannot be performed via norns-powered hotspot)
 - navigate to **SYSTEM > UPDATE** and press **K3**
 - norns will check for available updates
-  - *nb. if this takes a while, confirm norns is connected to WIFI and/or perform a SYSTEM > RESTART*
+  - *nb. if this takes a while, confirm norns is connected to WiFi and/or perform a SYSTEM > RESTART*
 - if norns finds an update, press **K3** to confirm installation
 - after installation, press any key to safely shut norns down
 

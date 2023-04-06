@@ -142,7 +142,7 @@ Once you are in the menu interface, use **E1** to switch between the different m
 ![](/docs/norns/image/play-images/menu-nav.png)  
 [*figure 2: interface layers*](image/play-images/menu-nav.png)
 
-## levels
+## LEVELS
 
 **DO NOT plug modular-level signals into norns (neither standard or shield) -- norns is designed for line levels only.**
 
@@ -175,7 +175,7 @@ The horizontal notch represents unity. All levels can go to +6dB.
 
 *For audio input/output hardware specs, see [the extended help docs](/docs/norns/help/#audio-specs).*
 
-## parameters
+## PARAMETERS
 
 The PARAMETERS menu is where you'll find helpful system controls as well as performance-centric settings for each script.
 
@@ -234,7 +234,7 @@ The currently loaded PSET will have an asterisk * next to it.
 - select `DELETE` and use **E3** to choose a saved PSET
 - press **K3** to delete the selected PSET
 
-## tape
+## TAPE
 
 norns has a built-in mechanism to play audio files underneath a script as well as record system audio, so you don't need connect a separate recording device to capture your creations.
 
@@ -300,7 +300,7 @@ To manage TAPE and audio files on norns, see [**wifi + files**](/docs/norns/wifi
 
 In the simplest terms, everything you hear from the main output is committed to a recording tape. This includes the system reverb, compressor, monitor audio, as well as any tape that might be playing. If you are recording for further processing in a DAW, you may want to turn off the system reverb and compressor for a more barebones sound.
 
-## select
+## SELECT
 
 Navigate to the *home* menu, then press **K3** on SELECT:
 
@@ -331,8 +331,26 @@ To clear the script running on norns:
 - while holding **K1**, press **K3** to clear the currently-running script
 - release **K1** and you'll see `NONE` where the previously-running script's name used to be
 
+## SYSTEM
+
+![](/docs/norns/image/play-images/system.png)  
+[*figure 9: the norns SYSTEM menu*](image/play-images/system.png)
+
+The SYSTEM menu contains a number of helpful entries:
+
+- `DEVICES` allows you to manage all your connected devices (MIDI, grid, arc, and HID). See [control + clock](/docs/norns/control-clock/) for more info.
+- `WIFI` manages network connectivity, including hotspot mode, wireless access, and ethernet. See [WiFi / update / files](/docs/norns/wifi-files/) for more info.
+- `MODS` are small chunks of code to create custom modifications to the core workings of the norns system software. See [mods](/docs/norns/community-scripts/#mods) for more info.
+- `SETTINGS` allows you to:
+  - `RESET` your norns back to its workshop settings, erasing your favorites, disabling all mods, and restoring global audio levels to their defaults.
+  - change your [`PASSWORD`](/docs/norns/wifi-files/#settings-password) for SSH, SMB, and hotspot
+  - toggle the on-screen `BATTERY WARNING` on and off
+- `RESTART` will restart the unit without erasing any settings
+- `UPDATE` will perform a [system update](/docs/norns/wifi-files/#update), if you're connected to WIFI.
+- `LOG` will export any messages and errors initiated by matron (the Lua layer), SuperCollider, and the general Linux system. If something isn't performing as expected, this mechanism is the most helpful tool for diagnosing trouble. See [the logs section of the *maiden* docs](/docs/norns/maiden/#logs) for more info.
+
 ## where to next?
 
 Now that you know the basics of navigating the system, adjusting a script's parameters, and recording the results, you might want to explore the [**community scripts**](/docs/norns/community-scripts) available for norns.
 
-But first, we'll need to connect to WIFI in order to get norns up to date, transfer TAPE files, and download new community scripts. Please read on to [**wifi + files**](/docs/norns/wifi-files)!
+But first, we'll need to connect to WIFI in order to get norns up to date, transfer TAPE files, and download new community scripts. Please read on to [**WiFi / update / files**](/docs/norns/wifi-files)!

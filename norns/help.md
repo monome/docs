@@ -565,38 +565,6 @@ To confirm:
 - if `/var/log/journal` is showing as larger than 20 megabytes, you can safely clean up the files inside by executing: `sudo journalctl --vacuum-size=20M`
 - execute `sudo du -h /var/log` to confirm the space has been reclaimed
 
-### change default password + address {#change-password}
-
-Since all norns units come configured with the same username + password, we encourage you to personalize + protect your setup by changing the default hostname and password for the `we` user.
-
-#### change passwords via SYSTEM menu {#system-password}
-
-In the norns SYSTEM menu, there's a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH, as well as your SMB + hotspot passwords. **nb. this password must be between 8 to 63 characters in length -- otherwise hotspot (which is WPA-PSK) will not work.**
-
-While you can simply reset this password again via this menu option, we encourage you to set it to something memorable so you don't worry about troubleshooting connectivity in a critical moment.
-
-#### hostname
-
-To change the hostname for maiden access, log in to the norns via [ssh](../advanced-access/#ssh) and execute:
-
-```
-sudo raspi-config
-```
-
-This will lead you to the [Raspberry Pi Software Configuration Tool](https://www.raspberrypi.org/documentation/computers/configuration.html), where you can follow these steps:
-
-- press ENTER on `1 System Options`
-- press ENTER on `S4 Hostname`
-- press ENTER on `<ok>` and type in a new hostname for your norns device (no need to type `.local`
-- navigate down to `Finish` and press ENTER -- if asked to reboot, please do
-- the unit will power down after a few seconds (if working with a standard norns, the unit will not restart but will simply shut down)
-
-Now, you'll be able to use your new hostname for:
-
-- maiden access: what once was `norns.local` will now be `your_unique_name.local` (you can also use the device's IP address)
-- ssh alias: what was once `norns.local` will now be `your_unique_name.local` (you can also use the device's IP address)
-- hotspot: what was once the `norns` network will now be `your_unique_name`
-
 ### taking a screenshot {#png}
 
 Capturing a screenshot of your norns can be a helpful tool for creating illustrative documentation or sharing UI ideas.

@@ -195,9 +195,9 @@ After you restore these files, we encourage downloading fresh copies of the comm
 
 Since all norns units come configured with the same username + password, we encourage you to personalize + protect your setup by changing the default hostname and password for the `we` user.
 
-### via SYSTEM menu {#system-password}
+### via SETTINGS menu {#settings-password}
 
-In the norns SYSTEM menu, there’s a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH, as well as your SMB (samba) + hotspot passwords. **nb. this password must be between 8 to 63 characters in length -- otherwise hotspot (which is WPA-PSK) will not work.**
+In the norns SETTINGS menu, there’s a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH, as well as your SMB (samba) + hotspot passwords. **nb. this password must be between 8 to 63 characters in length -- otherwise hotspot (which is WPA-PSK) will not work.**
 
 While you can simply reset this password again via this menu option, we encourage you to set it to something memorable so you don’t worry about troubleshooting connectivity in a critical moment.
 

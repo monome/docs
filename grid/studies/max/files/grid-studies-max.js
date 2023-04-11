@@ -9,20 +9,20 @@ var redraw_grid = 0;
 
 var i1, i2;
 
-var states = new Array(96);
-var trig = new Array(6);
-
-var leds = new Array(128);
-var buffer = new Array(64);
-
 var cols = 16;
 var rows = 8;
 var quads = 2;
 
+var sequencer_rows = (cols * rows) - (2*cols);
+
+var states = new Array(sequencer_rows);
+var trig = new Array(rows-2);
+var leds = new Array(cols * rows);
+var buffer = new Array(64);
 
 // initialize by clearing toggle states
 function init() {
-	for(i1=0;i1<96;i1++)
+	for(i1=0;i1<sequencer_rows;i1++)
 		states[i1] = 0;
 }
 
@@ -66,22 +66,22 @@ function key(x, y, z) {
 // LED redraw function
 function redraw() {
 	// display toggles
-	for(i1=0;i1<96;i1++)
+	for(i1=0;i1<sequencer_rows;i1++)
 		leds[i1] = states[i1] * 15;
 	
 	// clear play row, make trigger row dim
 	for(i1=0;i1<16;i1++) {
-		leds[i1+96] = 5;
-		leds[i1+112] = 0;
+		leds[i1+sequencer_rows] = 5;
+		leds[i1+sequencer_rows+16] = 0;
 	}
 	
 	// display play position
-	leds[112 + play_position] = 15;
+	leds[sequencer_rows + 16 + play_position] = 15;
 
 	// display triggers
 	for(i1=0;i1<6;i1++)
 		if(trig[i1])
-			leds[96+i1] = 15;
+			leds[sequencer_rows+i1] = 15;
 	
 	// output OSC for first quadrant
 	for(i1=0;i1<8;i1++)

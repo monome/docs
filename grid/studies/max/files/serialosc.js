@@ -24,6 +24,10 @@ function clamp(n,minimum,maximum) {
 	return Math.min(Math.max(n, minimum), maximum)
 }
 
+function adjust(n) {
+	return Math.floor(n/8);
+}
+
 function insert_all(state) {
 	state = clamp(state,0,1);
 	for(i = 0; i < 64; i++) {
@@ -41,15 +45,15 @@ function insert_set(x,y,level) {
 	if(level == 1) {
 		led_level(x,y,15);
 	}
-	else if(level == 0) {
+	else {
 		led_level(x,y,0);
 	}
 }
 
 function insert_row(x_offset,y,n1,n2) {
-	n1 = Math.min(Math.max(n1, 0), 255)
+	n1 = clamp(n1,0,255);
 	decoded = n1.toString(2).split('').reverse();
-	x_adjust = Math.floor(x_offset/8);
+	x_adjust = adjust(x_offset);
 	y_adjust = y;
 	quad_adjust = 0;
 	
@@ -64,10 +68,15 @@ function insert_row(x_offset,y,n1,n2) {
 				decoded[i] = 0
 			}
 		}
-		for(i = 8*y_adjust; i < (8*y_adjust)+decoded.length; i++){
-			led_quads[x_adjust + quad_adjust][i] = decoded[i-(8*y_adjust)] * 15;
-			quad_dirty[x_adjust + quad_adjust] = 1;
+
+		iter = 8*y_adjust;
+		qID = x_adjust + quad_adjust;
+
+		for(i = iter; i < iter + decoded.length; i++){
+			led_quads[qID][i] = decoded[i - iter] * 15;
+			quad_dirty[qID] = 1;
 		}
+
 		if(n2 != null){
 			decoded = n2.toString(2).split('').reverse();
 			for(i = 0; i < 8; i++){
@@ -75,18 +84,18 @@ function insert_row(x_offset,y,n1,n2) {
 					decoded[i] = 0
 				}
 			}
-			for(i = 8*y_adjust; i < (8*y_adjust)+decoded.length; i++){
-				led_quads[x_adjust + quad_adjust + 1][i] = decoded[i-(8*y_adjust)] * 15;
-				quad_dirty[x_adjust + quad_adjust + 1] = 1;
+			for(i = iter; i < iter + decoded.length; i++){
+				led_quads[qID + 1][i] = decoded[i - iter] * 15;
+				quad_dirty[qID + 1] = 1;
 			}
 		}
 	}
 }
 
 function insert_col(x,y_offset,n1,n2) {
-	n1 = Math.min(Math.max(n1, 0), 255)
+	n1 = clamp(n1,0,255);
 	decoded = n1.toString(2).split('').reverse();
-	y_adjust = Math.floor(y_offset/8);
+	y_adjust = adjust(y_offset);
 	offset = false;
 	
 	if (y_adjust != 0){
@@ -124,7 +133,7 @@ function insert_col(x,y_offset,n1,n2) {
 	}
 	
 	if(n2 != null){
-		n2 = Math.min(Math.max(n2, 0), 255)
+		n2 = clamp(n2,0,255);
 		decoded = n2.toString(2).split('').reverse();
 		for(i = 0; i < 8; i++){
 			if(decoded[i] == null){
@@ -150,7 +159,7 @@ function insert_col(x,y_offset,n1,n2) {
 function row_level() {
 	if(arguments.length > 2){
 		x_offset = arguments[0];
-		x_adjust = Math.floor(x_offset/8);
+		x_adjust = adjust(x_offset);
 		y = arguments[1];
 		y_adjust = y;
 		quad_adjust = 0;
@@ -160,13 +169,17 @@ function row_level() {
 				y_adjust = y-8;
 				quad_adjust = 2;
 			}
+
+			yID = 8*y_adjust;
+			qID = x_adjust + quad_adjust;
+
 			for(i = 2; i < arguments.length; i++){
 				if(i < 10){
-					led_quads[x_adjust + quad_adjust][i-2 + (8*y_adjust)] = arguments[i];
-					quad_dirty[x_adjust + quad_adjust] = 1;
+					led_quads[qID][i-2 + yID] = arguments[i];
+					quad_dirty[qID] = 1;
 				} else {
-					led_quads[x_adjust + quad_adjust + 1][i-10 + (8*y_adjust)] = arguments[i];
-					quad_dirty[x_adjust + quad_adjust + 1] = 1;
+					led_quads[qID + 1][i-10 + yID] = arguments[i];
+					quad_dirty[qID + 1] = 1;
 				}	
 			}		
 		}		
@@ -177,8 +190,8 @@ function col_level() {
 	if(arguments.length > 2){
 		x = arguments[0];
 		y_offset = arguments[1];
-		x_adjust = Math.floor(x/8);
-		y_adjust = Math.floor(y_offset/8);
+		x_adjust = adjust(x);
+		y_adjust = adjust(y_offset);
 		
 		if(arguments.length == 10 || arguments.length == 18){
 			

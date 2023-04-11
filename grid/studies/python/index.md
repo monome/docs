@@ -71,21 +71,21 @@ Note that the preceding example consists of two parts. First, we describe the cl
 Python programs using `asyncio` require explicitly starting the event loop, so creating the loop is actually the first step our program takes:
 
 ```python
-	loop = asyncio.get_running_loop()
+    loop = asyncio.get_running_loop()
 ```
 
 Next, we create the application instance:
 
 ```python
-	grid_studies = GridStudies()
+    grid_studies = GridStudies()
 ```
 
 In the next lines we define a callback to execute when serialosc detects a monome device. In this example the callback prints the device type and connects the grid port of the application to the newly discovered device. Note that opening a connection to the grid is an *asynchronous* operation. The `grid.connect` method returns a _coroutine_, so we can't call it directly. Instead, we schedule the coroutine execution using `asyncio.ensure_future()`:
 
 ```python
 def serialosc_device_added(id, type, port):
-	print('connecting to {} ({})'.format(id, type))
-	asyncio.ensure_future(grid_studies.grid.connect('127.0.0.1', port))
+    print('connecting to {} ({})'.format(id, type))
+    asyncio.ensure_future(grid_studies.grid.connect('127.0.0.1', port))
 ```
 
 The next step is to create a serialosc client and attach the callback for new devices:
@@ -115,8 +115,8 @@ Let's take a look at our application class:
 
 ```python
 class GridStudies(monome.GridApp):
-	def __init__(self):
-		super().__init__()
+    def __init__(self):
+        super().__init__()
 ```
 
 The constructor here simply calls the parent constructor without arguments. Because there is no additional code in the constructor, it can be omitted entirely, but we still have it declared in case we'll want to add some additional initialization logic to the application later.
@@ -133,7 +133,7 @@ Below we define the key function and simply print out incoming data.
 
 ```python
 def on_grid_key(self, x, y, s):
-	print("key:", x, y, s)
+    print("key:", x, y, s)
 ```
 
 ### 1.2 LED output {#led-output}
@@ -206,6 +206,7 @@ class GridStudies(monome.GridApp):
 
     def on_grid_key(self, x, y, s):
         # .. define grid press action ..
+        pass
 
     def draw(self):
         buffer = monome.GridBuffer(self.width, self.height)
@@ -238,7 +239,7 @@ Finally, we'll use a subclass called `GridBuffer` for managing the display state
 
 ```python
 def draw(self):
-	buffer = monome.GridBuffer(self.width, self.height)
+    buffer = monome.GridBuffer(self.width, self.height)
 ```
 
 Instead of updating single LEDs at a time, we'll draw the entire grid and then render that to the hardware at the end of our `draw` function:
@@ -269,8 +270,8 @@ def on_grid_ready(self):
     self.draw()
 ```
 
-- we create instance variables for `width`, `height`, and `sequencerRows`, which will determine the range of keys which can be toggled
-- we assign `sequencerRows ` to the height of the grid, excepting the last two rows
+- we create instance variables for `width`, `height`, and `sequencer_rows`, which will determine the range of keys which can be toggled
+- we assign `sequencer_rows` to the height of the grid, excepting the last two rows
 - we track the grid's connected state with `connected`
 - we redraw the grid interface
 
@@ -393,10 +394,10 @@ Now we look for key presses in the last row, in the `on_grid_key` function:
 ```python
 # cut
 elif y == height-1: # want 0-index!
-	# cut
-	if s == 1:
-		self.cutting = True
-		self.next_position = x
+    # cut
+    if s == 1:
+        self.cutting = True
+        self.next_position = x
 ```
 
 We've added two variables, `cutting` and `next_position`. Check out the changed code where we check the timer:

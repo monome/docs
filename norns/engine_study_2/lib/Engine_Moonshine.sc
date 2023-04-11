@@ -1,3 +1,5 @@
+// Written by Dan Derks + Ezra Buchla for monome.org
+
 Engine_Moonshine : CroneEngine {
 // All norns engines follow the 'Engine_MySynthName' convention above
 

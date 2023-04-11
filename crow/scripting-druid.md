@@ -10,6 +10,7 @@ permalink: /crow/scripting-druid/
 ---
 
 # Scripting
+{: .no_toc }
 
 Scripts are the little programs crow runs to take on different roles in your synthesizer. They are written in [Lua](https://www.lua.org) and typically run between 10 and 100 lines. You don't need to write them from scratch though! There's examples to upload directly, and modifying existing scripts is a nice soft entry into writing your own.
 
@@ -33,25 +34,34 @@ If you wish to venture on from there, *Stage Two* demonstrates:
 
 And *Stage Three* concludes with [a brief introduction into writing & modifying crow scripts](#sample-and-hold).
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## Stage One: Upload
 
 ### Bowery
 
 Before we can upload a script, we need some scripts to upload! There's a set of examples, and a growing collection of user-provided scripts available in the *bowery* repository.
 
-Navigate to [bowery](https://github.com/monome/bowery/releases/latest) and download the .zip file under *Assets*. It will be named `bowery-X`, where X is the release number. Unzip it wherever you'd like to keep your crow scripts.
+Navigate to [bowery](https://github.com/monome/bowery/) and [download the repository as a .zip file](https://github.com/monome/bowery/archive/refs/heads/main.zip). Unzip it wherever you'd like to keep your crow scripts.
 
-Return to your terminal & quit `druid` by typing `q` then `<enter>`. Now in terminal, change-directory (or `cd`) to enter the bowery folder. If you unzip within your Documents folder it would be `cd ~/Documents/bowery-X`.
+Return to your terminal & quit `druid` by typing `q` then `<enter>`. Now in terminal, change-directory (or `cd`) to enter the bowery folder. If you unzip within your Documents folder it would be `cd ~/Documents/bowery-main`.
 
 **Having trouble using the `cd` command?**
 
-- Mac: right click the unzipped `bowery-X` folder and then press the OPTION key. This will reveal a **Copy "bowery-X" as Pathname** action. Select it and then paste into terminal after `cd [spacebar]`.
-- Windows: hold the SHIFT key and right click the unzipped `bowery-X` folder. This will reveal a **Copy as path** action. Select it and then paste into terminal after `cd [spacebar]`.
-- Linux: right click the unzipped `bowery-X` folder and select "**Copy**". Then, simply **Paste** into terminal after `cd [spacebar]`.
+- Mac: right click the unzipped `bowery-main` folder and then press the OPTION key. This will reveal a **Copy "bowery-main" as Pathname** action. Select it and then paste into terminal after `cd [spacebar]`.
+- Windows: hold the SHIFT key and right click the unzipped `bowery-main` folder. This will reveal a **Copy as path** action. Select it and then paste into terminal after `cd [spacebar]`.
+- Linux: right click the unzipped `bowery-main` folder and select "**Copy**". Then, simply **Paste** into terminal after `cd [spacebar]`.
 
 ### Uploading
 
-From the *bowery-X* folder, load up a fresh `druid` session so we can talk to crow.
+From the *bowery-main* folder, load up a fresh `druid` session so we can talk to crow.
 
 ```
 druid
@@ -72,13 +82,13 @@ You just uploaded your first crow script!
 
 Patch a trigger or LFO into input 1 and crow will now be sending clock divided gates to all 4 outputs. Try patching crow's outputs to anything expecting triggers. Make some envelopes with Just Friends' *trigger* inputs in *shape/transient* mode, or ping Three Sisters' filters by patching crow's outputs directly to Three Sisters' 4 input jacks and turn *quality* up to 3:00 on the dial.
 
-A voltage into input 2 will select between different sets of divisions as you sweep from -5V to +5v. Open `bowery-X/clockdiv.lua` in a text editor and edit the table called `divs` which represents the clock-divisions per output, with 5 different sets to choose from.
+A voltage into input 2 will select between different sets of divisions as you sweep from -5V to +5v. Open `bowery-main/clockdiv.lua` in a text editor and edit the table called `divs` which represents the clock-divisions per output, with 5 different sets to choose from.
 
 Any time you make changes to `clockdiv.lua` you'll need to run the script again with `r clockdiv.lua`. If you want your changes to stick around when you restart crow change `r` (run) to `u` (upload) like this; `u clockdiv.lua`. We recommend you use `r` most of the time as it's faster, then once you settle on something you like use `u` to save it into crow's longterm memory.
 
 **This is all you need to work with existing scripts!** Plenty of fun is to be had playing with the files in the *bowery/* folder alone.
 
-### In review:
+### In Review
 
 | command | ~> | meaning |
 | :--- | :---: | :--- |
@@ -96,7 +106,7 @@ If you want to use a script you see online, you'll need to save it as a text fil
 
 ## Stage Two: Execute
 
-### Split screen
+### Split Screen
 
 Onward! It's time to start working with scripts, and see how they work with `druid`.
 
@@ -114,7 +124,7 @@ Now load both these tools up and, resize the windows so you have them side-by-si
 
 You'll want to learn the hotkey that allows you to switch focus between the two programs.
 
-### Say hello
+### Say Hello
 
 *nb: From here on, whenever you see the `>` symbol, that means you'll be entering it into `druid`, and the lines that follow are what you'll see returned from crow.*
 
@@ -163,7 +173,7 @@ A calculator!
 
 This pattern of using `print` to query crow's memory will be central to understanding things as you progress. If you get stuck, try `print`ing your variable names and see what values you get. If you see `nil` then you've likely made a typo somewhere.
 
-### Pushing around the volts
+### Pushing Around the Volts
 
 Let's make a quick patch:
 
@@ -201,7 +211,7 @@ The pitch will glide up to 1 volt again, smoothly fading for half a second.
 
 ## Stage Three: Write
 
-### Sample and hold
+### Sample and Hold
 
 Let's make a basic sample and hold script which takes a clock on input 1, which then outputs a random voltage on output 1.
 
@@ -266,7 +276,7 @@ Copy this to the bottom of the script, and replace the comment with the `print` 
 
 ```lua
 input[1].change = function(state)
-    print('BANG!')
+    print('BOOP!')
 end
 ```
 
@@ -277,12 +287,12 @@ Patch a clock source to input 1, then save the script and run it:
  running sketch.lua
 Running: sample & hold
 ...
-BANG!
-BANG!
-BANG!
+BOOP!
+BOOP!
+BOOP!
 ```
 
-Those *BANG!*s tell us the input is correctly setup and detecting the clock signal. Now rather than having crow shout at us, let's create the elusive random voltage.
+Those *BOOP!* 's tell us the input is correctly setup and detecting the clock signal. Now rather than having crow shout at us, let's create the elusive random voltage.
 
 ```lua
 input[1].change = function(state)
@@ -299,7 +309,7 @@ Save the script & run it in druid with `r sketch.lua`. Patch output 1 to the pit
 
 If you're having trouble, you can look at the file `samplehold-basic.lua` in *bowery/* which replicates the work above.
 
-### Make it a conversation
+### Make It a Conversation
 
 While building the above script, we just zipped through implementation and were only using `druid` to send our script to crow. It can be super useful to have crow send us some information while we work, or to try out commands as we go. For example, let's add a *variable* and debug print to our change event to see what's going on:
 
@@ -337,7 +347,7 @@ end
 
 Notice how the input voltage is saved in a variable `volt` then sent to output 2.
 
-### All the possibilities
+### All the Possibilities
 
 This short script is already a nice sample & hold. It creates a random value and a sampled input value every time a clock is received. But there is so much more to be done! There's an example of further possibilities in `bowery/samplehold.lua` using quantization, and adding some randomness to the input sample, but there are so many more options!
 
@@ -345,7 +355,7 @@ This short script is already a nice sample & hold. It creates a random value and
 
 One great source of inspiration when it comes to sample & hold and other forms of randomness is the Buchla 'Source of Uncertainty' module, but for now that's up to you to explore!
 
-## The neverending story
+## The Never-ending Story
 
 More explorations will be here or around soon:
 

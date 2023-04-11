@@ -305,7 +305,7 @@ That will print received CC number and CC value -- try specifying one of the CC 
 
 ```lua
 if d.type == "cc" then
-  if d.cc == 33 -- if CC number is 33 then...
+  if d.cc == 33 then -- if CC number is 33 then...
     engine.cutoff(util.linexp(0,127,300,12000,d.val))
   end
 end
@@ -330,12 +330,12 @@ Sending MIDI means sending out bytes. We can certainly send raw values to a conn
 
 ```lua
 >> out_midi = midi.connect(1) -- change 1 for whichever port you want to send to
->> out_midi.send{144,60,127}
+>> out_midi:send{144,60,127}
 ```
 
-Note the braces, as this is a syntax we haven't seen yet. It's equivalent to `out_midi.send({144,60,127})` -- if an argument is a single table, you can skip typing the parens.
+Note the braces, as this is a syntax we haven't seen yet. It's equivalent to `out_midi:send({144,60,127})` -- if an argument is a single table, you can skip typing the parens.
 
-`out_midi.send{144,60,127}` sends note on (MIDI raw data 0x90 is equal to 144) for note 60 at velocity 127 but it's much easier to use the helper function:
+`out_midi:send{144,60,127}` sends note on (MIDI raw data 0x90 is equal to 144) for note 60 at velocity 127 but it's much easier to use the helper function:
 
 ```lua
 >> out_midi:note_on(60,127)

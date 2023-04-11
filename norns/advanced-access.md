@@ -158,6 +158,8 @@ Without WiFi, you can connect to norns via serial / USB-UART by connecting the p
 
 **Serial / USB-UART connection is only applicable to standard norns, not shield.**
 
+Power norns on while it's connected to your computer and follow the steps for your OS:
+
 **macOS**:
 
 - open Terminal
@@ -184,6 +186,19 @@ If you see a blank screen, press ENTER.
 
 You'll be asked for login credentials. Login is the same as SSH above.
 
+**windows**:
+
+- open *Device Manager* and navigate to your computer's *Ports (COM & LPT)*
+- confirm the *COM* ID that your computer has assigned the *USB Serial Port*. For example, this norns is assigned `COM14`:
+  ![](/docs/norns/image/advanced_access-images/device-manager.png)
+- [download PuTTY](https://www.putty.org), a free and open-source SSH client for Windows
+- in PuTTY's *Session* Category, choose *Connection type: Serial* and replace the *Serial line* with your COM ID.
+  - NOTE: do not choose the *Connection > Serial* menu! This process only works through the *Session* menu at the top of the list. For a visual, see below.
+- replace *Speed* with `115200`
+  ![](/docs/norns/image/advanced_access-images/putty.png)
+- click *Open* and PuTTY will open a terminal into your norns. If you see a blank screen, press ENTER.
+
+You'll be asked for login credentials. Login is the same as SSH above.
 
 ### change SMB path
 

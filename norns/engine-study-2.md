@@ -1044,3 +1044,9 @@ To continue exploring + creating new synthesis engines for norns, we highly reco
   - [Zack's #supercollider blog entries](https://schollz.com/tags/supercollider/)
 - [Eli Fieldsteel's *fantastic* YouTube series](https://youtu.be/yRzsOOiJ_p4)
 - [norns SuperCollider engines index](https://norns.community/libs-and-engines#supercollider-engines)
+
+### acknowledgements
+
+The `Moonshine` engine was written by Dan Derks + Ezra Buchla for [monome.org](https://monome.org).
+
+This study's text was initiated by Dan Derks with generous review from Jonathan Snyder and Zack Scholl.

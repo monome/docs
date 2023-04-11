@@ -1,5 +1,6 @@
 -- this file easily adds Moonshine parameters to a host script
 -- save it as 'moonshine.lua' under 'code > engine_study > lib'
+-- written by Dan Derks + Ezra Buchla for monome.org
 
 local Moonshine = {}
 local ControlSpec = require 'controlspec'

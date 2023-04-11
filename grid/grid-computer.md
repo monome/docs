@@ -1,13 +1,11 @@
 ---
 layout: default
 parent: grid
-title: + computer
+title: computer
 nav_order: 2
 has_children: false
 has_toc: false
 ---
-
-While grid is a completely open tool, re-imaginable by the artist who's using it, let's begin with a few fixed starting points.
 
 ### serialosc (required) {#serialosc}
 
@@ -15,13 +13,7 @@ grid uses serialosc to communicate back and forth with applications on your comp
 
 To begin, [check out the serialosc docs](/docs/serialosc/setup).
 
-### scripting
-
-The grid is *intended* to be reimagined. Once serialosc is installed, you can give the grid purpose and meaning that's all your own: instrument, experiment, tool, toy...choose your own adventure!
-
 #### studies
-
-Let’s start with some introductory knowledge: potential energy for radical creative freedom.
 
 The following tutorials (written for macOS, Windows and Linux) show how to use different languages and environments to achieve the same goal: a playable step sequencer which interfaces with the grid.
 
@@ -33,18 +25,18 @@ The following tutorials (written for macOS, Windows and Linux) show how to use d
 - [Python](/docs/grid/studies/python) // general purpose programming language
 - [Node.js](/docs/grid/studies/nodejs) // web-centric script programming platform
 
-#### extended knowledge
+#### development
 
 Additional resources to help you exercise greater control over the grid's serial messages, modify serialosc itself, or build your own grid libraries using C:
 
-- [serialosc programming docs](/docs/serialosc/osc) // extend or re-program serialosc
-- [monome serial protocol](/docs/serialosc/serial.txt) // API for serial messages
+- [serialosc programming docs](/docs/serialosc/osc) // osc format and device discovery
+- [monome serial protocol](/docs/serialosc/serial.txt) // serial format details
 - [libmonome](https://github.com/monome/libmonome) // a library which simplifies serial communication with the grid, which serialosc is built on
-- [libmonome tutorial](/docs/libmonome/tutorial) // control grid with libmonome + C
+- [libmonome tutorial](/docs/libmonome/tutorial) // control grids with libmonome + C
 
-### community starting points {#community}
+### community {#community}
 
-The grid was originally designed as a flexible, minimal interface to control Max patchers. Over the past 15+ years many artists have extended this simple purpose into full-blown performance tools and, through their *immense* generosity, openly shared them back to the community:
+We've collected a handful of contributed applications over the years which are excellent starting points.
 
 - [Max + Max for Live](/docs/grid/computer/max) (macOS + Windows)
 - [Mark Eats Sequencer](/docs/grid/computer/mark-eats) (macOS only)

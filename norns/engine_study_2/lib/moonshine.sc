@@ -1,5 +1,6 @@
 // SC class exercise 3: third (and final) adaptation
 // 8-voice polyphony + smoothing
+// written by Dan Derks + Ezra Buchla for monome.org
 
 Moonshine {
 

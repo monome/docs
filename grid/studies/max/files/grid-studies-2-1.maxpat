@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 2,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -46,7 +46,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 3.5, 504.0, 160.0, 33.0 ],
-					"presentation_linecount" : 3,
 					"text" : "grid studies: max 2-1\nhttp://monome.org"
 				}
 
@@ -310,7 +309,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 6,
 					"offset" : [ 0.0, 0.0 ],
-					"outlettype" : [ "", "", "", "int", "", "" ],
+					"outlettype" : [ "", "int", "", "", "", "" ],
 					"patching_rect" : [ 34.0, 265.0, 200.0, 22.0 ],
 					"varname" : "serialosc",
 					"viewvisibility" : 1

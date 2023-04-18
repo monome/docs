@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 2,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -206,7 +206,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 5,
-							"revision" : 2,
+							"revision" : 4,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -644,7 +644,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 6,
 					"offset" : [ 0.0, 0.0 ],
-					"outlettype" : [ "", "", "", "int", "", "" ],
+					"outlettype" : [ "", "int", "", "", "", "" ],
 					"patching_rect" : [ 446.0, 50.0, 200.0, 22.0 ],
 					"varname" : "serialosc",
 					"viewvisibility" : 1

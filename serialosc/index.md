@@ -43,3 +43,5 @@ To send LED data:
 - to port 21008: `/grid/led/level/set 2 2 8 (set LED 2,2 to brightness 8)
 
 See [OSC](/docs/serialosc/osc) for the complete list of messages.
+
+All ports are also discoverable via zeroconf as `_monome-osc._udp`.

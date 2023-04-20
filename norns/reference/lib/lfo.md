@@ -54,7 +54,7 @@ An LFO is made of the following attributes:
 
 - `baseline`: string which represents the base value from which the LFO's movement is calculated. options are `min`, `center`, or `max` (default `min`)
 
-- `reset_target`: string which determines the LFO reset behavior. Options are `floor`, `ceiling`, `mid: falling`, and `mid: risiung`; this determines which point the reset will return the LFO to (default `floor`)
+- `reset_target`: string which determines the LFO reset behavior. Options are `floor`, `ceiling`, `mid: falling`, and `mid: rising`; this determines which point the reset will return the LFO to (default `floor`)
 
 - `ppqn`: number which represents the resolution of the LFO. defaults to `96` but can be brought down (ideally in equal divisions of 96) to reduce CPU consumption / sample rate
 

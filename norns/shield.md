@@ -36,8 +36,8 @@ The norns shield is [open source hardware](https://github.com/monome/norns-shiel
 
 There are some differences between the standard norns and norns shield:
 
-- standard norns has a battery, 1/4" mono jacks, a separate stereo headphone jack and driver, very high quality audio, up to 32gb of storage (CM3+), WIFI via USB adapter, serial connection over power port
-- norns shield has 1/8" (interchangeably referred to as 3.5mm) stereo jacks (headphones work on the output jack), expandable storage (microSD), built-in WIFI, and an ethernet port
+- standard norns has a battery, 1/4" mono jacks, a separate stereo headphone jack and driver, very high quality audio, up to 32gb of storage (CM3+), WiFi via USB adapter, serial connection over power port
+- norns shield has 1/8" (interchangeably referred to as 3.5mm) stereo jacks (headphones work on the output jack), expandable storage (microSD), built-in WiFi, and an ethernet port
 
 Software is fully compatible between the two.
 
@@ -73,7 +73,7 @@ _Please note:_
 - the antistatic bag your shield comes in will already be unsealed -- don't worry, it was opened in our workshop to verify assembly and for a final stage of testing before shipping
 - if you will be using a Pi4 with your shield, you may need to cut the separators on the side of the white bottom case for optimal fit -- please see [this lines post](https://llllllll.co/t/norns-shield-2022/52960/77?u=dan_derks) for steps to complete an at-home modification. if you have access to a 3D printer and want to remix the case yourself, JHC has generously made the `.stl` files [freely available here](https://llllllll.co/t/norns-shield-case-designs/30347/224).
 
-If your shield is version `211028` (`21` = 2021, `10` = October, `28` = 28th day) or later, it has a white sticker on the back -- do not remove it, as it helps keep part of the circuit non-conductive. This sticker is helpful in reducing audible WIFI interference from the Pi.  
+If your shield is version `211028` (`21` = 2021, `10` = October, `28` = 28th day) or later, it has a white sticker on the back -- do not remove it, as it helps keep part of the circuit non-conductive. This sticker is helpful in reducing audible WiFi interference from the Pi.  
 {: .label .label-red}
 
 Let's begin! All you need is a normal phillips-head screwdriver.

@@ -134,7 +134,7 @@ If you continue to run into trouble, you'll likely need to install the driver fo
 
 You can use the [`fledge`](https://github.com/monome/fledge) script on norns to update a connected crow to its latest firmware.
 
-- connect your norns to the internet (via [WIFI](/docs/norns/wifi-files/) or ethernet)
+- connect your norns to the internet (via [WiFi](/docs/norns/wifi-files/) or ethernet)
 - open [maiden](/docs/norns/maiden)
 - execute `;install https://github.com/monome/fledge`
 - launch the `fledge` script

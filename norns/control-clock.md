@@ -50,15 +50,15 @@ If a script doesn't allow you to specify a MIDI device port for incoming or outg
 To assign devices:
 
 - select the port you wish to modify
-- press **K3** to open a menu of currently connected devices
-- use **E2** to select the device you wish to assign to this port
-- press **K3** to assign it
+- press <kbd>K3</kbd> to open a menu of currently connected devices
+- use <kbd>E2</kbd> to select the device you wish to assign to this port
+- press <kbd>K3</kbd> to assign it
 
 To clear ports:
 
 - select the port you wish to modify
-- press **K3** to open a menu of currently connected devices
-- press **K3** while `none` is selected to clear the port's assignment
+- press <kbd>K3</kbd> to open a menu of currently connected devices
+- press <kbd>K3</kbd> while `none` is selected to clear the port's assignment
 
 ### map
 
@@ -69,9 +69,9 @@ As we saw in [**play**](/docs/norns/play), the controls in a script's PARAMETERS
 
 To MIDI-learn:
 
-- hold **K1** and press **K3** to enable mapping mode
-- use **E2** to select the parameter you wish to map and press **K3** to open its mapping menu
-- with LEARN selected (default), press **K3** and wiggle your MIDI control to map it to the parameter
+- hold <kbd>K1</kbd> and press <kbd>K3</kbd> to enable mapping mode
+- use <kbd>E2</kbd> to select the parameter you wish to map and press <kbd>K3</kbd> to open its mapping menu
+- with LEARN selected (default), press <kbd>K3</kbd> and wiggle your MIDI control to map it to the parameter
 
 #### manual map settings
 
@@ -103,7 +103,7 @@ To MIDI-learn:
 - **out**: the min/max values that **in** spans
   
   - eg. though a filter parameter might span 20 Hz to 20000 Hz, you can use **out** as a way to clamp a MIDI fader to a 800 Hz - 1600 Hz range
-  - hold **K3** while adjusting to fine-tune with 1/20th quantum
+  - hold <kbd>K3</kbd> while adjusting to fine-tune with 1/20th quantum
 
 - **accum**: enable when using relative midi cc streams (for controllers that send deltas rather than 0-127 absolute streams)
 
@@ -121,7 +121,7 @@ You'll notice that these entries are identical to the ones located on the mappin
 
 ## keyboard
 
-An attached USB keyboard can be used to enter text anywhere across the norns system (eg. WIFI passwords, PSET filenames, TAPE names, etc). You can manage the keyboard layout via `SYSTEM > DEVICES > KEYBOARD LAYOUT`, where you'll find [27 country codes](https://github.com/monome/norns/blob/197dbdbee5aa999e3dcf5718a11b62b2a57d1369/lua/core/keyboard.lua#L12-L38).
+An attached USB keyboard can be used to enter text anywhere across the norns system (eg. WiFi passwords, PSET filenames, TAPE names, etc). You can manage the keyboard layout via `SYSTEM > DEVICES > KEYBOARD LAYOUT`, where you'll find [27 country codes](https://github.com/monome/norns/blob/197dbdbee5aa999e3dcf5718a11b62b2a57d1369/lua/core/keyboard.lua#L12-L38).
 
 A number of hotkeys are also available. To access the system menus:
 
@@ -145,7 +145,7 @@ While in the system menus:
 
 [Open Sound Control (OSC)](https://en.wikipedia.org/wiki/Open_Sound_Control) is a network protocol for sending messages supported by numerous sound and media applications.
 
-OSC allows you to control norns over WIFI using applications like Max/MSP, TouchOSC, Clean OSC, OSCulator, or Wekinator. You can create custom control surfaces to extend your gestural interactions with norns -- eg. rather than using MIDI faderbank to change reverb damping, you could use a biometric sensor or Wiimote.
+OSC allows you to control norns over WiFi using applications like Max/MSP, TouchOSC, Clean OSC, OSCulator, or Wekinator. You can create custom control surfaces to extend your gestural interactions with norns -- eg. rather than using MIDI faderbank to change reverb damping, you could use a biometric sensor or Wiimote.
 
 All of the [audio parameters](https://monome.org/docs/norns/play/#audio-parameters) have OSC names. To see them, navigate to `PARAMETERS > MAP`:
 
@@ -204,7 +204,7 @@ For more detail on norns + OSC scripting, please see [study 5](/docs/norns/study
 
 ## clock
 
-norns benefits from a global clock system. This helps makes it straightforward to pass a clock signal from an external source to a norns script, to pass the norns internal clock to a modular synth, or sync norns and Ableton Live over WIFI.
+norns benefits from a global clock system. This helps makes it straightforward to pass a clock signal from an external source to a norns script, to pass the norns internal clock to a modular synth, or sync norns and Ableton Live over WiFi.
 
 Please ensure that your MIDI devices are connected as needed by following the steps in [**connect**](#connect)
 {: .label .label-grey}
@@ -221,18 +221,18 @@ The global clock can be driven from four different sources.
 
 - internal: advances independently
 - midi: an incoming MIDI clock signal will advance
-- link: if Ableton Live and norns are on the same WIFI network, enabling Link in Live will sync norns + Live in mutual following
+- link: if Ableton Live and norns are on the same WiFi network, enabling Link in Live will sync norns + Live in mutual following
 - crow: pulses from a modular synth into a USB-connected [crow](/docs/crow) will advance
 
 **tempo**
 
-If clock is set to `internal` or `link`, use **E3** to adjust tempo (internal minimum: 1 bpm / Link minimum: 20 bpm ; maximum: 300 bpm)
+If clock is set to `internal` or `link`, use <kbd>E3</kbd> to adjust tempo (internal minimum: 1 bpm / Link minimum: 20 bpm ; maximum: 300 bpm)
 
 If clock is set to `midi` or `crow`, an average tempo will be listed but cannot be changed.
 
 **reset**
 
-Press **K3** to restart the clock if it's stopped.
+Press <kbd>K3</kbd> to restart the clock if it's stopped.
 
 **link quantum**
 
@@ -244,9 +244,11 @@ From [Ableton](https://ableton.github.io/link/):
 
 If you'd like to sync the transport of another Link-enabled device to norns, then toggle this setting to `enabled`. Please note that not all community scripts have transport-synced start + stop mechanisms -- for code examples to add transport control to a norns script, see [the clocks study](/docs/clocks).
 
-**midi out**
+**midi clock out**
 
 norns can send a MIDI clock signal out to any port, regardless of the current clock source. This means norns can be a Link-to-MIDI-clock or CV-pulse-to-MIDI converter.
+
+norns will automatically populate the currently-connected MIDI devices in this list. Use <kbd>K3</kbd> to toggle clock out on/off for each entry.
 
 **crow out**
 

@@ -44,7 +44,7 @@ When installing, be sure to handle from the sides -- wiping away debris or oil f
 #### wifi nub
 {: .no_toc }
 
-**In order to use hotspot functionality, please be sure to purchase a replacement WIFI adapter with the Ralink RT5370 chipset.**
+**In order to use hotspot functionality, please be sure to purchase a replacement WiFi adapter with the Ralink RT5370 chipset.**
 
 If you have lost your nub, you can purchase a new one [here](https://www.amazon.com/150Mbps-Adapter-LOTEKOO-Wireless-Raspberry/dp/B06Y2HKT75/ref=pd_sbs_147_28?_encoding=UTF8&pd_rd_i=B06Y2HKT75&pd_rd_r=36242006-c576-11e8-a606-db11b044450e&pd_rd_w=5lyNC&pd_rd_wg=ZzAMD&pf_rd_i=desktop-dp-sims&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=53dead45-2b3d-4b73-bafb-fe26a7f14aac&pf_rd_r=24C4PSVWK71S15YGJS6D&pf_rd_s=desktop-dp-sims&pf_rd_t=40701&psc=1&refRID=24C4PSVWK71S15YGJS6D) or email help@monome.org for a replacement (10 USD, shipping included, only US). 
 
@@ -238,17 +238,17 @@ While the standard aluminum norns is a fully-isolated pro-audio device, norns sh
 
 Over the shield's many iterations, we have worked to reduce these issues -- revision `210330` improved audio isolation over the previous two releases (`191106` and `200323`), which `211028` (the latest model) retained.
 
-If you experience noise on a `211028` unit, this is most likely the WIFI antenna on the Pi creating interference. To protect against this, each `211028` board was shipped with a white sticker covering the components in closest proximity to the Pi's USB + Ethernet ports:
+If you experience noise on a `211028` unit, this is most likely the WiFi antenna on the Pi creating interference. To protect against this, each `211028` board was shipped with a white sticker covering the components in closest proximity to the Pi's USB + Ethernet ports:
 
 ![](/docs/norns/image/norns-shield-white-sticker.png)
 
 If you experience consistent noise, either visually represented on the `in` VU meter on the LEVELS screen or generally when listening to the shield's output, disassemble the unit and check the state of this sticker.
 
-If the sticker has been removed, or if it has worn down, or is just not effectively shielding against the strength of your Pi's WIFI antenna, it can be replaced with a few layers of electrical tape.
+If the sticker has been removed, or if it has worn down, or is just not effectively shielding against the strength of your Pi's WiFi antenna, it can be replaced with a few layers of electrical tape.
 
 Also, reassembling the unit with a little more looseness might also help -- over-tightening the enclosure screws can contribute to unexpected noise + interference.
 
-If there is still interference when WIFI is on and networking while monitoring is necessary, we recommend turning WIFI off (via SYSTEM > WIFI) and plugging directly into your router via the Pi's Ethernet jack. This will completely bypass the Pi's antenna and any related interference in the audio lines.
+If there is still interference when WiFi is on and networking while monitoring is necessary, we recommend turning WiFi off (via SYSTEM > WIFI) and plugging directly into your router via the Pi's Ethernet jack. This will completely bypass the Pi's antenna and any related interference in the audio lines.
 
 ### can I plug modular signals into norns directly? {#modular-levels}
 
@@ -565,71 +565,17 @@ To confirm:
 - if `/var/log/journal` is showing as larger than 20 megabytes, you can safely clean up the files inside by executing: `sudo journalctl --vacuum-size=20M`
 - execute `sudo du -h /var/log` to confirm the space has been reclaimed
 
-### change default password + address {#change-password}
-
-Since all norns units come configured with the same username + password, we encourage you to personalize + protect your setup by changing the default hostname and password for the `we` user.
-
-#### change passwords via SYSTEM menu {#system-password}
-
-In the norns SYSTEM menu, there's a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH, as well as your SMB + hotspot passwords. **nb. this password must be between 8 to 63 characters in length -- otherwise hotspot (which is WPA-PSK) will not work.**
-
-While you can simply reset this password again via this menu option, we encourage you to set it to something memorable so you don't worry about troubleshooting connectivity in a critical moment.
-
-#### hostname
-
-To change the hostname for maiden access, log in to the norns via [ssh](../advanced-access/#ssh) and execute:
-
-```
-sudo raspi-config
-```
-
-This will lead you to the [Raspberry Pi Software Configuration Tool](https://www.raspberrypi.org/documentation/computers/configuration.html), where you can follow these steps:
-
-- press ENTER on `1 System Options`
-- press ENTER on `S4 Hostname`
-- press ENTER on `<ok>` and type in a new hostname for your norns device (no need to type `.local`
-- navigate down to `Finish` and press ENTER -- if asked to reboot, please do
-- the unit will power down after a few seconds (if working with a standard norns, the unit will not restart but will simply shut down)
-
-Now, you'll be able to use your new hostname for:
-
-- maiden access: what once was `norns.local` will now be `your_unique_name.local` (you can also use the device's IP address)
-- ssh alias: what was once `norns.local` will now be `your_unique_name.local` (you can also use the device's IP address)
-- hotspot: what was once the `norns` network will now be `your_unique_name`
-
 ### taking a screenshot {#png}
 
 Capturing a screenshot of your norns can be a helpful tool for creating illustrative documentation or sharing UI ideas.
 
-With your norns powered-on and connected to the same wifi network as your computer, connect to maiden. Then, execute this line in maiden's REPL (replacing <FILENAME> with something unique):
+With your norns powered-on and connected to the same wifi network as your computer, connect to maiden. Then, execute this line in maiden's REPL (replacing `"file"` with a unique string):
 
 ```lua
-_norns.screen_export_png("/home/we/dust/<FILENAME>.png")
+screen.export_png("file")
 ```
 
-Use [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp) to connect to norns and download the PNGs you just created from the `dust` folder. You'll notice the PNG is kinda tiny and the colors are inverted. Let's fix that with [ImageMagick](https://imagemagick.org/script/download.php).
-
-With ImageMagick installed on your computer, [download this bash script](../norns-convert_screenshots.bash) and place it in the same folder as your downloaded screenshots. In terminal, `cd` to the folder and execute:
-
-```bash
-./norns-convert_screenshots.bash
-```
-
-That will clean up all the PNGs to render how they do on the norns screen.
-
-*nb. You may need to execute `chmod u+x ./norns-convert_screenshots.bash` beforehand, or use `sudo ./norns-convert_screenshots.bash` if permission is denied.*
-
-If you wish to do this manually, execute the following (replacing <PATH+FILENAME> with the entire path to your downloaded PNG):
-
-```bash
-magick convert <PATH+FILENAME>.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% <PATH+FILENAME>.png
-```
-
-For example:
-
-```bash
-magick convert /Users/dndrks/Downloads/mlr.png -gamma 1.25 -filter point -resize 400% -gravity center -background black -extent 120% /Users/dndrks/Downloads/mlr.png
-```
+This will create a screenshot at `dust/data/<script>/"file".png`. If no script is loaded, screenshots will simply be saved to `data`. Then, use [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp) to connect to norns and download the PNGs.
 
 ## GENERAL KNOWLEDGE {#more-faq}
 
@@ -645,9 +591,9 @@ When you receive your unit, we highly recommend starting with a [fresh installat
 
 From there:
 
-- [connect norns to WIFI](/docs/norns/wifi-files/#connect)
+- [connect norns to WiFi](/docs/norns/wifi-files/#connect)
 - [perform a system update](/docs/norns/wifi-files/#update)
-- once norns is connected to your WIFI, use a browser on a computer connected to the same network to connect to [maiden](/docs/norns/maiden/), which opens a communication channel between your computer and norns
+- once norns is connected to WiFi, use a browser on a computer connected to the same network to connect to [maiden](/docs/norns/maiden/), which opens a communication channel between your computer and norns
 - access the [project manager](/docs/norns/maiden/#project-manager) and you'll see all the community scripts available for installation
 
 ### etc

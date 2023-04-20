@@ -19,7 +19,7 @@ has_toc: false
 {:toc}
 </details>
 
-_maiden_ is a browser-based portal for norns. It can be accessed via a norns-hosted hotspot, or if norns and your browser are on the same WIFI network.
+_maiden_ is a browser-based portal for norns. It can be accessed via a norns-hosted hotspot, or if norns and your browser are on the same WiFi network.
 
 To dive in, point your web browser at `norns.local` to see the maiden interface. If the site is not found, try connecting directly to the IP address shown on the norns screen, for example: `192.168.0.100`.
 
@@ -144,7 +144,7 @@ If you need to restart the matron/crone environment for any reason (ie, the menu
 
 This will disconnect maiden, but once matron has restarted you can reconnect.
 
-### installing scripts from GitHub (WIFI connection required) {#fetch}
+### installing scripts from GitHub (WiFi connection required) {#fetch}
 
 Sometimes, scripts don't make it into the community catalog. To fetch a script that's only hosted on a developer's GitHub:
 

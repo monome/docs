@@ -9,7 +9,7 @@ permalink: /norns/study-4/
 # physical
 {: .no_toc }
 
-norns studies part 4: grids, midi, clock syncing
+norns studies part 4: grids, MIDI, clock syncing
 
 <details open markdown="block">
   <summary>
@@ -354,7 +354,7 @@ In each case, channel will default to 1 if left off. For note on/off, velocity i
 
 ### keeping track of little boxes
 
-*DEVICES* (grids, arcs, midi, and HID) use a virtual port system. Physical devices are assigned to a virtual port via the **SYSTEM > DEVICES** menu. New devices are automatically assigned to remaining empty ports.
+*DEVICES* (grids, arcs, MIDI, and HID) use a virtual port system. Physical devices are assigned to a virtual port via the **SYSTEM > DEVICES** menu. New devices are automatically assigned to remaining empty ports.
 
 When calling `connect()` with no argument, port 1 is used. This is true of grids, MIDI devices, [arcs](/docs/arc), and HID devices.
 
@@ -387,14 +387,14 @@ An often-used feature of MIDI is the ability to sync devices to a tempo. One dev
 
 This is accomplished using a series of bytes: 248 (clock tick), 250 (clock start), 251 (clock continue), and 252 (clock stop).
 
-Instead of sorting these bytes out by hand, we can just use the global clock inside of norns, which has handlers built in for internal clocking as well as midi, Ableton Link, and clock signals through crow. The `CLOCK` menu is available in the `PARAMETERS` screen. see the [dedicated clock study](../clocks/) for more detail.
+Instead of sorting these bytes out by hand, we can just use the global clock inside of norns, which has handlers built in for internal clocking as well as MIDI, Ableton Link, and clock signals through crow. The `CLOCK` menu is available in the `PARAMETERS` screen. see the [dedicated clock study](../clocks/) for more detail.
 
 ### source
 
 This sets the sync source for the global tempo.
 
 - `internal` sets norns as the clock source
-- `midi` takes any external midi clock via connected USB midi devices
+- `midi` takes any external MIDI clock via connected USB-MIDI devices
 - `link` enables ableton link sync for the connecting wifi network
 - `crow` takes sync from input 1 of a connected crow device
 
@@ -402,7 +402,7 @@ Link has a `link quantum` parameter to set the quantum size.
 
 crow additionally has a `crow in div` parameter to specify the number of sub-divisions per beat.
 
-The `tempo` parameter sets the internal and link tempos. This tempo will be automatically updated if set by an external source (midi, crow, or remote link device).
+The `tempo` parameter sets the internal and link tempos. This tempo will be automatically updated if set by an external source (MIDI, crow, or remote Link device).
 
 You can set the tempo in your script by the normal method of setting parameters:
 
@@ -412,9 +412,17 @@ You can set the tempo in your script by the normal method of setting parameters:
 
 ### out
 
-Clock signals can be transmitted via midi or crow.
+Clock signals can be transmitted via MIDI or crow.
 
-`midi out` sets the port number (which MIDI device, via SYSTEM > DEVICES) on which to transmit.
+**MIDI**
+
+norns can send a MIDI clock signal out to any port, regardless of the current clock source. This means norns can be a Link-to-MIDI-clock or CV-pulse-to-MIDI converter.
+
+- norns will automatically populate the currently-connected MIDI devices in this list
+- use <kbd>K3</kbd> to toggle clock out on/off for each entry
+- see `SYSTEM > DEVICES` to manage devices
+
+**crow**
 
 `crow out` sets the output number, and also has a `crow out div` setting for beat subdivisions.
 

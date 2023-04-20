@@ -25,7 +25,7 @@ Both standard norns and shield are capable of connecting to existing WiFi networ
 
 shield has its own WiFi antenna built in (3B: 2.4Ghz, 3B+/4: 2.4Ghz and 5Ghz), thanks to its Raspberry Pi. Standard norns doesn't have WiFi built in, so it comes with a 2.4GHz USB WiFi adapter -- if you need replacements please see [replacement parts](/docs/norns/help/#WiFi-nub).
 
-### connecting norns to a WIFI network {#wifi-connect}
+### connecting norns to a WiFi network {#wifi-connect}
 
 The first few minutes of this video walks through how to host a hotspot from norns and how to connect norns to a known WiFi network:
 
@@ -73,7 +73,7 @@ To check for and install updates:
 - connect to a WiFi network (updates cannot be performed via norns-powered hotspot)
 - navigate to **SYSTEM > UPDATE** and press **K3**
 - norns will check for available updates
-  - *nb. if this takes a while, confirm norns is connected to WIFI and/or perform a SYSTEM > RESTART*
+  - *nb. if this takes a while, confirm norns is connected to WiFi and/or perform a SYSTEM > RESTART*
 - if norns finds an update, press **K3** to confirm installation
 - after installation, press any key to safely shut norns down
 
@@ -195,9 +195,9 @@ After you restore these files, we encourage downloading fresh copies of the comm
 
 Since all norns units come configured with the same username + password, we encourage you to personalize + protect your setup by changing the default hostname and password for the `we` user.
 
-### via SYSTEM menu {#system-password}
+### via SETTINGS menu {#settings-password}
 
-In the norns SYSTEM menu, there’s a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH, as well as your SMB (samba) + hotspot passwords. **nb. this password must be between 8 to 63 characters in length -- otherwise hotspot (which is WPA-PSK) will not work.**
+In the norns SETTINGS menu, there’s a `PASSWORD` entry which will open up a text selector for you to enter a new password. This will be the password you use to connect to your norns via SSH, as well as your SMB (samba) + hotspot passwords. **nb. this password must be between 8 to 63 characters in length -- otherwise hotspot (which is WPA-PSK) will not work.**
 
 While you can simply reset this password again via this menu option, we encourage you to set it to something memorable so you don’t worry about troubleshooting connectivity in a critical moment.
 

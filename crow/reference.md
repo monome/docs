@@ -832,7 +832,7 @@ ii.jf.event = function(e, value)
   end
 end
 ii.jf.get 'ramp' -- will trigger the above .event function
-ii.jf.tr(1, 1)   -- sets just friends' 1st trigger to the on state
+ii.jf.trigger(1, 1)   -- sets just friends' 1st trigger to the on state
 ```
 Generally `ii` arguments corresponding to pitch, are specified in volts (like `input` and `output`), times are specified in seconds (like `.slew` and `ASL`). other parameters use regular numbers.
 

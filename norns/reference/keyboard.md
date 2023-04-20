@@ -8,10 +8,11 @@ permalink: /norns/reference/keyboard
 
 ### control
 
-| Syntax                    | Description                                             |
-| ------------------------- | ------------------------------------------------------- |
-| keyboard.code(code,value) | User script callback for keypresses : function          |
-| keyboard.char(character)  | User script callback for specific characters : function |
+| Syntax                     | Description                                                                                     |
+| -------------------------- | ----------------------------------------------------------------------------------------------- |
+| keyboard.code(key,value)   | User script callback for keypresses : function                                                  |
+| keyboard.char(character)   | User script callback for printable characters (letters, numbers, punctuation, space) : function |
+| keyboard.code_to_char(key) | Convert a keyboard code to a printable character : function                                     |
 
 #### OSC
 
@@ -28,7 +29,7 @@ See the [OSC reference](/docs/norns/reference/osc) for more details.
 | keyboard.shift()       | Returns state of SHIFT key : boolean              |
 | keyboard.state[string] | Returns state of defined key, eg. ['A'] : boolean |
 
-### example
+### typing example
 
 ```lua
 MU = require("musicutil")
@@ -84,4 +85,84 @@ end
 
 ### description
 
-Deciphers keyboard (typing, not piano) input and executes user-assignable callbacks based on key codes, character case, and held state. Specific functions are available to query modifier states: `shift`, `alt`, `ctrl`, and `meta`. Three key state values are reported as part of the `code` callback: 1 for initial press, 2 for hold, 0 for release.
+Deciphers keyboard (typing, not piano) input and executes user-assignable callbacks based on key codes, character case, and held state. Specific functions are available to query modifier states: `shift`, `alt`, `ctrl`, and `meta`. Three key state values are reported as part of the `code` callback: 1 for initial press, 2 for press and hold, 0 for release.
+
+### specific cases
+
+Employment of the `keyboard` library can vary widely by intended use.
+
+For basic text input (as demonstrated in the code snippet above), use `keyboard.char` for inputting characters and `keyboard.code` for handling entries like `"ENTER"`.
+
+To use a keyboard as a matrix of buttons, where any key can be a modifier, use `keyboard.code` and `keyboard.code_to_char`.
+
+#### code_to_char example
+
+`keyboard.code_to_char` will return output based on the state of any modifier keys currently held (eg. `SHIFT`), as well as the keyboard's layout (under `SYSTEM > DEVICES > HID`). Many thanks to [`@niksilver`](https://github.com/niksilver) for the following example code:
+
+```lua
+-- keyboard.code_to_char(code) example
+
+local state = {
+    kcode = {
+        key = nil,
+        value = nil,
+        code_to_char = nil
+    },
+
+    kchar = {
+        ch = nil,
+    }
+}
+
+function init()
+    redraw()
+end
+
+function redraw()
+    screen.clear()
+
+    screen.move(0, 8)
+    screen.text("Last calls to...")
+
+    screen.move(0, 24)
+    screen.text("keyboard.code(" ..
+        stringify(state.kcode.key) .. ", " ..
+        stringify(state.kcode.value) .. ")"
+    )
+
+    screen.move(0, 32)
+    screen.text("    code_to_char(...) = " ..
+        stringify(state.kcode.code_to_char)
+    )
+
+    screen.move(0, 48)
+    screen.text("keyboard.char(" ..
+        stringify(state.kchar.ch) .. ")"
+    )
+
+    screen.update()
+end
+
+function stringify(s)
+    if type(s) ~= "string" then
+        return tostring(s)
+    end
+
+    local prefix = (s == '\\' or s == "'") and '\\' or ''
+
+    return "'" .. prefix .. s .. "'"
+end
+
+function keyboard.code(key, value)
+    state.kcode.key = key
+    state.kcode.value = value
+    state.kcode.code_to_char = keyboard.code_to_char(key)
+    redraw()
+end
+
+function keyboard.char(ch)
+    state.kchar.ch = ch
+    redraw()
+end
+
+```

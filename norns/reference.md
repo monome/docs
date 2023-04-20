@@ -30,6 +30,7 @@ to access the complete norns API, you can either:
 | [crow (api)](/docs/norns/api/modules/crow.html)                       | Connect a script to a hardware [crow](https://monome.org/docs/crow)                     |
 | [encoders](encoders)                                                  | Decipher the norns on-board encoders                                                    |
 | [engine (api)](/docs/norns/api/modules/engine.html)                   | Register a SuperCollider engine                                                         |
+| [gamepad](gamepad)                                                    | Connect a script to a gamepad controller                                                |
 | [grid](grid)                                                          | Connect a script to a hardware [grid](https://monome.org/docs/grid)                     |
 | [hid (api)](/docs/norns/api/modules/hid.html)                         | Connect a script to HID hardware                                                        |
 | [keyboard](keyboard)                                                  | Decipher keyboard (typing, not piano) input                                             |
@@ -56,7 +57,8 @@ to access the complete norns API, you can either:
 | [lib/listselect](./lib/listselect)                                    | List select utility                                                                     |
 | [lib/musicutil](./lib/musicutil)                                      | Utility module for common music maths                                                   |
 | [lib/pattern_time](./lib/pattern_time)                                | Timed-event pattern recorder / player                                                   |
-| [lib/sequins](./lib/sequins)                                          | A library to build and modify sequencers + arpeggiators with very little code           |
+| [lib/sequins](./lib/sequins)                                          | Build and modify sequencers + arpeggiators                                              |
+| [lib/timeline](./lib/timeline)                                        | Sequence events in time                                                                 |
 | [lib/textentry](./lib/textentry)                                      | Text entry UI                                                                           |
 | [lib/ui](./lib/ui)                                                    | UI widgets module                                                                       |
 | [lib/voice](/docs/norns/api/modules/lib.voice.html)                   | Experimental voice allocation module                                                    |

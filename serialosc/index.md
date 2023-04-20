@@ -12,7 +12,15 @@ serialosc runs in the background and converts serial communication (over USB) in
 
 # How it works
 
-`serialoscd` keeps watch for connection and disconnection of devices. When connected, a newprocess is launched 'serialosc-device' which communicates on its own port.
+## Abstract
+
+Usually, you will not interface with serialosc directly -- instead, you'll likely use a library as an intermediary, like the [`[serialosc]` object in Max](/docs/grid/studies/max) or the [`monomeSC` library for SuperCollider](/docs/grid/studies/sc). Over the years, libraries have been spun up for a lot of environments and languages -- see [our grid studies](/docs/grid/studies) for more about these.
+
+The rest of this document details what these pre-made libraries abstract, for those curious about the underlying mechanics or who wish to build their own.
+
+## Detailed
+
+`serialoscd` keeps watch for connection and disconnection of devices. When connected, a new process is launched 'serialosc-device' which communicates on its own port.
 
 We will assume a theoretical application on port 66666 on localhost is trying to connect to serialosc.
 
@@ -35,7 +43,7 @@ Now when keys on the grid are pressed we should see something like:
 /grid/key 0 2 1
 ```
 
-which follow the form `/prefix/key x y z`. Note, the "prefix" is changeable with a message.
+...which follow the form `/prefix/key x y z`. Note, the "prefix" is changeable with a message.
 
 To send LED data:
 

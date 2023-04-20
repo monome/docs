@@ -9,12 +9,12 @@ This section assume two things are true:
 
 - your grid/arc is displaying a light burst when you plug it into your computer, which means its receiving power over USB
 	- if your grid/arc is *not* displaying a light burst when you plug it into your computer, then the unit is not receiving power -- please try another cable and/or USB port
-- your grid/arc is simply not visible in any apps designed to connect with it, eg. the 'Grid' section of Mark Eats Sequencer's preferences or the dropdown menu in the Max test patchers
+- your grid/arc is simply not visible in any apps designed to connect with it, eg. the dropdown menu in the Max test patchers
 	- if your grid/arc *is* visible to these applications and is successfully connecting but perhaps MIDI out from these applications isn't working the way you expect, then you do not need to perform any of the steps in this section -- instead, please consult MIDI routing documentation for those environments
 
-### MacOS
+### macOS
 
-1. On your Mac, open Activity Monitor and search `serialosc`. you should see entries for both `serialosc-detector` and `serialoscd`. if you do not, then serialosc is not installed.
+1. On your Mac, open Activity Monitor and search `serialosc`. You should see entries for both `serialosc-detector` and `serialoscd`. If you do not, then serialosc is not installed.
 
 2. Once you confirm serialosc is installed, please connect your grid/arc and open Terminal.  
     - execute `ls -lrt /dev/tty.usb*`  
@@ -37,24 +37,23 @@ This section assume two things are true:
 	rm -r FTDIUSBSerialDriver.kext
 	```
 
-4. Now, reboot and try step 2 again. if things are still not working, open Terminal and execute:
+4. Now, reboot and try step 2 again. If things are still not working, open Terminal and execute:
 
 	```
 	launchctl unload /Library/LaunchAgents/org.monome.serialosc.plist
 	launchctl load /Library/LaunchAgents/org.monome.serialosc.plist
 	```
 	
-	In Max, open either grid-test.maxpat or arc-test.maxpat (depending on the monome device). if you can't find the patchers, use CMD+B to open Max's file browser and search either `package:monome grid-test.maxpat` or `package:monome arc-test.maxpat`. plug in your grid/arc and you should see your grid/arc connect automatically!
+	In Max, open either grid-test.maxpat or arc-test.maxpat (depending on the monome device). If you can't find the patchers, use CMD+B to open Max's file browser and search either `package:monome grid-test.maxpat` or `package:monome arc-test.maxpat`. plug in your grid/arc and you should see your grid/arc connect automatically!
 
 	![](images/arc-test-connect.png)
 
 #### Still not working?
 
-Do you have TouchOSC Bridge or TouchOSC Editor installed? Try removing them and installing [the latest versions](https://hexler.net/products/touchosc). You should be able to run both TouchOSC and serialosc, but we've found that reinstalling the TouchOSC software is necessary in some situations.
-
-Do you have any Wacom drivers installed? Please follow [these removal steps](https://www.wacom.com/en-in/support?guideTitle=How-do-I-uninstall-(manually)-and-re-install-the-Wacom-driver-on-Mac-OS-for-a-Pen-Tablet%2C-Pen-Display%2C-or-Pen-Computer%3F&guideId=002-235), as we've found that these drivers can block serialosc.
-
-Then (or first, if you don't have TouchOSC or Wacom drivers installed) try the "uninstalling d2xx drivers" steps from [page 18 of this guide](https://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf) and try installing [the FTDI driver](https://ftdichip.com/drivers/vcp-drivers/) manually.
+- First, please try [re-installing serialosc](setup). Note that if you did not previously install serialosc via homebrew, then you will need to remove any existing installations before proceeding.
+- Do you have TouchOSC Bridge or TouchOSC Editor installed? Try removing them and installing [the latest versions](https://hexler.net/products/touchosc). You should be able to run both TouchOSC and serialosc, but we've found that reinstalling the TouchOSC software is necessary in some situations.
+- Do you have any Wacom drivers installed? Please follow [these removal steps](https://www.wacom.com/en-in/support?guideTitle=How-do-I-uninstall-(manually)-and-re-install-the-Wacom-driver-on-Mac-OS-for-a-Pen-Tablet%2C-Pen-Display%2C-or-Pen-Computer%3F&guideId=002-235), as we've found that these drivers can block serialosc.
+- Try the "uninstalling d2xx drivers" steps from [page 18 of this guide](https://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf) and try installing [the FTDI driver](https://ftdichip.com/drivers/vcp-drivers/) manually.
 
 If you've reached this point and things still aren't working, please contact [help@monome.org](mailto:help@monome.org) with screenshots of what you see in steps 1-4, what you see in the Max console (CMD+B), and your Mac's OS version.
 

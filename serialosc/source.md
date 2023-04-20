@@ -25,5 +25,4 @@ sudo ./waf install
 cd ..
 ```
 
-to run serialosc, execute `serialoscd`.
-
+To run serialosc, execute `serialoscd`.

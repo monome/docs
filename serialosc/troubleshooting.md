@@ -40,8 +40,9 @@ This section assume two things are true:
 4. Now, reboot and try step 2 again. If things are still not working, open Terminal and execute:
 
 	```
-	launchctl unload /Library/LaunchAgents/org.monome.serialosc.plist
-	launchctl load /Library/LaunchAgents/org.monome.serialosc.plist
+	brew services list
+	brew services stop serialosc
+	serialoscd
 	```
 	
 	In Max, open either grid-test.maxpat or arc-test.maxpat (depending on the monome device). If you can't find the patchers, use CMD+B to open Max's file browser and search either `package:monome grid-test.maxpat` or `package:monome arc-test.maxpat`. plug in your grid/arc and you should see your grid/arc connect automatically!

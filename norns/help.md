@@ -285,7 +285,7 @@ When you hit K2 on the SELECT / SYSTEM / SLEEP screen, you'll be shown helpful s
 - on wall power, as the battery gets closer and closer to 100%, you may see the positive `mA` begin to reduce – this is normal / expected, as norns is ‘trickling’ charge in
 - at 100% battery, you’ll likely see `0mA`, since norns does not need to draw any more power to charge the battery – this is a safety against overcharging and degrading your battery, so that if you leave your norns plugged into wall power for months, you’ll still have a working battery when you detach
 
-'Normal' battery draw is difficult to define, as it depends on the script being used and the hardware connected to norns. Generally, though, a draining battery will display ~`-400mA` without any additional hardware connected -- a charging battery will display `400mA` - `600mA`.
+'Normal' battery draw is difficult to define, as it depends on the script being used and the hardware connected to norns. Generally, without any additional hardware connected, a draining battery will display `-400mA` to `-500mA` and a charging battery will display `400mA` to `600mA` as it charges toward 100%.
 
 ## SOFTWARE
 
@@ -590,6 +590,12 @@ screen.export_png("file")
 ```
 
 This will create a screenshot at `dust/data/<script>/"file".png`. If no script is loaded, screenshots will simply be saved to `data`. Then, use [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp) to connect to norns and download the PNGs.
+
+Once downloaded, you might want to adjust the gamma to display the full range of screen levels. If you have [ImageMagick](https://imagemagick.org/index.php) installed on your computer, `cd` to the file's location and execute:
+
+```bash
+magick convert <filename> -gamma 1.75  <filename>
+```
 
 ## GENERAL KNOWLEDGE {#more-faq}
 

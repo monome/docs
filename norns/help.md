@@ -273,6 +273,20 @@ The norns OS is primarily developed for/on the standard norns hardware, which ma
 
 Avoiding the additional CPU headroom required to support external video output also allows us to optimize the capabilities of norns, to provide standard norns and shield users with the same foundational software experience.
 
+### battery readings
+
+When you hit K2 on the SELECT / SYSTEM / SLEEP screen, you'll be shown helpful system status information, including the current state of the battery at the bottom right corner:
+
+![](/docs/norns/image/help-images/battery.png)
+
+- if the `mA` reading is negative, this means power is being drawn
+  - if you ever see a consistently negative reading _while plugged into wall power_, then the draw on the built-in USB hub is likely too high and you should use an externallty-powered hub
+- if the `mA` reading is positive, this means power is being supplied and the battery is charging up
+- on wall power, as the battery gets closer and closer to 100%, you may see the positive `mA` begin to reduce – this is normal / expected, as norns is ‘trickling’ charge in
+- at 100% battery, you’ll likely see `0mA`, since norns does not need to draw any more power to charge the battery – this is a safety against overcharging and degrading your battery, so that if you leave your norns plugged into wall power for months, you’ll still have a working battery when you detach
+
+'Normal' battery draw is difficult to define, as it depends on the script being used and the hardware connected to norns. Generally, though, a draining battery will display ~`-400mA` without any additional hardware connected -- a charging battery will display `400mA` - `600mA`.
+
 ## SOFTWARE
 
 ### 'available' scripts do not appear in maiden {#available}

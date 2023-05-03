@@ -1,7 +1,10 @@
 ---
 layout: default
-title: serialosc
+nav_exclude: true
 ---
+
+
+# serialosc
 
 serialosc runs in the background and converts serial communication (over USB) into [OSC](/docs/serialosc/osc). Applications can query serialosc to connect to the grid and arc.
 

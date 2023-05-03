@@ -1,7 +1,6 @@
 ---
 layout: default
 title: setup
-redirect_from: /setup/
 ---
 
 ## Installing serialosc

@@ -1,7 +1,8 @@
 ---
 layout: default
-title: osc
-nav_exclude: true
+parent: serialosc
+title: osc reference
+nav_order: 3
 redirect_from: /osc/
 permalink: /serialosc/osc/
 ---

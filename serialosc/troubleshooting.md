@@ -1,6 +1,8 @@
 ---
 layout: default
+parent: serialosc
 title: troubleshooting
+nav_order: 2
 ---
 
 ## Troubleshooting

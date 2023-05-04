@@ -1,7 +1,12 @@
 ---
 layout: default
 title: serialosc
+nav_order: 8
+has_children: true
+has_toc: false
 ---
+
+# serialosc
 
 serialosc runs in the background and converts serial communication (over USB) into [OSC](/docs/serialosc/osc). Applications can query serialosc to connect to the grid and arc.
 
@@ -10,15 +15,15 @@ serialosc runs in the background and converts serial communication (over USB) in
 - [OSC Reference](/docs/serialosc/osc/)
 - [Serial protocol](/docs/serialosc/serial.txt)
 
-# How it works
+## How it works
 
-## Abstract
+### Abstract
 
 Usually, you will not interface with serialosc directly -- instead, you'll likely use a library as an intermediary, like the [`[serialosc]` object in Max](/docs/grid/studies/max) or the [`monomeSC` library for SuperCollider](/docs/grid/studies/sc). Over the years, libraries have been spun up for a lot of environments and languages -- see [our grid studies](/docs/grid/studies) for more about these.
 
 The rest of this document details what these pre-made libraries abstract, for those curious about the underlying mechanics or who wish to build their own.
 
-## Detailed
+### Detailed
 
 `serialoscd` keeps watch for connection and disconnection of devices. When connected, a new process is launched 'serialosc-device' which communicates on its own port.
 

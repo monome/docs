@@ -1,6 +1,8 @@
 ---
 layout: default
+parent: serialosc
 title: setup
+nav_order: 1
 redirect_from: /setup/
 ---
 

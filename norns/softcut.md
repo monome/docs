@@ -247,19 +247,19 @@ See the `8-copy.lua` script for an example of how to turn the -1 to +1 floats to
 
 ![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/9-query.png)
 
-In [**cut and poll**](#3-cut-and-poll), we used a poll to continuously report the position of a voice's playhead. softcut can also return any voice's playhead position on-demand:
+In [**cut and poll**](#3-cut-and-poll), we used a poll to continuously report the position of a voice's playhead. softcut can also query any voice's playhead position on-demand using:
 
 ```lua
 softcut.query_position(voice)
 ```
 
-This command will send the `voice` identifier (`1` through `6`) and its current playhead position through a callback function:
+This command will send the `voice` identifier (`1` through `6`) and its current playhead position through to a callback function:
 
 ```lua
 softcut.event_position(func)
 ```
 
-In `9-query.lua`, we use K3 to query the playhead's position at the moment of press and set it as the endpoint of a micro-loop.
+In `9-query.lua`, we [use K3](https://github.com/monome/softcut-studies/blob/095463cd3e72cfe32611d2db7bf2be404f1f4667/9-query.lua#L140-L145) to query the playhead's position at the moment of press, which sends the data through the [`event_position` callback](https://github.com/monome/softcut-studies/blob/095463cd3e72cfe32611d2db7bf2be404f1f4667/9-query.lua#L45). The callback then [sets the loop points](https://github.com/monome/softcut-studies/blob/095463cd3e72cfe32611d2db7bf2be404f1f4667/9-query.lua#L99-L107) to create a user-adjustable micro-loop.
 
 If you simply wish to sync the playhead of one voice to another's position, use:
 

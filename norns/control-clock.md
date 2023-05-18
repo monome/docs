@@ -242,7 +242,7 @@ From [Ableton](https://ableton.github.io/link/):
 
 **link start/stop sync**
 
-If you'd like to sync the transport of another Link-enabled device to norns, then toggle this setting to `enabled`. Please note that not all community scripts have transport-synced start + stop mechanisms -- for code examples to add transport control to a norns script, see [the clocks study](/docs/clocks).
+If you'd like to sync the transport of another Link-enabled device to norns, then toggle this setting to `enabled`. Please note that not all community scripts have transport-synced start + stop mechanisms -- for code examples to add transport control to a norns script, see [the clocks study](/docs/norns/clocks).
 
 **midi clock out**
 

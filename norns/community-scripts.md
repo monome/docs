@@ -8,23 +8,23 @@ redirect_from: /norns/app/
 
 ## [norns.community](https://norns.community)
 
-since 2018, norns has grown beyond our earliest imaginings: all sorts of new functionality, expanded documentation, group tutorials and classes, weekly hangouts, and perhaps most notably a huge explosion of community-contributed scripts. script-making is also art-making, and the inspiring level of sharing has itself built a community.
+Since its release in 2018, norns has grown beyond our earliest imaginings: new functionality, expanded documentation, group tutorials and classes, weekly hangouts, and perhaps most notably a huge explosion of community-contributed scripts. Script-making is also art-making, and the inspiring level of sharing has itself built a community.
+
+[norns.community](https://norns.community) is a centralized place for community projects. It was initiated by monome and was shaped by the talents of `@tyleretters` who added sharp visual styling + data design and `@eigen` who created a dynamic discovery mechanism with tagging and gallery images.
 
 ![](/docs/norns/image/community_scripts-images/norns-community.png)
 
-[norns.community](https://norns.community) is a centralized place for community projects. it was initiated by monome and the vision was shaped by the talents of `@tyleretters` who added sharp visual styling + data design and `@eigen` who created a dynamic discovery mechanism with tagging and gallery images.
-
 ## mods: community modifications {#mods}
 
-with norns update `210927` (September 27 2021), a *mods* system was introduced by `@ngwese`.
+With norns update `210927` (September 27 2021), a *mods* system was introduced by `@ngwese`.
 
-mods are small chunks of code to create custom modifications to the core workings of the norns system software. mods are features which modify the basic functionality of norns, for all scripts, but is a feature which isn't necessary to include in the foundational norns codebase.
+Mods are small chunks of code to create custom modifications to the core workings of the norns system software. Mods are features which modify the basic functionality of norns, for all scripts, but is a feature which isn't necessary to include in the foundational norns codebase.
 
-a mod lives in the `dust` folder just like standard norns scripts. unlike norns scripts, the code in a mod is loaded by matron when it starts up. mods can modify or extend the Lua environment globally such that the changes are visible to all scripts. full developer documentation is forthcoming, though this [example mod](https://github.com/monome/norns-example-mod) lays out the basics.
+A mod lives in the `dust` folder just like standard norns scripts. Unlike norns scripts, the code in a mod is loaded by matron when it starts up. Mods can modify or extend the Lua environment globally such that the changes are visible to all scripts. Full developer documentation is forthcoming, though this [example mod](https://github.com/monome/norns-example-mod) lays out the basics.
 
 ### installing a mod
 
-to install a mod, we'll make use of maiden's [fetch](../maiden/#fetch) feature.
+To install a mod, we'll make use of maiden's [fetch](../maiden/#fetch) feature.
 
 - find a mod you wish to install
 	- eg. [gridkeys](https://llllllll.co/t/gridkeys-mod/49431), a mod to use a grid as a MIDI keyboard for any norns script
@@ -36,17 +36,17 @@ to install a mod, we'll make use of maiden's [fetch](../maiden/#fetch) feature.
 
 ### enabling / disabling a mod
 
-mods by their nature can have a negative impact on system stability or make system level changes which may not be universally welcome. by default a mod, even if installed, will not be loaded. one must explicitly enable a mod and restart norns before its functionality will be available.
+By their very nature, mods can have a negative impact on system stability or make system level changes which may not be universally welcome. Even if installed, a mod will *by default* start as unloaded. One must explicitly enable a mod and restart norns before its functionality will be available.
 
-to enable a mod, visit `SYSTEM > MODS` to see the list of installed mods. mods which are loaded will have a small dot to the left of their name. use E2 to selected an item in the list and then use E3 to enable or disable as appropriate. unloaded mods will show a + to the right their name to indicate that they will be enabled (and thus loaded) on restart. loaded mods will show a - to the right of their name indicating they will be disabled on restart.
+To enable a mod, visit `SYSTEM > MODS` to see the list of installed mods. Mods which are loaded will have a small dot to the left of their name. Use <kbd>E2</kbd> to selected an item in the list and then use <kbd>E3</kbd> to enable or disable as appropriate. Unloaded mods will show a `+` to the right their name to indicate that they will be enabled (and thus loaded) on restart. Loaded mods will show a `-` to the right of their name indicating they will be disabled on restart.
 
-loaded mods which have a menu will have `>` at the end of their name. pressing K3 will enter the mod's menu.
+Loaded mods which have a menu will have `>` at the end of their name. Pressing <kbd>K3</kbd> will enter the mod's menu.
 
 ## community scripts: summon {#summon}
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/412510077?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
-in the video above, scripts made by the [lines community](https://llllllll.co) are being played by the [lines community](https://llllllll.co).
+In the video above, scripts made by the [lines community](https://llllllll.co) are being played by the [lines community](https://llllllll.co).
 
 [orca](https://norns.community/en/authors/collabs/orca) // script: [`@its_your_bedtime`](https://www.instagram.com/its_your_bedtime/) // performance: [`@elia`](https://www.instagram.com/eliapiana/)
 

@@ -40,24 +40,24 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-9",
+					"id" : "obj-6",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 439.599999999999909, 239.0, 66.0, 22.0 ],
+					"patching_rect" : [ 478.0, 236.0, 59.0, 22.0 ],
 					"text" : "rows $1"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-10",
+					"id" : "obj-4",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 354.800000000000011, 239.0, 81.0, 22.0 ],
+					"patching_rect" : [ 384.0, 236.0, 81.0, 22.0 ],
 					"text" : "columns $1"
 				}
 
@@ -70,7 +70,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 9.5, 588.0, 160.0, 33.0 ],
-					"text" : "grid studies: max 2-1\nhttp://monome.org"
+					"text" : "grid studies: max 2-2\nhttp://monome.org"
 				}
 
 			}
@@ -80,8 +80,20 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 250.0, 245.0, 47.0, 22.0 ],
+					"patching_rect" : [ 279.0, 240.0, 47.0, 22.0 ],
 					"text" : "print"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Andale Mono",
+					"id" : "obj-111",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 649.0, 63.0, 45.0, 20.0 ],
+					"text" : "clear"
 				}
 
 			}
@@ -95,8 +107,8 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "list", "list" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 391.0, 286.0, 258.0, 130.0 ],
-					"rows" : 8
+					"patching_rect" : [ 332.0, 341.0, 258.0, 258.0 ],
+					"rows" : 16
 				}
 
 			}
@@ -107,8 +119,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 214.0, 342.0, 73.0, 22.0 ],
-					"text" : "9 3 0"
+					"patching_rect" : [ 240.0, 341.0, 73.0, 22.0 ],
+					"text" : "6 3 0"
 				}
 
 			}
@@ -119,8 +131,92 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 210.0, 286.0, 169.0, 22.0 ],
+					"patching_rect" : [ 240.0, 283.0, 169.0, 22.0 ],
 					"text" : "route /monome/grid/key"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-88",
+					"maxclass" : "toggle",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 311.199999999999989, 115.0, 24.0, 24.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-86",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 343.199999999999989, 115.0, 54.0, 22.0 ],
+					"text" : "4 0 $1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-85",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 294.199999999999989, 72.0, 47.0, 22.0 ],
+					"text" : "1 1 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-84",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 239.199999999999989, 72.0, 47.0, 22.0 ],
+					"text" : "1 1 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-82",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 239.199999999999989, 154.0, 219.0, 22.0 ],
+					"text" : "/monome/grid/led/set $1 $2 $3"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-48",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 478.0, 63.0, 169.0, 22.0 ],
+					"text" : "/monome/grid/led/all 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 215.0, 40.0, 198.0, 22.0 ],
+					"text" : "/monome/grid/led/set 2 0 1"
 				}
 
 			}
@@ -141,7 +237,7 @@
 					"numoutlets" : 6,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "", "int", "", "", "", "" ],
-					"patching_rect" : [ 210.0, 201.0, 200.0, 22.0 ],
+					"patching_rect" : [ 239.199999999999989, 199.0, 200.0, 22.0 ],
 					"varname" : "serialosc",
 					"viewvisibility" : 1
 				}
@@ -149,13 +245,6 @@
 			}
  ],
 		"lines" : [ 			{
-				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
-					"source" : [ "obj-1", 4 ]
-				}
-
-			}
-, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-104", 0 ],
 					"order" : 1,
@@ -173,15 +262,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-9", 0 ],
-					"source" : [ "obj-1", 5 ]
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-1", 4 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-107", 0 ],
-					"source" : [ "obj-10", 0 ]
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-1", 5 ]
 				}
 
 			}
@@ -204,7 +293,63 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-107", 0 ],
-					"source" : [ "obj-9", 0 ]
+					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-48", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-107", 0 ],
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-82", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-82", 0 ],
+					"source" : [ "obj-84", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-82", 0 ],
+					"source" : [ "obj-85", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-82", 0 ],
+					"source" : [ "obj-86", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-86", 0 ],
+					"source" : [ "obj-88", 0 ]
 				}
 
 			}

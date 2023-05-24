@@ -40,6 +40,18 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-75",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 9.5, 588.0, 160.0, 33.0 ],
+					"text" : "grid studies: max 1-1\nhttp://monome.org"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"args" : [ "/monome" ],
 					"bgmode" : 0,
 					"border" : 0,
@@ -50,8 +62,8 @@
 					"lockeddragscroll" : 0,
 					"lockedsize" : 0,
 					"maxclass" : "bpatcher",
-					"name" : "serialosc.maxpat",
-					"numinlets" : 2,
+					"name" : "monome-device.maxpat",
+					"numinlets" : 3,
 					"numoutlets" : 6,
 					"offset" : [ 0.0, 0.0 ],
 					"outlettype" : [ "", "int", "", "", "", "" ],
@@ -64,16 +76,16 @@
  ],
 		"lines" : [  ],
 		"dependency_cache" : [ 			{
-				"name" : "serialosc.js",
-				"bootpath" : "~/Documents/Documents - MacBook Pro/GitHub/docs/grid/studies/max/files",
-				"patcherrelativepath" : ".",
+				"name" : "monome-device.js",
+				"bootpath" : "~/Documents/GitHub/monome-max-package/patchers",
+				"patcherrelativepath" : "../../../patchers",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "serialosc.maxpat",
-				"bootpath" : "~/Documents/Documents - MacBook Pro/GitHub/docs/grid/studies/max/files",
-				"patcherrelativepath" : ".",
+				"name" : "monome-device.maxpat",
+				"bootpath" : "~/Documents/GitHub/monome-max-package/patchers",
+				"patcherrelativepath" : "../../../patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}

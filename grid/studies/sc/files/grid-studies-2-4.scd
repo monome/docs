@@ -1,13 +1,13 @@
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new(0);
+~m = MonomeGrid.new();
 
 s.waitForBoot({
 
 	var draw;
 
-	~m.connect(0);
+	~m.connect();
 	~step = Array.fill(~m.cols * ~m.rows, {0});
 
 	~m.key({ arg x,y,z;

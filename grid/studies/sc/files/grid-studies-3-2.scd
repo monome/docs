@@ -5,16 +5,25 @@ Server.default = Server.local;
 
 s.waitForBoot({
 
-	var draw, timer;
+	var draw, timer, cols = 16, rows = 8;
 
-	~m.connect(); // if we don't want to connect to a second device, we can leave the argument out
-	~step = Array.fill(~m.cols * ~m.rows-2, {0});
+	MonomeGrid.setAddCallback({
+		arg serial, port, prefix;
+		("grid was added: " ++ serial ++ " " ++ port ++ " " ++ prefix).postln;
+		if( serial == MonomeGrid.getConnectedDevices[0], {
+			cols = ~m.cols;
+			rows = ~m.rows;
+		});
+	});
+
+	~m.connect(0); // if we don't want to connect to a second device, we can leave the argument out
+	~step = Array.fill(cols * (rows-2), {0});
 	~play_position = -1;
 
 	// 'cols' + 'rows' return as 1-indexed,
 	// but we need 0-indexed for most of our functions!
-	~lastCol = ~m.cols-1;
-	~lastRow = ~m.rows-1;
+	~lastCol = cols-1;
+	~lastRow = rows-1;
 
 	~m.key({ arg x,y,z;
 		if((z == 1) && (y <= (~lastRow - 2)), {

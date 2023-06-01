@@ -11,16 +11,25 @@ SynthDef(\singrain, { |freq = 440, amp = 0.2, sustain = 1|
 
 s.waitForBoot({
 
-	var draw, timer;
+	var draw, timer, cols = 16, rows = 8;
 
-	~m.connect();
+	~m.connect(0);
 
-	~step = Array.fill(~m.cols * ~m.rows-2, {0});
+	MonomeGrid.setAddCallback({
+		arg serial, port, prefix;
+		("grid was added: " ++ serial ++ " " ++ port ++ " " ++ prefix).postln;
+		if( serial == MonomeGrid.getConnectedDevices[0], {
+			cols = ~m.cols;
+			rows = ~m.rows;
+		});
+	});
+
+	~step = Array.fill(cols * (rows-2), {0});
 	~play_position = -1;
 	~next_position;
 	~cutting = 0;
-	~lastCol = ~m.cols-1;
-	~lastRow = ~m.rows-1;
+	~lastCol = cols-1;
+	~lastRow = rows-1;
 
 	~keys_held = 0;
 	~key_last = 0;

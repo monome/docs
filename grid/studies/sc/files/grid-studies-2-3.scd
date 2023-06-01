@@ -1,11 +1,11 @@
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new(0);
+~m = MonomeGrid.new();
 
 s.waitForBoot({
 
-	~m.connect(0);
+	~m.connect();
 
 	~m.key({
 		arg x,y,z;

@@ -15,11 +15,12 @@ The monome grid by default does nothing. Connected to a computer or module, inte
 Resources for connecting to:
 
 - [norns](grid-norns) - sound computer made by monome
-- [modular](grid-modular) - eurorack modules which support the grid
 - [computer](grid-computer) - macOS, Windows, and Linux
+- [modular](grid-modular) - Eurorack modules which support the grid
 
 Additional information:
 
+- [serialosc](/docs/serialosc) - an OSC server to connect a grid to your macOS, Windows or Linux machine
 - [editions](editions) - information about different device generations
 - [disassembly](disassembly) - guides for disassembling the hardware
 - [care](care) - some suggestions for device maintenance (tl;dr: don't rest other gear on top of grid, as it will discolor pads)

@@ -4,13 +4,7 @@ nav_exclude: true
 permalink: /serialosc/linux/
 ---
 
-# Linux setup
-
-_Note: This guide may need link updates! Please let us know: [help@monome.org](mailto:help@monome.org)_.
-
-This is a brief guide for using a monome grid on Linux. This guide covers two Linux distributions: [Ubuntu Linux](https://www.ubuntu.com) and [Arch Linux](https://www.archlinux.org). Once the required packages are installed, check out the [list](/docs/grid/app) of available applications, or read through the [guides](/docs/grid/studies/) on how to create your own.
-
-## Ubuntu Linux
+## Ubuntu
 
 The easiest way to setup things on Ubuntu is to get the precompiled packages from a PPA: [ppa:artfwo/monome](https://launchpad.net/~artfwo/+archive/monome).
 
@@ -19,16 +13,18 @@ The easiest way to setup things on Ubuntu is to get the precompiled packages fro
 	$ sudo apt-get install libmonome
 	$ sudo apt-get install serialosc
 
-## Arch Linux
+## Arch
 
 The easiest way to setup things on Arch is to use the PKGBUILDs available in the AUR. You can either install them manually, or use an AUR helper utility such as [yay](https://github.com/Jguer/yay) or [auracle](https://github.com/falconindy/auracle). Once that's done, you can install the required packages:
 
 - [libmonome](https://aur.archlinux.org/packages/libmonome-git/)
 - [serialosc](https://aur.archlinux.org/packages/serialosc-git/)
 
-## Other Linux distributions
+## Source
 
-If there are no precompiled packages available for your distribution, you can still build libmonome and serialosc from source. Generic build instructions can be found in the "compiling from source" section of the [raspbian install docs](/docs/raspbian/).
+If there are no precompiled packages available for your distribution, you can still build libmonome and serialosc from source:
+
+- [compiling from source](/docs/serialosc/source)
 
 ## Notes
 

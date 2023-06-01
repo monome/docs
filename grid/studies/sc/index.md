@@ -54,15 +54,22 @@ To install the `monomeSC` SuperCollider library for monome grid devices:
 
 After setting up the library, connect your grid to your computer and boot SuperCollider.
 
-As SuperCollider boots up, it initializes the `MonomeGrid` class, which is how we'll get grids and SuperCollider to communicate. If the hardware isn't connected when the software boots, then `MonomeGrid` won't be able to index it for use. When you try to connect to your grid via SuperCollider, you'll see this message in the console:
+As SuperCollider boots up, it initializes the `MonomeGrid` class, which is how we get grids and SuperCollider to communicate. `MonomeGrid` indexes device connections as they occur, so if you try to script for a grid which hasn't yet been connected, SuperCollider will let you know in the Post Window:
 
 ```js
-!! no monome grid detected !!
-  connect a grid and execute MonomeGrid.initClass() ,
-  or Recompile Class Library
+WARNING: no monome grid detected at device slot <i>
 ```
 
-If you run into this message, or have any other trouble communicating with your grid from SuperCollider, quickly recompiling the Class Library should solve the issue:
+If you run into this message, simply connect a grid and you'll see it acknowledged in the Post Window:
+
+```js
+MonomeGrid device added to port: 17675
+MonomeGrid serial: m46674021
+MonomeGrid model: monome 128
+```
+You should now be able to re-run your script without issue!
+
+If you have any other troubles communicating with your grid from SuperCollider, quickly recompiling the Class Library should solve the issue:
 
 - macOS: <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
 - Windows / Linux: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>
@@ -74,10 +81,12 @@ The `MonomeGrid` class facilitates easy communication with grids, modeled after 
 Let's create a variable, `~m`, to initialize the `MonomeGrid` class:
 
 ```js
-~m = MonomeGrid.new(0);
+~m = MonomeGrid.new(rotation: 0, prefix: "/monome", fps: 60);
 ```
 
-The `0` argument to the initializer is *grid rotation*. If none is provided, `MonomeGrid` will assume 0 rotation. Check out the `MonomeGrid` help file for additional rotation options!
+- The `rotation: 0` argument to the initializer is *grid rotation*. If none is provided, `MonomeGrid` will assume 0 rotation. Check out the `MonomeGrid` help file for additional rotation options!
+- The `prefix: "/monome"` argument is a nickname we can use to alias this script's grid, instead of relying on serial numbers. If none is provided, it will be assigned `"/monome"`.
+- The `fps: 60` argument specifies the *frames per second* which the grid will redraw. If none is provided, it will be assigned `60`.
 
 Now that the class is initialized to a variable, let's connect to a grid:
 
@@ -85,13 +94,13 @@ Now that the class is initialized to a variable, let's connect to a grid:
 ~m.connect(0);
 ```
 
-Here the first monome grid device found is attached. If no device number is provided, `MonomeGrid` will connect to the first gird device found.
+Here, our script connects to the first monome grid device that was physically attached to our device (SuperCollider Lists and Arrays are 0-indexed, so device `0` is the first one). If no device number is provided, `MonomeGrid` will connect to the first grid device it finds.
 
 Please note that there needs to be a slight delay in between initializing the new device and connecting to it. Waiting until the server starts provides the necessary time buffer:
 
 ```js
 (
-~m = MonomeGrid.new(0);
+~m = MonomeGrid.new(rotation: 0, prefix: "/monome", fps: 60);
 
 s.waitForBoot({
 	~m.connect(0);
@@ -100,6 +109,29 @@ s.waitForBoot({
 ```
 
 The library communicates with *serialosc* to discover attached devices using OSC. For a detailed description of how the mechanism and protocol work, see [the serialosc technical docs](/docs/serialosc/osc/) and [grid serial reference](/docs/serialosc/serial.txt) -- please note that neither of these documents are required for this study, but they _are_ good background for creating your own grid communication libraries.
+
+### query
+
+Once connected, our script's instance of `MonomeGrid` has some individual attributes we can query. In these examples, we'll use `~m` to illustrate:
+
+- `~m.serial`: this grid's serial number
+- `~m.rows`: this grid's row count (1-indexed)
+- `~m.cols`: this grid's column count (1-indexed)
+- `~m.dvcnum`: this grid's assigned device number (0-indexed)
+- `~m.prefix`: this grid's assigned prefix
+- `~m.port`: this grid's assigned OSC port
+- `~m.rotation`: this grid's assigned rotation
+- `~m.fps`: this grid's assigned refresh rate
+
+
+We can also query `MonomeGrid` directly:
+
+- `MonomeGrid.getConnectedDevices`: returns the serial numbers of each device that's been connected since the Server started
+- `MonomeGrid.getPortList`: returns the OSC ports of each device that's been connected since the Server started
+- `MonomeGrid.getPrefixes`: returns the assigned prefixes of each device that's been connected since the Server started
+
+We can also refresh the list of devices that have been connected since the Server started with `MonomeGrid.refreshConnections`.
+
 
 ## 2. basics {#basics}
 
@@ -123,15 +155,20 @@ In [grid-studies-2-1.scd](files/grid-studies-2-1.scd) we define the function to 
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new(0); // 0 means no rotation
+// MonomeGrid accepts three arguments:
+// * rotation (0 is default)
+// * prefix (a string nickname for this grid)
+// * fps (frames per second)
+
+~m = MonomeGrid.new(rotation: 0, prefix: "/monome", fps: 60);
 
 s.waitForBoot({
 
-	~m.connect(0); // 0 means the first-connected device
+	~m.connect(0); // 0 (or not supplying any argument) means the first-connected device
 
 	~m.key({
 		arg x,y,z;
-		[x,y,z].postln;
+		[x,y,z, "serial: " ++~m.serial,"port: "++~m.port].postln;
 	});
 
 });
@@ -167,11 +204,11 @@ Instead of printing the key output, we can show the key state on the grid quite 
 (
 Server.default = Server.local;
 
-~m = MonomeGrid.new(0);
+~m = MonomeGrid.new();
 
 s.waitForBoot({
 
-	~m.connect(0);
+	~m.connect();
 
 	~m.key({
 		arg x,y,z;
@@ -243,7 +280,7 @@ We already have a full bank of toggles set up. Let's shrink down the bank to exc
 
 ```js
 ~m.key({ arg x,y,z;
-	if((z == 1) && (y < (~m.rows-2)), {
+	if((z == 1) && (y < (rows-2)), {
 		var pos = x + (y * 16);
 		if(~step[pos] == 1,
 			{~step[pos] = 0},
@@ -260,15 +297,26 @@ That will get us started.
 
 *See [grid-studies-3-2.scd](files/grid-studies-3-2.scd) for this step.*
 
-To make our interface adaptive to any size grid (eg. we don't want to count to 16 steps on 64 grid with 8 columns), we can query the number of rows and columns with the `rows` and `cols` accessors.
+To make our interface adaptive to any size grid (eg. we don't want to count to 16 steps on 64 grid with 8 columns), we can query the number of rows and columns with the `rows` and `cols` accessors. We'll set that up as a callback for added devices with:
+
+```js
+MonomeGrid.setAddCallback({
+		arg serial, port, prefix;
+		("grid was added: " ++ serial ++ " " ++ port ++ " " ++ prefix).postln;
+		if( serial == MonomeGrid.getConnectedDevices[0], {
+			cols = ~m.cols;
+			rows = ~m.rows;
+		});
+	});
+```
 
 However, you might've noticed that these methods return 1-indexed numbers. Since most of our SuperCollider functions will be 0-indexed, let's make it easy on ourselves and introduce 0-indexed versions of our row and column totals at the top:
 
 ```js
 // 'cols' + 'rows' return as 1-indexed,
 // but we need 0-indexed for most of our functions!
-~lastCol = ~m.cols-1;
-~lastRow = ~m.rows-1;
+~lastCol = cols-1;
+~lastRow = rows-1;
 ```
 
 Now, let's get into fun stuff!  

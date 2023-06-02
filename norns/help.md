@@ -477,7 +477,7 @@ If Etcher or the Imager do not work for you, or if you prefer to use the command
 
 Steps:
 
-1. Install Etcher or the Imager. Download [the norns disk image](https://github.com/monome/norns-image/releases/latest): get the **standard** image. It'll download as a `.tgz` file -- extract it onto your computer so you have a remaining `.img` file.
+1. Install Etcher or the Imager. Download [the norns disk image](https://github.com/monome/norns-image/releases/latest): get the **standard** image. It'll download as a `.tgz` file -- extract it onto your computer so you have a remaining `.img` file. Note that on Windows this may take two unzips -- if one unzip returns a `.tar` file, run an additional unzip on the `.tar` to get the `.img`.
 2. Power norns down and remove the four bottom screws of the unit.
 3. To help simplify the process, please disconnect any other storage devices connected to your computer. Then, plug norns into your computer using its charge cable.  
 4. You'll see a switch through a notch in the norns circuit board. It's currently on `run` -- switch it to `disk`. The LED on the back of norns will turn white and remain on until the 6th step.  

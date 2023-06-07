@@ -352,9 +352,9 @@ end
 
 #### working with multiple norns over Link
 
-It is possible to sync multiple norns units using Link without any additional devices involved. Though Link is a protocol developed and supported by Ableton, it's use does *not* require a copy of Ableton Live.
+It is possible to sync multiple norns units using Link without any additional devices involved. Though Link is a protocol developed and supported by Ableton, it's use does *not* require Ableton Live to be running on any device in the chain. Two norns could absolutely stay in sync across a network without any Digital Audio Workstation. Tempo and clock phase can be shared wirelessly by setting `PARAMETERS > CLOCK > source` to `link` on both devices and ensuring they have the same `quantum`.
 
-norns has special handlers for Link transport start and stop: `clock.link.start()` and `clock.link.stop()`. In norns-to-norns communications, these Link-specific functions also call the script-defined `clock.transport.start()` and `clock.transport.stop()` functions.
+We'll also likely want a script running on each unit to start and stop at the same time. norns has special handlers for Link transport start and stop: `clock.link.start()` and `clock.link.stop()`. In norns-to-norns communications, these Link-specific functions also call the script-defined `clock.transport.start()` and `clock.transport.stop()` functions.
 
 The code below demonstrates how multiple norns units on the same network can communicate tempo and transport start/stop between each other. Run this script on each unit and press <kbd>K3</kbd> on any unit to start the transport on all of them:
 

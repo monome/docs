@@ -24,7 +24,7 @@ Download the code examples here: [files/grid-studies-max.zip](files/grid-studies
 Throughout this text, we'll use the following formatting styles:
 
 - `(message text)`: refers to a Max message object
-- `[objectname @arg val]`: refers to a non-message Max object and the arguments needed
+- `[objectname @args val]`: refers to a non-message Max object and the arguments needed
 
 ## 1. Connect
 
@@ -32,11 +32,11 @@ Throughout this text, we'll use the following formatting styles:
 
 To communicate with grids we trade OSC messages with serialosc. serialosc is an invisible daemon on your computer, which translates OSC messages to streams of numbers over USB.
 
-First we will show how to talk to serialosc.
+First we will show how to talk to serialosc from Max.
 
 Open Max and start a new patcher.
 
-Create a new object (press <kbd>N</kbd>) and type `bpatcher monome-device` and then hit enter. A bpatcher window will appear, resize this to match the long rectangle.
+Create a new object (press <kbd>N</kbd>) and type `bpatcher monome-device` and then hit enter. A bpatcher window will appear. Resize it to match the long rectangle pictured below.
 
 ![](images/grid-studies-1-1.png)
 

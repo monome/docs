@@ -73,4 +73,4 @@ If you are updating a previous installation, just replace the previous `crow_m4l
 
 ### Getting started with crow + Max for Live
 
-There is a full PDF manual for the devices [in the GitHub repo](https://github.com/monome/crow-max-and-m4l/blob/master/crowm4lmanual%20-%20200713.pdf).
+There is a full PDF manual for the devices [in the GitHub repo](https://github.com/monome/crow-max-and-m4l/blob/main/crowm4lmanual%20-%20230310.pdf)).

@@ -36,7 +36,7 @@ If you would like to use the [ii](/docs/modular/ii) functionality, be sure to ob
 
 ### norns
 
-crow integrates seamlessly with norns as a CV and [ii](/docs/modular/ii) interface. By default, crow can be a norns clocking source or destination. [Many scripts have additional crow functionality](https://norns.community/t/crow).
+crow integrates seamlessly with norns as a CV and [ii](/docs/modular/ii) interface. By default, crow can be a norns clocking source or destination. [Many scripts have additional crow functionality](https://norns.community/tag/crow).
 
 Want to script on your own? See the full [crow studies](norns) for a complete guide
 

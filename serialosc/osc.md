@@ -17,6 +17,8 @@ The serialosc server listens on port 12002.
 
 When devices are connected, serialosc spawns new ports for each device. querying the server allows you to discover the port number for each device.
 
+Note that all of the messages listed in this section have argument types included, eg. `si` or `iiii`. These are **not** needed for top-level environments like Max/MSP, SuperCollider, and many others. We included them here to reflect lower-level use with `oscsend` and `oscdump`.
+
 ### messages sent to serialosc server
 
 | message                              | description                                                                                                                                                                        |

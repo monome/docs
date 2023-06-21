@@ -27,7 +27,7 @@ The rest of this document details what these pre-made libraries abstract, for th
 
 `serialoscd` keeps watch for connection and disconnection of devices. When connected, a new process is launched 'serialosc-device' which communicates on its own port.
 
-We will assume a theoretical application on port 66666 on localhost is trying to connect to serialosc. We'll also assume you have `liblo` installed, which includes `oscsend` and `oscdump`.
+We will assume a theoretical application on port 6666 on localhost is trying to connect to serialosc. We'll also assume you have `liblo` installed, which includes `oscsend` and `oscdump`.
 
 First, connect your grid to your computer. Then, open a terminal window and set up an OSC monitor:
 
@@ -56,7 +56,9 @@ Now when keys on the grid are pressed we should see something like:
 
 - `oscsend localhost 17675 /sys/prefix s "/blinky"`
 
-Note that when a grid is disconnected + reconnected, its prefix will return to `/monome`.
+Note that this prefix is saved in your computer's [serialosc preferences](#serialosc-preferences) so that when this grid is disconnected + reconnected, its prefix will remain the defined value. To your grid's prefix change back to default:
+
+- `oscsend localhost 17675 /sys/prefix s "/monome"`
 
 To send LED data:
 
@@ -66,3 +68,32 @@ To send LED data:
 See [OSC](/docs/serialosc/osc) for the complete list of messages.
 
 All ports are also discoverable via zeroconf as `_monome-osc._udp`.
+
+### Preferences
+
+`serialoscd` will save a preference file for each monome device connected to your computer, where prefixes and other information about your device are stored long-term.
+
+The filepath to this folder varies depending on your operating system:
+
+- Linux: `$XDG_CONFIG_HOME/serialosc` or `$HOME/.config/serialosc`
+- macOS: `~/Library/Preferences/org.monome.serialosc`
+- Windows: `$APPDATA\\Monome\\serialosc`
+
+Inside this folder, you see `.conf` files with each device's serial number (eg. `m93274581.conf`), wherein you'll find the device's persistent settings:
+
+```bash
+server {
+  port = 17218
+}
+application {
+  osc_prefix = "/monome"
+  host = "127.0.0.1"
+  port = 7778
+}
+device {
+  rotation = 0
+}
+
+```
+
+If you ever need to start fresh, you can simply delete the corresponding `.conf` file and `serialoscd` will generate a new profile using the default settings.

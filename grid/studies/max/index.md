@@ -13,11 +13,10 @@ This tutorial will show the basics of interfacing with the grid including how a 
 
 This lesson assumes a basic understanding of the Max patching interface. If you're absolutely new to Max it may be helpful to first go through some of the most excellent Max tutorials in-app `Help > Max Documentation`.
 
-Download Max 8: [cycling74.com/downloads](https://cycling74.com/downloads/)
-
-Install serialosc: [/docs/serialosc/setup](/docs/serialosc/setup)
-
-Download the code examples here: [files/grid-studies-max.zip](files/grid-studies-max.zip)
+- Download Max 8: [cycling74.com/downloads](https://cycling74.com/downloads/)
+- Install the `monome` package from Max's [Package Manager](https://docs.cycling74.com/max8/vignettes/package_manager)
+- Install serialosc: [/docs/serialosc/setup](/docs/serialosc/setup)
+- Download the code examples here: [files/grid-studies-max.zip](files/grid-studies-max.zip)
 
 ### style note
 

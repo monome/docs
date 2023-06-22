@@ -17,6 +17,8 @@ The serialosc server listens on port 12002.
 
 When devices are connected, serialosc spawns new ports for each device. querying the server allows you to discover the port number for each device.
 
+Note that all of the messages listed in this section have argument types included, eg. `si` or `iiii`. These are **not** needed for top-level environments like Max/MSP, SuperCollider, and many others. We included them here to reflect lower-level use with `oscsend` and `oscdump`.
+
 ### messages sent to serialosc server
 
 | message                              | description                                                                                                                                                                        |
@@ -90,11 +92,11 @@ The messages below are sent after a `/sys/info` request is received:
 
 ### grid
 
-| message                                | description                                      |
-| -------------------------------------- | ------------------------------------------------ |
-| `/grid/led/set x y s`                  | Set led at (x,y) to state s (0 or 1)             |
-| `/grid/led/all s`                      | Set all leds to state s (0 or 1)                 |
-| `/grid/led/map x_offset y_offset s[8]` | Set a quad (8×8, 64 buttons) in a single message |
+| message                                                         | description                                      |
+| --------------------------------------------------------------- | ------------------------------------------------ |
+| `<prefix>/grid/led/set iii <x> <y> <s>`                         | Set led at (x,y) to state s (0 or 1)             |
+| `<prefix>/grid/led/all i <s>`                                   | Set all leds to state s (0 or 1)                 |
+| `<prefix>/grid/led/map iiiiiiiiii <x_offset> <y_offset> <s[8]>` | Set a quad (8×8, 64 buttons) in a single message |
 
 #### map
 
@@ -102,21 +104,21 @@ Each number in the `map` list is a bitmask of the buttons in a row, one number i
 
 Taken apart:
 
-    (/grid/led/map)  <- the message/route
+    (<prefix>/grid/led/map)  <- the message/route
                    (8 8)  <- the offsets (must be multiples of 8)
                         (1 2 4 8 16 32 64 128)  <- the bitmasks for each row
 
 _examples_
 
 ```
-/grid/led/map 0 0 4 4 4 4 8 8 8 8
-/grid/led/map 0 0 254 253 125 247 239 36 191 4
+<prefix>/grid/led/map iiiiiiiiii 0 0 4 4 4 4 8 8 8 8
+<prefix>/grid/led/map iiiiiiiiii 0 0 254 253 125 247 239 36 191 4
 ```
 
 #### row
 
 ```
-/grid/led/row x_offset y s[..]
+<prefix>/grid/led/row x_offset ii.. <y> <s[..]>
 ```
 
 Set a row in a quad in a single message. Offsets must be multiples of 8. Note that offsets for 64-sized grids should always be 0.
@@ -126,21 +128,21 @@ Each number in the list is a bitmask of the buttons in a row, one number in the 
 _examples (for 256)_
 
 ```
-/grid/led/row 0 0 255 255
-/grid/led/row 8 5 255
+<prefix>/grid/led/row iiii 0 0 255 255
+<prefix>/grid/led/row iii 8 5 255
 ```
 
 _examples (for 64)_
 
 ```
-/grid/led/row 0 0 232
-/grid/led/row 0 3 129
+<prefix>/grid/led/row iii 0 0 232
+<prefix>/grid/led/row iii 0 3 129
 ```
 
 #### col
 
 ```
-/grid/led/col x y_offset s[..]
+<prefix>/grid/led/col iii[..] <x> <y_offset> <s[..]>
 ```
 
 Set a column in a quad in a single message. Offsets must be multiples of 8. Note that offsets for 64-sized grids should always be 0
@@ -150,22 +152,22 @@ Each number in the list is a bitmask of the buttons in a column, one number in t
 _examples (for 256)_
 
 ```
-/grid/led/col 0 0 255 255 (updates quads 1 and 3)
-/grid/led/col 13 8 255 (updates quad 4 due to offset.)
+<prefix>/grid/led/col iiii 0 0 255 255 (updates quads 1 and 3)
+<prefix>/grid/led/col iii 13 8 255 (updates quad 4 due to offset)
 ```
 
 _examples (for 64)_
 
 ```
-/grid/led/col 0 0 232
-/grid/led/col 6 0 155
+<prefix>/grid/led/col iii 0 0 232
+<prefix>/grid/led/col iii 6 0 155
 ```
 
 #### variable brightness
 
-Valid values for 'l' below are in the range [0, 15].
+Valid values for `<l>` below are in the range [0, 15].
 
-January 2011 devices only support four intensity levels (off + 3 brightness levels). The value passed in /level/ messages will be “rounded down” to the lowest available intensity as below:
+January 2011 devices only support four intensity levels (off + 3 brightness levels). The value passed in `/level/` messages will be “rounded down” to the lowest available intensity as below:
 
 - [0, 3] - off
 - [4, 7] - low intensity
@@ -175,17 +177,17 @@ January 2011 devices only support four intensity levels (off + 3 brightness leve
 Devices from June 2012 (and after) allow all 16 intensity levels.
 
 ```
-/grid/led/level/set x y l
-/grid/led/level/all l
-/grid/led/level/map x_off y_off l[64]
-/grid/led/level/row x_off y l[..]
-/grid/led/level/col x y_off l[..]
-/grid/led/intensity i
+<prefix>/grid/led/level/set iii <x> <y> <l>
+<prefix>/grid/led/level/all i <l>
+<prefix>/grid/led/level/map iii[64] <x_off> <y_off> <l[64]>
+<prefix>/grid/led/level/row iii[..] <x_off> <y> <l[..]>
+<prefix>/grid/led/level/col iii[..] <x> <y_off> <l[..]>
+<prefix>/grid/led/intensity i <l>
 ```
 
 #### tilt
 
-    /tilt/set n s
+    <prefix>/tilt/set ii <n> <s>
 
 Set active state of tilt sensor n to s (0 or 1, 1 = active, 0 = inactive).
 
@@ -193,33 +195,33 @@ Set active state of tilt sensor n to s (0 or 1, 1 = active, 0 = inactive).
 
 Note that LED 0 is north. LED numbers increase clockwise.
 
-| message                 | description                                                                                                                                      |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `/ring/set n x l`       | Set LED `x` (0-63) on encoder `n` (0-1 or 0-3) to level `l` (0-15)                                                                               |
-| `/ring/all n l`         | Set all LEDs on encoder `n` (0-1 or 0-3) to level `l` (0-15)                                                                                     |
-| `/ring/map n l[64]`     | Set all LEDs on encoder `n` (0-1 or 0-3) to 64 member array `l[64]`                                                                              |
-| `/ring/range n x1 x2 l` | Set LEDs on encoder `n` (0-1 or 0-3) between (inclusive) `x1` and `x2` to level `l` (0-15). Direction of set is always clockwise, with wrapping. |
+| message                                      | description                                                                                                                                      |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `<prefix>/ring/set iii <n> <x> <l>`          | Set LED `x` (0-63) on encoder `n` (0-1 or 0-3) to level `l` (0-15)                                                                               |
+| `<prefix>/ring/all ii <n> <l>`               | Set all LEDs on encoder `n` (0-1 or 0-3) to level `l` (0-15)                                                                                     |
+| `<prefix>/ring/map ii[64] <n> <l[64]>`       | Set all LEDs on encoder `n` (0-1 or 0-3) to 64 member array `l[64]`                                                                              |
+| `<prefix>/ring/range iiii <n> <x1> <x2> <l>` | Set LEDs on encoder `n` (0-1 or 0-3) between (inclusive) `x1` and `x2` to level `l` (0-15). Direction of set is always clockwise, with wrapping. |
 
 ## from device
 
 ### grid
 
-    /grid/key x y s
+    <prefix>/grid/key iii x y s
 
 Key state change at (`x`,`y`) to `s` (0 or 1, 1 = key down, 0 = key up).
 
 ### tilt
 
-    /tilt n x y z
+    <prefix>/tilt iiii n x y z
 
 Position change on tilt sensor `n`, integer (8-bit) values (`x`, `y`, `z`).
 
 ### arc
 
-    /enc/delta n d
+    <prefix>/enc/delta ii n d
 
 Position change on encoder `n` by value `d` (signed). Clockwise is positive.
 
-    /enc/key n s
+    <prefix>/enc/key ii n s
 
 Key state change on encoder `n` to `s` (0 or 1, 1 = key down, 0 = key up).

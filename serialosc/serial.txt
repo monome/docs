@@ -22,7 +22,7 @@ serial:		[0x05]
 
 // led-grid
 
-pattern:	/prefix/led/set x y s
+pattern:	/prefix/grid/led/set x y s
 desc:		set led state
 args:		x = x value (0-255)
 			y = y value (0-255)
@@ -30,20 +30,20 @@ args:		x = x value (0-255)
 serial:		if s = 0, [0x10, x, y]
 			if s = 1, [0x11, x, y]
 
-pattern:	/prefix/led/all s
+pattern:	/prefix/grid/led/all s
 desc:		set all leds
 args:		s = on/off (0-1)
 serial:		if s = 0, [0x12]
 			if s = 1, [0x13]
 
-pattern:	/prefix/led/map x y d[8]
+pattern:	/prefix/grid/led/map x y d[8]
 desc:		set 8x8 block of leds, with offset
 args:		x = x offset, will be floored to multiple of 8 by firmware
 			y = y offset, will be floored to multiple of 8 by firmware
 			d[8] = bitwise display data
 serial:		[0x14, x, y, d[8]]
 
-pattern:	/prefix/led/row x y d
+pattern:	/prefix/grid/led/row x y d
 desc:		set 8x1 block of leds, with offset
 args:		x = x offset, will be floored to multiple of 8 by firmware
 			y = y offset
@@ -51,7 +51,7 @@ args:		x = x offset, will be floored to multiple of 8 by firmware
 serial:		[0x15, x, y, d]
 note:		d can be an array. for each additional element, another serial packet is sent, with x offset incremented by 8.
 
-pattern:	/prefix/led/col x y d
+pattern:	/prefix/grid/led/col x y d
 desc:		set 1x8 block of leds, with offset
 args:		x = x offset
 			y = y offset, will be floored to multiple of 8 by firmware
@@ -59,24 +59,24 @@ args:		x = x offset
 serial:		[0x16 x, y, d]
 note:		d can be an array. for each additional element, another serial packet is sent, with y offset incremented by 8.
 
-pattern:	/prefix/led/intensity i
+pattern:	/prefix/grid/led/intensity i
 desc:		set intensity for entire grid
 args:		i = intensity (0-15)
 serial:		[0x17, i]
 
-pattern:	/prefix/led/level/set x y i
+pattern:	/prefix/grid/led/level/set x y i
 desc:		set led intensity
 args:		x = x value (0-255)
 			y = y value (0-255)
 			i = intensity (0-255)
 serial:		[0x18, x, y, i]
 
-pattern:	/prefix/led/level/all s
+pattern:	/prefix/grid/led/level/all s
 desc:		set all leds to level
 args:		i = intensity (0-255)
 serial:		[0x19, i]
 
-pattern:	/prefix/led/level/map x y d[32]
+pattern:	/prefix/grid/led/level/map x y d[32]
 desc:		set 8x8 block of leds levels, with offset
 args:		x = x offset, will be floored to multiple of 8 by firmware
 			y = y offset, will be floored to multiple of 8 by firmware
@@ -89,7 +89,7 @@ args:		x = x offset, will be floored to multiple of 8 by firmware
 			d[31] (4:7) value 63
 serial:		[0x1A, x, y, d[32]]
 
-pattern:	/prefix/led/level/row x y d[8]
+pattern:	/prefix/grid/led/level/row x y d[8]
 desc:		set 8x1 block of led levels, with offset
 args:		x = x offset, will be floored to multiple of 8 by firmware
 			y = y offset
@@ -97,7 +97,7 @@ args:		x = x offset, will be floored to multiple of 8 by firmware
 serial:		[0x1B, x, y, d[8]]
 note:		if d[8] has more than 8 elements (multiple of 8) send multiple serial packets with proper offset
 
-pattern:	/prefix/led/level/col x y d[8]
+pattern:	/prefix/grid/led/level/col x y d[8]
 desc:		set 1x8 block of led levels, with offset
 args:		x = x offset
 			y = y offset, will be floored to multiple of 8 by firmware
@@ -167,7 +167,7 @@ args:		x = x size
 
 // key
 
-pattern:	/prefix/key x y s
+pattern:	/prefix/grid/key x y s
 desc:		key state change
 serial:		if s = 0 [0x00, x, y] key up
 			if s = 1 [0x01, x, y] key down
@@ -379,17 +379,17 @@ to device:
 ----------
 
 OSC:
-/led/set x y [0/1]
+/grid/led/set x y [0/1]
 	mapped to 0x10 and 0x11
-/led/all [0/1]
+/grid/led/all [0/1]
 	mapped to 0x12 and 0x13
-/led/map x y d[8]
+/grid/led/map x y d[8]
 	mapped to 0x14
-/led/row x y d
+/grid/led/row x y d
 	mapped to 0x15
-/led/col x y d
+/grid/led/col x y d
 	mapped to 0x16
-/led/intensity x
+/grid/led/intensity x
 	mapped to 0x17
 
 0x10 led-grid / led off
@@ -503,7 +503,7 @@ from device:
 ------------
 
 OSC:
-/key x y [0/1]
+/grid/key x y [0/1]
 	mapped to 0x20 and 0x21
 
 0x20 key-grid / key up

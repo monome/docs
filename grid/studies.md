@@ -22,9 +22,9 @@ The following tutorials show how to use different languages and environments to 
 # grid libraries
 
 * [libmonome](https://github.com/monome/libmonome) -- C
-* [serialosc.maxpat](https://github.com/monome/serialosc.maxpat) -- Max
+* [monome Max package](https://github.com/monome/monome-max-package) -- Max
 * [monomehost](https://github.com/monome/MonomeHost) -- Arduino Due
 * [monome-processing](https://github.com/monome/monome-processing) -- Processing
-* [monom](https://github.com/catfact/monom) -- SuperCollider
+* [monomeSC](https://github.com/monome/monomeSC/) -- SuperCollider
 * [monome-grid](https://www.npmjs.com/package/monome-grid) -- node.js
 * [pymonome](https://github.com/artfwo/pymonome) -- Python

@@ -38,5 +38,6 @@ Additional resources to help you exercise greater control over the grid's serial
 
 We've collected a handful of contributed applications over the years which are excellent starting points.
 
+- [VCV Rack](/docs/grid/computer/vcv-rack) (macOS + Windows + Linux)
 - [Max + Max for Live](/docs/grid/computer/max) (macOS + Windows)
 - [Mark Eats Sequencer](/docs/grid/computer/mark-eats) (macOS only)

@@ -60,11 +60,11 @@ This section assume two things are true:
 
 If you've reached this point and things still aren't working, please contact [help@monome.org](mailto:help@monome.org) with screenshots of what you see in steps 1-4, what you see in the Max console (CMD+B), and your Mac's OS version.
 
-### Windows 10
+### Windows 10 + 11
 
 If your grid or arc is not being detected when you plug into your Windows machine (but it is showing the light burst indicating its receiving power over USB), here are a few things to try.
 
 1. If you don't have iTunes installed on your device, you might be missing Bonjour, which Max uses to communicate with OSC and networked devices. To remedy, please install [Bonjour Print Services](http://support.apple.com/kb/DL999).
-2. The [beta version of serialosc 1.4.1](https://llllllll.co/t/arc2-and-128-connectivity-issues-on-windows/4738/17) might improve connectivity.
+2. The [beta version of serialosc 1.4.1](https://github.com/monome/serialosc/releases/download/v1.4.1/serialosc-1.4.2-pre.exe.zip) might improve connectivity.
 3. Try starting serialosc manually from the Services program. If you see `Error 1075`, you might need to [tweak your registry](https://llllllll.co/t/trouble-setting-up-monome/7001/5).
 4. You may need to manually install the FTDI VCP driver, which you get get [here](https://ftdichip.com/drivers/vcp-drivers/).

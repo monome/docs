@@ -49,7 +49,7 @@ When installing, be sure to handle from the sides -- wiping away debris or oil f
 #### charger
 {: .no_toc }
 
-The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 5.25V. A direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/1994).
+The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 5.25V. A direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/1994). This brick is of *very* high quality and can use 110 or 240 VAC input, so it can be used outside of the US with a simple plug adapter.
 
 #### battery
 {: .no_toc }

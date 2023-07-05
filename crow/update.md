@@ -68,9 +68,9 @@ You should see something like this:
 
 ```
 Checking for updates...
->> git version 3.0.1
+>> git version 4.0.1
 >> local version:  2.0.0
-Downloading new version: https://github.com/monome/crow/releases/download/v3.0.1/crow.dfu
+Downloading new version: https://github.com/monome/crow/releases/download/v4.0.1/crow.dfu
 Crow bootloader enabled.
 File: crow.dfu
     b'DfuSe' v1, image size: 304605, targets: 1
@@ -143,3 +143,15 @@ You can use the [`fledge`](https://github.com/monome/fledge) script on norns to 
 ## Manual Update
 
 If you have trouble with the `druid firmware` command on a non-norns computer, or wish to install a specific firmware version, see the [manual update](/docs/crow/manual-update).
+
+## Calibration
+
+crow has hardware to enable self-calibration of the CV inputs & outputs. The calibration procedure is run at the workshop using [this script](https://github.com/monome/bowery/blob/main/cali.lua). Feel free to run the same at home if you ever feel the need to recalibrate your hardware.
+
+- keep druid open while running!
+- when the script starts, it will run the calibration automatically
+  - input[1] and all outputs will be calibrated automatically
+  - then you'll be prompted to add a patch cable from output 1 to input 2 (in that order!)
+- the calibration will complete and results will appear gradually
+- you'll see `---- PASS ----` if your module passes calibration  
+  you'll see `!!!! FAIL !!!!` if your module fails calibration

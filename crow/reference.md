@@ -1006,7 +1006,7 @@ public.update(name, value [, subkey])
 
 crow has hardware to enable self-calibration of the CV inputs & outputs. The calibration procedure is run at the workshop, so it's unlikely you'll need to use these features in a script.
 
-Below are the building blocks for building your own calibration system. the official calibration script is located [here](https://github.com/monome/crow/blob/main/util/recalibrate.lua).
+Below are the building blocks for building your own calibration system. The official calibration script is located [here](https://github.com/monome/bowery/blob/main/cali.lua).
 
 ```lua
 cal.save()       -- save current calibration to flash

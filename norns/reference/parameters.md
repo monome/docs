@@ -5,6 +5,7 @@ permalink: /norns/reference/params
 ---
 
 ## params
+
 {: .no_toc }
 
 <details open markdown="block">
@@ -357,21 +358,58 @@ end
 
 When sharing a script with others, it may be desirable to bundle it with pre-made PSETs to give artists a collection of known starting points.
 
-As you ready your script for sharing, you can use the standard PSET save UI in norns to build and name PSETs -- they will be saved under your device's `dust/data/(script)` folder. Then, create a `dust/code/(script)/data` folder and copy the generated PSET files from `dust/data/(script)` into it.
+As you ready your script for sharing, you can use the standard PSET save UI in norns to build and name PSETs -- they will be saved under your device's `dust/data/<script_name>` folder. Then, create a `dust/code/<script_name>/data` folder and copy the generated PSET files from `dust/data/<script_name>` into it.
 
-Behind the scenes, norns checks if a `dust/data/(script)` folder already exists on a script's first run -- if it doesn't, norns then checks if a `dust/code/(script)/data` folder exists. If it does and the folder has any `.pset` files in it, norns copies them from `code/(script)/data` to `dust/data/(script)`, which surfaces the PSETs in the on-screen UI menu.
+Behind the scenes, norns checks if a `dust/data/<script_name>` folder already exists on a script's first run -- if it doesn't, norns then checks if a `dust/code/<script_name>/data` folder exists. If it does and the folder has any `.pset` files in it, norns copies them from `code/<script_name>/data` to `dust/data/<script_name>`, which surfaces the PSETs in the on-screen UI menu.
 
-As the PSET-bundled script is first loaded onto a norns which doesn't already have a corresponding `dust/data/(script)` folder, you will see the following print to matron:
+As the PSET-bundled script is first loaded onto a norns which doesn't already have a corresponding `dust/data/<script_name>` folder, you will see the following print to matron:
 
 ```lua
 # script clear
-# script load: /home/we/dust/code/(script)/(script).lua
+# script load: /home/we/dust/code/<script_name>/<script_name>.lua
 ### initializing data folder
 ### copied default psets
 # script run
 ```
 
-To test, you can simply delete your `dust/data/(script)` folder *after* copying the `.pset` files to `dust/code/(script)/data`, and a fresh boot of the script will copy all the bundled PSETs into `dust/data/(script)`.
+To test, you can simply delete your `dust/data/<script_name>` folder *after* copying the `.pset` files to `dust/code/<script_name>/data`, and a fresh boot of the script will copy all the bundled PSETs into `dust/data/<script_name>`.
+
+### loading a PSET at script load
+
+By default, norns will load a script with a blank slate, unless the script specifies otherwise. This means that parameter values will default to their initial state, which is often useful for first-time exploration but not always for live performances where one might want to reliably load a modified state as a starting point.
+
+There are two avenues which we can travel: loading the *last-saved* PSET and loading a *specific* PSET.
+
+#### loading the last-saved PSET
+
+Whenever a PSET is saved, the slot number is stored under `dust/<script_name>/pset-last.txt`. In the norns UI, this determines the placement of the asterisk for the PSET save/load/delete menu, so the most-recently saved PSET is always starred.
+
+To load this last-saved PSET, use `params:default()`. We recommend placing this at the end of your `init()` function, or executing it on-the-fly through matron's command line.
+
+Once `params:default()` is executed, matron will confirm the file, eg:
+
+`pset >> read: /home/we/dust/data/<script_name>/<script_name>-02.pset`
+
+#### loading a specific PSET
+
+To load a specific PSET, we'll use `params:read(x)`, where `x` is either:
+
+- a PSET slot number, eg. `params:read(4)` will load the 4th PSET
+
+- a PSET filename, eg. `params:read('/home/we/dust/data/<script_name>/<script_name>-03.pset')` will load the 3rd PSET file in `<script_name>`'s data folder
+
+### getting the currently-loaded PSET's name
+
+You might have noticed that PSETs are indexed numerically. Though numeric indexing is helpful from a scripting perspective, every PSET is *also* given a name when saved, which can be queried using `params.name`. This can be useful for displaying which PSET file is loaded on-screen, eg:
+
+```lua
+function redraw()
+  screen.clear()
+  screen.move(64,32)
+  screen.text_center('loaded PSET: '..params.name)
+  screen.update()
+end
+```
 
 ### adjusting parameter attributes after creation
 
@@ -402,28 +440,28 @@ Using maiden's command line, we can query the `loop_start` parameter object:
 
 ```lua
 >> tab.print(params:lookup_param('loop_start'))
-action	function: 0x44d328
-t	3
-allow_pmap	true
-name	loop start
-controlspec	table: 0x425aa8
-raw	  0
-save	true
-id	loop_start
+action    function: 0x44d328
+t    3
+allow_pmap    true
+name    loop start
+controlspec    table: 0x425aa8
+raw      0
+save    true
+id    loop_start
 ```
 
 And we can further inspect the parameter's `controlspec` def:
 
 ```lua
 >> tab.print(params:lookup_param('loop_start').controlspec)
-wrap	false
-maxval	10
-quantum	0.01
-minval	0
-step	0.01
-warp	table: 0x490218
-units	s
-default	0
+wrap    false
+maxval    10
+quantum    0.01
+minval    0
+step    0.01
+warp    table: 0x490218
+units    s
+default    0
 ```
 
 We can then modify the object with scripting (also, switching to `params:add_control` to reduce verbosity):
@@ -461,7 +499,7 @@ function init()
     {'Red-Orange', 'Yellow-Orange', 'Yellow-Green', 'Blue-Green', 'Blue-Violet', 'Red-Violet'}, -- color_options[3]
   }
   params:add_option('colors', 'colors', color_options[1], 1)
-  
+
   params:add_option('color_set', 'color set', {'Primary','Secondary','Tertiary'}, 1)
   params:set_action('color_set',
     function(x)

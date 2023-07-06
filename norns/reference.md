@@ -43,7 +43,7 @@ to access the complete norns API, you can either:
 | [softcut (api)](/docs/norns/api/modules/softcut.html)                 | Two audio buffers which can be recorded into and played by six individual voices        |
 | [tab (api)](/docs/norns/api/modules/lib.tabutil.html)                 | Table utilities                                                                         |
 | [util (api)](/docs/norns/api/modules/lib.util.html)                   | Helpful utility functions                                                               |
-| [lib/elca (api)](/docs/norns/api/modules/audio.html)                  | Elementary cellular automata generator                                                  |
+| [lib/elca (api)](/docs/norns/api/modules/lib.elca.html)               | Elementary cellular automata generator                                                  |
 | [lib/envgraph (api)](/docs/norns/api/modules/lib.EnvGraph.html)       | Envelope graph drawing module                                                           |
 | [lib/er](./lib/er)                                                    | Euclidean rhythm generator                                                              |
 | [lib/fileselect](./lib/fileselect)                                    | File select utility                                                                     |

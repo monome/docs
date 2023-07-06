@@ -5,7 +5,6 @@ permalink: /norns/reference/params
 ---
 
 ## params
-
 {: .no_toc }
 
 <details open markdown="block">

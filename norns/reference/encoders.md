@@ -8,17 +8,17 @@ permalink: /norns/reference/encoders
 
 ### functions
 
-| Syntax                   | Description                                                                                              |
-| ------------------------ | -------------------------------------------------------------------------------------------------------- |
-| norns.enc.accel(n,accel) | Set encoder n's acceleration value, which adds resistance to an encoder's initial turn delta (default 1) |
-| norns.enc.sens(n,sens)   | Set encoder n's sensitivity value, which adds uniform resistance to an encoder's turn delta (default 1)  |
-| enc(n,d)                 | Pass encoder delta events to a script : function                                                         |
+| Syntax                   | Description                                                                                                      |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| norns.enc.accel(n,accel) | Set encoder n's acceleration, which adds resistance to an encoder's initial turn delta (default true) : boolean  |
+| norns.enc.sens(n,sens)   | Set encoder n's sensitivity value, which adds uniform resistance to an encoder's turn delta (default 1) : number |
+| enc(n,d)                 | Pass encoder delta events to a script : function                                                                 |
 
 ### example
 
 ```lua
 function init()
-  
+
   level_control = controlspec.def{
     min=0, -- 'min' is the minimum value this control can reach
     max=100, -- 'max' is the maximum value this control can reach
@@ -29,12 +29,12 @@ function init()
     wrap=false, -- 'wrap' will wrap increments/decrements around the min / max, rather than stop at min / max
     units='%' -- 'units' is a string to display at the end of the control
   }
-  
+
   -- we'll use our defined level_control spec to create three unique parameters:
   params:add_control('level_1','level 1',level_control)
   params:add_control('level_2','level 2',level_control)
   params:add_control('level_3','level 3',level_control)
-  
+
   -- common redraw metronome utility:
   screen_dirty = false
   redraw_screen = clock.run(
@@ -48,11 +48,11 @@ function init()
       end
     end
   )
-  
+
   key1_down = false -- we'll use key1's state to send either coarse or fine-tune changes
-  norns.enc.accel(1,5) -- add resistence to encoder 1's initial turn
+  norns.enc.accel(1,true) -- add resistence to encoder 1's initial turn
   norns.enc.sens(3,10) -- add resistence to encoder 3's turns
-  
+
 end
 
 function redraw()
@@ -68,26 +68,26 @@ function redraw()
 end
 
 function key(n,z)
-  
+
   -- short way:
   if n == 1 then
     key1_down = z == 1 and true or false -- fine-tune when holding KEY 1
   end
-  
+
   -- long way:
   -- if n == 1 and z == 1 then
   --   key1_down = true
   -- elseif n == 1 and z == 0 then
   --   key1_down = false
   -- end
-    
+
  end
 
 function enc(n,d)
-  
+
   -- short way:
   params:delta('level_'..n,key1_down and d/10 or d)
-  
+
   -- long way:
   -- if n == 1 then
   --   if key1_down then
@@ -108,9 +108,9 @@ function enc(n,d)
   --     params:delta('level_3',d)
   --   end
   -- end
-  
+
   screen_dirty = true
-  
+
 end
 ```
 

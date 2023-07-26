@@ -350,22 +350,30 @@ Press K1 to toggle from PLAY to HOME. Highlight `SELECT` and hold K1 -- you'll s
 
 #### DUPLICATE ENGINES
 
-Supercollider fails to load if you have multiple copies of the same class, which are commonly contained in duplicate `.sc` files inside of `dust` (the parent folder for the projects installed on norns).
+Supercollider fails to load if you have multiple copies of the same class, which are commonly contained in duplicate `.sc` files.
 
-To typically solve this, [connect](../play/#network-connect) via wifi and open [maiden](../maiden). Type `;restart` into the maiden _matron_ REPL at the bottom (the `>>` prompt).
+To solve this, select `SYSTEM > RESTART` on your norns. Then, export logs with `SYSTEM > LOG` and [connect](../play/#network-connect) to [maiden](../maiden). In maiden, navigate to `data > system.log` and search for `ERROR: duplicate Class found`.
 
-This will restart the audio components and output their logs. If there's a duplicate class an error message like the following will be shown:
+If there's a duplicate class, an error message like the following will be shown:
 
 ```
-DUPLICATE ENGINES:
-/home/we/dust/code/ack/lib/Engine_Ack.sc Engine_Ack.sc
-/home/we/dust/code/we/lib/Engine_Ack.sc Engine_Ack.sc
-### SCRIPT ERROR: DUPLICATE ENGINES
+<date + time>: ERROR: duplicate Class found: 'VarShapeOsc'
+<date + time>: /home/we/.local/share/SuperCollider/Extensions/PortedPlugins/Classes/VarShapeOsc.sc
+<date + time>: /home/we/.local/share/SuperCollider/Extensions/supercollider-plugins/VarShapeOsc.sc
 ```
 
-In this example, the `Engine_Ack.sc` engine is duplicated in two projects: `ack` and `we`. Using maiden, you would expand each project's `lib` folder to reveal the duplicated `Engine_Ack.sc`. After you remove one of the offending engines, execute `SYSTEM > RESTART` from the norns menu.
+In this example, the `VarShapeOsc.sc` file is duplicated in two places:
 
-If the issue persists or maiden does not report duplicate engines, please email help@monome.org. Keep in mind that unless you're familiar with Supercollider, do not tamper with its internal folder structure. All typical norns functionality can be handled through the maiden project manager or the `dust` folder.
+- `/home/we/.local/share/SuperCollider/Extensions/PortedPlugins/Classes/VarShapeOsc.sc`
+- `/home/we/.local/share/SuperCollider/Extensions/supercollider-plugins/VarShapeOsc.sc`
+
+You can either use [Cyberduck](/docs/norns/advanced-access/#sftp) to access this hidden folder (make sure to enable `View > Show Hidden Files`), or you can use the maiden REPL command line (the `>>` at the bottom of maiden).
+
+For this example, let's remove the `supercollider-plugins` folder entirely via the maiden REPL command line by executing this command:
+
+`os.execute("cd /home/we/.local/share/SuperCollider/Extensions/ && rm -rf supercollider-plugins")`
+
+If the issue persists or maiden does not report duplicate engines, please email help@monome.org. Keep in mind that unless you're familiar with Supercollider, it'd be best not tamper with its internal folder structure. All typical norns functionality can be handled through the maiden project manager or the `dust` folder.
 
 #### LOAD FAIL
 

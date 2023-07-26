@@ -69,7 +69,6 @@ Linux norns 4.19.127-16-gb1425b1 #1 SMP PREEMPT Mon Oct 26 05:39:00 UTC 2020 arm
 127.0.0.1 ~ $
 ```
 
-
 ### sftp
 
 You can manage projects and delete/rename files via [maiden](../maiden). But sometimes you'll need to copy files between your computer and norns, like audio.

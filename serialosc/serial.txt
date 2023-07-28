@@ -161,7 +161,7 @@ args:		s = id string, 64 chars
 
 pattern:	/sys/size x y
 desc:		grid size
-serial:		[0x05, x, y]
+serial:		[0x03, x, y]
 args:		x = x size
 			y = y size
 

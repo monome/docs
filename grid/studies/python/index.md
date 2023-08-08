@@ -2,6 +2,7 @@
 layout: default
 nav_exclude: true
 redirect_from: /grid-studies/python/
+redirect_from: /grid-studies-python/
 ---
 
 # grid studies: Python

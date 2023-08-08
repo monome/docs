@@ -1,6 +1,7 @@
 ---
 layout: default
 nav_exclude: true
+redirect_from: /grid-studies-arduino/
 ---
 
 # Grid Studies: Arduino

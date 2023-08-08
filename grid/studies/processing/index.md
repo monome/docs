@@ -1,6 +1,7 @@
 ---
 layout: default
 nav_exclude: true
+redirect_from: /grid-studies-processing/
 ---
 
 # Grid Studies: Processing

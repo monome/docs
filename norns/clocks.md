@@ -434,6 +434,8 @@ function cleanup()
 end
 ```
 
+If you run into any trouble with establishing a Link connection between multiple norns units or between norns and any another device, be sure to check out [this detailed troubleshooting document from Ableton](https://help.ableton.com/hc/en-us/articles/209073069-Link-Troubleshooting).
+
 ## parameters
 
 The `CLOCK` menu is available in the `PARAMETERS` screen.

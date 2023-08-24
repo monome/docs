@@ -244,6 +244,8 @@ From [Ableton](https://ableton.github.io/link/):
 
 If you'd like to sync the transport of another Link-enabled device to norns, then toggle this setting to `enabled`. Please note that not all community scripts have transport-synced start + stop mechanisms -- for code examples to add transport control to a norns script, see [the clocks study](/docs/norns/clocks).
 
+If you run into any trouble with establishing a Link connection between norns and another device, be sure to check out [this detailed troubleshooting document from Ableton](https://help.ableton.com/hc/en-us/articles/209073069-Link-Troubleshooting).
+
 **midi clock out**
 
 norns can send a MIDI clock signal out to any port, regardless of the current clock source. This means norns can be a Link-to-MIDI-clock or CV-pulse-to-MIDI converter.

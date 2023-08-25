@@ -539,8 +539,8 @@ If you feel prepared to explore both SuperCollider and Lua more deeply (and hope
 To continue exploring + creating new synthesis engines for norns, we highly recommend:
 
 -  Zack Scholl's video series (produced in partnership between monome and Music Hackspace):
-	-  [Tone to Drone](https://musichackspace.org/events/tone-to-drone-introduction-to-supercollider-for-monome-norns-live-session/)
-	-  [Ample Samples](https://musichackspace.org/events/ample-samples-introduction-to-supercollider-for-monome-norns-live-session/)
+	-  [Tone to Drone](https://musichackspace.org/product/tone-to-drone-introduction-to-supercollider-for-monome-norns/)
+	-  [Ample Samples](https://musichackspace.org/product/ample-samples-introduction-to-supercollider-for-monome-norns/)
 - [Zack Scholl's #supercollider blog entries](https://schollz.com/tags/supercollider/)
 - [Eli Fieldsteel's *fantastic* YouTube series](https://youtu.be/yRzsOOiJ_p4)
 - [norns SuperCollider engines index](https://norns.community/libs-and-engines#supercollider-engines)

@@ -8,6 +8,7 @@ nav_order: 2
 redirect_from: /norns/script-reference/
 redirect_from: /norns/script-reference
 redirect_from: /norns/reference/lib
+redirect_from: /norns/reference/lib/
 has_toc: false
 ---
 

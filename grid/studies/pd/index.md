@@ -6,54 +6,60 @@ redirect_from: /grid-studies-pd/
 
 # Grid Studies: Pure Data
 
-Pure Data (Pd) is a visual programming language developed by Miller Puckette in the 1990s for creating interactive computer music and multimedia works. While Puckette is the main author of the program, Pd is an open source project with a large developer base working on new extensions. (from [Wikipedia](http://en.wikipedia.org/wiki/Pure_Data)).
-
+Pure Data (Pd) is a visual programming language developed by Miller Puckette in the 1990s for creating interactive computer music and multimedia works. While Puckette is the main author of the program, Pd is an open source project with a large developer base working on new extensions. (source: [Wikipedia](http://en.wikipedia.org/wiki/Pure_Data))
 
 ## Prerequisites
 
-If you're new to Pd, spend a few moments with these introductory tutorials from Johannes Kriedler: [Programming Electronic Music in Pd](http://pd-tutorial.com/english/index.html)
+This lesson assumes a basic understanding of the Pd patching interface. If you’re absolutely new to Pd it may be helpful to spend a few moments with these introductory tutorials from Johannes Kriedler: [Programming Electronic Music in Pd](http://pd-tutorial.com/english/index.html)
 
-Download Pd Extended: [puredata.info/](http://puredata.info/downloads/pd-extended)
+- Download Pd: [puredata.info/](https://puredata.info/downloads/pure-data)
+- Install serialosc: [/docs/serialosc/setup](/docs/serialosc/setup)
+- Download the `[monome-device]` object + code examples here: [files/grid-studies-pd.zip](files/grid-studies-pd.zip)
 
-Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
+### required externals
 
-Download the code examples here: [files/grid-studies-pd.zip](files/grid-studies-pd.zip)
+In order to connect grid to Pd and run these studies, you'll need to install a few externals and add them to your search path.
 
+From the toolbar, navigate to `Help > Find externals` and install:
+
+- `cyclone`: a library of Max/MSP-style objects
+- `osc`: enables Open Sound Control communication between grids + Pd
+
+Once both are installed, navigate to `Pd > Preferences > Edit Preferences` (macOS) or `File > Preferences > Edit Preferences` (Win/Linux), click on *New...* and navigate to the directory where each external exists. Click *Choose* / *Select Folder* to add each external's folder. The Preferences window should now resemble:
+
+![](images/pd-preferences.png)
+
+Then, place the `monome-device` folder that's included in the zip file above into your Pd externals folder.
 
 ## 1. Connect
 
 *See grid-studies-1-1.pd for this section.*
 
-To communicate with grids we trade OSC messages with serialosc. serialosc translates OSC messages to streams of numbers over USB.
+To communicate with grids we trade OSC messages with [serialosc](/docs/serialosc/). serialosc is an invisible daemon on your computer, which translates OSC messages to streams of numbers over USB.
 
-First we will show how to talk to serialosc.
+First we will show how to talk to serialosc from Pd:
 
-Open Pd and start a new patch.
-
-Save the blank patch to the `/files` folder as `study.pd`.
-
-Create a new object (win/linux: control+1, mac: command+1) and type `serialosc` then place it in your patch with a mouse click.
+- Open Pd and start a new patch
+- Save the blank patch to the `/files` folder as `study.pd`
+- Create a new object (Win/Linux: <kbd>control</kbd>+<kbd>1</kbd>, macOS: <kbd>command</kbd>+<kbd>1</kbd>) and type `monome-device`, then place it in your patch with a mouse click
 
 ![](images/grid-studies-1-1-1.png)
 
 Attach your grid and you can now communicate with it through this object.
 
-Note: this object you've embedded isn't serialosc itself, which is an invisible daemon on your computer. The object is a helper patcher, or 'abstraction' to simplify using serialosc. We'll refer to this helper as serialosc, hopefully without much confusion.
+Note: this object you've embedded isn't serialosc itself, which is an invisible daemon on your computer. The object is a helper patcher, or 'abstraction' to simplify using serialosc.
 
-The serialosc abstraction is actually the patch `serialosc.pd` inside an object. In order for your patch to use serialosc, the abstraction needs to be in the same folder as your saved patch, which explains why we saved our patch to `/files` above.
-
-
+The `[monome-device]` abstraction is actually the patch `monome-device.pd` inside an object. In order for your patch to use serialosc, this `[monome-device]` abstraction needs to be in the same folder as your saved patch, which explains why we saved our patch to `/files` above.
 
 ## 2. Basics
 
-Messages are sent to serialosc through the top left inlet, and received out the bottom left outlet.
+Messages are sent to `[monome-device]` through the top left inlet, and received out the bottom left outlet.
 
 *See grid-studies-2-1.pd for this section.*
 
-
 ### 2.1 Key input
 
-To see what is coming from the grid, create a `print` object and connect the left outlet of serialosc to it. Open the Pd window (Window -> Pd Window) and press some keys on the grid. OSC data will be displayed in the console.
+To see what is coming from the grid, create a `[print]` and connect the left outlet of `[monome-device]` to it. Open the Pd window (Window -> Pd Window) and press some keys on the grid. OSC data will be displayed in the console.
 
 Examining the output, key data fits this form:
 
@@ -63,19 +69,19 @@ Where *x*,*y* is the position and *state* indicates key down (1) or key up (0).
 
 Other messages (such as connect and disconnect) come from this same outlet, so we want to filter for the key messages.
 
-Change the `print` object to `routeOSC /monome/grid/key` and then print the output from routeOSC.
+Change the `[print]` to `[routeOSC /monome/grid/key]` to then print the output from `[routeOSC]`.
 
-We now have a list of 3 numbers according to each key action. Use an unpack to break this down further into individual numbers.
+We now have a list of 3 numbers according to each key action. Use an `unpack` to break this down further into individual numbers.
 
 ![](images/grid-studies-2-1-1.png)
 
 ### 2.2 LED output
 
-Above the serialosc box create a message box (control/command + 2) and type:
+Above the `[monome-device]` create a message box (<kbd>control</kbd>/<kbd>command</kbd> + <kbd>2</kbd>) and type:
 
 	/monome/grid/led/set 2 0 1
 
-Connect this to the left inlet of serialosc.
+Connect this to the left inlet of `[monome-device]`.
 
 Clicking this box will light up LED 2 in row 0. The message format is:
 
@@ -98,7 +104,7 @@ Connect the output of
 
 	routeOSC /monome/grid/key
 
-to the `/monome/grid/led/set $1 $2 $3` message box above serialosc which changes LEDs.
+to the `/monome/grid/led/set $1 $2 $3` message box above `[monome-device]` which changes LEDs.
 
 You now have a coupled interface, where the key state is reflected by the the LEDs.
 
@@ -110,22 +116,21 @@ The most fundamental decoupled interface is an array of toggles. We can accompli
 
 We'll start with a single toggle for the upper left key position (0, 0).
 
-Remove the connection between routeOSC and the LED-driving message box.
+Remove the connection between `[routeOSC]` and the LED-driving message box.
 
-To respond to the 0,0 position, we can use two `route` objects to filter the x, then y location of the press. Then we can respond only to key down by looking for values of 1 with a `sel` object.
+To respond to the 0,0 position, we can use two `[route]` objects to filter the x, then y location of the press. Then we can respond only to key down by looking for values of 1 with a `[sel]`.
 
-	route 0
+	[route 0]
+	|
+	[route 0]
+	|
+	[sel 1]
 
-	route 0
+Connect the output from the `[sel 1]` into a toggle box (<kbd>control</kbd>/<kbd>command</kbd> + <kbd>shift</kbd> + <kbd>T</kbd>). You can now see the toggle reflect the toggle state by pressing the upper-left key on the grid.
 
-	sel 1
-
-Connect the output from the sel into a toggle box (control/command + shift + T). You can now see the toggle reflect the toggle state by pressing the upper-left key on the grid.
-
-To complete the cycle we can then drive the corresponding LED with a message box `/monome/grid/led/set 0 0 $1` connected to serialosc's left inlet.
+To complete the cycle we can then drive the corresponding LED with a message box `/monome/grid/led/set 0 0 $1` connected to `[monome-device]`'s left inlet.
 
 ![](images/grid-studies-2-4-1.png)
-
 
 
 ## 3.0 Further
@@ -147,15 +152,15 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 
 Before we can make our bank of toggles, we need a way to look at the top six rows only, as the last two rows are not part of our toggle bank. First we'll use a message box to switch around our key input to place the row number first, then route off the last two rows for use later.
 
-	$2 $1 $3
+	($2 $1 $3)
+	|
+	[route 6 7]
 
-	route 6 7
+By switching the first and second elements and then putting them into the `[route]` object, rows 0-5 are passed to the right outlet.
 
-By switching the first and second elements and then putting them into the route object, rows 0-5 are passed to the right outlet.
+In our previous example we only created a single toggle, and the chosen approach is not appropriate for dealing with a large bank of toggles. Instead we'll create a `[table]` which functions as a large array of data for remembering the toggle states of the top six rows. Our table is inside the sub-patcher `pd toggles`.
 
-In our previous example we only created a single toggle, and the chosen approach is not appropriate for dealing with a large bank of toggles. Instead we'll create a `table` which functions as a large array of data for remembering the toggle states of the top six rows. Our table is inside the subpatcher `pd toggles`.
-
-Note how after formatting the LED messages from `pd toggles` we use a `s osc-out` to send osc messages to serialosc without cluttering our patch with long connections.
+Note how after formatting the LED messages from `pd toggles` we use a `[s osc-out]` to send OSC messages to `[monome-device]` without cluttering our patch with long connections.
 
 ![](images/grid-studies-3-1-2.png)
 
@@ -165,21 +170,21 @@ The toggles sub-patch can be broken down into a number of small steps to underst
 
 In order to save the state of the bank of toggles we create a table called 'grid' with 128 values.
 
-	table grid 128
+	[table grid 128]
 
 Rearranging the input key press information we can ignore key-ups as before. Inline comments track the current order of our input message.
 
-	$3 $2 $1
-
-	route 1
+	($3 $2 $1)
+	|
+	[route 1]
 
 In order to put our 2-dimensional grid into a table, we have to 'flatten' it into a long list. We do so by multiplying the y value by 16, and adding the result to our x value. The grid is thus read like a book, from left to right, starting at the top and working downward.
 
-	unpack
+	[unpack]
 	|	|
-	|	* 16
-	| /
-	+
+	|	[* 16]
+	|  /
+	[+]
 
 This index value is then used to set two values before toggling that state. The index is converted back to the x,y coordinate for LED feedback, plus we save the index to update the table with our new toggle state.
 
@@ -190,7 +195,7 @@ Finally we use the index to find the current state of the table, then invert tha
 
 *See grid-studies-3-2.pd for this step.*
 
-We can create a "play head" with a simple counter.
+We can create a "play head" with a simple `[counter]`.
 
 ![](images/grid-studies-3-2-1.png)
 
@@ -202,7 +207,7 @@ where the format of the message is:
 
 	/monome/grid/led/row x_offset y d[...]
 
-Here y is 7, the last row. Check out the full OSC spec for more information on this message.
+Here y is 7, the last row. Check out the [full serialosc spec](/docs/serialosc/osc/) for more information on this message.
 
 After we clear the row, we turn on the corresponding LED with a normal single-LED message:
 
@@ -210,23 +215,21 @@ After we clear the row, we turn on the corresponding LED with a normal single-LE
 
 Now when you turn on the clock, you'll see the playhead moving along the bottom row.
 
-
 ### 3.3 Triggers
 
 *See grid-studies-3-3.pd for this step.*
 
 As the playhead moves we will read the contents of the corresponding column and trigger events based on which toggles are turned on.
 
-We do this by scanning through our table, looking at every 16th value, driven by the play position. The `pd triggers` sub patch shows how to read data out of the table we created in `pd toggles`.
+We do this by scanning through our table, looking at every 16th value, driven by the play position. The `pd triggers` sub-patch shows how to read data out of the table we created in `pd toggles`.
 
 ![](images/grid-studies-3-3-1.png)
 
-Using the uzi object we read the state of the toggle for each subsequent row, by multiplying the uzi output by 16 (to jump through the array by rows), and adding the current play position to point at the correct column of data. Note that we subtract one from uzi's right outlet as the grid is indexed from zero, whereas uzi starts counting from one. If the discovered value is 1 we send out the row value to indicate an "event" has occured.
+Using the `[uzi]` object we read the state of the toggle for each subsequent row, by multiplying the `[uzi]` output by 16 (to jump through the array by rows), and adding the current play position to point at the correct column of data. Note that we subtract one from `[uzi]`'s right outlet as the grid is indexed from zero, whereas uzi starts counting from one. If the discovered value is 1 we send out the row value to indicate an "event" has occurred.
 
 To indicate these "events" we will light up the corresponding x position in the second to last row:
 
 	/monome/grid/led/set $1 6 $2
-
 
 Similarly to the play position display, we need to clear the row between refreshes.
 
@@ -236,7 +239,7 @@ Furthermore, to give the interface some delineation (not just a field of random 
 
 ![](images/grid-studies-3-3-2.png)
 
-This /level/ message is in the format:
+This `/level/` message is in the format:
 
 	/monome/grid/led/level/row x_off y d[...]
 
@@ -245,7 +248,6 @@ The format is similar to the monochromatic `row` message, but here `d[...]` is d
 The "triggered" LEDs will be full brightness on top of this dim row.
 
 There's a tiny sound engine so you can actually hear something. Turn on the DAC and turn up the gain slider.
-
 
 ### 3.4 Cutting and Looping
 
@@ -265,14 +267,9 @@ If a second key is pressed (in this same row) while a first is held, the current
 
 ![](images/grid-studies-3-4-1.png)
 
-
-
-
 ## Closing
 
 We've created a minimal yet intuitive interface for rapidly exploring sequences. We can intuitively change event triggers, loop points, and jump around the data performatively. Many more features could be added, and there are numerous other ways to think about interaction between key press and light feedback in completely different contexts.
-
-
 
 ### Suggested exercises
 
@@ -283,9 +280,8 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
 	- If "alt" is held while pressing a toggle, clear the entire row.
 	- If "alt" is held while pressing the play row, reverse the direction of play.
 
+*Pure Data* was designed by Miller Puckette and is actively developed as an open source project. [puredata.info](http://puredata.info).
 
-*Max* was designed by Miller Puckette and is actively developed as an open source project. [puredata.info](http://puredata.info).
+This tutorial was created by [Trent Gill](http://whimsicalraps.com) for [monome.org](https://monome.org), with updates in 2023 by David Niemi and [Dan Derks](https://dndrks.com).
 
-This tutorial was created by [Trent Gill](http://whimsicalraps.com) for [monome.org](https://monome.org).
-
-Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [help@monome.org](mailto:help@monome.org).

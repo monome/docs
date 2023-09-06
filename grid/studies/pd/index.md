@@ -5,8 +5,18 @@ redirect_from: /grid-studies-pd/
 ---
 
 # Grid Studies: Pure Data
+{: .no_toc }
 
 Pure Data (Pd) is a visual programming language developed by Miller Puckette in the 1990s for creating interactive computer music and multimedia works. While Puckette is the main author of the program, Pd is an open source project with a large developer base working on new extensions. (source: [Wikipedia](http://en.wikipedia.org/wiki/Pure_Data))
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## Prerequisites
 
@@ -16,7 +26,7 @@ This lesson assumes a basic understanding of the Pd patching interface. If youâ€
 - Install serialosc: [/docs/serialosc/setup](/docs/serialosc/setup)
 - Download the `[monome-device]` object + code examples here: [files/grid-studies-pd.zip](files/grid-studies-pd.zip)
 
-### required externals
+### Required externals
 
 In order to connect grid to Pd and run these studies, you'll need to install a few externals and add them to your search path.
 
@@ -29,7 +39,15 @@ Once both are installed, navigate to `Pd > Preferences > Edit Preferences` (macO
 
 ![](images/pd-preferences.png)
 
-Then, place the `monome-device` folder that's included in the zip file above into your Pd externals folder.
+Then, place the `monome-device` folder that's included in the zip file above into your Pd externals folder. We don't need to explicitly add it to the search path.
+
+### Style note
+
+Throughout this text, weâ€™ll use the following formatting styles:
+
+(message text): refers to a Max message object
+[objectname @args val]: refers to a non-message Max object and the arguments needed
+
 
 ## 1. Connect
 
@@ -40,16 +58,13 @@ To communicate with grids we trade OSC messages with [serialosc](/docs/serialosc
 First we will show how to talk to serialosc from Pd:
 
 - Open Pd and start a new patch
-- Save the blank patch to the `/files` folder as `study.pd`
 - Create a new object (Win/Linux: <kbd>control</kbd>+<kbd>1</kbd>, macOS: <kbd>command</kbd>+<kbd>1</kbd>) and type `monome-device`, then place it in your patch with a mouse click
 
 ![](images/grid-studies-1-1-1.png)
 
 Attach your grid and you can now communicate with it through this object.
 
-Note: this object you've embedded isn't serialosc itself, which is an invisible daemon on your computer. The object is a helper patcher, or 'abstraction' to simplify using serialosc.
-
-The `[monome-device]` abstraction is actually the patch `monome-device.pd` inside an object. In order for your patch to use serialosc, this `[monome-device]` abstraction needs to be in the same folder as your saved patch, which explains why we saved our patch to `/files` above.
+Note: this object you've embedded isn't serialosc itself, which is an invisible daemon on your computer that you should have installed [via these steps](/docs/serialosc/setup). The `[monome-device]` object is an 'abstraction', which is actually the patch `monome-device.pd` *inside* of an object, to simplify communicating with serialosc from Pd.
 
 ## 2. Basics
 

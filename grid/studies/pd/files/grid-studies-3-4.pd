@@ -319,7 +319,7 @@
 #X msg 260 43 /monome/grid/led/all 0;
 #X obj 182 71 monome-device;
 #X obj 303 20 loadbang;
-#X obj 260 20 del 10;
+#X obj 260 20 del 20;
 #X connect 0 0 2 0;
 #X connect 2 0 4 0;
 #X connect 4 1 27 0;

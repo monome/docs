@@ -1,5 +1,4 @@
-#N canvas 943 393 627 650 10;
-#X declare -lib OSC -lib mrpeach;
-#X obj 84 324 serialosc;
+#N canvas 885 304 627 650 10;
 #X text 32 599 http://monome.org;
 #X text 32 582 grid studies 1-1;
+#X obj 84 324 monome-device;

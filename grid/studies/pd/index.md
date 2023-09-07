@@ -41,13 +41,6 @@ Once both are installed, navigate to `Pd > Preferences > Edit Preferences` (macO
 
 Then, place the `monome-device` folder that's included in the zip file above into your Pd externals folder. We don't need to explicitly add it to the search path.
 
-### Style note
-
-Throughout this text, we’ll use the following formatting styles:
-
-(message text): refers to a Max message object
-[objectname @args val]: refers to a non-message Max object and the arguments needed
-
 
 ## 1. Connect
 

@@ -605,7 +605,7 @@ You can then use [`screen.display_png(filepath, x, y)`](https://monome.org/docs/
 
 ### buying used
 
-While monome's [warranty](https://monome.org/policy.html) only covers direct sales, we will still do everything we can to keep our devices out of landfills. We offer incredibly reasonable repairs through our workshop (for norns, typically $90 USD + shipping) and guidance for any applicable at-home service. Just reach out to us by emailing help@monome.org with a description of the issue, including any photos or videos which would help us precisely identify the best course of action.
+While monome's [warranty](https://monome.org/policy.html) only covers direct sales, we will still do everything we can to keep our devices out of landfills. We offer incredibly reasonable and quick repairs through our workshop (for norns, typically $90-125 USD + shipping) and guidance for any applicable at-home service. Just reach out to us by emailing help@monome.org with a description of the issue, including any photos or videos which would help us precisely identify the best course of action.
 
 Please note that we cannot offer hardware support or repairs for norns shields which were not fabricated and assembled by monome or 'fates' devices. Please reach out to the seller for post-purchase support.
 

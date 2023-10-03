@@ -8,13 +8,15 @@ permalink: /norns/softcut/
 
 softcut is a multi-voice sample playback and recording system built into the norns environment. It features level-smoothing, interpolated overdubbing, and matrix mixing. It was written by [`@catfact`](https://github.com/catfact).
 
-For an introduction to norns scripting, see the [norns studies](https://monome.org/docs/norns/studies/)
+For an introduction to norns scripting, see the [norns studies](https://monome.org/docs/norns/studies/).
 
 ## 1. basic playback
 
-* see/run `softcut-studies/1-basic` [(source)](https://github.com/monome/softcut-studies/blob/master/1-basics.lua)
+* see/run `softcut-studies/1-basic` [(source)](https://github.com/monome/softcut-studies/blob/main/1-basics.lua)
 
-![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/1-basics.png)
+![](https://raw.githubusercontent.com/monome/softcut-studies/main/lib/1-basics.png)
+
+**note: for accurate playback and looping, all samples loaded into softcut must be 48kHz**
 
 First, some nomenclature:
 
@@ -61,9 +63,9 @@ softcut.buffer_read_mono(file, start_src, start_dst, dur, ch_src, ch_dst)
 
 ## 2. multi-voice and more parameters
 
-* see/run `softcut-studies/2-multi` [(source)](https://github.com/monome/softcut-studies/blob/master/2-multi.lua)
+* see/run `softcut-studies/2-multi` [(source)](https://github.com/monome/softcut-studies/blob/main/2-multi.lua)
 
-![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/2-multi.png)
+![](https://raw.githubusercontent.com/monome/softcut-studies/main/lib/2-multi.png)
 
 Enable more voices, then set their parameters using the first argument in the various param functions. Here are a few more playback parameters:
 
@@ -74,9 +76,9 @@ softcut.rate_slew_time(voice,time)
 ```
 
 ## 3. cut and poll
-* see/run `softcut-studies/3-cut` [(source)](https://github.com/monome/softcut-studies/blob/master/3-cut.lua)
+* see/run `softcut-studies/3-cut` [(source)](https://github.com/monome/softcut-studies/blob/main/3-cut.lua)
 
-![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/3-cut.png)
+![](https://raw.githubusercontent.com/monome/softcut-studies/main/lib/3-cut.png)
 
 softcut cross-fades nicely when cutting to a new position and looping. To specify the fade time:
 
@@ -105,9 +107,9 @@ softcut.poll_start_phase()
 
 ## 4. record and overdub
 
-* see/run `softcut-studies/4-recdub` [(source)](https://github.com/monome/softcut-studies/blob/master/4-recdub.lua)
+* see/run `softcut-studies/4-recdub` [(source)](https://github.com/monome/softcut-studies/blob/main/4-recdub.lua)
 
-![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/4-recdub.png)
+![](https://raw.githubusercontent.com/monome/softcut-studies/main/lib/4-recdub.png)
 
 First, activate record mode for voice 1:
 
@@ -133,9 +135,9 @@ So, full overdub would have both levels set to `1.0`. *Just* playback would have
 
 ## 5. filters
 
-* see/run `softcut-studies/5-filters` [(source)](https://github.com/monome/softcut-studies/blob/master/5-filters.lua)
+* see/run `softcut-studies/5-filters` [(source)](https://github.com/monome/softcut-studies/blob/main/5-filters.lua)
 
-![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/5-filters.png)
+![](https://raw.githubusercontent.com/monome/softcut-studies/main/lib/5-filters.png)
 
 softcut can apply filtering pre-record and post-playback.
 
@@ -160,9 +162,9 @@ softcut.post_filter_rq(voice,value)
 
 ## 6. routing
 
-* see/run `softcut-studies/6-routing` [(source)](https://github.com/monome/softcut-studies/blob/master/6-routing.lua)
+* see/run `softcut-studies/6-routing` [(source)](https://github.com/monome/softcut-studies/blob/main/6-routing.lua)
 
-![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/6-routing.png)
+![](https://raw.githubusercontent.com/monome/softcut-studies/main/lib/6-routing.png)
 
 The audio routing within softcut is highly configurable.
 
@@ -197,11 +199,13 @@ The example script uses two voices. The first just plays a loop. The second jump
 
 ## 7. files
 
-* see/run `softcut-studies/7-files` [(source)](https://github.com/monome/softcut-studies/blob/master/7-files.lua)
+* see/run `softcut-studies/7-files` [(source)](https://github.com/monome/softcut-studies/blob/main/7-files.lua)
 
-![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/7-files.png)
+![](https://raw.githubusercontent.com/monome/softcut-studies/main/lib/7-files.png)
 
 softcut reads files to buffers and writes buffers to files, in mono and stereo.
+
+**note: for accurate playback and looping, all files loaded into softcut must be 48kHz**
 
 ```lua
 softcut.buffer_read_mono(file, start_src, start_dst, dur, ch_src, ch_dst)
@@ -214,9 +218,9 @@ The example script reads a "backing track" clip when K1 is long-pressed. This se
 
 ## 8. copy + waveform data
 
-* see/run `softcut-studies/8-copy` [(source)](https://github.com/monome/softcut-studies/blob/master/8-copy.lua)
+* see/run `softcut-studies/8-copy` [(source)](https://github.com/monome/softcut-studies/blob/main/8-copy.lua)
 
-![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/8-copy.png)
+![](https://raw.githubusercontent.com/monome/softcut-studies/main/lib/8-copy.png)
 
 Sections of a softcut buffer can be copied and pasted, for creative collage or straightforward duplication.
 
@@ -243,9 +247,9 @@ See the `8-copy.lua` script for an example of how to turn the -1 to +1 floats to
 
 ## 9. query and sync position
 
-* see/run `softcut-studies/9-query` [(source)](https://github.com/monome/softcut-studies/blob/master/9-query.lua)
+* see/run `softcut-studies/9-query` [(source)](https://github.com/monome/softcut-studies/blob/main/9-query.lua)
 
-![](https://raw.githubusercontent.com/monome/softcut-studies/master/lib/9-query.png)
+![](https://raw.githubusercontent.com/monome/softcut-studies/main/lib/9-query.png)
 
 In [**cut and poll**](#3-cut-and-poll), we used a poll to continuously report the position of a voice's playhead. softcut can also query any voice's playhead position on-demand using:
 

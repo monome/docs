@@ -15,15 +15,15 @@ function init()
     grid_connected = false
   end
 
-	sequencer_rows = rows - 2
+  sequencer_rows = rows - 2
 
-	step = {}
-	for r = 1, rows do
-		step[r] = {}
-		for c = 1, cols do
-			step[r][c] = 0
-		end
-	end
+  step = {}
+  for r = 1, rows do
+    step[r] = {}
+    for c = 1, cols do
+      step[r][c] = 0
+    end
+  end
 
   -- NEW //
   play_position = 0

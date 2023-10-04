@@ -384,6 +384,7 @@ function play()
         trigger(y)
       end
     end
+    screen_dirty = true
     -- // NEW
     clock.sync(1 / 4)
     grid_dirty = true
@@ -391,20 +392,175 @@ function play()
 end
 ```
 
-Which references `trigger()`:
+Which references `trigger()`, where we queue a circle to be displayed with every 'note' event:
 
 ```lua
 function trigger(i)
-  screen.clear()
-  screen.move(math.random(256), math.random(128))
-  screen.color(math.random(255), math.random(255), 255)
-  screen.circle(i * 10)
-  screen.circle_fill(i * 5)
-  screen.refresh()
+  table.insert(circle_queue,{
+    x = math.random(256),
+    y = math.random(128),
+    r = math.random(40,190),
+    g = math.random(255),
+    b = math.random(128,255),
+    outer_radius = i*10,
+    inner_radius = i*5
+  })
 end
 ```
 
-This could of course do something much more exciting, such as generate MIDI notes, animate robot arms, set off fireworks, etc.
+This `circle_queue` then gets iterated through and emptied out in our `redraw`:
+
+```lua
+function redraw()
+  if screen_dirty then
+    screen.clear()
+    for k,v in pairs(circle_queue) do
+      screen.move(v.x, v.y)
+      screen.color(v.r, v.g, v.b)
+      screen.circle(v.outer_radius)
+      screen.circle_fill(v.inner_radius)
+    end
+    circle_queue = {}
+    screen_dirty = false
+    screen.refresh()
+  end
+end
+```
+
+Each 'step' could of course do something much more exciting -- animate robot arms, set off fireworks, etc. For now, we'll have to settle for generating MIDI notes.
+
+### 3.4 MIDI {#midi}
+
+*See [grid-studies-3-4.lua](files/grid-studies-3-4.lua) for this section.*
+
+seamstress's MIDI library is quite similar to norns -- there are virtual ports which handle MIDI connections, to which you can send and receive raw + formatted data.
+
+Using MIDI in a script follows a pretty straightforward recipe:
+
+We start with `my_midi_var = midi.connect(x)`, where `x` represents one of seamstress's 32 virtual ports (`1` is the built-in seamstress in/out port, which is useful for inter-application MIDI). From there, we can send different commands, eg:
+
+- `my_midi_var:note_on(note,vel,ch)` to send a 'note on' message
+- `my_midi_var:note_off(note,vel,ch)` to send a 'note off' message
+- `my_midi_var:cc(cc,val,ch)` to send a MIDI cc
+
+[More commands are listed in the API](https://ryleealanza.org/docs/modules/midi.html).
+
+For this revision, we'll introduce [the `musicutil` library](https://ryleealanza.org/docs/modules/lib.MusicUtil.html), which provides utilities for building musical scales:
+
+```lua
+-- NEW //
+-- we'll use musicutil for easy MIDI note formatting + quantization:
+MU = require("musicutil")
+-- // NEW
+```
+
+Then, we'll connect to the first virtual port and build up our parameters to control our musical scale:
+
+```lua
+-- NEW //
+-- we'll connect to virtual port 1, which is seamstress's MIDI device:
+m = midi.connect(1)
+-- for a more robust example of MIDI scaffolding,
+--   check out the 'hello_midi' example!
+
+active_notes = {} -- to keep track of 'note on' messages, for paired 'note off'
+
+-- build scales for quantized note selection:
+scale_names = {}
+for i = 1, #MU.SCALES do
+	table.insert(scale_names, string.lower(MU.SCALES[i].name))
+end
+
+params:add_control(
+	"root_note", -- scripting ID
+	"root note", -- UI name
+	controlspec.new(0, 127, "lin", 1, 72, nil, 1 / 127), -- controlspec
+	function(param) -- UI formatter
+		return MU.note_num_to_name(param:get(), true)
+	end
+)
+params:set_action("root_note", function()
+	build_scale()
+end)
+params:add_option("scale", "scale", scale_names, 5)
+params:set_action("scale", function()
+	build_scale()
+end)
+
+-- important! if our script relies on the output of our parameter actions,
+--   we'll want to fire them off in the init:
+params:bang()
+-- // NEW
+```
+
+You may have noticed that we assigned our parameters' actions to `build_scale()`. We define this function further down:
+
+```lua
+-- NEW //
+function build_scale()
+	all_notes = MU.generate_scale(params:get("root_note"), params:get("scale"), 2)
+	screen_dirty = true
+end
+-- // NEW
+```
+
+Now that we've created a scale, let's add some MIDI note activity to our `trigger` function:
+
+```lua
+function trigger(i)
+  table.insert(circle_queue,{
+    x = math.random(256),
+    y = math.random(128),
+    r = math.random(40,190),
+    g = math.random(255),
+    b = math.random(128,255),
+    outer_radius = i*10,
+    inner_radius = i*5
+  })
+
+  -- NEW //
+  local maximum_count = sequencer_rows + 1
+  local note = all_notes[maximum_count - i]
+  m:note_on(note,127,1)
+  table.insert(active_notes,note)
+  -- // NEW
+
+end
+```
+
+In the above, we:
+
+- check to see if have an 8-row or 16-row grid
+- get the note at the inverted index of the triggered row (so the note at row 1 is our *highest* note)
+- send the note to our midi device (notice velocity is 127 and channel is 1 -- these can be adjusted!)
+- add the 'note on' to our `active_notes` table so we can turn it off later
+
+We can time our 'note off' in the downtime right before the next step, in our `play` function:
+
+```lua
+function play()
+  while true do
+    -- perform actions
+    play_position = util.wrap(play_position + 1, 1, cols)
+    for y = 1,rows do
+      if step[y][play_position] == 1 then
+        trigger(y)
+      end
+    end
+    screen_dirty = true
+    clock.sync(1 / 4)
+
+    -- NEW //
+    for active = 1, #active_notes do
+      m:note_off(active_notes[active], nil, 1)
+    end
+    active_notes = {}
+    -- // NEW
+
+    grid_dirty = true
+  end
+end
+```
 
 
 <!--## Closing

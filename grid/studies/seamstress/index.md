@@ -562,6 +562,21 @@ function play()
 end
 ```
 
+Looking ahead, there's a chance we might close seamstress while some notes are being held. To ensure that all notes are turned off when we quit, we'll take advantage of the `cleanup` callback, which executes at every script exit:
+
+```lua
+-- NEW //
+function all_notes_off()
+  m:cc(123, 1)
+end
+
+function cleanup()
+  all_notes_off()
+  g:all(0)
+  g:refresh()
+end
+-- // NEW
+```
 
 <!--## Closing
 

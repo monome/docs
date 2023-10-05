@@ -85,19 +85,16 @@ In our example script, we use two *methods* to light up the grid:
 
 If we're simply interested in displaying presses, this is fine enough. But for scripts where we want to display more layers of information, this approach of directly addressing and redrawing each individual LED isn't very efficient. Let's improve upon our approach in the next section!
 
-## 2. Further
+## 2. Building a script {#scripting}
 
-Now we'll show how basic grid applications are developed by creating a step sequencer. We will add features incrementally:
+When you first approach writing a grid-enabled script in seamstress, it can be helpful to start with a basic structure that has a few different components:
 
-- Use all the rows above the last two as toggles. We *could* assume this is the first 6 rows, but since grid sizes can vary (eg. zero's have 16 rows and 16 columns), we'll write our code to be adaptable to any canvas.
-- Generate a clock pulse to advance the playhead from left to right, one column at a time. Wrap back to 0 at the end. Again, we'll write this to be adaptable to both 64's (with 8 columns) and 128/256's (with 16 columns).
-- Display the play head on "position" (last) row.
-- Indicate the "activity" row (second to last) with a low brightness.
-- Trigger an event when the playhead reads an "on" toggle. Our "event" will be to turn on the corresponding LED in the "activity" row.
-- Jump to playback position when key pressed in the position row.
-- Adjust playback loop with two-key gesture in position row.
+- how you want to handle grid presses + releases
+- a methodology for drawing grid LEDs
+- what, if anything, you want to happen when a grid is connected or removed
+- a timing mechanism (or two!)
 
-### Structure {#structure}
+### 2.1 Basic structure {#structure}
 
 Moving forward, we'll refresh the grid display on a timer, which will later also serve as the play head. We also want to ensure two things are true about our application:
 
@@ -230,7 +227,19 @@ Since we want the grid to draw at a steady 60 frames-per-second, we opt for the 
 
 So, we have our boilerplate -- let's take things further by building a bank of toggles for the sequencer.
 
-## 3.1 Toggles {#toggles}
+## 3. Making a step sequencer {#step}
+
+To show how basic grid-enabled seamstress scripts are developed, let's create a step sequencer. We will add features incrementally:
+
+- Use all the rows above the last two as toggles. We *could* assume this is the first 6 rows, but since grid sizes can vary (eg. zero's have 16 rows and 16 columns), we'll write our code to be adaptable to any canvas.
+- Generate a clock pulse to advance the playhead from left to right, one column at a time. Wrap back to 0 at the end. Again, we'll write this to be adaptable to both 64's (with 8 columns) and 128/256's (with 16 columns).
+- Display the play head on "position" (last) row.
+- Indicate the "activity" row (second to last) with a low brightness.
+- Trigger an event when the playhead reads an "on" toggle. Our "event" will be to turn on the corresponding LED in the "activity" row.
+- Jump to playback position when key pressed in the position row.
+- Adjust playback loop with two-key gesture in position row.
+
+### 3.1 Toggles {#toggles}
 
 *See [grid-studies-3-1.lua](files/grid-studies-3-1.lua) for this section.*
 
@@ -445,16 +454,7 @@ We start with `my_midi_var = midi.connect(x)`, where `x` represents one of seams
 
 [More commands are listed in the API](https://ryleealanza.org/docs/modules/midi.html).
 
-For this revision, we'll introduce [the `musicutil` library](https://ryleealanza.org/docs/modules/lib.MusicUtil.html), which provides utilities for building musical scales:
-
-```lua
--- NEW //
--- we'll use musicutil for easy MIDI note formatting + quantization:
-MU = require("musicutil")
--- // NEW
-```
-
-Then, we'll connect to the first virtual port and build up our parameters to control our musical scale:
+For this revision, we'll load [the `musicutil` library](https://ryleealanza.org/docs/modules/lib.MusicUtil.html) using the variable `MU`, which provides utilities for building musical scales. Then, we'll connect to the first virtual port and build up our parameters to control our musical scale:
 
 ```lua
 -- NEW //
@@ -468,74 +468,58 @@ active_notes = {} -- to keep track of 'note on' messages, for paired 'note off'
 -- build scales for quantized note selection:
 scale_names = {}
 for i = 1, #MU.SCALES do
-	table.insert(scale_names, string.lower(MU.SCALES[i].name))
+  table.insert(scale_names, string.lower(MU.SCALES[i].name))
 end
 
 params:add_control(
-	"root_note", -- scripting ID
-	"root note", -- UI name
-	controlspec.new(0, 127, "lin", 1, 72, nil, 1 / 127), -- controlspec
-	function(param) -- UI formatter
-		return MU.note_num_to_name(param:get(), true)
-	end
+  "root_note", -- scripting ID
+  "root note", -- UI name
+  controlspec.new(0, 127, "lin", 1, 72, nil, 1 / 127), -- controlspec
+  function(param) -- UI formatter
+    return MU.note_num_to_name(param:get(), true)
+  end
 )
 params:set_action("root_note", function()
-	build_scale()
+  build_scale()
 end)
 params:add_option("scale", "scale", scale_names, 5)
 params:set_action("scale", function()
-	build_scale()
+  build_scale()
 end)
 
--- important! if our script relies on the output of our parameter actions,
+-- important! since our script relies on the output of our parameter actions,
 --   we'll want to fire them off in the init:
 params:bang()
 -- // NEW
 ```
 
-You may have noticed that we assigned our parameters' actions to `build_scale()`. We define this function further down:
+You may have noticed that we assigned our parameters' actions to `build_scale()`. This is a helper function which builds two octaves of note data from our root note, in our selected scale. We define this function further down:
 
 ```lua
--- NEW //
 function build_scale()
 	all_notes = MU.generate_scale(params:get("root_note"), params:get("scale"), 2)
 	screen_dirty = true
 end
--- // NEW
 ```
 
-Now that we've created a scale, let's add some MIDI note activity to our `trigger` function:
+Now that we've created a scale, let's add some MIDI note activity to `trigger()`:
 
 ```lua
-function trigger(i)
-  table.insert(circle_queue,{
-    x = math.random(256),
-    y = math.random(128),
-    r = math.random(40,190),
-    g = math.random(255),
-    b = math.random(128,255),
-    outer_radius = i*10,
-    inner_radius = i*5
-  })
-
-  -- NEW //
-  local maximum_count = sequencer_rows + 1
-  local note = all_notes[maximum_count - i]
-  m:note_on(note,127,1)
-  table.insert(active_notes,note)
-  -- // NEW
-
-end
+-- NEW //
+local maximum_count = sequencer_rows + 1
+local note = all_notes[maximum_count - i]
+m:note_on(note, 127, 1)
+table.insert(active_notes, note)
+-- // NEW
 ```
 
 In the above, we:
 
-- check to see if have an 8-row or 16-row grid
 - get the note at the inverted index of the triggered row (so the note at row 1 is our *highest* note)
 - send the note to our midi device (notice velocity is 127 and channel is 1 -- these can be adjusted!)
 - add the 'note on' to our `active_notes` table so we can turn it off later
 
-We can time our 'note off' in the downtime right before the next step, in our `play` function:
+Let's schedule our 'note off' in the downtime right before the next step:
 
 ```lua
 function play()
@@ -562,7 +546,7 @@ function play()
 end
 ```
 
-Looking ahead, there's a chance we might close seamstress while some notes are being held. To ensure that all notes are turned off when we quit, we'll take advantage of the `cleanup` callback, which executes at every script exit:
+As the sequencer runs, it automatically turns off the notes held during each step. Looking ahead, though, there's a chance we might close seamstress before this note off mechanism is able to execute. To ensure that all notes are turned off when we quit seamstress, we'll take advantage of the `cleanup` callback, which executes at every script exit:
 
 ```lua
 -- NEW //
@@ -578,7 +562,110 @@ end
 -- // NEW
 ```
 
-<!--## Closing
+### 3.5 dynamic cuts {#dynamic-cuts}
+
+*See [grid-studies-3-5.lua](files/grid-studies-3-5.lua) for this section.*
+
+We will now use the bottom row to dynamically cut the playback position. First let's add a position display underneath our sequencer canvas, inside of `draw_grid()`:
+
+```lua
+-- NEW //
+-- draw play position
+g:led(play_position, rows, 15)
+-- // NEW
+```
+
+Now we look for key presses in the last row, in the `on_grid_key` function:
+
+```lua
+-- NEW //
+-- grid presses on bottom row cut playhead:
+elseif y == rows and z == 1 then
+  cutting = true
+  next_position = x
+-- // NEW
+```
+
+We've added two variables, `cutting` and `next_position`. 
+
+```python
+async def play(self):
+    while True:
+        await asyncio.sleep(0.1)
+        
+        if self.cutting:
+            self.play_position = self.next_position
+        elif self.play_position == self.width - 1:
+            self.play_position = 0
+        else:
+            self.play_position += 1
+```
+
+Now, when pressing keys on the bottom row it will cue the next position to be played.
+
+### 3.6 loop {#loop}
+
+*See [grid-studies-3-6.lua](files/grid-studies-3-6.lua) for this section.*
+
+Lastly, we'll implement setting the loop start and end points with a two-press gesture: pressing and holding the start point, and pressing an end point while still holding the first key. We'll need to add a variable to count keys held, one to track the last key pressed, and variables to store the loop positions.
+
+```lua
+-- NEW //
+keys_held = 0
+key_last = 0
+loop_start = 1
+loop_end = cols
+-- // NEW
+```
+
+To count keys held on the bottom row, we'll multiply each keypress (where `z` is `1` for down and `0` for up) by 2 and subtract 1 from it -- so we add one on a key down, subtract one on a key up:
+
+```lua
+-- NEW //
+elseif y == rows then
+  keys_held = keys_held + (z * 2) - 1
+  ...
+```
+
+We'll then use the `keys_held` counter to do different actions:
+
+```lua
+-- cut:
+if z == 1 and keys_held == 1 then
+  cutting = true
+  next_position = x
+  key_last = x
+-- set loop:
+elseif z == 1 and keys_held == 2 then
+  loop_start = key_last
+  loop_end = x
+end
+```
+
+We then modify the position-change code:
+
+```python
+-- NEW //
+--  press + hold to set loop points!
+elseif y == rows then
+  keys_held = keys_held + (z * 2) - 1
+  -- cut:
+  if z == 1 and keys_held == 1 then
+    cutting = true
+    next_position = x
+    key_last = x
+  -- set loop:
+  elseif z == 1 and keys_held == 2 then
+    loop_start = key_last
+    loop_end = x
+  end
+  -- // NEW
+end
+```
+
+##
+
+## Closing
 
 We've created a minimal yet intuitive interface for rapidly exploring sequences. We can intuitively change event triggers, loop points, and jump around the data performatively. Many more features could be added, and there are numerous other ways to think about interaction between key press and light feedback in completely different contexts.
 

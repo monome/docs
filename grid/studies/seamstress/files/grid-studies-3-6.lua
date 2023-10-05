@@ -1,8 +1,11 @@
 -- grid studies: seamstress
--- grid-study-3-3.lua
+-- grid-study-3-6.lua
 
 g = grid.connect(1) -- '1' is technically optional.
 -- without an argument, seamstress will always connect to the first-registered grid.
+
+-- we'll use musicutil for easy MIDI note formatting + quantization:
+MU = require("musicutil")
 
 function init()
   if g then
@@ -17,6 +20,13 @@ function init()
 
   sequencer_rows = rows - 1
 
+  -- NEW //
+  keys_held = 0
+  key_last = 0
+  loop_start = 1
+  loop_end = cols
+  -- // NEW
+
   step = {}
   for r = 1, rows do
     step[r] = {}
@@ -25,7 +35,39 @@ function init()
     end
   end
 
-  -- NEW //
+  -- we'll connect to virtual port 1, which is seamstress's MIDI device:
+  m = midi.connect(1)
+  -- for a more robust example of MIDI scaffolding,
+  --   check out the 'hello_midi' example!
+
+  active_notes = {} -- to keep track of 'note on' messages, for paired 'note off'
+
+  -- build scales for quantized note selection:
+  scale_names = {}
+  for i = 1, #MU.SCALES do
+    table.insert(scale_names, string.lower(MU.SCALES[i].name))
+  end
+
+  params:add_control(
+    "root_note", -- scripting ID
+    "root note", -- UI name
+    controlspec.new(0, 127, "lin", 1, 72, nil, 1 / 127), -- controlspec
+    function(param) -- UI formatter
+      return MU.note_num_to_name(param:get(), true)
+    end
+  )
+  params:set_action("root_note", function()
+    build_scale()
+  end)
+  params:add_option("scale", "scale", scale_names, 5)
+  params:set_action("scale", function()
+    build_scale()
+  end)
+
+  -- important! since our script relies on the output of our parameter actions,
+  --   we'll want to fire them off in the init:
+  params:bang()
+
   circle_queue = {}
   screen_dirty = true
   screen_redraw = metro.init(
@@ -34,7 +76,6 @@ function init()
     -1 -- how many times (here, forever)
   )
   screen_redraw:start() -- start the timer
-  -- // NEW
 
   play_position = 0
   playhead = clock.run(play)
@@ -59,24 +100,43 @@ function grid.remove(dev)
   grid_connected = false
 end
 
+function build_scale()
+  all_notes = MU.generate_scale(params:get("root_note"), params:get("scale"), 2)
+  screen_dirty = true
+end
+
 function play()
   while true do
     -- perform actions
-    play_position = util.wrap(play_position + 1, 1, cols)
+    if cutting then
+      play_position = next_position
+      cutting = false
     -- NEW //
+    elseif play_position == cols then
+      play_position = 1
+    elseif play_position == loop_end then
+      play_position = loop_start
+    else
+      play_position = play_position + 1
+    end
+    -- // NEW
     for y = 1,rows do
       if step[y][play_position] == 1 then
         trigger(y)
       end
     end
     screen_dirty = true
-    -- // NEW
     clock.sync(1 / 4)
+
+    for active = 1, #active_notes do
+      m:note_off(active_notes[active], nil, 1)
+    end
+    active_notes = {}
+
     grid_dirty = true
   end
 end
 
--- NEW //
 function trigger(i)
   table.insert(circle_queue,{
     x = math.random(256),
@@ -87,6 +147,12 @@ function trigger(i)
     outer_radius = i*10,
     inner_radius = i*5
   })
+
+  local maximum_count = sequencer_rows + 1
+  local note = all_notes[maximum_count - i]
+  m:note_on(note,127,1)
+  table.insert(active_notes,note)
+
 end
 
 function redraw()
@@ -103,12 +169,27 @@ function redraw()
     screen.refresh()
   end
 end
--- // NEW
 
 function g.key(x, y, z)
   if z == 1 and y <= sequencer_rows then
     -- when step value is 0, set it to 1 ; when step value is 1, set it to 0
     step[y][x] = math.abs(step[y][x] - 1)
+  -- grid presses on bottom row cut playhead:
+  -- NEW //
+  --  press + hold to set loop points!
+  elseif y == rows then
+    keys_held = keys_held + (z * 2) - 1
+    -- cut:
+    if z == 1 and keys_held == 1 then
+      cutting = true
+      next_position = x
+      key_last = x
+    -- set loop:
+    elseif z == 1 and keys_held == 2 then
+      loop_start = key_last
+      loop_end = x
+    end
+    -- // NEW
   end
   grid_dirty = true
 end
@@ -126,18 +207,29 @@ function draw_grid()
         highlight = 0
       end
       
-      -- NEW //
       -- trigger bar
       local trig_bar = sequencer_rows + 1
       g:led(x, trig_bar, 4)
-      -- // NEW
 
       for y = 1, sequencer_rows do
         g:led(x, y, step[y][x] * 11 + highlight)
       end
     end
+
+    -- draw play position
+    g:led(play_position, rows, 15)
     
     g:refresh() -- draw grid LEDs
     grid_dirty = false -- reset flag
   end
+end
+
+function all_notes_off()
+  m:cc(123, 1)
+end
+
+function cleanup()
+  all_notes_off()
+  g:all(0)
+  g:refresh()
 end

@@ -20,7 +20,7 @@ function init()
     grid_connected = false
   end
 
-  sequencer_rows = rows - 2
+  sequencer_rows = rows - 1
 
   step = {}
   for r = 1, rows do
@@ -60,7 +60,7 @@ function init()
     build_scale()
   end)
 
-  -- important! if our script relies on the output of our parameter actions,
+  -- important! since our script relies on the output of our parameter actions,
   --   we'll want to fire them off in the init:
   params:bang()
   -- // NEW
@@ -89,7 +89,7 @@ end
 function grid.add(dev)
   cols = dev.cols
   rows = dev.rows
-  sequencer_rows = rows - 2
+  sequencer_rows = rows - 1
   grid_connected = true
 end
 
@@ -189,13 +189,6 @@ function draw_grid()
 
       for y = 1, sequencer_rows do
         g:led(x, y, step[y][x] * 11 + highlight)
-      end
-    end
-
-    for y = 1, sequencer_rows do
-      local trig_bar = sequencer_rows+1
-      if step[y][play_position] == 1 then
-        g:led(play_position, trig_bar, 15)
       end
     end
     

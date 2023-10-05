@@ -15,7 +15,7 @@ function init()
     grid_connected = false
   end
 
-  sequencer_rows = rows - 2
+  sequencer_rows = rows - 1
 
   step = {}
   for r = 1, rows do
@@ -42,7 +42,7 @@ end
 function grid.add(dev)
   cols = dev.cols
   rows = dev.rows
-  sequencer_rows = rows - 2
+  sequencer_rows = rows - 1
   grid_connected = true
 end
 

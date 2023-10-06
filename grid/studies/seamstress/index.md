@@ -94,8 +94,6 @@ When you first approach writing a grid-enabled script in seamstress, it can be h
 - what, if anything, you want to happen when a grid is connected or removed
 - a timing mechanism (or two!)
 
-### 2.1 Basic structure {#structure}
-
 Moving forward, we'll refresh the grid display on a timer, which will later also serve as the play head. We also want to ensure two things are true about our application:
 
 - the action should start when a grid is plugged in for the first time
@@ -105,7 +103,7 @@ Below is the basic structure that facilitates this criteria:
 
 ```lua
 -- grid studies: seamstress
--- grid-study-2-1.lua
+-- grid-study-2.lua
 
 g = grid.connect(1) -- '1' is technically optional.
 -- without an argument, seamstress will always connect to the first-registered grid.
@@ -663,7 +661,14 @@ elseif y == rows then
 end
 ```
 
-##
+## 4. Transport {#transport}
+
+As a bonus round, let's extend our script by:
+
+- adding transport controls so we can start and stop our sequencer
+- tying incoming MIDI start/stop messages to the script's transport
+
+### 4.1
 
 ## Closing
 

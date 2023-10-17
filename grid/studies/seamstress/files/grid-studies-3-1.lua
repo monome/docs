@@ -15,27 +15,35 @@ function init()
     grid_connected = false
   end
 
-	-- NEW //
-	sequencer_rows = rows - 1
+  -- NEW //
+  sequencer_rows = rows - 1
 
-	step = {}
-	for r = 1, rows do
-		step[r] = {}
-		for c = 1, cols do
-			step[r][c] = 0
-		end
-	end
+  step = {}
+  for r = 1, rows do
+    step[r] = {}
+    for c = 1, cols do
+      step[r][c] = 0
+    end
+  end
   -- // NEW
 
-	playhead = clock.run(play)
-	grid_dirty = true
-	grid_redraw = metro.init(
-		draw_grid, -- function to execute
-		1 / 60, -- how often (here, 60 fps)
-		-1 -- how many times (here, forever)
-	)
-	grid_redraw:start() -- start the timer
+  playhead = clock.run(play)
+  grid_dirty = true
+  grid_redraw = metro.init(
+    draw_grid, -- function to execute
+    1 / 60, -- how often (here, 60 fps)
+    -1 -- how many times (here, forever)
+  )
+  grid_redraw:start() -- start the timer
 
+end
+
+function redraw()
+  screen.clear()
+  screen.move(10, 10)
+  screen.color(255, 255, 255, 255) -- RGBA, A is optional
+  screen.text("grid connected: " .. tostring(grid_connected))
+  screen.refresh()
 end
 
 function grid.add(dev)
@@ -45,16 +53,18 @@ function grid.add(dev)
   sequencer_rows = rows - 1
   -- // NEW
   grid_connected = true
+  redraw()
 end
 
 function grid.remove(dev)
   grid_connected = false
+  redraw()
 end
 
 function play()
   while true do
-		-- perform actions
-		clock.sync(1 / 4)
+    -- perform actions
+    clock.sync(1 / 4)
     grid_dirty = true
   end
 end

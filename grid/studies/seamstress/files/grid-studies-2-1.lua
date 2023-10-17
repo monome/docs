@@ -15,14 +15,14 @@ function init()
     grid_connected = false
   end
 
-	playhead = clock.run(play)
-	grid_dirty = true
-	grid_redraw = metro.init(
-		draw_grid, -- function to execute
-		1 / 60, -- how often (here, 60 fps)
-		-1 -- how many times (here, forever)
-	)
-	grid_redraw:start() -- start the timer
+  playhead = clock.run(play)
+  grid_dirty = true
+  grid_redraw = metro.init(
+    draw_grid, -- function to execute
+    1 / 60, -- how often (here, 60 fps)
+    -1 -- how many times (here, forever)
+  )
+  grid_redraw:start() -- start the timer
   
 end
 
@@ -38,8 +38,8 @@ end
 
 function play()
   while true do
-		-- perform actions
-		clock.sync(1 / 4)
+    -- perform actions
+    clock.sync(1 / 4)
     grid_dirty = true
   end
 end

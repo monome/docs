@@ -35,6 +35,21 @@ function init()
     end
   end
 
+	circle_queue = {}
+	screen_dirty = true
+	screen_redraw = metro.init(
+		redraw, -- function to execute
+		1 / 30, -- how often (here, 30 fps)
+		-1 -- how many times (here, forever)
+	)
+	screen_redraw:start() -- start the timer
+
+	play_position = 0
+	playhead = clock.run(play)
+	grid_dirty = true
+	grid_redraw = metro.init(draw_grid, 1 / 60, -1)
+	grid_redraw:start()
+
   -- we'll connect to virtual port 1, which is seamstress's MIDI device:
   m = midi.connect(1)
   -- for a more robust example of MIDI scaffolding,
@@ -67,25 +82,6 @@ function init()
   -- important! since our script relies on the output of our parameter actions,
   --   we'll want to fire them off in the init:
   params:bang()
-
-  circle_queue = {}
-  screen_dirty = true
-  screen_redraw = metro.init(
-    redraw, -- function to execute
-    1/30, -- how often (here, 30 fps)
-    -1 -- how many times (here, forever)
-  )
-  screen_redraw:start() -- start the timer
-
-  play_position = 0
-  playhead = clock.run(play)
-  grid_dirty = true
-  grid_redraw = metro.init(
-    draw_grid,
-    1 / 60,
-    -1
-  )
-  grid_redraw:start()
 
 end
 
@@ -207,9 +203,9 @@ function draw_grid()
         highlight = 0
       end
       
-      -- trigger bar
-      local trig_bar = sequencer_rows + 1
-      g:led(x, trig_bar, 4)
+      -- jump row
+      local jump_row = sequencer_rows + 1
+      g:led(x, jump_row, 4)
 
       for y = 1, sequencer_rows do
         g:led(x, y, step[y][x] * 11 + highlight)
@@ -226,6 +222,7 @@ end
 
 function all_notes_off()
   m:cc(123, 1)
+  active_notes = {}
 end
 
 function cleanup()

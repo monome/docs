@@ -127,14 +127,16 @@ function draw_grid()
       end
       
       -- NEW //
-      -- trigger bar
-      local trig_bar = sequencer_rows + 1
-      g:led(x, trig_bar, 4)
-      -- // NEW
+      -- jump row
+      local jump_row = sequencer_rows + 1
+      g:led(x, jump_row, 4)
 
+      -- sequencer rows:
       for y = 1, sequencer_rows do
         g:led(x, y, step[y][x] * 11 + highlight)
       end
+      
+      -- // NEW
     end
     
     g:refresh() -- draw grid LEDs

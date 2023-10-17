@@ -16,7 +16,7 @@ This study assumes a basic understanding of Lua. If you're absolutely new to Lua
 
 Required:
 
-- Install seamstress on your computer: [GitHub](https://github.com/ryleelyman/seamstress/#installation)
+- Install seamstress on your computer: [download via GitHub](https://github.com/ryleelyman/seamstress/#installation) or `brew install seamstress`
 - Install serialosc: [/docs/serialosc/setup](/docs/serialosc/setup)
 - Download the code examples here: [files/grid-studies-seamstress.zip](files/grid-studies-seamstress.zip)
 
@@ -64,7 +64,7 @@ As you press keys on your grid, you'll see them light up for as long as they're 
 
 ### connection
 
-`g = grid.connect()` creates a device table `g`, which inherits a collection of methods (demarcated with `:`) and functions designed to handle grid communication. We use *methods* to send commands to the grid and we use *functions* to parse what comes back.
+`g = grid.connect()` creates a device table `g`, which inherits a collection of methods (demarcated with `:`) and functions designed to handle grid communication. For grid, we'll use *methods* to send commands to the grid and we use *functions* to parse what comes back.
 
 ### key input
 
@@ -80,8 +80,8 @@ end
 
 In our example script, we use two *methods* to light up the grid:
 
-- `g:led(x, y, val)`, where `x` and `y` are the coordinates (1-indexed) and `val` is the brightness (whole numbers from `0` to `15`)
-- `g:refresh()`, which draws any `:led` command to the connected grid
+- `g:led(x, y, val)` queues an LED for drawing, where `x` and `y` are the coordinates (1-indexed) and `val` is the brightness (whole numbers from `0` to `15`)
+- `g:refresh()`, which draws any queued LED to the connected grid
 
 If we're simply interested in displaying presses, this is fine enough. But for scripts where we want to display more layers of information, this approach of directly addressing and redrawing each individual LED isn't very efficient. Let's improve upon our approach in the next section!
 
@@ -94,12 +94,11 @@ When you first approach writing a grid-enabled script in seamstress, it can be h
 - what, if anything, you want to happen when a grid is connected or removed
 - a timing mechanism (or two!)
 
-Moving forward, we'll refresh the grid display on a timer, which will later also serve as the play head. We also want to ensure two things are true about our application:
+Moving forward, we'll refresh the grid display on a timer, which will also serve as the playhead later on.
 
-- the action should start when a grid is plugged in for the first time
-- if the grid is disconnected, the action should continue without error
+### 2.1 Basic script {#basic-script}
 
-Below is the basic structure that facilitates this criteria:
+Below is a basic script that facilitates this structure:
 
 ```lua
 -- grid studies: seamstress
@@ -109,14 +108,6 @@ g = grid.connect(1) -- '1' is technically optional.
 -- without an argument, seamstress will always connect to the first-registered grid.
 
 function init()
-  playhead = clock.run(play)
-  grid_dirty = true
-  grid_redraw = metro.init(
-    draw_grid, -- function to execute
-    1/60, -- how often (here, 60 fps)
-    -1 -- how many times (here, forever)
-  )
-  grid_redraw:start() -- start the timer
   if g then
     cols = g.cols
     rows = g.rows
@@ -126,6 +117,16 @@ function init()
     rows = 8
     grid_connected = false
   end
+
+  playhead = clock.run(play)
+  grid_dirty = true
+  grid_redraw = metro.init(
+    draw_grid, -- function to execute
+    1 / 60, -- how often (here, 60 fps)
+    -1 -- how many times (here, forever)
+  )
+  grid_redraw:start() -- start the timer
+  
 end
 
 function grid.add(dev)
@@ -140,8 +141,8 @@ end
 
 function play()
   while true do
-    clock.sync(1/4)
     -- perform actions
+    clock.sync(1 / 4)
     grid_dirty = true
   end
 end
@@ -223,6 +224,34 @@ end
 
 Since we want the grid to draw at a steady 60 frames-per-second, we opt for the higher-resolution `metro`, rather than the 'musical timing' `clock`.
 
+### 2.2 Add something to the screen {#screen}
+
+Let's add a very small indicator to the screen which tells us whether a grid is connected or not:
+
+```lua
+-- NEW //
+function redraw()
+  screen.clear()
+  screen.move(10, 10)
+  screen.color(255, 255, 255, 255) -- RGBA, A is optional
+  screen.text("grid connected: " .. tostring(grid_connected))
+  screen.refresh()
+end
+-- // NEW
+
+function grid.add(dev)
+  cols = dev.cols
+  rows = dev.rows
+  grid_connected = true
+  redraw() -- NEW
+end
+
+function grid.remove(dev)
+  grid_connected = false
+  redraw() -- NEW
+end
+```
+
 So, we have our boilerplate -- let's take things further by building a bank of toggles for the sequencer.
 
 ## 3. Making a step sequencer {#step}
@@ -290,9 +319,9 @@ function play()
   while true do
     -- perform actions
     -- NEW //
-    play_position = util.wrap(play_position+1,1,cols)
-		-- // NEW
-		clock.sync(1 / 4)
+    play_position = util.wrap(play_position + 1, 1, cols)
+    -- // NEW
+    clock.sync(1 / 4)
     grid_dirty = true
   end
 end
@@ -331,9 +360,9 @@ While iterating over the steps in a loop, we check if we're updating a column th
 
 *See [grid-studies-3-3.lua](files/grid-studies-3-3.lua) for this section.*
 
-When the playhead advances to a new column we want something to happen which corresponds to the toggled-on values. We'll do two things: we'll show separate visual feedback on the grid in the second-to-last (trigger) row, and we'll print something to the command line.
+When the playhead advances to a new column we want something to happen which corresponds to the toggled-on values. We'll do two things: we'll draw in our bottom row (reserved for jumping around the sequence later), and we'll print something to the command line.
 
-Drawing the trigger row happens entirely in the `draw()`:
+Drawing the jump bar on the grid happens entirely in the `draw()`:
 
 ```lua
 function draw_grid()
@@ -350,24 +379,17 @@ function draw_grid()
       end
       
       -- NEW //
-      -- trigger bar
-      local trig_bar = sequencer_rows + 1
-      g:led(x, trig_bar, 4)
-      -- // NEW
+      -- jump row
+      local jump_row = sequencer_rows + 1
+      g:led(x, jump_row, 4)
 
+      -- sequencer rows:
       for y = 1, sequencer_rows do
         g:led(x, y, step[y][x] * 11 + highlight)
       end
+      
+      -- // NEW
     end
-
-    -- NEW //
-    for y = 1, sequencer_rows do
-      local trig_bar = sequencer_rows+1
-      if step[y][play_position] == 1 then
-        g:led(play_position, trig_bar, 15)
-      end
-    end
-    -- // NEW
     
     g:refresh() -- draw grid LEDs
     grid_dirty = false -- reset flag
@@ -376,7 +398,7 @@ end
 
 ```
 
-First we create a dim glow underneath our sequencer canvas with level `4`. Then we search through the `step` array at the current play position, showing a bright (level 15) indicator for each *on* state. This displays a sort of horizontal correlation of the "channel"'s current state.
+First we create a dim glow underneath our sequencer canvas with level `4`. Then we adjust the way our sequencer's rows redraw.
 
 For the screen drawing, we create a function `trigger()` which gets passed values of activated steps. This is what we do, inside `play()` right after we change `play_position`:
 
@@ -434,7 +456,7 @@ function redraw()
 end
 ```
 
-Each 'step' could of course do something much more exciting -- animate robot arms, set off fireworks, etc. For now, we'll have to settle for generating MIDI notes.
+Each 'step' could of course do something much more exciting -- animate robot arms, set off fireworks, etc. For now, we'll have to settle for generating MIDI notes and drawing colorful circles (though, they're much more fun than plain white text).
 
 ### 3.4 MIDI {#midi}
 
@@ -550,6 +572,7 @@ As the sequencer runs, it automatically turns off the notes held during each ste
 -- NEW //
 function all_notes_off()
   m:cc(123, 1)
+  active_notes = {}
 end
 
 function cleanup()
@@ -573,7 +596,7 @@ g:led(play_position, rows, 15)
 -- // NEW
 ```
 
-Now we look for key presses in the last row, in the `on_grid_key` function:
+Now we look for key presses in the last row, in the `on_grid_key` function. We've added two variables, `cutting` and `next_position`:
 
 ```lua
 -- NEW //
@@ -582,21 +605,6 @@ elseif y == rows and z == 1 then
   cutting = true
   next_position = x
 -- // NEW
-```
-
-We've added two variables, `cutting` and `next_position`. 
-
-```python
-async def play(self):
-    while True:
-        await asyncio.sleep(0.1)
-        
-        if self.cutting:
-            self.play_position = self.next_position
-        elif self.play_position == self.width - 1:
-            self.play_position = 0
-        else:
-            self.play_position += 1
 ```
 
 Now, when pressing keys on the bottom row it will cue the next position to be played.
@@ -642,7 +650,7 @@ end
 
 We then modify the position-change code:
 
-```python
+```lua
 -- NEW //
 --  press + hold to set loop points!
 elseif y == rows then
@@ -666,9 +674,83 @@ end
 As a bonus round, let's extend our script by:
 
 - adding transport controls so we can start and stop our sequencer
-- tying incoming MIDI start/stop messages to the script's transport
+- tying incoming transport start/stop messages to the script's sense of place and time
 
-### 4.1
+### adding transport actions {#transport-actions}
+
+If you're used to highly-structured Digital Audio Workstations, then you might be looking for ways to create meaningful 'start' and 'stop' functionality within a seamstress script.
+
+The clock in seamstress, like norns, is *always-on*. You can reset it back to 0, but you cannot turn it off. This allows for a lot of freedom, but if you're writing a pretty straightforward step sequencer like the one in this study, you'll want to be able to start and stop the action. To do this, we introduce a `transport` function which manages our playhead's state, position, and anything else that we want to occur at the sequencer's 'start' or 'stop':
+
+```lua
+-- here, we define what a 'start' and 'stop' mean for this script:
+function transport(action)
+  if action == "start" then
+    playhead = clock.run(play)
+    grid_dirty = true
+    screen_dirty = true
+  elseif action == "stop" then
+    if playhead ~= nil then
+      clock.cancel(playhead)
+    end
+    -- reset play position:
+    play_position = 0
+
+    -- release any held notes:
+    all_notes_off()
+
+    -- redraw interfaces:
+    grid_dirty = true
+    screen_dirty = true
+  end
+end
+```
+
+We'll also give ourselves a little parameter UI entry:
+
+```lua
+-- NEW //
+params:add_binary(
+	"transport_control", -- ID
+	"start/stop", -- display name
+	"toggle", -- type
+	0 -- default
+)
+
+params:set_action("transport_control", function(x)
+	if x == 1 then
+		if params:string("clock_source") == "internal" then
+			clock.internal.start()
+		else
+			transport("start")
+		end
+	else
+		transport("stop")
+	end
+end)
+-- // NEW
+```
+
+### transport callbacks {#transport-callbacks}
+
+There are two system-level callbacks which can be assigned in your script to perform specific actions whenever the seamstress clock receives a 'start' and 'stop' message: `clock.transport.start` and `clock.transport.stop`.
+
+```lua
+-- this is a system callback, which executes whenever seamstress's
+--   clock receives a 'transport start' message
+function clock.transport.start()
+  params:set("transport_control", 0) -- stop our sequencer
+  params:set("transport_control", 1, true) -- flip transport UI in params
+  -- ^ 'true' at the end means 'silent', which doesn't trigger the action
+  transport('start') -- start our sequencer
+end
+
+-- this is a system callback, which executes whenever seamstress's
+--   clock receives a 'transport stop' message
+function clock.transport.stop()
+  params:set("transport_control", 0) -- stop our sequencer
+end
+```
 
 ## Closing
 
@@ -676,7 +758,7 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
 
 ### Suggested exercises
 
-- If you have access to a 256 grid, try adapting the 3.x patches to accommodate this larger size.
+- If you have access to a 256 grid, try adapting the scripts to accommodate this larger size.
 - Display the loop range with dim LED levels.
 - "Record" keypresses in the "trigger" row to the toggle matrix.
 - Display the playhead position as a dim column behind the toggle data.
@@ -684,15 +766,10 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
 	- If "alt" is held while pressing a toggle, clear the entire row.
 	- If "alt" is held while pressing the play row, reverse the direction of play.
 
-### Bonus
-
-See `grid-studies-3-5.maxpat` for a JavaScript implementation of this patch.
-
 ## Credits
 
-*Max* was originally designed by Miller Puckette and is actively developed by [Cycling '74](http://cycling74.com).
+seamstress was developed and designed by [Rylee Lyman](https://ryleealanza.org/), inspired by [*matron* from norns](https://github.com/monome/norns/tree/main/matron/src), which was written by [`@catfact`](https://github.com/ryleelyman/seamstress). norns was initiated by [`@tehn`](https://github.com/tehn).
 
-This tutorial was created by [Brian Crabtree](https://nnnnnnnn.org) and maintained by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org).
+This tutorial was created by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.
--->

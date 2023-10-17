@@ -33,10 +33,23 @@ function init()
     end
   end
 
-  -- we'll connect to virtual port 1, which is seamstress's MIDI device:
+  circle_queue = {}
+  screen_dirty = true
+  screen_redraw = metro.init(
+    redraw, -- function to execute
+    1 / 30, -- how often (here, 30 fps)
+    -1 -- how many times (here, forever)
+  )
+  screen_redraw:start() -- start the timer
+
+  play_position = 0
+  -- NEW: we'll start our sequencer clock in the 'transport' function below!
+  -- playhead = clock.run(play) -- so, commenting this out for now.
+  grid_dirty = true
+  grid_redraw = metro.init(draw_grid, 1 / 60, -1)
+  grid_redraw:start()
+
   m = midi.connect(1)
-  -- for a more robust example of MIDI scaffolding,
-  --   check out the 'hello_midi' example!
 
   active_notes = {} -- to keep track of 'note on' messages, for paired 'note off'
 
@@ -45,6 +58,30 @@ function init()
   for i = 1, #MU.SCALES do
     table.insert(scale_names, string.lower(MU.SCALES[i].name))
   end
+  
+  -- NEW //
+  params:add_binary(
+    "transport_control", -- ID
+    "start/stop", -- display name
+    "toggle", -- type
+    0 -- default
+  )
+
+  params:set_action(
+    "transport_control",
+    function(x)
+      if x == 1 then
+        if params:string('clock_source') == 'internal' then
+          clock.internal.start() -- restarts seamstress's internal transport to 0
+        else
+          transport("start")
+        end
+      else
+        transport("stop")
+      end
+    end
+  )
+  -- // NEW
 
   params:add_control(
     "root_note", -- scripting ID
@@ -66,25 +103,6 @@ function init()
   --   we'll want to fire them off in the init:
   params:bang()
 
-  circle_queue = {}
-  screen_dirty = true
-  screen_redraw = metro.init(
-    redraw, -- function to execute
-    1/30, -- how often (here, 30 fps)
-    -1 -- how many times (here, forever)
-  )
-  screen_redraw:start() -- start the timer
-
-  play_position = 0
-  -- we'll start our sequencer clock in the 'transport' function below!
-  grid_dirty = true
-  grid_redraw = metro.init(
-    draw_grid,
-    1 / 60,
-    -1
-  )
-  grid_redraw:start()
-
 end
 
 function grid.add(dev)
@@ -103,26 +121,45 @@ function build_scale()
   screen_dirty = true
 end
 
+-- NEW //
+
+-- here, we define what a 'start' and 'stop' mean for this script:
 function transport(action)
-  if action == 'start' then
-		playhead = clock.run(play)
-		grid_dirty = true
-		screen_dirty = true
-  elseif action == 'stop' then
-    clock.cancel(playhead)
+  if action == "start" then
+    playhead = clock.run(play)
+    grid_dirty = true
+    screen_dirty = true
+  elseif action == "stop" then
+    if playhead ~= nil then
+      clock.cancel(playhead)
+    end
+    -- reset play position:
     play_position = 0
+
+    -- release any held notes:
+    all_notes_off()
+
+    -- redraw interfaces:
     grid_dirty = true
     screen_dirty = true
   end
 end
 
+-- this is a system callback, which executes whenever seamstress's
+--   clock receives a 'transport start' message
 function clock.transport.start()
-  transport('start')
+  params:set("transport_control", 0) -- stop our sequencer
+  params:set("transport_control", 1, true) -- flip transport UI in params
+  -- ^ 'true' at the end means 'silent', which doesn't trigger the action
+  transport('start') -- start our sequencer
 end
 
+-- this is a system callback, which executes whenever seamstress's
+--   clock receives a 'transport stop' message
 function clock.transport.stop()
-  transport('stop')
+  params:set("transport_control", 0) -- stop our sequencer
 end
+-- // NEW
 
 function play()
   while true do
@@ -137,7 +174,7 @@ function play()
     else
       play_position = play_position + 1
     end
-    for y = 1,rows do
+    for y = 1, rows do
       if step[y][play_position] == 1 then
         trigger(y)
       end
@@ -155,27 +192,27 @@ function play()
 end
 
 function trigger(i)
-  table.insert(circle_queue,{
+  table.insert(circle_queue, {
     x = math.random(256),
     y = math.random(128),
-    r = math.random(40,190),
+    r = math.random(40, 190),
     g = math.random(255),
-    b = math.random(128,255),
-    outer_radius = i*10,
-    inner_radius = i*5
+    b = math.random(128, 255),
+    outer_radius = i * 10,
+    inner_radius = i * 5,
   })
 
   local maximum_count = sequencer_rows + 1
   local note = all_notes[maximum_count - i]
-  m:note_on(note,127,1)
-  table.insert(active_notes,note)
-
+  m:note_on(note, 127, 1)
+  table.insert(active_notes, note)
+  print(clock.get_beats())
 end
 
 function redraw()
   if screen_dirty then
     screen.clear()
-    for k,v in pairs(circle_queue) do
+    for k, v in pairs(circle_queue) do
       screen.move(v.x, v.y)
       screen.color(v.r, v.g, v.b)
       screen.circle(v.outer_radius)
@@ -221,10 +258,10 @@ function draw_grid()
       else
         highlight = 0
       end
-      
-      -- trigger bar
-      local trig_bar = sequencer_rows + 1
-      g:led(x, trig_bar, 4)
+
+			-- jump row
+			local jump_row = sequencer_rows + 1
+			g:led(x, jump_row, 4)
 
       for y = 1, sequencer_rows do
         g:led(x, y, step[y][x] * 11 + highlight)
@@ -233,7 +270,7 @@ function draw_grid()
 
     -- draw play position
     g:led(play_position, rows, 15)
-    
+
     g:refresh() -- draw grid LEDs
     grid_dirty = false -- reset flag
   end
@@ -241,6 +278,7 @@ end
 
 function all_notes_off()
   m:cc(123, 1)
+	active_notes = {}
 end
 
 function cleanup()

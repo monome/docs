@@ -671,6 +671,8 @@ end
 
 ## 4. Transport {#transport}
 
+*See [grid-studies-4.lua](files/grid-studies-4.lua) for this section.*
+
 As a bonus round, let's extend our script by:
 
 - adding transport controls so we can start and stop our sequencer

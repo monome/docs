@@ -774,7 +774,7 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
 
 ## Credits
 
-seamstress was developed and designed by [Rylee Lyman](https://ryleealanza.org/), inspired by [*matron* from norns](https://github.com/monome/norns/tree/main/matron/src). *matron* was written by [`@catfact`](https://github.com/ryleelyman/seamstress). norns was initiated by [`@tehn`](https://github.com/tehn).
+seamstress was developed and designed by [Rylee Alanza Lyman](https://ryleealanza.org/), inspired by [*matron* from norns](https://github.com/monome/norns/tree/main/matron/src). *matron* was written by [`@catfact`](https://github.com/ryleelyman/seamstress). norns was initiated by [`@tehn`](https://github.com/tehn).
 
 This tutorial was created by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org).
 

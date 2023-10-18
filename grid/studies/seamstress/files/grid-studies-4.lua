@@ -58,7 +58,7 @@ function init()
   for i = 1, #MU.SCALES do
     table.insert(scale_names, string.lower(MU.SCALES[i].name))
   end
-  
+
   -- NEW //
   params:add_binary(
     "transport_control", -- ID
@@ -67,20 +67,17 @@ function init()
     0 -- default
   )
 
-  params:set_action(
-    "transport_control",
-    function(x)
-      if x == 1 then
-        if params:string('clock_source') == 'internal' then
-          clock.internal.start() -- restarts seamstress's internal transport to 0
-        else
-          transport("start")
-        end
+  params:set_action("transport_control", function(x)
+    if x == 1 then
+      if params:string("clock_source") == "internal" then
+        clock.internal.start() -- restarts seamstress's internal transport to 0
       else
-        transport("stop")
+        transport("start")
       end
+    else
+      transport("stop")
     end
-  )
+  end)
   -- // NEW
 
   params:add_control(
@@ -102,7 +99,6 @@ function init()
   -- important! since our script relies on the output of our parameter actions,
   --   we'll want to fire them off in the init:
   params:bang()
-
 end
 
 function grid.add(dev)
@@ -151,7 +147,7 @@ function clock.transport.start()
   params:set("transport_control", 0) -- stop our sequencer
   params:set("transport_control", 1, true) -- flip transport UI in params
   -- ^ 'true' at the end means 'silent', which doesn't trigger the action
-  transport('start') -- start our sequencer
+  transport("start") -- start our sequencer
 end
 
 -- this is a system callback, which executes whenever seamstress's
@@ -259,9 +255,9 @@ function draw_grid()
         highlight = 0
       end
 
-			-- jump row
-			local jump_row = sequencer_rows + 1
-			g:led(x, jump_row, 4)
+      -- jump row
+      local jump_row = sequencer_rows + 1
+      g:led(x, jump_row, 4)
 
       for y = 1, sequencer_rows do
         g:led(x, y, step[y][x] * 11 + highlight)
@@ -278,7 +274,7 @@ end
 
 function all_notes_off()
   m:cc(123, 1)
-	active_notes = {}
+  active_notes = {}
 end
 
 function cleanup()

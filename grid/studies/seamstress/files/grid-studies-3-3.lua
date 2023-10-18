@@ -30,7 +30,7 @@ function init()
   screen_dirty = true
   screen_redraw = metro.init(
     redraw, -- function to execute
-    1/30, -- how often (here, 30 fps)
+    1 / 30, -- how often (here, 30 fps)
     -1 -- how many times (here, forever)
   )
   screen_redraw:start() -- start the timer
@@ -39,13 +39,8 @@ function init()
   play_position = 0
   playhead = clock.run(play)
   grid_dirty = true
-  grid_redraw = metro.init(
-    draw_grid,
-    1 / 60,
-    -1
-  )
+  grid_redraw = metro.init(draw_grid, 1 / 60, -1)
   grid_redraw:start()
-
 end
 
 function grid.add(dev)
@@ -64,7 +59,7 @@ function play()
     -- perform actions
     play_position = util.wrap(play_position + 1, 1, cols)
     -- NEW //
-    for y = 1,rows do
+    for y = 1, rows do
       if step[y][play_position] == 1 then
         trigger(y)
       end
@@ -78,21 +73,21 @@ end
 
 -- NEW //
 function trigger(i)
-  table.insert(circle_queue,{
+  table.insert(circle_queue, {
     x = math.random(256),
     y = math.random(128),
-    r = math.random(40,190),
+    r = math.random(40, 190),
     g = math.random(255),
-    b = math.random(128,255),
-    outer_radius = i*10,
-    inner_radius = i*5
+    b = math.random(128, 255),
+    outer_radius = i * 10,
+    inner_radius = i * 5,
   })
 end
 
 function redraw()
   if screen_dirty then
     screen.clear()
-    for k,v in pairs(circle_queue) do
+    for k, v in pairs(circle_queue) do
       screen.move(v.x, v.y)
       screen.color(v.r, v.g, v.b)
       screen.circle(v.outer_radius)
@@ -125,7 +120,7 @@ function draw_grid()
       else
         highlight = 0
       end
-      
+
       -- NEW //
       -- jump row
       local jump_row = sequencer_rows + 1
@@ -135,10 +130,10 @@ function draw_grid()
       for y = 1, sequencer_rows do
         g:led(x, y, step[y][x] * 11 + highlight)
       end
-      
+
       -- // NEW
     end
-    
+
     g:refresh() -- draw grid LEDs
     grid_dirty = false -- reset flag
   end

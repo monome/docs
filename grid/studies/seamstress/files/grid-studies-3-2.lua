@@ -36,7 +36,6 @@ function init()
     -1 -- how many times (here, forever)
   )
   grid_redraw:start() -- start the timer
-
 end
 
 function redraw()

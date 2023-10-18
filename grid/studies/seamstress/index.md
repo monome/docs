@@ -16,7 +16,13 @@ This study assumes a basic understanding of Lua. If you're absolutely new to Lua
 
 Required:
 
-- Install seamstress on your computer: [download via GitHub](https://github.com/ryleelyman/seamstress/#installation) or `brew install seamstress`
+- Install [seamstress's dependencies](https://github.com/ryleelyman/seamstress/#installation)
+- Install seamstress by either:
+  - [downloading a prebuilt binary via GitHub](https://github.com/ryleelyman/seamstress/releases)
+  - using [homebrew](https://brew.sh/):  
+    `brew tap ryleelyman/seamstress`  
+    `brew install seamstress`
+  - [building from source](https://github.com/ryleelyman/seamstress/#building-from-source)
 - Install serialosc: [/docs/serialosc/setup](/docs/serialosc/setup)
 - Download the code examples here: [files/grid-studies-seamstress.zip](files/grid-studies-seamstress.zip)
 
@@ -517,8 +523,8 @@ You may have noticed that we assigned our parameters' actions to `build_scale()`
 
 ```lua
 function build_scale()
-	all_notes = MU.generate_scale(params:get("root_note"), params:get("scale"), 2)
-	screen_dirty = true
+  all_notes = MU.generate_scale(params:get("root_note"), params:get("scale"), 2)
+  screen_dirty = true
 end
 ```
 
@@ -713,22 +719,22 @@ We'll also give ourselves a little parameter UI entry:
 ```lua
 -- NEW //
 params:add_binary(
-	"transport_control", -- ID
-	"start/stop", -- display name
-	"toggle", -- type
-	0 -- default
+  "transport_control", -- ID
+  "start/stop", -- display name
+  "toggle", -- type
+  0 -- default
 )
 
 params:set_action("transport_control", function(x)
-	if x == 1 then
-		if params:string("clock_source") == "internal" then
-			clock.internal.start()
-		else
-			transport("start")
-		end
-	else
-		transport("stop")
-	end
+  if x == 1 then
+    if params:string("clock_source") == "internal" then
+      clock.internal.start()
+    else
+      transport("start")
+    end
+  else
+    transport("stop")
+  end
 end)
 -- // NEW
 ```
@@ -760,17 +766,15 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
 
 ### Suggested exercises
 
-- If you have access to a 256 grid, try adapting the scripts to accommodate this larger size.
 - Display the loop range with dim LED levels.
-- "Record" keypresses in the "trigger" row to the toggle matrix.
-- Display the playhead position as a dim column behind the toggle data.
-- Use the rightmost key in the "trigger" row as an "alt" key.
-	- If "alt" is held while pressing a toggle, clear the entire row.
-	- If "alt" is held while pressing the play row, reverse the direction of play.
+- "Record" keypresses in the "jump" row.
+- Use the rightmost key in the "jump" row as an "alt" key.
+  - If "alt" is held while pressing a toggle, clear the entire column.
+  - If "alt" is held while pressing the play row, reverse the direction of play.
 
 ## Credits
 
-seamstress was developed and designed by [Rylee Lyman](https://ryleealanza.org/), inspired by [*matron* from norns](https://github.com/monome/norns/tree/main/matron/src), which was written by [`@catfact`](https://github.com/ryleelyman/seamstress). norns was initiated by [`@tehn`](https://github.com/tehn).
+seamstress was developed and designed by [Rylee Lyman](https://ryleealanza.org/), inspired by [*matron* from norns](https://github.com/monome/norns/tree/main/matron/src). *matron* was written by [`@catfact`](https://github.com/ryleelyman/seamstress). norns was initiated by [`@tehn`](https://github.com/tehn).
 
 This tutorial was created by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org).
 

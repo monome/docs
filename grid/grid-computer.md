@@ -17,6 +17,7 @@ To begin, [check out the serialosc docs](/docs/serialosc/setup).
 
 The following tutorials (written for macOS, Windows and Linux) show how to use different languages and environments to achieve the same goal: a playable step sequencer which interfaces with the grid.
 
+- [seamstress](/docs/grid/studies/seamstress) // a Lua scripting environment for communicating with music, visuals and data
 - [SuperCollider](/docs/grid/studies/sc) // synthesis engine and programming environment
 - [Puredata](/docs/grid/studies/pd) // open-source graphical patching for audio processing
 - [Max](/docs/grid/studies/max) // a highly refined graphical patching environment

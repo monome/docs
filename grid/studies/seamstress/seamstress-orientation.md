@@ -5,9 +5,9 @@ nav_exclude: true
 
 # orienting to seamstress {#opening}
 
-[seamstress](https://github.com/ryleelyman/seamstress/) is a Lua scripting environment for musical communication. It was inspired by [norns](/docs/norns) and makes use of its [scripting API](/docs/norns/reference), but it is **not** a port of the norns environment. Generally, though, seamstress is a fantastic complement to the norns scripting experience, as it has many syntactical similarities and many of the same scripting libraries.
+[*seamstress*](https://github.com/ryleelyman/seamstress/) is a Lua scripting environment for musical communication. It was inspired by [*norns*](/docs/norns) and makes use of its [scripting API](/docs/norns/reference), but it is **not** a port of the *norns* environment. Generally, though, *seamstress* is a fantastic complement to the *norns* scripting experience, as it has many syntactical similarities and many of the same scripting libraries.
 
-This article aims to provide someone already familiar with the norns scripting API an orientation to the unique gestures seamstress offers, by giving an overview of some of the differences between the environments. If you are new to Lua or new to norns scripting, we highly recommend checking out the [other learning resources we've developed](/docs/norns/studies/).
+This article aims to provide someone already familiar with the *norns* scripting API an orientation to the unique gestures *seamstress* offers, by giving an overview of some of the differences between the environments. If you are new to Lua or new to *norns* scripting, we highly recommend checking out the [other learning resources we've developed](/docs/norns/studies/).
 
 <details open markdown="block">
   <summary>
@@ -24,8 +24,8 @@ The rest of this text assumes a basic understanding of Lua. If you're absolutely
 
 ### software
 
-- Install [seamstress's dependencies](https://github.com/ryleelyman/seamstress/#installation)
-- Install seamstress by either:
+- Install [*seamstress*'s dependencies](https://github.com/ryleelyman/seamstress/#installation)
+- Install *seamstress* by either:
   - [downloading a prebuilt binary via GitHub](https://github.com/ryleelyman/seamstress/releases)
   - using [homebrew](https://brew.sh/):  
     `brew tap ryleelyman/seamstress`  
@@ -37,9 +37,9 @@ The [grid studies: seamstress](/docs/grid/studies/seamstress/) are optional, tho
 
 ### running code
 
-seamstress is run from the terminal by executing the command `seamstress`. If it is not given any filename, seamstress looks for and runs a file called `script.lua` in either the current directory or in `~/seamstress/`.
+*seamstress* is run from the terminal by executing the command `seamstress`. If it is not given any filename, *seamstress* looks for and runs a file called `script.lua` in either the current directory or in `~/seamstress/`.
 
-We highly recommend exploring the examples bundled with seamstress. Execute `seamstress -e` to see a list, and run any with `seamstress -e SCRIPTNAME`.
+We highly recommend exploring the examples bundled with *seamstress*. Execute `seamstress -e` to see a list, and run any with `seamstress -e SCRIPTNAME`.
 
 ### navigating the API
 
@@ -48,7 +48,7 @@ While long-form documents are useful for conceptual on-boarding, a program's App
 - [norns API](https://monome.org/docs/norns/api/)
 - [seamstress API](https://ryleealanza.org/docs/)
 
-You'll notice they are formatted very similarly, and include many of the same modules -- however, do not assume anything about cross-compatible usage! seamstress and norns are developed and maintained very differently, though they share contributors.
+You'll notice they are formatted very similarly, and include many of the same modules -- however, do not assume anything about cross-compatible usage! Though they share contributors, *seamstress* and *norns* are developed and maintained very differently.
 
 ## big differences
 
@@ -58,7 +58,7 @@ It seems useful to start with the big differences between scripting for *seamstr
 
 *seamstress* has **no audio engine** and **does not output any audio on its own**.
 
-- *seamstress* has no dedicated SuperCollider audio engine, so the entire *norns* [`engine` module](https://monome.org/docs/norns/api/modules/engine.html) does not apply to seamstress scripting
+- *seamstress* has no dedicated SuperCollider audio engine, so the entire *norns* [`engine` module](https://monome.org/docs/norns/api/modules/engine.html) does not apply to *seamstress* scripting
 - *seamstress* does not natively support [`softcut`](https://monome.org/docs/norns/api/modules/softcut.html)
 - *seamstress* has no [`Tape` module](https://monome.org/docs/norns/api/modules/audio.html#Tape_Functions)
 - *seamstress* has no [effects](https://monome.org/docs/norns/api/modules/audio.html#Effects_functions)

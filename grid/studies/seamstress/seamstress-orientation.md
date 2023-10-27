@@ -188,7 +188,8 @@ While *norns* does have a dedicated [`keyboard` module](https://monome.org/docs/
 
 - `screen.key(char, modifiers, is_repeat, state)`: callback executed when the user types a key into the GUI window
 
-To test-drive these functions, we recommend running this small example script:
+For a fully-developed example, run `seamstress -e plasma`.  
+To simply test-drive these functions, here is a small example script:
 
 ```lua
 -- example: display keyboard input

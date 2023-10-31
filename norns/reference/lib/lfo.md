@@ -38,7 +38,7 @@ Before we dive into code examples, let's cover the attributes associated with th
 
 An LFO is made of the following attributes:
 
-- `shape`: the shape of the LFO. options are `sine`, `saw`, `square`, `random` (default `sine`)
+- `shape`: the shape of the LFO. options are `sine`, `tri`, `up`, `down`, `saw`, `square`, `random` (default `sine`)
 
 - `min`: number which represents the lowest value the LFO will reach at full depth (default `0`)
 
@@ -51,6 +51,8 @@ An LFO is made of the following attributes:
 - `mode`: how the LFO's period is synced, either `clocked` (connected to the norns clock) or `free` (default `clocked`)
 
 - `period`: number, which in `clocked` mode represents beats or in `free` mode represents seconds (default `4`, assuming `clocked` mode by default)
+
+- `phase`: number, the phase shift amount for this LFO (range: `0.0` to `1.0`; default: `0`)
 
 - `baseline`: string which represents the base value from which the LFO's movement is calculated. options are `min`, `center`, or `max` (default `min`)
 
@@ -161,6 +163,7 @@ To go further, there are additional `:set` and `:get` methods, which connect
 - `offset`: number `-1.0` to `1.0` for offset
 - `mode`: string `clocked` or `free`
 - `period`: number; if mode is 'clocked' then number represents beats; if mode is 'free' then number represents seconds
+- `phase`: number, the phase shift amount for this LFO (range:` 0.0`to`1.0`; default:` 0`)
 - `baseline`: string `min`, `center`, `max`
 - `reset_target`: string `floor`, `ceiling`, `mid: falling`, `mid: rising`; determines whether the LFO value returns to bottom, top, halfway going downward, or halfway going upward
 - `ppqn`: number representing the resolution of the LFO
@@ -360,5 +363,96 @@ function redraw()
    text_to_display = "release lfo: "..(release_lfo:get('depth') > 0 and (util.round(release_lfo:get('scaled'),0.01)..'s') or ("-"))
    screen.text_center(text_to_display)
    screen.update()
+end
+```
+
+### delta changes
+
+It's possible to use a `control` parameter's current value as the center-point for an LFO:
+
+```lua
+-- LFO examples: bi-polar LFO + delta behavior
+
+-- goal: use a parameter's value as the centerpoint for an LFO
+-- note: use with 'control' parameters!
+
+_lfos = require 'lfo'
+
+engine.name = 'PolyPerc'
+s = require 'sequins'
+
+function init()
+  engine.gain(2.2)
+  hz_vals = s{400,600,200,350}
+  sync_vals = s{1,1/3,1/2,1/6,2}
+  clock.run(iter)
+  
+  clock.run(redraw_clock)
+  
+  params:add_control('cutoff', 'cutoff', controlspec.new(400,7000,'lin',1/100,3700))
+  params:set_action('cutoff',function(x) engine.cutoff(x) end)
+  
+  cutoffLFO = _lfos:add{
+    shape = 'sine', -- shape
+    min = -1, -- min
+    max = 1, -- max
+    depth = 0.2, -- depth (0 to 1)
+    mode = 'clocked', -- mode
+    period = 6, -- period (in 'clocked' mode, represents 4/4 bars)
+    baseline = 'center',
+    action = function() params:lookup_param('cutoff').action(calculate_bipolar_lfo_movement(cutoffLFO, 'cutoff')) end
+  }
+  cutoffLFO:add_params('myLFO', 'lfo')
+  params:hide('lfo_min_myLFO')
+  params:hide('lfo_max_myLFO')
+  _menu.rebuild_params()
+  cutoffLFO:start() -- start our LFO, complements ':stop()'
+  
+end
+
+function redraw_clock()
+  while true do
+    redraw()
+    clock.sleep(1/15) -- 15fps
+  end
+end
+
+function calculate_bipolar_lfo_movement(lfoID, paramID)
+  if lfoID:get('depth') > 0 then
+    return params:lookup_param(paramID).controlspec:map(lfoID:get('scaled')/2 + params:get_raw(paramID))
+  else
+    return params:lookup_param(paramID).controlspec:map(params:get_raw(paramID))
+  end
+end
+
+function redraw()
+  screen.clear()
+  screen.level(15)
+  screen.move(10,32)
+  screen.text('(E2) bipolar lfo depth: '..cutoffLFO:get('depth'))
+  screen.move(10,42)
+  screen.text('(E3) param val: '..params:get('cutoff'))
+  screen.move(10,52)
+  screen.text("lfo'd param val:")
+  screen.move(120,52)
+  local modifiedCutoff = calculate_bipolar_lfo_movement(cutoffLFO, 'cutoff')
+  screen.text_right(util.round(modifiedCutoff,0.01)..'hz')
+  screen.update()
+end
+
+function enc(n,d)
+  if n == 2 then
+    params:delta('lfo_depth_myLFO',d)
+  elseif n == 3 then
+    params:delta('cutoff',d)
+  end
+end
+
+function iter()
+  while true do
+    clock.sync(sync_vals())
+    hertz = hz_vals() * math.random(1,2)
+    engine.hz(hertz)
+  end
 end
 ```

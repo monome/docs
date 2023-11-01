@@ -150,7 +150,7 @@ In case it's opaque, the general pattern we're following is:
 ```lua
 softcut.command(voice_id, command_value)
 ```
-(You don't *need* a space the comma, it's just a bit more readable for learning.)
+(You don't *need* a space after the comma, it's just a bit more readable for learning.)
 
 The full range of softcut commands can be found in the [softcut API](/docs/norns/api/modules/softcut.html). Let's try some of the other commands!
 

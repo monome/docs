@@ -4,14 +4,13 @@ nav_exclude: true
 ---
 
 # seamstress and norns {#opening}
+{: .no_toc }
 
 [*seamstress*](https://github.com/ryleelyman/seamstress/) is a Lua scripting environment for musical communication. It was inspired by [*norns*](/docs/norns) and makes use of much of its library, but it is **not** a direct port as it was intended to be run on normal computers whereas *norns* is tailored for specific hardware.
 
 This document will examine the differences between these two environments, to help those familiar with *norns* get comfortable with *seamstress*.
 
 If you are new to Lua or new to *norns* scripting, we highly recommend checking out the [other learning resources we've developed](/docs/norns/studies/).
-
-{: .no_toc }
 
 <details open markdown="block">
   <summary>

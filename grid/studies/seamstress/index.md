@@ -4,10 +4,13 @@ nav_exclude: true
 ---
 
 # grid studies: seamstress
+{: .no_toc }
 
 [seamstress](https://github.com/ryleelyman/seamstress/) is a Lua scripting environment for musical communication. It was inspired by [norns](/docs/norns) and makes use of its [scripting API](/docs/norns/reference), but it is **not** a port of the norns environment. Generally, though, seamstress is a fantastic complement to the norns scripting experience, as it has many syntactical similarities and many of the same scripting libraries.
 
 This tutorial will show the basics of interfacing with seamstresss and the grid -- including how a simple, yet immediate sequencer platform can be made with a small amount of code.
+
+For an overview of the primary scripting differences between the two platforms, please see [seamstress + norns](/docs/grid/studies/seamstress/seamstress-and-norns).
 
 <details open markdown="block">
   <summary>

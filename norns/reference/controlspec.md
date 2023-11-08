@@ -8,14 +8,14 @@ permalink: /norns/reference/controlspec
 
 ### functions
 
-| Syntax                                                                            | Description                                                                                    |
-| --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| my_control = controlspec.new(min, max, warp, step, default, units, quantum, wrap) | Create a control specification for a parameter (if building via specific parameter template)   |
-| my_control = controlspec.def(min, max, warp, step, default, units, quantum, wrap) | Create a control specification for a parameter (if building via generic parameter constructor) |
-| my_control:map(value)                                                             | Transform an incoming value between 0 and 1 through this controlspec                           |
-| my_control:unmap(value)                                                           | Un-transform a transformed value into its original value                                       |
-| my_new_control = my_control:copy()                                                | Copy a controlspec's definitions to another controlspec                                        |
-| my_control:print()                                                                | Print out the configuration of this controlspec                                                |
+| Syntax                                                                            | Description                                                                                                         |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| my_control = controlspec.new(min, max, warp, step, default, units, quantum, wrap) | Create a control specification for a parameter (if building via specific parameter template)                        |
+| my_control = controlspec.def{min, max, warp, step, default, units, quantum, wrap} | Create a control specification for a parameter (if building via generic parameter constructor) -- note the braces!! |
+| my_control:map(value)                                                             | Transform an incoming value between 0 and 1 through this controlspec                                                |
+| my_control:unmap(value)                                                           | Un-transform a transformed value into its original value                                                            |
+| my_new_control = my_control:copy()                                                | Copy a controlspec's definitions to another controlspec                                                             |
+| my_control:print()                                                                | Print out the configuration of this controlspec                                                                     |
 
 ### presets
 
@@ -39,6 +39,10 @@ permalink: /norns/reference/controlspec
 | controlspec.RATE         | converts to a sensible range for playback rate               |
 | controlspec.BEATS        | convert to a good range for beats                            |
 | controlspec.DELAY        | converts to a good range for delay                           |
+
+### description
+
+A class which helps defines the range of a parameter. You can either construct your own controls or use any of the supplied presets.
 
 ### example
 
@@ -75,6 +79,59 @@ function init()
 end
 ```
 
-### description
+### rounding values with 'step' and 'quantum'
 
-A class which helps defines the range of a parameter. You can either construct your own controls or use any of the supplied presets.
+`Controlspec`'s `step` and `quantum` arguments are very useful, but perhaps opaque at first glance. 
+
+The `step` argument determines how the raw value's output should be quantized, eg.
+
+```lua
+function init()
+  params:add{
+    type = "control",
+    id = "freq",
+    name = "freq",
+    controlspec = controlspec.def{
+      min = 30,
+      max = 400,
+      warp = 'lin',
+      step = 1, -- round to nearest whole number
+      default = 200,
+      units = "hz"
+    }
+  }
+  params:set_action('freq', function(x) print(x) end )
+end
+```
+
+With `step = 1`, deltas of +1 or -1 to the parameter value will be rounded to the nearest whole number.
+
+The way deltas increment or decrement the parameter value is subject to `quantum`, which defaults to 0.01 -- this means 1/100th of the full range (`min` to `max`). That's why deltas will, for example, jump the `freq` parameter value from `200` to `204` then `207` then `211` -- we are simply adding `3.7` to the raw value and rounding by the specified `step`.
+
+If you want to quantize the raw values differently, then we can specify our own `quantum`. If we wanted whole-step changes in the example above, we would rewrite it as:
+
+```lua
+function init()
+  params:add{
+    type = "control",
+    id = "freq",
+    name = "freq",
+    controlspec = controlspec.def{
+      min = 30,
+      max = 400,
+      warp = 'lin',
+      step = 1, -- round to nearest whole number
+      quantum = 1/(400-30), -- for whole raw values, use 1/(max-min)
+      default = 200,
+      units = "hz"
+    }
+  }
+  params:set_action('freq', function(x) print(x) end )
+end
+```
+
+So, generally, if you want to quantize a `controlspec`'s output to whole numbers, both of these conditions must be true:
+
+- `step = 1`
+
+- `quantum = 1/(max-min)` (replacing `max` and `min` with your chosen values)

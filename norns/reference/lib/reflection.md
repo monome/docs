@@ -53,160 +53,283 @@ reflection = require 'reflection'
 ### example
 
 ```lua
-pattern_time = require 'pattern_time' -- use the pattern_time lib in this script
+_r = require 'reflection'
+my_pattern = _r.new()
+
+g = grid.connect()
 
 function init()
-  enc_pattern = pattern_time.new() -- establish a pattern recorder
-  enc_pattern.process = parse_enc_pattern -- assign the function to be executed when the pattern plays back
-
-  enc_value = 0
-  pattern_message = "press K3 to start recording"
-  erase_message = "(no pattern recorded)"
-  overdub_message = ""
-
-
-  screen_dirty = true
-  screen_timer = clock.run(
-    function()
-      while true do
-        clock.sleep(1/15)
-        if screen_dirty then
-          redraw()
-          screen_dirty = false
-        end
+  lit = {}
+  my_pattern.process = process_press
+  
+  params:add_option(
+    "demo",
+    "demo",
+    {"all synced: loop","unsynced: loop"},
+    1
+  )
+  params:set_action("demo",
+    function(x)
+      if x == 1 then
+        params:set("record_duration", 4)
+        params:set("hold_rec", 1)
+        params:set("rec_sync_value", 3)
+        params:set("play_sync_value", 3)
+        params:set("loop", 2)
+      elseif x == 2 then
+        params:set("record_duration", 0)
+        params:set("hold_rec", 2)
+        params:set("rec_sync_value", 0)
+        params:set("play_sync_value", 0)
+        params:set("loop", 1)
+      end
+      grid_redraw()
+    end
+  )
+  
+  record_duration = 0
+  params:add_number(
+    "record_duration",
+    "record duration",
+    0,
+    128,
+    record_duration,
+    function(param) return (
+      param:get() == 0 and 'free' or
+      param:get()..' beats'
+    ) end
+  )
+  params:set_action("record_duration", function(x) record_duration = x end)
+  
+  hold_rec = true
+  params:add_option(
+    "hold_rec",
+    "hold rec for first event?",
+    {"no","yes"},
+    hold_rec and 2 or 1
+  )
+  params:set_action("hold_rec", function(x) hold_rec = x == 2 end)
+  
+  rec_sync_value = nil
+  params:add_option(
+    "rec_sync_value",
+    "sync record start",
+    {"free","next beat", "next bar"},
+    1
+  )
+  params:set_action("rec_sync_value",
+    function(x)
+      if x == 1 then
+        rec_sync_value = nil
+      elseif x == 2 then
+        rec_sync_value = 1
+      elseif x == 3 then
+        rec_sync_value = 4
       end
     end
   )
-end
-
-function record_enc_value()
-  enc_pattern:watch(
-    {
-      ["value"] = enc_value
-    }
+  
+  play_sync_value = nil
+  params:add_option(
+    "play_sync_value",
+    "sync play start",
+    {"free","next beat", "next bar"},
+    1
   )
-end
-
-function parse_enc_pattern(data)
-  enc_value = data.value
-  screen_dirty = true
-end
-
-function key(n,z)
-  if n == 3 and z == 1 then
-    if enc_pattern.rec == 1 then -- if we're recording...
-      enc_pattern:rec_stop() -- stop recording
-      enc_pattern:start() -- start playing
-      pattern_message = "playing, press K3 to stop"
-      erase_message = "press K2 to erase"
-      overdub_message = "hold K1 to overdub"
-    elseif enc_pattern.count == 0 then -- otherwise, if there are no events recorded..
-      enc_pattern:rec_start() -- start recording
-      record_enc_value()
-      pattern_message = "recording, press K3 to stop"
-      erase_message = "press K2 to erase"
-      overdub_message = ""
-    elseif enc_pattern.play == 1 then -- if we're playing...
-      enc_pattern:stop() -- stop playing
-      pattern_message = "stopped, press K3 to play"
-      erase_message = "press K2 to erase"
-      overdub_message = ""
-    else -- if by this point, we're not playing...
-      enc_pattern:start() -- start playing
-      pattern_message = "playing, press K3 to stop"
-      erase_message = "press K2 to erase"
-      overdub_message = "hold K1 to overdub"
+  params:set_action("play_sync_value",
+    function(x)
+      if x == 1 then
+        play_sync_value = nil
+      elseif x == 2 then
+        play_sync_value = 1
+      elseif x == 3 then
+        play_sync_value = 4
+      end
     end
-  elseif n == 2 and z == 1 then
-    enc_pattern:rec_stop() -- stops recording
-    enc_pattern:stop() -- stops playback
-    enc_pattern:clear() -- clears the pattern
-    erase_message = "(no pattern recorded)"
-    pattern_message = "press K3 to start recording"
-    overdub_message = ""
-  elseif n == 1 then
-    enc_pattern:set_overdub(z) -- toggles overdub
-    overdub_message = z == 1 and "overdubbing" or "hold K1 to overdub"
-  end
-  screen_dirty = true
+  )
+  
+  params:add_option(
+    "loop",
+    "loop playback?",
+    {"no", "yes"},
+    1
+  )
+  params:set_action("loop", function(x) my_pattern:set_loop(x-1) grid_redraw() end)
+  
+  params:add_trigger(
+    "erase_rec",
+    "erase recording?"
+  )
+  params:set_action("erase_rec", function(x) my_pattern:clear() lit = {} grid_redraw() end)
+  
+  params:add_trigger(
+    "double_rec",
+    "double recording"
+  )
+  params:set_action("double_rec", function(x) my_pattern:double() end)
+  
+  overdubbing = false
+  playback_queued = false
+  
+  params:bang()
+  
+  grid_redraw()
 end
 
-function enc(n,d)
-  if n == 3 then
-    enc_value = enc_value + d
-    record_enc_value()
-    screen_dirty = true
-  end
+function my_pattern.start_callback()
+  print('playback started', clock.get_beats())
+  playback_queued = false
+  grid_redraw()
 end
 
-function redraw()
-  screen.clear()
-  screen.level(15)
-  screen.move(0,10)
-  screen.text("encoder 3 value: "..enc_value)
-  screen.move(0,40)
-  screen.text(pattern_message)
-  screen.move(0,50)
-  screen.text(erase_message)
-  screen.move(0,60)
-  screen.text(overdub_message)
-  screen.update()
+function my_pattern.end_of_rec_callback()
+  print('recording finished', clock.get_beats())
+  grid_redraw()
+end
+
+function my_pattern.end_of_loop_callback()
+  print('loop ended', clock.get_beats())
+  grid_redraw()
+end
+
+function my_pattern.end_callback()
+  print('playback ended')
+  if my_pattern.loop == 0 then
+    overdubbing = false
+  end
+  lit = {}
+  grid_redraw()
+end
+
+function g.key(x,y,z)
+  if x == 1 and y == g.rows then
+    if z == 1 then
+      if my_pattern.rec == 0 and my_pattern.queued_rec == nil and my_pattern.count == 0 then
+        my_pattern:set_rec(hold_rec and 2 or 1, record_duration > 0 and record_duration or nil, rec_sync_value)
+      elseif my_pattern.count > 0 and my_pattern.play == 0 then
+        if play_sync_value ~= nil then
+          playback_queued = true
+          my_pattern:start(play_sync_value)
+        else
+          my_pattern:start()
+        end
+      elseif my_pattern.play == 1 then
+        my_pattern:stop()
+      else
+        my_pattern:set_rec(0)
+      end
+    end
+  elseif x == 1 and y == g.rows - 1 then
+    if z == 1 then
+      params:set("loop", params:get("loop") == 1 and 2 or 1)
+    end
+  elseif x == 1 and y == g.rows - 2 then
+    if z == 1 then
+      if my_pattern.count > 0 and my_pattern.play == 1 then
+        overdubbing = not overdubbing
+        my_pattern:set_rec(overdubbing and 1 or 0)
+      end
+    end
+  else
+    local event = {
+      id = x*8 + y,
+      x = x,
+      y = y,
+      z = z
+    }
+    my_pattern:watch(event)
+    process_press(event)
+  end
+  grid_redraw()
+end
+
+function process_press(e)
+  if e.z == 1 then
+    lit[e.id] = {
+      x = e.x,
+      y = e.y
+    }
+    -- print(clock.get_beats())
+  else
+    if lit[e.id] ~= nil then
+      lit[e.id] = nil
+    end
+  end
+  grid_redraw()
+end
+
+function grid_redraw()
+  g:all(0)
+  if my_pattern.queued_rec ~= nil and my_pattern.queued_rec.state then
+    g:led(1,g.rows,7)
+  elseif playback_queued then
+    g:led(1,g.rows,8)
+  elseif my_pattern.rec == 1 then
+    g:led(1,g.rows,15)
+    g:led(1,g.rows-1,15)
+  elseif my_pattern.play == 1 then
+    g:led(1,g.rows,10)
+  elseif my_pattern.play == 0 and my_pattern.count > 0 then
+    g:led(1,g.rows,5)
+  else
+    g:led(1,g.rows,2)
+  end
+  g:led(1,g.rows-1, my_pattern.loop == 1 and 10 or 2)
+  g:led(1,g.rows-2, overdubbing and 10 or 2)
+  for i,e in pairs(lit) do
+    g:led(e.x, e.y, 15)
+  end
+  g:refresh()
 end
 ```
 
 ### description
 
-Record changes to data over time, with variable-rate playback and overdubbing.
+Record clock-synced changes to data over time, with variable-rate playback, overdubbing, and pattern management tools.
 
-The basic architecture of the `pattern_time` library includes:
+The basic architecture of the `reflection` library includes:
 
 - a `watch` method, which ingests a table of data and assigns it a relative timestamp for future playback
 
 - a `process` function, which parses the recorded data into meaningful action within a script
 
-As outlined in the example's `key` handling, `pattern_time` works similarly to an audio recorder, where certain functions and variables need to be coupled in the script for standard use-cases:
-
-- combine `rec_stop()` and `start()` to loop data after recording
-
-- use `.count == 0` to determine if a pattern is empty
-
-- use `.play == 1` to determine is a pattern is currently playing
-
 #### extended: saving + loading patterns
 
 The most meaningful persistent data generated by `pattern_time` lives is in:
 
-- `my_pattern.event`
+- `my_pattern.event` (a table)
 
-- `my_pattern.time`
+- `my_pattern.count` (a number)
 
-- `my_pattern.count`
+- `my_pattern.endpoint` (a number)
 
-- `my_pattern.time_factor`
+- `my_pattern.loop` (a number)
+
+- `my_pattern.quantize` (a number)
 
 Currently, saving and loading these pattern tables is up to the script to employ its own approach. Here's a starting point, using our previous example:
 
 ```lua
 function save_pattern(filepath)
   local pattern_data = {} -- create a temp container
-  pattern_data.event = enc_pattern.event
-  pattern_data.time = enc_pattern.time
-  pattern_data.count = enc_pattern.count
-  pattern_data.time_factor = enc_pattern.time_factor
+  pattern_data.event = my_pattern.event
+  pattern_data.length = my_pattern.count/96 -- 96 ppqn
+  pattern_data.endpoint = my_pattern.endpoint
+  pattern_data.loop = my_pattern.loop
+  pattern_data.quantize = my_pattern.quantize
   tab.save(pattern_data,filepath) -- permanently save to disk
 end
 
 function load_pattern(filepath)
-  enc_pattern:rec_stop() -- stops recording
-  enc_pattern:stop() -- stops playback
-  enc_pattern:clear() -- clears pattern
+  my_pattern:set_rec(0) -- stops recording
+  my_pattern:stop() -- stops playback
+  my_pattern:clear() -- clears pattern
   local pattern_data = tab.load(filepath)
   for k,v in pairs(pattern_data) do
-    enc_pattern[k] = v
+    my_pattern[k] = v
   end
-  pattern_message = "stopped, press K3 to play"
-  erase_message = "press K2 to erase"
-  overdub_message = ""
-  screen_dirty = true
+  my_pattern:set_quantization(pattern_data.quantize)
+  my_pattern:set_loop(pattern_data.loop)
+  my_pattern:set_length(pattern_data.length)
 end
 ```

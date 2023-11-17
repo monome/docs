@@ -42,7 +42,7 @@ norns will remember these devices until they're manually removed, even if they a
 
 ### manage
 
-Let's say we're running a sequencer and we want to send MIDI out a connected USB-MIDI interface. The device list in [figure 1](image/control_clock-images/device-management.png) shows a `16n` at port 1, but we want this to be the `UM-ONE`.
+Let's say we're running a sequencer and we want to send MIDI out a connected USB-MIDI interface. The device list in [figure 1](image/control_clock-images/device-management.png) shows a `16n` at port 1, but we want this to be the `MFT` (MIDI Fighter Twister).
 
 If a script doesn't allow you to specify a MIDI device port for incoming or outgoing MIDI, the script will default to the device at port 1.
 {: .label}
@@ -106,6 +106,8 @@ To MIDI-learn:
   - hold <kbd>K3</kbd> while adjusting to fine-tune with 1/20th quantum
 
 - **accum**: enable when using relative midi cc streams (for controllers that send deltas rather than 0-127 absolute streams)
+
+- **echo**: enable when using devices which can receive MIDI values to redraw LEDs or stateful text (eg. MIDI Fighter Twister or Faderfox EC4)
 
 #### PMAPs
 

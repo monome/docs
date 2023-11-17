@@ -6,6 +6,16 @@ permalink: /norns/reference/lib/reflection
 
 ## reflection
 
+### description
+
+Record clock-synced changes to data over time, with variable-rate playback, overdubbing, and pattern management tools.
+
+The basic architecture of the `reflection` library includes:
+
+- a `watch` method, which ingests a table of data and assigns it a beat-timestamp for future playback
+
+- a `process` function, which parses the recorded data into meaningful action within a script
+
 ### functions
 
 The following assumes a script has invoked `reflection` via:
@@ -296,16 +306,6 @@ function initialize_parameters()
   params:bang()
 end
 ```
-
-### description
-
-Record clock-synced changes to data over time, with variable-rate playback, overdubbing, and pattern management tools.
-
-The basic architecture of the `reflection` library includes:
-
-- a `watch` method, which ingests a table of data and assigns it a beat-timestamp for future playback
-
-- a `process` function, which parses the recorded data into meaningful action within a script
 
 ### saving + loading patterns
 

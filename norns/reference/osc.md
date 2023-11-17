@@ -50,7 +50,7 @@ function init()
   redraw_clock = clock.run(
     function()
       while true do
-        clock.sleep(1/15) -- 15fps
+        clock.sleep(1/60) -- 60fps
         if screen_dirty then
           redraw()
         end

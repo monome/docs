@@ -23,12 +23,12 @@ function init()
   -- assign our polls
   ampL = poll.set('outputAmpL')
   ampL.callback = function(val) amp_handler(1, val) end -- what to do with the value returned by SuperCollider
-  ampL.time = 1/15 -- how often to refresh (norns redraws at 15fps)
+  ampL.time = 1/60 -- how often to refresh (norns redraws at 60fps)
   ampL:start() -- start the poll!
   
   ampR = poll.set('outputAmpR')
   ampR.callback = function(val) amp_handler(2, val) end
-  ampR.time = 1/15 -- how often to refresh (norns redraws at 15fps)
+  ampR.time = 1/60 -- how often to refresh (norns redraws at 60fps)
   ampR:start() -- start the poll!
   
   screen_redraw = clock.run(

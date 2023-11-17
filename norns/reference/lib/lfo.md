@@ -413,7 +413,7 @@ end
 function redraw_clock()
   while true do
     redraw()
-    clock.sleep(1/15) -- 15fps
+    clock.sleep(1/60) -- 60fps
   end
 end
 

@@ -888,7 +888,9 @@ minval	20
 
 ### off-menu parameters {#off-menu}
 
-We've been using the default parameter set throughout, which automatically adds what we declare to the norns PARAMETERS system menu -- but if we just want to use these templates for managing values, we can create as many of our *own* parameter sets as we want. They won't be hooked up to the system menu, but we can manipulate them in all of the same ways. Here's how to create one:
+We've been using the default parameter set throughout, which automatically adds what we declare to the norns PARAMETERS system menu -- but if we just want to use these templates for managing values, we can create as many of our *own* parameter sets as we want. Note that these are just convenience wrappers for using parameter-style formatting without creating norns menu items -- and since these won't be hooked up to the system menu, they don't tie into PSETs, MIDI mapping, or OSC control. But they're still helpful for establishing and manipulating variables in creative ways.
+
+Here's how to create one:
 
 ```lua
 -- study 3

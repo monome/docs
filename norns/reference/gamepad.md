@@ -119,7 +119,7 @@ Deciphers gamepad input and executes user-assignable callbacks. Since many gamep
 Plug + play models:
 
 - iBUFFALO Classic USB Gamepad
-
 - Xbox 360
+- Retrolink B00GWKL3Y4 ((S)NES-style, also sold by under other brands: iNNext, Elecom...)
 
 Contributed and maintained by [`@p3r7`](https://github.com/p3r7/)

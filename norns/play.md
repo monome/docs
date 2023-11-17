@@ -344,10 +344,24 @@ The SYSTEM menu contains a number of helpful entries:
 - `SETTINGS` allows you to:
   - `RESET` your norns back to its default settings, erasing your favorites, disabling all mods, and restoring global audio levels to their defaults.
   - change your [`PASSWORD`](/docs/norns/wifi-files/#settings-password) for SSH, SMB, and hotspot
+  - tune the `DISPLAY` brightness, contrast, and gamma
   - toggle the on-screen `BATTERY WARNING` on and off
 - `RESTART` will restart the unit without erasing any settings
 - `UPDATE` will perform a [system update](/docs/norns/wifi-files/#update), if you're connected to WiFi.
 - `LOG` will export any messages and errors initiated by matron (the Lua layer), SuperCollider, and the general Linux system. If something isn't performing as expected, this mechanism is the most helpful tool for diagnosing trouble. See [the logs section of the *maiden* docs](/docs/norns/maiden/#logs) for more info.
+
+### DISPLAY
+
+![](/docs/norns/image/play-images/display.png)  
+[*figure 10: the norns DISPLAY menu*](image/play-images/display.png)
+
+This menu allows you to fine-tune the norns display, offering adjustments for:
+
+- BRIGHTNESS: 0 to 15, default 15
+- CONTRAST: 0 to 255, default 127
+- GAMMA: 1.00 to 30.00, default 1.0
+
+Any adjustment will create and update a `system.display` file under `dust/data`. This file can be safely deleted to quickly restore defaults upon RESTART.
 
 ## where to next?
 

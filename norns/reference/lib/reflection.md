@@ -27,6 +27,8 @@ reflection = require 'reflection'
 | my_pattern:set_length(beats)                       | Set length of pattern                                                                                                                                                                                                                        |
 | my_pattern:undo()                                  | Undo previous overdub                                                                                                                                                                                                                        |
 | my_pattern:clear()                                 | Clear recorded pattern data                                                                                                                                                                                                                  |
+| my_pattern:save(filepath)                          | Save a pattern to disk                                                                                                                                                                                                                       |
+| my_pattern:load(filepath)                          | Read a pattern from disk                                                                                                                                                                                                                     |
 
 ### variables
 
@@ -53,19 +55,133 @@ reflection = require 'reflection'
 ### example
 
 ```lua
-_r = require 'reflection'
-my_pattern = _r.new()
+-- reflection scripting example
 
-g = grid.connect()
+_r = require 'reflection' -- import the library
+my_pattern = _r.new() -- make a pattern
+
+g = grid.connect() -- connect a grid
 
 function init()
+  lit = {} -- lit keys for grid presses
+  my_pattern.process = process_press -- the process which the pattern will execute upon playback
+  initialize_parameters() -- init params
+  grid_redraw() -- redraw the connected grid
+end
+
+function my_pattern.start_callback() -- user-script callback
+  print('playback started', clock.get_beats())
+  playback_queued = false
+  grid_redraw()
+end
+
+function my_pattern.end_of_rec_callback() -- user-script callback
+  print('recording finished', clock.get_beats())
+  grid_redraw()
+end
+
+function my_pattern.end_of_loop_callback() -- user-script callback
+  print('loop ended', clock.get_beats())
+  grid_redraw()
+end
+
+function my_pattern.end_callback() -- user-script callback
+  print('playback ended')
+  if my_pattern.loop == 0 then
+    overdubbing = false
+  end
   lit = {}
-  my_pattern.process = process_press
-  
+  grid_redraw()
+end
+
+-- bottom-left grid key: initialize recording / playback
+-- above that: loop toggle
+-- above that: overdub toggle
+function g.key(x,y,z)
+  if x == 1 and y == g.rows then
+    if z == 1 then
+      if my_pattern.rec == 0 and my_pattern.queued_rec == nil and my_pattern.count == 0 then
+        my_pattern:set_rec(hold_rec and 2 or 1, record_duration > 0 and record_duration or nil, rec_sync_value)
+      elseif my_pattern.count > 0 and my_pattern.play == 0 then
+        if play_sync_value ~= nil then
+          playback_queued = true
+          my_pattern:start(play_sync_value)
+        else
+          my_pattern:start()
+        end
+      elseif my_pattern.play == 1 then
+        my_pattern:stop()
+      else
+        my_pattern:set_rec(0)
+      end
+    end
+  elseif x == 1 and y == g.rows - 1 then
+    if z == 1 then
+      params:set("loop", params:get("loop") == 1 and 2 or 1)
+    end
+  elseif x == 1 and y == g.rows - 2 then
+    if z == 1 then
+      if my_pattern.count > 0 and my_pattern.play == 1 then
+        overdubbing = not overdubbing
+        my_pattern:set_rec(overdubbing and 1 or 0)
+      end
+    end
+  else
+    local event = {
+      id = x*8 + y,
+      x = x,
+      y = y,
+      z = z
+    }
+    my_pattern:watch(event)
+    process_press(event)
+  end
+  grid_redraw()
+end
+
+function process_press(e)
+  if e.z == 1 then
+    lit[e.id] = {
+      x = e.x,
+      y = e.y
+    }
+  else
+    if lit[e.id] ~= nil then
+      lit[e.id] = nil
+    end
+  end
+  grid_redraw()
+end
+
+function grid_redraw()
+  g:all(0)
+  if my_pattern.queued_rec ~= nil and my_pattern.queued_rec.state then
+    g:led(1,g.rows,7)
+  elseif playback_queued then
+    g:led(1,g.rows,8)
+  elseif my_pattern.rec == 1 then
+    g:led(1,g.rows,15)
+    g:led(1,g.rows-1,15)
+  elseif my_pattern.play == 1 then
+    g:led(1,g.rows,10)
+  elseif my_pattern.play == 0 and my_pattern.count > 0 then
+    g:led(1,g.rows,5)
+  else
+    g:led(1,g.rows,2)
+  end
+  g:led(1,g.rows-1, my_pattern.loop == 1 and 10 or 2)
+  g:led(1,g.rows-2, overdubbing and 10 or 2)
+  for i,e in pairs(lit) do
+    g:led(e.x, e.y, 15)
+  end
+  g:refresh()
+end
+
+function initialize_parameters()
   params:add_option(
     "demo",
     "demo",
-    {"all synced: loop","unsynced: loop"},
+    {"all synced: loop","unsynced: loop", "unsynced: 1-shot"},
     1
   )
   params:set_action("demo",
@@ -77,6 +193,12 @@ function init()
         params:set("play_sync_value", 3)
         params:set("loop", 2)
       elseif x == 2 then
+        params:set("record_duration", 0)
+        params:set("hold_rec", 2)
+        params:set("rec_sync_value", 0)
+        params:set("play_sync_value", 0)
+        params:set("loop", 2)
+      elseif x == 3 then
         params:set("record_duration", 0)
         params:set("hold_rec", 2)
         params:set("rec_sync_value", 0)
@@ -172,114 +294,6 @@ function init()
   playback_queued = false
   
   params:bang()
-  
-  grid_redraw()
-end
-
-function my_pattern.start_callback()
-  print('playback started', clock.get_beats())
-  playback_queued = false
-  grid_redraw()
-end
-
-function my_pattern.end_of_rec_callback()
-  print('recording finished', clock.get_beats())
-  grid_redraw()
-end
-
-function my_pattern.end_of_loop_callback()
-  print('loop ended', clock.get_beats())
-  grid_redraw()
-end
-
-function my_pattern.end_callback()
-  print('playback ended')
-  if my_pattern.loop == 0 then
-    overdubbing = false
-  end
-  lit = {}
-  grid_redraw()
-end
-
-function g.key(x,y,z)
-  if x == 1 and y == g.rows then
-    if z == 1 then
-      if my_pattern.rec == 0 and my_pattern.queued_rec == nil and my_pattern.count == 0 then
-        my_pattern:set_rec(hold_rec and 2 or 1, record_duration > 0 and record_duration or nil, rec_sync_value)
-      elseif my_pattern.count > 0 and my_pattern.play == 0 then
-        if play_sync_value ~= nil then
-          playback_queued = true
-          my_pattern:start(play_sync_value)
-        else
-          my_pattern:start()
-        end
-      elseif my_pattern.play == 1 then
-        my_pattern:stop()
-      else
-        my_pattern:set_rec(0)
-      end
-    end
-  elseif x == 1 and y == g.rows - 1 then
-    if z == 1 then
-      params:set("loop", params:get("loop") == 1 and 2 or 1)
-    end
-  elseif x == 1 and y == g.rows - 2 then
-    if z == 1 then
-      if my_pattern.count > 0 and my_pattern.play == 1 then
-        overdubbing = not overdubbing
-        my_pattern:set_rec(overdubbing and 1 or 0)
-      end
-    end
-  else
-    local event = {
-      id = x*8 + y,
-      x = x,
-      y = y,
-      z = z
-    }
-    my_pattern:watch(event)
-    process_press(event)
-  end
-  grid_redraw()
-end
-
-function process_press(e)
-  if e.z == 1 then
-    lit[e.id] = {
-      x = e.x,
-      y = e.y
-    }
-    -- print(clock.get_beats())
-  else
-    if lit[e.id] ~= nil then
-      lit[e.id] = nil
-    end
-  end
-  grid_redraw()
-end
-
-function grid_redraw()
-  g:all(0)
-  if my_pattern.queued_rec ~= nil and my_pattern.queued_rec.state then
-    g:led(1,g.rows,7)
-  elseif playback_queued then
-    g:led(1,g.rows,8)
-  elseif my_pattern.rec == 1 then
-    g:led(1,g.rows,15)
-    g:led(1,g.rows-1,15)
-  elseif my_pattern.play == 1 then
-    g:led(1,g.rows,10)
-  elseif my_pattern.play == 0 and my_pattern.count > 0 then
-    g:led(1,g.rows,5)
-  else
-    g:led(1,g.rows,2)
-  end
-  g:led(1,g.rows-1, my_pattern.loop == 1 and 10 or 2)
-  g:led(1,g.rows-2, overdubbing and 10 or 2)
-  for i,e in pairs(lit) do
-    g:led(e.x, e.y, 15)
-  end
-  g:refresh()
 end
 ```
 
@@ -289,47 +303,17 @@ Record clock-synced changes to data over time, with variable-rate playback, over
 
 The basic architecture of the `reflection` library includes:
 
-- a `watch` method, which ingests a table of data and assigns it a relative timestamp for future playback
+- a `watch` method, which ingests a table of data and assigns it a beat-timestamp for future playback
 
 - a `process` function, which parses the recorded data into meaningful action within a script
 
-#### extended: saving + loading patterns
+### saving + loading patterns
 
-The most meaningful persistent data generated by `pattern_time` lives is in:
+Included in the library are save + load helpers:
 
-- `my_pattern.event` (a table)
+- save: `my_pattern:save(filepath)`
+- load: `my_pattern:load(filepath)`
 
-- `my_pattern.count` (a number)
+Use `norns.state.data` to access the `data` filepath for the currently-running script.
 
-- `my_pattern.endpoint` (a number)
-
-- `my_pattern.loop` (a number)
-
-- `my_pattern.quantize` (a number)
-
-Currently, saving and loading these pattern tables is up to the script to employ its own approach. Here's a starting point, using our previous example:
-
-```lua
-function save_pattern(filepath)
-  local pattern_data = {} -- create a temp container
-  pattern_data.event = my_pattern.event
-  pattern_data.length = my_pattern.count/96 -- 96 ppqn
-  pattern_data.endpoint = my_pattern.endpoint
-  pattern_data.loop = my_pattern.loop
-  pattern_data.quantize = my_pattern.quantize
-  tab.save(pattern_data,filepath) -- permanently save to disk
-end
-
-function load_pattern(filepath)
-  my_pattern:set_rec(0) -- stops recording
-  my_pattern:stop() -- stops playback
-  my_pattern:clear() -- clears pattern
-  local pattern_data = tab.load(filepath)
-  for k,v in pairs(pattern_data) do
-    my_pattern[k] = v
-  end
-  my_pattern:set_quantization(pattern_data.quantize)
-  my_pattern:set_loop(pattern_data.loop)
-  my_pattern:set_length(pattern_data.length)
-end
-```
+When a pattern is loaded to an instance of `reflection`, the previous data will stop playing and clear.

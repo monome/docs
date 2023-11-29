@@ -13,7 +13,7 @@ permalink: /norns/reference/clock
 | my_clock = clock.run(function) | Create a coroutine from the given function, assign it `id` =  "my_clock", and immediately run it    |
 | clock.cancel(my_clock)         | Cancel an `id`-assigned coroutine                                                                   |
 | clock.sleep(time)              | Resume in `time` seconds                                                                            |
-| clock.sync(beats)              | Resume at next sync quantum of `beats`, per global tempo                                            |
+| clock.sync(beats, offset)      | Resume at next sync quantum of `beats` (with added `offset`), per global tempo                      |
 | clock.transport.start()        | User script callback whenever norns receives a "start" message (typically via MIDI or Ableton Link) |
 | clock.transport.stop()         | User script callback whenever norns receives a "stop" message (typically via MIDI or Ableton Link)  |
 | clock.tempo_change_handler()   | User script callback whenever the norns tempo changes (corresponds to `PARAMETERS > CLOCK > tempo`) |
@@ -30,7 +30,7 @@ permalink: /norns/reference/clock
 ### example
 
 ```lua
--- start a clock which calling function [loop]
+-- start a clock which calls function [loop]
 function init()
   clock.run(loop,"so true") -- arguments can be passed 
 end

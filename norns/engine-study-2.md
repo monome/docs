@@ -26,12 +26,6 @@ This study extends the topics covered in [rude mechanicals](/docs/norns/engine-s
 
 If you haven't already, please [download SuperCollider](https://supercollider.github.io) on your primary non-norns computer. Though we'll eventually end up at norns, being able to quickly execute snippets of SuperCollider code during the experimentation stages will provide the foundation necessary for engine construction.
 
-**Please note** that if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. To protect your ears and equipment, we recommend that you install the [SafetyNet Quark](https://github.com/adcxyz/SafetyNet) within SuperCollider both on your computer and your norns. This Quark ensures that the output volume of SuperCollider won't reach levels which would damage your hearing. To add SafetyNet to your norns, simply execute the following line from the maiden REPL, under the `SuperCollider` tab:
-
-```lua
-Quarks.install("SafetyNet")
-```
-
 ## hidden text
 
 To keep things relatively navigable, we've compressed big chunks of code into the following interaction:

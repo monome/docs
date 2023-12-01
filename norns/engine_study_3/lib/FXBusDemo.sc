@@ -1,0 +1,117 @@
+// SC Bus exercise 2
+// busses in a class with panning + commands
+
+FXBusDemo {
+
+	var <synths;
+	var <busses;
+	var <g;
+
+	*new {
+		^super.new.init();
+	}
+
+	init {
+		var s = Server.default;
+		synths = Dictionary.new;
+		busses = Dictionary.new;
+
+		Routine {
+			// in this demo, source bus is mono / fx are stereo:
+			busses[\source] = Bus.audio(s, 1);
+			busses[\main_out] = Bus.audio(s, 2);
+			busses[\reverb_send] = Bus.audio(s, 2);
+			busses[\delay_send] = Bus.audio(s, 2);
+
+			// define our patch synths, to control stereo field:
+			SynthDef.new(\patch_pan, {
+				Out.ar(\out.kr, Pan2.ar(In.ar(\in.kr), \pan.kr(0), \level.kr(1)));
+			}).send(s);
+
+			SynthDef.new(\patch_stereo, {
+				Out.ar(\out.kr, In.ar(\in.kr, 2) * \level.kr(1));
+			}).send(s);
+
+			// add a group to order our synths / nodes:
+			g = Group.new(s);
+
+			// define our source synth:
+			synths[\source] = SynthDef.new(\sourceBlip, {
+				var snd = LPF.ar(Saw.ar(\hz.kr(330)), \hz.kr(330)*4);
+				snd = snd * LagUD.ar(Impulse.ar(2), 0, 0.5);
+				Out.ar(\out.kr, snd * \level.kr(0.5));
+			}).play(target:g, addAction:\addToTail, args:[
+				\out, busses[\source]
+			]);
+
+			// why are we syncing here? two reasons:
+			// 1. so the common SynthDefs above are present on the Server when requested
+			// 2. because the send synths below use \addToTail,
+			//   we need the Server to finish creating the source synth before they are added
+			s.sync;
+
+			synths[\dry] = Synth.new(\patch_pan,
+				target:g, addAction:\addToTail, args:[
+					\in, busses[\source],
+					\out, busses[\main_out],
+					\level, 1.0
+			]);
+
+			synths[\delay_send] = Synth.new(\patch_pan,
+				target:g, addAction:\addToTail, args:[
+					\in, busses[\source],
+					\out, busses[\delay_send],
+					\level, 0.0
+			]);
+
+			synths[\reverb_send] = Synth.new(\patch_pan,
+				target:g, addAction:\addToTail, args:[
+					\in, busses[\source],
+					\out, busses[\reverb_send],
+					\level, 0.0
+			]);
+
+			synths[\delay] = SynthDef.new(\delay, {
+				arg in, out, level=1;
+				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, 0.2, level));
+			}).play(target:g, addAction:\addToTail, args:[
+				\in, busses[\delay_send], \out, busses[\main_out]
+			]);
+
+			synths[\reverb] = SynthDef.new(\reverb, {
+				arg in, out, level=1;
+				Out.ar(out, FreeVerb.ar(In.ar(in, 2), 1.0, 0.9, 0.1, level));
+			}).play(target:g, addAction:\addToTail, args:[
+				\in, busses[\reverb_send], \out, busses[\main_out]
+			]);
+
+			// again, we want the next synth to actually be added *after* all others
+			s.sync;
+
+			synths[\main_out] = Synth.new(\patch_stereo,
+				target:g, addAction:\addToTail, args: [
+					\in, busses[\main_out], \out, 0
+			]);
+
+		}.play;
+	}
+
+	setLevel { arg key, val;
+		synths[key].set(\level, val);
+	}
+
+	setPan { arg key, val;
+		synths[key].set(\pan, val);
+	}
+
+	setHz { arg val;
+		synths[\source].set(\hz, val);
+	}
+
+	// IMPORTANT: free Server resources and nodes when done!
+	free {
+		g.free;
+		busses.do({arg bus; bus.free;});
+	}
+
+}

@@ -7,7 +7,7 @@ permalink: /norns/engine-study-3/
 # transit authority
 {: .no_toc }
 
-*norns engine study 3: using audio busses to build FX chains and aux sends*
+*norns engine study 3: using audio busses to build FX chains + aux sends, and using polls to send data from SuperCollider back to Lua*
 
 SuperCollider is a free and open-source platform for making sound, which powers the synthesis layer of norns. Many norns scripts are a combination of SuperCollider (where a synthesis engine is defined) and Lua (where the hardware + UI interactions are defined).
 
@@ -62,10 +62,10 @@ The *Moonshine* engine we extended in [skilled labor](/docs/norns/engine-study-2
 This third study will turn its focus from the core synth voices toward working with FX by:
 
 - establishing Busses to route signals from one place in the Server to another
-- being explicit about the ordering of synths and busses on the Server
-- syncing changes to our Server architecture at key moments
+- being explicit about the ordering of synths and busses on the Server, and being purposeful about syncing those changes
+- using [polls](/docs/norns/reference/poll) to send data from SuperCollider back to norns
 
-## part 1: {#part-1}
+## part 1: shuttling signals {#part-1}
 
 Before we get into retrofitting Moonshine with an FX bus, let's first demonstrate how Busses can be used to shuttle signals around the Server.
 
@@ -91,7 +91,7 @@ In this study, we'll showcase a slightly different but totally synonymous argume
 
 ```js
 SynthDef("source", {
-	var snd = LPF.ar(Saw.ar(\hz.kr(330)), \hz.kr(330)*4);
+	var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8).clip(20,20000);
 	snd = snd * LagUD.ar(Impulse.ar(2), 0, 0.5);
 
 	Out.ar(\outMain.kr(0), Pan2.ar(snd, \panMain.kr(0)) * \levelMain.kr(1));
@@ -132,8 +132,8 @@ Routine{
 
 	// define our source sound:
 	SynthDef("source", {
-		var snd = LPF.ar(Saw.ar(\hz.kr(330)), \hz.kr(330)*4);
-		snd = snd * LagUD.ar(Impulse.ar(2), 0, 0.5);
+		var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8)).clip(20,20000);
+		snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
 
 		Out.ar(\outMain.kr, (snd * \levelMain.kr(1)).dup); // .dup = send stereo signal
 		Out.ar(\outSend1.kr, (snd * \levelSend1.kr(0)).dup);
@@ -250,7 +250,7 @@ FXBusDemo {
 		busses = Dictionary.new;
 
 		Routine {
-			// in this demo, source bus is mono / fx are stereo:
+			// in this demo, source bus is mono / FX are stereo:
 			busses[\source] = Bus.audio(s, 1);
 			busses[\main_out] = Bus.audio(s, 2);
 			busses[\reverb_send] = Bus.audio(s, 2);
@@ -261,7 +261,7 @@ FXBusDemo {
 				Out.ar(\out.kr, Pan2.ar(In.ar(\in.kr), \pan.kr(0), \level.kr(1)));
 			}).send(s);
 
-			SynthDef.new(\patch_stereo, {
+			SynthDef.new(\patch_main, {
 				Out.ar(\out.kr, In.ar(\in.kr, 2) * \level.kr(1));
 			}).send(s);
 
@@ -270,8 +270,8 @@ FXBusDemo {
 
 			// define our source synth:
 			synths[\source] = SynthDef.new(\sourceBlip, {
-				var snd = LPF.ar(Saw.ar(\hz.kr(330)), \hz.kr(330)*4);
-				snd = snd * LagUD.ar(Impulse.ar(2), 0, 0.5);
+				var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8).clip(20,20000));
+				snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
 				Out.ar(\out.kr, snd * \level.kr(0.5));
 			}).play(target:g, addAction:\addToTail, args:[
 				\out, busses[\source]
@@ -321,7 +321,7 @@ FXBusDemo {
 			// again, we want the next synth to actually be added *after* all others
 			s.sync;
 
-			synths[\main_out] = Synth.new(\patch_stereo,
+			synths[\main_out] = Synth.new(\patch_main,
 				target:g, addAction:\addToTail, args: [
 					\in, busses[\main_out], \out, 0
 			]);
@@ -357,7 +357,7 @@ Now, to have your class definition useable in SuperCollider, recompile the class
 
 #### instantiate the class
 
-When the library recompiles, we should be able to instantiate the `FXBusDemo` Class and its associated methods like any other class in SuperCollider. To try it out, open a blank SuperCollider file and type + live-execute (<kbd>Ctrl-Enter</kbd> on Windows/Linux or <kbd>CMD-RETURN</kbd> on macOS) the following:
+When the library recompiles, we should be able to instantiate the `FXBusDemo` Class and its associated methods like any other class in SuperCollider. To try it out, open a blank SuperCollider file and type + live-execute (<kbd>Ctrl-Enter</kbd> on Windows/Linux or <kbd>CMD-RETURN</kbd> on macOS) the following lines:
 
 ```
 // take note of the server nodes that print:
@@ -384,6 +384,497 @@ x.setHz(330/3);
 
 x.setHz(330*0.75);
 ```
+
+#### side-quest: adding a DJ-style isolator {#sidequest}
+
+*nb. many thanks to Ezra for their assistance with this topic!*
+
+Adventures in reproducing hardware are very rewarding in SuperCollider -- they allow us to concretize our understanding of the devices we'd like to model and expand our understanding of DSP theory. So, before we move into polls, let's round out our final audio stage with a [DJ-style isolator](https://djtechtools.com/2011/12/11/an-introduction-to-mixing-with-dj-isolator-mixers/).
+
+An isolator is a very handy tool for creative mixing. It allows you to selectively cut or boost "low", "mid" and "high" bands within an input signal. Most importantly, it has a flat response -- when all three bands are at 0dB, the isolator should not color the input signal.
+
+To keep things simple, we'll use [`LPF`](https://doc.sccode.org/Classes/LPF.html) and [`HPF`](https://doc.sccode.org/Classes/HPF.html), which are non-resonant 2nd-order Butterworth filters. However, if we naively mix a lowpass and highpass Butterworth at the same FC, we get a +3db bump at the filter cutoff. To avoid this, we'll cascade *two* 2nd order Butterworths -- this gets us a [Linkwitz-Riley](https://en.wikipedia.org/wiki/Linkwitz%E2%80%93Riley_filter) filter, which is a standard building block for crossovers. So, we'll take a lowpass and highpass L-R filter at same frequency, with a mid section, and their sum will have a flat magnitude response.
+
+Here's an example of this architecture:
+
+```js
+// white noise source, watch your ears!
+(
+z = {
+	var src = WhiteNoise.ar;
+	var fc1 = \fc1.kr(600);
+	var fc2 = \fc2.kr(1800);
+	
+	var ampLo = \ampLo.kr(1);
+	var ampMid = \ampMid.kr(1);
+	var ampHi = \ampHi.kr(1);
+	
+	var lo = LPF.ar(LPF.ar(src, fc1), fc1) * ampLo;
+	var mid = HPF.ar(HPF.ar(LPF.ar(LPF.ar(src, fc2), fc2), fc1), fc1) * ampMid;
+	var hi = HPF.ar(HPF.ar(src, fc2), fc2) * ampHi;
+	
+	Out.ar(\out.kr(0), ((lo + mid + hi) * \amp.kr(0.2)).dup);
+}.play(s, \addToTail);
+)
+
+// controls:
+z.set(\ampLo,0);
+z.set(\ampMid,0);
+z.set(\ampHi,0);
+
+z.set(\ampLo,1);
+z.set(\ampMid,1);
+z.set(\ampHi,1);
+```
+
+To add this functionality, we'll adjust `\patch_main`:
+
+```js
+SynthDef.new(\patch_main, {
+	var src = In.ar(\in.kr, 2);
+	var fc1 = \fc1.kr(600);
+	var fc2 = \fc2.kr(1800);
+	
+	var ampLo = \ampLo.kr(1);
+	var ampMid = \ampMid.kr(1);
+	var ampHi = \ampHi.kr(1);
+	
+	var lo = LPF.ar(LPF.ar(src, fc1), fc1) * ampLo;
+	var mid = HPF.ar(HPF.ar(LPF.ar(LPF.ar(src, fc2), fc2), fc1), fc1) * ampMid;
+	var hi = HPF.ar(HPF.ar(src, fc2), fc2) * ampHi;
+	
+	var mix = lo + mid + hi;
+	
+	Out.ar(\out.kr, mix * \level.kr(1));
+}).send(s);
+```
+
+And to control it, we'll add a `setMain` command:
+
+```js
+setMain { arg key, val;
+	synths[\main_out].set(key, val);
+}
+```
+
+<details closed markdown="block">
+<summary>
+Our new `FXBusDemo.sc`
+</summary>
+
+```js
+// SC Bus exercise 3
+// adding an isolator
+
+FXBusDemo {
+
+	var <synths;
+	var <busses;
+	var <g;
+
+	*new {
+		^super.new.init();
+	}
+
+	init {
+		var s = Server.default;
+		synths = Dictionary.new;
+		busses = Dictionary.new;
+
+		Routine {
+			// in this demo, source bus is mono / FX are stereo:
+			busses[\source] = Bus.audio(s, 1);
+			busses[\main_out] = Bus.audio(s, 2);
+			busses[\reverb_send] = Bus.audio(s, 2);
+			busses[\delay_send] = Bus.audio(s, 2);
+
+			// define our patch synths, to control stereo field:
+			SynthDef.new(\patch_pan, {
+				Out.ar(\out.kr, Pan2.ar(In.ar(\in.kr), \pan.kr(0), \level.kr(1)));
+			}).send(s);
+
+			// NEW: build an isolator into our main output:
+			SynthDef.new(\patch_main, {
+				var src = In.ar(\in.kr, 2);
+				var fc1 = \fc1.kr(600);
+				var fc2 = \fc2.kr(1800);
+
+				var ampLo = \ampLo.kr(1);
+				var ampMid = \ampMid.kr(1);
+				var ampHi = \ampHi.kr(1);
+
+				var lo = LPF.ar(LPF.ar(src, fc1), fc1) * ampLo;
+				var mid = HPF.ar(HPF.ar(LPF.ar(LPF.ar(src, fc2), fc2), fc1), fc1) * ampMid;
+				var hi = HPF.ar(HPF.ar(src, fc2), fc2) * ampHi;
+
+				var mix = lo + mid + hi;
+
+				Out.ar(\out.kr, mix * \level.kr(1));
+			}).send(s);
+
+			// add a group to order our synths / nodes:
+			g = Group.new(s);
+
+			// define our source synth:
+			synths[\source] = SynthDef.new(\sourceBlip, {
+				var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8).clip(20,20000));
+				snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
+				Out.ar(\out.kr, snd * \level.kr(0.5));
+			}).play(target:g, addAction:\addToTail, args:[
+				\out, busses[\source]
+			]);
+
+			// why are we syncing here? two reasons:
+			// 1. so the common SynthDefs above are present on the Server when requested
+			// 2. because the send synths below use \addToTail,
+			//   we need the Server to finish creating the source synth before they are added
+			s.sync;
+
+			synths[\dry] = Synth.new(\patch_pan,
+				target:g, addAction:\addToTail, args:[
+					\in, busses[\source],
+					\out, busses[\main_out],
+					\level, 1.0
+			]);
+
+			synths[\delay_send] = Synth.new(\patch_pan,
+				target:g, addAction:\addToTail, args:[
+					\in, busses[\source],
+					\out, busses[\delay_send],
+					\level, 0.0
+			]);
+
+			synths[\reverb_send] = Synth.new(\patch_pan,
+				target:g, addAction:\addToTail, args:[
+					\in, busses[\source],
+					\out, busses[\reverb_send],
+					\level, 0.0
+			]);
+
+			synths[\delay] = SynthDef.new(\delay, {
+				arg in, out, level=1;
+				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, 0.2, level));
+			}).play(target:g, addAction:\addToTail, args:[
+				\in, busses[\delay_send], \out, busses[\main_out]
+			]);
+
+			synths[\reverb] = SynthDef.new(\reverb, {
+				arg in, out, level=1;
+				Out.ar(out, FreeVerb.ar(In.ar(in, 2), 1.0, 0.9, 0.1, level));
+			}).play(target:g, addAction:\addToTail, args:[
+				\in, busses[\reverb_send], \out, busses[\main_out]
+			]);
+
+			// again, we want the next synth to actually be added *after* all others
+			s.sync;
+
+			synths[\main_out] = Synth.new(\patch_main,
+				target:g, addAction:\addToTail, args: [
+					\in, busses[\main_out], \out, 0
+			]);
+
+		}.play;
+	}
+
+	setLevel { arg key, val;
+		synths[key].set(\level, val);
+	}
+
+	setPan { arg key, val;
+		synths[key].set(\pan, val);
+	}
+
+	setHz { arg val;
+		synths[\source].set(\hz, val);
+	}
+
+	// NEW: add controls for our main_out synth:
+	setMain { arg key, val;
+		synths[\main_out].set(key, val);
+	}
+
+	// IMPORTANT: free Server resources and nodes when done!
+	free {
+		g.free;
+		busses.do({arg bus; bus.free;});
+	}
+
+}
+```
+</details>
+
+Recompile the class library via `Language > Recompile Class Library` and run:
+
+```js
+// start the synth:
+(
+Routine{
+	x = FXBusDemo.new();
+	0.05.wait;
+	x.setHz(330*0.75);
+	x.setLevel(\delay_send,0.6);
+	x.setLevel(\reverb_send,0.6);
+	
+	x.setPan(\delay_send,-1);
+	x.setPan(\reverb_send,1);
+}.play;
+)
+
+// control the isolator:
+x.setMain(\ampLo,0);
+x.setMain(\ampMid,0);
+x.setMain(\ampHi,0);
+
+x.setMain(\ampLo,1);
+x.setMain(\ampMid,1);
+x.setMain(\ampHi,1);
+```
+
+## part 2: turn on the engine {#part-2}
+
+As in our previous studies, we'll now construct a norns engine from this SuperCollider Class file.
+
+Just for review: a norns engine an instance of the built-in [CroneEngine Class](https://github.com/monome/norns/blob/main/sc/core/CroneEngine.sc), which gives a standardized structure to shuttle meaningful commands and their values between Supercollider and Lua.
+
+<details>
+<summary>`Engine_FXBusDemo.sc`</summary>
+```js
+Engine_FXBusDemo : CroneEngine {
+// All norns engines follow the 'Engine_MySynthName' convention above
+
+	// NEW: select a variable to invoke FXBusDemo with
+	var kernel;
+
+	*new { arg context, doneCallback;
+		^super.new(context, doneCallback);
+	}
+
+	alloc { // allocate memory to the following:
+
+		// NEW: since FXBusDemo is now a supercollider Class,
+		//   we can just construct an instance of it
+		kernel = FXBusDemo.new(Crone.server);
+
+		// NEW: build an 'engine.set_level(synth,val)' command
+		this.addCommand(\set_level, "sf", { arg msg;
+			var voiceKey = msg[1].asSymbol;
+			var freq = msg[2].asFloat;
+			kernel.setLevel(voiceKey,freq);
+		});
+
+		// NEW: build an 'engine.set_pan(synth,val)' command
+		this.addCommand(\set_pan, "sf", { arg msg;
+			var voiceKey = msg[1].asSymbol;
+			var freq = msg[2].asFloat;
+			kernel.setPan(voiceKey,freq);
+		});
+
+		// NEW: build an 'engine.set_hz(val)' command
+		this.addCommand(\set_hz, "f", { arg msg;
+			var freq = msg[1].asFloat;
+			kernel.setHz(freq);
+		});
+
+		// NEW: build an 'engine.set_main(key,val)' command
+		this.addCommand(\set_main, "sf", { arg msg;
+			var key = msg[1].asSymbol;
+			var val = msg[2].asFloat;
+			kernel.setMain(key,val);
+		});
+
+	} // alloc
+
+
+	// NEW: when the script releases the engine,
+	//   free Server resources and nodes!
+	// IMPORTANT
+	free {
+		kernel.free;
+	} // free
+
+
+} // CroneEngine
+```
+</details>
+
+### bring it all onto norns
+
+Let's get our SuperCollider files onto norns and test things out.
+
+Connect to norns via [one of the transfer methods](/docs/norns/wifi-files/#transfer).  
+
+If you completed the [rude mechanicals](/docs/norns/engine-study-1/) study, then simply navigate to your `code/engine_study/lib` folder on norns.  
+
+If you didn't complete the previous study:
+
+- create a folder inside of `code` named `engine_study`
+- create a folder inside of `engine_study` named `lib`
+
+Under `lib`, we'll want to drop in copies of our `FXBusDemo.sc` and `Engine_FXBusDemo.sc` files. Once they're imported, use `SYSTEM > RESTART` on norns to recompile its SuperCollider library and get the Lua layer synced with the new engine files.
+
+### building our Lua file
+
+Let's build a script which engages our `FXBusDemo` engine and builds some norns parameters to control it.
+
+<details>
+<summary>`engine_study_3.lua`</summary>
+```lua
+-- norns engine study 3: Busses
+
+engine.name = "FXBusDemo"
+formatters = require("formatters")
+
+function init()
+  default_vals = {
+    amp = {
+      min = 0,
+      max = 2,
+      default = 1,
+      quantum = 1 / 200,
+      step = 0.001,
+      formatter = function(param)
+        return ((param:get() * 100) .. "%")
+      end,
+    },
+    pan = {
+      min = -1,
+      max = 1,
+      default = 0,
+      quantum = 1 / 200,
+      step = 0.001,
+      formatter = formatters.bipolar_as_pan_widget,
+    },
+  }
+
+  level_params = {
+    { type = "separator", id = "levels_separator", name = "levels" },
+    {
+      id = "dry_level",
+      name = "dry level",
+      action_key = "dry",
+    },
+    {
+      id = "delay_level",
+      name = "delay level",
+      action_key = "delay_send",
+    },
+    {
+      id = "reverb_level",
+      name = "reverb level",
+      action_key = "reverb_send",
+    },
+  }
+
+  pan_params = {
+    { type = "separator", id = "pan_separator", name = "panning" },
+    {
+      id = "dry_pan",
+      name = "dry pan",
+      action_key = "dry",
+    },
+    {
+      id = "delay_pan",
+      name = "delay pan",
+      action_key = "delay_send",
+    },
+    {
+      id = "reverb_pan",
+      name = "reverb pan",
+      action_key = "reverb_send",
+    },
+  }
+
+  eq_params = {
+    { type = "separator", id = "main_separator", name = "main EQ" },
+    {
+      id = "ampLo",
+      name = "lo",
+    },
+    {
+      id = "ampMid",
+      name = "mid",
+    },
+    {
+      id = "ampHi",
+      name = "hi",
+    },
+  }
+
+  for i = 1, #level_params do
+    local d = level_params[i]
+    local dv = default_vals.amp
+    if d.type == "separator" then
+      params:add_separator(d.id, d.name)
+    else
+      params:add_control(
+        d.id,
+        d.name,
+        controlspec.new(dv.min, dv.max, "lin", dv.step, dv.default, nil, dv.quantum),
+        dv.formatter
+      )
+      params:set_action(d.id, function(x)
+        engine.set_level(d.action_key, x)
+      end)
+    end
+  end
+
+  for i = 1, #pan_params do
+    local d = pan_params[i]
+    local dv = default_vals.pan
+    if d.type == "separator" then
+      params:add_separator(d.id, d.name)
+    else
+      params:add_control(
+        d.id,
+        d.name,
+        controlspec.new(dv.min, dv.max, "lin", dv.step, dv.default, nil, dv.quantum),
+        dv.formatter
+      )
+      params:set_action(d.id, function(x)
+        engine.set_pan(d.action_key, x)
+      end)
+    end
+  end
+
+  for i = 1, #eq_params do
+    local d = eq_params[i]
+    local dv = default_vals.amp
+    if d.type == "separator" then
+      params:add_separator(d.id, d.name)
+    else
+      params:add_control(
+        d.id,
+        d.name,
+        controlspec.new(dv.min, dv.max, "lin", dv.step, dv.default, nil, dv.quantum),
+        dv.formatter
+      )
+      params:set_action(d.id, function(x)
+        engine.set_main(d.id, x)
+      end)
+    end
+  end
+
+  params:set("delay_level", 0)
+  params:set("reverb_level", 0)
+
+  params:bang()
+end
+```
+
+
+Alright, take a break! You've done a lot of typing and experimenting for one sitting. We'll see you back here soon.
+
+## part 3: polls {#part-3}
+
+So far, our studies have all been focused on sending data from Lua to SuperCollider, using engine *commands*. We can also go the other direction, using engine *polls*.
+
+Polls report basic data from the audio subsystem, for use within a script. We can use them to trigger script events based on incoming amplitude, or capture the pitch and match it with a synth engine. See [study 5](/docs/norns/study-5/#numerical-superstorm) for additional examples.
+
+For the purposes of this study, let's measure the spectral flatness of our final stage output and send that to Lua for visualization.
+
+### FFT
+
+We'll use SuperCollider's Fast Fourier Transform tools for analyzing our final signal
 
 ### further
 

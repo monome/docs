@@ -1,5 +1,5 @@
-// SC Bus exercise 2
-// busses in a class with panning + commands
+// SC Bus exercise 3
+// adding an isolator
 
 FXBusDemo {
 
@@ -17,7 +17,7 @@ FXBusDemo {
 		busses = Dictionary.new;
 
 		Routine {
-			// in this demo, source bus is mono / fx are stereo:
+			// in this demo, source bus is mono / FX are stereo:
 			busses[\source] = Bus.audio(s, 1);
 			busses[\main_out] = Bus.audio(s, 2);
 			busses[\reverb_send] = Bus.audio(s, 2);
@@ -28,8 +28,23 @@ FXBusDemo {
 				Out.ar(\out.kr, Pan2.ar(In.ar(\in.kr), \pan.kr(0), \level.kr(1)));
 			}).send(s);
 
-			SynthDef.new(\patch_stereo, {
-				Out.ar(\out.kr, In.ar(\in.kr, 2) * \level.kr(1));
+			// NEW: build an isolator into our main output:
+			SynthDef.new(\patch_main, {
+				var src = In.ar(\in.kr, 2);
+				var fc1 = \fc1.kr(600);
+				var fc2 = \fc2.kr(1800);
+
+				var ampLo = \ampLo.kr(1);
+				var ampMid = \ampMid.kr(1);
+				var ampHi = \ampHi.kr(1);
+
+				var lo = LPF.ar(LPF.ar(src, fc1), fc1) * ampLo;
+				var mid = HPF.ar(HPF.ar(LPF.ar(LPF.ar(src, fc2), fc2), fc1), fc1) * ampMid;
+				var hi = HPF.ar(HPF.ar(src, fc2), fc2) * ampHi;
+
+				var mix = lo + mid + hi;
+
+				Out.ar(\out.kr, mix * \level.kr(1));
 			}).send(s);
 
 			// add a group to order our synths / nodes:
@@ -37,8 +52,8 @@ FXBusDemo {
 
 			// define our source synth:
 			synths[\source] = SynthDef.new(\sourceBlip, {
-				var snd = LPF.ar(Saw.ar(\hz.kr(330)), \hz.kr(330)*4);
-				snd = snd * LagUD.ar(Impulse.ar(2), 0, 0.5);
+				var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8).clip(20,20000));
+				snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
 				Out.ar(\out.kr, snd * \level.kr(0.5));
 			}).play(target:g, addAction:\addToTail, args:[
 				\out, busses[\source]
@@ -88,7 +103,7 @@ FXBusDemo {
 			// again, we want the next synth to actually be added *after* all others
 			s.sync;
 
-			synths[\main_out] = Synth.new(\patch_stereo,
+			synths[\main_out] = Synth.new(\patch_main,
 				target:g, addAction:\addToTail, args: [
 					\in, busses[\main_out], \out, 0
 			]);
@@ -106,6 +121,11 @@ FXBusDemo {
 
 	setHz { arg val;
 		synths[\source].set(\hz, val);
+	}
+
+	// NEW: add controls for our main_out synth:
+	setMain { arg key, val;
+		synths[\main_out].set(key, val);
 	}
 
 	// IMPORTANT: free Server resources and nodes when done!

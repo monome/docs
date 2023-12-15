@@ -7,10 +7,20 @@ redirect_from: /modular/ansible/meadowphysics/
 ---
 
 ## Meadowphysics (Ansible + Grid)
+{: .no_toc }
 
 *Rhizomatic cascading counter*
 
-Meadowphysics is an app for the [Ansible](/docs/ansible) Eurorack module that uses the [Grid](/docs/grid) to program a trigger or CV/gate sequencer. The version for Ansible has a few changes from the [version 2](https://vimeo.com/146731772) (which is an update from [version 1](/docs/meadowphysics/))-- primarily in that this new version can map a scale of notes to the individual row triggers. Those linked docs will give some additional insight (though perhaps also some confusion) prior to the completion of the material below. Meadowphysics has also been [ported](https://llllllll.co/t/meadowphysics-norns/21185) to [Norns](/docs/norns). The mode LED will show white whil Meadowphysics is running.
+Meadowphysics is an app for the [Ansible](/docs/ansible) Eurorack module that uses the [Grid](/docs/grid) to program a trigger or CV/gate sequencer. The version for Ansible has a few changes from the [version 2](https://vimeo.com/146731772) (which is an update from [version 1](/docs/meadowphysics/))-- primarily in that this new version can map a scale of notes to the individual row triggers. Those linked docs will give some additional insight (though perhaps also some confusion) prior to the completion of the material below. Meadowphysics has also been [ported](https://llllllll.co/t/meadowphysics-norns/21185) to [Norns](/docs/norns). The mode LED will show white while Meadowphysics is running.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ### Interface
 

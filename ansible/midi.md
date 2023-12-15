@@ -7,10 +7,20 @@ redirect_from: /modular/ansible/midi/
 ---
 
 ## MIDI/voice
+{: .no_toc }
 
 By plugging a USB MIDI device into the [Ansible](/docs/ansible) Eurorack module, you can access various MIDI-to-CV tools. These tools are available with a standalone Ansible, as well as an Ansible paired with Teletype through [dedicated Teletype commands](/docs/ansible/teletype/#midi).
 
 The mode LED will show orange when running.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ### Interface
 

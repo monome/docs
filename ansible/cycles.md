@@ -7,10 +7,20 @@ redirect_from: /modular/ansible/cycles/
 ---
 
 ## Cycles (Ansible + Arc)
+{: .no_toc }
 
 Cycles is an app for the [Ansible](/docs/ansible) Eurorack module that converts [Arc](/docs/arc) gestures into rotational energy mapped to CV and TR outputs, with control for friction and force.
 
 The mode LED will show white when running.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ### Basics
 

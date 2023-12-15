@@ -10,6 +10,7 @@ redirect_from: /modular/earthsea/
 
 
 # Earthsea
+{: .no_toc }
 
 *Grid-enabled Shape-Memory Pattern Instrument*
 
@@ -17,9 +18,18 @@ redirect_from: /modular/earthsea/
 
 
 ### WARNING: Earthsea requires high +5v current
+{: .no_toc }
 
 Please make certain to check your case’s +5v power supply capacity. If it is underpowered (<600mA), or highly taxed, our [Switch](/docs/switch) is required.
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## Introduction
 

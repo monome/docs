@@ -3,7 +3,6 @@ layout: default
 title: norns
 nav_order: 1
 has_children: true
-has_toc: false
 ---
 
 ![](../norns/image/norns-grey.jpeg)

@@ -9,9 +9,9 @@ nav_order: 6
 
 Between the search bar above and the links below, you should be able to solve most norns troubles that you'd run into:
 
-- [hardware](/help/hardware) // replacement parts, WiFi, boot issues, connectivity, audio specs
-- [software](/help/software) // system logs, script updates, error messages
-- [data](/help/data) // backing up, fresh install, expanding storage, removing logs, taking a screenshot
+- [hardware](../help/hardware) // replacement parts, WiFi, boot issues, connectivity, audio specs
+- [software](../help/software) // system logs, script updates, error messages
+- [data](../help/data) // backing up, fresh installation, expanding storage, removing logs, taking a screenshot
 
 ### additional assistance
 
@@ -32,9 +32,9 @@ While monome's [warranty](https://monome.org/policy.html) only covers direct sal
 
 Please note that we cannot offer hardware support or repairs for norns shields which were not fabricated and assembled by monome or 'fates' devices. Please reach out to the seller for post-purchase support.
 
-Before purchasing, be sure to confirm with the seller the storage capacity of the unit. Here are [instructions for standard norns](#confirm-cm3); shields have swappable SD cards.
+Before purchasing, be sure to confirm with the seller the storage capacity of the unit. Here are [instructions for standard norns](/docs/norns/help/hardware/#confirm-cm3); shields have swappable SD cards.
 
-When you receive your unit, we highly recommend starting with a [fresh installation of the core software](/docs/norns/help/#fresh-install). This will help avoid poor initial experiences due to the previous owner's software configurations.
+When you receive your unit, we highly recommend starting with a [fresh installation of the core software](/docs/norns/help/data/#fresh-install). This will help avoid poor initial experiences due to the previous owner's software configurations.
 
 From there:
 

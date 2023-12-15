@@ -6,7 +6,7 @@ nav_order: 3
 permalink: /crow/update/
 ---
 
-# Firmware Update
+# crow firmware update
 {: .no_toc }
 
 <details open markdown="block">
@@ -18,43 +18,12 @@ permalink: /crow/update/
 {:toc}
 </details>
 
-## Latest
+## latest
 
 The latest crow firmware is always announced on [the 'releases' section of crow's GitHub repository](https://github.com/monome/crow/releases).  
 To check the version of your crow's firmware, open druid and execute `^^version`.
 
-### 4.0.1 Changelog
-{: .no_toc }
-
-*Huge thanks to all the contributors!*
-
-**NEW**
-
-- `timeline` library: [DOCS](https://monome.org/docs/crow/timeline/)  
-- `sequins`: transformers: [DOCS](https://monome.org/docs/crow/sequins2/#transformers)  
-- `sequins`: string-syntax: [DOCS](https://monome.org/docs/crow/sequins2/#sequins-strings)  
-- `hotswap` library: [DOCS](https://monome.org/docs/crow/hotswap/)  
-- seeded pseudo-random generator available as `math.srandom()`: [DOCS](https://monome.org/docs/crow/seededrandom/)  
-- support for newest hardware revision (debug led & hardware i2c pullups)  
-- extended `disting` ii interface (thanks @jroo, @ryland)  
-- method for peeking the current sequins value (thanks @tyleretters)  
-
-**FIXED**
-
-- ASL segments now correctly handle `'log'` shapes (thanks @beels)  
-- dsp samplerate was incorrect. ASL now runs at the correct speed  
-- `i2c` timing refined for more reliable transmission  
-- `i2c` driver more resilient to errors  
-- `input[n].query()` now works correctly via norns (using the `input[n].stream` event)  
-- solve "out of memory" errors when loading `ii` libraries in data-heavy scripts  
-- `input[n].scale` mode avoids double-triggers near note boundaries  
-- `ii.<module>.help()` is no longer truncated to 1024 characters  
-- `ii` address now correctly applies for up to 4 simultaneous crows on the bus  
-- `clock.sync` timing is now more accurate, and runs indefinitely  
-- changing `clock.tempo` while `clock` routines are running no longer skips events  
-- true random generator recovers when becoming insufficiently entropic  
-
-## Update via druid
+## update via druid
 
 New firmware can be checked and installed directly through druid. Make sure you have the [latest version of druid](https://monome.org/docs/crow/druid/#update), which supports this feature.
 
@@ -83,7 +52,7 @@ Exiting DFU...
 Update complete.
 ```
 
-### Linux / Mac OS troubleshooting
+### Linux / macOS troubleshooting
 
 #### 'command not found: druid'
 
@@ -100,9 +69,9 @@ Once you're back in the shell you used to install, you should be good to go!
 
 If you see `Error: No such command 'firmware'`, you first need to [update druid](/docs/crow/druid/#update).
 
-### Windows Troubleshooting
+### Windows troubleshooting
 
-#### Update the Firmware
+#### update the firmware
 
 If you've previously installed and used `dfu-util`:
 
@@ -113,7 +82,7 @@ If you see `Error: No such command 'firmware'`, you first need to [update druid]
 
 If you continue to run into trouble, you'll likely need to install the driver for crow's bootloader and the `libusb1` DLL file so that the PowerShell can talk to crow's bootloader. This process is outlined in the following sections. Once completed, try `druid firmware` again.
 
-#### Install the WinUSB Driver Using Zadig
+#### install the WinUSB Driver using Zadig
 
 - put crow in bootloader mode: open `druid`, send `^^b` (crow will disconnect from druid), enter `q` to quit.
 - download [Zadig](https://zadig.akeo.ie)
@@ -123,14 +92,14 @@ If you continue to run into trouble, you'll likely need to install the driver fo
 - to the right of the green arrow, you should have `WinUSB (v6.1.7600.16385)` (if you don't, please select it)
 - click the `Replace Driver` button and wait a few minutes for the process to complete
 
-#### Install libusb.dll
+#### install libusb.dll
 
 - download [libusb1.dll](https://github.com/monome/docs/blob/gh-pages/crow/libusb-1.0.zip)
 - make a folder in your user directory called `Drivers`, eg: `C:\Users\Trent\Drivers`
 - add the new `Drivers` folder to your `PATH` variable. [Instructions here](https://monome.org/docs/crow/druid/#windows-errors).
 - extract the DLL file, and place it in the folder you just created
 
-## Update via norns
+## update via norns
 
 You can use the [`fledge`](https://github.com/monome/fledge) script on norns to update a connected crow to its latest firmware.
 
@@ -140,11 +109,11 @@ You can use the [`fledge`](https://github.com/monome/fledge) script on norns to 
 - launch the `fledge` script
 - keep maiden open for progress details
 
-## Manual Update
+## manual update
 
 If you have trouble with the `druid firmware` command on a non-norns computer, or wish to install a specific firmware version, see the [manual update](/docs/crow/manual-update).
 
-## Calibration
+## calibration
 
 crow has hardware to enable self-calibration of the CV inputs & outputs. The calibration procedure is run at the workshop using [this script](https://github.com/monome/bowery/blob/main/cali.lua). Feel free to run the same at home if you ever feel the need to recalibrate your hardware.
 

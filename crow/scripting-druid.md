@@ -9,7 +9,7 @@ has_toc: false
 permalink: /crow/scripting-druid/
 ---
 
-# Scripting
+# scripting with druid
 {: .no_toc }
 
 Scripts are the little programs crow runs to take on different roles in your synthesizer. They are written in [Lua](https://www.lua.org) and typically run between 10 and 100 lines. You don't need to write them from scratch though! There's examples to upload directly, and modifying existing scripts is a nice soft entry into writing your own.
@@ -43,7 +43,7 @@ And *Stage Three* concludes with [a brief introduction into writing & modifying 
 {:toc}
 </details>
 
-## Stage One: Upload
+## Stage One: upload
 
 ### Bowery
 
@@ -59,7 +59,7 @@ Return to your terminal & quit `druid` by typing `q` then `<enter>`. Now in term
 - Windows: hold the SHIFT key and right click the unzipped `bowery-main` folder. This will reveal a **Copy as path** action. Select it and then paste into terminal after `cd [spacebar]`.
 - Linux: right click the unzipped `bowery-main` folder and select "**Copy**". Then, simply **Paste** into terminal after `cd [spacebar]`.
 
-### Uploading
+### uploading
 
 From the *bowery-main* folder, load up a fresh `druid` session so we can talk to crow.
 
@@ -88,7 +88,7 @@ Any time you make changes to `clockdiv.lua` you'll need to run the script again 
 
 **This is all you need to work with existing scripts!** Plenty of fun is to be had playing with the files in the *bowery/* folder alone.
 
-### In Review
+### in review
 
 | command | ~> | meaning |
 | :--- | :---: | :--- |
@@ -104,9 +104,9 @@ If you want to use a script you see online, you'll need to save it as a text fil
 
 *Note: Occasionally you might see `druid` complain about errors after calling `r`. Wait a couple seconds & try again. If you still have problems, enter `^^kill` to reset crow, then `r` again. [Learn more about Environment Commands here](../technical/#environment-commands)*
 
-## Stage Two: Execute
+## Stage Two: execute
 
-### Split Screen
+### split screen
 
 Onward! It's time to start working with scripts, and see how they work with `druid`.
 
@@ -124,7 +124,7 @@ Now load both these tools up and, resize the windows so you have them side-by-si
 
 You'll want to learn the hotkey that allows you to switch focus between the two programs.
 
-### Say Hello
+### say hello
 
 *nb: From here on, whenever you see the `>` symbol, that means you'll be entering it into `druid`, and the lines that follow are what you'll see returned from crow.*
 
@@ -173,7 +173,7 @@ A calculator!
 
 This pattern of using `print` to query crow's memory will be central to understanding things as you progress. If you get stuck, try `print`ing your variable names and see what values you get. If you see `nil` then you've likely made a typo somewhere.
 
-### Pushing Around the Volts
+### pushing around the volts
 
 Let's make a quick patch:
 
@@ -209,9 +209,9 @@ Give the output some movement by using slew, then up-arrow to go back to 1 volt:
 
 The pitch will glide up to 1 volt again, smoothly fading for half a second.
 
-## Stage Three: Write
+## Stage Three: write
 
-### Sample and Hold
+### sample and hold
 
 Let's make a basic sample and hold script which takes a clock on input 1, which then outputs a random voltage on output 1.
 
@@ -309,7 +309,7 @@ Save the script & run it in druid with `r sketch.lua`. Patch output 1 to the pit
 
 If you're having trouble, you can look at the file `samplehold-basic.lua` in *bowery/* which replicates the work above.
 
-### Make It a Conversation
+### make it a conversation
 
 While building the above script, we just zipped through implementation and were only using `druid` to send our script to crow. It can be super useful to have crow send us some information while we work, or to try out commands as we go. For example, let's add a *variable* and debug print to our change event to see what's going on:
 
@@ -347,7 +347,7 @@ end
 
 Notice how the input voltage is saved in a variable `volt` then sent to output 2.
 
-### All the Possibilities
+### all the possibilities
 
 This short script is already a nice sample & hold. It creates a random value and a sampled input value every time a clock is received. But there is so much more to be done! There's an example of further possibilities in `bowery/samplehold.lua` using quantization, and adding some randomness to the input sample, but there are so many more options!
 
@@ -355,7 +355,7 @@ This short script is already a nice sample & hold. It creates a random value and
 
 One great source of inspiration when it comes to sample & hold and other forms of randomness is the Buchla 'Source of Uncertainty' module, but for now that's up to you to explore!
 
-## The Never-ending Story
+## the never-ending story
 
 More explorations will be here or around soon:
 
@@ -367,7 +367,7 @@ More explorations will be here or around soon:
 
 But for now...
 
-### Further
+### further
 
 The [reference guide](../reference) provides a table of crow-specific commands.
 

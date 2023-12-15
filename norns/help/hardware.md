@@ -3,7 +3,7 @@ layout: default
 parent: help
 grand_parent: norns
 has_children: false
-title: hardware help
+title: hardware
 nav_order: 1
 ---
 

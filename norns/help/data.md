@@ -3,7 +3,7 @@ layout: default
 parent: help
 grand_parent: norns
 has_children: false
-title: data management help
+title: data management
 nav_order: 3
 ---
 

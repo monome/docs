@@ -638,6 +638,7 @@ Just for review: a norns engine an instance of the built-in [CroneEngine Class](
 
 <details>
 <summary>`Engine_FXBusDemo.sc`</summary>
+
 ```js
 Engine_FXBusDemo : CroneEngine {
 // All norns engines follow the 'Engine_MySynthName' convention above
@@ -718,141 +719,159 @@ Let's build a script which engages our `FXBusDemo` engine and builds some norns 
 
 <details>
 <summary>`engine_study_3.lua`</summary>
+
 ```lua
 -- norns engine study 3: Busses
 
 engine.name = "FXBusDemo"
-formatters = require("formatters")
+local formatters = require("formatters")
 
 function init()
-  default_vals = {
-    amp = {
-      min = 0,
-      max = 2,
-      default = 1,
-      quantum = 1 / 200,
-      step = 0.001,
-      formatter = function(param)
-        return ((param:get() * 100) .. "%")
-      end,
-    },
-    pan = {
-      min = -1,
-      max = 1,
-      default = 0,
-      quantum = 1 / 200,
-      step = 0.001,
-      formatter = formatters.bipolar_as_pan_widget,
-    },
-  }
+  local cs_amp = controlspec.new(0, 2, "lin", 0.001, 1, nil, 1 / 200)
+  local cs_fc1 = controlspec.new(20, 20000, "exp", 0, 600, "Hz")
+  local cs_fc2 = controlspec.new(20, 20000, "exp", 0, 1800, "Hz")
+  local cs_pan = controlspec.new(-1, 1, "lin", 0.001, 0, nil, 1 / 200)
 
-  level_params = {
-    { type = "separator", id = "levels_separator", name = "levels" },
-    {
-      id = "dry_level",
-      name = "dry level",
-      action_key = "dry",
-    },
-    {
-      id = "delay_level",
-      name = "delay level",
-      action_key = "delay_send",
-    },
-    {
-      id = "reverb_level",
-      name = "reverb level",
-      action_key = "reverb_send",
-    },
-  }
-
-  pan_params = {
-    { type = "separator", id = "pan_separator", name = "panning" },
-    {
-      id = "dry_pan",
-      name = "dry pan",
-      action_key = "dry",
-    },
-    {
-      id = "delay_pan",
-      name = "delay pan",
-      action_key = "delay_send",
-    },
-    {
-      id = "reverb_pan",
-      name = "reverb pan",
-      action_key = "reverb_send",
-    },
-  }
-
-  eq_params = {
-    { type = "separator", id = "main_separator", name = "main EQ" },
-    {
-      id = "ampLo",
-      name = "lo",
-    },
-    {
-      id = "ampMid",
-      name = "mid",
-    },
-    {
-      id = "ampHi",
-      name = "hi",
-    },
-  }
-
-  for i = 1, #level_params do
-    local d = level_params[i]
-    local dv = default_vals.amp
-    if d.type == "separator" then
-      params:add_separator(d.id, d.name)
-    else
-      params:add_control(
-        d.id,
-        d.name,
-        controlspec.new(dv.min, dv.max, "lin", dv.step, dv.default, nil, dv.quantum),
-        dv.formatter
-      )
-      params:set_action(d.id, function(x)
-        engine.set_level(d.action_key, x)
-      end)
-    end
+  local frm_percent = function(param)
+    return ((param:get() * 100) .. "%")
   end
 
-  for i = 1, #pan_params do
-    local d = pan_params[i]
-    local dv = default_vals.pan
-    if d.type == "separator" then
-      params:add_separator(d.id, d.name)
-    else
-      params:add_control(
-        d.id,
-        d.name,
-        controlspec.new(dv.min, dv.max, "lin", dv.step, dv.default, nil, dv.quantum),
-        dv.formatter
-      )
-      params:set_action(d.id, function(x)
-        engine.set_pan(d.action_key, x)
-      end)
-    end
-  end
+  params:add({
+    type = "separator",
+    id = "levels_separator",
+    name = "levels",
+  })
 
-  for i = 1, #eq_params do
-    local d = eq_params[i]
-    local dv = default_vals.amp
-    if d.type == "separator" then
-      params:add_separator(d.id, d.name)
-    else
-      params:add_control(
-        d.id,
-        d.name,
-        controlspec.new(dv.min, dv.max, "lin", dv.step, dv.default, nil, dv.quantum),
-        dv.formatter
-      )
-      params:set_action(d.id, function(x)
-        engine.set_main(d.id, x)
-      end)
-    end
-  end
+  params:add({
+    type = "control",
+    id = "dry_level",
+    name = "dry level",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_level("dry", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "delay_level",
+    name = "delay level",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_level("delay_send", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "reverb_level",
+    name = "reverb level",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_level("reverb_send", x)
+    end,
+  })
+
+  params:add({
+    type = "separator",
+    id = "pan_separator",
+    name = "panning",
+  })
+
+  params:add({
+    type = "control",
+    id = "dry_pan",
+    name = "dry",
+    controlspec = cs_pan,
+    formatter = formatters.bipolar_as_pan_widget,
+    action = function(x)
+      engine.set_pan("dry", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "delay_pan",
+    name = "delay",
+    controlspec = cs_pan,
+    formatter = formatters.bipolar_as_pan_widget,
+    action = function(x)
+      engine.set_pan("delay_send", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "reverb_pan",
+    name = "reverb",
+    controlspec = cs_pan,
+    formatter = formatters.bipolar_as_pan_widget,
+    action = function(x)
+      engine.set_pan("reverb_send", x)
+    end,
+  })
+
+  params:add({
+    type = "separator",
+    id = "main_eq_separator",
+    name = "main EQ",
+  })
+
+  params:add({
+    type = "control",
+    id = "eq_lo",
+    name = "lo",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_main("ampLo", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "eq_mid",
+    name = "mid",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_main("ampMid", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "eq_hi",
+    name = "hi",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_main("ampHi", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "fc1",
+    name = "lo freq",
+    controlspec = cs_fc1,
+    action = function(x)
+      engine.set_main("fc1", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "fc2",
+    name = "hi freq",
+    controlspec = cs_fc2,
+    action = function(x)
+      engine.set_main("fc2", x)
+    end,
+  })
 
   params:set("delay_level", 0)
   params:set("reverb_level", 0)
@@ -860,7 +879,7 @@ function init()
   params:bang()
 end
 ```
-
+</details>
 
 Alright, take a break! You've done a lot of typing and experimenting for one sitting. We'll see you back here soon.
 
@@ -874,7 +893,440 @@ For the purposes of this study, let's measure the spectral flatness of our final
 
 ### FFT
 
-We'll use SuperCollider's Fast Fourier Transform tools for analyzing our final signal
+We'll use SuperCollider's [Fast Fourier Transform (FFT) tools](https://doc.sccode.org/Guides/FFT-Overview.html) for analyzing our final signal for flatness.
+
+Returning to our `FXBusDemo.sc` Class file, we'll do the following:
+
+- add an `\analysis` audio bus and send our main output to it
+- add a `\spectral` control bus (there are two flavors of `Bus`!)
+- build a SynthDef using the [`SpecFlatness` UGen](https://doc.sccode.org/Classes/SpecFlatness.html)
+- send our flatness analysis to a Lua-accessible poll
+
+<details>
+<summary>Here's our edited `FXBusDemo.sc` file</summary>
+
+```js
+// SC Bus exercise 4: polls
+// sending FFT + spectral analysis to Lua
+
+FXBusDemo {
+
+	var <synths;
+	var <busses;
+	var <g;
+
+	*new {
+		^super.new.init();
+	}
+
+	init {
+		var s = Server.default;
+		synths = Dictionary.new;
+		busses = Dictionary.new;
+
+		Routine {
+			busses[\source] = Bus.audio(s, 1);
+			busses[\main_out] = Bus.audio(s, 2);
+			busses[\reverb_send] = Bus.audio(s, 2);
+			busses[\delay_send] = Bus.audio(s, 2);
+
+			// NEW: add an analysis audio bus:
+			busses[\analysis] = Bus.audio(s, 2);
+			// NEW: define a spectral control Bus for our Lua poll
+			busses[\spectral] = Bus.control(s);
+
+			SynthDef.new(\patch_pan, {
+				Out.ar(\out.kr, Pan2.ar(In.ar(\in.kr), \pan.kr(0), \level.kr(1)));
+			}).send(s);
+
+			SynthDef.new(\patch_main, {
+				var src = In.ar(\in.kr, 2);
+				var fc1 = \fc1.kr(600);
+				var fc2 = \fc2.kr(1800);
+
+				var ampLo = \ampLo.kr(1);
+				var ampMid = \ampMid.kr(1);
+				var ampHi = \ampHi.kr(1);
+
+				var lo = LPF.ar(LPF.ar(src, fc1), fc1) * ampLo;
+				var mid = HPF.ar(HPF.ar(LPF.ar(LPF.ar(src, fc2), fc2), fc1), fc1) * ampMid;
+				var hi = HPF.ar(HPF.ar(src, fc2), fc2) * ampHi;
+
+				var mix = lo + mid + hi;
+
+				Out.ar(\out.kr, mix * \level.kr(1));
+			}).send(s);
+
+			// add a group to order our synths / nodes:
+			g = Group.new(s);
+
+			// define our source synth:
+			synths[\source] = SynthDef.new(\sourceBlip, {
+				var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8).clip(20,20000));
+				snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
+				Out.ar(\out.kr, snd * \level.kr(0.5));
+			}).play(target:g, addAction:\addToTail, args:[
+				\out, busses[\source]
+			]);
+
+			// why are we syncing here? two reasons:
+			// 1. so the common SynthDefs above are present on the Server when requested
+			// 2. because the send synths below use \addToTail,
+			//   we need the Server to finish creating the source synth before they are added
+			s.sync;
+
+			synths[\dry] = Synth.new(\patch_pan,
+				target:g, addAction:\addToTail, args:[
+					\in, busses[\source],
+					\out, busses[\main_out],
+					\level, 1.0
+			]);
+
+			synths[\delay_send] = Synth.new(\patch_pan,
+				target:g, addAction:\addToTail, args:[
+					\in, busses[\source],
+					\out, busses[\delay_send],
+					\level, 0.0
+			]);
+
+			synths[\reverb_send] = Synth.new(\patch_pan,
+				target:g, addAction:\addToTail, args:[
+					\in, busses[\source],
+					\out, busses[\reverb_send],
+					\level, 0.0
+			]);
+
+			synths[\delay] = SynthDef.new(\delay, {
+				arg in, out, level=1;
+				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, 0.2, level));
+			}).play(target:g, addAction:\addToTail, args:[
+				\in, busses[\delay_send], \out, busses[\main_out]
+			]);
+
+			synths[\reverb] = SynthDef.new(\reverb, {
+				arg in, out, level=1;
+				Out.ar(out, FreeVerb.ar(In.ar(in, 2), 1.0, 0.9, 0.1, level));
+			}).play(target:g, addAction:\addToTail, args:[
+				\in, busses[\reverb_send], \out, busses[\main_out]
+			]);
+
+			// again, we want the next synth to actually be added *after* all others
+			s.sync;
+
+			synths[\main_out] = Synth.new(\patch_main,
+				target:g, addAction:\addToTail, args: [
+					// NEW: send main out to analysis bus
+					\in, busses[\main_out], \out, busses[\analysis]
+			]);
+
+			// again, we want the next synth to actually be added *after* all others
+			s.sync;
+
+			// NEW: build a spectral synth
+			synths[\spectral] = SynthDef.new(\spectralTracker, {
+				arg in, out, powerOut;
+				var src = In.ar(in, 2);
+				var mixed = Mix.new([src[0],src[1]]);
+				var chain = FFT(LocalBuf(2048.dup(2), 1), mixed);
+				var flatness = SpecFlatness.kr(chain);
+				var flatdb = 10 * flatness.log; // convert to decibels
+				var flatdbsquish = LinLin.kr(flatdb, -45, -1.6, 0, 1).max(-10); // rescale db roughly to 0...1.
+
+				// send the output out:
+				Out.ar(out, src);
+				// send the flatness to the control bus:
+				Out.kr(powerOut, flatdbsquish);
+			}).play(target:g, addAction:\addToTail, args: [
+				\in, busses[\analysis],
+				\out, 0,
+				\powerOut, busses[\spectral].index
+			]);
+
+		}.play;
+	}
+
+	setLevel { arg key, val;
+		synths[key].set(\level, val);
+	}
+
+	setPan { arg key, val;
+		synths[key].set(\pan, val);
+	}
+
+	setHz { arg val;
+		synths[\source].set(\hz, val);
+	}
+
+	// NEW: add controls for our main_out synth:
+	setMain { arg key, val;
+		synths[\main_out].set(key, val);
+	}
+
+	// IMPORTANT: free Server resources and nodes when done!
+	free {
+		g.free;
+		busses.do({arg bus; bus.free;});
+	}
+
+}
+```
+</details>
+
+Returning to our `Engine_FXBusDemo.sc` file, we'll do the following:
+
+- use `this.addPoll` to add a poll
+- use [SuperCollider's `.getSynchronous` method](https://doc.sccode.org/Classes/Bus.html#-getSynchronous) to grab the value of the `busses[\spectral` control bus
+- clamp those values between 0 and 1
+
+<details>
+<summary>Here's our edited `Engine_FXBusDemo.sc` file</summary>
+
+```js
+Engine_FXBusDemo : CroneEngine {
+// All norns engines follow the 'Engine_MySynthName' convention above
+
+	var kernel;
+
+	*new { arg context, doneCallback;
+		^super.new(context, doneCallback);
+	}
+
+	alloc { // allocate memory to the following:
+
+		kernel = FXBusDemo.new(Crone.server);
+
+		this.addCommand(\set_level, "sf", { arg msg;
+			var voiceKey = msg[1].asSymbol;
+			var freq = msg[2].asFloat;
+			kernel.setLevel(voiceKey,freq);
+		});
+
+		this.addCommand(\set_pan, "sf", { arg msg;
+			var voiceKey = msg[1].asSymbol;
+			var freq = msg[2].asFloat;
+			kernel.setPan(voiceKey,freq);
+		});
+
+		this.addCommand(\set_hz, "f", { arg msg;
+			var freq = msg[1].asFloat;
+			kernel.setHz(freq);
+		});
+
+		this.addCommand(\set_main, "sf", { arg msg;
+			var key = msg[1].asSymbol;
+			var val = msg[2].asFloat;
+			kernel.setMain(key,val);
+		});
+
+		// NEW: add poll
+		this.addPoll(\flatness, {
+			var spectral = kernel.busses[\spectral].getSynchronous.min(1).max(0);
+			spectral
+		});
+
+	} // alloc
+
+	// IMPORTANT
+	free {
+		kernel.free;
+	} // free
+
+
+} // CroneEngine
+```
+</details>
+
+Returning to our `engine-study-3.lua` file, we'll do the following:
+
+- 
+- use [SuperCollider's `.getSynchronous` method](https://doc.sccode.org/Classes/Bus.html#-getSynchronous) to grab the value of the `busses[\spectral` control bus
+- clamp those values between 0 and 1
+
+<details>
+<summary>Here's our edited `engine-study-3.lua` file</summary>
+
+```lua
+engine.name = "FXBusDemo"
+local formatters = require("formatters")
+
+-- NEW: add screen redraw variables
+local bright = 1
+local rad = 2
+
+function init()
+  local cs_amp = controlspec.new(0, 2, "lin", 0.001, 1, nil, 1 / 200)
+  local cs_fc1 = controlspec.new(20, 20000, "exp", 0, 600, "Hz")
+  local cs_fc2 = controlspec.new(20, 20000, "exp", 0, 1800, "Hz")
+  local cs_pan = controlspec.new(-1, 1, "lin", 0.001, 0, nil, 1 / 200)
+
+  local frm_percent = function(param)
+    return ((param:get() * 100) .. "%")
+  end
+
+  params:add({
+    type = "separator",
+    id = "levels_separator",
+    name = "levels",
+  })
+
+  params:add({
+    type = "control",
+    id = "dry_level",
+    name = "dry level",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_level("dry", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "delay_level",
+    name = "delay level",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_level("delay_send", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "reverb_level",
+    name = "reverb level",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_level("reverb_send", x)
+    end,
+  })
+
+  params:add({
+    type = "separator",
+    id = "pan_separator",
+    name = "panning",
+  })
+
+  params:add({
+    type = "control",
+    id = "dry_pan",
+    name = "dry",
+    controlspec = cs_pan,
+    formatter = formatters.bipolar_as_pan_widget,
+    action = function(x)
+      engine.set_pan("dry", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "delay_pan",
+    name = "delay",
+    controlspec = cs_pan,
+    formatter = formatters.bipolar_as_pan_widget,
+    action = function(x)
+      engine.set_pan("delay_send", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "reverb_pan",
+    name = "reverb",
+    controlspec = cs_pan,
+    formatter = formatters.bipolar_as_pan_widget,
+    action = function(x)
+      engine.set_pan("reverb_send", x)
+    end,
+  })
+
+  params:add({
+    type = "separator",
+    id = "main_eq_separator",
+    name = "main EQ",
+  })
+
+  params:add({
+    type = "control",
+    id = "eq_lo",
+    name = "lo",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_main("ampLo", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "eq_mid",
+    name = "mid",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_main("ampMid", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "eq_hi",
+    name = "hi",
+    controlspec = cs_amp,
+    formatter = frm_percent,
+    action = function(x)
+      engine.set_main("ampHi", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "fc1",
+    name = "lo freq",
+    controlspec = cs_fc1,
+    action = function(x)
+      engine.set_main("fc1", x)
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "fc2",
+    name = "hi freq",
+    controlspec = cs_fc2,
+    action = function(x)
+      engine.set_main("fc2", x)
+    end,
+  })
+
+  params:set("delay_level", 0)
+  params:set("reverb_level", 0)
+
+  params:bang()
+
+  -- NEW: invoke our flatness poll //
+  flatness = poll.set("flatness")
+  flatness.callback = function(val)
+    bright = util.round(util.linlin(0,1,1,10,val))
+    rad = util.linlin(0,1,2,30,val)
+    redraw()
+  end
+  flatness.time = 1 / 60
+  flatness:start()
+  -- // flatness poll
+end
+
+-- NEW: draw to screen //
+function redraw()
+  screen.clear()
+  screen.level(bright)
+  screen.circle(64,32,rad)
+  screen.fill()
+  screen.update()
+end
+-- // draw to screen
+```
 
 ### further
 

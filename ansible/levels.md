@@ -7,10 +7,20 @@ redirect_from: /modular/ansible/levels/
 ---
 
 ## Levels (Ansible + Arc)
+{: .no_toc }
 
 Levels is an app for the [Ansible](/docs/modular/ansible) Eurorack module that allows [Arc](/docs/arc) encoders to assign voltages to CV outputs and create patterns which can be clocked.
 
 The mode LED will show orange when running.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ### Basics
 

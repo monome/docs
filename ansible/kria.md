@@ -7,8 +7,18 @@ redirect_from: /modular/ansible/kria/
 ---
 
 ## Kria (Ansible + Grid)
+{: .no_toc }
 
 Kria is an app for the [Ansible](/docs/ansible) Eurorack module that uses the [Grid](/docs/grid) to program a four-track step sequencer. This is an updated version of Kria which began as a [White Whale](/docs/whitewhale) alt-firmware. While some functionality has changed, a general overview could be understood by viewing the [alt-WW Kria tutorial video](https://vimeo.com/153923660). There is also a MIDI Kria [implementation](https://llllllll.co/t/kria-midi/21255) for [Norns](/docs/norns). The mode LED will show orange whilst Kria is running.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ### Interface
 

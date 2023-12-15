@@ -7,6 +7,15 @@ redirect_from: /modular/teletype/jt-3/
 
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/PQ4xUgWUlQQ?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## Mr. Sandman
 
 Depending on the mode, TIME adjusts the rate of *shape* or the pitch of *sound*. Without external control, the boundaries are set from 4 seconds up to 6.2khz.

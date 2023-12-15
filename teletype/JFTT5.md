@@ -7,6 +7,15 @@ redirect_from: /modular/teletype/jt-5/
 
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/PF7gS-sXw_k?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## Geode (abstract)
 
 *Geode* is a rhythmic engine for polymetric & polyphasic patterns. This is fundamentally a 'clocked' mode, whether internally or via Teletype. TIME & INTONE maintain their standard free-running influence.

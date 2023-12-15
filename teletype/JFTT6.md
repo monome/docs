@@ -7,6 +7,15 @@ redirect_from: /modular/teletype/jt-6/
 
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/cFkbs5Q57fc?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## Less is more
 
 There's something fulfilling about digging in deep with smaller toolkits. Just Type allows for a wide range of styles and intentions -- from sprawling modulation to straightforward composition.
@@ -104,7 +113,6 @@ Before we part, it might be helpful to provide a quick overview of all commands 
 | `JF.QT x`		| quantize events 1-bar/`x` (`1`-`32`), `0` deactivates. | requires `JF.MODE 1`, *Geode*
 
 
-
 ## Just Type Studies
 
 Part 6: Collaboration
@@ -121,4 +129,4 @@ Part 6: Collaboration
 
 ## Credits
 
-This study was created by [Dan Derks](http://soundcloud.com/sound-and-process).
+This study was created by [Dan Derks](https://dndrks.com).

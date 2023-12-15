@@ -7,6 +7,15 @@ redirect_from: /modular/teletype/jt-4/
 
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/5IoiERamfb8?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## <del>Reinvent the wheel</del>
 
 So far, we've covered how to use Teletype commands to control Just Friends in ways that *are* possible with physical cables and knob fiddles, but made much easier through software control.

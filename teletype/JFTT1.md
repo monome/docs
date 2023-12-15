@@ -21,6 +21,15 @@ Enough! Just. Type.
 --
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/DfPADIGjATg?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## Don't burn the locals
 
 The commands outlined in this tutorial build on established conventions in the Teletype language. If you’re new to or rusty with Teletype, it’d be best to start with a review of the original [Teletype Studies for 1.x](https://monome.org/docs/teletype/studies-1/).

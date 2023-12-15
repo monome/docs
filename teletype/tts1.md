@@ -9,6 +9,15 @@ redirect_from: /modular/teletype/studies-1/
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/135080129?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## Hello, world?
 
 Teletype starts up in *LIVE* mode. This is a basic interactive terminal where you can type in commands. Be sure the keyboard is plugged in. Try typing in:
@@ -172,6 +181,5 @@ You can also browse help within Teletype by using ALT-H to toggle help mode.
 ## Teletype Studies Continued
 
 Part 1: Navigating and making edges
-
 
 [Part 2: Curves and repetition &rarr;](../studies-2)

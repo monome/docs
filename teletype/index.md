@@ -43,7 +43,7 @@ The basics of Teletype are quick to learn. The studies will get you started and 
 * [Teletype Manual](manual) - full manual, also available as a [pdf](manual.pdf)
 * [Just Type Studies](jt-1) - a guided series of tutorials on integrating Teletype with Just Friends
 * [PDF core command reference](TT_commands_5.0.pdf)
-* [PDF i2c command reference](TT_commands_5.0.pdf)
+* [PDF i2c command reference](TT_i2c_commands_5.0.pdf)
 * [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
 * [Default scenes](scenes-10/)
 

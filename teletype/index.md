@@ -16,7 +16,7 @@ Algorithmic ecosystem: a dynamic, musical event triggering platform.
 
 Scripts are assigned to each of the eight trigger inputs. Herein you can set CV values (four outputs) and trigger gates (four outputs) with extended functionality for pattern manipulation, slews, randomness, sequences, basic arithmetic, stacks, delays, and much more.
 
-Edit scripts with a USB keyboard (included with new modules + [replacements available](https://market.monome.org/collections/other/products/usb-keyboard)) which plugs into the front panel. Syntax is simple and easy to learn with the provided tutorials, video, and reference pages. Teletype runs without the keyboard attached: you might treat editing as precomposition, or leave the keyboard plugged in for live coding.
+Edit scripts with a USB keyboard (included with new modules + [replacements available](https://market.monome.org/collections/other/products/usb-keyboard)) which plugs into the front panel. Syntax is simple and easy to learn with the provided tutorials, video, and reference pages. Teletype runs without the keyboard attached: you might treat editing as pre-composition, or leave the keyboard plugged in for live coding.
 
 <details open markdown="block">
   <summary>
@@ -40,14 +40,11 @@ Edit scripts with a USB keyboard (included with new modules + [replacements avai
 The basics of Teletype are quick to learn. The studies will get you started and the manual provides a complete reference.
 
 * [Teletype Studies](studies-1) - guided series of tutorials
-
 * [Teletype Manual](manual) - full manual, also available as a [pdf](manual.pdf)
-
 * [Just Type Studies](jt-1) - a guided series of tutorials on integrating Teletype with Just Friends
-
-* [PDF command reference](TT_commands_4.0.pdf)
+* [PDF core command reference](TT_commands_5.0.pdf)
+* [PDF i2c command reference](TT_commands_5.0.pdf)
 * [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
-
 * [Default scenes](scenes-10/)
 
 You can also access in-module help any time by using ALT-H to toggle help mode.

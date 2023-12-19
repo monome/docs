@@ -7,8 +7,18 @@ redirect_from: /modular/walk/
 ---
 
 # Walk
+{: .no_toc }
 
 *Territory.*
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## Installation
 

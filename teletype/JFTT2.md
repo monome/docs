@@ -7,6 +7,15 @@ redirect_from: /modular/teletype/jt-2/
 
 <div class="vid"><iframe width="860" height="484" src="https://www.youtube.com/embed/SczDW9WMDTA?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
+
 ## Locomotion
 
 One of the most notable aspects of Just Friends is its RUN jack. Simultaneously a switch and a lever, it shifts functionality and equations with the mere presence of a patch cable. Negative and positive voltages further affect behaviors. Modes are determined by the *sound / shape* and *transient / sustain / cycle* switches on the physical unit.

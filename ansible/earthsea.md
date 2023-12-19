@@ -7,11 +7,21 @@ redirect_from: /modular/ansible/earthsea/
 ---
 
 ## Earthsea (Ansible + Grid)
+{: .no_toc }
 
 *Polyphonic pattern instrument*
 
 Earthsea is an app for the [Ansible](/docs/ansible) Eurorack module that uses the [Grid](/docs/grid) as an isomorphic keyboard to perform, record, and play back patterns for up to four CV/gate voices.
 Earthsea is a new, polyphonic version of the [the original Earthsea module](/docs/earthsea/). It now supports polyphony across up to four CV and gate outputs. However, it no longer supports the two- and three-finger shape memories of the original module. The mode LED will show whitish-orange whilst Earthsea is running.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ### Interface
 

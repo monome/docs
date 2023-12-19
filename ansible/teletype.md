@@ -7,6 +7,7 @@ redirect_from: /modular/ansible/teletype/
 ---
 
 ## Ansible + Teletype
+{: .no_toc }
 
 The [Ansible](/docs/ansible) and [Teletype](/docs/teletype) Eurorack modules can be connected via pin headers on the back of these modules, making remote control of Ansible possible from Teletype scripts.
 
@@ -19,6 +20,15 @@ By hitting the `preset` key (next to the USB port) with no device plugged, Ansib
 This requires the Ansible to be on the internal [ii](/docs/modular/ii) bus, a 6 conductor ribbon behind the panel. Be sure to align the red stripe when connecting. For more information about different modules that can be connected to the ii bus and how this works, see [here](https://llllllll.co/t/a-users-guide-to-i2c/19219).
 
 The following is a quick reference of Teletype ops that Ansible can process. For more details see the Teletype manual.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ### Output
 

@@ -3,14 +3,11 @@ layout: default
 title: norns
 nav_order: 1
 has_children: true
-has_toc: false
 ---
 
 ![](../norns/image/norns-grey.jpeg)
 
-# norns
-
-norns is many sound instruments. it is a small, portable, open-source sound computer that dynamically runs scripts and DSP, such as:
+norns is many sound instruments. It is a small, portable, open-source sound computer that dynamically runs scripts and DSP (Digital Signal Processing), such as:
 
 - sample-cutter
 - polysynth
@@ -20,15 +17,24 @@ norns is many sound instruments. it is a small, portable, open-source sound comp
 - asynchronous looper
 - polyphasic sequencer
 
-through *scripts* written in [Lua](https://www.lua.org/about.html), you can define the behavior of its on-board encoders, keys, and screen, as well as any connected devices. through a large number of [pre-written libraries](../norns/reference), norns offers a platform for charting new possibilities in music-making. it connects easily to grids, MIDI devices, USB-CV interfaces, networked OSC, and other objects.
+Through *scripts* written in [Lua](https://www.lua.org/about.html), you can define the behavior of its on-board encoders, keys, and screen, as well as any connected devices. Through a large number of [pre-written libraries](../norns/reference), norns offers a platform for charting new possibilities in music-making. norns connects easily to grids, MIDI devices, USB-CV interfaces, networked OSC, and other objects.
 
-using *engines* written with [SuperCollider](https://supercollider.github.io), you can customize and create your own methods of DSP for single performances or longterm exploration. scripts choose which sound engine to use and then control its parameters using simple programming.
+Using *engines* written with [SuperCollider](https://supercollider.github.io), you can customize and create your own methods of DSP for single performances or longterm exploration. Scripts choose which sound engine to use and then control its parameters using simple programming.
 
-edit scripts through the [maiden](https://monome.org/docs/norns/maiden/) web interface over WiFi, or load norns as a network drive and use your preferred development environment. everything is stored internally on the device. once editing is done, instruments can be immediately run from the onboard selector.
+Edit scripts through the [maiden](https://monome.org/docs/norns/maiden/) web interface over WiFi, or load norns as a network drive and use your preferred development environment. Everything is stored internally on the device. Once editing is done, instruments can be immediately run from the onboard selector.
 
-norns is designed to be changed, encouraging customization and invention. we've created [studies with lots of code examples](../norns/scripting) to help get started, or you can browse the [library of prebuilt instruments](https://norns.community) made possible with the support of a vibrant international community.
+norns is designed to be changed, encouraging customization and invention. We've created [studies with lots of code examples](../norns/scripting) to help get started, or you can browse the [library of prebuilt instruments](https://norns.community) made possible with the support of a vibrant international community.
 
 norns is open source and continues to grow with the generous efforts of many contributors.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## specifications
 
@@ -57,16 +63,16 @@ norns is open source and continues to grow with the generous efforts of many con
 
 **processing**
 
-- all units produced before 2021 have a compute module 3 (cm3).
-- a-stock units produced during and after 2021 have a compute module 3+ (cm3+), a few 2021 b-stock units have cm3's.
+- all units produced before 2021 have a Compute Module 3 (CM3).
+- a-stock units produced during and after 2021 have a Compute Module 3+ (CM3+), a few 2021 b-stock units have CM3's.
   - [follow these steps to confirm which your compute module your unit has installed](/docs/norns/help/#confirm-cm3)
-- quad-core 1.2ghz, 1gb RAM.
-- storage: 4gb (cm3) / 32gb (cm3+).
-- cs4270 i2s audio codec (low latency).
+- quad-core 1.2GHz, 1GB RAM.
+- storage: 4gb (CM3) / 32gb (CM3+).
+- CS4270 I2s audio codec (low latency).
 
 **os**
 
-- linux with realtime kernel.
+- Linux with realtime kernel.
 
 **physical**
 
@@ -76,9 +82,9 @@ norns is open source and continues to grow with the generous efforts of many con
 - units produced before 2022 are grey.
 - units produced during and after 2022 are black.
 
-## resources:
+## resources
 
-semi-linear walkthrough of standard features and usability:
+Semi-linear walkthrough of standard features and usability:
 
 - [first](norns-first.pdf): a quick, printable introduction.
 - [play](../norns/play): a longer introduction and a great starting point.
@@ -87,25 +93,25 @@ semi-linear walkthrough of standard features and usability:
 - [community scripts + mods](../norns/community-scripts): learn more about the community scripts and mods generously shared for norns.
 - [control + clock](../norns/control-clock): integrate norns with other tools (eg. MIDI controllers and external synths).
 
-additional + extended knowledge:
+Additional + extended knowledge:
 
 - [scripting](../norns/scripting): scripting studies, tutorials, and reference material.
 - [help](../norns/help): deeper device and system troubleshooting.
 - [norns shield](../norns/shield): information about norns DIY circuit
 
-current version: [latest](https://l.llllllll.co/norns)
+Find out more about the current version [at lines](https://l.llllllll.co/norns).
 
-### contributing
+## contributing
 
-norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. Check out the [github repo](https://github.com/monome/norns). To try out the latest changes to the code, you can read about [compiling norns](../norns/compiling). There's also a guide on [extending norns](../norns/extending) if you have new functionality you'd like to add.
+norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. Check out the [github repo](https://github.com/monome/norns). To try out the latest changes to the code, you can read about [compiling norns](../norns/compiling). If you have new functionality you'd like to add, there's also a guide on [extending norns](../norns/extending),
 
-We're also always looking for help with [documentation](https://github.com/monome/docs), if your skills include design, instruction, or proofreading. Collective efforts have created numerous exceptional projects over the years, and there's more to a project than just code!
+If your skills include design, instruction, or proofreading, we're also always looking for help with [documentation](https://github.com/monome/docs). Collective efforts have created numerous exceptional projects over the years, and there's more to a project than just code!
 
-Found a bug? Let us know. Please file a [github issue](https://github.com/monome/norns/issues) or let us know on [lines](https://llllllll.co/t/norns-help/14016).
+Found a bug? Let us know. Please email us at [help@monome.org](mailto:help@monome.org) or file a [GitHub issue](https://github.com/monome/norns/issues).
 
 ## acknowledgements
 
-This project would not have been possible without [linux](https://en.wikipedia.org/wiki/Linux).  Currently we're using [Supercollider](https://supercollider.github.io) for DSP extensibility.
+This project would not have been possible without [Linux](https://en.wikipedia.org/wiki/Linux) or [SuperCollider](https://supercollider.github.io) (currently used for DSP extensibility).
 
 `matron` (control system) and `crone` (audio system) were created by [@catfact](https://github.com/catfact). `maiden` (editor) was created by [@ngwese](https://github.com/ngwese). Each grew with contributions from [@artfwo](https://github.com/artfwo), [@jah](https://github.com/antonhornquist), [@simon](https://github.com/simonvanderveldt), [@rv](https://github.com/ranch-verdin), [@pq](https://github.com/pq), [@markwheeler](https://github.com/markwheeler), [@csboling](https://github.com/csboling) and many others.
 

@@ -9,12 +9,22 @@ redirect_from: /modular/meadowphysics/
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/146731772?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 # Meadowphysics
+{: .no_toc }
 
 *Grid-enabled Rhizomatic Cascading Counter*
 
 ---
 
 *Note: this manual is for version 2 (which also runs on Ansible). Version 1 is [available here](/docs/meadowphysics/v1/).*
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## Introduction
 

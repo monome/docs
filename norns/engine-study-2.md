@@ -26,6 +26,16 @@ This study extends the topics covered in [rude mechanicals](/docs/norns/engine-s
 
 If you haven't already, please [download SuperCollider](https://supercollider.github.io) on your primary non-norns computer. Though we'll eventually end up at norns, being able to quickly execute snippets of SuperCollider code during the experimentation stages will provide the foundation necessary for engine construction.
 
+**Please note** that if you're new to SuperCollider, you'll likely make some unexpectedly loud / sharp sounds. Nathan Ho has some fantastic tips [on his site](https://nathan.ho.name/posts/supercollider-tips/), specifically for "Levels management and volume safety":
+
+> A quick summary:
+>
+> 1. If you are on macOS, upgrade to at least SC 3.12 right dang now and add Server.default.options.safetyClipThreshold = 1 to your startup file so the audio output clips.  
+> 2. Work at low levels in your system’s volume control, but high levels in SC. If your audio is at a comfortable level and peaks in SC at -6 dBFS, the loudest sounds can only peak at 6 dB louder than that, so a synthesis accident can be startling, but unlikely to be dangerous.  
+> 3. As a corollary: if SC produces a quiet signal, do not turn up the volume using your computer’s volume control! Instead, turn it up in SC.  
+> 4. Use a Limiter on the master bus.  
+> 5. Type in gain amounts as e.g. * -60.dbamp instead of * 0.001.
+
 ## hidden text
 
 To keep things relatively navigable, we've compressed big chunks of code into the following interaction:

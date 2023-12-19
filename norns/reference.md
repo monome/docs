@@ -9,17 +9,26 @@ redirect_from: /norns/script-reference/
 redirect_from: /norns/script-reference
 redirect_from: /norns/reference/lib
 redirect_from: /norns/reference/lib/
-has_toc: false
 ---
 
 # norns script reference
+{: .no_toc }
 
-this script reference is a supplement to the complete norns API. here, you'll find examples which explore single components of the API, which can be copied/pasted into your own scripts and manipulated for your needs. these examples assume familiarity with the scripting concepts covered in the [norns studies](/docs/norns/studies).
+This script reference is a supplement to the complete norns API. Here, you'll find examples which explore single components of the API, which can be copied/pasted into your own scripts and manipulated for your needs. These examples assume familiarity with the scripting concepts covered in the [norns studies](/docs/norns/studies).
 
-to access the complete norns API, you can either:
+To access the complete norns API, you can either:
 
 - connect to maiden and navigate to `norns.local/doc` in your browser
 - visit the [static API](https://monome.org/docs/norns/api/index.html)
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## commands
 
@@ -148,7 +157,7 @@ And this will print to maiden:
 
 ## libraries
 
-Lua libraries can be used by using `include("path/to/library")`, remember not to include `.lua` in the library name.
+Lua libraries can be used by using `include("path/to/library")`. Remember to *not* include `.lua` in the library name.
 
 ### local libraries
 
@@ -190,7 +199,7 @@ include("otherscript/lib/otherlib")
 
 ### engine
 
-Specify an engine at the top of your script, see the [engine docs](https://monome.org/docs/norns/api/modules/engine.html) for more details.
+Specify an engine at the top of your script. See the [engine docs](https://monome.org/docs/norns/api/modules/engine.html) for more details.
 
 ```lua
 engine.name = 'PolySub'
@@ -221,7 +230,7 @@ tab.print(engine.names)
 
 ### screen
 
-The screen API handles drawing on the norns screen, see the [screen docs](https://monome.org/docs/norns/api/modules/screen.html) for more details.
+The screen API handles drawing on the norns screen. See the [screen docs](https://monome.org/docs/norns/api/modules/screen.html) for more details.
 
 ```lua
 function redraw()
@@ -234,7 +243,7 @@ end
 
 ### metro
 
-The metro API allows for high-resolution scheduling, see the [metro docs](https://monome.org/docs/norns/api/modules/metro.html) for more details.
+The metro API allows for high-resolution scheduling. See the [metro docs](https://monome.org/docs/norns/api/modules/metro.html) for more details.
 
 ```lua
 re = metro.init()
@@ -249,12 +258,19 @@ end
 
 ### paramset
 
-The paramset API allows to read and write temporary data and files, see the [paramset docs](https://monome.org/docs/norns/api/modules/paramset.html) for more details.
+The paramset API allows to read and write temporary data and files. See the [paramset docs](https://monome.org/docs/norns/api/modules/paramset.html) for more details.
 
 A parameter can be installed with the following:
 
 ```lua
-params:add{type = "number", id = "someparam", name = "Some Param", min = 1, max = 48, default = 4}
+params:add{
+  type = "number",
+  id = "someparam",
+  name = "Some Param",
+  min = 1,
+  max = 48,
+  default = 4,
+}
 ```
 
 - `params:set(index, value)`, writes a parameter.
@@ -262,7 +278,7 @@ params:add{type = "number", id = "someparam", name = "Some Param", min = 1, max 
 
 ### system globals
 
-Do not overwrite them. Doing so may break things.
+Do not overwrite these variables. Doing so may break things.
 
 System globals:
 
@@ -272,7 +288,7 @@ loadfile, next, math, os, pairs, pcall, print, rawequal, rawget, rawlen, rawset,
 select, setmetatable, tonumber, tostring, table, type, utf8, xpcall
 ```
 
-Norns globals:
+norns globals:
 
 ```lua
 _menu, _norns, _path, _startup, arc, audio, cleanup, clock, controlspec, coroutine, crow,
@@ -284,7 +300,7 @@ params, paramset, paths, poll, redraw, screen, softcut, string, tab, util, wifi
 
 ### grid
 
-`grid.connect(n)` to create device, returns object with handler, see the [grid docs](https://monome.org/docs/norns/api/modules/grid.html) for more details.
+`grid.connect(n)` to create device, returns object with handler. See the [grid docs](https://monome.org/docs/norns/api/modules/grid.html) for more details.
 
 ```lua
 g = grid.connect()
@@ -297,7 +313,7 @@ g = grid.connect()
 
 ### arc
 
-`arc.connect(n)` to create device, returns object with handler, see the [arc docs](https://monome.org/docs/norns/api/modules/arc.html) for more details.
+`arc.connect(n)` to create device, returns object with handler. See the [arc docs](https://monome.org/docs/norns/api/modules/arc.html) for more details.
 
 ```lua
 a = arc.connect()
@@ -311,7 +327,7 @@ a = arc.connect()
 
 ### midi
 
-`midi.connect(n)` to create device, returns object with handler, see the [midi docs](https://monome.org/docs/norns/api/modules/midi.html) for more details.
+`midi.connect(n)` to create device, returns object with handler. See the [midi docs](https://monome.org/docs/norns/api/modules/midi.html) for more details.
 
 ```lua
 m = midi.connect()
@@ -323,13 +339,15 @@ m = midi.connect()
 
 ### hid
 
-`hid.connect(n)` to create device, returns object with handler, see the [hid docs](https://monome.org/docs/norns/api/modules/hid.html) for more details.
+`hid.connect(n)` to create device, returns object with handler. See the [hid docs](https://monome.org/docs/norns/api/modules/hid.html) for more details.
 
 ```lua
 h = hid.connect()
 ```
 
 ### osc
+
+Send networked data via Open Sound Control. See the [osc docs](https://monome.org/docs/norns/api/modules/osc.html) for more details.
 
 - `osc.send(to, path, args)`, sends osc event.
 - `osc.event(path, args, from)` handler function called when an osc event is received.
@@ -342,8 +360,8 @@ h = hid.connect()
 
 # contribute
 
-contributions to the script reference are welcomed + we are very grateful for any assistance covering these topics.
+Contributions to the script reference are welcomed + we are very grateful for any assistance covering these topics.
 
-have questions about how to contribute? please feel free to email `help@monome.org` and we can collaborate!
+Have questions about how to contribute? Please feel free to email [help@monome.org](mailto:help@monome.org) and we can collaborate!
 
-many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for building the reference pages for `er`, `fileselect`, `musicutil`, `textentry`, and `ui`.
+Many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for building the reference pages for `er`, `fileselect`, `musicutil`, `textentry`, and `ui`.

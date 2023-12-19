@@ -7,9 +7,9 @@ permalink: /norns/engine-study-3/
 # transit authority
 {: .no_toc }
 
-*norns engine study 3: using audio busses to build FX chains + aux sends, and using polls to send data from SuperCollider back to Lua*
+*norns engine study 3: using audio busses to build FX chains and aux sends, and using polls to send data from SuperCollider back to Lua*
 
-SuperCollider is a free and open-source platform for making sound, which powers the synthesis layer of norns. Many norns scripts are a combination of SuperCollider (where a synthesis engine is defined) and Lua (where the hardware + UI interactions are defined).
+SuperCollider is a free and open-source platform for making sound, which powers the synthesis layer of norns. Many norns scripts are a combination of SuperCollider (where a synthesis engine is defined) and Lua (where the hardware and UI interactions are defined).
 
 This study extends the topics covered in [rude mechanicals](/docs/norns/engine-study-1/), which outlines starting points for engine development on norns using SuperCollider, and [skilled labor](/docs/norns/engine-study-2/), which covers polyphony and realtime timbral changes. As with each of those studies, we'll assume that you've already got a bit of familiarity with SuperCollider -- if not, be sure to check out [learning SuperCollider](/docs/norns/studies/#learning-supercollider) for helpful resources and come back here after some experimentation.
 
@@ -106,7 +106,7 @@ In this example, we'll send a source sound to two FX sends and a main output.
 <details closed markdown="block">
 
 <summary>
-`study-3-1.scd`
+SC Bus exercise 1: building some sends
 </summary>
 
 ```js
@@ -159,7 +159,7 @@ Routine{
 	//   are present on the Server when requested below
 	s.sync;
 
-	// build our source + pass it arguments:
+	// build our source and pass it arguments:
 	~synths[\source] = Synth.new("source", [
 		\outMain, ~busses[\mainOut], // connecting to the mainOut bus
 		\outSend1, ~busses[\delaySend], // connecting to the delaySend bus
@@ -231,7 +231,7 @@ Of note in this example:
 </summary>
 ```js
 // SC Bus exercise 2
-// busses in a class with panning + commands
+// busses in a class with panning and commands
 
 FXBusDemo {
 
@@ -356,7 +356,7 @@ Now, to have your class definition useable in SuperCollider, recompile the class
 
 #### instantiate the class
 
-When the library recompiles, we should be able to instantiate the `FXBusDemo` Class and its associated methods like any other class in SuperCollider. To try it out, open a blank SuperCollider file and type + live-execute (<kbd>Ctrl-Enter</kbd> on Windows/Linux or <kbd>CMD-RETURN</kbd> on macOS) the following lines:
+When the library recompiles, we should be able to instantiate the `FXBusDemo` Class and its associated methods like any other class in SuperCollider. To try it out, open a blank SuperCollider file and type and live-execute (<kbd>Ctrl-Enter</kbd> on Windows/Linux or <kbd>CMD-RETURN</kbd> on macOS) the following lines:
 
 ```
 // take note of the server nodes that print:
@@ -911,7 +911,7 @@ Returning to our `FXBusDemo.sc` Class file, we'll do the following:
 
 ```js
 // SC Bus exercise 4: polls
-// sending brightness + amplitude analysis to Lua
+// sending brightness and amplitude analysis to Lua
 
 FXBusDemo {
 
@@ -1473,9 +1473,9 @@ If you feel prepared to explore both SuperCollider and Lua more deeply (and hope
 - build your own FX processing chains
 - swap the `sourceBlip` synth with `Moonshine`
 
-To continue exploring + creating new synthesis engines for norns, we highly recommend:
+To continue exploring and creating new synthesis engines for norns, we highly recommend:
 
--  Zack Scholl's incredible resources for SuperCollider + norns explorations:
+-  Zack Scholl's incredible resources for SuperCollider and norns explorations:
 	-  [Tone to Drone](https://musichackspace.org/product/tone-to-drone-introduction-to-supercollider-for-monome-norns/)
 	-  [Ample Samples](https://musichackspace.org/product/ample-samples-introduction-to-supercollider-for-monome-norns/
   - [Zack's #supercollider blog entries](https://schollz.com/tags/supercollider/)
@@ -1484,6 +1484,6 @@ To continue exploring + creating new synthesis engines for norns, we highly reco
 
 ## acknowledgements
 
-The `FXBusDemo` engine was written by Ezra Buchla + Dan Derks for [monome.org](https://monome.org).
+The `FXBusDemo` engine was written by Ezra Buchla and Dan Derks for [monome.org](https://monome.org).
 
 This study's text was initiated by Dan Derks.

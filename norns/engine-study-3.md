@@ -908,7 +908,7 @@ Returning to our `FXBusDemo.sc` Class file, we'll do the following:
 - send our brightness analysis to a Lua-accessible poll
 
 <details>
-<summary>Here's our final `FXBusDemo.sc` file</summary>
+<summary>Here's our final `FXBusDemo.sc` file ([download](/docs/norns/engine-study-3/lib/FXBusDemo.sc))</summary>
 
 ```js
 // SC Bus exercise 4: polls
@@ -1091,7 +1091,7 @@ Returning to our `Engine_FXBusDemo.sc` file, we'll do the following:
 - use [SuperCollider's `.getSynchronous` method](https://doc.sccode.org/Classes/Bus.html#-getSynchronous) to grab the value of the `busses[\brightness]` and `busses[\amp]` control busses
 
 <details>
-<summary>Here's our final `Engine_FXBusDemo.sc` file</summary>
+<summary>Here's our final `Engine_FXBusDemo.sc` file ([download](/docs/norns/engine-study-3/lib/Engine_FXBusDemo.sc))</summary>
 
 ```js
 Engine_FXBusDemo : CroneEngine {
@@ -1171,7 +1171,7 @@ Returning to our `engine-study-3.lua` file, we'll do the following:
 - add LFO's to control our synth voice's filter cutoff value
 
 <details>
-<summary>Here's our final `engine-study-3.lua` file</summary>
+<summary>Here's our final `engine-study-3.lua` file ([download](/docs/norns/engine-study-3/engine-study-3.lua))</summary>
 
 ```lua
 -- *transit authority*
@@ -1461,8 +1461,11 @@ function redraw()
 end
 -- // draw to screen
 ```
+</details>
 
 ## further
+
+[Download the final versions of this study's files here.](/docs/norns/engine-study-3.zip)
 
 If you feel prepared to explore both SuperCollider and Lua more deeply (and hopefully you do!), here are a few jumping-off points to extend this study:
 

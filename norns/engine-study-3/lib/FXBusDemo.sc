@@ -1,5 +1,5 @@
-// SC Bus exercise 3
-// adding an isolator
+// SC Bus exercise 4: polls
+// sending brightness + amplitude analysis to Lua
 
 FXBusDemo {
 
@@ -17,18 +17,21 @@ FXBusDemo {
 		busses = Dictionary.new;
 
 		Routine {
-			// in this demo, source bus is mono / FX are stereo:
 			busses[\source] = Bus.audio(s, 1);
 			busses[\main_out] = Bus.audio(s, 2);
 			busses[\reverb_send] = Bus.audio(s, 2);
 			busses[\delay_send] = Bus.audio(s, 2);
 
-			// define our patch synths, to control stereo field:
+			// NEW: add an analysis audio bus:
+			busses[\analysis] = Bus.audio(s, 2);
+			// NEW: define control Busses for our Lua polls
+			busses[\brightness] = Bus.control(s);
+			busses[\amp] = Bus.control(s);
+
 			SynthDef.new(\patch_pan, {
 				Out.ar(\out.kr, Pan2.ar(In.ar(\in.kr), \pan.kr(0), \level.kr(1)));
 			}).send(s);
 
-			// NEW: build an isolator into our main output:
 			SynthDef.new(\patch_main, {
 				var src = In.ar(\in.kr, 2);
 				var fc1 = \fc1.kr(600);
@@ -52,8 +55,8 @@ FXBusDemo {
 
 			// define our source synth:
 			synths[\source] = SynthDef.new(\sourceBlip, {
-				var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8).clip(20,20000));
-				snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
+				var snd = LPF.ar(Saw.ar(\hz.kr(330)), \fchz.kr(800).clip(20,20000));
+				snd = snd * LagUD.ar(Impulse.ar(0.3), 0, 10);
 				Out.ar(\out.kr, snd * \level.kr(0.5));
 			}).play(target:g, addAction:\addToTail, args:[
 				\out, busses[\source]
@@ -87,8 +90,8 @@ FXBusDemo {
 			]);
 
 			synths[\delay] = SynthDef.new(\delay, {
-				arg in, out, level=1;
-				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, 0.2, level));
+				arg in, out, dtime=0.2, level=1;
+				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, dtime, level));
 			}).play(target:g, addAction:\addToTail, args:[
 				\in, busses[\delay_send], \out, busses[\main_out]
 			]);
@@ -105,7 +108,32 @@ FXBusDemo {
 
 			synths[\main_out] = Synth.new(\patch_main,
 				target:g, addAction:\addToTail, args: [
-					\in, busses[\main_out], \out, 0
+					// NEW: send main out to analysis bus
+					\in, busses[\main_out], \out, busses[\analysis]
+			]);
+
+			// again, we want the next synth to actually be added *after* all others
+			s.sync;
+
+			// NEW: build a brightness tracker
+			synths[\brightness] = SynthDef.new(\brightnessTracker, {
+				arg in, out, brightOut, ampOut;
+				var src = In.ar(in, 2);
+				var mixed = Mix.new([src[0],src[1]]);
+				var amp = Amplitude.kr(mixed);
+				var chain = FFT(LocalBuf(2048), mixed);
+				var brightness = SpecCentroid.kr(chain);
+				// send the output out:
+				Out.ar(out, src);
+				// send the brightness to a control bus:
+				Out.kr(brightOut, brightness);
+				// send the amp to a control bus:
+				Out.kr(ampOut, amp);
+			}).play(target:g, addAction:\addToTail, args: [
+				\in, busses[\analysis],
+				\out, 0,
+				\brightOut, busses[\brightness].index,
+				\ampOut, busses[\amp].index
 			]);
 
 		}.play;
@@ -119,11 +147,15 @@ FXBusDemo {
 		synths[key].set(\pan, val);
 	}
 
-	setHz { arg val;
-		synths[\source].set(\hz, val);
+	// NEW: add controls for our source synth voice
+	setSynth { arg key, val;
+		synths[\source].set(key, val);
+	}
+	// NEW: add control for our delay time
+	setDelayTime{ arg val;
+		synths[\delay].set(\dtime, val.min(1));
 	}
 
-	// NEW: add controls for our main_out synth:
 	setMain { arg key, val;
 		synths[\main_out].set(key, val);
 	}

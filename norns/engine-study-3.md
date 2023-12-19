@@ -885,29 +885,34 @@ Alright, take a break! You've done a lot of typing and experimenting for one sit
 
 ## part 3: polls {#part-3}
 
-So far, our studies have all been focused on sending data from Lua to SuperCollider, using engine *commands*. We can also go the other direction, using engine *polls*.
+So far, our studies have all been focused on sending data from Lua to SuperCollider, using engine *commands*. We can also go the other direction, sending values from SuperCollider to Lua, using engine *polls*.
 
 Polls report basic data from the audio subsystem, for use within a script. We can use them to trigger script events based on incoming amplitude, or capture the pitch and match it with a synth engine. See [study 5](/docs/norns/study-5/#numerical-superstorm) for additional examples.
 
-For the purposes of this study, let's measure the spectral flatness of our final stage output and send that to Lua for visualization.
+For the purposes of this study, we'll:
 
-### FFT
+- measure the spectral brightness of our final stage output
+- measure the amplitude of our final stage output
+- send those values to Lua for visualization on the norns screen
 
-We'll use SuperCollider's [Fast Fourier Transform (FFT) tools](https://doc.sccode.org/Guides/FFT-Overview.html) for analyzing our final signal for flatness.
+### FFT and amplitude
+
+We'll use SuperCollider's [Fast Fourier Transform (FFT) tools](https://doc.sccode.org/Guides/FFT-Overview.html) for analyzing our final signal for brightness, and the [`Amplitude` UGen](https://doc.sccode.org/Classes/Amplitude.html) to measure the main output level.
 
 Returning to our `FXBusDemo.sc` Class file, we'll do the following:
 
 - add an `\analysis` audio bus and send our main output to it
-- add a `\spectral` control bus (there are two flavors of `Bus`!)
-- build a SynthDef using the [`SpecFlatness` UGen](https://doc.sccode.org/Classes/SpecFlatness.html)
-- send our flatness analysis to a Lua-accessible poll
+- add a `\brightness` control bus
+- add an `\amp` control bus
+- build a SynthDef using the [`SpecCentroid` UGen](https://doc.sccode.org/Classes/SpecCentroid.html)
+- send our brightness analysis to a Lua-accessible poll
 
 <details>
-<summary>Here's our edited `FXBusDemo.sc` file</summary>
+<summary>Here's our final `FXBusDemo.sc` file</summary>
 
 ```js
 // SC Bus exercise 4: polls
-// sending FFT + spectral analysis to Lua
+// sending brightness + amplitude analysis to Lua
 
 FXBusDemo {
 
@@ -932,8 +937,9 @@ FXBusDemo {
 
 			// NEW: add an analysis audio bus:
 			busses[\analysis] = Bus.audio(s, 2);
-			// NEW: define a spectral control Bus for our Lua poll
-			busses[\spectral] = Bus.control(s);
+			// NEW: define control Busses for our Lua polls
+			busses[\brightness] = Bus.control(s);
+			busses[\amp] = Bus.control(s);
 
 			SynthDef.new(\patch_pan, {
 				Out.ar(\out.kr, Pan2.ar(In.ar(\in.kr), \pan.kr(0), \level.kr(1)));
@@ -962,8 +968,8 @@ FXBusDemo {
 
 			// define our source synth:
 			synths[\source] = SynthDef.new(\sourceBlip, {
-				var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8).clip(20,20000));
-				snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
+				var snd = LPF.ar(Saw.ar(\hz.kr(330)), \fchz.kr(800).clip(20,20000));
+				snd = snd * LagUD.ar(Impulse.ar(0.3), 0, 10);
 				Out.ar(\out.kr, snd * \level.kr(0.5));
 			}).play(target:g, addAction:\addToTail, args:[
 				\out, busses[\source]
@@ -997,8 +1003,8 @@ FXBusDemo {
 			]);
 
 			synths[\delay] = SynthDef.new(\delay, {
-				arg in, out, level=1;
-				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, 0.2, level));
+				arg in, out, dtime=0.2, level=1;
+				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, dtime, level));
 			}).play(target:g, addAction:\addToTail, args:[
 				\in, busses[\delay_send], \out, busses[\main_out]
 			]);
@@ -1022,24 +1028,25 @@ FXBusDemo {
 			// again, we want the next synth to actually be added *after* all others
 			s.sync;
 
-			// NEW: build a spectral synth
-			synths[\spectral] = SynthDef.new(\spectralTracker, {
-				arg in, out, powerOut;
+			// NEW: build a brightness tracker
+			synths[\brightness] = SynthDef.new(\brightnessTracker, {
+				arg in, out, brightOut, ampOut;
 				var src = In.ar(in, 2);
 				var mixed = Mix.new([src[0],src[1]]);
-				var chain = FFT(LocalBuf(2048.dup(2), 1), mixed);
-				var flatness = SpecFlatness.kr(chain);
-				var flatdb = 10 * flatness.log; // convert to decibels
-				var flatdbsquish = LinLin.kr(flatdb, -45, -1.6, 0, 1).max(-10); // rescale db roughly to 0...1.
-
+				var amp = Amplitude.kr(mixed);
+				var chain = FFT(LocalBuf(2048), mixed);
+				var brightness = SpecCentroid.kr(chain);
 				// send the output out:
 				Out.ar(out, src);
-				// send the flatness to the control bus:
-				Out.kr(powerOut, flatdbsquish);
+				// send the brightness to a control bus:
+				Out.kr(brightOut, brightness);
+				// send the amp to a control bus:
+				Out.kr(ampOut, amp);
 			}).play(target:g, addAction:\addToTail, args: [
 				\in, busses[\analysis],
 				\out, 0,
-				\powerOut, busses[\spectral].index
+				\brightOut, busses[\brightness].index,
+				\ampOut, busses[\amp].index
 			]);
 
 		}.play;
@@ -1053,11 +1060,15 @@ FXBusDemo {
 		synths[key].set(\pan, val);
 	}
 
-	setHz { arg val;
-		synths[\source].set(\hz, val);
+	// NEW: add controls for our source synth voice
+	setSynth { arg key, val;
+		synths[\source].set(key, val);
+	}
+	// NEW: add control for our delay time
+	setDelayTime{ arg val;
+		synths[\delay].set(\dtime, val.min(1));
 	}
 
-	// NEW: add controls for our main_out synth:
 	setMain { arg key, val;
 		synths[\main_out].set(key, val);
 	}
@@ -1072,14 +1083,15 @@ FXBusDemo {
 ```
 </details>
 
+### adding polls to our engine {#poll-engine}
+
 Returning to our `Engine_FXBusDemo.sc` file, we'll do the following:
 
-- use `this.addPoll` to add a poll
-- use [SuperCollider's `.getSynchronous` method](https://doc.sccode.org/Classes/Bus.html#-getSynchronous) to grab the value of the `busses[\spectral` control bus
-- clamp those values between 0 and 1
+- use `this.addPoll` to add our brightness and amplitude polls
+- use [SuperCollider's `.getSynchronous` method](https://doc.sccode.org/Classes/Bus.html#-getSynchronous) to grab the value of the `busses[\brightness]` and `busses[\amp]` control busses
 
 <details>
-<summary>Here's our edited `Engine_FXBusDemo.sc` file</summary>
+<summary>Here's our final `Engine_FXBusDemo.sc` file</summary>
 
 ```js
 Engine_FXBusDemo : CroneEngine {
@@ -1097,19 +1109,27 @@ Engine_FXBusDemo : CroneEngine {
 
 		this.addCommand(\set_level, "sf", { arg msg;
 			var voiceKey = msg[1].asSymbol;
-			var freq = msg[2].asFloat;
-			kernel.setLevel(voiceKey,freq);
+			var val = msg[2].asFloat;
+			kernel.setLevel(voiceKey,val);
 		});
 
 		this.addCommand(\set_pan, "sf", { arg msg;
 			var voiceKey = msg[1].asSymbol;
-			var freq = msg[2].asFloat;
-			kernel.setPan(voiceKey,freq);
+			var val = msg[2].asFloat;
+			kernel.setPan(voiceKey,val);
 		});
 
-		this.addCommand(\set_hz, "f", { arg msg;
-			var freq = msg[1].asFloat;
-			kernel.setHz(freq);
+		// NEW: add control over synth
+		this.addCommand(\set_synth, "sf", { arg msg;
+			var attribute = msg[1].asSymbol;
+			var val = msg[2].asFloat;
+			kernel.setSynth(attribute,val);
+		});
+
+		// NEW: add control over delay time
+		this.addCommand(\set_delay_time, "f", { arg msg;
+			var val = msg[1].asFloat;
+			kernel.setDelayTime(val);
 		});
 
 		this.addCommand(\set_main, "sf", { arg msg;
@@ -1118,10 +1138,16 @@ Engine_FXBusDemo : CroneEngine {
 			kernel.setMain(key,val);
 		});
 
-		// NEW: add poll
-		this.addPoll(\flatness, {
-			var spectral = kernel.busses[\spectral].getSynchronous.min(1).max(0);
+		// NEW: add brightness poll
+		this.addPoll(\brightness_poll, {
+			var spectral = kernel.busses[\brightness].getSynchronous;
 			spectral
+		});
+
+		// NEW: add amp poll
+		this.addPoll(\amp_poll, {
+			var amp = kernel.busses[\amp].getSynchronous;
+			amp
 		});
 
 	} // alloc
@@ -1136,24 +1162,105 @@ Engine_FXBusDemo : CroneEngine {
 ```
 </details>
 
+### adding polls to our Lua script {#poll-lua}
+
 Returning to our `engine-study-3.lua` file, we'll do the following:
 
-- 
-- use [SuperCollider's `.getSynchronous` method](https://doc.sccode.org/Classes/Bus.html#-getSynchronous) to grab the value of the `busses[\spectral` control bus
-- clamp those values between 0 and 1
+- invoke our Lua handlers for the SuperCollider polls
+- draw a circle to the screen based on the synth's brightness and amplitude
+- add LFO's to control our synth voice's filter cutoff value
 
 <details>
-<summary>Here's our edited `engine-study-3.lua` file</summary>
+<summary>Here's our final `engine-study-3.lua` file</summary>
 
 ```lua
+-- *transit authority*
+-- SuperCollider engine study 3
+-- monome.org
+
 engine.name = "FXBusDemo"
 local formatters = require("formatters")
+
+-- NEW: add LFO for additional movement:
+local lfo = require("lib/lfo")
+
+-- NEW: add sequins to sequence hz values
+local _s = require("sequins")
+local hz_vals = _s({ 300, 400, 400 / 3, 100, 300 / 2, 300 / 1.5 })
+local random_offset = { 0.5, 1.5, 2, 3, 1, 0.75 }
 
 -- NEW: add screen redraw variables
 local bright = 1
 local rad = 2
+local screen_dirty = true
+local hz = 330
+local fchz = 800
+
+function clock.tempo_change_handler(x)
+  engine.set_delay_time(clock.get_beat_sec()/2)
+end
 
 function init()
+  -- NEW: invoke our brightness poll //
+  brightness = poll.set("brightness_poll")
+  brightness.callback = function(val)
+    bright = util.round(util.linlin(20, 20000, 1, 15, val))
+    screen_dirty = true
+  end
+  brightness.time = 1 / 60
+  brightness:start()
+  -- // brightness poll
+
+  -- NEW: invoke our amp poll //
+  amp = poll.set("amp_poll")
+  amp.callback = function(val)
+    rad = util.round(util.linlin(0, 1, 2, 120, val))
+    screen_dirty = true
+  end
+  amp.time = 1 / 30
+  amp:start()
+  -- // amp poll
+
+  -- NEW: redraw at 60fps //
+  redraw_timer = metro.init(function()
+    if screen_dirty then
+      redraw()
+      screen_dirty = false
+    end
+  end, 1 / 60, -1)
+  redraw_timer:start()
+  -- // redraw
+
+  -- NEW: synth controls //
+  params:add({
+    type = "separator",
+    id = "synth_separator",
+    name = "synth",
+  })
+
+  params:add({
+    type = "control",
+    id = "hz",
+    name = "synth hz",
+    controlspec = controlspec.MIDFREQ,
+    action = function(x)
+      engine.set_synth("hz", x)
+      hz = x
+    end,
+  })
+
+  params:add({
+    type = "control",
+    id = "fchz",
+    name = "filter hz",
+    controlspec = controlspec.FREQ,
+    action = function(x)
+      engine.set_synth("fchz", x)
+      fchz = x
+    end,
+  })
+  -- // synth controls
+
   local cs_amp = controlspec.new(0, 2, "lin", 0.001, 1, nil, 1 / 200)
   local cs_fc1 = controlspec.new(20, 20000, "exp", 0, 600, "Hz")
   local cs_fc2 = controlspec.new(20, 20000, "exp", 0, 1800, "Hz")
@@ -1300,41 +1407,68 @@ function init()
     end,
   })
 
-  params:set("delay_level", 0)
-  params:set("reverb_level", 0)
+  -- NEW: add 'fchz' LFO
+  fchzLFO = lfo:add({
+    shape = "sine", -- shape
+    min = -1, -- min
+    max = 1, -- max
+    depth = 0.6, -- depth (0 to 1)
+    mode = "clocked", -- mode
+    period = 1 / 3, -- period (in 'clocked' mode, represents 4/4 bars)
+    baseline = "center",
+    action = function()
+      params:lookup_param("fchz").action(calculate_bipolar_lfo_movement(fchzLFO, "fchz"))
+    end,
+  })
+  fchzLFO:add_params("myLFO", "lfo")
+  params:hide("lfo_min_myLFO")
+  params:hide("lfo_max_myLFO")
+  _menu.rebuild_params()
 
-  params:bang()
+  startup_actions = clock.run(function()
+    clock.sleep(0.1)
+    params:set("delay_level", 1)
+    params:set("reverb_level", 0)
+    params:set("hz", 330)
+    params:set("fchz", 1500)
+    params:bang()
+    -- NEW: sequins clock
+    sequence = clock.run(function()
+      while true do
+        engine.set_synth("hz", hz_vals() * random_offset[math.random(#random_offset)])
+        clock.sync(1 / 4)
+      end
+    end)
+    fchzLFO:start() -- start our LFO, complements ':stop()'
+  end)
+end
 
-  -- NEW: invoke our flatness poll //
-  flatness = poll.set("flatness")
-  flatness.callback = function(val)
-    bright = util.round(util.linlin(0,1,1,10,val))
-    rad = util.linlin(0,1,2,30,val)
-    redraw()
+function calculate_bipolar_lfo_movement(lfoID, paramID)
+  if lfoID:get("depth") > 0 then
+    return params:lookup_param(paramID).controlspec:map(lfoID:get("scaled") / 2 + params:get_raw(paramID))
+  else
+    return params:lookup_param(paramID).controlspec:map(params:get_raw(paramID))
   end
-  flatness.time = 1 / 60
-  flatness:start()
-  -- // flatness poll
 end
 
 -- NEW: draw to screen //
 function redraw()
   screen.clear()
   screen.level(bright)
-  screen.circle(64,32,rad)
+  screen.circle(64, 32, rad)
   screen.fill()
   screen.update()
 end
 -- // draw to screen
 ```
 
-### further
+## further
 
-If you feel prepared to explore both SuperCollider and Lua more deeply (and hopefully you do!), here are a few jumping-off points to extend the `Moonshine` engine:
+If you feel prepared to explore both SuperCollider and Lua more deeply (and hopefully you do!), here are a few jumping-off points to extend this study:
 
-- show parameter values on the screen
-- create an on-norns interaction for parameter manipulation in the main script UI
-- create a separate envelope for filter cutoff modulation
+- customize the on-screen animation
+- explore additional [Analysis UGens](https://doc.sccode.org/Browse.html#UGens%3EAnalysis)
+- build your own FX processing chains
 
 To continue exploring + creating new synthesis engines for norns, we highly recommend:
 
@@ -1343,9 +1477,9 @@ To continue exploring + creating new synthesis engines for norns, we highly reco
 	-  [Ample Samples](https://musichackspace.org/product/ample-samples-introduction-to-supercollider-for-monome-norns/
   - [Zack's #supercollider blog entries](https://schollz.com/tags/supercollider/)
 - [Eli Fieldsteel's *fantastic* YouTube series](https://youtu.be/yRzsOOiJ_p4)
-- [norns SuperCollider engines index](https://norns.community/libs-and-engines#supercollider-engines)
+- Nathan Ho’s [collected SuperCollider tips](https://nathan.ho.name/posts/supercollider-tips/)
 
-### acknowledgements
+## acknowledgements
 
 The `FXBusDemo` engine was written by Ezra Buchla + Dan Derks for [monome.org](https://monome.org).
 

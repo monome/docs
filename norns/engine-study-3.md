@@ -67,13 +67,12 @@ This third study will turn its focus from the core synth voices toward working w
 
 ## part 1: shuttling signals {#part-1}
 
-Before we get into retrofitting Moonshine with an FX bus, let's first demonstrate how Busses can be used to shuttle signals around the Server.
-
-It'll also likely be helpful to pull up SuperCollider's [documentation on Busses](https://doc.sccode.org/Tutorials/Getting-Started/11-Busses.html).
+Let's first demonstrate how Busses can be used to shuttle signals around the Server.  
+*note: as you read, it'll likely be helpful to pull up SuperCollider's [documentation on Busses](https://doc.sccode.org/Tutorials/Getting-Started/11-Busses.html)*.
 
 ### formatting
 
-Note that we'll be demonstrating a slightly different formatting for arguments in this study than the previous two chapters.
+In this study, we'll be demonstrating a slightly different formatting for arguments in this study than the previous two chapters.
 
 Previously, we established all of our arguments at the start of the SynthDef. For example:
 
@@ -1472,6 +1471,7 @@ If you feel prepared to explore both SuperCollider and Lua more deeply (and hope
 - customize the on-screen animation
 - explore additional [Analysis UGens](https://doc.sccode.org/Browse.html#UGens%3EAnalysis)
 - build your own FX processing chains
+- swap the `sourceBlip` synth with `Moonshine`
 
 To continue exploring + creating new synthesis engines for norns, we highly recommend:
 

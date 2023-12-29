@@ -90,7 +90,7 @@ There is no soldering needed, but you will have to disassemble your norns a bit.
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/523980765?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
-*nb. if you are unable to use the `screen` Terminal commands shown in the video, you can expand your filesystem following the shield steps listed in the next section*
+*Note: please see [data management help](/docs/norns/help/data/#expanding-storage) for up-to-date information about the filesystem expansion steps.*
 
 ## WiFi troubleshooting
 

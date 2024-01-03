@@ -221,7 +221,7 @@ Of note in this example:
 
 - rather than force our source sound into stereo with `.dup` (as in our previous example), we'll simply feed it into a two channel panning UGen
 - we'll use a Group (assigned var `g`) to control the order of execution, which will include specifying `target:g` and `addAction:\addToTail` for each of our synths
-- we'll use `s.sync` every time we want to execute what is queued for the Server, before adding more synths / nodes
+- we'll use `s.sync` every time we want to execute Server actions, so that everything we ran before this point is finished before we resume with the rest of the actions
 - instead of adding a panning control to each stage's synth, we'll use panning to specify the stereo placement of the source as its *sent* into each FX stage
 
 <details closed markdown="block">

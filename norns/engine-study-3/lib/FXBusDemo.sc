@@ -62,10 +62,8 @@ FXBusDemo {
 				\out, busses[\source]
 			]);
 
-			// why are we syncing here? two reasons:
-			// 1. so the common SynthDefs above are present on the Server when requested
-			// 2. because the send synths below use \addToTail,
-			//   we need the Server to finish creating the source synth before they are added
+			// we're syncing here so that the SynthDef above
+			//   is present on the Server when requested
 			s.sync;
 
 			synths[\dry] = Synth.new(\patch_pan,
@@ -103,7 +101,8 @@ FXBusDemo {
 				\in, busses[\reverb_send], \out, busses[\main_out]
 			]);
 
-			// again, we want the next synth to actually be added *after* all others
+			// we're syncing here so that the SynthDefs above
+			//   are present on the Server when requested
 			s.sync;
 
 			synths[\main_out] = Synth.new(\patch_main,
@@ -111,9 +110,6 @@ FXBusDemo {
 					// NEW: send main out to analysis bus
 					\in, busses[\main_out], \out, busses[\analysis]
 			]);
-
-			// again, we want the next synth to actually be added *after* all others
-			s.sync;
 
 			// NEW: build a brightness tracker
 			synths[\brightness] = SynthDef.new(\brightnessTracker, {

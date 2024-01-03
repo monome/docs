@@ -20,7 +20,7 @@ Before study, learning to see.
 {:toc}
 </details>
 
-## who am i
+## who am I
 
 We have ideas about what it means to be a musician and what it means to be a programmer, and these ideas shape how we approach instruments and code.
 
@@ -615,12 +615,13 @@ and then on to [study 1: many tomorrows](../study-1) for a more in-depth scripti
 - part 1: [many tomorrows](../study-1/) // variables, simple maths, keys + encoders
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
 - part 3: [spacetime](../study-3/) // functions, parameters, time
-- part 4: [physical](../study-4/) // grids + midi
-- part 5: [streams](../study-5/) // system polls, osc, file storage
+- part 4: [physical](../study-4/) // grids + MIDI
+- part 5: [streams](../study-5/) // system polls, OSC, file storage
+- further: [softcut studies](../softcut/) // a multi-voice sample playback and recording system built into norns
 
 ## community
 {: .no_toc }
 
-ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
+Ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/14109)
 
-edits to this study welcome, see [monome/docs](http://github.com/monome/docs)
+Edits to this study welcome, see [monome/docs](http://github.com/monome/docs).

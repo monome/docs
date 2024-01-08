@@ -10,7 +10,7 @@ permalink: /aleph/tutorial-1/
 
 After Tutorial 0 you may well think ‘this is cool, but i want to <insert cool thing here>’, and that is totally expected and encouraged! This tutorial is aimed to help you build your own network of operators and connect them to a dsp MODULE to do interesting things.
 
-Firstly, it’s probably a good idea to point out that bees is being constantly improved, and it’s good to check you’ve got the most up-to-date version once in a while. Go to the aleph updates page and you’ll see a link to the aleph github with the newest known-working version of bees & all official modules. Instructions for updating are included at that location. The whole process shouldn't take more than 5 minutes.
+Firstly, it’s probably a good idea to point out that bees is being constantly improved, and it’s good to check you’ve got the most up-to-date version once in a while. Go to the aleph updates page and you’ll see a link to the aleph GitHub with the newest known-working version of bees & all official modules. Instructions for updating are included at that location. The whole process shouldn't take more than 5 minutes.
 
 ### Connections
 

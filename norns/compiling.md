@@ -73,8 +73,8 @@ code for `maiden` lives [elsewhere](https://github.com/monome/maiden)
 
 the git repository `/home/we/norns` is set up to point at the main
 norns repo on github. by default the copy of the code that's on the
-monome github is nicknamed `origin`. to pull the latest changes on
-github down and merge them into the local copy, we run:
+monome GitHub is nicknamed `origin`. to pull the latest changes on
+GitHub down and merge them into the local copy, we run:
 
 ```bash
 we@norns:~/norns$ git pull origin main
@@ -84,7 +84,7 @@ Already up-to-date.
 we@norns:~/norns$
 ```
 
-if there are a bunch of changes up on github that haven't been pulled
+if there are a bunch of changes up on GitHub that haven't been pulled
 yet, this will show you a summary of changes as well.
 
 we also need to make sure that the submodules are all up to

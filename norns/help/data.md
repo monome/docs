@@ -38,16 +38,16 @@ All data that you create with norns -- scripts you've downloaded or created, aud
 
 ### via WiFi
 
-To access the `dust` folder from another computer on the same wifi network, follow the steps in the [wifi + files: transfer](../wifi-files/#transfer) docs.
+To access the `dust` folder from another computer on the same wifi network, follow the steps in the [wifi + files: transfer](/docs/norns/wifi-files/#transfer) docs.
 
-To back up or restore your `dust` folder, follow the steps in the [wifi + files: backup](../wifi-files/#backup) docs.
+To back up or restore your `dust` folder, follow the steps in the [wifi + files: backup](/docs/norns/wifi-files/#backup) docs.
 
 ### via USB
 
 wifi is the most straightforward way to back up your norns. These instructions are provided for times when you are unable to connect norns to wifi (no dongle, no network, etc).
 {: .label}
 
-If you have a standard norns, connect it to a second computer via [serial](../advanced-access/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](../advanced-access/#ssh). Then, insert a USB stick into norns.
+If you have a standard norns, connect it to a second computer via [serial](/docs/norns/advanced-access/#serial). If you have a shield, host a hotspot for it and connect it to a second computer via [ssh](/docs/norns/advanced-access/#ssh). Then, insert a USB stick into norns.
 
 - Make sure the USB stick is detected with `ls /media`
 	- you should see `usb` listed, in a different color
@@ -95,10 +95,10 @@ Steps:
   - If you're at this point and running MacOS with [homebrew](https://brew.sh/) installed, try installing `rpiboot` using [these command line instructions](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md#mac-os).  
   - If you're installing for the first time onto a fresh CM3+ using Windows, you'll likely need to install the Raspberry Pi boot drivers and run `rpiboot` before you can image it. Follow [these instructions on the Raspberry Pi site](https://www.raspberrypi.com/documentation/computers/compute-module.html#windows-installer) to make the new CM3+ show up as a USB mass storage device.
 6. Once the flash and validation are complete, disconnect USB. Flip the switch on the norns board back to `run`. Secure the bottom back onto the unit.
-7. Boot norns (if you completed the expansion, it will take a bit longer to start than normal), [add your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
+7. Boot norns (if you completed the expansion, it will take a bit longer to start than normal), [add your network](../wifi-files) and [update via SYSTEM  > UPDATE](/docs/norns/wifi-files/#update)
   - If you perform `SYSTEM > UPDATE` and norns tells you it's `up to date.`, it is! We recommend this step for times when a disk image might not be compiled for an incremental update cycle.
 8. If you have a norns with a 32gb CM3+, you will need to expand the file storage, since the fresh install assumes the lowest capacity (4gb). This only needs to be done once, but it's important after a fresh install -- it lets the system know the capacity of your storage.  
-  - Connect via [SSH](../advanced-access/#ssh) through a terminal.  
+  - Connect via [SSH](/docs/norns/advanced-access/#ssh) through a terminal.  
   - Execute: `sudo raspi-config` (*or* execute: `sudo raspi-config --expand-rootfs; sudo shutdown -r now` to skip to the last step without a GUI)
   - Navigate down to `Advanced Options`.  
   - Select `Expand Filesystem` and select `OK`.  
@@ -109,7 +109,7 @@ Steps:
 
 ### shield {#fresh-shield}
 
-Use [Etcher](https://www.balena.io/Etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash your SD card, [using these shield-specific instructions](../shield/#flashing-microsd-card). Be sure to use a high quality SD card -- if you have any trouble, please try a different card.
+Use [Etcher](https://www.balena.io/Etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash your SD card, [using these shield-specific instructions](/docs/norns/shield/#flashing-microsd-card). Be sure to use a high quality SD card -- if you have any trouble, please try a different card.
 
 If Etcher or the Imager do not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
 
@@ -123,7 +123,7 @@ After flashing your SD card, you'll need to expand the filesystem:
 4. Navigate to `Advanced Options` and hit RETURN  
 5. Select `Expand Filesystem` and hit RETURN  
 6. Lots of activity will happen. When it's done, power down and reboot. If you get any errors, reboot again.
-7. [Connect norns to your network](../wifi-files) and [update via SYSTEM  > UPDATE](../wifi-files/#update)
+7. [Connect norns to your network](/docs/norns/wifi-files) and [update via SYSTEM  > UPDATE](/docs/norns/wifi-files/#update)
 8. [Consider changing the default password and address](#change-password)
 
 If you have previously connected to a shield (either by this same IP address or simply `norns.local`) in the past, you may see a warning that the 'remote host identification has changed'. this is because the shield now has a new host key. The error will give you a filepath to your hosts file, but if you are on MacOS you can simply execute `rm -f ~/.ssh/known_hosts` in Terminal to erase the previous hosts file and start fresh.

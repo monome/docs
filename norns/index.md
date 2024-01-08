@@ -103,7 +103,7 @@ Find out more about the current version [at lines](https://l.llllllll.co/norns).
 
 ## contributing
 
-norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. Check out the [github repo](https://github.com/monome/norns). To try out the latest changes to the code, you can read about [compiling norns](../norns/compiling). If you have new functionality you'd like to add, there's also a guide on [extending norns](../norns/extending),
+norns is the result of generous contributions by many people, and the ecosystem continues to evolve. We welcome discussion and code to help further the goal of an open, dynamic instrument creation platform. Check out the [GitHub repo](https://github.com/monome/norns). To try out the latest changes to the code, you can read about [compiling norns](../norns/compiling). If you have new functionality you'd like to add, there's also a guide on [extending norns](../norns/extending).
 
 If your skills include design, instruction, or proofreading, we're also always looking for help with [documentation](https://github.com/monome/docs). Collective efforts have created numerous exceptional projects over the years, and there's more to a project than just code!
 

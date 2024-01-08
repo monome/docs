@@ -33,7 +33,7 @@ An operator is a control module that can be dynamically created within Bees. It 
 
 ### Github
 
-Note that in order to share your creations with the Aleph community you'll need to clone and fork the Aleph github repo. see [Forking](/docs/aleph/forking) for details.
+Note that in order to share your creations with the Aleph community you'll need to clone and fork the Aleph GitHub repo. see [Forking](/docs/aleph/forking) for details.
 
 ## op: FADE
 

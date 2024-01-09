@@ -1,6 +1,6 @@
 ---
 Layout: default
-Nav_exclude: true
+nav_exclude: true
 ---
 
 # care

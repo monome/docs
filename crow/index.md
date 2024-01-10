@@ -39,7 +39,7 @@ Align the 10-pin ribbon cable so the red stripe corresponds to the white indicat
 
 If you would like to use the [ii/i2c](/docs/modular/ii) functionality, be sure to observe the orientation of the connector. The white stripe indicates GND.
 
-# first
+## first
 
 each crow has its own unique sound, in the form of a generative sequencer. [first](/docs/crow/first) is a starting point.
 

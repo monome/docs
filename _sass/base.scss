@@ -84,11 +84,13 @@ code {
   font-family: $mono-font-family;
   font-size: 0.8em;
   line-height: $body-line-height;
+  tab-size: 2;
 }
 
 figure,
 pre {
   margin: 0;
+  tab-size: 2;
 }
 
 li {

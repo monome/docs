@@ -6,7 +6,6 @@ nav_exclude: true
 # timeline
 {: .no_toc }
 
-
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/903098912?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 The `timeline` library is all about sequencing events in time. If you find yourself writing out the same clock routines to get a basic rhythm going, there is a better way! `timeline` is built on top of `clock`, so all the usual details for controlling tempo and clock source apply here as well.

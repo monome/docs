@@ -20,7 +20,7 @@ This new firmware addresses some edge communication stability issues and also lo
 
 ### firmwares
 
-- zero, circuit board marking `monome/grid-zero/230412` [zero-240123.uf2](zero-240123.uf2)
-- one, circuit board marking `monome/grid-one/230412` [one-240123.uf2](one-240123.uf2)
-- late 2022, circuit board marking `monome/grid/220914` [grid-240123.uf2](grid-240123.uf2)
+- zero, circuit board marking `monome/grid-zero/230412` - [download zero-240123.uf2](zero-240123.uf2)
+- one, circuit board marking `monome/grid-one/230412` - [download one-240123.uf2](one-240123.uf2)
+- late 2022, circuit board marking `monome/grid/220914` - [download grid-240123.uf2](grid-240123.uf2)
 - all others do not require a firmware update

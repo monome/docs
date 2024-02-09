@@ -40,10 +40,10 @@ Edit scripts with a USB keyboard (included with new modules + [replacements avai
 The basics of Teletype are quick to learn. The studies will get you started and the manual provides a complete reference.
 
 * [Teletype Studies](studies-1) - guided series of tutorials
-* [Teletype Manual](manual) - full manual, also available as a [pdf](manual.pdf)
+* [Teletype Manual](manual) - full manual, also available as a [pdf](teletype.pdf)
 * [Just Type Studies](jt-1) - a guided series of tutorials on integrating Teletype with Just Friends
-* [PDF core command reference](TT_commands_5.0.pdf)
-* [PDF i2c command reference](TT_i2c_commands_5.0.pdf)
+* [PDF core command reference](cheatsheet.pdf)
+* [PDF i2c command reference](cheatsheet-i2c.pdf)
 * [PDF scene recall sheet](TT_scene_RECALL_sheet.pdf)
 * [Default scenes](scenes-10/)
 

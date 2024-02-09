@@ -46,7 +46,7 @@ If you have a recurring issue which you believe is hardware or system failure, u
 
 We'll see errors from the running script print to [maiden's REPL](https://monome.org/docs/norns/maiden/#repl). But since maiden only allows us to scroll back through a limited history and occasionally will suppress errors (for example if we're [developing a mod](https://monome.org/docs/norns/community-scripts/#mods)), that sometimes won't be enough.
 
-If we want to see a more encompassing realtime view of error messages from the running script, mods, and SuperCollider, we can log into our our norns directly via [SSH](https://github.com/docs/norns/advanced-access/#ssh) and issue the following command:
+If we want to see a more encompassing realtime view of error messages from the running script, mods, and SuperCollider, we can log into our our norns directly via [SSH](/docs/norns/advanced-access/#ssh) and issue the following command:
 
 ```
 journalctl -f

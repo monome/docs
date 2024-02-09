@@ -31,7 +31,7 @@ Download and install AVR Studio from Atmel's site. You will need to sign up for 
 
 ## Github
 
-Note that in order to share your creations with the Aleph community you'll need to clone and fork the Aleph github repo. see [Forking](/docs/aleph/forking) for details.
+Note that in order to share your creations with the Aleph community you'll need to clone and fork the Aleph GitHub repo. see [Forking](/docs/aleph/forking) for details.
 
 ## Overview
 
@@ -43,7 +43,7 @@ Creating your own application allows you to radically alter the functionality of
 
 ## app/mix
 
-The code on github is extensively inline commented. Here's a guide to the files:
+The code on GitHub is extensively inline commented. Here's a guide to the files:
 
 ### config.mk
 

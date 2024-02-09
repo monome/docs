@@ -5,6 +5,10 @@ nav_exclude: true
 
 # editions
 
+### 2023 grids
+
+introduced zero (16x16) and one (8x16). back to warm white light. different microcontroller (rp2040).
+
 ### 2021 grid
 
 completely reworked. clear white light. 16-step variable brightness. snappy, easy keypress. slightly thinner, certainly lighter. uses fewer components, consumes less power. bus powered. usb-c.

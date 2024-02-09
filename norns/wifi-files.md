@@ -203,7 +203,7 @@ While you can simply reset this password again via this menu option, we encourag
 
 ### hostname
 
-To change the hostname for maiden access, log in to the norns via [ssh](../advanced-access/#ssh) and execute:
+To change the hostname for maiden access, log in to the norns via [ssh](/docs/norns/advanced-access/#ssh) and execute:
 
 ```
 sudo raspi-config

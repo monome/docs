@@ -80,6 +80,8 @@ Running: clock divider
 
 You just uploaded your first crow script!
 
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/902346947?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
 Patch a trigger or LFO into input 1 and crow will now be sending clock divided gates to all 4 outputs. Try patching crow's outputs to anything expecting triggers. Make some envelopes with Just Friends' *trigger* inputs in *shape/transient* mode, or ping Three Sisters' filters by patching crow's outputs directly to Three Sisters' 4 input jacks and turn *quality* up to 3:00 on the dial.
 
 A voltage into input 2 will select between different sets of divisions as you sweep from -5V to +5v. Open `bowery-main/clockdiv.lua` in a text editor and edit the table called `divs` which represents the clock-divisions per output, with 5 different sets to choose from.

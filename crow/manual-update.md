@@ -114,6 +114,8 @@ Downloading to address = 0x08020000, size = 290876
 Download	[=========================] 100%       290876 bytes
 Download done.
 File downloaded successfully
+dfu-util: can't detach
+Resetting USB to switch back to runtime mode
 ```
 
 ## Troubleshooting

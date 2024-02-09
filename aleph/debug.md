@@ -34,7 +34,7 @@ Attach the output of the debug process above .
 
 ## Tracking Issues
 
-Known issues are logged and tracked via the [Aleph github page](https://github.com/monome/aleph/issues).
+Known issues are logged and tracked via the [Aleph GitHub page](https://github.com/monome/aleph/issues).
 
 See here for a list of known issues and requested improvements.
 

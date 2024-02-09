@@ -6,9 +6,9 @@ permalink: /aleph/forking/
 
 # Aleph: Forking
 
-This is an example of how to fork the Aleph repo, change something, and submit a request for your changes to be pulled upstream to monome/aleph. Some naming and workflow conventions are to taste, and `user` is your own github username.
+This is an example of how to fork the Aleph repo, change something, and submit a request for your changes to be pulled upstream to monome/aleph. Some naming and workflow conventions are to taste, and `user` is your own GitHub username.
 
-Create a fork of monome/aleph on github by clicking the “fork” button on the upper right of the repo page. There should now be a new repo on your github page called user/aleph.
+Create a fork of monome/aleph on GitHub by clicking the “fork” button on the upper right of the repo page. There should now be a new repo on your GitHub page called user/aleph.
 
 Now, the terminal commands go something like this:
 

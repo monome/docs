@@ -3,6 +3,7 @@ layout: default
 title: crow
 nav_order: 2
 has_children: true
+has_toc: false
 ---
 
 ![](images/crow.jpg)
@@ -38,7 +39,14 @@ Align the 10-pin ribbon cable so the red stripe corresponds to the white indicat
 
 If you would like to use the [ii/i2c](/docs/modular/ii) functionality, be sure to observe the orientation of the connector. The white stripe indicates GND.
 
+## first
+
+each crow has its own unique sound, in the form of a generative sequencer. [first](/docs/crow/first) is a starting point.
+
 ## environments
+
+
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/362620801?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 ### norns
 

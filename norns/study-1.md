@@ -680,12 +680,13 @@ end
 - part 1: many tomorrows
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
 - part 3: [spacetime](../study-3/) // functions, parameters, time
-- part 4: [physical](../study-4/) // grids + midi
-- part 5: [streams](../study-5/) // system polls, osc, file storage
+- part 4: [physical](../study-4/) // grids + MIDI
+- part 5: [streams](../study-5/) // system polls, OSC, file storage
+- further: [softcut studies](../softcut/) // a multi-voice sample playback and recording system built into norns
 
 ## community
 {: .no_toc }
 
-ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
+Ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/14109)
 
-edits to this study welcome, see [monome/docs](http://github.com/monome/docs)
+Edits to this study welcome, see [monome/docs](http://github.com/monome/docs).

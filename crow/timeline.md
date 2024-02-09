@@ -6,6 +6,8 @@ nav_exclude: true
 # timeline
 {: .no_toc }
 
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/903098912?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
 The `timeline` library is all about sequencing events in time. If you find yourself writing out the same clock routines to get a basic rhythm going, there is a better way! `timeline` is built on top of `clock`, so all the usual details for controlling tempo and clock source apply here as well.
 
 The library has 3 flavors, each with its own purpose, though they can be combined in interesting ways too.
@@ -342,3 +344,91 @@ While these examples imply that the "reset" message has to happen at the *end* o
 ## Wrapping Up
 
 There are a lot of features here to absorb, but `timeline` is all about making rhythmic ideas more concise. You'll likely need many of `timeline`'s features only occasionally, so try and build up your ideas slowly. And remember that sprinkling a `sequins` or two into your `timeline` is a fantastic way to add variation into your patterns!
+
+### example: automatic music
+
+This script is featured in the banner video above.
+
+Outputs 1 and 2 are assigned LFOs which are [quantized to scales](/docs/crow/reference/#quantize-to-scales), to create arpeggios. Clocked pulses are sent to output 3, which sync to the `pulse_pacing` variable. Using `timeline.score` we change `pulse_pacing`, set output scaling, and change LFO time / maximum / shape.
+
+In the banner video:
+
+- output 1 is sent to Mangrove PITCH
+- output 2 is mult'd to Just Friends TIME + Three Sisters FREQ
+- output 3 triggers Just Friends envelopes, which reveal Mangrove SQUARE and FORMANT through a Dual Pass Low Pass Gate
+
+```lua
+scales = {
+	intro = { 10, 12, 19, 0, 3, -5, 17, 15 },
+	verse = { 10, 2, 3, 5, 7 },
+	chorus = { 10, 14, 3, 5, 7, 2, 12, 10, 0, -5, 17 },
+	outro = { 10, 14, 15, 3, 7 },
+}
+
+function init()
+	pulse_pacing = 1
+	pulse_clock = clock.run(function()
+		while true do
+			clock.sync(pulse_pacing)
+			output[3](pulse())
+		end
+	end)
+end
+
+function intro()
+	print("the intro!")
+	pulse_pacing = 1
+	output[1].scale(scales.intro)
+	output[2].scale(scales.intro)
+	output[1](lfo(5, 2, "sine"))
+	output[2](lfo(3, 3, "logarithmic"))
+end
+
+function verse()
+	print("the verse!")
+	pulse_pacing = 1 / 4
+	output[1].scale(scales.verse)
+	output[2].scale(scales.verse)
+	output[1](lfo(13, 3, "sine"))
+	output[2](lfo(5, 2, "rebound"))
+end
+
+function chorus()
+	print("the chorus!")
+	pulse_pacing = 1 / 5
+	output[1].scale(scales.chorus)
+	output[2].scale(scales.chorus)
+	output[1](lfo(8, 3, "exponential"))
+	output[2](lfo(7, 1, "logarithmic"))
+end
+
+function outro()
+	print("the outro!")
+	pulse_pacing = 1 / 12
+	output[1].scale(scales.outro)
+	output[2].scale(scales.outro)
+	output[1](lfo(7, 3, "rebound"))
+	output[2](lfo(10, 2, "exponential"))
+end
+
+function the_end()
+	print("song done")
+	output[1](ar(3, 2, 1))
+	output[2].volts = 0
+	clock.cancel(pulse_clock)
+end
+
+timeline.score({
+	0,
+	intro,
+	64,
+	verse,
+	128,
+	chorus,
+	155,
+	outro,
+	200,
+	the_end,
+})
+
+```

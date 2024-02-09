@@ -21,7 +21,8 @@ Resources for connecting to:
 Additional information:
 
 - [serialosc](/docs/serialosc) - an OSC server to connect a grid to your macOS, Windows or Linux machine
+- [firmware](firmware) - late 2022 through early 2024 grid update
 - [editions](editions) - information about different device generations
 - [disassembly](disassembly) - guides for disassembling the hardware
 - [care](care) - some suggestions for device maintenance (tl;dr: don't rest other gear on top of grid, as it will discolor pads)
-- [bus power upgrade](buspowerupgrade) - some early grid models had external power, they can be updated
+- [bus power upgrade](buspowerupgrade) - some very early grid models had external power, they can be updated

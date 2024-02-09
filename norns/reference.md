@@ -12,6 +12,7 @@ redirect_from: /norns/reference/lib/
 ---
 
 # norns script reference
+
 {: .no_toc }
 
 This script reference is a supplement to the complete norns API. Here, you'll find examples which explore single components of the API, which can be copied/pasted into your own scripts and manipulated for your needs. These examples assume familiarity with the scripting concepts covered in the [norns studies](/docs/norns/studies).
@@ -30,7 +31,9 @@ To access the complete norns API, you can either:
 {:toc}
 </details>
 
-## commands
+## modules {#modules}
+
+*Note: Many module names link to extended reference examples, which illustrate how to use the commands in different contexts. Any module name followed by **(api)** links to the static API.*
 
 | Module                                                                | Description                                                                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -154,6 +157,53 @@ And this will print to maiden:
 ### try 'SYSTEM > UPDATE'
 ### or check for new disk image
 ```
+
+## helpful system commands and variables
+
+There are some commands and variables which are helpful for common scripting tasks. Please note that while these tables may contain additional commands and variables, any not mentioned in this section will not be useful for standard scripting.
+
+These semicolon-preceded commands are shortcuts which are run from [maiden](/docs/norns/maiden) directly:
+
+| command               | description                                                                                                                                                                                                          |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `;restart`            | When executed in [maiden](/docs/norns/maiden), this command restarts the environment -- run this command in the `matron` tab to restart the Lua layer, or run it in the `supercollider` tab to restart SuperCollider |
+| `;install GITHUB_URL` | When executed in maiden, this command installs a GitHub repository -- see [these docs](/docs/norns/maiden/#fetch) for more information                                                                               |
+
+The `norns` table contains useful system commands and variables:
+
+| command                     | description                                                                                           |
+| --------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `norns.expand_filesystem()` | Expands the filesystem to the full capacity of the disk, useful after a fresh installation : function |
+| `norns.blank()`             | Turns off the norns screen : function                                                                 |
+| `norns.rerun()`             | Rerun the currently-loaded script : function                                                          |
+| `norns.shutdown()`          | SLEEP norns (no UI state information will be shown, however) : function                               |
+| `norns.system_cmd(command)` | Asynchronously executes a system `command` : function                                                 |
+
+The `norns.script` table contains functions for script lifecycle management:
+
+| command                       | description                                    |
+| ----------------------------- | ---------------------------------------------- |
+| `norns.script.load(filename)` | Runs the script at `filename` : function       |
+| `norns.script.clear()`        | Clears the currently-running script : function |
+
+The `norns.state` table contains useful state data:
+
+| variable                | description                                                                              |
+| ----------------------- | ---------------------------------------------------------------------------------------- |
+| `norns.state.path`      | The `code` folder path for the currently-running script : string                         |
+| `norns.state.data`      | The `data` folder path for the currently-running script : string                         |
+| `norns.state.lib`       | The `lib` folder path for the currently-running script : string                          |
+| `norns.state.shortname` | The name of the script, used as the default name by the PSET + PMAP filesystems : string |
+| `norns.state.name`      | The name of the script as shown in the SELECT menu and on the HOME screen : string       |
+
+The `_path` table contains useful aliases for common file-paths:
+
+| variable      | description                                   |
+| ------------- | --------------------------------------------- |
+| `_path.code`  | Alias for `/home/we/dust/code/` : string      |
+| `_path.data`  | Alias for `/home/we/dust/data/` : string      |
+| `_path.audio` | Alias for `/home/we/dust/audio/`: string      |
+| `_path.tape`  | Alias for `/home/we/dust/audio/tape/`: string |
 
 ## libraries
 

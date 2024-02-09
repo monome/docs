@@ -78,7 +78,7 @@ All standard norns units produced before 2021 have a Compute Module 3 (CM3), wit
 
 ### confirming Compute Module model {#confirm-cm3}
 
-To confirm which chip your norns has installed, [connect via SSH](../advanced-access/#ssh) and execute `pinout`, which will return the name (and a cute illustration!) of your installed Compute Module:
+To confirm which chip your norns has installed, [connect via SSH](/docs/norns//advanced-access/#ssh) and execute `pinout`, which will return the name (and a cute illustration!) of your installed Compute Module:
 
 ![](/docs/norns/image/help-images/pinout.png)
 
@@ -90,7 +90,7 @@ There is no soldering needed, but you will have to disassemble your norns a bit.
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/523980765?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
-*nb. if you are unable to use the `screen` Terminal commands shown in the video, you can expand your filesystem following the shield steps listed in the next section*
+*Note: please see [data management help](/docs/norns/help/data/#expanding-storage) for up-to-date information about the filesystem expansion steps.*
 
 ## WiFi troubleshooting
 
@@ -111,7 +111,7 @@ If you are consistently unable to connect your norns to WiFi through the [connec
 
 5. If you are prompted to update the nub's drivers, please do so. Even if there are no updates available, sometimes the simple task of searching for an update resolves connectivity issues. When this process completes, plug the nub back into norns.
 
-6. If norns is still unable to connect to WiFi, connect the power cable to your non-norns computer and follow the `serial` steps outlined [here](../advanced-access/#serial). Once you perform this serial login, try executing `nmtui` for a graphical interface of the WiFi utilities, which may have better luck connecting to a network:
+6. If norns is still unable to connect to WiFi, connect the power cable to your non-norns computer and follow the `serial` steps outlined [here](/docs/norns/advanced-access/#serial). Once you perform this serial login, try executing `nmtui` for a graphical interface of the WiFi utilities, which may have better luck connecting to a network:
    
     ![](/docs/norns/image/terminal-nmtui-main.png)
 
@@ -133,7 +133,7 @@ If you are consistently unable to connect your shield to WiFi through the [conne
 
 1. If your network name has any apostrophes, it might be interpretted as a [*prime*](https://en.wikipedia.org/wiki/Prime_(symbol)), which would cause connection failure. Removing apostrophes from network names has helped resolve most issues with connectivity.
 
-2. Try connecting shield to your router via ethernet and connecting to it from another computer [via SSH](../advanced-access/#ssh).
+2. Try connecting shield to your router via ethernet and connecting to it from another computer [via SSH](/docs/norns/advanced-access/#ssh).
 
 3. In Terminal, execute `nmtui` for a graphical interface of the WiFi utilities, which will provide more information about network connection issues:
    

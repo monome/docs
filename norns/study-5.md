@@ -7,21 +7,30 @@ permalink: /norns/study-5/
 <div class="vid"><iframe src="https://player.vimeo.com/video/292401792?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
 # streams
+{: .no_toc }
 
-norns studies part 5: system polls, osc, file storage
+norns studies part 5: system polls, OSC, file storage
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## numerical superstorm
 
-so far we've explored many ways of pushing data around towards musical ends: metronomes, spreadsheet-like tables, midi and grids, even typing commands directly. there is more.
+So far we've explored many ways of pushing data around towards musical ends: metronomes and clocks, spreadsheet-like tables, MIDI and grids, even typing commands directly. There is more.
 
-polls report data from the audio subsystem, such as amplitude envelope and pitch detection. to see the available polls:
-
+Polls report data from the audio subsystem, such as amplitude envelope and pitch detection. To see the available polls, execute:
 
 ```lua
-poll.list_names()
+>> poll.list_names()
 ```
 
-and you'll see:
+You'll see:
 
 ```
 --- polls ---
@@ -36,37 +45,38 @@ pitch_in_r
 ------
 ```
 
-these are the basic system-wide polls, and engines may add their own polls. for example, softcut adds polls for buffer playback position. let's set a poll to track the amplitude of input 1:
+These are the basic system-wide polls. Engines may add [their own polls](/docs/norns/reference/poll) -- for example, softcut adds [polls for buffer playback position](/docs/norns/softcut/#3-cut-and-poll).
+
+Let's set a poll to track the amplitude of the left input:
 
 ```lua
-p = poll.set("amp_in_l")
-p.callback = function(val) print("in > "..string.format("%.2f",val)) end
-p.time = 0.25
-p:start()
+>> p = poll.set("amp_in_l")
+>> p.callback = function(val) print("in > "..string.format("%.2f",val)) end
+>> p.time = 0.25
+>> p:start()
 ```
 
-play some sound into input 1, you'll see the printed numbers change with the sound level. try changing `p.time` to update the poll interval.
+Play some sound into the left input and you'll see the printed numbers change with the sound level. Try changing `p.time` to update the poll interval.
 
-_bonus_ when we want numbers displayed a specific way we can use `string.format`. here we use the format string `"%.2f"` which means we always want two decimals shown. see the [printf reference](http://www.cplusplus.com/reference/cstdio/printf/) for more formatting methods.
+**Bonus:** when we want numbers displayed a specific way we can use `string.format`. Here we use the format string `"%.2f"` which means we always want two decimals shown. See the [printf reference](http://www.cplusplus.com/reference/cstdio/printf/) for more formatting methods.
 
-to stop the poll:
+To stop the poll:
 
 ```lua
-p:stop()
+>> p:stop()
 ```
 
-we can also request a single immediate value from the poll:
+We can also request a single immediate value from the poll:
 
 ```lua
-p:update()
+>> p:update()
 ```
 
-of course instead of just printing out the value of the poll, we should be using it for something more interesting and musical. we'll do that in the example in the end. but first let's smash together even more data.
-
+Of course instead of just printing out the value of the poll, we should be using it for something more interesting and musical. We'll do that in the example in the end, but first let's smash together even more data.
 
 ## numbers through air
 
-[open sound control (OSC)](https://en.wikipedia.org/wiki/Open_Sound_Control) is a network protocol for sending messages supported by numerous sound and media applications. (OSC also is how lua communicates with supercollider within the norns ecosystem).
+[Open Sound Control (OSC)](https://en.wikipedia.org/wiki/Open_Sound_Control) is a network protocol for sending messages supported by numerous sound and media applications. OSC also is how Lua communicates with SuperCollider within the norns ecosystem.
 
 OSC messages look like this:
 
@@ -74,26 +84,43 @@ OSC messages look like this:
 /cutoff 500
 ```
 
-the first part, `/cutoff` is the _path_. a series of values and/or strings can come after the path which is the _data_. in this way an OSC message can be somewhat self-describing: we could assume the message above is to set the cutoff to 500.
+The first part, `/cutoff`, is the _path_. A series of values and/or strings can come after the path which is the _data_. In this way, an OSC message can be somewhat self-describing: we could assume the message above is to set the cutoff to 500.
 
-we can use OSC in our scripts to interface with the outside world via wifi. for the following example you'll need to be connected to hotspot or a network. first let's receieve a message from [max/msp](https://cycling74.com):
+We can use OSC in our scripts to interface with the outside world via [WiFi](/docs/norns/wifi-files/). For the following example you'll need to be connected to hotspot or a network. First let's receive a message from [Max/MSP](https://cycling74.com):
 
 ![](../study-image/study-5-osc-max-send.png)
 
-norns scripts listen on OSC port *10111*.
+norns listens to OSC on port *10111*.
+{: .label .label-grey}
 
-this simple max patch sends the message `/hello 42`. you'll need to change the `udpsend` box to match your norns' IP address (which you can find in the SYSTEM menu).
+This simple max patch sends the message `/hello 42`. Note that you'll need to change the `udpsend` box to match your norns' IP address (which you can find in the SYSTEM menu).
 
-sending this messages will print:
+**If you've gone through the previous studies:**
 
-```
-incoming osc message from	table: 0x169238	/hello
-1	42
-```
+- open your uniquely-named study folder in the maiden file browser
+- create a new file in your study folder: locate and click on the folder and then click the + icon in the scripts toolbar
+- rename the file: select the newly-created `untitled.lua` file, then click the pencil icon in the scripts toolbar
+  - after naming it something meaningful to you (only use alphanumeric, underscore and hyphen characters when naming), select the file again to load it into the editor
 
-this is the default callback for OSC. let's redefine the callback with out own function:
+<details closed markdown="block">
+  <summary>
+    <i>If you haven't gone through the previous studies</i>
+  </summary>
+  {: .text-delta }
+- create a new folder in the `code` directory: click on the `code` directory and then click the folder icon with the plus symbol to create a new folder
+  - name your new folder something meaningful, like `my_studies` (only use alphanumeric, underscore and hyphen characters when naming)
+- create a new file in the folder you created: locate and click on the folder and then click the + icon in the scripts toolbar
+- rename the file: select the newly-created `untitled.lua` file, then click the pencil icon in the scripts toolbar
+  - after naming it something meaningful to you (only use alphanumeric, underscore and hyphen characters when naming), select the file again to load it into the editor
+</details>
+
+The file is blank. Full of possibilities. Type the text below into the editor:
 
 ```lua
+-- study 5
+-- code exercise
+-- numbers through air
+
 function osc_in(path, args, from)
   if path == "/hello" then
     print("hi!")
@@ -114,42 +141,52 @@ end
 osc.event = osc_in
 ```
 
-try sending osc messages with `/x` and `/y` as paths and a single number as data. path `/xy` will accept two numbers and set both values. this is how we map OSC paths to functionality within our script.
+Executing the message from Max will print the following to maiden's REPL:
 
-we can also extract the address and port of the sender. note that the receiving port will typically be different, so check the ports of each OSC client. let's send a message using our script back to max:
+```
+hi!
+osc from 192.168.0.109 port 60092
+```
+
+In Max, try sending OSC messages with `/x` and `/y` as paths and a single number as data. Path `/xy` will accept *two* numbers and set *both* values. This is how we map OSC paths to functionality within our script!
+
+Notice that we can also extract the address (`from[1]`) and port (`from[2]`) of the sender. The receiving port will typically be different, so if your OSC client doesn't allow receiving port definition, check its ports.
+
+Let's send a message back to Max from our script:
 
 ![](../study-image/study-5-osc-max-receive.png)
 
-above we set up a receive port on 10101. here's how we send to it:
+Above we set up a receive port on *10101*. Here's how we send to it:
 
 ```lua
-dest = {"192.168.1.12",10101}
-osc.send(dest, "/soup", {1,10})
+>> dest = {"192.168.1.12",10101}
+>> osc.send(dest, "/soup", {1,10})
 ```
 
-`dest` is the destination we're sending to, so change the IP address to match the address where you received the messages earlier. the second argument is the path, followed by a table (curly brakcets) with the data. even if you want to send a single value, it still has to be inside a table.
+`dest` is the destination we're sending to, so change the IP address to match the address where you received the messages earlier. The second argument is the path, followed by a table (curly brackets) with the data. Please note that even if you want to send a single value, it still has to be inside a table!
 
-norns is also auto-discoverable as an OSC device. for example, using [touchOSC](https://hexler.net/software/touchosc) is very straightforward as "norns" should show up in the config list if both are connected to the same network.
+If everything is set up correctly, you should see `/soup 1. 10.` appear in the message box in Max.
 
+norns is also auto-discoverable as an OSC device. For example, using [TouchOSC](https://hexler.net/software/touchosc) is very straightforward as "norns" should show up in the config list if both are connected to the same network.
 
 ## long term number storage
 
-there will come a time when you have collected too many numbers, and they are precious and you want to save them for later. norns has a filesystem that can store a ton of numbers. here's the easy way:
+There will come a time when you have collected too many numbers, and they are precious and you want to save them for later. norns has a filesystem that can store a ton of numbers. Here's the easy way:
 
 ```lua
-my_secret_bits = {2,-1,21,0}
-tab.save(my_secret_bits, _path.data.."secret.txt")
+>> my_secret_bits = {2,-1,21,0}
+>> tab.save(my_secret_bits, _path.data.."secret.txt")
 ```
 
-`tab.save` is a function which saves a table to disk. we specify the file as `secret.txt` inside the folder `_path.data` (which is a global for `/home/we/dust/data/`).
+`tab.save` is a function which saves a table to disk. We specify the file as `secret.txt` inside the folder `_path.data` (which is a global for `/home/we/dust/data/`, [see more in the reference](/docs/norns/reference/#helpful-system-commands-and-variables)).
 
-let's now load the same file to a different table:
+Let's now load the same file to a different table:
 
 ```lua
-summoned_bits = tab.load(_path.data.."secret.txt")
+>> summoned_bits = tab.load(_path.data.."secret.txt")
 ```
 
-a quick check via `tab.print(summoned_bits)` will show that the read was successful:
+A quick check via `tab.print(summoned_bits)` will show that the read was successful:
 
 ```
 1	2
@@ -158,14 +195,14 @@ a quick check via `tab.print(summoned_bits)` will show that the read was success
 4	0
 ```
 
-let's do some more complex file operations. here's how you get a folder listing:
+Let's do some more complex file operations. Here's how you get a folder listing:
 
 ```lua
-listing = util.scandir(paths.home)
-tab.print(listing)
+>> listing = util.scandir(_path.home)
+>> tab.print(listing)
 ```
 
-you'll see something resembling this:
+You'll see something resembling this:
 
 ```
 1    bin/ 
@@ -178,9 +215,12 @@ you'll see something resembling this:
 8    version.txt
 ```
 
-`util.scandir` takes one argument which is a folder path, and then it returns a table the folder contents. let's load one of these files and print it out, just to see how file loading works:
+`util.scandir` takes one argument which is a folder path, and then it returns a table the folder contents. Too see how file loading works, let's load one of these files and print it out:
 
 ```lua
+-- study 5
+-- long term number storage
+
 function print_file(filepath)
   local f=io.open(filepath,"r")
   if f==nil then
@@ -194,21 +234,22 @@ function print_file(filepath)
     end
   end
 end
-
--- let's test it:
-folder = paths.home.."/"
-listing = util.scandir(folder)
-print_file(folder..listing[7])
-
 ```
 
-the file `changelog.txt` should be printed! stepping through `print_file`:
+Let's test it:
+```
+>> folder = _path.home
+>> listing = util.scandir(folder)
+>> print_file(folder.."/"..listing[7])
+```
+
+The file `changelog.txt` should be printed! Stepping through the `print_file` function:
 
 - argument is a file with path
 - checks if the file exists
 - uses a `for` loop to iterate on each line of the file
 
-writing a file is not much more complex:
+Writing a file is not much more complex:
 
 ```lua
 f=io.open(_path.data .. "other_test.txt","w+")
@@ -217,12 +258,11 @@ f:write("10011010\n")
 f:close(f)
 ```
 
-
 ## example: streams
 
-putting together concepts above. this script is demonstrated in the video up top.
+Putting together concepts above. This script is demonstrated in the video up top.
 
-here's a max patch that uses a `pictslider` object for 2d control. the script is also compatible with the touchOSC "simple" template.
+Here's a Max patch that uses a `pictslider` object for 2D control. This script is also compatible with the TouchOSC "simple" template.
 
 ![](../study-image/study-5-example-pictslider.png)
 
@@ -322,8 +362,13 @@ osc.event = osc_in
 
 function redraw()
   screen.clear()
-  screen.move(0,10)
-  if last ~= -1 then screen.text(#collection .. " > " .. string.format("%.2f",last)) end
+  if last ~= -1 then
+    screen.move(0,10)
+    screen.text(#collection .. " > " .. string.format("%.2f",last))
+  else
+    screen.move(128,10)
+    screen.text_right("...")
+  end
   for i,y in pairs(collection) do
     screen.move(4+(i-1)*8,60)
     screen.line_rel(0,-(8 * (math.log(collection[i]))-30))
@@ -333,18 +378,19 @@ function redraw()
 end
 ```
 
-
 ## continued
+{: .no_toc }
 
 - part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
 - part 3: [spacetime](../study-3/) // functions, parameters, time
-- part 4: [physical](../study-4/) // grids + midi
+- part 4: [physical](../study-4/) // grids + MIDI
 - part 5: streams
 - further: [softcut studies](../softcut/) // a multi-voice sample playback and recording system built into norns
 
 ## community
+{: .no_toc }
 
-ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
+Ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/14109)
 
-edits to this study welcome, see [monome/docs](http://github.com/monome/docs)
+Edits to this study welcome, see [monome/docs](http://github.com/monome/docs).

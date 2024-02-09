@@ -50,9 +50,11 @@ The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 
 
 ### battery
 
-Before you purchase a new battery, please consider that your norns may not be reporting battery performance accurately. To test, fully drain the battery and then charge it fully.
+Standard norns has a PKCELL LP803860 3.7V / 2000mAh with a JST connector.
 
-If performance does not improve, then a direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/2011) or by emailing help@monome.org for a replacement (20 USD, shipping included, only US or can be bundled with an existing international purchase).
+If performance does not improve, then a direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/2011) or [DigiKey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/2011/6612469), or by emailing help@monome.org for a replacement (20 USD, shipping included, only US or can be bundled with an existing international purchase).
+
+Before you purchase a new battery, please consider that your norns may not be reporting battery performance accurately. To test, fully drain the battery and then charge it fully.
 
 ### encoders
 

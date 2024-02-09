@@ -220,8 +220,15 @@ It'd be nice to extend our sketch by:
 Of note in this example:
 
 - rather than force our source sound into stereo with `.dup` (as in our previous example), we'll simply feed it into a two channel panning UGen
-- we'll use a Group (assigned var `g`) to control the order of execution, which will include specifying `target:g` and `addAction:\addToTail` for each of our synths
-- we'll use `s.sync` every time we want to execute Server actions, so that everything we ran before this point is finished before we resume with the rest of the actions
+- we'll use `s.sync` to make sure our common SynthDefs are present on the Server when requested
+- we'll use a Group (assigned var `g`) to control the order of execution, which will include specifying `target:g` and `addAction`'s for each of our synths. If we look at our Node Tree when our synth is playing, we'll see:
+  - `sourceBlip` (main synth)
+  - `patch_pan` (reverb send)
+  - `reverb` (reverb synth)
+  - `patch_pan` (delay send)
+  - `delay` (delay synth)
+  - `patch_pan` (dry send)
+  - `patch_main` (final stage output)
 - instead of adding a panning control to each stage's synth, we'll use panning to specify the stereo placement of the source as its *sent* into each FX stage
 
 <details closed markdown="block">
@@ -264,40 +271,42 @@ FXBusDemo {
 				Out.ar(\out.kr, In.ar(\in.kr, 2) * \level.kr(1));
 			}).send(s);
 
-			// add a group to order our synths / nodes:
-			g = Group.new(s);
-
-			// define our source synth:
-			synths[\source] = SynthDef.new(\sourceBlip, {
+			// define our main synth:
+			SynthDef.new(\sourceBlip, {
 				var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8).clip(20,20000));
 				snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
 				Out.ar(\out.kr, snd * \level.kr(0.5));
-			}).play(target:g, addAction:\addToTail, args:[
-				\out, busses[\source]
-			]);
+			}).send(s);
 
-			// why are we syncing here? two reasons:
-			// 1. so the common SynthDefs above are present on the Server when requested
-			// 2. because the send synths below use \addToTail,
-			//   we need the Server to finish creating the source synth before they are added
+			// we'll sync here so that the common SynthDefs above
+			//   are present on the Server when requested:
 			s.sync;
 
+			// add a group to order our synths / nodes:
+			g = Group.new(s);
+
+			// instantiate our main synth:
+			synths[\source] = Synth.new(\sourceBlip,
+				target:g, addAction:\addToHead, args:[
+					\out, busses[\source]
+			]);
+
 			synths[\dry] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\main_out],
 					\level, 1.0
 			]);
 
 			synths[\delay_send] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\delay_send],
 					\level, 0.0
 			]);
 
 			synths[\reverb_send] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\reverb_send],
 					\level, 0.0
@@ -306,19 +315,16 @@ FXBusDemo {
 			synths[\delay] = SynthDef.new(\delay, {
 				arg in, out, level=1;
 				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, 0.2, level));
-			}).play(target:g, addAction:\addToTail, args:[
+			}).play(target:synths[\delay_send], addAction:\addAfter, args:[
 				\in, busses[\delay_send], \out, busses[\main_out]
 			]);
 
 			synths[\reverb] = SynthDef.new(\reverb, {
 				arg in, out, level=1;
 				Out.ar(out, FreeVerb.ar(In.ar(in, 2), 1.0, 0.9, 0.1, level));
-			}).play(target:g, addAction:\addToTail, args:[
+			}).play(target:synths[\reverb_send], addAction:\addAfter, args:[
 				\in, busses[\reverb_send], \out, busses[\main_out]
 			]);
-
-			// again, we want the next synth to actually be added *after* all others
-			s.sync;
 
 			synths[\main_out] = Synth.new(\patch_main,
 				target:g, addAction:\addToTail, args: [
@@ -471,11 +477,17 @@ FXBusDemo {
 	var <busses;
 	var <g;
 
+	// NEW: add an optional 'hz' argument to control
+	//   the pitch of the synth at instantiation:
 	*new {
-		^super.new.init();
+		arg hz = 330;
+		^super.new.init(hz);
 	}
 
 	init {
+		// NEW: add an optional 'hz' argument to control
+		//   the pitch of the synth at instantiation:
+		arg hz = 330;
 		var s = Server.default;
 		synths = Dictionary.new;
 		busses = Dictionary.new;
@@ -511,40 +523,42 @@ FXBusDemo {
 				Out.ar(\out.kr, mix * \level.kr(1));
 			}).send(s);
 
+			// define our main synth:
+			SynthDef.new(\sourceBlip, {
+				var snd = LPF.ar(Saw.ar(\hz.kr(hz)), (\hz.kr(hz)*8).clip(20,20000));
+				snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
+				Out.ar(\out.kr, snd * \level.kr(0.5));
+			}).send(s);
+
+			// we'll sync here so that the common SynthDefs above
+			//   are present on the Server when requested:
+			s.sync;
+
 			// add a group to order our synths / nodes:
 			g = Group.new(s);
 
-			// define our source synth:
-			synths[\source] = SynthDef.new(\sourceBlip, {
-				var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8).clip(20,20000));
-				snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
-				Out.ar(\out.kr, snd * \level.kr(0.5));
-			}).play(target:g, addAction:\addToTail, args:[
-				\out, busses[\source]
+			// instantiate our main synth:
+			synths[\source] = Synth.new(\sourceBlip,
+				target:g, addAction:\addToHead, args:[
+					\out, busses[\source]
 			]);
 
-			// why are we syncing here? two reasons:
-			// 1. so the common SynthDefs above are present on the Server when requested
-			// 2. because the send synths below use \addToTail,
-			//   we need the Server to finish creating the source synth before they are added
-			s.sync;
-
 			synths[\dry] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\main_out],
 					\level, 1.0
 			]);
 
 			synths[\delay_send] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\delay_send],
 					\level, 0.0
 			]);
 
 			synths[\reverb_send] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\reverb_send],
 					\level, 0.0
@@ -553,19 +567,16 @@ FXBusDemo {
 			synths[\delay] = SynthDef.new(\delay, {
 				arg in, out, level=1;
 				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, 0.2, level));
-			}).play(target:g, addAction:\addToTail, args:[
+			}).play(target:synths[\delay_send], addAction:\addAfter, args:[
 				\in, busses[\delay_send], \out, busses[\main_out]
 			]);
 
 			synths[\reverb] = SynthDef.new(\reverb, {
 				arg in, out, level=1;
 				Out.ar(out, FreeVerb.ar(In.ar(in, 2), 1.0, 0.9, 0.1, level));
-			}).play(target:g, addAction:\addToTail, args:[
+			}).play(target:synths[\reverb_send], addAction:\addAfter, args:[
 				\in, busses[\reverb_send], \out, busses[\main_out]
 			]);
-
-			// again, we want the next synth to actually be added *after* all others
-			s.sync;
 
 			synths[\main_out] = Synth.new(\patch_main,
 				target:g, addAction:\addToTail, args: [
@@ -608,9 +619,7 @@ Recompile the class library via `Language > Recompile Class Library` and run:
 // start the synth:
 (
 Routine{
-	x = FXBusDemo.new();
-	0.05.wait;
-	x.setHz(330*0.75);
+	x = FXBusDemo.new(330*0.75);
 	x.setLevel(\delay_send,0.6);
 	x.setLevel(\reverb_send,0.6);
 	
@@ -653,7 +662,7 @@ Engine_FXBusDemo : CroneEngine {
 
 		// NEW: since FXBusDemo is now a supercollider Class,
 		//   we can just construct an instance of it
-		kernel = FXBusDemo.new(Crone.server);
+		kernel = FXBusDemo.new();
 
 		// NEW: build an 'engine.set_level(synth,val)' command
 		this.addCommand(\set_level, "sf", { arg msg;
@@ -911,7 +920,7 @@ Returning to our `FXBusDemo.sc` Class file, we'll do the following:
 
 ```js
 // SC Bus exercise 4: polls
-// sending brightness and amplitude analysis to Lua
+// sending brightness + amplitude analysis to Lua
 
 FXBusDemo {
 
@@ -962,40 +971,42 @@ FXBusDemo {
 				Out.ar(\out.kr, mix * \level.kr(1));
 			}).send(s);
 
-			// add a group to order our synths / nodes:
-			g = Group.new(s);
-
 			// define our source synth:
-			synths[\source] = SynthDef.new(\sourceBlip, {
+			SynthDef.new(\sourceBlip, {
 				var snd = LPF.ar(Saw.ar(\hz.kr(330)), \fchz.kr(800).clip(20,20000));
 				snd = snd * LagUD.ar(Impulse.ar(0.3), 0, 10);
 				Out.ar(\out.kr, snd * \level.kr(0.5));
-			}).play(target:g, addAction:\addToTail, args:[
-				\out, busses[\source]
-			]);
+			}).send(s);
 
-			// why are we syncing here? two reasons:
-			// 1. so the common SynthDefs above are present on the Server when requested
-			// 2. because the send synths below use \addToTail,
-			//   we need the Server to finish creating the source synth before they are added
+			// we're syncing here so that the SynthDefs above
+			//   is present on the Server when requested
 			s.sync;
 
+			// add a group to order our synths / nodes:
+			g = Group.new(s);
+
+			// instantiate our main synth:
+			synths[\source] = Synth.new(\sourceBlip,
+				target:g, addAction:\addToHead, args:[
+					\out, busses[\source]
+			]);
+
 			synths[\dry] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\main_out],
 					\level, 1.0
 			]);
 
 			synths[\delay_send] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\delay_send],
 					\level, 0.0
 			]);
 
 			synths[\reverb_send] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\reverb_send],
 					\level, 0.0
@@ -1004,28 +1015,22 @@ FXBusDemo {
 			synths[\delay] = SynthDef.new(\delay, {
 				arg in, out, dtime=0.2, level=1;
 				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, dtime, level));
-			}).play(target:g, addAction:\addToTail, args:[
+			}).play(target:synths[\delay_send], addAction:\addAfter, args:[
 				\in, busses[\delay_send], \out, busses[\main_out]
 			]);
 
 			synths[\reverb] = SynthDef.new(\reverb, {
 				arg in, out, level=1;
 				Out.ar(out, FreeVerb.ar(In.ar(in, 2), 1.0, 0.9, 0.1, level));
-			}).play(target:g, addAction:\addToTail, args:[
+			}).play(target:synths[\reverb_send], addAction:\addAfter, args:[
 				\in, busses[\reverb_send], \out, busses[\main_out]
 			]);
-
-			// again, we want the next synth to actually be added *after* all others
-			s.sync;
 
 			synths[\main_out] = Synth.new(\patch_main,
 				target:g, addAction:\addToTail, args: [
 					// NEW: send main out to analysis bus
 					\in, busses[\main_out], \out, busses[\analysis]
 			]);
-
-			// again, we want the next synth to actually be added *after* all others
-			s.sync;
 
 			// NEW: build a brightness tracker
 			synths[\brightness] = SynthDef.new(\brightnessTracker, {
@@ -1295,168 +1300,283 @@ function init()
     action = function(x)
       engine.set_level("delay_send", x)
     end,
-  })
+  })-- *transit authority*
+-- SuperCollider engine study 3
+-- monome.org
 
-  params:add({
-    type = "control",
-    id = "reverb_level",
-    name = "reverb level",
-    controlspec = cs_amp,
-    formatter = frm_percent,
-    action = function(x)
-      engine.set_level("reverb_send", x)
-    end,
-  })
+engine.name = "FXBusDemo"
+local formatters = require("formatters")
 
-  params:add({
-    type = "separator",
-    id = "pan_separator",
-    name = "panning",
-  })
+-- NEW: add LFO for additional movement:
+local lfo = require("lib/lfo")
 
-  params:add({
-    type = "control",
-    id = "dry_pan",
-    name = "dry",
-    controlspec = cs_pan,
-    formatter = formatters.bipolar_as_pan_widget,
-    action = function(x)
-      engine.set_pan("dry", x)
-    end,
-  })
+-- NEW: add sequins to sequence hz values
+local _s = require("sequins")
+local hz_vals = _s({ 300, 400, 400 / 3, 100, 300 / 2, 300 / 1.5 })
+local random_offset = { 0.5, 1.5, 2, 3, 1, 0.75 }
 
-  params:add({
-    type = "control",
-    id = "delay_pan",
-    name = "delay",
-    controlspec = cs_pan,
-    formatter = formatters.bipolar_as_pan_widget,
-    action = function(x)
-      engine.set_pan("delay_send", x)
-    end,
-  })
+-- NEW: add screen redraw variables
+local bright = 1
+local rad = 2
+local screen_dirty = true
+local hz = 330
 
-  params:add({
-    type = "control",
-    id = "reverb_pan",
-    name = "reverb",
-    controlspec = cs_pan,
-    formatter = formatters.bipolar_as_pan_widget,
-    action = function(x)
-      engine.set_pan("reverb_send", x)
-    end,
-  })
+function clock.tempo_change_handler(x)
+	engine.set_delay_time(clock.get_beat_sec() / 2)
+end
 
-  params:add({
-    type = "separator",
-    id = "main_eq_separator",
-    name = "main EQ",
-  })
+function init()
+	-- NEW: invoke our brightness poll //
+	brightness = poll.set("brightness_poll")
+	brightness.callback = function(val)
+		bright = util.round(util.linlin(20, 20000, 1, 15, val))
+		screen_dirty = true
+	end
+	brightness.time = 1 / 60
+	brightness:start()
+	-- // brightness poll
 
-  params:add({
-    type = "control",
-    id = "eq_lo",
-    name = "lo",
-    controlspec = cs_amp,
-    formatter = frm_percent,
-    action = function(x)
-      engine.set_main("ampLo", x)
-    end,
-  })
+	-- NEW: invoke our amp poll //
+	amp = poll.set("amp_poll")
+	amp.callback = function(val)
+		rad = util.round(util.linlin(0, 1, 2, 120, val))
+		screen_dirty = true
+	end
+	amp.time = 1 / 30
+	amp:start()
+	-- // amp poll
 
-  params:add({
-    type = "control",
-    id = "eq_mid",
-    name = "mid",
-    controlspec = cs_amp,
-    formatter = frm_percent,
-    action = function(x)
-      engine.set_main("ampMid", x)
-    end,
-  })
+	-- NEW: redraw at 60fps //
+	redraw_timer = metro.init(function()
+		if screen_dirty then
+			redraw()
+			screen_dirty = false
+		end
+	end, 1 / 60, -1)
+	redraw_timer:start()
+	-- // redraw
 
-  params:add({
-    type = "control",
-    id = "eq_hi",
-    name = "hi",
-    controlspec = cs_amp,
-    formatter = frm_percent,
-    action = function(x)
-      engine.set_main("ampHi", x)
-    end,
-  })
+	-- NEW: synth controls //
+	params:add({
+		type = "separator",
+		id = "synth_separator",
+		name = "synth",
+	})
 
-  params:add({
-    type = "control",
-    id = "fc1",
-    name = "lo freq",
-    controlspec = cs_fc1,
-    action = function(x)
-      engine.set_main("fc1", x)
-    end,
-  })
+	params:add({
+		type = "control",
+		id = "fchz",
+		name = "filter hz",
+		controlspec = controlspec.FREQ,
+		action = function(x)
+			if fchzLFO.enabled == 0 then
+				engine.set_synth("fchz", x)
+			end
+      fchz_raw = params:get_raw("fchz")
+		end,
+	})
+	-- // synth controls
 
-  params:add({
-    type = "control",
-    id = "fc2",
-    name = "hi freq",
-    controlspec = cs_fc2,
-    action = function(x)
-      engine.set_main("fc2", x)
-    end,
-  })
+	local cs_amp = controlspec.new(0, 2, "lin", 0.001, 1, nil, 1 / 200)
+	local cs_fc1 = controlspec.new(20, 20000, "exp", 0, 600, "Hz")
+	local cs_fc2 = controlspec.new(20, 20000, "exp", 0, 1800, "Hz")
+	local cs_pan = controlspec.new(-1, 1, "lin", 0.001, 0, nil, 1 / 200)
 
-  -- NEW: add 'fchz' LFO
-  fchzLFO = lfo:add({
-    shape = "sine", -- shape
-    min = -1, -- min
-    max = 1, -- max
-    depth = 0.6, -- depth (0 to 1)
-    mode = "clocked", -- mode
-    period = 1 / 3, -- period (in 'clocked' mode, represents 4/4 bars)
-    baseline = "center",
-    action = function()
-      params:lookup_param("fchz").action(calculate_bipolar_lfo_movement(fchzLFO, "fchz"))
-    end,
-  })
-  fchzLFO:add_params("myLFO", "lfo")
-  params:hide("lfo_min_myLFO")
-  params:hide("lfo_max_myLFO")
-  _menu.rebuild_params()
+	local frm_percent = function(param)
+		return ((param:get() * 100) .. "%")
+	end
 
-  startup_actions = clock.run(function()
-    clock.sleep(0.1)
-    params:set("delay_level", 1)
-    params:set("reverb_level", 0)
-    params:set("hz", 330)
-    params:set("fchz", 1500)
-    params:bang()
-    -- NEW: sequins clock
-    sequence = clock.run(function()
-      while true do
-        engine.set_synth("hz", hz_vals() * random_offset[math.random(#random_offset)])
-        clock.sync(1 / 4)
-      end
-    end)
-    fchzLFO:start() -- start our LFO, complements ':stop()'
-  end)
+	params:add({
+		type = "separator",
+		id = "levels_separator",
+		name = "levels",
+	})
+
+	params:add({
+		type = "control",
+		id = "dry_level",
+		name = "dry level",
+		controlspec = cs_amp,
+		formatter = frm_percent,
+		action = function(x)
+			engine.set_level("dry", x)
+		end,
+	})
+
+	params:add({
+		type = "control",
+		id = "delay_level",
+		name = "delay level",
+		controlspec = cs_amp,
+		formatter = frm_percent,
+		action = function(x)
+			engine.set_level("delay_send", x)
+		end,
+	})
+
+	params:add({
+		type = "control",
+		id = "reverb_level",
+		name = "reverb level",
+		controlspec = cs_amp,
+		formatter = frm_percent,
+		action = function(x)
+			engine.set_level("reverb_send", x)
+		end,
+	})
+
+	params:add({
+		type = "separator",
+		id = "pan_separator",
+		name = "panning",
+	})
+
+	params:add({
+		type = "control",
+		id = "dry_pan",
+		name = "dry",
+		controlspec = cs_pan,
+		formatter = formatters.bipolar_as_pan_widget,
+		action = function(x)
+			engine.set_pan("dry", x)
+		end,
+	})
+
+	params:add({
+		type = "control",
+		id = "delay_pan",
+		name = "delay",
+		controlspec = cs_pan,
+		formatter = formatters.bipolar_as_pan_widget,
+		action = function(x)
+			engine.set_pan("delay_send", x)
+		end,
+	})
+
+	params:add({
+		type = "control",
+		id = "reverb_pan",
+		name = "reverb",
+		controlspec = cs_pan,
+		formatter = formatters.bipolar_as_pan_widget,
+		action = function(x)
+			engine.set_pan("reverb_send", x)
+		end,
+	})
+
+	params:add({
+		type = "separator",
+		id = "main_eq_separator",
+		name = "main EQ",
+	})
+
+	params:add({
+		type = "control",
+		id = "eq_lo",
+		name = "lo",
+		controlspec = cs_amp,
+		formatter = frm_percent,
+		action = function(x)
+			engine.set_main("ampLo", x)
+		end,
+	})
+
+	params:add({
+		type = "control",
+		id = "eq_mid",
+		name = "mid",
+		controlspec = cs_amp,
+		formatter = frm_percent,
+		action = function(x)
+			engine.set_main("ampMid", x)
+		end,
+	})
+
+	params:add({
+		type = "control",
+		id = "eq_hi",
+		name = "hi",
+		controlspec = cs_amp,
+		formatter = frm_percent,
+		action = function(x)
+			engine.set_main("ampHi", x)
+		end,
+	})
+
+	params:add({
+		type = "control",
+		id = "fc1",
+		name = "lo freq",
+		controlspec = cs_fc1,
+		action = function(x)
+			engine.set_main("fc1", x)
+		end,
+	})
+
+	params:add({
+		type = "control",
+		id = "fc2",
+		name = "hi freq",
+		controlspec = cs_fc2,
+		action = function(x)
+			engine.set_main("fc2", x)
+		end,
+	})
+
+	-- NEW: add 'fchz' LFO
+  fchz_spec = params:lookup_param("fchz").controlspec
+	fchzLFO = lfo:add({
+		shape = "sine", -- shape
+		min = -1, -- min
+		max = 1, -- max
+		depth = 0.6, -- depth (0 to 1)
+		mode = "clocked", -- mode
+		period = 1 / 3, -- period (in 'clocked' mode, represents 4/4 bars)
+		baseline = "center",
+		action = function()
+			engine.set_synth(
+        "fchz",
+        calculate_bipolar_lfo_movement(fchzLFO, "fchz")
+      )
+		end,
+	})
+	fchzLFO:add_params("myLFO", "lfo")
+	params:hide("lfo_min_myLFO")
+	params:hide("lfo_max_myLFO")
+	_menu.rebuild_params()
+
+	startup_actions = clock.run(function()
+		clock.sleep(0.1)
+		params:set("delay_level", 1)
+		params:set("reverb_level", 0)
+		params:set("fchz", 1500)
+		params:bang()
+		-- NEW: sequins clock
+		sequence = clock.run(function()
+			while true do
+				engine.set_synth("hz", hz_vals() * random_offset[math.random(#random_offset)])
+				clock.sync(1 / 4)
+			end
+		end)
+		fchzLFO:start() -- start our LFO, complements ':stop()'
+	end)
 end
 
 function calculate_bipolar_lfo_movement(lfoID, paramID)
-  if lfoID:get("depth") > 0 then
-    return params:lookup_param(paramID).controlspec:map(lfoID:get("scaled") / 2 + params:get_raw(paramID))
-  else
-    return params:lookup_param(paramID).controlspec:map(params:get_raw(paramID))
-  end
+	if lfoID:get("depth") > 0 then
+		return fchz_spec:map(lfoID:get("scaled") / 2 + fchz_raw)
+	else
+		return fchz_spec:map(fchz_raw)
+	end
 end
 
 -- NEW: draw to screen //
 function redraw()
-  screen.clear()
-  screen.level(bright)
-  screen.circle(64, 32, rad)
-  screen.fill()
-  screen.update()
+	screen.clear()
+	screen.level(bright)
+	screen.circle(64, 32, rad)
+	screen.fill()
+	screen.update()
 end
 -- // draw to screen
 ```

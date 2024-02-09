@@ -50,38 +50,42 @@ FXBusDemo {
 				Out.ar(\out.kr, mix * \level.kr(1));
 			}).send(s);
 
-			// add a group to order our synths / nodes:
-			g = Group.new(s);
-
 			// define our source synth:
-			synths[\source] = SynthDef.new(\sourceBlip, {
+			SynthDef.new(\sourceBlip, {
 				var snd = LPF.ar(Saw.ar(\hz.kr(330)), \fchz.kr(800).clip(20,20000));
 				snd = snd * LagUD.ar(Impulse.ar(0.3), 0, 10);
 				Out.ar(\out.kr, snd * \level.kr(0.5));
-			}).play(target:g, addAction:\addToTail, args:[
-				\out, busses[\source]
-			]);
+			}).send(s);
 
-			// we're syncing here so that the SynthDef above
+			// we're syncing here so that the SynthDefs above
 			//   is present on the Server when requested
 			s.sync;
 
+			// add a group to order our synths / nodes:
+			g = Group.new(s);
+
+			// instantiate our main synth:
+			synths[\source] = Synth.new(\sourceBlip,
+				target:g, addAction:\addToHead, args:[
+					\out, busses[\source]
+			]);
+
 			synths[\dry] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\main_out],
 					\level, 1.0
 			]);
 
 			synths[\delay_send] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\delay_send],
 					\level, 0.0
 			]);
 
 			synths[\reverb_send] = Synth.new(\patch_pan,
-				target:g, addAction:\addToTail, args:[
+				target:synths[\source], addAction:\addAfter, args:[
 					\in, busses[\source],
 					\out, busses[\reverb_send],
 					\level, 0.0
@@ -90,20 +94,16 @@ FXBusDemo {
 			synths[\delay] = SynthDef.new(\delay, {
 				arg in, out, dtime=0.2, level=1;
 				Out.ar(out, DelayC.ar(In.ar(in, 2), 1.0, dtime, level));
-			}).play(target:g, addAction:\addToTail, args:[
+			}).play(target:synths[\delay_send], addAction:\addAfter, args:[
 				\in, busses[\delay_send], \out, busses[\main_out]
 			]);
 
 			synths[\reverb] = SynthDef.new(\reverb, {
 				arg in, out, level=1;
 				Out.ar(out, FreeVerb.ar(In.ar(in, 2), 1.0, 0.9, 0.1, level));
-			}).play(target:g, addAction:\addToTail, args:[
+			}).play(target:synths[\reverb_send], addAction:\addAfter, args:[
 				\in, busses[\reverb_send], \out, busses[\main_out]
 			]);
-
-			// we're syncing here so that the SynthDefs above
-			//   are present on the Server when requested
-			s.sync;
 
 			synths[\main_out] = Synth.new(\patch_main,
 				target:g, addAction:\addToTail, args: [

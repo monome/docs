@@ -159,7 +159,7 @@ Follow along with the dissassembly video [here](https://vimeo.com/523980765). Re
 
 If your shield does not seem to be booting, the first thing to check is if the "startup tone" is occurring from your shield's output. Connect headphones or a speaker to shield's output (demarcated by the outward-facing arrow) and power it up -- within 20 seconds or so, you should hear a sine-like tone which indicates the norns OS has been successfully loaded.
 
-If you do not hear a startup tone, the norns OS is not booting. The best next step is re-flashing your SD card following [these steps](../shield/#flashing-microsd-card).
+If you do not hear a startup tone, the norns OS is not booting. The best next step is re-flashing your SD card following [these steps](/docs/norns/shield/#flashing-microsd-card).
 
 - If you do not hear a startup tone after a successful re-flash, we recommend confirming that your Raspberry Pi is operational. The easiest way to do this is to remove the Pi from the shield, attach it to an HDMI monitor/TV, and power the Pi separately. If the Pi is operational, you'll see a rainbow square on your monitor/TV.
   - If your Pi is operational, your shield might require repair/re-touching. See the *`next steps`* section below.

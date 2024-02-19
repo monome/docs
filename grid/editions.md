@@ -55,7 +55,7 @@ white LEDs (monobright), silicone over steel enclosure, framed aluminum plate. t
 
 ### “series” 64, 128, 256 -- 2007-2010
 
-smaller keypads than the 40h. mitred-frame walnut enclosure, plate embedded/framed within enclosure, orange LEDs (monobright). rubber “noodle” slip guard on bottom. burned brand “monome” on bottom. 256 and 128 shipped with external power supply. bus power upgrade offered later. 64 bus powered and included tilt sensor. 256 and 128 not tilt upgradeable.
+smaller keypads than the 40h. mitred-frame walnut enclosure, plate embedded/framed within enclosure, orange LEDs (monobright). rubber “noodle” slip guard on bottom. burned brand “monome” on bottom. 256 and 128 shipped with external power supply (center positive 2.1mm, 9V at least 1A). bus power upgrade offered later. 64 bus powered and included tilt sensor. 256 and 128 not tilt upgradeable.
 
 ### 40h kit -- 2007-2010
 

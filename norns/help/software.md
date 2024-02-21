@@ -32,30 +32,6 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 {:toc}
 </details>
 
-## system logs {#logs}
-
-### gathering logs
-
-In the event of an inexplicable issue, norns can dump the output of its logging mechanism to a text file. Logs capture the current and previous boots, which includes matron, SuperCollider, and operating system messages. Navigate to `SYSTEM > LOG` and press K3 -- this will create a file at `dust/data/system.log` which can then be copied via maiden or downloaded via [SMB](/docs/norns/wifi-files/#transfer) or [SFTP](/docs/norns/advanced-access/#sftp).
-
-This information can be extremely helpful for community script authors, since it will reliably present any script-level errors, which can be difficult to capture through maiden's REPL window.
-
-If you have a recurring issue which you believe is hardware or system failure, unrelated to any script, please include this file with your support request to help@monome.org
-
-### deeper realtime debugging
-
-We'll see errors from the running script print to [maiden's REPL](https://monome.org/docs/norns/maiden/#repl). But since maiden only allows us to scroll back through a limited history and occasionally will suppress errors (for example if we're [developing a mod](https://monome.org/docs/norns/community-scripts/#mods)), that sometimes won't be enough.
-
-If we want to see a more encompassing realtime view of error messages from the running script, mods, and SuperCollider, we can log into our our norns directly via [SSH](/docs/norns/advanced-access/#ssh) and issue the following command:
-
-```
-journalctl -f
-```
-
-This will not only show the last few system messages (including errors), but it will update as new ones occur.
-
-When we're done, we can close the stream by hitting `Ctrl+C`. Be sure to also close the SSH connection to your norns by executing `exit`.
-
 ## recovering from freezes {#frozen}
 
 If you experience a freeze that you can't recover from, there's a special button combination which will gently restart the software.

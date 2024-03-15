@@ -56,6 +56,28 @@ If multiple attempts of this combination fail, these options are last resorts:
 Use the brute-force approach only if you cannot recover using the suggested method
 {: .label .label-grey}
 
+## screen unresponsive after update {#update-failed}
+
+If a system update fails, norns may not be able to boot completely and you will be met with a black screen after the sine-like startup tone. Despite having a black screen, you’ll still have WIFI access, which will allow us to re-run the update using [SSH](/docs/norns/advanced-access/):
+
+- navigate to the [latest norns release](https://github.com/monome/norns/releases/latest)
+- find the `.tgz` Asset and copy its web address, eg. `https://github.com/monome/norns/releases/download/v2.8.2/norns240221.tgz`
+- open a terminal
+- execute: `ssh we@norns.local`
+- type in your password (which is *sleep*, unless you've changed it)
+
+Once connected, execute the following commands one line at a time:
+
+- change to the update directory: `cd update`
+- download the release file via the Asset's web address: `wget https://github.com/monome/norns/releases/download/v2.8.2/norns240221.tgz`
+  - be sure to change the URL to the one you copied in the steps above!
+- unpack the update file (which is formatted as `nornsYYMMDD.tgz`): `tar xzvf norns240221.tgz`
+  - be sure to change the filename to match the one you're working with!
+- change directory to the numeric update identifier: `cd 240221`
+  - be sure to change the numeric update identifier to match the one you're working with!
+- run the update script: `./update.sh`
+- reboot norns: `sudo reboot now`
+
 ## adding + updating scripts {#update-scripts}
 
 maiden (the web-based editor built into norns) features a [project manager](../maiden/#project-manager) to help facilitate project discovery, installation, and upgrades.

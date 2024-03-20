@@ -22,7 +22,7 @@ Comprehensive lessons on individual elements of norns scripting. Through these r
 {:toc}
 </details>
 
-### norns: core concepts
+### core concepts
 
 Tutorials written by monome.
 
@@ -30,19 +30,28 @@ Tutorials written by monome.
 
 **For the best learning experience, we recommend one lesson per week.** A slower pace makes it easier to experiment and uncover the simplicity + musicality of the underlying code.
 
+**norns: introductory studies**
+
 - [first light](../study-0/) // learning to see. edit a script.
 - [many tomorrows](../study-1/) // variables, simple maths, keys + encoders
 - [patterning](../study-2/) // screen drawing, for/while loops, tables
 - [spacetime](../study-3/) // functions, parameters, time
 - [physical](../study-4/) // incorporating grids, midi, clock syncing
 - [streams](../study-5/) // system polls, osc, file storage
+
+**norns: extended API techniques**
+
 - [softcut](../softcut/) // a multi-voice sample playback and recording system built into norns
 - [clocks](../clocks/) // create timed and clock-synced function calls: loops, repetition, and delays
 - [grid recipes](../grid-recipes/) // short snippets of code for canonical grid interactions
-- [rude mechanicals](../engine-study-1/) // introduction to building norns engines with SuperCollider
-- [skilled labor](../engine-study-2/) // extended study of norns engine development
 
-### norns: contributed knowledge
+**norns: SuperCollder**
+
+- [rude mechanicals](../engine-study-1/) // introduction to building norns engines with SuperCollider and Lua
+- [skilled labor](../engine-study-2/) // extended study of norns engine development: polyphony and realtime parameter changes
+- [transit authority](../engine-study-3/) // deep-dive into audio busses, FX, and polls (to communicate from SuperCollider to Lua)
+
+### contributed knowledge
 
 Resources developed by other learners, script authors, and designers from our community.
 
@@ -56,7 +65,7 @@ Resources developed by other learners, script authors, and designers from our co
 
 SuperCollider is a free and open-source platform for making sound, which powers the synthesis layer of norns. Many norns scripts are a combination of SuperCollider (where a synthesis engine is defined) and Lua (where the hardware + UI interactions are defined). SuperCollider can be run on most any computer -- you do not need a norns to dig into these resources!
 
-For those who want to explore creating new synthesis engines for norns, we've developed [rude mechanicals](../engine-study-1/) and [skilled labor](../engine-study-2/), two studies which walk through building a norns engine from scratch with SuperCollider and Lua.
+For those who want to explore creating new synthesis engines for norns, we've developed [rude mechanicals](../engine-study-1/), [skilled labor](../engine-study-2/), and [transit authority](../engine-study-3/). These studies walk through building norns engines from scratch with SuperCollider and Lua, as well as showcasing extended techniques for audio routing and bi-directional communication between SuperCollider and Lua.
 
 We also highly recommend:
 

@@ -234,7 +234,7 @@ Of note in this example:
 <details closed markdown="block">
 
 <summary>
-`FXBusDemo.sc`
+FXBusDemo.sc
 </summary>
 ```js
 // SC Bus exercise 2
@@ -464,7 +464,7 @@ setMain { arg key, val;
 
 <details closed markdown="block">
 <summary>
-Our new `FXBusDemo.sc`
+Our new FXBusDemo.sc
 </summary>
 
 ```js
@@ -647,7 +647,7 @@ As in our previous studies, we'll now construct a norns engine from this SuperCo
 Just for review: a norns engine an instance of the built-in [CroneEngine Class](https://github.com/monome/norns/blob/main/sc/core/CroneEngine.sc), which gives a standardized structure to shuttle meaningful commands and their values between Supercollider and Lua.
 
 <details>
-<summary>`Engine_FXBusDemo.sc`</summary>
+<summary>Engine_FXBusDemo.sc</summary>
 
 ```js
 Engine_FXBusDemo : CroneEngine {
@@ -713,7 +713,7 @@ Engine_FXBusDemo : CroneEngine {
 Let's create a script which engages our `FXBusDemo` engine and builds some norns parameters to control it.
 
 <details>
-<summary>`engine-study-3.lua`</summary>
+<summary>engine-study-3.lua</summary>
 
 ```lua
 -- norns engine study 3: Busses

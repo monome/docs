@@ -72,9 +72,9 @@ Let's first demonstrate how Busses can be used to shuttle signals around the Ser
 
 ### formatting
 
-In this study, we'll be demonstrating a slightly different formatting for arguments in this study than the previous two chapters.
+In this study, we'll demonstrate a slightly different formatting for arguments than the previous two chapters.
 
-Previously, we established all of our arguments at the start of the SynthDef. For example:
+In *rude mechanicals* and *skilled labor*, we established all of our arguments at the start of the SynthDef. For example:
 
 ```js
 SynthDef("source", {
@@ -86,7 +86,7 @@ SynthDef("source", {
 }).add;
 ```
 
-In this study, we'll showcase a slightly different but totally synonymous argument formatting, using `.kr` (signifying a continuous control rate signal):
+In *this* study, we'll showcase a slightly different but totally-synonymous argument formatting, using `.kr` (signifying a continuous control rate signal):
 
 ```js
 SynthDef("source", {
@@ -97,7 +97,7 @@ SynthDef("source", {
 }).add;
 ```
 
-We like this `.kr` formatting because it quickly draws attention to all the places where an argument gets utilized in the code.
+This `.kr` formatting quickly draws attention to all the places where an argument gets utilized in the code.
 
 ### building some sends
 
@@ -131,7 +131,7 @@ Routine{
 
 	// define our source sound:
 	SynthDef("source", {
-		var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8)).clip(20,20000);
+		var snd = LPF.ar(Saw.ar(\hz.kr(330)), (\hz.kr(330)*8).clip(20,20000));
 		snd = snd * LagUD.ar(Impulse.ar(2), 0, 2);
 
 		Out.ar(\outMain.kr, (snd * \levelMain.kr(1)).dup); // .dup = send stereo signal
@@ -392,7 +392,7 @@ x.setHz(330*0.75);
 
 #### side-quest: adding a DJ-style isolator {#sidequest}
 
-*nb. many thanks to Ezra for their assistance with this topic!*
+*nb. many thanks to Ezra for their expertise with and examples for this topic!*
 
 Adventures in reproducing hardware are very rewarding in SuperCollider -- they allow us to concretize our understanding of the devices we'd like to model and expand our understanding of DSP theory. So, before we move into polls, let's round out our final audio stage with a [DJ-style isolator](https://djtechtools.com/2011/12/11/an-introduction-to-mixing-with-dj-isolator-mixers/).
 
@@ -432,7 +432,7 @@ z.set(\ampMid,1);
 z.set(\ampHi,1);
 ```
 
-To add this functionality, we'll adjust `\patch_main`:
+To add this functionality to `FXBusDemo.sc`, we'll adjust our `\patch_main` SynthDef (line 31):
 
 ```js
 SynthDef.new(\patch_main, {
@@ -454,7 +454,7 @@ SynthDef.new(\patch_main, {
 }).send(s);
 ```
 
-And to control it, we'll add a `setMain` command:
+And to control it, we'll add a `setMain` command (after `setHz`):
 
 ```js
 setMain { arg key, val;
@@ -642,6 +642,8 @@ x.setMain(\ampHi,1);
 
 As in our previous studies, we'll now construct a norns engine from this SuperCollider Class file.
 
+### building our engine file
+
 Just for review: a norns engine an instance of the built-in [CroneEngine Class](https://github.com/monome/norns/blob/main/sc/core/CroneEngine.sc), which gives a standardized structure to shuttle meaningful commands and their values between Supercollider and Lua.
 
 <details>
@@ -706,27 +708,12 @@ Engine_FXBusDemo : CroneEngine {
 ```
 </details>
 
-### bring it all onto norns
-
-Let's get our SuperCollider files onto norns and test things out.
-
-Connect to norns via [one of the transfer methods](/docs/norns/wifi-files/#transfer).  
-
-If you completed the [rude mechanicals](/docs/norns/engine-study-1/) study, then simply navigate to your `code/engine_study/lib` folder on norns.  
-
-If you didn't complete the previous study:
-
-- create a folder inside of `code` named `engine_study`
-- create a folder inside of `engine_study` named `lib`
-
-Under `lib`, we'll want to drop in copies of our `FXBusDemo.sc` and `Engine_FXBusDemo.sc` files. Once they're imported, use `SYSTEM > RESTART` on norns to recompile its SuperCollider library and get the Lua layer synced with the new engine files.
-
 ### building our Lua file
 
-Let's build a script which engages our `FXBusDemo` engine and builds some norns parameters to control it.
+Let's create a script which engages our `FXBusDemo` engine and builds some norns parameters to control it.
 
 <details>
-<summary>`engine_study_3.lua`</summary>
+<summary>`engine-study-3.lua`</summary>
 
 ```lua
 -- norns engine study 3: Busses
@@ -888,6 +875,18 @@ function init()
 end
 ```
 </details>
+
+### bring it all onto norns
+
+Let's get our SuperCollider and Lua files onto norns and test things out:
+
+- connect to norns via [one of the transfer methods](/docs/norns/wifi-files/#transfer)
+- create a folder inside of `code` named `engine-study-3`
+- create a folder inside of `engine-study-3` named `lib`
+- under `engine-study-3`, import a copy of `engine-study-3.lua`
+- under `engine-study-3/lib`, import copies of `FXBusDemo.sc` and `Engine_FXBusDemo.sc`
+- once they're imported, use `SYSTEM > RESTART` on norns to recompile its SuperCollider library and get the Lua layer synced with the new engine files!
+
 
 Alright, take a break! You've done a lot of typing and experimenting for one sitting. We'll see you back here soon.
 
@@ -1091,7 +1090,7 @@ FXBusDemo {
 
 Returning to our `Engine_FXBusDemo.sc` file, we'll do the following:
 
-- use `this.addPoll` to add our brightness and amplitude polls
+- use `this.addPoll` to add our brightness and amplitude polls (see the [`poll` extended reference](/docs/norns/reference/poll#writing-your-own-polls) for additional information)
 - use [SuperCollider's `.getSynchronous` method](https://doc.sccode.org/Classes/Bus.html#-getSynchronous) to grab the value of the `busses[\brightness]` and `busses[\amp]` control busses
 
 <details>
@@ -1189,131 +1188,9 @@ local formatters = require("formatters")
 local lfo = require("lib/lfo")
 
 -- NEW: add sequins to sequence hz values
-local _s = require("sequins")
-local hz_vals = _s({ 300, 400, 400 / 3, 100, 300 / 2, 300 / 1.5 })
-local random_offset = { 0.5, 1.5, 2, 3, 1, 0.75 }
-
--- NEW: add screen redraw variables
-local bright = 1
-local rad = 2
-local screen_dirty = true
-local hz = 330
-local fchz = 800
-
-function clock.tempo_change_handler(x)
-  engine.set_delay_time(clock.get_beat_sec()/2)
-end
-
-function init()
-  -- NEW: invoke our brightness poll //
-  brightness = poll.set("brightness_poll")
-  brightness.callback = function(val)
-    bright = util.round(util.linlin(20, 20000, 1, 15, val))
-    screen_dirty = true
-  end
-  brightness.time = 1 / 60
-  brightness:start()
-  -- // brightness poll
-
-  -- NEW: invoke our amp poll //
-  amp = poll.set("amp_poll")
-  amp.callback = function(val)
-    rad = util.round(util.linlin(0, 1, 2, 120, val))
-    screen_dirty = true
-  end
-  amp.time = 1 / 30
-  amp:start()
-  -- // amp poll
-
-  -- NEW: redraw at 60fps //
-  redraw_timer = metro.init(function()
-    if screen_dirty then
-      redraw()
-      screen_dirty = false
-    end
-  end, 1 / 60, -1)
-  redraw_timer:start()
-  -- // redraw
-
-  -- NEW: synth controls //
-  params:add({
-    type = "separator",
-    id = "synth_separator",
-    name = "synth",
-  })
-
-  params:add({
-    type = "control",
-    id = "hz",
-    name = "synth hz",
-    controlspec = controlspec.MIDFREQ,
-    action = function(x)
-      engine.set_synth("hz", x)
-      hz = x
-    end,
-  })
-
-  params:add({
-    type = "control",
-    id = "fchz",
-    name = "filter hz",
-    controlspec = controlspec.FREQ,
-    action = function(x)
-      engine.set_synth("fchz", x)
-      fchz = x
-    end,
-  })
-  -- // synth controls
-
-  local cs_amp = controlspec.new(0, 2, "lin", 0.001, 1, nil, 1 / 200)
-  local cs_fc1 = controlspec.new(20, 20000, "exp", 0, 600, "Hz")
-  local cs_fc2 = controlspec.new(20, 20000, "exp", 0, 1800, "Hz")
-  local cs_pan = controlspec.new(-1, 1, "lin", 0.001, 0, nil, 1 / 200)
-
-  local frm_percent = function(param)
-    return ((param:get() * 100) .. "%")
-  end
-
-  params:add({
-    type = "separator",
-    id = "levels_separator",
-    name = "levels",
-  })
-
-  params:add({
-    type = "control",
-    id = "dry_level",
-    name = "dry level",
-    controlspec = cs_amp,
-    formatter = frm_percent,
-    action = function(x)
-      engine.set_level("dry", x)
-    end,
-  })
-
-  params:add({
-    type = "control",
-    id = "delay_level",
-    name = "delay level",
-    controlspec = cs_amp,
-    formatter = frm_percent,
-    action = function(x)
-      engine.set_level("delay_send", x)
-    end,
-  })-- *transit authority*
--- SuperCollider engine study 3
--- monome.org
-
-engine.name = "FXBusDemo"
-local formatters = require("formatters")
-
--- NEW: add LFO for additional movement:
-local lfo = require("lib/lfo")
-
--- NEW: add sequins to sequence hz values
-local _s = require("sequins")
-local hz_vals = _s({ 300, 400, 400 / 3, 100, 300 / 2, 300 / 1.5 })
-local random_offset = { 0.5, 1.5, 2, 3, 1, 0.75 }
+_s = require("sequins")
+hz_vals = _s({ 300, 400, 400 / 3, 100, 300 / 2, 300 / 1.5 })
+random_offset = { 0.5, 1.5, 2, 3, 1, 0.75 }
 
 -- NEW: add screen redraw variables
 local bright = 1
@@ -1372,7 +1249,7 @@ function init()
 			if fchzLFO.enabled == 0 then
 				engine.set_synth("fchz", x)
 			end
-      fchz_raw = params:get_raw("fchz")
+			fchz_raw = params:get_raw("fchz")
 		end,
 	})
 	-- // synth controls
@@ -1524,7 +1401,7 @@ function init()
 	})
 
 	-- NEW: add 'fchz' LFO
-  fchz_spec = params:lookup_param("fchz").controlspec
+	fchz_spec = params:lookup_param("fchz").controlspec
 	fchzLFO = lfo:add({
 		shape = "sine", -- shape
 		min = -1, -- min
@@ -1534,10 +1411,7 @@ function init()
 		period = 1 / 3, -- period (in 'clocked' mode, represents 4/4 bars)
 		baseline = "center",
 		action = function()
-			engine.set_synth(
-        "fchz",
-        calculate_bipolar_lfo_movement(fchzLFO, "fchz")
-      )
+			engine.set_synth("fchz", calculate_bipolar_lfo_movement(fchzLFO, "fchz"))
 		end,
 	})
 	fchzLFO:add_params("myLFO", "lfo")
@@ -1597,7 +1471,7 @@ To continue exploring and creating new synthesis engines for norns, we highly re
 
 -  Zack Scholl's incredible resources for SuperCollider and norns explorations:
 	-  [Tone to Drone](https://musichackspace.org/product/tone-to-drone-introduction-to-supercollider-for-monome-norns/)
-	-  [Ample Samples](https://musichackspace.org/product/ample-samples-introduction-to-supercollider-for-monome-norns/
+	-  [Ample Samples](https://musichackspace.org/product/ample-samples-introduction-to-supercollider-for-monome-norns/)
   - [Zack's #supercollider blog entries](https://schollz.com/tags/supercollider/)
 - [Eli Fieldsteel's *fantastic* YouTube series](https://youtu.be/yRzsOOiJ_p4)
 - Nathan Ho’s [collected SuperCollider tips](https://nathan.ho.name/posts/supercollider-tips/)

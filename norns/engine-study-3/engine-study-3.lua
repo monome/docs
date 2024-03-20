@@ -9,9 +9,9 @@ local formatters = require("formatters")
 local lfo = require("lib/lfo")
 
 -- NEW: add sequins to sequence hz values
-local _s = require("sequins")
-local hz_vals = _s({ 300, 400, 400 / 3, 100, 300 / 2, 300 / 1.5 })
-local random_offset = { 0.5, 1.5, 2, 3, 1, 0.75 }
+_s = require("sequins")
+hz_vals = _s({ 300, 400, 400 / 3, 100, 300 / 2, 300 / 1.5 })
+random_offset = { 0.5, 1.5, 2, 3, 1, 0.75 }
 
 -- NEW: add screen redraw variables
 local bright = 1
@@ -70,7 +70,7 @@ function init()
 			if fchzLFO.enabled == 0 then
 				engine.set_synth("fchz", x)
 			end
-      fchz_raw = params:get_raw("fchz")
+			fchz_raw = params:get_raw("fchz")
 		end,
 	})
 	-- // synth controls
@@ -222,7 +222,7 @@ function init()
 	})
 
 	-- NEW: add 'fchz' LFO
-  fchz_spec = params:lookup_param("fchz").controlspec
+	fchz_spec = params:lookup_param("fchz").controlspec
 	fchzLFO = lfo:add({
 		shape = "sine", -- shape
 		min = -1, -- min
@@ -232,10 +232,7 @@ function init()
 		period = 1 / 3, -- period (in 'clocked' mode, represents 4/4 bars)
 		baseline = "center",
 		action = function()
-			engine.set_synth(
-        "fchz",
-        calculate_bipolar_lfo_movement(fchzLFO, "fchz")
-      )
+			engine.set_synth("fchz", calculate_bipolar_lfo_movement(fchzLFO, "fchz"))
 		end,
 	})
 	fchzLFO:add_params("myLFO", "lfo")

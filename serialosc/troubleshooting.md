@@ -53,7 +53,7 @@ This section assume two things are true:
 
 #### Still not working?
 
-- First, please try [re-installing serialosc](setup). Note that if you did not previously install serialosc via homebrew, then you will need to remove any existing installations before proceeding.
+- First, please try [re-installing serialosc](/docs/serialosc/setup). Note that if you did not previously install serialosc via homebrew, then you will need to remove any existing installations before proceeding.
 - Do you have TouchOSC Bridge or TouchOSC Editor installed? Try removing them and installing [the latest versions](https://hexler.net/products/touchosc). You should be able to run both TouchOSC and serialosc, but we've found that reinstalling the TouchOSC software is necessary in some situations.
 - Do you have any Wacom drivers installed? Please follow [these removal steps](https://www.wacom.com/en-in/support?guideTitle=How-do-I-uninstall-(manually)-and-re-install-the-Wacom-driver-on-Mac-OS-for-a-Pen-Tablet%2C-Pen-Display%2C-or-Pen-Computer%3F&guideId=002-235), as we've found that these drivers can block serialosc.
 - Try the "uninstalling d2xx drivers" steps from [page 18 of this guide](https://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf) and try installing [the FTDI driver](https://ftdichip.com/drivers/vcp-drivers/) manually.

@@ -646,8 +646,11 @@ As in our previous studies, we'll now construct a norns engine from this SuperCo
 
 Just for review: a norns engine an instance of the built-in [CroneEngine Class](https://github.com/monome/norns/blob/main/sc/core/CroneEngine.sc), which gives a standardized structure to shuttle meaningful commands and their values between Supercollider and Lua.
 
-<details>
-<summary>Engine_FXBusDemo.sc</summary>
+<details closed markdown="block">
+
+<summary>
+Engine_FXBusDemo.sc
+</summary>
 
 ```js
 Engine_FXBusDemo : CroneEngine {
@@ -712,8 +715,11 @@ Engine_FXBusDemo : CroneEngine {
 
 Let's create a script which engages our `FXBusDemo` engine and builds some norns parameters to control it.
 
-<details>
-<summary>engine-study-3.lua</summary>
+<details closed markdown="block">
+
+<summary>
+engine-study-3.lua
+</summary>
 
 ```lua
 -- norns engine study 3: Busses
@@ -914,8 +920,13 @@ Returning to our `FXBusDemo.sc` Class file, we'll do the following:
 - build a SynthDef using the [`SpecCentroid` UGen](https://doc.sccode.org/Classes/SpecCentroid.html)
 - send our brightness analysis to a Lua-accessible poll
 
-<details>
-<summary>Here's our final `FXBusDemo.sc` file ([download](/docs/norns/engine-study-3/lib/FXBusDemo.sc))</summary>
+[Here's our final `FXBusDemo.sc` file](/docs/norns/engine-study-3/lib/FXBusDemo.sc)
+
+<details closed markdown="block">
+
+<summary>
+FXBusDemo.sc
+</summary>
 
 ```js
 // SC Bus exercise 4: polls
@@ -1093,8 +1104,13 @@ Returning to our `Engine_FXBusDemo.sc` file, we'll do the following:
 - use `this.addPoll` to add our brightness and amplitude polls (see the [`poll` extended reference](/docs/norns/reference/poll#writing-your-own-polls) for additional information)
 - use [SuperCollider's `.getSynchronous` method](https://doc.sccode.org/Classes/Bus.html#-getSynchronous) to grab the value of the `busses[\brightness]` and `busses[\amp]` control busses
 
-<details>
-<summary>Here's our final `Engine_FXBusDemo.sc` file ([download](/docs/norns/engine-study-3/lib/Engine_FXBusDemo.sc))</summary>
+[Here's our final `Engine_FXBusDemo.sc` file](/docs/norns/engine-study-3/lib/Engine_FXBusDemo.sc)
+
+<details closed markdown="block">
+
+<summary>
+Engine_FXBusDemo.sc
+</summary>
 
 ```js
 Engine_FXBusDemo : CroneEngine {
@@ -1173,8 +1189,13 @@ Returning to our `engine-study-3.lua` file, we'll do the following:
 - draw a circle to the screen based on the synth's brightness and amplitude
 - add LFO's to control our synth voice's filter cutoff value
 
-<details>
-<summary>Here's our final `engine-study-3.lua` file ([download](/docs/norns/engine-study-3/engine-study-3.lua))</summary>
+[Here's our final `engine-study-3.lua` file](/docs/norns/engine-study-3/engine-study-3.lua)
+
+<details closed markdown="block">
+
+<summary>
+engine-study-3.lua
+</summary>
 
 ```lua
 -- *transit authority*

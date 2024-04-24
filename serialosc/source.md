@@ -22,6 +22,8 @@ cd serialosc
 ./waf
 sudo ./waf install
 cd ..
+
+sudo ldconfig
 ```
 
 To run serialosc, execute `serialoscd`.

@@ -2,7 +2,7 @@
 layout: default
 parent: norns
 title: help
-nav_order: 6
+nav_order: 8
 ---
 
 # norns: help

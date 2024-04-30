@@ -1,6 +1,6 @@
 ---
 layout: default
-title: community scripts + mods
+title: community scripts
 parent: norns
 nav_order: 4
 redirect_from: /norns/app/
@@ -14,35 +14,56 @@ Since its release in 2018, norns has grown beyond our earliest imaginings: new f
 
 ![](/docs/norns/image/community_scripts-images/norns-community.png)
 
-## mods: community modifications {#mods}
+## contribute & gather
 
-With norns update `210927` (September 27 2021), a *mods* system was introduced by `@ngwese`.
+The norns ecosystem was created with community as a focus. The exchange of ideas leads to new ideas. As such, you are encouraged to share your creations with the community.
 
-Mods are small chunks of code to create custom modifications to the core workings of the norns system software. Mods are features which modify the basic functionality of norns, for all scripts, but is a feature which isn't necessary to include in the foundational norns codebase.
+The first step is to host the sources of your script publicly, either as a git repository (e.g. on GitHub, GitLab ...) or web-hosted zip archive.
 
-A mod lives in the `dust` folder just like standard norns scripts. Unlike norns scripts, the code in a mod is loaded by matron when it starts up. Mods can modify or extend the Lua environment globally such that the changes are visible to all scripts. Full developer documentation is forthcoming, though this [example mod](https://github.com/monome/norns-example-mod) lays out the basics.
+Be sure you include the following block of information at the top of your script. It will serve as a brief documentation when launching it from norns.
 
-### installing a mod
+```lua
+-- scriptname
+-- v1.0.0 @author
+-- llllllll.co/t/22222
+--
+-- short script description
+--
+-- short usage instructions
+```
 
-To install a mod, we'll make use of maiden's [fetch](../maiden/#fetch) feature.
+Then, create a new thread under the [norns Library on lines](https://llllllll.co/c/library).
 
-- find a mod you wish to install
-	- eg. [gridkeys](https://llllllll.co/t/gridkeys-mod/49431), a mod to use a grid as a MIDI keyboard for any norns script
-- copy the URL for the mod's GitHub repository
-	- eg. `https://github.com/p3r7/gridkeys`
-- in maiden's command line, type `;install` and paste the URL
-	- eg. `;install https://github.com/p3r7/gridkeys`
-- restart norns using `SYSTEM > RESTART`
+The URL in your script's brief documentation should point to its corresponding lines Library thread. There's a chicken-egg situation with starting a thread and uploading the project, so you may want to edit and upload your project just after creating a thread.
+{: .label}
 
-### enabling / disabling a mod
+### community repo
 
-By their very nature, mods can have a negative impact on system stability or make system level changes which may not be universally welcome. Even if installed, a mod will *by default* start as unloaded. One must explicitly enable a mod and restart norns before its functionality will be available.
+So that anyone can do a one-click install using maiden, we encourage you to register your script in the [community project repo](https://github.com/monome/norns-community/blob/main/community.json). Please submit a pull request with the following information:
 
-To enable a mod, visit `SYSTEM > MODS` to see the list of installed mods. Mods which are loaded will have a small dot to the left of their name. Use <kbd>E2</kbd> to selected an item in the list and then use <kbd>E3</kbd> to enable or disable as appropriate. Unloaded mods will show a `+` to the right their name to indicate that they will be enabled (and thus loaded) on restart. Loaded mods will show a `-` to the right of their name indicating they will be disabled on restart.
+```json
+    {
+      "project_name": "NAME",
+      "project_url": "PROJECT_URL",
+      "author": "NAME",
+      "description": "WORDS",
+      "discussion_url": "LINES_URL",
+      "documentation_url": "DOC_URL",
+      "tags": ["TAG", "TAG", "TAG"]
+    },
+```
 
-Loaded mods which have a menu will have `>` at the end of their name. Pressing <kbd>K3</kbd> will enter the mod's menu.
+Where `project_url` is the URL to the web-hosted script sources, `discussion_url` is a link to its lines Library thread and `documentation_url` is a link to its documentation page.
 
-## community scripts: summon {#summon}
+Once your pull request is merged into the community catalog, it will automatically appear on [norns.community](https://norns.community/). The website refreshes nightly at 00:00 UTC, on every merge to its main branch, or on demand by admins.
+
+### fork
+
+As you work with norns, you might change community scripts to integrate them into your particular toolkit. Perhaps you need to output specific ranges of MIDI messages, or maybe you're only using Just Intonation these days.
+
+If you wish to share your modifications with the larger community, or if you feel your changes represent a new vision, please review our [living document of forking etiquette guidelines](https://llllllll.co/t/library-forking-etiquette-sharing-modifications/).
+
+## summon {#summon}
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/412510077?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 

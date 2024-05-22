@@ -42,8 +42,8 @@ norns is open source and continues to grow with the generous efforts of many con
 
 **audio**
 
-- 1/4". 2 output. 2 input. all line level.
-- 1/4" headphone with gain.
+- 1/4", 2 output / 2 input, all line level, unbalanced (use TS cables).
+- 1/4" stereo headphone with gain.
 
 **interface**
 
@@ -54,13 +54,13 @@ norns is open source and continues to grow with the generous efforts of many con
 
 **interconnect**
 
-- 4 x USB ports for devices. can be expanded with a powered USB hub.
+- 4 x USB ports for devices, can be expanded with a powered USB hub.
 - supports up to 16 MIDI devices, 4 grids, 4 arcs, 4 HID.
 - serial tty via USB-mini.
 
 **power**
 
-- power/charge via USB-mini. high output USB power supply included (5.25V / 2A).
+- power/charge via USB-mini, high output USB power supply included (5.25V / 2A).
 - internal lipo battery 2250mAh.
 
 **processing**

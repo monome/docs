@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 38.0, 100.0, 862.0, 632.0 ],
+		"openrect" : [ 34.0, 100.0, 287.0, 368.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -31,7 +31,7 @@
 		"boxanimatetime" : 200,
 		"enablehscroll" : 1,
 		"enablevscroll" : 1,
-		"devicewidth" : 0.0,
+		"devicewidth" : 287.0,
 		"description" : "",
 		"digest" : "",
 		"tags" : "",
@@ -39,6 +39,17 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 134.0, 132.0, 150.0, 20.0 ],
+					"text" : "<~ double-click"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"autosave" : 1,
 					"id" : "obj-1",
@@ -65,7 +76,7 @@
 						}
 ,
 						"classnamespace" : "rnbo",
-						"rect" : [ 34.0, 100.0, 1026.0, 848.0 ],
+						"openrect" : [ 390.0, 100.0, 623.0, 614.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -86,7 +97,7 @@
 						"boxanimatetime" : 200,
 						"enablehscroll" : 1,
 						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
+						"devicewidth" : 623.0,
 						"description" : "",
 						"digest" : "",
 						"tags" : "",
@@ -101,7 +112,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 247.0, 141.0, 61.0, 23.0 ],
+									"patching_rect" : [ 228.0, 58.0, 61.0, 23.0 ],
 									"rnbo_classname" : "set",
 									"rnbo_serial" : 1,
 									"rnbo_uniqueid" : "set_obj-30",
@@ -158,7 +169,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 8,
 									"outlettype" : [ "", "", "", "", "", "", "", "" ],
-									"patching_rect" : [ 247.0, 173.0, 92.5, 23.0 ],
+									"patching_rect" : [ 228.0, 90.0, 92.5, 23.0 ],
 									"rnbo_classname" : "transport",
 									"rnbo_serial" : 1,
 									"rnbo_uniqueid" : "transport_obj-28",
@@ -173,22 +184,22 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 247.0, 106.0, 200.0, 23.0 ],
+									"patching_rect" : [ 228.0, 23.0, 200.0, 23.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
+										"displayname" : "",
 										"enum" : "",
 										"unit" : "",
-										"ctlin" : 0.0,
-										"displayname" : "",
-										"sendinit" : 1,
-										"order" : "0",
-										"meta" : "",
-										"fromnormalized" : "",
 										"exponent" : 1.0,
-										"tonormalized" : "",
+										"fromnormalized" : "",
+										"order" : "0",
 										"preset" : 1,
+										"tonormalized" : "",
+										"meta" : "",
 										"displayorder" : "-",
-										"steps" : 0.0
+										"ctlin" : 0.0,
+										"steps" : 0.0,
+										"sendinit" : 1
 									}
 ,
 									"rnbo_serial" : 1,
@@ -590,7 +601,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 44.0, 298.0, 170.0, 23.0 ],
+									"patching_rect" : [ 25.0, 215.0, 170.0, 23.0 ],
 									"rnbo_classname" : "outport",
 									"rnbo_extra_attributes" : 									{
 										"meta" : ""
@@ -609,11 +620,11 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 44.0, 254.0, 59.0, 23.0 ],
+									"patching_rect" : [ 25.0, 171.0, 59.0, 23.0 ],
 									"rnbo_classname" : "pack",
 									"rnbo_extra_attributes" : 									{
-										"list" : "",
-										"length" : 0.0
+										"length" : 0.0,
+										"list" : ""
 									}
 ,
 									"rnbo_serial" : 1,
@@ -752,7 +763,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 137.0, 254.0, 175.0, 23.0 ],
+									"patching_rect" : [ 118.0, 171.0, 175.0, 23.0 ],
 									"rnbo_classname" : "outport",
 									"rnbo_extra_attributes" : 									{
 										"meta" : ""
@@ -771,7 +782,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 137.0, 223.0, 46.0, 23.0 ],
+									"patching_rect" : [ 118.0, 140.0, 46.0, 23.0 ],
 									"rnbo_classname" : "message",
 									"rnbo_extra_attributes" : 									{
 										"text" : ""
@@ -790,8 +801,12 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 44.0, 198.0, 59.0, 23.0 ],
+									"patching_rect" : [ 25.0, 115.0, 59.0, 23.0 ],
 									"rnbo_classname" : "trigger",
+									"rnbo_extra_attributes" : 									{
+										"triggers" : ""
+									}
+,
 									"rnbo_serial" : 1,
 									"rnbo_uniqueid" : "trigger_obj-6",
 									"rnboinfo" : 									{
@@ -880,7 +895,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 44.0, 106.0, 118.0, 23.0 ],
+									"patching_rect" : [ 25.0, 23.0, 118.0, 23.0 ],
 									"rnbo_classname" : "metro",
 									"rnbo_extra_attributes" : 									{
 										"lock" : 0.0
@@ -899,7 +914,7 @@
 									"numinlets" : 5,
 									"numoutlets" : 4,
 									"outlettype" : [ "", "", "", "" ],
-									"patching_rect" : [ 44.0, 152.0, 76.0, 23.0 ],
+									"patching_rect" : [ 25.0, 69.0, 76.0, 23.0 ],
 									"rnbo_classname" : "counter",
 									"rnbo_extra_attributes" : 									{
 										"inc" : 1.0
@@ -1150,7 +1165,7 @@
 							}
 , 							{
 								"box" : 								{
-									"code" : "@state g = new FixedIntArray(16,16); // global: grid matrix\r\n\r\nx = listin1[0]; // x coordinate\r\ny = listin1[1]; // y coordinate\r\nz = listin1[2]; // z coordinate\r\n\r\nif (z == 1 && (y < 6)){ // key-down only, in first six rows\r\n\tg[x][y] = abs(g[x][y]); // flip brightness with key-down\r\n\toutgoing = g[x][y] * 15; // alias for legibility\r\n\tlistout1 = [x,y,outgoing]; // send list out to set grid LEDs\r\n}",
+									"code" : "@state g = new FixedIntArray(16,16); // global: grid matrix\r\n\r\nx = listin1[0]; // x coordinate\r\ny = listin1[1]; // y coordinate\r\nz = listin1[2]; // z coordinate\r\n\r\nif (z == 1 && (y < 6)){ // key-down only, in first six rows\r\n\tg[x][y] = abs(g[x][y] - 1); // flip state with key-down\r\n\toutgoing = g[x][y] * 15; // g[x][y] is always 0 or 1 \r\n\tlistout1 = [x,y,outgoing]; // send list out to set grid LEDs\r\n}",
 									"fontface" : 0,
 									"fontname" : "<Monospaced>",
 									"fontsize" : 12.0,
@@ -1159,12 +1174,12 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 44.0, 433.0, 576.0, 216.0 ],
+									"patching_rect" : [ 25.0, 350.0, 576.0, 216.0 ],
 									"rnbo_classname" : "codebox",
 									"rnbo_extra_attributes" : 									{
-										"code" : "@state g = new FixedIntArray(16,16); // global: grid matrix\r\n\r\nx = listin1[0]; // x coordinate\r\ny = listin1[1]; // y coordinate\r\nz = listin1[2]; // z coordinate\r\n\r\nif (z == 1 && (y < 6)){ // key-down only, in first six rows\r\n\tg[x][y] = abs(g[x][y]); // flip brightness with key-down\r\n\toutgoing = g[x][y] * 15; // alias for legibility\r\n\tlistout1 = [x,y,outgoing]; // send list out to set grid LEDs\r\n}",
-										"hot" : 0,
-										"safemath" : 1
+										"code" : "@state g = new FixedIntArray(16,16); // global: grid matrix\r\n\r\nx = listin1[0]; // x coordinate\r\ny = listin1[1]; // y coordinate\r\nz = listin1[2]; // z coordinate\r\n\r\nif (z == 1 && (y < 6)){ // key-down only, in first six rows\r\n\tg[x][y] = abs(g[x][y] - 1); // flip state with key-down\r\n\toutgoing = g[x][y] * 15; // g[x][y] is always 0 or 1 \r\n\tlistout1 = [x,y,outgoing]; // send list out to set grid LEDs\r\n}",
+										"safemath" : 1,
+										"hot" : 0
 									}
 ,
 									"rnbo_serial" : 1,
@@ -1283,7 +1298,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 315.0, 399.0, 166.0, 23.0 ],
+									"patching_rect" : [ 296.0, 316.0, 166.0, 23.0 ],
 									"rnbo_classname" : "outport",
 									"rnbo_extra_attributes" : 									{
 										"meta" : ""
@@ -1302,7 +1317,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 315.0, 355.0, 67.0, 23.0 ],
+									"patching_rect" : [ 296.0, 272.0, 67.0, 23.0 ],
 									"rnbo_classname" : "loadmess",
 									"rnbo_serial" : 1,
 									"rnbo_uniqueid" : "loadmess_obj-9",
@@ -1384,7 +1399,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 44.0, 666.0, 200.0, 23.0 ],
+									"patching_rect" : [ 25.0, 583.0, 200.0, 23.0 ],
 									"rnbo_classname" : "outport",
 									"rnbo_extra_attributes" : 									{
 										"meta" : ""
@@ -1403,7 +1418,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 44.0, 399.0, 143.0, 23.0 ],
+									"patching_rect" : [ 25.0, 316.0, 143.0, 23.0 ],
 									"rnbo_classname" : "inport",
 									"rnbo_extra_attributes" : 									{
 										"meta" : ""
@@ -1508,7 +1523,7 @@
 						"bgfillcolor_autogradient" : 0.0
 					}
 ,
-					"patching_rect" : [ 85.0, 386.0, 45.0, 22.0 ],
+					"patching_rect" : [ 85.0, 131.0, 45.0, 22.0 ],
 					"rnboattrcache" : 					{
 						"bpm" : 						{
 							"label" : "bpm",
@@ -1598,7 +1613,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 9.5, 588.0, 167.0, 33.0 ],
+					"patching_rect" : [ 10.0, 333.0, 167.0, 33.0 ],
 					"text" : "grid studies: rnbo 3-2\nhttp://monome.org"
 				}
 

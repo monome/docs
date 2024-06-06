@@ -26,8 +26,6 @@ This study's requirements:
   - `sudo apt-get install liblo-tools`
   - `sudo reboot`
 
-[...]
-
 ### style note
 
 Throughout this text, we'll use the following formatting styles:
@@ -90,11 +88,13 @@ e9f88bda.91f2020f /monome/grid/key iii 8 3 0
 e9f88bda.938348f4 /monome/grid/key iii 7 4 0
 ```
 
-### grid + RNBO
+### IMPORTANT: grid + RNBO + Pi setup (#important)
+
+*Note: you will not be able to connect your grid to your RNBO project unless you perform these tasks.*
 
 Open `grid-rnbo-1-1.maxpat` and perform each of the numbered tasks.
 
-[ TODO: SCREENSHOT ]
+![](images/rnbo-studies-1-1.png)
 
 ## 2. Basics
 
@@ -104,7 +104,7 @@ RNBO's [inports and outports](https://rnbo.cycling74.com/learn/messages-and-port
 
 *See `grid-rnbo-2-1.maxpat` for this section.*
 
-[ TODO: SCREENSHOT ]
+![](images/rnbo-studies-2-1.png)
 
 *Note: unless you reassign the prefix of your grid, it will default to `/monome`. If you've reassigned the prefix, please adjust all instances of `/monome` in the patcher to match your chosen string.*
 
@@ -117,7 +117,9 @@ Since Max and RNBO both execute in right-to-left order, we'll use `[list.rot 1]`
 
 ### 2.2 Coupled LED output
 
-[ TODO: SCREENSHOT ]
+*See `grid-rnbo-2-2.maxpat` for this section.*
+
+![](images/rnbo-studies-2-2.png)
 
 The most basic grid patch is "light up the pressed key", which we can implement in RNBO very easily by passing the list of each key's press and release (`x`, `y` and `z`) to `/monome/grid/led/set`, which looks for the same data.
 
@@ -125,7 +127,9 @@ To clear the entire grid when our patch is loaded, we send `[loadmess 0]` throug
 
 ### 2.3 Decoupled interaction
 
-[ TODO: SCREENSHOT ]
+*See `grid-rnbo-2-3.maxpat` for this section.*
+
+![](images/rnbo-studies-2-3.png)
 
 The grid can also display information beyond the current physical interaction. Throughout this doc, we'll refer to this quality of LED independence as being *decoupled*. The most fundamental decoupled interface is an array of toggles.
 
@@ -148,8 +152,8 @@ y = listin1[1]; // y coordinate
 z = listin1[2]; // z coordinate
 
 if (z == 1){ // key-down only
-	g[x][y] = abs(g[x][y]); // flip state with key-down
-	outgoing = g[x][y] * 15; // alias for legibility
+	g[x][y] = abs(g[x][y]-1); // flip brightness multiple
+	outgoing = g[x][y] * 15; // g[x][y] is always 0 or 1 
 	listout1 = [x,y,outgoing]; // send list out to set grid LEDs
 }
 ```
@@ -175,6 +179,8 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 
 *See grid-studies-3-1.maxpat for this step.*
 
+![](images/rnbo-studies-3-1.png)
+
 This works identically to our previous "decoupled interaction" example, but we want to **only use the first six rows**. So we add a conditional to our `[codebox]`'s `if` statement:
 
 ```js
@@ -185,8 +191,8 @@ y = listin1[1]; // y coordinate
 z = listin1[2]; // z coordinate
 
 if (z == 1 && (y < 6)){ // key-down only, in first six rows
-	g[x][y] = abs(g[x][y]-15); // flip brightness with key-down
-	outgoing = g[x][y]; // alias for legibility
+	g[x][y] = abs(g[x][y] - 1); // flip state with key-down
+	outgoing = g[x][y] * 15; // g[x][y] is always 0 or 1 
 	listout1 = [x,y,outgoing]; // send list out to set grid LEDs
 }
 ```
@@ -195,7 +201,7 @@ if (z == 1 && (y < 6)){ // key-down only, in first six rows
 
 *See grid-rnbo-3-2.maxpat for this step.*
 
-[ TODO: SCREENSHOT ]
+![](images/rnbo-studies-3-2.png)
 
 We can create a playhead with a simple `[counter 0 15]`, which will automatically wrap back to 0 after the 15th step.
 
@@ -221,31 +227,43 @@ We'll also add a [parameter](https://rnbo.cycling74.com/learn/using-parameters) 
 
 Now when you export to the Pi target, you'll see the playhead moving along the bottom row.
 
-### 3.3 Triggers
+### 3.3 Triggers and notes
 
-*See grid-studies-3-3.maxpat for this step.*
+*See grid-rnbo-3-3.maxpat for this step.*
+
+![](images/rnbo-studies-3-3-1.png)
 
 As the playhead moves we want to read the contents of the corresponding column and trigger notes based on which toggles are turned on.
 
-We do this by querying the values in the column of the current play position. The matrix will output a list of 0/1 values which indicate the toggle states from top to bottom. We can "extract" only the 1's (on-states) using a `[zl sub 1]`. However, these values are indexed from 1, and we need them indexed from 0 (because this is how the grid indexes its LEDs) so we subtract one.
+We start by sending the column identifier of the current play position through the second inlet of our `[codebox]`, which triggers this function:
 
-To indicate an "event" we will light up the corresponding x position in the 6th row:
-
+```js
+function in2(col){
+	let ret = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+	// collect the toggle states:
+	for (let i = 0; i < 16; i++) {
+		ret[i] = g[col][i];
+	}
+	// send the list of states to outlet 2:
+	listout2 = ret;
+}
 ```
-/monome/grid/led/set $1 6 1
-```
 
-![](images/grid-studies-3-3-1.png)
+The function will output a list of 0/1 values which indicate the toggle states from top to bottom. We can "extract" only the 1's (on-states) using a `[list.sub 1]`. However, these values are indexed from 1, and we need them indexed from 0 (because this is how the grid indexes its LEDs) so we subtract one.
 
-Similarly to the play position display, we need to clear the row between refreshes. But since more than one event can be displayed per step, we'll want to clear only once per group of triggers. We can accomplish the desired visual effect by clearing the row a delayed time after the events arrive.
+We can light up the corresponding `x` position in the 6th row for each "event" with `[pack i 6 1]`, before sending the data back to `[outport /monome/grid/led/set]`. We also use this `x` position to trigger our voices, which are inside of the `[p voices]` sub-patcher. Inside of `[p voices]`, we use [RNBO's parameters system](https://rnbo.cycling74.com/learn/using-parameters) to determine the note value of each row:
+
+![](images/rnbo-studies-3-3-2.png)
+
+Similarly to the play position display, we need to clear the row between refreshes. But since more than one event can be displayed per step, we'll want to clear only once per group of triggers. We can accomplish the desired visual effect by clearing the row 100 milliseconds after the events arrive.
 
 Furthermore, to give the interface some delineation (not just a field of random LEDs) we will "clear" this row to a low-brightness level rather than completely off:
 
 ```
-/monome/grid/led/level/row 0 6 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5
+(0 6 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5)
 ```
 
-This `/level/` message is in the format:
+This message is sent to `[outport /monome/grid/led/level/row]`, which follows this format:
 
 ```
 /monome/grid/led/level/row x_off y d[...]
@@ -255,26 +273,72 @@ The format is similar to the monochromatic `row` message, but here `d[...]` is d
 
 The "triggered" LEDs will be full brightness, drawn on top of this dim row.
 
-Lastly, there's a tiny sound engine so you can actually hear something. Turn on the DAC and turn up the gain slider. Change the note values by opening up the `trigs` subpatcher.
+Lastly, there's a tiny sound engine so you can actually hear something. You can change the note values by opening up the [Raspberry Pi web interface](https://rnbo.cycling74.com/learn/raspberry-pi-web-interface-guide):
 
+![](images/rnbo-studies-3-3-3.png)
 
 ### 3.4 Cutting and Looping
 
-*See grid-studies-3-4.maxpat for this step.*
+*See grid-rnbo-3-4.maxpat for this step.*
 
-![](images/grid-studies-3-4-1.png)
+![](images/rnbo-studies-3-4.png)
 
 To liven up the sequencer, we will have key presses on the playhead row jump to the pressed position. But we also want a two-key gesture (holding down a first while pressing a second) to set the start-end loop boundaries. This requires keeping track of how many keys are being held down in the last row.
 
-First we add the `r counter` receive object above the counter. Then the rest of the patching happens inside the `p key` subpatcher:
+First we add states for `keys_held` and `key_last` in our `[codebox]`, increasing and decreasing the `keys_held` count when a key is pressed or released in the bottom row. Using this state, we can determine whether the two-key gesture has been executed:
 
-![](images/grid-studies-3-4-2.png)
+- if it has, we update the `[counter]`'s minimum and maximum values
+- if it hasn't, we simply update the `[counter]`'s current position (set on the next clock tick)
 
-We unpack the incoming message and keep track of the accumulation of key ups and downs. This is accomplished by adding 1 for each key up and subtracting 1 for each key down. This looks weird as a Max patch, but tracing through it will reveal the logic.
+We then send these values through three new `[codebox]` outlets:
 
-The number of keys held will gate the output of the x position of the key. When a single key is pressed the x position goes out the left outlet of the gate, setting the position of the counter. This first position is also stored for potential use later.
+```js
+@state g = new FixedIntArray(16,16); // global: grid matrix
+@state keys_held = 0; // global: keys held in last row
+@state key_last = 0; // global: last-pressed key in last row
 
-If a second key is pressed (in this same row) while a first is held, the current x position pressed is set as the loop max (with a `max $1` message) and the previously pressed x position is recalled and set as the loop minimum (with a `setmin $1` message).
+x = listin1[0]; // x coordinate
+y = listin1[1]; // y coordinate
+z = listin1[2]; // z coordinate
+
+if (z == 1 && (y < 6)){ // key-down only, in first six rows
+	g[x][y] = abs(g[x][y] - 1); // flip state with key-down
+	outgoing = g[x][y] * 15; // g[x][y] is always 0 or 1 
+	listout1 = [x,y,outgoing]; // send list out to set grid LEDs
+} else {
+	if (y == 7){
+		// track keys held count:
+		if (z == 1){
+			keys_held = keys_held + 1;
+		} else {
+			keys_held = keys_held - 1;
+		}
+	}
+	if (y == 7 && (z == 1)){
+		// only one key:
+		if (keys_held == 1){
+			key_last = x;
+			out3 = key_last;
+		// two keys:
+		} else {
+			if (key_last < x){
+				out4 = key_last;
+				out5 = x;
+			}
+		}
+	}
+}
+
+function in2(col){
+	let ret = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+	// collect the toggle states:
+	for (let i = 0; i < 16; i++) {
+		ret[i] = g[col][i];
+	}
+	// send the list of states to outlet 2:
+	listout2 = ret;
+}
+```
 
 
 ## Closing
@@ -291,14 +355,10 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
 	- If "alt" is held while pressing a toggle, clear the entire row.
 	- If "alt" is held while pressing the play row, reverse the direction of play.
 
-### Bonus
-
-See `grid-studies-3-5.maxpat` for a JavaScript implementation of this patch.
-
 ## Credits
 
-*Max* was originally designed by Miller Puckette and is actively developed by [Cycling '74](http://cycling74.com).
+*RNBO* is bundled with *Max* and is actively developed by [Cycling '74](http://cycling74.com).
 
-This tutorial was created by [Brian Crabtree](https://nnnnnnnn.org) and maintained by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org).
+This tutorial was created by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

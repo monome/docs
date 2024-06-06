@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 38.0, 100.0, 862.0, 632.0 ],
+		"openrect" : [ 34.0, 100.0, 862.0, 632.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -31,7 +31,7 @@
 		"boxanimatetime" : 200,
 		"enablehscroll" : 1,
 		"enablevscroll" : 1,
-		"devicewidth" : 0.0,
+		"devicewidth" : 862.0,
 		"description" : "",
 		"digest" : "",
 		"tags" : "",
@@ -39,6 +39,17 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 242.0, 435.0, 150.0, 20.0 ],
+					"text" : "<~ double-click"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
@@ -392,7 +403,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 9.5, 518.0, 167.0, 47.0 ],
-					"presentation_linecount" : 3,
 					"text" : "6. press some grid keys and watch the LEDs illuminate!"
 				}
 
@@ -404,7 +414,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 482.0, 326.0, 340.0, 20.0 ],
-					"presentation_linecount" : 3,
 					"text" : "<~ successful grid registration will post here"
 				}
 
@@ -447,7 +456,7 @@
 						}
 ,
 						"classnamespace" : "rnbo",
-						"rect" : [ 34.0, 100.0, 688.0, 376.0 ],
+						"openrect" : [ 790.0, 100.0, 688.0, 376.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -468,14 +477,14 @@
 						"boxanimatetime" : 200,
 						"enablehscroll" : 1,
 						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
+						"devicewidth" : 688.0,
 						"description" : "",
 						"digest" : "",
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
-						"title" : "untitled",
+						"title" : "grid-rnbo-1-1",
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-8",
@@ -488,7 +497,7 @@
 										"meta" : ""
 									}
 ,
-									"rnbo_serial" : 2,
+									"rnbo_serial" : 1,
 									"rnbo_uniqueid" : "outport_obj-8",
 									"text" : "outport /monome/grid/led/level/all"
 								}
@@ -589,7 +598,7 @@
 										"meta" : ""
 									}
 ,
-									"rnbo_serial" : 1,
+									"rnbo_serial" : 2,
 									"rnbo_uniqueid" : "outport_obj-6",
 									"text" : "outport /monome/grid/led/level/set"
 								}
@@ -605,8 +614,8 @@
 									"patching_rect" : [ 42.0, 202.0, 64.0, 23.0 ],
 									"rnbo_classname" : "pack",
 									"rnbo_extra_attributes" : 									{
-										"list" : "",
-										"length" : 0.0
+										"length" : 0.0,
+										"list" : ""
 									}
 ,
 									"rnbo_serial" : 1,
@@ -1029,7 +1038,7 @@
 									"version" : 2,
 									"minorversion" : 0,
 									"name" : "untitled",
-									"origin" : "04a73c45-fcfa-11ee-bc45-acde48001122",
+									"origin" : "grid-rnbo-1-1",
 									"type" : "rnbo",
 									"subtype" : "",
 									"embed" : 1,
@@ -1039,10 +1048,10 @@
 ,
 									"fileref" : 									{
 										"name" : "untitled",
-										"filename" : "untitled_20240422.maxsnap",
+										"filename" : "untitled_20240606_5.maxsnap",
 										"filepath" : "~/Documents/Max 8/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "318be6303be1a3b49c202026069ed802"
+										"snapshotfileid" : "cfe3ce9a03319a3eee4b0620e30a3cdb"
 									}
 
 								}
@@ -1172,7 +1181,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 9.5, 48.0, 135.0, 60.0 ],
-					"presentation_linecount" : 4,
 					"text" : "2. if necessary, enter your Pi's address.\nhit bang ~>"
 				}
 
@@ -1374,7 +1382,7 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "untitled_20240422.maxsnap",
+				"name" : "untitled_20240606_5.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
 				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 605.0, 136.0, 862.0, 632.0 ],
+		"openrect" : [ 34.0, 100.0, 287.0, 368.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -31,7 +31,7 @@
 		"boxanimatetime" : 200,
 		"enablehscroll" : 1,
 		"enablevscroll" : 1,
-		"devicewidth" : 0.0,
+		"devicewidth" : 287.0,
 		"description" : "",
 		"digest" : "",
 		"tags" : "",
@@ -39,6 +39,17 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 134.0, 132.0, 150.0, 20.0 ],
+					"text" : "<~ double-click"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"autosave" : 1,
 					"id" : "obj-1",
@@ -65,7 +76,7 @@
 						}
 ,
 						"classnamespace" : "rnbo",
-						"rect" : [ 495.0, 150.0, 640.0, 480.0 ],
+						"openrect" : [ 390.0, 100.0, 513.0, 368.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -86,14 +97,14 @@
 						"boxanimatetime" : 200,
 						"enablehscroll" : 1,
 						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
+						"devicewidth" : 513.0,
 						"description" : "",
 						"digest" : "",
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
-						"title" : "untitled",
+						"title" : "grid-rnbo-2-1",
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-14",
@@ -223,7 +234,7 @@
 						"bgfillcolor_autogradient" : 0.0
 					}
 ,
-					"patching_rect" : [ 85.0, 386.0, 45.0, 22.0 ],
+					"patching_rect" : [ 85.0, 131.0, 45.0, 22.0 ],
 					"rnboattrcache" : 					{
 
 					}
@@ -265,21 +276,21 @@
 									"filetype" : "C74Snapshot",
 									"version" : 2,
 									"minorversion" : 0,
-									"name" : "untitled",
-									"origin" : "546475a9-1848-11ef-b5a9-26348b6c13dd",
+									"name" : "grid-rnbo-2-1",
+									"origin" : "grid-rnbo-2-1",
 									"type" : "rnbo",
 									"subtype" : "",
-									"embed" : 0,
+									"embed" : 1,
 									"snapshot" : 									{
 										"__presetid" : "546475a9-1848-11ef-b5a9-26348b6c13dd"
 									}
 ,
 									"fileref" : 									{
-										"name" : "untitled",
-										"filename" : "untitled.maxsnap",
+										"name" : "grid-rnbo-2-1",
+										"filename" : "grid-rnbo-2-1.maxsnap",
 										"filepath" : "~/Max 8/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "fcb5cd6a71068310ac188ca9409f3fb1"
+										"snapshotfileid" : "7e5de5a05d2ce11f83e418bdcadedf09"
 									}
 
 								}
@@ -300,7 +311,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 9.5, 588.0, 167.0, 33.0 ],
+					"patching_rect" : [ 10.0, 333.0, 167.0, 33.0 ],
 					"text" : "grid studies: rnbo 2-1\nhttp://monome.org"
 				}
 
@@ -322,7 +333,7 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "untitled.maxsnap",
+				"name" : "grid-rnbo-2-1.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
 				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",

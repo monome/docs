@@ -614,8 +614,8 @@
 									"patching_rect" : [ 42.0, 202.0, 64.0, 23.0 ],
 									"rnbo_classname" : "pack",
 									"rnbo_extra_attributes" : 									{
-										"length" : 0.0,
-										"list" : ""
+										"list" : "",
+										"length" : 0.0
 									}
 ,
 									"rnbo_serial" : 1,
@@ -1048,8 +1048,26 @@
 ,
 									"fileref" : 									{
 										"name" : "untitled",
-										"filename" : "untitled_20240606_5.maxsnap",
+										"filename" : "untitled_20240609.maxsnap",
 										"filepath" : "~/Documents/Max 8/Snapshots",
+										"filepos" : -1,
+										"snapshotfileid" : "7be924f8ade7c21eef30ef323280eb8b"
+									}
+
+								}
+, 								{
+									"filetype" : "C74Snapshot",
+									"version" : 2,
+									"minorversion" : 0,
+									"name" : "untitled",
+									"origin" : "grid-rnbo-1-1",
+									"type" : "rnbo",
+									"subtype" : "",
+									"embed" : 0,
+									"fileref" : 									{
+										"name" : "untitled",
+										"filename" : "untitled_20240606_5.maxsnap",
+										"filepath" : "~/Max 8/Snapshots",
 										"filepos" : -1,
 										"snapshotfileid" : "cfe3ce9a03319a3eee4b0620e30a3cdb"
 									}
@@ -1383,6 +1401,13 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "untitled_20240606_5.maxsnap",
+				"bootpath" : "~/Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"type" : "mx@s",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "untitled_20240609.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
 				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",

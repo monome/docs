@@ -340,10 +340,9 @@ function in2(col){
 }
 ```
 
-
 ## Closing
 
-We've created a minimal yet intuitive interface for rapidly exploring sequences. We can intuitively change event triggers, loop points, and jump around the data performatively. Many more features could be added, and there are numerous other ways to think about interaction between key press and light feedback in completely different contexts.
+We've created a minimal yet intuitive interface for rapidly exploring sequences -- we can change event triggers, loop points, and jump around the data performatively. Many more features could be added. There are numerous other ways to think about interaction between key press and light feedback in completely different contexts.
 
 ### Suggested exercises
 

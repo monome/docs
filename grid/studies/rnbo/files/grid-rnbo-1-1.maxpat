@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 6,
-			"revision" : 2,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -40,6 +40,24 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"bgcolor" : [ 0.462745098039216, 0.258823529411765, 0.258823529411765, 0.0 ],
+					"bordercolor" : [ 1.0, 0.631372549019608, 0.549019607843137, 1.0 ],
+					"id" : "obj-12",
+					"linecount" : 8,
+					"maxclass" : "textedit",
+					"numinlets" : 1,
+					"numoutlets" : 4,
+					"outlettype" : [ "", "int", "", "" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 437.0, 21.0, 349.0, 122.0 ],
+					"readonly" : 1,
+					"text" : "IMPORTANT: be sure to SSH into your Pi and run the following commands to install the required software stack\n\n- sudo apt-get update\n- sudo apt-get install serialosc\n- sudo apt-get install liblo-tools\n- sudo reboot now",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -61,7 +79,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 6,
-							"revision" : 2,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -450,7 +468,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 6,
-							"revision" : 2,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1000,7 +1018,7 @@
 
 					}
 ,
-					"rnboversion" : "1.3.0-dev.79",
+					"rnboversion" : "1.3.1",
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_invisible" : 1,
@@ -1048,10 +1066,10 @@
 ,
 									"fileref" : 									{
 										"name" : "untitled",
-										"filename" : "untitled_20240609.maxsnap",
+										"filename" : "untitled_20240610.maxsnap",
 										"filepath" : "~/Documents/Max 8/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "7be924f8ade7c21eef30ef323280eb8b"
+										"snapshotfileid" : "364d388a3b7b40f22fc30f3cd8565a1a"
 									}
 
 								}
@@ -1070,6 +1088,60 @@
 										"filepath" : "~/Max 8/Snapshots",
 										"filepos" : -1,
 										"snapshotfileid" : "cfe3ce9a03319a3eee4b0620e30a3cdb"
+									}
+
+								}
+, 								{
+									"filetype" : "C74Snapshot",
+									"version" : 2,
+									"minorversion" : 0,
+									"name" : "untitled",
+									"origin" : "grid-rnbo-1-1",
+									"type" : "rnbo",
+									"subtype" : "",
+									"embed" : 0,
+									"fileref" : 									{
+										"name" : "untitled",
+										"filename" : "untitled_20240610_1.maxsnap",
+										"filepath" : "~/Max 8/Snapshots",
+										"filepos" : -1,
+										"snapshotfileid" : "e8ca4762d160e4db019599c263409cd1"
+									}
+
+								}
+, 								{
+									"filetype" : "C74Snapshot",
+									"version" : 2,
+									"minorversion" : 0,
+									"name" : "untitled",
+									"origin" : "grid-rnbo-1-1",
+									"type" : "rnbo",
+									"subtype" : "",
+									"embed" : 0,
+									"fileref" : 									{
+										"name" : "untitled",
+										"filename" : "untitled_20240610_2.maxsnap",
+										"filepath" : "~/Max 8/Snapshots",
+										"filepos" : -1,
+										"snapshotfileid" : "1ce2bfa0e5281e7e107b32883fb13a79"
+									}
+
+								}
+, 								{
+									"filetype" : "C74Snapshot",
+									"version" : 2,
+									"minorversion" : 0,
+									"name" : "untitled",
+									"origin" : "grid-rnbo-1-1",
+									"type" : "rnbo",
+									"subtype" : "",
+									"embed" : 0,
+									"fileref" : 									{
+										"name" : "untitled",
+										"filename" : "untitled_20240610_3.maxsnap",
+										"filepath" : "~/Max 8/Snapshots",
+										"filepos" : -1,
+										"snapshotfileid" : "30a4e14634c9a4a001b5ff2fb295f67b"
 									}
 
 								}
@@ -1407,7 +1479,28 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "untitled_20240609.maxsnap",
+				"name" : "untitled_20240610.maxsnap",
+				"bootpath" : "~/Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"type" : "mx@s",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "untitled_20240610_1.maxsnap",
+				"bootpath" : "~/Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"type" : "mx@s",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "untitled_20240610_2.maxsnap",
+				"bootpath" : "~/Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"type" : "mx@s",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "untitled_20240610_3.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
 				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",

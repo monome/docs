@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 6,
-			"revision" : 2,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -70,7 +70,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 6,
-							"revision" : 2,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -184,25 +184,24 @@
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 228.0, 23.0, 200.0, 23.0 ],
+									"patching_rect" : [ 228.0, 23.0, 265.0, 23.0 ],
 									"rnbo_classname" : "param",
 									"rnbo_extra_attributes" : 									{
-										"displayname" : "",
-										"enum" : "",
-										"unit" : "",
-										"exponent" : 1.0,
-										"fromnormalized" : "",
-										"order" : "0",
-										"preset" : 1,
+										"sendinit" : 1,
 										"tonormalized" : "",
-										"meta" : "",
+										"preset" : 1,
 										"displayorder" : "-",
+										"meta" : "",
+										"exponent" : 1.0,
+										"enum" : "",
+										"fromnormalized" : "",
+										"unit" : "",
 										"ctlin" : 0.0,
-										"steps" : 0.0,
-										"sendinit" : 1
+										"displayname" : "",
+										"order" : "0"
 									}
 ,
-									"rnbo_serial" : 1,
+									"rnbo_serial" : 2,
 									"rnbo_uniqueid" : "bpm",
 									"rnboinfo" : 									{
 										"needsInstanceInfo" : 1,
@@ -590,7 +589,7 @@
 										"changesPatcherIO" : 0
 									}
 ,
-									"text" : "param bpm 110 @min 20 @max 300",
+									"text" : "param bpm 110 @min 20 @max 300 @steps 281",
 									"varname" : "bpm"
 								}
 
@@ -1178,8 +1177,8 @@
 									"rnbo_classname" : "codebox",
 									"rnbo_extra_attributes" : 									{
 										"code" : "@state g = new FixedIntArray(16,16); // global: grid matrix\r\n\r\nx = listin1[0]; // x coordinate\r\ny = listin1[1]; // y coordinate\r\nz = listin1[2]; // z coordinate\r\n\r\nif (z == 1 && (y < 6)){ // key-down only, in first six rows\r\n\tg[x][y] = abs(g[x][y] - 1); // flip state with key-down\r\n\toutgoing = g[x][y] * 15; // g[x][y] is always 0 or 1 \r\n\tlistout1 = [x,y,outgoing]; // send list out to set grid LEDs\r\n}",
-										"safemath" : 1,
-										"hot" : 0
+										"hot" : 0,
+										"safemath" : 1
 									}
 ,
 									"rnbo_serial" : 1,
@@ -1533,7 +1532,7 @@
 
 					}
 ,
-					"rnboversion" : "1.3.0-dev.79",
+					"rnboversion" : "1.3.1-alpha.3",
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_invisible" : 1,

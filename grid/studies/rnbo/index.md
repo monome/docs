@@ -9,7 +9,7 @@ RNBO, by [Cycling '74](https://cycling74.com/), is a library and toolchain that 
 
 This tutorial will show the basics of interfacing with the grid including how a simple, yet immediate sequencer platform can be made with a small amount of code.
 
-## Prerequisites
+## IMPORTANT: Prerequisites (#prerequisites)
 
 Since RNBO is an extension of Max, this study assumes familiarity with Max's patching interface and workflow nuances. We'll also assume familiarity with navigating a command line interface, as required by the RNBO Raspberry Pi export process. If you're absolutely new to RNBO it may be helpful to first go through the documents and videos at the [RNBO Hub](https://rnbo.cycling74.com/).
 
@@ -24,7 +24,7 @@ This study's requirements:
   - `sudo apt-get update`
   - `sudo apt-get install serialosc`
   - `sudo apt-get install liblo-tools`
-  - `sudo reboot`
+  - `sudo reboot now`
 
 ### style note
 
@@ -47,7 +47,7 @@ To communicate with grids we trade OSC messages with serialosc. serialosc is an 
 
 First we will show how to talk to serialosc using our RNBO-flashed Pi.
 
-### grid + Pi
+### IMPORTANT: grid + Pi (#grid-pi)
 
 In a terminal on another computer connected to the same network, SSH into your Pi.
 
@@ -57,7 +57,7 @@ Connect your grid to the Pi and set up an OSC monitor with:
 oscdump 6666
 ```
 
-Open another terminal window. To list the available devices, we’ll query `serialoscd` which listens on port 12002, and we’ll route the response to our monitor:
+Open another terminal window and connect to the Pi via SSH again. To list the available devices, we’ll query `serialoscd` which listens on port 12002, and we’ll route the response to our monitor:
 
 ```bash
 oscsend localhost 12002 /serialosc/list si localhost 6666
@@ -92,7 +92,7 @@ e9f88bda.938348f4 /monome/grid/key iii 7 4 0
 
 *Note: you will not be able to connect your grid to your RNBO project unless you perform these tasks.*
 
-Open `grid-rnbo-1-1.maxpat` and perform each of the numbered tasks.
+After completing the steps above, open `grid-rnbo-1-1.maxpat` and perform each of the numbered tasks.
 
 ![](images/rnbo-studies-1-1.png)
 
@@ -346,6 +346,7 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences 
 
 ### Suggested exercises
 
+- Add MIDI output
 - If you have access to a 256 grid, try adapting the 3.x patches to accommodate this larger size.
 - Display the loop range with dim LED levels.
 - "Record" keypresses in the "trigger" row to the toggle matrix.
@@ -358,6 +359,6 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences 
 
 *RNBO* is bundled with *Max* and is actively developed by [Cycling '74](http://cycling74.com).
 
-This tutorial was created by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org).
+This tutorial was created by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org), with generous advising from Alex Norman (@ Cycling '74).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

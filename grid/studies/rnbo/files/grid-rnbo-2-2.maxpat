@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 6,
-			"revision" : 2,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"openrect" : [ 34.0, 100.0, 287.0, 368.0 ],
+		"openrect" : [ 34.0, 100.0, 366.0, 368.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -31,7 +31,7 @@
 		"boxanimatetime" : 200,
 		"enablehscroll" : 1,
 		"enablevscroll" : 1,
-		"devicewidth" : 287.0,
+		"devicewidth" : 366.0,
 		"description" : "",
 		"digest" : "",
 		"tags" : "",
@@ -44,7 +44,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 134.0, 132.0, 150.0, 20.0 ],
+					"patching_rect" : [ 208.0, 132.0, 117.0, 20.0 ],
 					"text" : "<~ double-click"
 				}
 
@@ -70,13 +70,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 6,
-							"revision" : 2,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "rnbo",
-						"openrect" : [ 390.0, 100.0, 640.0, 368.0 ],
+						"openrect" : [ 469.0, 100.0, 505.0, 368.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -97,14 +97,14 @@
 						"boxanimatetime" : 200,
 						"enablehscroll" : 1,
 						"enablevscroll" : 1,
-						"devicewidth" : 640.0,
+						"devicewidth" : 505.0,
 						"description" : "",
 						"digest" : "",
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
-						"title" : "grid studies: rnbo 2-2",
+						"title" : "grid-rnbo-2-2",
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-10",
@@ -273,12 +273,12 @@
 						"bgfillcolor_autogradient" : 0.0
 					}
 ,
-					"patching_rect" : [ 85.0, 131.0, 45.0, 22.0 ],
+					"patching_rect" : [ 10.0, 131.0, 196.0, 22.0 ],
 					"rnboattrcache" : 					{
 
 					}
 ,
-					"rnboversion" : "1.3.0-dev.79",
+					"rnboversion" : "1.3.1",
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_invisible" : 1,
@@ -306,7 +306,7 @@
 						"subtype" : "Undefined",
 						"embed" : 1,
 						"snapshot" : 						{
-							"__presetid" : "546475a9-1848-11ef-b5a9-26348b6c13dd"
+							"__presetid" : "grid-rnbo-2-2"
 						}
 ,
 						"snapshotlist" : 						{
@@ -316,12 +316,12 @@
 									"version" : 2,
 									"minorversion" : 0,
 									"name" : "grid studies: rnbo 2-2",
-									"origin" : "grid studies: rnbo 2-2",
+									"origin" : "grid-rnbo-2-2",
 									"type" : "rnbo",
 									"subtype" : "",
 									"embed" : 1,
 									"snapshot" : 									{
-										"__presetid" : "546475a9-1848-11ef-b5a9-26348b6c13dd"
+										"__presetid" : "grid-rnbo-2-2"
 									}
 ,
 									"fileref" : 									{
@@ -329,7 +329,29 @@
 										"filename" : ".maxsnap",
 										"filepath" : "~/Max 8/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "f658bfb4b32d3466dcffa05e96688caf"
+										"snapshotfileid" : "ea8bea161901662c6218f59743274853"
+									}
+
+								}
+, 								{
+									"filetype" : "C74Snapshot",
+									"version" : 2,
+									"minorversion" : 0,
+									"name" : "grid-rnbo-2-1",
+									"origin" : "grid-rnbo-2-2",
+									"type" : "rnbo",
+									"subtype" : "",
+									"embed" : 0,
+									"snapshot" : 									{
+										"__presetid" : "grid-rnbo-2-1"
+									}
+,
+									"fileref" : 									{
+										"name" : "grid-rnbo-2-1",
+										"filename" : "grid-rnbo-2-1_20240611_2.maxsnap",
+										"filepath" : "~/Max 8/Snapshots",
+										"filepos" : -1,
+										"snapshotfileid" : "9d7a1a2bc6cc70554e34f7a6a97b646c"
 									}
 
 								}
@@ -338,7 +360,7 @@
 
 					}
 ,
-					"text" : "rnbo~",
+					"text" : "rnbo~ @title grid-rnbo-2-2",
 					"varname" : "rnbo~"
 				}
 
@@ -374,7 +396,14 @@
 		"dependency_cache" : [ 			{
 				"name" : ".maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
-				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
+				"type" : "mx@s",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "grid-rnbo-2-1_20240611_2.maxsnap",
+				"bootpath" : "~/Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}

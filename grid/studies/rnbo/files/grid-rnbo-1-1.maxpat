@@ -62,7 +62,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 242.0, 435.0, 150.0, 20.0 ],
+					"patching_rect" : [ 393.0, 435.0, 150.0, 20.0 ],
 					"text" : "<~ double-click"
 				}
 
@@ -1013,7 +1013,7 @@
 						"bgfillcolor_autogradient" : 0.0
 					}
 ,
-					"patching_rect" : [ 195.0, 434.0, 45.0, 22.0 ],
+					"patching_rect" : [ 195.0, 434.0, 196.0, 22.0 ],
 					"rnboattrcache" : 					{
 
 					}
@@ -1046,7 +1046,7 @@
 						"subtype" : "Undefined",
 						"embed" : 1,
 						"snapshot" : 						{
-							"__presetid" : "04a73c45-fcfa-11ee-bc45-acde48001122"
+							"__presetid" : "grid-rnbo-1-1"
 						}
 ,
 						"snapshotlist" : 						{
@@ -1061,7 +1061,7 @@
 									"subtype" : "",
 									"embed" : 1,
 									"snapshot" : 									{
-										"__presetid" : "04a73c45-fcfa-11ee-bc45-acde48001122"
+										"__presetid" : "grid-rnbo-1-1"
 									}
 ,
 									"fileref" : 									{
@@ -1150,7 +1150,7 @@
 
 					}
 ,
-					"text" : "rnbo~",
+					"text" : "rnbo~ @title grid-rnbo-1-1",
 					"varname" : "rnbo~"
 				}
 
@@ -1474,35 +1474,35 @@
 		"dependency_cache" : [ 			{
 				"name" : "untitled_20240606_5.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
-				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "untitled_20240610.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
-				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "untitled_20240610_1.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
-				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "untitled_20240610_2.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
-				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "untitled_20240610_3.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
-				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}

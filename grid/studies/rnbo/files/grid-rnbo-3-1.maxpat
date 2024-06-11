@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 6,
-			"revision" : 2,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"openrect" : [ 34.0, 100.0, 287.0, 368.0 ],
+		"openrect" : [ 34.0, 100.0, 366.0, 368.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -31,7 +31,7 @@
 		"boxanimatetime" : 200,
 		"enablehscroll" : 1,
 		"enablevscroll" : 1,
-		"devicewidth" : 287.0,
+		"devicewidth" : 366.0,
 		"description" : "",
 		"digest" : "",
 		"tags" : "",
@@ -44,7 +44,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 134.0, 132.0, 150.0, 20.0 ],
+					"patching_rect" : [ 208.0, 132.0, 117.0, 20.0 ],
 					"text" : "<~ double-click"
 				}
 
@@ -70,13 +70,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 6,
-							"revision" : 2,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "rnbo",
-						"openrect" : [ 390.0, 100.0, 663.0, 368.0 ],
+						"openrect" : [ 469.0, 100.0, 663.0, 368.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -104,7 +104,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
-						"title" : "untitled",
+						"title" : "grid-rnbo-3-1",
 						"boxes" : [ 							{
 								"box" : 								{
 									"code" : "@state g = new FixedIntArray(16,16); // global: grid matrix\r\n\r\nx = listin1[0]; // x coordinate\r\ny = listin1[1]; // y coordinate\r\nz = listin1[2]; // z coordinate\r\n\r\nif (z == 1 && (y < 6)){ // key-down only, in first six rows\r\n\tg[x][y] = abs(g[x][y] - 1); // flip state with key-down\r\n\toutgoing = g[x][y] * 15; // g[x][y] is always 0 or 1 \r\n\tlistout1 = [x,y,outgoing]; // send list out to set grid LEDs\r\n}",
@@ -409,12 +409,12 @@
 						"bgfillcolor_autogradient" : 0.0
 					}
 ,
-					"patching_rect" : [ 85.0, 131.0, 45.0, 22.0 ],
+					"patching_rect" : [ 10.0, 131.0, 196.0, 22.0 ],
 					"rnboattrcache" : 					{
 
 					}
 ,
-					"rnboversion" : "1.3.0-dev.79",
+					"rnboversion" : "1.3.1",
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_invisible" : 1,
@@ -442,7 +442,7 @@
 						"subtype" : "Undefined",
 						"embed" : 1,
 						"snapshot" : 						{
-							"__presetid" : "546475a9-1848-11ef-b5a9-26348b6c13dd"
+							"__presetid" : "grid-rnbo-3-1"
 						}
 ,
 						"snapshotlist" : 						{
@@ -451,21 +451,21 @@
 									"filetype" : "C74Snapshot",
 									"version" : 2,
 									"minorversion" : 0,
-									"name" : "untitled",
-									"origin" : "546475a9-1848-11ef-b5a9-26348b6c13dd",
+									"name" : "grid-rnbo-3-1",
+									"origin" : "grid-rnbo-3-1",
 									"type" : "rnbo",
 									"subtype" : "",
-									"embed" : 0,
+									"embed" : 1,
 									"snapshot" : 									{
-										"__presetid" : "546475a9-1848-11ef-b5a9-26348b6c13dd"
+										"__presetid" : "grid-rnbo-3-1"
 									}
 ,
 									"fileref" : 									{
-										"name" : "untitled",
-										"filename" : "untitled.maxsnap",
+										"name" : "grid-rnbo-3-1",
+										"filename" : "grid-rnbo-3-1.maxsnap",
 										"filepath" : "~/Max 8/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "fcb5cd6a71068310ac188ca9409f3fb1"
+										"snapshotfileid" : "dde306b3b3322e3a00fe4844d52c82e5"
 									}
 
 								}
@@ -474,7 +474,7 @@
 
 					}
 ,
-					"text" : "rnbo~",
+					"text" : "rnbo~ @title grid-rnbo-3-1",
 					"varname" : "rnbo~"
 				}
 
@@ -508,9 +508,9 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "untitled.maxsnap",
+				"name" : "grid-rnbo-3-1.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
-				"patcherrelativepath" : "../../../../../../../../Max 8/Snapshots",
+				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}

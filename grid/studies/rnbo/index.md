@@ -92,17 +92,21 @@ e9f88bda.938348f4 /monome/grid/key iii 7 4 0
 
 *Note: you will not be able to connect your grid to your RNBO project unless you perform these tasks.*
 
-After completing the steps above, open `grid-rnbo-1-1.maxpat` and perform each of the numbered tasks.
+After completing the steps above, open `grid-rnbo-1.maxpat` and perform each of the numbered tasks.
 
-![](images/rnbo-studies-1-1.png)
+![](images/rnbo-studies-1.png)
 
 ## 2. Basics
 
+*See `grid-rnbo-2.maxpat` for this section.*
+
 RNBO's [inports and outports](https://rnbo.cycling74.com/learn/messages-and-ports#inports-and-outports) allow messages from the grid to flow in and out of the patcher. In `grid-rnbo-1-1.maxpat`, we added our grid to the [listener ports](https://rnbo.cycling74.com/learn/rnbo-raspberry-pi-oscquery-runner#listener-ports) to create a bi-directional communication link between the grid and the Pi.
+
+![](images/rnbo-studies-2.png)
 
 ### 2.1 Key input
 
-*See `grid-rnbo-2-1.maxpat` for this section.*
+*Open and export `grid-rnbo-2-1` to your Pi for this section.*
 
 ![](images/rnbo-studies-2-1.png)
 
@@ -117,7 +121,7 @@ Since Max and RNBO both execute in right-to-left order, we'll use `[list.rot 1]`
 
 ### 2.2 Coupled LED output
 
-*See `grid-rnbo-2-2.maxpat` for this section.*
+*Open and export `grid-rnbo-2-2` to your Pi for this section.*
 
 ![](images/rnbo-studies-2-2.png)
 
@@ -127,7 +131,7 @@ To clear the entire grid when our patch is loaded, we send `[loadmess 0]` throug
 
 ### 2.3 Decoupled interaction
 
-*See `grid-rnbo-2-3.maxpat` for this section.*
+*Open and export `grid-rnbo-2-3` to your Pi for this section.*
 
 ![](images/rnbo-studies-2-3.png)
 
@@ -158,11 +162,11 @@ if (z == 1){ // key-down only
 }
 ```
 
-[ TODO: SCREENSHOT ]
-
 By simply connecting the outlet of our `[codebox]` to the inlet of the grid's `[outport]` (and exporting to the Pi), we now have a toggle bank!
 
 ## 3.0 Further
+
+*See `grid-rnbo-3.maxpat` for this step.*
 
 Now we'll show how basic grid applications are developed by creating a step sequencer for a 128-sized grid. We will add features incrementally:
 
@@ -174,10 +178,11 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 - Jump to playback position when key pressed in the position row.
 - Adjust playback loop with two-key gesture in position row.
 
+![](images/rnbo-studies-3.png)
 
 ### 3.1 Toggles
 
-*See grid-studies-3-1.maxpat for this step.*
+*Open and export `grid-rnbo-3-1` to your Pi for this section.*
 
 ![](images/rnbo-studies-3-1.png)
 
@@ -199,7 +204,7 @@ if (z == 1 && (y < 6)){ // key-down only, in first six rows
 
 ### 3.2 Play
 
-*See grid-rnbo-3-2.maxpat for this step.*
+*Open and export `grid-rnbo-3-2` to your Pi for this section.*
 
 ![](images/rnbo-studies-3-2.png)
 
@@ -229,7 +234,7 @@ Now when you export to the Pi target, you'll see the playhead moving along the b
 
 ### 3.3 Triggers and notes
 
-*See grid-rnbo-3-3.maxpat for this step.*
+*Open and export `grid-rnbo-3-3` to your Pi for this section.*
 
 ![](images/rnbo-studies-3-3-1.png)
 
@@ -279,7 +284,7 @@ Lastly, there's a tiny sound engine so you can actually hear something. You can 
 
 ### 3.4 Cutting and Looping
 
-*See grid-rnbo-3-4.maxpat for this step.*
+*Open and export `grid-rnbo-3-4` to your Pi for this section.*
 
 ![](images/rnbo-studies-3-4.png)
 
@@ -359,6 +364,6 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences 
 
 *RNBO* is bundled with *Max* and is actively developed by [Cycling '74](http://cycling74.com).
 
-This tutorial was created by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org), with generous advising from Alex Norman (@ Cycling '74).
+This tutorial was created by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org), with generous feedback and counsel from Cycling '74 (Alex Norman, Tom Hall, and Alex Van Gils).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

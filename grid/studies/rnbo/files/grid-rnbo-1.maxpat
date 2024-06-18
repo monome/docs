@@ -51,6 +51,13 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 437.0, 21.0, 349.0, 122.0 ],
 					"readonly" : 1,
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.live_control_fg"
+						}
+
+					}
+,
 					"text" : "IMPORTANT: be sure to SSH into your Pi and run the following commands to install the required software stack\n\n- sudo apt-get update\n- sudo apt-get install serialosc\n- sudo apt-get install liblo-tools\n- sudo reboot now",
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
@@ -62,8 +69,16 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 393.0, 435.0, 150.0, 20.0 ],
-					"text" : "<~ double-click"
+					"patching_rect" : [ 378.0, 435.0, 150.0, 20.0 ],
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.live_control_fg"
+						}
+
+					}
+,
+					"text" : "<~ double-click",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
 			}
@@ -421,7 +436,15 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 9.5, 518.0, 167.0, 47.0 ],
-					"text" : "6. press some grid keys and watch the LEDs illuminate!"
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.live_control_fg"
+						}
+
+					}
+,
+					"text" : "6. press some grid keys and watch the LEDs illuminate!",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
 			}
@@ -432,7 +455,15 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 482.0, 326.0, 340.0, 20.0 ],
-					"text" : "<~ successful grid registration will post here"
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.live_control_fg"
+						}
+
+					}
+,
+					"text" : "<~ successful grid registration will post here",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
 			}
@@ -443,7 +474,15 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 9.5, 435.0, 181.0, 20.0 ],
-					"text" : "4. export patch to Pi ~>"
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.live_control_fg"
+						}
+
+					}
+,
+					"text" : "4. export patch to Pi ~>",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
 			}
@@ -474,7 +513,7 @@
 						}
 ,
 						"classnamespace" : "rnbo",
-						"openrect" : [ 790.0, 100.0, 688.0, 376.0 ],
+						"openrect" : [ 965.0, 100.0, 513.0, 376.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -495,21 +534,90 @@
 						"boxanimatetime" : 200,
 						"enablehscroll" : 1,
 						"enablevscroll" : 1,
-						"devicewidth" : 688.0,
+						"devicewidth" : 513.0,
 						"description" : "",
 						"digest" : "",
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
-						"title" : "grid-rnbo-1-1",
+						"title" : "grid-rnbo-1",
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-12",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 240.0, 308.0, 187.0, 21.0 ],
+									"text" : "send through to the 'all' command"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-13",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 108.0, 269.0, 277.0, 21.0 ],
+									"text" : "when the patch is loaded, we want the grid to clear"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 108.0, 173.0, 188.0, 21.0 ],
+									"presentation_linecount" : 2,
+									"text" : "repack coordinates and brightness"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-10",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 120.0, 134.0, 259.0, 21.0 ],
+									"presentation_linecount" : 3,
+									"text" : "multiply press state (1 or 0) by 15 for brightness"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 108.0, 96.0, 197.0, 21.0 ],
+									"presentation_linecount" : 4,
+									"text" : "break out coordinate and press data"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 187.0, 55.0, 183.0, 21.0 ],
+									"text" : "grid keypresses come in via OSC"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-8",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 280.0, 241.0, 196.0, 23.0 ],
+									"patching_rect" : [ 42.0, 307.0, 196.0, 23.0 ],
 									"rnbo_classname" : "outport",
 									"rnbo_extra_attributes" : 									{
 										"meta" : ""
@@ -528,7 +636,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 280.0, 202.0, 67.0, 23.0 ],
+									"patching_rect" : [ 42.0, 268.0, 67.0, 23.0 ],
 									"rnbo_classname" : "loadmess",
 									"rnbo_serial" : 1,
 									"rnbo_uniqueid" : "loadmess_obj-7",
@@ -610,7 +718,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 42.0, 241.0, 200.0, 23.0 ],
+									"patching_rect" : [ 42.0, 211.0, 200.0, 23.0 ],
 									"rnbo_classname" : "outport",
 									"rnbo_extra_attributes" : 									{
 										"meta" : ""
@@ -629,7 +737,7 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 202.0, 64.0, 23.0 ],
+									"patching_rect" : [ 42.0, 172.0, 64.0, 23.0 ],
 									"rnbo_classname" : "pack",
 									"rnbo_extra_attributes" : 									{
 										"list" : "",
@@ -773,7 +881,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 87.0, 163.0, 31.0, 23.0 ],
+									"patching_rect" : [ 87.0, 133.0, 31.0, 23.0 ],
 									"rnbo_classname" : "*",
 									"rnbo_extra_attributes" : 									{
 										"hot" : 0
@@ -792,7 +900,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 42.0, 125.0, 64.0, 23.0 ],
+									"patching_rect" : [ 42.0, 95.0, 64.0, 23.0 ],
 									"rnbo_classname" : "unpack",
 									"rnbo_extra_attributes" : 									{
 										"length" : 0.0
@@ -936,7 +1044,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 42.0, 84.0, 143.0, 23.0 ],
+									"patching_rect" : [ 42.0, 54.0, 143.0, 23.0 ],
 									"rnbo_classname" : "inport",
 									"rnbo_extra_attributes" : 									{
 										"meta" : ""
@@ -1013,7 +1121,7 @@
 						"bgfillcolor_autogradient" : 0.0
 					}
 ,
-					"patching_rect" : [ 195.0, 434.0, 196.0, 22.0 ],
+					"patching_rect" : [ 195.0, 434.0, 181.0, 22.0 ],
 					"rnboattrcache" : 					{
 
 					}
@@ -1046,7 +1154,7 @@
 						"subtype" : "Undefined",
 						"embed" : 1,
 						"snapshot" : 						{
-							"__presetid" : "grid-rnbo-1-1"
+							"__presetid" : "grid-rnbo-1"
 						}
 ,
 						"snapshotlist" : 						{
@@ -1056,20 +1164,20 @@
 									"version" : 2,
 									"minorversion" : 0,
 									"name" : "untitled",
-									"origin" : "grid-rnbo-1-1",
+									"origin" : "grid-rnbo-1",
 									"type" : "rnbo",
 									"subtype" : "",
 									"embed" : 1,
 									"snapshot" : 									{
-										"__presetid" : "grid-rnbo-1-1"
+										"__presetid" : "grid-rnbo-1"
 									}
 ,
 									"fileref" : 									{
 										"name" : "untitled",
-										"filename" : "untitled_20240610.maxsnap",
+										"filename" : "untitled_20240618.maxsnap",
 										"filepath" : "~/Documents/Max 8/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "364d388a3b7b40f22fc30f3cd8565a1a"
+										"snapshotfileid" : "3f062d2a23965ea3b5f5510a8eb1b62b"
 									}
 
 								}
@@ -1078,16 +1186,20 @@
 									"version" : 2,
 									"minorversion" : 0,
 									"name" : "untitled",
-									"origin" : "grid-rnbo-1-1",
+									"origin" : "grid-rnbo-1",
 									"type" : "rnbo",
 									"subtype" : "",
 									"embed" : 0,
+									"snapshot" : 									{
+										"__presetid" : "04a73c45-fcfa-11ee-bc45-acde48001122"
+									}
+,
 									"fileref" : 									{
 										"name" : "untitled",
-										"filename" : "untitled_20240606_5.maxsnap",
+										"filename" : "untitled_20240618_1.maxsnap",
 										"filepath" : "~/Max 8/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "cfe3ce9a03319a3eee4b0620e30a3cdb"
+										"snapshotfileid" : "bb69a16c3ac5ac101b7e73f3b548f050"
 									}
 
 								}
@@ -1096,16 +1208,20 @@
 									"version" : 2,
 									"minorversion" : 0,
 									"name" : "untitled",
-									"origin" : "grid-rnbo-1-1",
+									"origin" : "grid-rnbo-1",
 									"type" : "rnbo",
 									"subtype" : "",
 									"embed" : 0,
+									"snapshot" : 									{
+										"__presetid" : "04a73c45-fcfa-11ee-bc45-acde48001122"
+									}
+,
 									"fileref" : 									{
 										"name" : "untitled",
-										"filename" : "untitled_20240610_1.maxsnap",
+										"filename" : "untitled_20240618_2.maxsnap",
 										"filepath" : "~/Max 8/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "e8ca4762d160e4db019599c263409cd1"
+										"snapshotfileid" : "7cbeed756b49e1f25ffd075120b346a0"
 									}
 
 								}
@@ -1114,16 +1230,20 @@
 									"version" : 2,
 									"minorversion" : 0,
 									"name" : "untitled",
-									"origin" : "grid-rnbo-1-1",
+									"origin" : "grid-rnbo-1",
 									"type" : "rnbo",
 									"subtype" : "",
 									"embed" : 0,
+									"snapshot" : 									{
+										"__presetid" : "04a73c45-fcfa-11ee-bc45-acde48001122"
+									}
+,
 									"fileref" : 									{
 										"name" : "untitled",
-										"filename" : "untitled_20240610_2.maxsnap",
+										"filename" : "untitled_20240618_3.maxsnap",
 										"filepath" : "~/Max 8/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "1ce2bfa0e5281e7e107b32883fb13a79"
+										"snapshotfileid" : "7df98a0aa3e49804018624537020ca3d"
 									}
 
 								}
@@ -1132,16 +1252,20 @@
 									"version" : 2,
 									"minorversion" : 0,
 									"name" : "untitled",
-									"origin" : "grid-rnbo-1-1",
+									"origin" : "grid-rnbo-1",
 									"type" : "rnbo",
 									"subtype" : "",
 									"embed" : 0,
+									"snapshot" : 									{
+										"__presetid" : "04a73c45-fcfa-11ee-bc45-acde48001122"
+									}
+,
 									"fileref" : 									{
 										"name" : "untitled",
-										"filename" : "untitled_20240610_3.maxsnap",
+										"filename" : "untitled_20240618_4.maxsnap",
 										"filepath" : "~/Max 8/Snapshots",
 										"filepos" : -1,
-										"snapshotfileid" : "30a4e14634c9a4a001b5ff2fb295f67b"
+										"snapshotfileid" : "8bfbc6b70fb158b5dc2da8f213ac95b8"
 									}
 
 								}
@@ -1150,7 +1274,7 @@
 
 					}
 ,
-					"text" : "rnbo~ @title grid-rnbo-1-1",
+					"text" : "rnbo~ @title grid-rnbo-1",
 					"varname" : "rnbo~"
 				}
 
@@ -1163,7 +1287,15 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 9.5, 461.0, 167.0, 47.0 ],
-					"text" : "5. unplug + re-plug your grid to save the configuration"
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.live_control_fg"
+						}
+
+					}
+,
+					"text" : "5. unplug + re-plug your grid to save the configuration",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
 			}
@@ -1198,7 +1330,15 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 9.5, 259.0, 135.0, 60.0 ],
-					"text" : "3. enter your computer's IP address.\nhit bang ~>"
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.live_control_fg"
+						}
+
+					}
+,
+					"text" : "3. enter your computer's IP address.\nhit bang ~>",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
 			}
@@ -1271,7 +1411,15 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 9.5, 48.0, 135.0, 60.0 ],
-					"text" : "2. if necessary, enter your Pi's address.\nhit bang ~>"
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.live_control_fg"
+						}
+
+					}
+,
+					"text" : "2. if necessary, enter your Pi's address.\nhit bang ~>",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
 			}
@@ -1282,7 +1430,15 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 9.5, 21.0, 160.0, 20.0 ],
-					"text" : "1. connect grid to Pi"
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.live_control_fg"
+						}
+
+					}
+,
+					"text" : "1. connect grid to Pi",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
 			}
@@ -1364,8 +1520,16 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 9.5, 588.0, 167.0, 33.0 ],
-					"text" : "grid studies: rnbo 1-1\nhttp://monome.org"
+					"patching_rect" : [ 9.5, 588.0, 153.0, 33.0 ],
+					"saved_attribute_attributes" : 					{
+						"textcolor" : 						{
+							"expression" : "themecolor.live_control_fg"
+						}
+
+					}
+,
+					"text" : "grid studies: rnbo 1\nhttp://monome.org",
+					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
 			}
@@ -1472,35 +1636,35 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "untitled_20240606_5.maxsnap",
+				"name" : "untitled_20240618.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
 				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "untitled_20240610.maxsnap",
+				"name" : "untitled_20240618_1.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
 				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "untitled_20240610_1.maxsnap",
+				"name" : "untitled_20240618_2.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
 				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "untitled_20240610_2.maxsnap",
+				"name" : "untitled_20240618_3.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
 				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "untitled_20240610_3.maxsnap",
+				"name" : "untitled_20240618_4.maxsnap",
 				"bootpath" : "~/Max 8/Snapshots",
 				"patcherrelativepath" : "../../../../../../../Max 8/Snapshots",
 				"type" : "mx@s",

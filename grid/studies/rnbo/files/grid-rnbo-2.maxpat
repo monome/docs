@@ -1207,8 +1207,8 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 10.0, 438.0, 167.0, 33.0 ],
-					"text" : "grid studies: rnbo 2-1\nhttp://monome.org"
+					"patching_rect" : [ 10.0, 438.0, 153.0, 33.0 ],
+					"text" : "grid studies: rnbo 2\nhttp://monome.org"
 				}
 
 			}
@@ -1224,7 +1224,6 @@
 					"outlettype" : [ "", "int", "", "" ],
 					"parameter_enable" : 0,
 					"patching_rect" : [ 10.0, 6.0, 334.0, 291.0 ],
-					"presentation_linecount" : 16,
 					"readonly" : 1,
 					"saved_attribute_attributes" : 					{
 						"textcolor" : 						{

@@ -56,7 +56,7 @@ This section assume two things are true:
 - First, please try [re-installing serialosc](/docs/serialosc/setup). Note that if you did not previously install serialosc via homebrew, then you will need to remove any existing installations before proceeding.
 - Do you have TouchOSC Bridge or TouchOSC Editor installed? Try removing them and installing [the latest versions](https://hexler.net/products/touchosc). You should be able to run both TouchOSC and serialosc, but we've found that reinstalling the TouchOSC software is necessary in some situations.
 - Do you have any Wacom drivers installed? Please follow [these removal steps](https://www.wacom.com/en-in/support?guideTitle=How-do-I-uninstall-(manually)-and-re-install-the-Wacom-driver-on-Mac-OS-for-a-Pen-Tablet%2C-Pen-Display%2C-or-Pen-Computer%3F&guideId=002-235), as we've found that these drivers can block serialosc.
-- Try the "uninstalling d2xx drivers" steps from [page 18 of this guide](https://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf) and try installing [the FTDI driver](https://ftdichip.com/drivers/vcp-drivers/) manually.
+- If you have [a grid made before 2021](https://monome.org/docs/grid/editions/), try the "uninstalling d2xx drivers" steps from [page 18 of this guide](https://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf) and try installing [the FTDI driver](https://ftdichip.com/drivers/vcp-drivers/) manually.
 
 If you've reached this point and things still aren't working, please contact [help@monome.org](mailto:help@monome.org) with screenshots of what you see in steps 1-4, what you see in the Max console (CMD+B), and your Mac's OS version.
 
@@ -64,7 +64,7 @@ If you've reached this point and things still aren't working, please contact [he
 
 If your grid or arc is not being detected when you plug into your Windows machine (but it is showing the light burst indicating its receiving power over USB), here are a few things to try.
 
-1. If you don't have iTunes installed on your device, you might be missing Bonjour, which Max uses to communicate with OSC and networked devices. To remedy, please install [Bonjour Print Services](http://support.apple.com/kb/DL999).
+1. If you're using Max/MSP and don't have iTunes installed on your device, you might be missing Bonjour, which Max uses to communicate with OSC and networked devices. To remedy, please install [Bonjour Print Services](http://support.apple.com/kb/DL999).
 2. The [beta version of serialosc 1.4.1](https://github.com/monome/serialosc/releases/download/v1.4.1/serialosc-1.4.2-pre.exe.zip) might improve connectivity.
 3. Try starting serialosc manually from the Services program. If you see `Error 1075`, you might need to [tweak your registry](https://llllllll.co/t/trouble-setting-up-monome/7001/5).
-4. You may need to manually install the FTDI VCP driver, which you get get [here](https://ftdichip.com/drivers/vcp-drivers/).
+4. If you have [a grid made before 2021](https://monome.org/docs/grid/editions/), you may need to manually install the FTDI VCP driver, which you get get [here](https://ftdichip.com/drivers/vcp-drivers/).

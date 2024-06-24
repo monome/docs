@@ -25,6 +25,8 @@ To begin, let's get acquainted with the layouts of both iterations of norns -- s
 ![](/docs/norns/image/play-images/norns-legends.png)  
 *[figure 1: standard norns and shield legend](image/play-images/norns-legends.png)*
 
+**Note for shield: the headphone jack on the Raspberry Pi itself is unused, as is the Pi's HDMI port.**
+
 ### power on
 
 **standard**

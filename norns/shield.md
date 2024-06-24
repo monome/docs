@@ -45,7 +45,11 @@ The norns shield hardware was updated in June 2021 for cleaner audio path and mo
 
 ## connecting audio
 
-At the top of the shield's board, you'll notice two arrows -- their points represent audio in (`▽`) and audio out (`△`). These jacks are each 1/8" stereo. The headphone jack on the Raspberry Pi itself is unused, as is the Pi's HDMI port.
+At the top of the shield's board, you'll notice two arrows -- their points represent audio in (`▽`) and audio out (`△`). These jacks are each 1/8" stereo.
+
+![](/docs/norns/image/play-images/norns-shield-legend.png)
+
+**Note: the headphone jack on the Raspberry Pi itself is unused, as is the Pi's HDMI port.**
 
 To learn more about how to use shield, please refer to the standard norns documentation, staring with [play](https://monome.org/docs/norns/play/). Software is 100% compatible between the two, so the same instructions largely apply to both (and cases where things are different are notated within the docs).
 

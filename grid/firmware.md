@@ -7,7 +7,7 @@ nav_exclude: true
 
 ## firmware
 
-Note that this is only for grids made in 2022 and early 2023. grids shipped on or after January 23, 2024 have this newest firmware.
+**Note that this is only for grids made in 2022 and early 2023. grids shipped on or after January 23, 2024 have this newest firmware. grids made before 2022 do not require a firmware update.**
 
 This new firmware addresses some edge communication stability issues and also low-brightness inconsistencies due to the LED driver circuit used.
 
@@ -27,4 +27,4 @@ If you flash the firmware and don't see LED activity afterward, verify that the 
 - zero, circuit board marking `monome/grid-zero/230412` - [download zero-240123.uf2](zero-240123.uf2)
 - one, circuit board marking `monome/grid-one/230412` - [download one-240123.uf2](one-240123.uf2)
 - late 2022, circuit board marking `monome/grid/220914` - [download grid-240123.uf2](grid-240123.uf2)
-- all others do not require a firmware update
+- **all other grid editions do not require a firmware update**

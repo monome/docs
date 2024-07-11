@@ -60,7 +60,8 @@ norns is open source and continues to grow with the generous efforts of many con
 
 **power**
 
-- power/charge via USB-mini, high output USB power supply included (5.25V / 2A).
+- power/charge via USB-mini.
+- high output USB power supply included (5.25V / 2A); US pins, automatically converts 110 - 240 VAC with simple plug format adapter.
 - internal lipo battery 2250mAh.
 
 **processing**

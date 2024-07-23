@@ -55,7 +55,7 @@ To access the complete norns API, you can either:
 | [poll](poll)                                                          | System polling for CPU, incoming/outgoing amplitude, and incoming pitch                                               |
 | [screen (api)](/docs/norns/api/modules/screen.html)                   | Draw to the norns on-board screen                                                                                     |
 | [softcut (api)](/docs/norns/api/modules/softcut.html)                 | Two audio buffers which can be recorded into and played by six individual voices                                      |
-| [tab (api)](./lib/tabutil)                                            | Table utilities                                                                                                       |
+| [tab](./lib/tabutil)                                                  | Table utilities                                                                                                       |
 | [util (api)](/docs/norns/api/modules/lib.util.html)                   | Helpful utility functions                                                                                             |
 | [lib/elca (api)](/docs/norns/api/modules/lib.elca.html)               | Elementary cellular automata generator                                                                                |
 | [lib/envgraph (api)](/docs/norns/api/modules/lib.EnvGraph.html)       | Envelope graph drawing module                                                                                         |

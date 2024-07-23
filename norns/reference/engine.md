@@ -29,15 +29,15 @@ The `engine` module manages the interactions between SuperCollider (generally sp
 
 The norns core software stack comes equipped with a few basic engines, which do not require any additional user management:
 
-- `PolyPerc`: pulse wave with percussive envelopes which are triggered on updates to the synth's frequency | [source code](https://github.com/monome/norns/blob/main/sc/engines/Engine_PolyPerc.sc)
+- `PolyPerc`: pulse wave with percussive envelopes which are triggered on updates to the synth's frequency ([source code](https://github.com/monome/norns/blob/main/sc/engines/Engine_PolyPerc.sc))
 
-- `PolySub`: a subtractive polysynth engine | [source code](https://github.com/monome/norns/blob/main/sc/engines/Engine_PolySub.sc)
+- `PolySub`: a subtractive polysynth engine ([source code](https://github.com/monome/norns/blob/main/sc/engines/Engine_PolySub.sc))
 
-- `SimplePassThru`: an engine which passes incoming audio through, with control over amplitude | [source code](https://github.com/monome/norns/blob/main/sc/engines/Engine_SimplePassThru.sc)
+- `SimplePassThru`: an engine which passes incoming audio through, with control over amplitude ([source code](https://github.com/monome/norns/blob/main/sc/engines/Engine_SimplePassThru.sc))
 
-- `TestSine`: a single, mono sinewave | [source code](https://github.com/monome/norns/blob/main/sc/engines/Engine_TestSine.sc)
+- `TestSine`: a single, mono sinewave  ([source code](https://github.com/monome/norns/blob/main/sc/engines/Engine_TestSine.sc))
 
-- `None`: a special-case engine which has no functions and is called when a script is cleared or a clean-slate is desired
+- `None`: a special-case engine which has no functions and is called when a script is cleared or a clean-slate is desired ([source code](https://github.com/monome/norns/blob/15c9cf9304d500b28c7ad04d6ddf4f85a4a6d095/sc/core/CroneEngine.sc#L83-L92))
 
 For engine development overview and best practices, we encourage spending time with our engine-specific studies:
 

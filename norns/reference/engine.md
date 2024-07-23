@@ -45,7 +45,7 @@ For engine development overview and best practices, we encourage spending time w
 - [skilled labor](/docs/norns/engine-study-2/) // extended study of norns engine development: polyphony and realtime parameter changes
 - [transit authority](/docs/norns/engine-study-3/) // deep-dive into audio busses, FX, and polls (to communicate from SuperCollider to Lua)
 
-Custom SuperCollider engine files live inside of a project's `lib` folder, as either a single `CroneEngine` file or as `CroneEngine` / Class File pair. Engines can be distributed as part of a larger script or as a standalone project, but note that having multiple copies of the engine's SuperCollider file will cause a [DUPLICATE ENGINES](/norns/help/software/#duplicate-engines) error.
+Custom SuperCollider engine files live inside of a project's `lib` folder, as either a single `CroneEngine` file or as `CroneEngine` / Class File pair. Engines can be distributed as part of a larger script or as a standalone project, but note that having multiple copies of the engine's SuperCollider file will cause a [DUPLICATE ENGINES](/docs/norns/help/software/#duplicate-engines) error.
 
 ### basic example
 

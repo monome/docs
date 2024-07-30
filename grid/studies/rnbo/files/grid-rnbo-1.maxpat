@@ -100,7 +100,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 893.0, 163.0, 640.0, 480.0 ],
+						"rect" : [ 838.0, 163.0, 640.0, 480.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -289,8 +289,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 163.0, 48.0, 117.0, 22.0 ],
-									"text" : "udpreceive 6666"
+									"patching_rect" : [ 163.0, 48.0, 95.0, 22.0 ],
+									"text" : "udpreceive 1111"
 								}
 
 							}
@@ -571,7 +571,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 108.0, 173.0, 188.0, 21.0 ],
-									"presentation_linecount" : 2,
 									"text" : "repack coordinates and brightness"
 								}
 
@@ -583,7 +582,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 120.0, 134.0, 259.0, 21.0 ],
-									"presentation_linecount" : 3,
 									"text" : "multiply press state (1 or 0) by 15 for brightness"
 								}
 
@@ -595,7 +593,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 108.0, 96.0, 197.0, 21.0 ],
-									"presentation_linecount" : 4,
 									"text" : "break out coordinate and press data"
 								}
 
@@ -1350,7 +1347,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 159.0, 364.0, 174.0, 22.0 ],
-					"text" : "/serialosc/list $1 6666"
+					"text" : "/serialosc/list $1 1111"
 				}
 
 			}

@@ -54,13 +54,13 @@ In a terminal on another computer connected to the same network, SSH into your P
 Connect your grid to the Pi and set up an OSC monitor with:
 
 ```bash
-oscdump 6666
+oscdump 1111
 ```
 
 Open another terminal window and connect to the Pi via SSH again. To list the available devices, we’ll query `serialoscd` which listens on port 12002, and we’ll route the response to our monitor:
 
 ```bash
-oscsend localhost 12002 /serialosc/list si localhost 6666
+oscsend localhost 12002 /serialosc/list si localhost 1111
 ```
 
 Say we have an 8x16 grid attached, results might look like this:
@@ -74,7 +74,7 @@ Here, port `10806` is where the device is listening. **Note that this will be un
 To have this grid send data to our terminal, execute:
 
 ```bash
-oscsend localhost <!port!> /sys/port i 6666
+oscsend localhost <!port!> /sys/port i 1111
 ```
 
 Press some keys on the Pi-connected grid and in our monitoring terminal window, we should see:

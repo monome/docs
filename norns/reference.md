@@ -12,7 +12,6 @@ redirect_from: /norns/reference/lib/
 ---
 
 # norns script reference
-
 {: .no_toc }
 
 This script reference is a supplement to the complete norns API. Here, you'll find examples which explore single components of the API, which can be copied/pasted into your own scripts and manipulated for your needs. These examples assume familiarity with the scripting concepts covered in the [norns studies](/docs/norns/studies).

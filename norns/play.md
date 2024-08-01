@@ -302,9 +302,13 @@ To manage TAPE and audio files on norns, see [**wifi + files**](/docs/norns/wifi
 
 In the simplest terms, everything you hear from the main output is committed to a recording tape. This includes the system reverb, compressor, monitor audio, as well as any tape that might be playing. If you are recording for further processing in a DAW, you may want to turn off the system reverb and compressor for a more barebones sound.
 
-## SELECT
+## HOME
 
-Navigate to the *home* menu, then press **K3** on SELECT:
+
+
+### SELECT
+
+Navigate to the *HOME* menu, then press **K3** on SELECT:
 
 ![](/docs/norns/image/play-images/menu-sel.png)  
 [*figure 8: selecting a script*](image/play-images/menu-sel.png)
@@ -316,24 +320,24 @@ Navigate to the *home* menu, then press **K3** on SELECT:
 
 A fresh norns installation comes with two foundational scripts: *awake*, which we've covered earlier in these docs, and [*first light*](/docs/norns/study-0), a fantastic starting point for those curious about how norns scripts work from a code perspective. If you'd like to jump into any of the [**community scripts**](/docs/norns/community-scripts) available for norns, be sure to connect to [**wifi**](/docs/norns/wifi-files) and access [**maiden**](/docs/norns/maiden) (the norns project manager)!
 
-### favorites
+#### favorites
 
 When you entered the SELECT menu, you might've noticed an asterisk next to *awake* -- this signifies a favorite script, which places it at the top of the scroll. This makes it easy to quickly access your go-to's!
 
 To add a favorite, turn **E3** clockwise on any script in the SELECT menu.  
 To remove a favorite, turn **E3** counter-clockwise on any already-favorited script.
 
-### clear script
+#### clear script
 
 To clear the script running on norns:
 
-- navigate to the *home* menu
+- navigate to the *HOME* menu
 - if SELECT is not highlighted, use **E2** to highlight it
 - hold **K1** on SELECT and you'll see `CLEAR`
 - while holding **K1**, press **K3** to clear the currently-running script
 - release **K1** and you'll see `NONE` where the previously-running script's name used to be
 
-## SYSTEM
+### SYSTEM
 
 ![](/docs/norns/image/play-images/system.png)  
 [*figure 9: the norns SYSTEM menu*](image/play-images/system.png)

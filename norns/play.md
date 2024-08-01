@@ -304,7 +304,32 @@ In the simplest terms, everything you hear from the main output is committed to 
 
 ## HOME
 
+The *HOME* menu holds waypoints for essential norns interactions, including selecting a new script, managing system settings, and safely shutting the device down.
 
+### system status
+
+While on the *HOME* menu, press **K2** to toggle helpful system status information:
+
+![](/docs/norns/image/help-images/status.png)
+[*figure 8: toggling system status information*](/docs/norns/image/help-images/status.png)
+
+The first four `cpu` readings show the state of each of the processor's four cores, followed by an average CPU load.
+
+Occassionally, you may see `!!!` next to the CPU average. This indicates that the audio system has detected the occurence of [xruns](https://alsa.opensrc.org/Xruns). This indicator is normal during script switching, when SuperCollider engines are being swapped out. If the indicator is present during a script's run, it likely corresponds to audio glitching due to CPU overload.
+
+The `disk` reading shows the storage available, in megabytes.
+
+Underneath the script's name (or `NONE` if no script is running), you'll see the software version currently running on your norns. In the screenshot above, we're running `230405`, formatted as YYMMDD. See the [update docs](/docs/norns/wifi-files/#update) for more infomation.
+
+The current state of the battery is shown in the bottom right corner:
+
+- if the `mA` reading is negative, this means power is being drawn
+  - if you ever see a consistently negative reading _while plugged into wall power_, then the draw on the built-in USB hub is likely too high and you should use an externallty-powered hub
+- if the `mA` reading is positive, this means power is being supplied and the battery is charging up
+- on wall power, as the battery gets closer and closer to 100%, you may see the positive `mA` begin to reduce – this is normal / expected, as norns is ‘trickling’ charge in
+- at 100% battery, you’ll likely see `0mA`, since norns does not need to draw any more power to charge the battery – this is a safety against overcharging and degrading your battery, so that if you leave your norns plugged into wall power for months, you’ll still have a working battery when you detach
+
+'Normal' battery draw is difficult to define, as it depends on the script being used and the hardware connected to norns. Generally, though, a draining battery will display ~`-400mA` without any additional hardware connected. A charging battery will display `400mA` - `600mA`.
 
 ### SELECT
 
@@ -339,6 +364,8 @@ To clear the script running on norns:
 
 ### SYSTEM
 
+Navigate to the *HOME* menu, then press **K3** on SYSTEM:
+
 ![](/docs/norns/image/play-images/system.png)  
 [*figure 9: the norns SYSTEM menu*](image/play-images/system.png)
 
@@ -356,7 +383,7 @@ The SYSTEM menu contains a number of helpful entries:
 - `UPDATE` will perform a [system update](/docs/norns/wifi-files/#update), if you're connected to WiFi.
 - `LOG` will export any messages and errors initiated by matron (the Lua layer), SuperCollider, and the general Linux system. If something isn't performing as expected, this mechanism is the most helpful tool for diagnosing trouble. See [the logs section of the *maiden* docs](/docs/norns/maiden/#logs) for more info.
 
-### DISPLAY
+#### DISPLAY
 
 ![](/docs/norns/image/play-images/display.png)  
 [*figure 10: the norns DISPLAY menu*](image/play-images/display.png)
@@ -368,6 +395,10 @@ This menu allows you to fine-tune the norns display, offering adjustments for:
 - GAMMA: 1.00 to 30.00, default 1.0
 
 Any adjustment will create and update a `system.display` file under `dust/data`. This file can be safely deleted to quickly restore defaults upon RESTART.
+
+### SLEEP
+
+To safely shut down norns, navigate to the *HOME* menu and press **K3** on SLEEP. You'll be asked to confirm the selection by pressing **K3** again. See [power off](https://monome.org/docs/norns/play/#power-off) for more details.
 
 ## where to next?
 

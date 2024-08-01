@@ -131,20 +131,12 @@ function callback(file_path) -- this defines the callback function that is used 
     print(selected_file_path)
     print(selected_file)
   end
-redraw()
+	redraw()
 end
 
 function redraw()
   screen.clear()
   screen.level(15)
-  screen.move(0,10)
-  screen.text('selected file path:')
-  screen.move(0,20)
-  screen.text(selected_file_path)
-  screen.move(0,30)
-  screen.text('selected file:')
-  screen.move(0,40)
-  screen.text(selected_file)
   screen.move(0,60)
   screen.text('press K3 to select file')
   screen.update()
@@ -152,7 +144,7 @@ end
 
 function key(n,z)
   if n == 3 and z == 1 then
-    fileselect.enter(_path.audio,callback) -- runs fileselect.enter; `_path.audio` in this example is the folder that will open when fileselect is run
+    fileselect.enter(_path.audio, callback, "audio")
   end
 end
 ```

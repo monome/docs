@@ -114,38 +114,141 @@ The `audio` module allows scriptable control over many aspects of the norns audi
 ### example: `file_info`
 
 ```lua
--- audio module: file_info
+-- audio module: file_info example
 
-fileselect = require('fileselect')
+fileselect = require("fileselect")
 
-selected_file = 'none'
-selected_file_path = 'none'
+selected_file = "none"
+selected_file_path = "none"
 
-function callback(file_path) -- this defines the callback function that is used in fileselect
-  if file_path ~= 'cancel' then -- if a file is selected in fileselect, then...
-    -- the following are some common string functions to help organize the path that is returned from fileselect
-    local split_at = string.match(file_path, "^.*()/")
-    selected_file_path = string.sub(file_path, 9, split_at)
-    selected_file_path = util.trim_string_to_width(selected_file_path, 128)
-    selected_file = string.sub(file_path, split_at + 1)
-    print(selected_file_path)
-    print(selected_file)
-  end
-	redraw()
+clip_info = {}
+screen_dirty = true
+
+is_playing = false
+play_position = 0
+
+function init()
+	-- softcut initialization:
+	-- enable voice 1
+	softcut.enable(1, 1)
+	-- set voice 1 to buffer 1
+	softcut.buffer(1, 1)
+	-- set voice 1 level to 1.0
+	softcut.level(1, 1.0)
+	-- voice 1 enable loop
+	softcut.loop(1, 1)
+	-- set voice 1 playback rate to 0 (stopped)
+	softcut.rate(1, 0)
+	-- voice 1 play state
+	softcut.play(1, 1)
+	softcut.fade_time(1, 0)
+
+	softcut.phase_quant(1, 1 / 30)
+	softcut.event_phase(update_positions)
+
+	screen_redraw_metro = metro.init(function()
+		if screen_dirty then
+			redraw()
+			screen_dirty = false
+		end
+	end, 1 / 60, -1)
+	screen_redraw_metro:start()
+end
+
+function update_positions(i, pos)
+	play_position = (pos - 1) / (clip_info.sample_length + 1)
+	screen_dirty = true
+end
+
+function callback(file_path)
+	if file_path ~= "cancel" then
+		softcut.poll_stop_phase()
+		clip_info = {}
+		local channels, length, rate = audio.file_info(file_path)
+		clip_info.sample_rate = rate
+		if clip_info.sample_rate ~= 48000 then
+			print("sample rate should be 48khz!")
+		end
+		clip_info.sample_length = (length / clip_info.sample_rate) * calculate_sr_offset()
+		softcut.buffer_clear()
+		if ch == 2 then
+			for i = 1, 2 do
+				-- sum stereo to mono:
+				softcut.buffer_read_mono(
+					file_path, -- input file
+					0, -- source start point
+					1, -- destination start point
+					clip_info.sample_length, -- duration
+					i, -- soundfile channel
+					1, -- buffer channel
+					i - 1, -- level of existing audio
+					0.5 -- level of imported audio
+				)
+			end
+		else
+			softcut.buffer_read_mono(file_path, 0, 1, clip_info.sample_length, i, 1)
+		end
+		softcut.rate(1, 0)
+		-- set voice 1 loop start to 1
+		softcut.loop_start(1, 1.0)
+		-- set voice 1 loop end to the sample's length
+		softcut.loop_end(1, clip_info.sample_length + calculate_sr_offset())
+		-- set voice 1 position to 1
+		softcut.position(1, 1)
+		is_playing = false
+		play_position = 0
+		screen_dirty = true
+	end
+end
+
+function calculate_sr_offset()
+	local sample_rate_compensation
+	local base_sr
+	base_sr = clip_info.sample_rate
+	if (48000 / base_sr) > 1 then
+		sample_rate_compensation = ((1200 * math.log(48000 / base_sr, 2)) / -100)
+	else
+		sample_rate_compensation = ((1200 * math.log(base_sr / 48000, 2)) / 100)
+	end
+	return math.pow(0.5, -sample_rate_compensation / 12)
 end
 
 function redraw()
-  screen.clear()
-  screen.level(15)
-  screen.move(0,60)
-  screen.text('press K3 to select file')
-  screen.update()
+	if fileselect.done then
+		screen.clear()
+		screen.level(15)
+		screen.move(10, 20)
+		screen.line_rel(play_position * 108, 0)
+		screen.stroke()
+		screen.move(0, 50)
+		screen.text("press K2 to select file")
+		if clip_info.sample_rate ~= nil then
+			screen.move(0, 60)
+			if not is_playing then
+				screen.text("press K3 to play file")
+			else
+				screen.text("press K3 to stop file")
+			end
+		end
+		screen.update()
+	end
 end
 
-function key(n,z)
-  if n == 3 and z == 1 then
-    fileselect.enter(_path.audio, callback, "audio")
-  end
+function key(n, z)
+	if n == 2 and z == 1 then
+		fileselect.enter(_path.audio, callback, "audio")
+	elseif n == 3 and z == 1 and clip_info.sample_rate ~= nil then
+		-- toggle voice 1 play state
+		if is_playing then
+			softcut.rate(1, 0)
+			softcut.poll_stop_phase()
+		else
+			softcut.rate(1, calculate_sr_offset())
+			softcut.poll_start_phase()
+		end
+		is_playing = not is_playing
+		screen_dirty = true
+	end
 end
 ```
 

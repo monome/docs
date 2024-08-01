@@ -51,7 +51,7 @@ end
 
 function key(n,z)
   if n == 3 and z == 1 then
-    fileselect.enter(_path.audio,callback, "audio") -- runs fileselect.enter; `_path.audio` in this example is the folder that will open when fileselect is run
+    fileselect.enter(_path.audio, callback, "audio") -- runs fileselect.enter; `_path.audio` in this example is the folder that will open when fileselect is run
   end
 end
 ```
@@ -65,10 +65,10 @@ Note that `fileselect` provides its own handlers for screen redraw, encoders, an
 In the example's `key` function, we use `_path.audio` as shorthand for `/home/we/dust/audio/`. Here are the other paths aliased within the `_path` table:
 
 ```
-dust    /home/we/dust/
-tape    /home/we/dust/audio/tape/
-home    /home/we
-code    /home/we/dust/code/
-data    /home/we/dust/data/
-audio    /home/we/dust/audio/
+dust		/home/we/dust/
+tape		/home/we/dust/audio/tape/
+home		/home/we
+code		/home/we/dust/code/
+data		/home/we/dust/data/
+audio		/home/we/dust/audio/
 ```

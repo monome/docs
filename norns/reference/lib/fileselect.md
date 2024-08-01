@@ -8,11 +8,11 @@ permalink: /norns/reference/lib/fileselect
 
 ### function
 
-| Syntax                    | Description                                                                                                                                                                                                          |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fs.enter(folder,callback) | Invokes `fileselect` with the stated arguments. `folder` is the folder which will be first displayed in `fileselect`. `callback` requires a function which will take the resulting path from `fileselect` : function |
+| Syntax                                   | Description                                                  |
+| ---------------------------------------- | ------------------------------------------------------------ |
+| fs.enter(folder,callback, filter_string) | Invokes `fileselect` with the stated arguments. `folder` is the folder which will be first displayed in `fileselect`. `callback` requires a function which will take the resulting path from `fileselect`. `filter_string` allows the script to filter displayed files by type (`"audio"` or `"all"`) or by format (eg. `".wav"`, `".flac"`, etc) : function |
 
-### example
+### example: display audio files only
 
 ```lua
 fileselect = require('fileselect')
@@ -51,24 +51,24 @@ end
 
 function key(n,z)
   if n == 3 and z == 1 then
-    fileselect.enter(_path.audio,callback) -- runs fileselect.enter; `_path.audio` in this example is the folder that will open when fileselect is run
+    fileselect.enter(_path.audio, callback, "audio") -- runs fileselect.enter; `_path.audio` in this example is the folder that will open when fileselect is run
   end
 end
 ```
 
 ### description
 
-`fileselect` provides a way to navigate directories from a given folder and to select a file from within that folder and any sub-folders. It returns the absolute path of the selected file. If no file is selected, then it returns `cancel`.
+`fileselect` provides a way to navigate directories from a given folder and to select a file from within that folder and any sub-folders. It returns the absolute path of the selected file. If no file is selected, then it returns `"cancel"`.
 
 Note that `fileselect` provides its own handlers for screen redraw, encoders, and keys. `fileselect` automatically redraws the screen when its `.enter` function is invoked. K3 becomes ENTER, K2 becomes BACK. If K2 is pressed when on the top-level of the specified filepath, `fileselect` will exit and return to your script's UI with its own redraw.
 
 In the example's `key` function, we use `_path.audio` as shorthand for `/home/we/dust/audio/`. Here are the other paths aliased within the `_path` table:
 
 ```
-dust    /home/we/dust/
-tape    /home/we/dust/audio/tape/
-home    /home/we
-code    /home/we/dust/code/
-data    /home/we/dust/data/
-audio    /home/we/dust/audio/
+dust		/home/we/dust/
+tape		/home/we/dust/audio/tape/
+home		/home/we
+code		/home/we/dust/code/
+data		/home/we/dust/data/
+audio		/home/we/dust/audio/
 ```

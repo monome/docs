@@ -310,8 +310,8 @@ The *HOME* menu holds waypoints for essential norns interactions, including sele
 
 While on the *HOME* menu, press **K2** to toggle helpful system status information:
 
-![](/docs/norns/image/help-images/status.png)
-[*figure 8: toggling system status information*](/docs/norns/image/help-images/status.png)
+![](/docs/norns/image/play-images/status.png)
+[*figure 8: toggling system status information*](/docs/norns/image/play-images/status.png)
 
 The first four `cpu` readings show the state of each of the processor's four cores, followed by an average CPU load.
 

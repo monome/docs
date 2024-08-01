@@ -6,22 +6,33 @@ permalink: /norns/reference/audio
 
 ## audio
 
+{: .no_toc }
+
 Directly set system audio levels. Note that these functions are not coupled to the corresponding entries in PARAMETERS, so changes will not be reflected in the norns menu UI. To simultaneously change these levels *and* the PARAMETERS values, use the `params:set` approach listed in each function's description.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ### control: main levels
 
-| Syntax                     | Description                                                                                                                                                  |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| audio.headphone_gain(gain) | Set the headphone gain (expects `0` to `64`) : function<br/>Params version: `params:set("headphone_gain")`, expects `-math.huge` to `6` (in dB)              |
-| audio.level_adc(level)     | Set the level for ADC input (expects `0` to `1`) : function<br/>Params version: `params:set("input_level")`, expects `-math.huge` to `6` (in dB)             |
+| Syntax                     | Description                                                  |
+| -------------------------- | ------------------------------------------------------------ |
+| audio.headphone_gain(gain) | Set the headphone gain (expects `0` to `64`) : function<br/>Params version: `params:set("headphone_gain")`, expects `-math.huge` to `6` (in dB) |
+| audio.level_adc(level)     | Set the level for ADC input (expects `0` to `1`) : function<br/>Params version: `params:set("input_level")`, expects `-math.huge` to `6` (in dB) |
 | audio.level_dac(level)     | Set the level for both output channels (expects `0` to `1`) : function<br/>Params version: `params:set("output_level")`, expects `-math.huge` to `6` (in dB) |
-| audio.monitor_mono()       | Set monitor mode to mono : function<br/>Params version: `params:set("monitor_mode")`, expects `2` for mono                                                   |
-| audio.monitor_stereo()     | Set monitor mode to mono : function<br/>Params version: `params:set("monitor_mode")`, expects `1` for stereo                                                 |
-| audio.level_tape(level)    | Set tape output level (expects `0` to `1`) : function<br/>Params version: `params:set("tape_level")`, expects `-math.huge` to `6` (in dB)                    |
-| audio.level_cut(level)     | Set softcut output level (expects `0` to `1`) : function<br/>Params version: `params:set("softcut_level")`, expects `-math.huge` to `6` (in dB)              |
-| audio.pitch_on()           | Enable input pitch analysis : function                                                                                                                       |
-| audio.pitch_off()          | Disable input pitch analysis (saves CPU) : function                                                                                                          |
-| audio.restart()            | Restart the audio engine (recompiles sclang) : function                                                                                                      |
+| audio.monitor_mono()       | Set monitor mode to mono : function<br/>Params version: `params:set("monitor_mode")`, expects `2` for mono |
+| audio.monitor_stereo()     | Set monitor mode to mono : function<br/>Params version: `params:set("monitor_mode")`, expects `1` for stereo |
+| audio.level_tape(level)    | Set tape output level (expects `0` to `1`) : function<br/>Params version: `params:set("tape_level")`, expects `-math.huge` to `6` (in dB) |
+| audio.level_cut(level)     | Set softcut output level (expects `0` to `1`) : function<br/>Params version: `params:set("softcut_level")`, expects `-math.huge` to `6` (in dB) |
+| audio.pitch_on()           | Enable input pitch analysis : function                       |
+| audio.pitch_off()          | Disable input pitch analysis (saves CPU) : function          |
+| audio.restart()            | Restart the audio engine (recompiles sclang) : function      |
 
 ### control: effects levels
 
@@ -79,7 +90,7 @@ Directly set system audio levels. Note that these functions are not coupled to t
 | audio.tape_record_start()    | Start recording tape           |
 | audio.tape_record_stop()     | Stop recording tape            |
 
-### Softcut Input Levels
+### softcut Input Levels
 
 | Syntax                       | Description                                                                                                                                                         |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -89,11 +100,60 @@ Directly set system audio levels. Note that these functions are not coupled to t
 
 ### callbacks and helpers
 
-| Syntax                          | Description                                                                                                                     |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| audio.vu (in1, in2, out1, out2) | Script re-definable callback for VU meters (returns `0` to `63`)                                                                |
-| audio.set_audio_level(value)    | Set the final output level, which is saved as part of system settings (expects `0` to `64`)                                     |
+| Syntax                          | Description                                                  |
+| ------------------------------- | ------------------------------------------------------------ |
+| audio.vu (in1, in2, out1, out2) | Script re-definable callback for VU meters (returns `0` to `63`) |
+| audio.set_audio_level(value)    | Set the final output level, which is saved as part of system settings (expects `0` to `64`) |
 | audio.adjust_audio_level(delta) | Adjusts the final output level incrementally, which is saved as part of system settings (final level is clamped to `0` to `64`) |
-| audio.file_info(path)           | Returns info about a provided audio file from the `dust` directory                                                              |
+| audio.file_info(path)           | Returns information (channels, number of samples, sample rate) about a provided audio file from the `dust` directory |
 
-# 
+### description
+
+The `audio` module allows scriptable control over many aspects of the norns audio graph, including levels, built-in effects, tape, and softcut. It also provides a helper function for audio file inspection which, for example, is very useful for loading samples into softcut.
+
+### example: `file_info`
+
+```lua
+-- audio module: file_info
+
+fileselect = require('fileselect')
+
+selected_file = 'none'
+selected_file_path = 'none'
+
+function callback(file_path) -- this defines the callback function that is used in fileselect
+  if file_path ~= 'cancel' then -- if a file is selected in fileselect, then...
+    -- the following are some common string functions to help organize the path that is returned from fileselect
+    local split_at = string.match(file_path, "^.*()/")
+    selected_file_path = string.sub(file_path, 9, split_at)
+    selected_file_path = util.trim_string_to_width(selected_file_path, 128)
+    selected_file = string.sub(file_path, split_at + 1)
+    print(selected_file_path)
+    print(selected_file)
+  end
+redraw()
+end
+
+function redraw()
+  screen.clear()
+  screen.level(15)
+  screen.move(0,10)
+  screen.text('selected file path:')
+  screen.move(0,20)
+  screen.text(selected_file_path)
+  screen.move(0,30)
+  screen.text('selected file:')
+  screen.move(0,40)
+  screen.text(selected_file)
+  screen.move(0,60)
+  screen.text('press K3 to select file')
+  screen.update()
+end
+
+function key(n,z)
+  if n == 3 and z == 1 then
+    fileselect.enter(_path.audio,callback) -- runs fileselect.enter; `_path.audio` in this example is the folder that will open when fileselect is run
+  end
+end
+```
+

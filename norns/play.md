@@ -25,6 +25,8 @@ To begin, let's get acquainted with the layouts of both iterations of norns -- s
 ![](/docs/norns/image/play-images/norns-legends.png)  
 *[figure 1: standard norns and shield legend](image/play-images/norns-legends.png)*
 
+**Note for shield: the headphone jack on the Raspberry Pi itself is unused, as is the Pi's HDMI port.**
+
 ### power on
 
 **standard**
@@ -300,9 +302,38 @@ To manage TAPE and audio files on norns, see [**wifi + files**](/docs/norns/wifi
 
 In the simplest terms, everything you hear from the main output is committed to a recording tape. This includes the system reverb, compressor, monitor audio, as well as any tape that might be playing. If you are recording for further processing in a DAW, you may want to turn off the system reverb and compressor for a more barebones sound.
 
-## SELECT
+## HOME
 
-Navigate to the *home* menu, then press **K3** on SELECT:
+The *HOME* menu holds waypoints for essential norns interactions, including selecting a new script, managing system settings, and safely shutting the device down.
+
+### system status
+
+While on the *HOME* menu, press **K2** to toggle helpful system status information:
+
+![](/docs/norns/image/play-images/status.png)
+[*figure 8: toggling system status information*](/docs/norns/image/play-images/status.png)
+
+The first four `cpu` readings show the state of each of the processor's four cores, followed by an average CPU load.
+
+Occassionally, you may see `!!!` next to the CPU average. This indicates that the audio system has detected the occurence of [xruns](https://alsa.opensrc.org/Xruns). This indicator is normal during script switching, when SuperCollider engines are being swapped out. If the indicator is present during a script's run, it likely corresponds to audio glitching due to CPU overload.
+
+The `disk` reading shows the storage available, in megabytes.
+
+Underneath the script's name (or `NONE` if no script is running), you'll see the software version currently running on your norns. In the screenshot above, we're running `230405`, formatted as YYMMDD. See the [update docs](/docs/norns/wifi-files/#update) for more infomation.
+
+The current state of the battery is shown in the bottom right corner:
+
+- if the `mA` reading is negative, this means power is being drawn
+  - if you ever see a consistently negative reading _while plugged into wall power_, then the draw on the built-in USB hub is likely too high and you should use an externallty-powered hub
+- if the `mA` reading is positive, this means power is being supplied and the battery is charging up
+- on wall power, as the battery gets closer and closer to 100%, you may see the positive `mA` begin to reduce – this is normal / expected, as norns is ‘trickling’ charge in
+- at 100% battery, you’ll likely see `0mA`, since norns does not need to draw any more power to charge the battery – this is a safety against overcharging and degrading your battery, so that if you leave your norns plugged into wall power for months, you’ll still have a working battery when you detach
+
+'Normal' battery draw is difficult to define, as it depends on the script being used and the hardware connected to norns. Generally, though, a draining battery will display ~`-400mA` without any additional hardware connected. A charging battery will display `400mA` - `600mA`.
+
+### SELECT
+
+Navigate to the *HOME* menu, then press **K3** on SELECT:
 
 ![](/docs/norns/image/play-images/menu-sel.png)  
 [*figure 8: selecting a script*](image/play-images/menu-sel.png)
@@ -314,24 +345,26 @@ Navigate to the *home* menu, then press **K3** on SELECT:
 
 A fresh norns installation comes with two foundational scripts: *awake*, which we've covered earlier in these docs, and [*first light*](/docs/norns/study-0), a fantastic starting point for those curious about how norns scripts work from a code perspective. If you'd like to jump into any of the [**community scripts**](/docs/norns/community-scripts) available for norns, be sure to connect to [**wifi**](/docs/norns/wifi-files) and access [**maiden**](/docs/norns/maiden) (the norns project manager)!
 
-### favorites
+#### favorites
 
 When you entered the SELECT menu, you might've noticed an asterisk next to *awake* -- this signifies a favorite script, which places it at the top of the scroll. This makes it easy to quickly access your go-to's!
 
 To add a favorite, turn **E3** clockwise on any script in the SELECT menu.  
 To remove a favorite, turn **E3** counter-clockwise on any already-favorited script.
 
-### clear script
+#### clear script
 
 To clear the script running on norns:
 
-- navigate to the *home* menu
+- navigate to the *HOME* menu
 - if SELECT is not highlighted, use **E2** to highlight it
 - hold **K1** on SELECT and you'll see `CLEAR`
 - while holding **K1**, press **K3** to clear the currently-running script
 - release **K1** and you'll see `NONE` where the previously-running script's name used to be
 
-## SYSTEM
+### SYSTEM
+
+Navigate to the *HOME* menu, then press **K3** on SYSTEM:
 
 ![](/docs/norns/image/play-images/system.png)  
 [*figure 9: the norns SYSTEM menu*](image/play-images/system.png)
@@ -350,7 +383,7 @@ The SYSTEM menu contains a number of helpful entries:
 - `UPDATE` will perform a [system update](/docs/norns/wifi-files/#update), if you're connected to WiFi.
 - `LOG` will export any messages and errors initiated by matron (the Lua layer), SuperCollider, and the general Linux system. If something isn't performing as expected, this mechanism is the most helpful tool for diagnosing trouble. See [the logs section of the *maiden* docs](/docs/norns/maiden/#logs) for more info.
 
-### DISPLAY
+#### DISPLAY
 
 ![](/docs/norns/image/play-images/display.png)  
 [*figure 10: the norns DISPLAY menu*](image/play-images/display.png)
@@ -362,6 +395,10 @@ This menu allows you to fine-tune the norns display, offering adjustments for:
 - GAMMA: 1.00 to 30.00, default 1.0
 
 Any adjustment will create and update a `system.display` file under `dust/data`. This file can be safely deleted to quickly restore defaults upon RESTART.
+
+### SLEEP
+
+To safely shut down norns, navigate to the *HOME* menu and press **K3** on SLEEP. You'll be asked to confirm the selection by pressing **K3** again. See [power off](https://monome.org/docs/norns/play/#power-off) for more details.
 
 ## where to next?
 

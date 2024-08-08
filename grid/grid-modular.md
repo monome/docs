@@ -7,6 +7,8 @@ nav_order: 3
 
 # grid + modular
 
+*Note: all of our discontinued eurorack modules have been ported into the virtual modular synthesis playground VCV Rack through tireless community efforts led by [`@Dewb`](https://github.com/Dewb/). [The monome VCV Rack library](/docs/grid/computer/vcv-rack/) fully replicates the hardware projects in a free software environment, connecting directly to hardware grids over USB and even offering virtual grids in all sizes. When paired with a multi-channel DC-coupled audio interface, these modules find new life within any system.*
+
 As modular synths became more accessible and ubiquitous in the mid-2010's, the opportunity to explore how grids could provide new compositional capabilities in a modular system presented itself. The first three grid-compatible modules each attempted to enable unique perspectives and approaches via control voltage (CV):
 
 - [White Whale](/docs/whitewhale) (and its alternative firmware, an early version of [Kria](/docs/ansible/kria)) is the result of a decade of step-sequencer experiments for grid

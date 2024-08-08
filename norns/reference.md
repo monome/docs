@@ -43,7 +43,7 @@ To access the complete norns API, you can either:
 | [controlspec](controlspec)                                            | PARAM menu control constructor with presets                                                                           |
 | [crow (api)](/docs/norns/api/modules/crow.html)                       | Connect a script to a hardware [crow](https://monome.org/docs/crow)                                                   |
 | [encoders](encoders)                                                  | Decipher the norns on-board encoders                                                                                  |
-| [engine (api)](/docs/norns/api/modules/engine.html)                   | Register a SuperCollider engine                                                                                       |
+| [engine](engine)                                                      | Register a SuperCollider engine                                                                                       |
 | [gamepad](gamepad)                                                    | Connect a script to a gamepad controller                                                                              |
 | [grid](grid)                                                          | Connect a script to a hardware [grid](https://monome.org/docs/grid)                                                   |
 | [hid (api)](/docs/norns/api/modules/hid.html)                         | Connect a script to HID hardware                                                                                      |
@@ -55,7 +55,7 @@ To access the complete norns API, you can either:
 | [poll](poll)                                                          | System polling for CPU, incoming/outgoing amplitude, and incoming pitch                                               |
 | [screen (api)](/docs/norns/api/modules/screen.html)                   | Draw to the norns on-board screen                                                                                     |
 | [softcut (api)](/docs/norns/api/modules/softcut.html)                 | Two audio buffers which can be recorded into and played by six individual voices                                      |
-| [tab (api)](/docs/norns/api/modules/lib.tabutil.html)                 | Table utilities                                                                                                       |
+| [tab](./lib/tabutil)                                                  | Table utilities                                                                                                       |
 | [util (api)](/docs/norns/api/modules/lib.util.html)                   | Helpful utility functions                                                                                             |
 | [lib/elca (api)](/docs/norns/api/modules/lib.elca.html)               | Elementary cellular automata generator                                                                                |
 | [lib/envgraph (api)](/docs/norns/api/modules/lib.EnvGraph.html)       | Envelope graph drawing module                                                                                         |

@@ -8,11 +8,11 @@ permalink: /modular/update/
 
 new releases are available per module:
 
-- [teletype](https://github.com/monome/teletype/releases) **4.0.0** (july 10 2021)
-- [ansible](https://github.com/monome/ansible/releases) **3.1.2** (november 23 2021)
-- [whitewhale](https://github.com/monome/whitewhale/releases) **1.6.0** (june 7 2021)
-- [meadowphysics](https://github.com/monome/meadowphysics/releases) **2.2.1** (june 7 2021)
-- [earthsea](https://github.com/monome/earthsea/releases) **1.9.5** (june 7 2021)
+- [teletype](https://github.com/monome/teletype/releases) **5.0** (jan 8 2024)
+- [ansible](https://github.com/monome/ansible/releases) **3.1.3** (july 29 2023)
+- [whitewhale](https://github.com/monome/whitewhale/releases) **1.6.0** (june 3 2021)
+- [meadowphysics](https://github.com/monome/meadowphysics/releases) **2.2.1** (june 3 2021)
+- [earthsea](https://github.com/monome/earthsea/releases) **1.9.5** (june 3 2021)
 - [crow](https://github.com/monome/crow/releases) - for update procedure see [here](/docs/crow/update)
 
 firmware is updated by connecting a USB A-A cable to your computer and using the utility [dfu programmer](http://dfu-programmer.github.io).

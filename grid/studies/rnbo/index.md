@@ -9,7 +9,7 @@ RNBO, by [Cycling '74](https://cycling74.com/), is a library and toolchain that 
 
 This tutorial will show the basics of interfacing with the grid including how a simple, yet immediate sequencer platform can be made with a small amount of code.
 
-## IMPORTANT: Prerequisites (#prerequisites)
+## IMPORTANT: Prerequisites {#prerequisites}
 
 Since RNBO is an extension of Max, this study assumes familiarity with Max's patching interface and workflow nuances. We'll also assume familiarity with navigating a command line interface, as required by the RNBO Raspberry Pi export process. If you're absolutely new to RNBO it may be helpful to first go through the documents and videos at the [RNBO Hub](https://rnbo.cycling74.com/).
 
@@ -47,7 +47,7 @@ To communicate with grids we trade OSC messages with serialosc. serialosc is an 
 
 First we will show how to talk to serialosc using our RNBO-flashed Pi.
 
-### IMPORTANT: grid + Pi (#grid-pi)
+### IMPORTANT: grid + Pi {#grid-pi}
 
 In a terminal on another computer connected to the same network, SSH into your Pi.
 
@@ -88,7 +88,7 @@ e9f88bda.91f2020f /monome/grid/key iii 8 3 0
 e9f88bda.938348f4 /monome/grid/key iii 7 4 0
 ```
 
-### IMPORTANT: grid + RNBO + Pi setup (#important)
+### IMPORTANT: grid + RNBO + Pi setup {#finalize-setup}
 
 *Note: you will not be able to connect your grid to your RNBO project unless you perform these tasks.*
 

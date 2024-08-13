@@ -5,10 +5,16 @@ permalink: /norns/reference/audio
 ---
 
 ## audio
-
 {: .no_toc }
 
-Directly set system audio levels. Note that these functions are not coupled to the corresponding entries in PARAMETERS, so changes will not be reflected in the norns menu UI. To simultaneously change these levels *and* the PARAMETERS values, use the `params:set` approach listed in each function's description.
+### description
+{: .no_toc }
+
+The `audio` module allows scriptable control over many aspects of the norns audio graph, including levels, built-in effects, tape, and softcut.
+
+Note that these functions are <u>not</u> coupled to the corresponding entries in PARAMETERS, so changes will not be reflected in the norns menu UI and they will not persist between script loads. This is useful for scripting unique states which do not overwrite user settings.
+
+To simultaneously change these levels *and* the PARAMETERS values, use the `params:set` version listed in each function's description.
 
 <details open markdown="block">
   <summary>
@@ -107,39 +113,47 @@ Directly set system audio levels. Note that these functions are not coupled to t
 | audio.adjust_audio_level(delta) | Adjusts the final output level incrementally, which is saved as part of system settings (final level is clamped to `0` to `64`) |
 | audio.file_info(path)           | Returns information (channels, number of samples, sample rate) about a provided audio file from the `dust` directory |
 
-### description
+### example: `audio.file_info`{#example-fileinfo}
 
-The `audio` module allows scriptable control over many aspects of the norns audio graph, including levels, built-in effects, tape, and softcut. It also provides a helper function for audio file inspection which, for example, is very useful for loading samples into softcut.
+The `audio` module provides a helper function for audio file inspection which is very useful for loading samples into softcut.
 
-### example: `file_info`
+`audio.file_info(file_path)` returns:
+
+- duration (in samples)
+- channels (`2` for stereo, `1` for mono)
+- sample rate
+
+In this example script, we'll use each of the returned values:
+
+- duration: used to determine the length of the loop
+- channels: determines whether to mix stereo down to mono, or simply import mono
+- sample rate: since softcut expects 48kHz files, 44.1kHz files will play back at a different perceived rate; `calculate_samplerate_offset()` makes up for these differences by offsetting the playrate and loop length to match the imported audio
 
 ```lua
 -- audio module: file_info example
+-- this example script leverages audio.file_info,
+-- before loading an audio file into softcut.
 
 fileselect = require("fileselect")
+fileselect.done = true
 
 selected_file = "none"
 selected_file_path = "none"
 
 clip_info = {}
-screen_dirty = true
-
 is_playing = false
 play_position = 0
+playback_rate = 1
+
+screen_dirty = true
 
 function init()
 	-- softcut initialization:
-	-- enable voice 1
 	softcut.enable(1, 1)
-	-- set voice 1 to buffer 1
 	softcut.buffer(1, 1)
-	-- set voice 1 level to 1.0
 	softcut.level(1, 1.0)
-	-- voice 1 enable loop
 	softcut.loop(1, 1)
-	-- set voice 1 playback rate to 0 (stopped)
 	softcut.rate(1, 0)
-	-- voice 1 play state
 	softcut.play(1, 1)
 	softcut.fade_time(1, 0)
 
@@ -167,56 +181,61 @@ function callback(file_path)
 		local channels, length, rate = audio.file_info(file_path)
 		clip_info.sample_rate = rate
 		if clip_info.sample_rate ~= 48000 then
-			print("sample rate should be 48khz!")
+			print("sample rate should be 48kHz!")
 		end
-		clip_info.sample_length = (length / clip_info.sample_rate) * calculate_sr_offset()
+		clip_info.sample_length = (length / clip_info.sample_rate) * calculate_samplerate_offset()
 		softcut.buffer_clear()
-		if ch == 2 then
+		if channels == 2 then
+			-- sum stereo to mono:
 			for i = 1, 2 do
-				-- sum stereo to mono:
 				softcut.buffer_read_mono(
 					file_path, -- input file
-					0, -- source start point
-					1, -- destination start point
+					0, -- source start point, in seconds
+					1, -- destination start point, in seconds
 					clip_info.sample_length, -- duration
-					i, -- soundfile channel
-					1, -- buffer channel
+					i, -- soundfile channel to read
+					1, -- buffer to write into
 					i - 1, -- level of existing audio
 					0.5 -- level of imported audio
 				)
 			end
 		else
-			softcut.buffer_read_mono(file_path, 0, 1, clip_info.sample_length, i, 1)
+		  -- import mono
+			softcut.buffer_read_mono(file_path, 0, 1, clip_info.sample_length)
 		end
+		-- set voice 1 rate to 0 (not playing)
 		softcut.rate(1, 0)
-		-- set voice 1 loop start to 1
+		-- set voice 1 loop start to 1 second
 		softcut.loop_start(1, 1.0)
 		-- set voice 1 loop end to the sample's length
-		softcut.loop_end(1, clip_info.sample_length + calculate_sr_offset())
-		-- set voice 1 position to 1
+		softcut.loop_end(1, clip_info.sample_length + calculate_samplerate_offset())
+		-- set voice 1 position to 1 second
 		softcut.position(1, 1)
+		
 		is_playing = false
+		playback_rate = 1
 		play_position = 0
 		screen_dirty = true
 	end
 end
 
-function calculate_sr_offset()
+function calculate_samplerate_offset()
 	local sample_rate_compensation
-	local base_sr
-	base_sr = clip_info.sample_rate
-	if (48000 / base_sr) > 1 then
-		sample_rate_compensation = ((1200 * math.log(48000 / base_sr, 2)) / -100)
+	local import_sr = clip_info.sample_rate
+	if (48000 / import_sr) > 1 then
+		sample_rate_compensation = ((1200 * math.log(48000 / import_sr, 2)) / -100)
 	else
-		sample_rate_compensation = ((1200 * math.log(base_sr / 48000, 2)) / 100)
+		sample_rate_compensation = ((1200 * math.log(import_sr / 48000, 2)) / 100)
 	end
 	return math.pow(0.5, -sample_rate_compensation / 12)
 end
 
 function redraw()
-	if fileselect.done then
+	if fileselect.done or fileselect.done == nil then
 		screen.clear()
 		screen.level(15)
+		screen.move(0,128)
+		screen.text_right(playback_rate .. " (K1: playback rate)")
 		screen.move(10, 20)
 		screen.line_rel(play_position * 108, 0)
 		screen.stroke()
@@ -243,12 +262,21 @@ function key(n, z)
 			softcut.rate(1, 0)
 			softcut.poll_stop_phase()
 		else
-			softcut.rate(1, calculate_sr_offset())
+			softcut.rate(1, playback_rate * calculate_samplerate_offset())
 			softcut.poll_start_phase()
 		end
 		is_playing = not is_playing
 		screen_dirty = true
 	end
+end
+
+function enc(n, d)
+  if n == 1 then
+    if is_playing then
+      playback_rate = playback_rate + d/100
+      softcut.rate(1, playback_rate * calculate_samplerate_offset())
+    end
+  end
 end
 ```
 

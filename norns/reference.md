@@ -37,7 +37,7 @@ To access the complete norns API, you can either:
 | Module                                                                | Description                                                                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | [arc](arc)                                                            | Connect a script to a hardware [arc](https://monome.org/docs/arc)                                                     |
-| [audio (api)](/docs/norns/api/modules/audio.html)                     | Directly set system audio levels                                                                                      |
+| [audio (api)](audio)                                                  | Directly set system audio levels                                                                                      |
 | [clock](clock)                                                        | Coroutine system which executes functions on beat-synced and free-running schedules                                   |
 | [controlspec](controlspec)                                            | PARAM menu control constructor with presets                                                                           |
 | [crow (api)](/docs/norns/api/modules/crow.html)                       | Connect a script to a hardware [crow](https://monome.org/docs/crow)                                                   |

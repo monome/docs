@@ -31,6 +31,8 @@ To begin, let's get acquainted with the layouts of both iterations of norns -- s
 
 **standard**
 
+*Note that the charger which comes with standard norns is rated for 2A / 5.25V. This brick is of very high quality and can use 110 or 240 VAC input, so it can be used outside of the US with a simple plug format adapter.*
+
 - Hold K1 for four seconds.
 - Until you've performed this process a few times, it might help to look at the light next to the POWER jack. You'll see it transition from white, to peach, to amber -- you can let go of K1 at amber.
 - In a few seconds, you'll see a sparkle animation on the screen and you'll hear a [sinelike startup tone](https://github.com/monome/norns/blob/71772c6ea43c90f15e7a5d3b7755d4beacc64c5b/sc/core/Crone.sc#L96). norns is on.

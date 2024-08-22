@@ -167,9 +167,9 @@ numClassDeps 1604 gNumClasses 3206
 
 The first `ERROR` we see tells us that:
 
-- there is are duplicates of a Class named `'exampleName'`
-- the first file is located at: `/home/we/.local/share/SuperCollider/Extensions/exampleFolder/Classes/exampleName.sc`
-- the second file is located at: `/home/we/.local/share/SuperCollider/Extensions/supercollider-plugins/exampleName.sc`
+- there is a duplicate of a Class named `'exampleName'`
+- one copy is located at: `/home/we/.local/share/SuperCollider/Extensions/exampleFolder/Classes/exampleName.sc`
+- another copy is located at: `/home/we/.local/share/SuperCollider/Extensions/supercollider-plugins/exampleName.sc`
 
 To rectify, you will need to erase one of the two files. For this example, we'll remove the first folder listed by executing the following via maiden's command line (using `exampleFolder` as an example folder name):
 

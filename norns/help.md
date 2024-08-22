@@ -10,7 +10,7 @@ nav_order: 8
 Between the search bar above and the links below, you should be able to solve most norns troubles that you'd run into:
 
 - [hardware](../help/hardware) // replacement parts, WiFi, boot issues, connectivity, audio specs
-- [software](../help/software) // system logs, script updates, error messages
+- [software](../help/software) // freezes, script trouble, error messages
 - [data](../help/data) // backing up, fresh installation, expanding storage, removing logs, taking a screenshot
 
 ### additional assistance

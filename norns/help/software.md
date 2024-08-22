@@ -109,9 +109,10 @@ Following the steps above should create the necessary circumstances for the `com
 
 ## error messages
 
+
 ### DUPLICATE ENGINES
 
-Supercollider fails to load if you have multiple copies of the same class, which are commonly contained in duplicate `.sc` files inside of `dust` (the parent folder for the projects installed on norns).
+SuperCollider fails to load if you have multiple copies of the same engine, which are commonly contained in duplicate `.sc` files inside of `dust` (the parent folder for the projects installed on norns).
 
 To typically solve this, [connect](../play/#network-connect) via wifi and open [maiden](../maiden). Type `;restart` into the maiden _matron_ REPL at the bottom (the `>>` prompt).
 
@@ -142,14 +143,51 @@ A common problem may be a missing engine. Check the output for something like:
 
 In this example, the script requires `Timber`, so go find it in the Project Manager and install it. If you had just recently installed `Timber`, you need to restart your norns through SLEEP or entering `;restart` in the matron REPL.
 
+### perpetual 'loading...' {#loading}
+
+SuperCollider can fail to load if you have multiple copies of the same Class file, which are commonly duplicated `.sc` files which a script has installed in the hidden `local` folder of norns.
+
+If you’re able to load maiden, there are two tabs in the main REPL area (above the `>>` prompt at the bottom of your screen). The first tab is for `matron`, the control program that runs scripts – the other is `sc`, for SuperCollider. Click into the `sc` tab and type `;restart` into the REPL. Monitor the incoming messages and look for any `ERROR`s. For example:
+
+```bash
+Compiling class library…
+Found 738 primitives.
+Compiling directory ‘/usr/local/share/SuperCollider/SCClassLibrary’
+Compiling directory ‘/usr/local/share/SuperCollider/Extensions’
+Compiling directory ‘/home/we/.local/share/SuperCollider/Extensions’
+ERROR: duplicate Class found: ‘exampleName’
+/home/we/.local/share/SuperCollider/Extensions/exampleFolder/Classes/exampleName.sc
+/home/we/.local/share/SuperCollider/Extensions/supercollider-plugins/exampleName.sc
+Compiling directory ‘/home/we/norns/sc/core’
+Compiling directory ‘/home/we/norns/sc/engines’
+Compiling directory ‘/home/we/dust’
+ERROR: There is a discrepancy.
+numClassDeps 1604 gNumClasses 3206
+```
+
+The first `ERROR` we see tells us that:
+
+- there is are duplicates of a Class named `'exampleName'`
+- the first file is located at: `/home/we/.local/share/SuperCollider/Extensions/exampleFolder/Classes/exampleName.sc`
+- the second file is located at: `/home/we/.local/share/SuperCollider/Extensions/supercollider-plugins/exampleName.sc`
+
+To rectify, you will need to erase one of the two files. For this example, we'll remove the first folder listed by executing the following via maiden's command line (using `exampleFolder` as an example folder name):
+
+```bash
+util.os_capture("rm -r /home/we/.local/share/SuperCollider/Extensions/exampleFolder")
+```
+
+Restart norns and the issue should be cleared.
+
 ### SUPERCOLLIDER FAIL
 
-This indicates that something is wrong with SuperCollider, which could be due to various issues. First always just try rebooting via `SYSTEM > SLEEP`.
+This indicates that something is wrong with SuperCollider, which could be due to various issues. First, always just try rebooting via `SYSTEM > SLEEP`.
 
 If you're able to load maiden, there are two tabs in the main REPL area (above the `>>` prompt at the bottom of your screen). The first tab is for `matron`, the control program that runs scripts -- the other is `sc` for SuperCollider. Click into the `sc` tab and type `;restart` into the REPL. That should show you what is going on inside of SuperCollider.
 
 - You might have a [duplicate engine](#duplicate-engines).
 - You might be [missing a required engine](#load-fail).
+- You might have a [duplicate class](#loading).
 - If this doesn't help, you may need to re-flash your norns with a clean image (after backing up any of your data).
 - If this doesn't fix it, there may be a hardware issue: e-mail help@monome.org.
 

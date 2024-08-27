@@ -149,7 +149,7 @@ To use Samba (also known as "SMB") network sharing on Windows 10, navigate to Co
 
 Then, reboot.
 
-The norns.local file tree should be available at `\\norns.local`. If `\\norns.local` does not resolve, please try using File Explorer to navigate to `\\IP-ADDRESS-OF-YOUR-NORNS`, eg. `\\192.168.1.100`.
+Using File Explorer, the norns.local file tree should be available at `\\norns.local`. If `\\norns.local` does not resolve, please try navigating to `\\IP-ADDRESS-OF-YOUR-NORNS`, eg. `\\192.168.1.100`.
 
 Login as a Registered User with the following credentials:
 

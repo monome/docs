@@ -67,6 +67,25 @@ After norns powers up, it will launch the last script that was loaded. On a fres
 
 **Only after the not-red light on the side of the Pi is no longer on can you safely remove the power connector from the Pi. If the not-red light is steady or blinking, do not disconnect power.**
 
+### audio I/O {#audio-i-o}
+
+Referencing the layout image at [the start of this section](#start), our audio I/O options include:
+
+**norns standard**
+
+from left to right, looking at the top of the unit:
+
+- 1/4" stereo (TRS) headphone output; copy of the main outs, with independent gain
+- 2x 1/4" mono (TS) outputs; line level, left and right
+- 2x 1/4" mono (TS) inputs; line level, left and right
+
+**norns shield**
+
+- 1/8" stereo (TRS) output
+- 1/8" stereo (TRS) input
+
+Note that neither norns standard or norns shield supports USB audio via their power ports. Also note that neither version has USB audio interface support baked-in, though advanced Linux user can feasibly re-route and adjust JACK via command-line interface.
+
 ### core terminology
 
 As you navigate these documents, you'll encounter a few key phrases which have specific meaning in the norns ecosystem. To help ease the cognitive load, here's some of the core terminology:

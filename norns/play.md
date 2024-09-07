@@ -84,7 +84,7 @@ from left to right, looking at the top of the unit:
 - 1/8" stereo (TRS) output
 - 1/8" stereo (TRS) input
 
-Note that neither norns standard or norns shield supports USB audio via their power ports. Also note that neither version has USB audio interface support baked-in, though advanced Linux user can feasibly re-route and adjust JACK via command-line interface.
+Note that neither norns standard or norns shield supports USB audio via their power ports. Also note that neither version has USB audio interface support baked-in, though advanced Linux users can feasibly re-route and adjust JACK via command-line interface.
 
 ### core terminology
 

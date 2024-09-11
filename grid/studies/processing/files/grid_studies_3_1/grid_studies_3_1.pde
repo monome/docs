@@ -16,7 +16,7 @@ public void setup() {
   
 public void draw() {
   if(dirty) {
-    int[][] led = new int[8][16];
+    int[][] led = new int[16][16];
     
     // display steps
     for(int x=0;x<16;x++)
@@ -33,8 +33,6 @@ public void key(int x, int y, int s) {
   // toggle steps
   if(s == 1 && y < 6) {
     step[y][x] ^= 1;
-    
     dirty = true; 
   }
 }
-

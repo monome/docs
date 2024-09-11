@@ -10,11 +10,11 @@ Processing is a programming language, development environment, and online commun
 
 ## Prerequisites
 
-If you're very new to Processing (or Java), it will be very beneficial to work through the 'getting started' tutorial available directly from Processing.org: [processing.org/tutorials](https://processing.org/tutorials/gettingstarted/)
+If you're very new to Processing or Java, it will be very beneficial to work through the 'getting started' tutorial available directly from Processing.org: [processing.org/tutorials](https://processing.org/tutorials/gettingstarted/)
 
 Download Processing: [processing.org](http://processing.org)
 
-Download the monome installer: [/docs/serialosc/setup](/docs/serialosc/setup)
+Download and install serialosc: [/docs/serialosc/setup](/docs/serialosc/setup)
 
 Download the code examples here: [files/grid-studies-processing.zip](files/grid-studies-processing.zip)
 
@@ -28,9 +28,9 @@ Download the oscP5 library:
 
 [sojamo.de/libraries/oscp5](http://www.sojamo.de/libraries/oscp5)
 
-These libraries must be copied to the `libraries` folder of your sketchbook, which is typically `~/Documents/Processing/` on Mac and `/Documents/Processing/` on Windows.
+These libraries must be copied to the `libraries` folder of your Sketchbook, which is typically `~/Documents/Processing/` on macOS and `/Documents/Processing/` on Windows.
 
-For example, proper installation of `oscP5` on the Mac would look like:
+For example, proper installation of `oscP5` on macOS would look like:
 
 	~/Documents/Processing/libraries/oscP5/library/oscP5.jar
 
@@ -51,7 +51,7 @@ public void setup() {
 }
 ```
 
-Here the first monome device found is attached. If you want to connect to a specific grid (if you have more than one connected) you can specify a serial number, which can be found using *serialosc-monitor*.
+Here the first monome device found is attached. If you have more than one grid connected and want to connect to a specific unit, you can specify a serial number, which can be found using *serialosc-monitor* / System Information on macOS / Device Manager on Windows.
 
 ```java
 m = new Monome(this, "m1000011");
@@ -61,11 +61,17 @@ The library communicates with *serialosc* to discover attached devices using OSC
 
 ## 2. Basics
 
-*See grid\_studies\_2.pde for this section.*
+In this section, we'll cover how to:
 
-![](images/grid-studies-p5-2.png)
+- interpret key presses
+- draw LEDs coupled to key presses
+- draw LEDs decoupled from key presses
 
-### 2.1 Key input
+### 2.1 Key Input
+
+*See `grid_studies_2_1.pde` for this section.*
+
+![](images/grid-studies-processing-2-1.png)
 
 The monome library calls the function `key()` upon receiving input from the grid. It has three parameters.
 
@@ -83,14 +89,16 @@ public void key(int x, int y, int s) {
 
 We will, of course, do more interesting things with this function in the future.
 
-### 2.2 LED output
+### 2.2 Drawing LEDs
 
-Use the `m.refresh()` function to update the state of the LEDs on the grid. This function accepts an array which represents the entire grid, hence the full frame is updated on each call.
+*See `grid_studies_2_2.pde` for this section.*
 
-First create the array:
+![](images/grid-studies-processing-2-2.png)
+
+Since current grids are offered in 128 and 256 variants, we'll create a 16-by-16 array to keep our code size-agnostic:
 
 ```java
-int[][] led = new int[8][16];
+int[][] led = new int[16][16];
 ```
 
 This array has 8 rows of 16 columns. On initialization this array is cleared (all elements set to 0). Each LED on the grid can have a brightness range of 0-15, where 0 is off and 15 is maximum brightness.
@@ -103,31 +111,31 @@ led[2][0] = 5;
 led[0][2] = 5;
 ```
 
-And finally, to copy this entire array to the grid:
+We use the `m.refresh()` function to update the state of the LEDs on the grid. This function accepts an array which represents the entire grid, hence the full frame is updated on each call. So finally, to copy this entire array to the grid:
 
 ```java
 m.refresh(led);
 ```
 
-As seen in *grid\_studies\_2.pde* we place this code inside the `draw()` function. Upon running the sketch you will see this:
+As seen in `grid_studies_2_2.pde` we place this code inside the `draw()` function. Upon running the sketch you will see this:
 
-![](images/grid-studies-p5-seen.jpg)
+![](images/grid-studies-processing-seen.png)
 
-### 2.3 Coupled interaction
+### 2.3 Coupled LED Interaction
 
-*See grid\_studies\_2_3.pde for this section.*
+*See `grid_studies_2_3.pde` for this section.*
 
-The previous code refreshes the grid constantly with every call of `draw()`, which we typically do not want to do-- it doesn't make sense to have the computer spend time redrawing the same thing constantly.
+The previous code refreshes the grid constantly with every call of `draw()`, which we typically do not want to do. It doesn't make sense to have the computer spend time redrawing the same thing constantly.
 
-Next we'll change the LED state to show which keys are being held, and only redraw when something has changed.
+So, let's change the LED state to show which keys are being held, and *only* redraw when something has changed.
 
-![](images/grid-studies-p5-2-3.png)
+![](images/grid-studies-processing-2-3.png)
 
-First, we move the `led` array to the top, so that it is global. This way we can change the array from inside the `key()` function. We have to allocate the array inside of `setup()`.
+First, we move the `led` array to the top, so that it is global. This way we can change the array from inside the `key()` function. We then allocate the array as 16-by-16 inside of `setup()`.
 
 We add a boolean variable `dirty` to indicate if the grid needs to be refreshed. We set this to `true` within `setup()` so the grid is immediately cleared upon start.
 
-Now we change the grid display upon incoming key data:
+Now we change the grid display with incoming key data:
 
 ```java
 public void key(int x, int y, int s) {
@@ -136,9 +144,9 @@ public void key(int x, int y, int s) {
 }
 ```
 
-Since `s` is either 0 or 1, when we multiply it by 15 we get off or full brightness. We set the LED location according to the position of the incoming key press, x and y.
+Since `s` is either 0 or 1, multiplying it by 15 provides either no light or full brightness. We set the LED location according to the position of the incoming key press, x and y.
 
-We changed the `led` array, so we specify that the grid need refreshing:
+We changed the `led` array, so we specify that the grid needs to be refreshed:
 
 ```java
 dirty = true;
@@ -157,17 +165,17 @@ public void draw() {
 
 Once we've refreshed the grid, we set the `dirty` flag to `false` so we're not needlessly refreshing.
 
-The `draw()` function is called at 60fps unless you specify a different rate in `setup()` such as `frameRate(10);`.
+The `draw()` function is called at 60 frames per second unless you specify a different rate in `setup()` such as `frameRate(10);`.
 
-### 2.4 Decoupled interaction
+### 2.4 Decoupled LED Interaction
 
-The most basic decoupled interaction is a toggle. Turn the grid into a huge bank of toggles simply by changing line 21 (which is in the `key` function):
+The most basic decoupled interaction is a toggle. Turn the grid into a huge bank of toggles simply by changing line 22, in the `key` function:
 
 ```java
 if(s == 1) led[y][x] ^= 15;
 ```
 
-Now only key downs (s = 1) do something. They use an xor operator to toggle the LED value between 0 and 15, depending on the previous state of the LED.
+Now, only key presses (s = 1) do something, whereas releases are ignored. Each key press uses an XOR operator to toggle the LED value between 0 and 15, depending on the previous state of the LED.
 
 ## 3. Further
 
@@ -184,7 +192,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 
 ### 3.1 Toggles
 
-*See grid\_studies\_3_1.pde for this step.*
+*See `grid_studies_3_1.pde` for this step.*
 
 First we'll create a new array called `step` that can hold 6 rows worth of step data. On key input we'll look for key-down events in the top six rows:
 
@@ -192,7 +200,6 @@ First we'll create a new array called `step` that can hold 6 rows worth of step 
   // toggle steps
   if(s == 1 && y < 6) {
     step[y][x] ^= 1;
-
     dirty = true;
   }
 ```
@@ -203,7 +210,7 @@ We will "build" the LED display from scratch each time we need to refresh. This 
 
 ```java
 if(dirty) {
-	int[][] led = new int[8][16];
+	int[][] led = new int[16][16];
 
 	// display steps
 	for(int x=0;x<16;x++)
@@ -220,7 +227,7 @@ That'll get us started.
 
 ### 3.2 Play
 
-*See grid\_studies\_3_2.pde for this step.*
+*See `grid_studies_3_2.pde` for this step.*
 
 For simplicity we're going to make a not-very-smart timer to drive our sequencer. Basically we'll count `draw()` cycles and upon matching a specified interval, we'll take a step forward in the sequence.
 
@@ -233,11 +240,7 @@ int STEP_TIME = 10;
 
 public void draw() {
   if(timer == STEP_TIME) {
-    if(play_position == 15)
-      play_position = 0;
-    else
-      play_position++;
-
+    play_position = (play_position + 1) % 16;
     timer = 0;
     dirty = true;
   }
@@ -246,7 +249,7 @@ public void draw() {
   // ...
 ```
 
-In `draw()` we check `timer` against `STEP_TIME`. If they are equal, we process the next step, which in this case simply means incrementing `play_position`, which must be wrapped to 0 if it's at the end. We reset `timer` so it can count back up, and set the dirty flag so the grid redraws.
+In `draw()` we check `timer` against `STEP_TIME`. If they are equal, we process the next step, which in this case simply means incrementing `play_position` by 1, which must be wrapped to 0 if it's at the end. We reset `timer` so it can count back up, and set the dirty flag so the grid redraws.
 
 You can change the speed by altering `STEP_TIME`.
 
@@ -272,7 +275,9 @@ During this loop which copies steps to the grid, we check if we're updating a co
 
 ### 3.3 Triggers
 
-*See grid\_studies\_3_3.pde for this step.*
+*See `grid_studies_3_3.pde` for this step.*
+
+![](images/grid-studies-processing-3-3.png)
 
 When the playhead advances to a new row we want something to happen which corresponds to the toggled-on rows. We'll do two things: we'll show separate visual feedback on the grid in the second-to-last (trigger) row, and we'll call a draw something to the computer screen.
 
@@ -298,7 +303,7 @@ for(int y=0;y<6;y++)
 		trigger(y);
 ```
 
-And then `trigger()` itself:
+And then `trigger()` itself, which just draws some lines:
 
 ```java
 public void trigger(int i) {
@@ -306,11 +311,11 @@ public void trigger(int i) {
 }
 ```
 
-It's just drawing some lines. Some code is added throughout the file to set up drawing and gently fade everything on each redraw.
+Some code is added throughout the file to set up drawing and gently fade everything on each redraw.
 
 ### 3.4 Cutting
 
-*See grid\_studies\_3_4.pde for this step.*
+*See `grid_studies_3_4.pde` for this step.*
 
 We will now use the bottom row to dynamically cut the playback position. First let's add a position display to the last row, which will be inside `draw()`:
 
@@ -372,7 +377,7 @@ public void setup() {
 }
 ```
 
-We count keys held on the bottom row thusly:
+To count keys held on the bottom row:
 
 ```java
 keys_held = keys_held + (s*2) - 1;
@@ -418,7 +423,6 @@ if(timer == STEP_TIME) {
 
 Done!
 
-
 ## Closing
 
 ### Suggested Exercises
@@ -436,6 +440,6 @@ Done!
 
 *monome-processing* was written by and is maintained by [Tom Dinchak](https://soundcloud.com/phortran).
 
-This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) for [monome.org](https://monome.org).
+This tutorial was created by [Brian Crabtree](https://nnnnnnnn.org) for [monome.org](https://monome.org), with updates in 2024 by [Dan/i Derks](https://dndrks.com).
 
-Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [info@monome.org](mailto:info@monome.org).
+Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [help@monome.org](mailto:help@monome.org).

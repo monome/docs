@@ -7,7 +7,7 @@ boolean dirty;
   
 public void setup() {
   m = new Monome(this);
-  led = new int[8][16];
+  led = new int[16][16];
   dirty = true;
 }
   
@@ -22,4 +22,3 @@ public void key(int x, int y, int s) {
   led[y][x] = s * 15;
   dirty = true;  
 }
-

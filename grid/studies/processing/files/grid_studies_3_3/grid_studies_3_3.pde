@@ -26,10 +26,7 @@ public void draw() {
   rect(0,0,width,height);
   
   if(timer == STEP_TIME) {
-    if(play_position == 15)
-      play_position = 0;
-    else 
-      play_position++;
+    play_position = (play_position + 1) % 16;
     
     // TRIGGER SOMETHING
     for(int y=0;y<6;y++)
@@ -42,7 +39,7 @@ public void draw() {
   else timer++;
   
   if(dirty) {
-    int[][] led = new int[8][16];
+    int[][] led = new int[16][16];
     int highlight;
     
     // display steps

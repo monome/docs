@@ -9,7 +9,7 @@ public void setup() {
 }
   
 public void draw() {
-  int[][] led = new int[8][16];
+  int[][] led = new int[16][16];
   led[0][0] = 15;
   led[2][0] = 5;
   led[0][2] = 5;
@@ -19,4 +19,3 @@ public void draw() {
 public void key(int x, int y, int s) {
   System.out.println("key received: " + x + ", " + y + ", " + s);
 }
-

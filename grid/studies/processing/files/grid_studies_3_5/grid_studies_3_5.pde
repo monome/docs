@@ -7,6 +7,7 @@ boolean dirty;
 int[][] step;
 int timer;
 int play_position;
+int loop_start, loop_end;
 int STEP_TIME = 10;
 boolean cutting;
 int next_position;
@@ -17,6 +18,7 @@ public void setup() {
   
   dirty = true;
   step = new int[6][16];
+  loop_end = 15;
   
   size(360,140);
   background(51);
@@ -32,7 +34,9 @@ public void draw() {
       play_position = next_position;
     else if(play_position == 15)
       play_position = 0;
-    else
+    else if(play_position == loop_end)
+      play_position = loop_start;
+    else 
       play_position++;
     
     // TRIGGER SOMETHING
@@ -85,11 +89,22 @@ public void key(int x, int y, int s) {
     
     dirty = true; 
   }
-  // cut
+  // cut and loop
   else if(y == 7) {
-    if(s == 1)
+    // track number of keys held
+    keys_held = keys_held + (s*2) - 1;
+    
+    // cut
+    if(s == 1 && keys_held == 1) {
       cutting = true;
       next_position = x;
+      key_last = x;
+    }
+    // set loop points
+    else if(s == 1 && keys_held == 2) {
+      loop_start = key_last;
+      loop_end = x;
+    }
   }
 }
 

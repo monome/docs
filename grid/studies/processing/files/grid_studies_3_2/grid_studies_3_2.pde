@@ -9,7 +9,6 @@ int timer;
 int play_position;
 int STEP_TIME = 10;
 
-
 public void setup() {
   m = new Monome(this);
   
@@ -20,18 +19,14 @@ public void setup() {
   
 public void draw() {
   if(timer == STEP_TIME) {
-    if(play_position == 15)
-      play_position = 0;
-    else 
-      play_position++;
-    
+    play_position = (play_position + 1) % 16;
     timer = 0;
     dirty = true;
   }
   else timer++;
   
   if(dirty) {
-    int[][] led = new int[8][16];
+    int[][] led = new int[16][16];
     int highlight;
     
     // display steps
@@ -56,8 +51,6 @@ public void key(int x, int y, int s) {
   // toggle steps
   if(s == 1 && y < 6) {
     step[y][x] ^= 1;
-    
     dirty = true; 
   }
 }
-

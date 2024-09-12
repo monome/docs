@@ -42,7 +42,7 @@ Once both are installed, navigate to `Pd > Preferences > Edit Preferences` (macO
 Then, place the `monome-device` folder that's included in the zip file above into your Pd externals folder. We don't need to explicitly add it to the search path.
 
 
-## 1. Connect
+## 1. Connect {#connect}
 
 *See grid-studies-1-1.pd for this section.*
 
@@ -59,13 +59,13 @@ Attach your grid and you can now communicate with it through this object.
 
 Note: this object you've embedded isn't serialosc itself, which is an invisible daemon on your computer that you should have installed [via these steps](/docs/serialosc/setup). The `[monome-device]` object is an 'abstraction', which is actually the patch `monome-device.pd` *inside* of an object, to simplify communicating with serialosc from Pd.
 
-## 2. Basics
+## 2. Basics {#basics}
 
 Messages are sent to `[monome-device]` through the top left inlet, and received out the bottom left outlet.
 
 *See grid-studies-2-1.pd for this section.*
 
-### 2.1 Key input
+### 2.1 Key input {#key-input}
 
 To see what is coming from the grid, create a `[print]` and connect the left outlet of `[monome-device]` to it. Open the Pd window (Window -> Pd Window) and press some keys on the grid. OSC data will be displayed in the console.
 
@@ -83,7 +83,7 @@ We now have a list of 3 numbers according to each key action. Use an `unpack` to
 
 ![](images/grid-studies-2-1-1.png)
 
-### 2.2 LED output
+### 2.2 LED output {#led-output}
 
 Above the `[monome-device]` create a message box (<kbd>control</kbd>/<kbd>command</kbd> + <kbd>2</kbd>) and type:
 
@@ -106,7 +106,7 @@ To clear the entire grid, use the following message:
 ![](images/grid-studies-2-2-1.png)
 
 
-### 2.3 Coupled interaction
+### 2.3 Coupled interaction {#coupled-interaction}
 
 Connect the output of
 
@@ -118,7 +118,7 @@ You now have a coupled interface, where the key state is reflected by the the LE
 
 ![](images/grid-studies-2-3-1.png)
 
-### 2.4 Decoupled interaction
+### 2.4 Decoupled interaction {#decoupled-interaction}
 
 The most fundamental decoupled interface is an array of toggles. We can accomplish this by ignoring the key up state, switching the LED state only on key down.
 
@@ -141,7 +141,7 @@ To complete the cycle we can then drive the corresponding LED with a message box
 ![](images/grid-studies-2-4-1.png)
 
 
-## 3.0 Further
+## 3.0 Further {#further}
 
 Now we'll show how basic grid applications are developed by creating a step sequencer, adding features incrementally:
 
@@ -154,7 +154,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 - Adjust playback loop with two-key gesture in position row.
 
 
-### 3.1 Toggles
+### 3.1 Toggles {#toggles}
 
 *See grid-studies-3-1.pd for this step.*
 
@@ -199,7 +199,7 @@ This index value is then used to set two values before toggling that state. The 
 Finally we use the index to find the current state of the table, then invert that state with '== 0'. This works because our state is always a 0 or 1. This value is then sent to update the grid LED and is stored back in the table.
 
 
-### 3.2 Play
+### 3.2 Play {#play}
 
 *See grid-studies-3-2.pd for this step.*
 
@@ -223,7 +223,7 @@ After we clear the row, we turn on the corresponding LED with a normal single-LE
 
 Now when you turn on the clock, you'll see the playhead moving along the bottom row.
 
-### 3.3 Triggers
+### 3.3 Triggers {#triggers}
 
 *See grid-studies-3-3.pd for this step.*
 
@@ -257,7 +257,7 @@ The "triggered" LEDs will be full brightness on top of this dim row.
 
 There's a tiny sound engine so you can actually hear something. Turn on the DAC and turn up the gain slider.
 
-### 3.4 Cutting and Looping
+### 3.4 Cutting and Looping {#cutting-and-looping}
 
 *See grid-studies-3-4.pd for this step.*
 
@@ -290,6 +290,6 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
 
 *Pure Data* was designed by Miller Puckette and is actively developed as an open source project. [puredata.info](http://puredata.info).
 
-This tutorial was created by [Trent Gill](http://whimsicalraps.com) for [monome.org](https://monome.org), with updates in 2023 by David Niemi and [Dan Derks](https://dndrks.com).
+This tutorial was created by [Trent Gill](http://whimsicalraps.com) for [monome.org](https://monome.org), with updates in 2023 by David Niemi and [Dan/i Derks](https://dndrks.com).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [help@monome.org](mailto:help@monome.org).

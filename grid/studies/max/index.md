@@ -5,10 +5,20 @@ redirect_from: /grid-studies-max/
 ---
 
 # Grid Studies: Max
+{: .no_toc }
 
 Max is a full kit of creative tools for sound, graphics, music and interactivity in a visual environment. Patching together *objects* the user can create complex interactions between software and hardware devices. The rapid and immediate nature of graphical programming lends itself well to developing for grids, making it the longtime tool of choice for monome grid-based software.
 
 This tutorial will show the basics of interfacing with the grid including how a simple, yet immediate sequencer platform can be made with a small amount of code.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## Prerequisites
 
@@ -26,7 +36,7 @@ Throughout this text, we'll use the following formatting styles:
 - `(message text)`: refers to a Max message object
 - `[objectname @args val]`: refers to a non-message Max object and the arguments needed
 
-## 1. Connect
+## 1. Connect {#connect}
 
 *See grid-studies-1-1.maxpat for this section.*
 
@@ -42,14 +52,14 @@ Create a new object (press <kbd>N</kbd>) and type `bpatcher monome-device` and t
 
 Plug in your grid and it will appear in the box. If you connect more than one grid, you can choose which device to communicate with via the dropdown.
 
-## 2. Basics
+## 2. Basics {#basics}
 
 Messages are sent to `[monome-device]` through the top left inlet, and device interaction messages are transmitted through the bottom left outlet.
 
 *See grid-studies-2-1.maxpat for this section.*
 
 
-### 2.1 Key input
+### 2.1 Key input {#key-input}
 
 ![](images/grid-studies-2-1.png)
 
@@ -76,7 +86,7 @@ rows -> (rows $1)
 
 To show your grid's key states, connect the output of the `route` to this `matrixctrl`.
 
-### 2.2 LED output
+### 2.2 LED output {#led-output}
 
 ![](images/grid-studies-2-2.png)
 
@@ -104,7 +114,7 @@ To clear the entire grid, use the following message:
 /monome/grid/led/all 0
 ```
 
-### 2.3 Coupled interaction
+### 2.3 Coupled interaction {#coupled-interaction}
 
 To change the LEDs on our grid with each physical press, we'll connect the output of our `matrixctrl` into our `/monome/grid/led/set $1 $2 $3` message, which then feeds into `[monome-device]`'s left inlet (see the red cable in the image below).
 
@@ -112,7 +122,7 @@ To change the LEDs on our grid with each physical press, we'll connect the outpu
 
 You now have a coupled interface, where the key state is reflected by the the LEDs.
 
-### 2.4 Decoupled interaction
+### 2.4 Decoupled interaction {#decoupled-interaction}
 
 The grid can also display information beyond the current physical interaction. Throughout this doc, we'll refer to this quality of LED independence as being *decoupled*. The most fundamental decoupled interface is an array of toggles. So, let's ignore the key up state, switching the LED state *only* on key down.
 
@@ -134,7 +144,7 @@ By moving the key state (`z`, here as `$3`) to the front, `[route 1]` will only 
 
 Connect this to the input of the `matrixctrl` and we have a toggle bank!
 
-## 3.0 Further
+## 3.0 Further {#further}
 
 Now we'll show how basic grid applications are developed by creating a step sequencer for a 128 grid. We will add features incrementally:
 
@@ -147,7 +157,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 - Adjust playback loop with two-key gesture in position row.
 
 
-### 3.1 Toggles
+### 3.1 Toggles {#toggles}
 
 *See grid-studies-3-1.maxpat for this step.*
 
@@ -161,7 +171,7 @@ By switching the first and second elements and then putting them into `[route 6 
 
 Also, instead of wrapping a bunch of cords around the patch, we use `[s osc_out]` to send our `led` messages to `[r osc_out]` and into `[monome-device]`.
 
-### 3.2 Play
+### 3.2 Play {#play}
 
 *See grid-studies-3-2.maxpat for this step.*
 
@@ -194,7 +204,7 @@ After we clear the row, we turn on the corresponding LED by passing the playhead
 Now when you turn on the clock, you'll see the playhead moving along the bottom row.
 
 
-### 3.3 Triggers
+### 3.3 Triggers {#triggers}
 
 *See grid-studies-3-3.maxpat for this step.*
 
@@ -231,7 +241,7 @@ The "triggered" LEDs will be full brightness, drawn on top of this dim row.
 Lastly, there's a tiny sound engine so you can actually hear something. Turn on the DAC and turn up the gain slider. Change the note values by opening up the `trigs` subpatcher.
 
 
-### 3.4 Cutting and Looping
+### 3.4 Cutting and Looping {#cutting-and-looping}
 
 *See grid-studies-3-4.maxpat for this step.*
 
@@ -272,6 +282,6 @@ See `grid-studies-3-5.maxpat` for a JavaScript implementation of this patch.
 
 *Max* was originally designed by Miller Puckette and is actively developed by [Cycling '74](http://cycling74.com).
 
-This tutorial was created by [Brian Crabtree](https://nnnnnnnn.org) and maintained by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org).
+This tutorial was created by [Brian Crabtree](https://nnnnnnnn.org) and is maintained by [Dan/i Derks](https://dndrks.com) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

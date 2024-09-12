@@ -5,8 +5,18 @@ redirect_from: /grid-studies-processing/
 ---
 
 # Grid Studies: Processing
+{: .no_toc }
 
 Processing is a programming language, development environment, and online community. Initially created to serve as a software sketchbook and to teach computer programming fundamentals within a visual context, Processing has evolved into a development tool for multi-media performance, including interaction with hardware devices and libraries for sound manipulation. Highly accessible and with a wealth of tutorial information, Processing is a great choice for coding with the monome grid and is fully cross-platform making it highly useful when sharing projects.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## Prerequisites
 
@@ -36,7 +46,7 @@ For example, proper installation of `oscP5` on macOS would look like:
 
 You'll need to restart Processing if it's running while you installed these libraries.
 
-## 1. Connect
+## 1. Connect {#connect}
 
 The monome-processing library facilitates easy connection and communication with grids. Connect to a grid with the following code:
 
@@ -59,7 +69,7 @@ m = new Monome(this, "m1000011");
 
 The library communicates with *serialosc* to discover attached devices using OSC. For a detailed description of how the mechanism and protocol work, see [monome.org/docs/tech:osc](http://monome.org/docs/tech:osc).
 
-## 2. Basics
+## 2. Basics {#basics}
 
 In this section, we'll cover how to:
 
@@ -67,7 +77,7 @@ In this section, we'll cover how to:
 - draw LEDs coupled to key presses
 - draw LEDs decoupled from key presses
 
-### 2.1 Key Input
+### 2.1 Key Input {#key-input}
 
 *See `grid_studies_2_1.pde` for this section.*
 
@@ -89,7 +99,7 @@ public void key(int x, int y, int s) {
 
 We will, of course, do more interesting things with this function in the future.
 
-### 2.2 Drawing LEDs
+### 2.2 Drawing LEDs {#drawing-leds}
 
 *See `grid_studies_2_2.pde` for this section.*
 
@@ -121,7 +131,7 @@ As seen in `grid_studies_2_2.pde` we place this code inside the `draw()` functio
 
 ![](images/grid-studies-processing-seen.png)
 
-### 2.3 Coupled LED Interaction
+### 2.3 Coupled LED Interaction {#coupled-led-interaction}
 
 *See `grid_studies_2_3.pde` for this section.*
 
@@ -167,7 +177,7 @@ Once we've refreshed the grid, we set the `dirty` flag to `false` so we're not n
 
 The `draw()` function is called at 60 frames per second unless you specify a different rate in `setup()` such as `frameRate(10);`.
 
-### 2.4 Decoupled LED Interaction
+### 2.4 Decoupled LED Interaction {#decoupled-led-interaction}
 
 The most basic decoupled interaction is a toggle. Turn the grid into a huge bank of toggles simply by changing line 22, in the `key` function:
 
@@ -177,7 +187,7 @@ if(s == 1) led[y][x] ^= 15;
 
 Now, only key presses (s = 1) do something, whereas releases are ignored. Each key press uses an XOR operator to toggle the LED value between 0 and 15, depending on the previous state of the LED.
 
-## 3. Further
+## 3. Further {#further}
 
 Now we'll show how basic grid applications are developed by creating a step sequencer. We will add features incrementally:
 
@@ -190,7 +200,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 - Adjust playback loop with two-key gesture in position row.
 
 
-### 3.1 Toggles
+### 3.1 Toggles {#toggles}
 
 *See `grid_studies_3_1.pde` for this step.*
 
@@ -225,7 +235,7 @@ if(dirty) {
 
 That'll get us started.
 
-### 3.2 Play
+### 3.2 Play {#play}
 
 *See `grid_studies_3_2.pde` for this step.*
 
@@ -273,7 +283,7 @@ for(int x=0;x<16;x++) {
 
 During this loop which copies steps to the grid, we check if we're updating a column that is the play position. If so, we increase the highlight value. By adding this value during the copy we'll get a nice effect of an overlaid translucent bar.
 
-### 3.3 Triggers
+### 3.3 Triggers {#triggers}
 
 *See `grid_studies_3_3.pde` for this step.*
 
@@ -313,7 +323,7 @@ public void trigger(int i) {
 
 Some code is added throughout the file to set up drawing and gently fade everything on each redraw.
 
-### 3.4 Cutting
+### 3.4 Cutting {#cutting}
 
 *See `grid_studies_3_4.pde` for this step.*
 
@@ -359,7 +369,7 @@ if(timer == STEP_TIME) {
 
 Now, when pressing keys on the bottom row it will cue the next position to be played. Note that we set `cutting = false` after each cycle so that each press only affects the timer once.
 
-### 3.5 Loop
+### 3.5 Loop {#loop}
 
 Lastly, we'll implement setting the loop start and end points with a two-press gesture: pressing and holding the start point, and pressing an end point while still holding the first key. We'll need to add a variable to count keys held, one to track the last key pressed, and variables to store the loop positions.
 
@@ -423,9 +433,9 @@ if(timer == STEP_TIME) {
 
 Done!
 
-## Closing
+## Closing {#closing}
 
-### Suggested Exercises
+### Suggested Exercises {#suggested-exercises}
 
 - "Record" keypresses in the "trigger" row to the toggle matrix.
 - Display the loop range on the bottom row of the grid.
@@ -434,7 +444,7 @@ Done!
 	- If "alt" is held while pressing the play row, reverse the direction of play.
 
 
-## Credits
+## Credits {#credits}
 
 *Processing* was designed by Ben Fry and Casey Reas and is maintained by the [Processing Foundation](processing).
 

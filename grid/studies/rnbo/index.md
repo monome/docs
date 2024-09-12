@@ -4,10 +4,20 @@ nav_exclude: true
 ---
 
 # Grid Studies: RNBO
+{: .no_toc }
 
 RNBO, by [Cycling '74](https://cycling74.com/), is a library and toolchain that uses the same visual programming patching paradigm of [Max](/docs/grid/studies/max/), but which can be compiled to run on a number of external targets. Though RNBO can export to web experiences and audio plugins, this study will focus on the Raspberry Pi target.
 
 This tutorial will show the basics of interfacing with the grid including how a simple, yet immediate sequencer platform can be made with a small amount of code.
+
+<details open markdown="block">
+  <summary>
+    sections
+  </summary>
+  {: .text-delta }
+- TOC
+{:toc}
+</details>
 
 ## IMPORTANT: Prerequisites {#prerequisites}
 
@@ -41,7 +51,7 @@ To monitor the `[print]` messages throughout this study, SSH into your RNBO Pi a
 journalctl -u rnbooscquery -f
 ```
 
-## 1. Connect
+## 1. Connect {#connect}
 
 To communicate with grids we trade OSC messages with serialosc. serialosc is an invisible daemon on your computer, which translates OSC messages to streams of numbers over USB.
 
@@ -96,7 +106,7 @@ After completing the steps above, open `grid-rnbo-1.maxpat` and perform each of 
 
 ![](images/rnbo-studies-1.png)
 
-## 2. Basics
+## 2. Basics {#basics}
 
 *See `grid-rnbo-2.maxpat` for this section.*
 
@@ -104,7 +114,7 @@ RNBO's [inports and outports](https://rnbo.cycling74.com/learn/messages-and-port
 
 ![](images/rnbo-studies-2.png)
 
-### 2.1 Key input
+### 2.1 Key input {#key-input}
 
 *Open and export `grid-rnbo-2-1` to your Pi for this section.*
 
@@ -119,7 +129,7 @@ To see what is coming from the grid, we'll print the `x`, `y` and `z` values rep
 
 Since Max and RNBO both execute in right-to-left order, we'll use `[list.rot 1]` to rotate our incoming grid messages (typically reported as `/monome/grid/key x y z`), so we have `z` state listed first. We then use `[list.slice 1]` to slice up the messages into `z` (left outlet) and `x,y` (right outlet), which then print in order of Cartesian coordinate *then* state.
 
-### 2.2 Coupled LED output
+### 2.2 Coupled LED output {#coupled-led-output}
 
 *Open and export `grid-rnbo-2-2` to your Pi for this section.*
 
@@ -129,7 +139,7 @@ The most basic grid patch is "light up the pressed key", which we can implement 
 
 To clear the entire grid when our patch is loaded, we send `[loadmess 0]` through `[outport /monome/grid/led/all]`.
 
-### 2.3 Decoupled interaction
+### 2.3 Decoupled interaction {#decoupled-interaction}
 
 *Open and export `grid-rnbo-2-3` to your Pi for this section.*
 
@@ -164,7 +174,7 @@ if (z == 1){ // key-down only
 
 By simply connecting the outlet of our `[codebox]` to the inlet of the grid's `[outport]` (and exporting to the Pi), we now have a toggle bank!
 
-## 3.0 Further
+## 3.0 Further {#further}
 
 *See `grid-rnbo-3.maxpat` for this step.*
 
@@ -180,7 +190,7 @@ Now we'll show how basic grid applications are developed by creating a step sequ
 
 ![](images/rnbo-studies-3.png)
 
-### 3.1 Toggles
+### 3.1 Toggles {#toggles}
 
 *Open and export `grid-rnbo-3-1` to your Pi for this section.*
 
@@ -202,7 +212,7 @@ if (z == 1 && (y < 6)){ // key-down only, in first six rows
 }
 ```
 
-### 3.2 Play
+### 3.2 Play {#play}
 
 *Open and export `grid-rnbo-3-2` to your Pi for this section.*
 
@@ -232,7 +242,7 @@ We'll also add a [parameter](https://rnbo.cycling74.com/learn/using-parameters) 
 
 Now when you export to the Pi target, you'll see the playhead moving along the bottom row.
 
-### 3.3 Triggers and notes
+### 3.3 Triggers and notes {#triggers-and-notes}
 
 *Open and export `grid-rnbo-3-3` to your Pi for this section.*
 
@@ -282,7 +292,7 @@ Lastly, there's a tiny sound engine so you can actually hear something. You can 
 
 ![](images/rnbo-studies-3-3-3.png)
 
-### 3.4 Cutting and Looping
+### 3.4 Cutting and Looping {#cutting-and-looping}
 
 *Open and export `grid-rnbo-3-4` to your Pi for this section.*
 
@@ -345,11 +355,11 @@ function in2(col){
 }
 ```
 
-## Closing
+## Closing {#closing}
 
 We've created a minimal yet intuitive interface for rapidly exploring sequences -- we can change event triggers, loop points, and jump around the data performatively. Many more features could be added. There are numerous other ways to think about interaction between key press and light feedback in completely different contexts.
 
-### Suggested exercises
+### Suggested exercises {#suggested-exercises}
 
 - Add MIDI output
 - If you have access to a 256 grid, try adapting the 3.x patches to accommodate this larger size.
@@ -360,10 +370,10 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences 
 	- If "alt" is held while pressing a toggle, clear the entire row.
 	- If "alt" is held while pressing the play row, reverse the direction of play.
 
-## Credits
+## Credits {#credits}
 
 *RNBO* is bundled with *Max* and is actively developed by [Cycling '74](http://cycling74.com).
 
-This tutorial was created by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org), with generous feedback and counsel from Cycling '74 (Alex Norman, Tom Hall, and Alex Van Gils).
+This tutorial was created by [Dan/i Derks](https://dndrks.com) for [monome.org](https://monome.org), with generous feedback and counsel from Cycling '74 (Alex Norman, Tom Hall, and Alex Van Gils).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

@@ -3,7 +3,7 @@ layout: default
 nav_exclude: true
 ---
 
-# grid studies: seamstress
+# Grid Studies: Seamstress
 {: .no_toc }
 
 [seamstress](https://github.com/ryleelyman/seamstress/) is a Lua scripting environment for musical communication. It was inspired by [norns](/docs/norns) and makes use of its [scripting API](/docs/norns/reference), but it is **not** a port of the norns environment. Generally, though, seamstress is a fantastic complement to the norns scripting experience, as it has many syntactical similarities and many of the same scripting libraries.
@@ -21,7 +21,7 @@ For an overview of the primary scripting differences between the two platforms, 
 {:toc}
 </details>
 
-## prerequisites
+## Prerequisites
 
 This study assumes a basic understanding of Lua. If you're absolutely new to Lua it may be helpful to first go through some of [the resources listed in our norns documentation](/docs/norns/studies/#learning-lua).
 
@@ -37,7 +37,7 @@ Required:
 - Install serialosc: [/docs/serialosc/setup](/docs/serialosc/setup)
 - Download the code examples here: [files/grid-studies-seamstress.zip](files/grid-studies-seamstress.zip)
 
-### running examples
+### Running Examples
 
 seamstress is run from the terminal by executing the command `seamstress`. If it is not given any filename, seamstress looks for and runs a file called `script.lua` in either the current directory or in `~/seamstress/`.
 
@@ -48,7 +48,7 @@ cd grid-studies-seamstress/files
 seamstress grid-studies-1
 ```
 
-## 1. connect + basics {#connect}
+## 1. Connect + Basics {#connect}
 
 *See [grid-studies-1.lua](files/grid-studies-1.lua) for this section.*
 
@@ -79,11 +79,11 @@ This script is a very basic example of how to:
 
 As you press keys on your grid, you'll see them light up for as long as they're held.
 
-### connection
+### Connection
 
 `g = grid.connect()` creates a device table `g`, which inherits a collection of methods (demarcated with `:`) and functions designed to handle grid communication. For grid, we'll use *methods* to send commands to the grid and we use *functions* to parse what comes back.
 
-### key input
+### Key Input
 
 The `g` device table has callback *functions* for what happens when you push a key. We can assign an action to any grid key press, where `x` and `y` are the coordinates (1-indexed) and `z` is the keypress state (down: `1`, up: `0`):
 
@@ -93,7 +93,7 @@ function g.key(x, y, z)
 end
 ```
 
-### LED output
+### LED Output
 
 In our example script, we use two *methods* to light up the grid:
 
@@ -102,7 +102,7 @@ In our example script, we use two *methods* to light up the grid:
 
 If we're simply interested in displaying presses, this is fine enough. But for scripts where we want to display more layers of information, this approach of directly addressing and redrawing each individual LED isn't very efficient. Let's improve upon our approach in the next section!
 
-## 2. building a script {#scripting}
+## 2. Building a Script {#scripting}
 
 When you first approach writing a grid-enabled script in seamstress, it can be helpful to start with a basic structure that has a few different components:
 
@@ -113,7 +113,7 @@ When you first approach writing a grid-enabled script in seamstress, it can be h
 
 Moving forward, we'll refresh the grid display on a timer, which will also serve as the playhead later on.
 
-### 2.1 basic script {#basic-script}
+### 2.1 Basic Script {#basic-script}
 
 Below is a basic script that facilitates this structure:
 
@@ -192,11 +192,11 @@ So we can write a responsive interface for our step sequencer, we establish a fe
 - `rows`, which we'll to set the maximum number of tracks
 - `grid_connected`, which we'll use to query whether there's a grid to communicate with
 
-### schedule, process, display {#schedule-process-display}
+### Schedule, Process, Display {#schedule-process-display}
 
 In our script's `init`, we schedule two functions to be executed at regular intervals.
 
-#### clock
+#### Clock
 
 The first is done with the `clock` library, which allows tempo-synced scheduling:
 
@@ -216,7 +216,7 @@ end
 
 In `play`, we perform our actions and then sync to the clock at a quarter pulse (which is a 1/16th note in 4/4).
 
-#### metro
+#### Metro
 
 The second is done with the `metro` library, which allows scheduling with high-accuracy timers:
 
@@ -241,7 +241,7 @@ end
 
 Since we want the grid to draw at a steady 60 frames-per-second, we opt for the higher-resolution `metro`, rather than the 'musical timing' `clock`.
 
-### 2.2 add something to the screen {#screen}
+### 2.2 Add Something to the Screen {#screen}
 
 Let's add a very small indicator to the screen which tells us whether a grid is connected or not:
 
@@ -271,7 +271,7 @@ end
 
 So, we have our boilerplate -- let's take things further by building a bank of toggles for the sequencer.
 
-## 3. making a step sequencer {#step}
+## 3. Making a Step Sequencer {#step}
 
 To show how basic grid-enabled seamstress scripts are developed, let's create a step sequencer. We will add features incrementally:
 
@@ -283,7 +283,7 @@ To show how basic grid-enabled seamstress scripts are developed, let's create a 
 - Jump to playback position when key pressed in the position row.
 - Adjust playback loop with two-key gesture in position row.
 
-### 3.1 toggles {#toggles}
+### 3.1 Toggles {#toggles}
 
 *See [grid-studies-3-1.lua](files/grid-studies-3-1.lua) for this section.*
 
@@ -325,7 +325,7 @@ end
 
 That'll get us started.
 
-### 3.2 play {#play}
+### 3.2 Play {#play}
 
 *See [grid-studies-3-2.lua](files/grid-studies-3-2.lua) for this section.*
 
@@ -373,7 +373,7 @@ end
 
 While iterating over the steps in a loop, we check if we're updating a column that is the play position. If so, we increase the highlight value. By adding this value during the iteration we'll get a nice effect of an overlaid translucent bar.
 
-### 3.3 triggers {#triggers}
+### 3.3 Triggers {#triggers}
 
 *See [grid-studies-3-3.lua](files/grid-studies-3-3.lua) for this section.*
 
@@ -600,7 +600,7 @@ end
 -- // NEW
 ```
 
-### 3.5 dynamic cuts {#dynamic-cuts}
+### 3.5 Dynamic Cuts {#dynamic-cuts}
 
 *See [grid-studies-3-5.lua](files/grid-studies-3-5.lua) for this section.*
 
@@ -626,7 +626,7 @@ elseif y == rows and z == 1 then
 
 Now, when pressing keys on the bottom row it will cue the next position to be played.
 
-### 3.6 loop {#loop}
+### 3.6 Loop {#loop}
 
 *See [grid-studies-3-6.lua](files/grid-studies-3-6.lua) for this section.*
 
@@ -686,7 +686,7 @@ elseif y == rows then
 end
 ```
 
-## 4. transport {#transport}
+## 4. Transport {#transport}
 
 *See [grid-studies-4.lua](files/grid-studies-4.lua) for this section.*
 
@@ -695,7 +695,7 @@ As a bonus round, let's extend our script by:
 - adding transport controls so we can start and stop our sequencer
 - tying incoming transport start/stop messages to the script's sense of place and time
 
-### adding transport actions {#transport-actions}
+### Adding Transport Actions {#transport-actions}
 
 If you're used to highly-structured Digital Audio Workstations, then you might be looking for ways to create meaningful 'start' and 'stop' functionality within a seamstress script.
 
@@ -750,7 +750,7 @@ end)
 -- // NEW
 ```
 
-### transport callbacks {#transport-callbacks}
+### Transport Callbacks {#transport-callbacks}
 
 There are two system-level callbacks which can be assigned in your script to perform specific actions whenever the seamstress clock receives a 'start' and 'stop' message: `clock.transport.start` and `clock.transport.stop`.
 
@@ -771,11 +771,11 @@ function clock.transport.stop()
 end
 ```
 
-## closing
+## Closing
 
 We've created a minimal yet intuitive interface for rapidly exploring sequences. We can intuitively change event triggers, loop points, and jump around the data performatively. Many more features could be added, and there are numerous other ways to think about interaction between key press and light feedback in completely different contexts.
 
-### suggested exercises
+### Suggested Exercises
 
 - display the loop range with dim LED levels
 - record keypresses in the "jump" row
@@ -783,10 +783,10 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
   - if "alt" is held while pressing a toggle, clear the entire column
   - if "alt" is held while pressing the play row, reverse the direction of play
 
-## credits
+## Credits
 
-seamstress was developed and designed by [Rylee Alanza Lyman](https://ryleealanza.org/), inspired by [*matron* from norns](https://github.com/monome/norns/tree/main/matron/src). *matron* was written by [`@catfact`](https://github.com/ryleelyman/seamstress). norns was initiated by [`@tehn`](https://github.com/tehn).
+seamstress was developed and designed by [Robbie Lyman](https://github.com/robbielyman), inspired by [*matron* from norns](https://github.com/monome/norns/tree/main/matron/src). *matron* was written by [`@catfact`](https://github.com/ryleelyman/seamstress). norns was initiated by [`@tehn`](https://github.com/tehn).
 
-This tutorial was created by [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org).
+This tutorial was created by [Dan/i Derks](https://dndrks.com) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

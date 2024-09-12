@@ -495,6 +495,6 @@ Python was designed by Guido van Rossum and is maintained by the [Python Softwar
 
 *pymonome* was written and is maintained by [Artem Popov](https://github.com/artfwo/pymonome).
 
-This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) and [Dan Derks](https://dndrks.com) for [monome.org](https://monome.org).
+This tutorial was created by [Brian Crabtree](http://nnnnnnnn.org) and [Dan/i Derks](https://dndrks.com) for [monome.org](https://monome.org).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [help@monome.org](mailto:help@monome.org).

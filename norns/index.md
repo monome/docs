@@ -19,7 +19,7 @@ norns is many sound instruments. It is a small, portable, open-source sound comp
 - asynchronous looper
 - polyphasic sequencer
 
-Through *scripts* written in [Lua](https://www.lua.org/about.html), you can define the behavior of its on-board encoders, keys, and screen, as well as any connected devices. Through a large number of [pre-written libraries](../norns/reference), norns offers a platform for charting new possibilities in music-making. norns connects easily to grids, MIDI devices, USB-CV interfaces, networked OSC, and other objects.
+Through *scripts* written in [Lua](https://www.lua.org/about.html), you can define the behavior of its on-board rotary controls, keys, and screen, as well as any connected devices. Through a large number of [pre-written libraries](../norns/reference), norns offers a platform for charting new possibilities in music-making. norns connects easily to grids, MIDI devices, USB-CV interfaces, networked OSC, and other objects.
 
 Using *engines* written with [SuperCollider](https://supercollider.github.io), you can customize and create your own methods of DSP for single performances or longterm exploration. Scripts choose which sound engine to use and then control its parameters using simple programming.
 
@@ -48,7 +48,7 @@ norns is open source and continues to grow with the generous efforts of many con
 **interface**
 
 - 128 x 64 OLED, 16-level bright white huge pixels.
-- 3 rotary encoders, standard resolution.
+- 3 endless rotary potentiometers, high resolution.
 - 3 keys.
 - rear status LED indicating power and disk access.
 

@@ -48,7 +48,9 @@ norns is open source and continues to grow with the generous efforts of many con
 **interface**
 
 - 128 x 64 OLED, 16-level bright white huge pixels.
-- 3 endless rotary potentiometers, high resolution.
+- 3 endless rotary controls.
+  - units produced in 2024+ have potentiometers with a slow turn.
+  - units produced before 2024 have encoders with a fast turn.
 - 3 keys.
 - rear status LED indicating power and disk access.
 

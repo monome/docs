@@ -25,11 +25,11 @@ The library has 3 flavors, each with its own purpose, though they can be combine
 
 All the events are, by default, automatically launched quantized to the clock.
 
-| Syntax                                                  | Description                                                                                          |
-| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| my_beat = timeline.loop{duration, event, ...}           | Create and automatically launch (at the next beat) a looping sequence of events using beat durations |
-| my_song = timeline.score{beats_timestamp, event, ...}   | Create and automatically launch (at the next beat) a sequence of events using beat timestamps        |
-| my_stream = timeline.real{second_timestamp, event, ...} | Create and automatically launch (at the next beat) a sequence of events using beat timestamps        |
+| Syntax                                                  | Description                                                                                            |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| my_beat = timeline.loop{duration, event, ...}           | Create and automatically launch (at the next beat) a looping sequence of events using beat durations   |
+| my_song = timeline.score{beats_timestamp, event, ...}   | Create and automatically launch (at the next beat) a sequence of events using beat timestamps          |
+| my_stream = timeline.real{second_timestamp, event, ...} | Create and automatically launch (at the next beat) a sequence of events using seconds-based timestamps |
 
 ### Change Launch Quantization
 

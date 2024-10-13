@@ -142,6 +142,9 @@ listed. the `-j 1` option instructs norns to use only one thread --
 using all the CPU for recompiling (the default) can make norns
 unresponsive.
 
+there is no separate install step. the norns code is run from
+the location it's built to.
+
 ## restart
 
 assuming you get `'build' finished successfully`, you've now rebuilt

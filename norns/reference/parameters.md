@@ -4,8 +4,10 @@ nav_exclude: true
 permalink: /norns/reference/params
 ---
 
-## params
+## params and paramset
 {: .no_toc }
+
+Sets of parameters can be defined with [the `paramset` library](/docs/norns/api/modules/paramset.html). The global variable `params` is a special instance of a `paramset` object which contains the PARAMETERS menu, so acting on `params` will change the PARAMETERS menu.
 
 <details open markdown="block">
   <summary>

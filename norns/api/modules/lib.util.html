@@ -56,7 +56,16 @@
   <li><a href="../modules/midi.html">midi</a></li>
   <li><a href="../modules/norns.html">norns</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
+  <li><a href="../modules/params.binary.html">params.binary</a></li>
   <li><a href="../modules/params.control.html">params.control</a></li>
+  <li><a href="../modules/params.file.html">params.file</a></li>
+  <li><a href="../modules/params.group.html">params.group</a></li>
+  <li><a href="../modules/params.number.html">params.number</a></li>
+  <li><a href="../modules/params.option.html">params.option</a></li>
+  <li><a href="../modules/params.separator.html">params.separator</a></li>
+  <li><a href="../modules/params.taper.html">params.taper</a></li>
+  <li><a href="../modules/params.text.html">params.text</a></li>
+  <li><a href="../modules/params.trigger.html">params.trigger</a></li>
   <li><a href="../modules/paramset.html">paramset</a></li>
   <li><a href="../modules/poll.html">poll</a></li>
   <li><a href="../modules/screen.html">screen</a></li>
@@ -81,7 +90,7 @@
   <li><a href="../modules/lib.lfo.html">lib.lfo</a></li>
   <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
   <li><a href="../modules/lib.musicutil.html">lib.musicutil</a></li>
-  <li><a href="../modules/lib.pattern.html">lib.pattern</a></li>
+  <li><a href="../modules/lib.pattern_time.html">lib.pattern_time</a></li>
   <li><a href="../modules/lib.reflection.html">lib.reflection</a></li>
   <li><a href="../modules/lib.sequins.html">lib.sequins</a></li>
   <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
@@ -99,7 +108,7 @@
 <div id="content">
 
 <h1>Module <code>lib.util</code></h1>
-<p>db to amp.</p>
+<p>Utility functions.</p>
 <p>
 
 </p>
@@ -107,6 +116,10 @@
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#dbamp">dbamp (db)</a></td>
+	<td class="summary">db to amp.</td>
+	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#time">time ()</a></td>
 	<td class="summary">get system time in fractional seconds</td>
@@ -201,6 +214,35 @@
 
     <dl class="function">
     <dt>
+    <a name = "dbamp"></a>
+    <strong>dbamp (db)</strong>
+    </dt>
+    <dd>
+    db to amp.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">db</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        amp
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "time"></a>
     <strong>time ()</strong>
     </dt>
@@ -230,7 +272,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">directory</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          path to directory
         </li>
     </ul>
@@ -238,7 +280,7 @@
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.6">table</a></span>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
 
 
 
@@ -259,7 +301,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">name</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          filepath
         </li>
     </ul>
@@ -286,7 +328,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">path</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          filepath
         </li>
     </ul>
@@ -313,7 +355,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">path</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
 
 
 
@@ -336,7 +378,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">cmd</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          command
         </li>
         <li><span class="parameter">raw</span>
@@ -365,11 +407,11 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">s</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          string to examine
         </li>
         <li><span class="parameter">start</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          string to search for
         </li>
     </ul>
@@ -396,7 +438,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">s</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          string to trim
         </li>
         <li><span class="parameter">width</span>
@@ -408,7 +450,7 @@
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
         trimmed string
     </ol>
 
@@ -700,7 +742,7 @@
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
         seconds : seconds in h:m:s
     </ol>
 
@@ -777,7 +819,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">name</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
 
 
 
@@ -787,7 +829,7 @@
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
         acronym
     </ol>
 
@@ -884,7 +926,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
-<i style="float:right;">Last updated 2024-10-08 18:50:59 </i>
+<i style="float:right;">Last updated 2024-10-13 17:45:04 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

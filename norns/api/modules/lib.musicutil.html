@@ -56,7 +56,16 @@
   <li><a href="../modules/midi.html">midi</a></li>
   <li><a href="../modules/norns.html">norns</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
+  <li><a href="../modules/params.binary.html">params.binary</a></li>
   <li><a href="../modules/params.control.html">params.control</a></li>
+  <li><a href="../modules/params.file.html">params.file</a></li>
+  <li><a href="../modules/params.group.html">params.group</a></li>
+  <li><a href="../modules/params.number.html">params.number</a></li>
+  <li><a href="../modules/params.option.html">params.option</a></li>
+  <li><a href="../modules/params.separator.html">params.separator</a></li>
+  <li><a href="../modules/params.taper.html">params.taper</a></li>
+  <li><a href="../modules/params.text.html">params.text</a></li>
+  <li><a href="../modules/params.trigger.html">params.trigger</a></li>
   <li><a href="../modules/paramset.html">paramset</a></li>
   <li><a href="../modules/poll.html">poll</a></li>
   <li><a href="../modules/screen.html">screen</a></li>
@@ -81,7 +90,7 @@
   <li><a href="../modules/lib.lfo.html">lib.lfo</a></li>
   <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
   <li><strong>lib.musicutil</strong></li>
-  <li><a href="../modules/lib.pattern.html">lib.pattern</a></li>
+  <li><a href="../modules/lib.pattern_time.html">lib.pattern_time</a></li>
   <li><a href="../modules/lib.reflection.html">lib.reflection</a></li>
   <li><a href="../modules/lib.sequins.html">lib.sequins</a></li>
   <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
@@ -209,7 +218,7 @@
          MIDI note number (0-127) where scale will begin.
         </li>
         <li><span class="parameter">scale_type</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          String defining scale type (eg, "major", "aeolian" or "neapolitan major"), see class for full list.
         </li>
         <li><span class="parameter">octaves</span>
@@ -280,7 +289,7 @@
          MIDI note number (0-127) for chord.
         </li>
         <li><span class="parameter">chord_type</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          String defining chord type (eg, "major", "minor 7" or "sus4"), see class for full list.
         </li>
         <li><span class="parameter">inversion</span>
@@ -322,11 +331,11 @@
          MIDI note number (0-127) defining the key.
         </li>
         <li><span class="parameter">scale_type</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          String defining scale type (eg, "Major", "Dorian".)
         </li>
         <li><span class="parameter">roman_chord_type</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          Roman-numeral-style string defining chord type (eg, "V", "iv7" or "III+")
   including limited bass notes (e.g. "iv6-9") and lowercase-letter inversion notation (e.g. "IIb" for first inversion)
         </li>
@@ -361,7 +370,7 @@
          MIDI note number (0-127) defining the key.
         </li>
         <li><span class="parameter">scale_type</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          String defining scale type. Not all scales are supported; valid values
    are "Major" (or "Ionian"), "Natural Minor" (or "Minor" or "Aeolian"), "Harmonic Minor",
    "Melodic Minor", "Dorian", "Phrygian", "Lydian", "Mixolydian", or "Locrian".
@@ -407,7 +416,7 @@
          MIDI note number (0-127) for root of key.
         </li>
         <li><span class="parameter">key_type</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          String defining key type (eg, "major", "aeolian" or "neapolitan major"), see class for full list.
         </li>
     </ul>
@@ -509,7 +518,7 @@
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
         Name string (eg, "C#3").
     </ol>
 
@@ -772,7 +781,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
-<i style="float:right;">Last updated 2024-10-08 18:50:59 </i>
+<i style="float:right;">Last updated 2024-10-13 17:45:04 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

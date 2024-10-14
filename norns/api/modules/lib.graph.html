@@ -56,7 +56,16 @@
   <li><a href="../modules/midi.html">midi</a></li>
   <li><a href="../modules/norns.html">norns</a></li>
   <li><a href="../modules/osc.html">osc</a></li>
+  <li><a href="../modules/params.binary.html">params.binary</a></li>
   <li><a href="../modules/params.control.html">params.control</a></li>
+  <li><a href="../modules/params.file.html">params.file</a></li>
+  <li><a href="../modules/params.group.html">params.group</a></li>
+  <li><a href="../modules/params.number.html">params.number</a></li>
+  <li><a href="../modules/params.option.html">params.option</a></li>
+  <li><a href="../modules/params.separator.html">params.separator</a></li>
+  <li><a href="../modules/params.taper.html">params.taper</a></li>
+  <li><a href="../modules/params.text.html">params.text</a></li>
+  <li><a href="../modules/params.trigger.html">params.trigger</a></li>
   <li><a href="../modules/paramset.html">paramset</a></li>
   <li><a href="../modules/poll.html">poll</a></li>
   <li><a href="../modules/screen.html">screen</a></li>
@@ -81,7 +90,7 @@
   <li><a href="../modules/lib.lfo.html">lib.lfo</a></li>
   <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
   <li><a href="../modules/lib.musicutil.html">lib.musicutil</a></li>
-  <li><a href="../modules/lib.pattern.html">lib.pattern</a></li>
+  <li><a href="../modules/lib.pattern_time.html">lib.pattern_time</a></li>
   <li><a href="../modules/lib.reflection.html">lib.reflection</a></li>
   <li><a href="../modules/lib.sequins.html">lib.sequins</a></li>
   <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
@@ -323,7 +332,7 @@
          Maximum value for x axis, defaults to 1.
         </li>
         <li><span class="parameter">x_warp</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          defines warping for x axis, accepts "lin" or "exp", defaults to "lin".
         </li>
         <li><span class="parameter">y_min</span>
@@ -335,11 +344,11 @@
          Maximum value for y axis, defaults to 1.
         </li>
         <li><span class="parameter">y_warp</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          defines warping for y axis, accepts "lin" or "exp", defaults to "lin".
         </li>
         <li><span class="parameter">style</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          defines visual style, accepts "line", "point", "spline", "line_and_point", "spline_and_point" or "bar", defaults to "line".
         </li>
         <li><span class="parameter">show_x_axis</span>
@@ -655,7 +664,7 @@
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
         x warp string.
     </ol>
 
@@ -674,7 +683,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">warp</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          Warp string, accepts "lin" or "exp".
         </li>
     </ul>
@@ -778,7 +787,7 @@
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
         y warp string.
     </ol>
 
@@ -797,7 +806,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">warp</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          Warp string, accepts "lin" or "exp".
         </li>
     </ul>
@@ -819,7 +828,7 @@
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
         Style string.
     </ol>
 
@@ -838,7 +847,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">style</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
          Style string, accepts "line", "point", "spline", "line_and_point", "spline_and_point" or "bar".
         </li>
     </ul>
@@ -988,7 +997,7 @@
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.6">table</a></span>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
         Point table.
     </ol>
 
@@ -1015,7 +1024,7 @@
          Point's y position.
         </li>
         <li><span class="parameter">curve</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a> or <span class="type">number</span></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">number</span></span>
          Curve of previous line segment, accepts "lin", "exp" or a number where 0 is linear and positive and negative numbers curve the envelope up and down, defaults to "lin".
          (<em>optional</em>)
         </li>
@@ -1061,7 +1070,7 @@
          (<em>optional</em>)
         </li>
         <li><span class="parameter">curve</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a> or <span class="type">number</span></span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a> or <span class="type">number</span></span>
          Curve of previous line segment, accepts "lin", "exp" or a number where 0 is linear and positive and negative numbers curve the envelope up and down.
          (<em>optional</em>)
         </li>
@@ -1345,7 +1354,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
-<i style="float:right;">Last updated 2024-10-08 18:50:59 </i>
+<i style="float:right;">Last updated 2024-10-13 17:45:04 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

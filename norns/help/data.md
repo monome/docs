@@ -105,7 +105,7 @@ Steps:
   - Navigate to `Finish` and if prompted to restart, select `OK`. Please note that this will power norns down fully, rather than restart it. That's okay! If you were not presented with an option to restart, simply put norns to sleep after the expansion completes.
   - Please note: norns will take a few minutes to fully boot after the filesystem expansion
   - You can verify the expansion has taken place by pressing K2 on the `SELECT / SYSTEM / SLEEP` screen -- `disk` should show around `26000M` (26 gb).  
-9. [Consider changing the default password and address](#change-password)
+9. [Consider changing the default password and address](/docs/norns/wifi-files/#change-password)
 
 ### shield {#fresh-shield}
 
@@ -124,7 +124,7 @@ After flashing your SD card, you'll need to expand the filesystem:
 5. Select `Expand Filesystem` and hit RETURN  
 6. Lots of activity will happen. When it's done, power down and reboot. If you get any errors, reboot again.
 7. [Connect norns to your network](/docs/norns/wifi-files) and [update via SYSTEM  > UPDATE](/docs/norns/wifi-files/#update)
-8. [Consider changing the default password and address](#change-password)
+8. [Consider changing the default password and address](/docs/norns/wifi-files/#change-password)
 
 If you have previously connected to a shield (either by this same IP address or simply `norns.local`) in the past, you may see a warning that the 'remote host identification has changed'. this is because the shield now has a new host key. The error will give you a filepath to your hosts file, but if you are on MacOS you can simply execute `rm -f ~/.ssh/known_hosts` in Terminal to erase the previous hosts file and start fresh.
 

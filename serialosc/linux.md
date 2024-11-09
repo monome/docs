@@ -26,6 +26,26 @@ If there are no precompiled packages available for your distribution, you can st
 
 - [compiling from source](/docs/serialosc/source)
 
+## Running at Boot
+
+Add the following systemd unit to `.config/systemd/user/serialoscd.service` 
+
+```
+[Unit]
+Description=Starts serialoscd at system boot
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/serialoscd
+
+```
+
+Reload systemd with `sudo systemctl daemon-reload`
+
+Install to a different path? Change the above to match your preference. You can enable serialoscd to start at boot by running `systemctl --user enable serialoscd.service` which will start the daemon at each login.
+
+To manually start and stop, this works like any other systemd unit, for example to start manually `systemctl --user start serialoscd.service` will do.
+
 ## Notes
 
 You'll need to have the `usbserial` and `ftdi_sio` kernel modules loaded before connecting your grid. Most Linux distributions include these modules by default, and should load them as soon as they detect your grid being plugged in. If these USB and serial modules are not available in your kernel, follow your distribution's documentation for configuring, compiling, and installing a custom kernel.

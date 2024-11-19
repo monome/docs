@@ -26,9 +26,9 @@ If there are no precompiled packages available for your distribution, you can st
 
 - [compiling from source](/docs/serialosc/source)
 
-## Running at Boot
+### Running at Boot
 
-Add the following systemd unit to `.config/systemd/user/serialoscd.service` 
+If you are compiling from source and would like the service to start automatically, add the following systemd unit to `.config/systemd/user/serialoscd.service` 
 
 ```
 [Unit]
@@ -45,6 +45,8 @@ Reload systemd with `sudo systemctl daemon-reload`
 Install to a different path? Change the above to match your preference. You can enable serialoscd to start at boot by running `systemctl --user enable serialoscd.service` which will start the daemon at each login.
 
 To manually start and stop, this works like any other systemd unit, for example to start manually `systemctl --user start serialoscd.service` will do.
+
+This is not needed if you install the binary package.
 
 ## Notes
 

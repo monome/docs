@@ -9,9 +9,8 @@ permalink: /serialosc/linux/
 The easiest way to setup things on Ubuntu is to get the precompiled packages from a PPA: [ppa:artfwo/monome](https://launchpad.net/~artfwo/+archive/monome).
 
 	$ sudo add-apt-repository ppa:artfwo/monome
-	$ sudo apt-get update
-	$ sudo apt-get install libmonome
-	$ sudo apt-get install serialosc
+	$ sudo apt update
+	$ sudo apt install serialosc
 
 ## Arch
 

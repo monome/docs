@@ -7,11 +7,11 @@ nav_exclude: true
 
 ### 2023 grids
 
-introduced zero (16x16) and one (8x16). back to warm white light. RP2040 microcontroller. circuit board marking `monome/grid-zero/230412` and `monome/grid-one/230412`.
+introduced zero (16x16) and one (8x16). back to warm white light. RP2040 microcontroller. circuit board marking `monome/grid-zero/230412` and `monome/grid-one/230412`. bus powered. usb-c.
 
 ### 2022 grid
 
-same as 2021 grid, but with a different microcontroller (RP2040). circuit board marking `monome/grid/220914`.
+same as 2021 grid, but with a different microcontroller (RP2040). circuit board marking `monome/grid/220914`. bus powered. usb-c.
 
 ### 2021 grid
 

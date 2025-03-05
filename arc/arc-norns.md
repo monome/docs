@@ -89,10 +89,9 @@ All [editions](/docs/arc/editions) of arc are compatible with norns.
 
 After you [learn how to add scripts to your norns](/docs/norns/maiden), here are a few starting points for exploring arc and norns.
 
-- [bistro](https://llllllll.co/t/bistro/45349): a “press cafe” remake (based on [the Max/MSP patch](https://www.youtube.com/watch?v=kj7YScVp_a8) originally by `@stretta`)
-- [arcologies](https://llllllll.co/t/arcologies/35752): an interactive environment for designing 2d sound arcologies
-- [buoys](https://llllllll.co/t/buoys-v1-2-0/37639): tidal influencer/activator/lightshow
-- [loom](https://llllllll.co/t/loom/21091): surprisingly controllable generative sequencer -- notes are played when threads moving across the X and Y axis collide
-- [mlr](https://llllllll.co/t/mlr-norns/21145): the original live sample-cutting platform -- load samples or record live audio, then re-pitch and chop and record gestures
+- [4 Big Knobs](https://llllllll.co/t/4-big-knobs/42190): send control voltages out of [crow](/docs/crow)
+- [arcify](https://llllllll.co/t/arcify/22133): map arc to norns parameters
+- [easygrain](https://llllllll.co/t/easygrain/21047): granulator with arc support
+- [larc](https://llllllll.co/t/larc/39790): three play-heads, one rec-head
 
-Check out the `grid` tag on [norns.community](https://norns.community/t/grid) for many more.
+Check out [norns.community](https://norns.community) for many more.

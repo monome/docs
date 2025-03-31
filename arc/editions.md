@@ -7,6 +7,15 @@ nav_exclude: true
 
 See also: [grid editions](/docs/grid/editions)
 
+### 2025 arc
+
+- profile matches 2021 grid.
+- warm white light.
+- 16 step variable brightness.
+- bus powered. usb-c.
+- single push button.
+- capable of running iii scripts with usb-midi.
+
 ### 2016 / 2019 arc
 
 - matches the 2015 grid.

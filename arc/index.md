@@ -52,11 +52,11 @@ note, the [grid studies](https://monome.org/docs/grid/grid-computer/#studies) br
 
 ## iii
 
-[iii](/iii) allows scripts to be stored on the device itself and interfacing uses usb-midi.
+[iii](/docs/iii) allows scripts to be stored on the device itself and interfacing uses usb-midi.
 
-- [cycles](/iii/library/cycles) - rotating midi cc with friction
-- [erosion](/iii/library/erosion) - four by four meta cc with interpolation and scene recall
-- [snows](/iii/library/snows) - very slow asynchronous arpeggiator
+- [cycles](/docs/iii/library/cycles) - rotating midi cc with friction
+- [erosion](/docs/iii/library/erosion) - four by four meta cc with interpolation and scene recall
+- [snows](/docs/iii/library/snows) - very slow asynchronous arpeggiator
 
 
 ## with norns

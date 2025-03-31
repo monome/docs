@@ -6,7 +6,7 @@ has_children: false
 has_toc: false
 ---
 
-![](images/arc-hands.jpg)
+![](images/arc.jpg)
 
 arc is a tactile instrument with dynamic visual feedback. applications determine the interaction between movement, sound, and light. some applications are shared here and we've created studies to help you create your own.
 
@@ -64,6 +64,8 @@ See [VCV Rack](/docs/grid/computer/vcv-rack) to use a virtual version on your co
 
 
 ## further information
+
+![](images/arc-hands.jpg)
 
 - [editions](editions) - information about different device generations
 - [disassembly](disassembly) - guides for disassembling the hardware

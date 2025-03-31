@@ -10,6 +10,6 @@ has_toc: false
 
 # cycles
 
-rotating midi cc with friction
+rotating MIDI CC with friction
 
 - [cycles.lua](cycles.lua)

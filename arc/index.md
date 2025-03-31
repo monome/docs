@@ -8,19 +8,19 @@ has_toc: false
 
 ![](images/arc.jpg)
 
-arc is a tactile instrument with dynamic visual feedback. applications determine the interaction between movement, sound, and light. some applications are shared here and we've created studies to help you create your own.
+arc is a tactile instrument with dynamic visual feedback. Applications determine the interaction between movement, sound, and light. Some applications are shared here and we've built [studies](#studies) to help you create your own.
 
-arc is a usb device. it sends serial data when knobs are turned, and changes lights acording to incoming serial data.
+arc is a USB device. It sends serial data when knobs are turned, and changes lights according to incoming serial data.
 
 ## specifications
 
 - high resolution knobs, 1024 ticks per revolution.
 - each knob is encircled by a sixty-four segment light ring, sixteen-step brightness per LED.
-- 2025 edition has a single pushbutton. (see [editions](editions) for more details).
+- 2025 edition has a single pushbutton (see [editions](editions) for more details).
 
 ## with computers
 
-[first install serialosc](/docs/serialosc/setup). serialosc runs in the background and converts usb serial communication into OpenSound Control (OSC). Applications query serialosc to connect to a grid or arc.
+[First install serialosc](/docs/serialosc/setup). serialosc runs in the background and converts USB serial communication into Open Sound Control (OSC). Applications query serialosc to connect to a grid or arc.
 
 ### applications
 
@@ -28,14 +28,13 @@ arc is a usb device. it sends serial data when knobs are turned, and changes lig
 
 [Max](http://cycling74.com/products/max) is a patching environment created by Cycling '74. A free runtime is available. Max for Live is a part of Ableton Live Suite. The following work with Max or Max for Live:
 
-* [max package](/docs/grid/app/package) -- several patchers and tools for use within Max
-* [returns](https://github.com/monome-community/returns) –- simple yet versatile cc output with LFOs and sensitivity control.
+* [Max package](/docs/grid/app/package) -- several patchers and tools for use within Max
+* [returns](https://github.com/monome-community/returns) -- simple yet versatile cc output with LFOs and sensitivity control
 * [capstarc](https://github.com/mhetrick/capstarc) -- tactile sample scrubbing for arc
 * [cascades](https://l.llllllll.co/cascades/) -- 65,536 combinations of 16th note patterns across seven tracks
 * [pear](https://llllllll.co/t/32699) -- dual manual tape player
 * [arc4live](https://github.com/robbielyman/arc4live/tree/main) -- simplified arc-as-four-knobs Max for Live patch featuring trimmers on modulation range
-* more patches can be found at the library of [llllllll.co](https://llllllll.co/tag/max). also see the [monome-community github](https://github.com/orgs/monome-community/) and the
- [collected repository](https://github.com/monome-community/collected).
+* more patches can be found at the library of [llllllll.co](https://llllllll.co/tag/max), the [monome-community github](https://github.com/orgs/monome-community/) and the [collected repository](https://github.com/monome-community/collected)
  
 ### studies
 
@@ -50,24 +49,23 @@ monome libraries for other environments:
 * [monomeSC](https://github.com/monome/monomeSC/) -- SuperCollider
 * [pymonome](https://github.com/artfwo/pymonome) -- Python
 
-note, the [grid studies](https://monome.org/docs/grid/grid-computer/#studies) broadly apply to arc but the OSC patterns differ.
+Note: the [grid studies](https://monome.org/docs/grid/grid-computer/#studies) broadly apply to arc but the OSC patterns differ.
 
 ## iii
 
-[iii](/docs/iii) allows scripts to be stored on the device itself and interfacing uses usb-midi.
+[iii](/docs/iii) allows scripts to be stored on the device itself and interfacing uses USB-MIDI.
 
-- [cycles](/docs/iii/library/cycles) - rotating midi cc with friction
-- [erosion](/docs/iii/library/erosion) - four by four meta cc with interpolation and scene recall
-- [snows](/docs/iii/library/snows) - very slow asynchronous arpeggiator
-
+- [cycles](/docs/iii/library/cycles) -- rotating MIDI CC with friction
+- [erosion](/docs/iii/library/erosion) -- four by four meta CC with interpolation and scene recall
+- [snows](/docs/iii/library/snows) -- very slow asynchronous arpeggiator
 
 ## with norns
 
 <div class="vid"><iframe src="https://player.vimeo.com/video/312196152?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
 
-[angl](https://llllllll.co/t/ash-a-small-collection/21349) is the script used in this video. it is part of the `ash` collection from monome, which can be installed via [maiden](/docs/norns/maiden).
+[angl](https://llllllll.co/t/ash-a-small-collection/21349) is the script used in this video. It is part of the `ash` collection from monome, which can be installed via [maiden](/docs/norns/maiden).
 
-selection of community contributed scripts that support arc:
+Selection of community contributed scripts that support arc:
 
 - [4 Big Knobs](https://llllllll.co/t/4-big-knobs/42190): send control voltages out of [crow](/docs/crow)
 - [arcify](https://llllllll.co/t/arcify/22133): map arc to norns parameters

@@ -296,14 +296,12 @@ Remember, `z` is the key state (down or up), so we'll do something only on key d
 
 Now we'll show how basic arc applications are developed by creating cyclical movement. We will add features incrementally:
 
-- Use the top six rows as toggles.
-- Generate a clock pulse to advance the playhead from left to right, one column at a time. Wrap back to 0 at the end.
-- Display the play head on "position" (last) row.
-- Indicate the "activity" row (second to last) with a low brightness.
-- Trigger an event when the playhead reads an "on" toggle. Our "event" will be to turn on the corresponding LED in the "activity" row.
-- Jump to playback position when key pressed in the position row.
-- Adjust playback loop with two-key gesture in position row.
 
+- Add more LED activity by creating a fading trail.
+- Use the encoders to set the speed at which the tick rotate.
+- Introduce friction to the motion.
+- Use a key to selectively activate that friction.
+- Connect drones to the motion of the encoders.
 
 ### 3.1 fading in {#fading-in}
 

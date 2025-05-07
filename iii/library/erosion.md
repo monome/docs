@@ -26,58 +26,61 @@ _four meta-knobs controlling four MIDI CC each_
 
 ## instructions
 
-starts in _PLAY_
+*erosion* starts in **PLAY**.
+
+*Note: throughout this document we'll refer to knob turns as DELTA N, where N represents one of the four knobs.*
 
 ### PLAY
 
 - DELTA N: each knob outputs up to four CC values
-- KEY/SHORT: go to SCENE
-- KEY/LONG: go to EDIT
-
-### SCENE
-
-Loads, saves, and erases scene data. a scene consists of the settings and current positions of the knobs and CC configuration per knob (min, max, slew, CC, CH, active).
-
-Scenes are organized into 8 BANKS, each with 8 SCENES
-
-- DELTA 1: select the BANK (position hightlighted)
-- DELTA 2: select the SCENE (position highlighted, slots with data rendered wide)
-- DELTA 3: CW changes action to CLEAR (CCW resets to LOAD)
-- DELTA 4: CW changes action to SAVE (CCW resets to LOAD)
-
-If ring 3/4 are not lit, action is LOAD (default).
-
-- KEY/SHORT: abort, back to PLAY
-- KEY/LONG: execute action. LOAD (if slot is not empty) will return you to PLAY.
+- KEY / LONG PRESS: go to EDIT
+- KEY / SHORT PRESS: go to SCENE
 
 ### EDIT
 
-First you will be presented with which knob to edit, the knobs will pulse. Select by turning the chosen knob either direction slightly. A short timeout will confirm your selection.
+Holding the KEY for a few seconds from PLAY will pulse each knobs' LEDs, to ask which knob's values you'd like to edit. Select by slightly turning the chosen knob in either direction. The LEDs around this knob will brighten and short timeout will confirm your selection.
 
-Now you are editing parameters for the four elements of the knob you previously selected.
+Now you are editing parameters for the four elements of the knob you've selected.
 
-- KEY/SHORT: change parameter (min, max, slew, CC, CH, active)
-- KEY/LONG: save, returns to PLAY
-- DELTA N: change parameter value
+The PARAMETER CYCLE is: **min**, **max**, **slew**, **CC number**, **MIDI channel**, **active**
 
-PARAMETER CYCLE: min, max, slew, CC number, MIDI channel, active
+- KEY / SHORT: change parameter (min, max, slew, CC, CH, active)
+- KEY / LONG: SAVE, returns to PLAY
+- DELTA N: change selected parameter's value
 
-Each knob displays the parameter value (CCW towards zero, CW towards max). Below each knob is an indicator of the parameter, shown as three tick marks.
+Each knob displays the parameter's value. An indicator of which parameter is shown underneath each knob as three tick marks (CCW moves towards zero, CW moves towards max):
 
-- left: min
-- right: max
-- center: slew
+- left: **min**
+- right: **max**
+- center: **slew**
 
-CC is displayed on the right side as pixel-numbers from top-to-bottom: 1, 1-9, 1-9. To get the CC number, assemble the digits (or see the diii screen for a numeric!)
+Changes to **min** and **max** for each CC will send its value via MIDI. This is helpful not only to to help tune your instruments to the ranges you see, but for mapping mechanisms which look for incoming values. When changing parameter modes, all CC positions will be sent.
 
-CH is displayed on the left side as a pixel number 1-16.
+Pressing the key again will display the **CC number** on the left side as pixel-numbers from top-to-bottom: 1, 1-9, 1-9. To get the CC number, assemble the digits (or see the diii screen for a numeric!)
 
-Active is shown with a half-circle over the top of the ring. Deactivated positions cease to display the three ticks at the bottom as a reminder of this off-state.
+Pressing the key again will display the **MIDI channel** on the right side as a pixel number from bottom-to-top: 1-16.
 
-Changes to min and max will send the this CC value via MIDI, to help tune your instruments to the ranges you seek. When changing parameter modes all CC positions will be sent.
+Pressing the key again will display **active** as a half-circle above the ring. Turn the knob CCW to deactivate. Deactivated positions cease to display the three ticks at the bottom, as a reminder of this off-state.
 
 After editing be sure to save your SCENE so it will return next time.
 
-Note that a SCENE will be saved with current positions of each knob, so resuming in the exact state is assured.
+### SCENE
 
-When booting up the last-saved SCENE will be active.
+Loads, saves, and erases scene data. A scene consists of the settings and current positions of the knobs, as well as configuration per knob (including min, max, slew, CC, CH, active state).
+
+Scenes are organized into 8 BANKS, each with 8 SCENES.
+
+- DELTA 1: select the BANK (position highlighted)
+- DELTA 2: select the SCENE (position highlighted, slots with data are rendered wider than empty slots)
+- DELTA 3: CW changes action to CLEAR (CCW resets to LOAD)
+- DELTA 4: CW changes action to SAVE (CCW resets to LOAD)
+
+If rings 3/4 are not lit, action is LOAD (default).
+
+- KEY / SHORT PRESS: abort, return to PLAY
+- KEY / LONG PRESS: execute queued action
+  - if the SCENE slot is not empty, LOAD'ing will return you to PLAY
+
+*Note: a SCENE will be saved with current positions of each knob, so resuming in the exact state is assured.*
+
+When booting up, the last-saved SCENE will be active.

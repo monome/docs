@@ -9,7 +9,7 @@ permalink: /norns/study-4b/
 
 norns studies part 4b: arc
 
-Note that if you do not wish to script for an arc, you can return to [part 4: physical](/docs/norns/study-4/) without worry.
+*Note: if you do not wish to script for arc, you can return to [part 4: physical](/docs/norns/study-4/) without worry.*
 
 <details open markdown="block">
   <summary>
@@ -30,7 +30,7 @@ Before we dive in, here is some terminology which is mentioned throughout this s
 
 ## tactile numbers
 
-It's finally time to turn button pushing into piles of numbers, and numbers into blinking lights. Plug in a monome arc and clear any currently running script (hold **K1** on the `SELECT / SYSTEM / SLEEP` menu and, while holding **K1**, press **K3** when `CLEAR` appears).
+It's finally time to turn hardware interaction into piles of numbers, and numbers into light. Plug in a monome arc and clear any currently running script (hold **K1** on the `SELECT / SYSTEM / SLEEP` menu and, while holding **K1**, press **K3** when `CLEAR` appears).
 
 Let's start off with the command line to introduce the basics:
 
@@ -38,7 +38,7 @@ Let's start off with the command line to introduce the basics:
 >> a = arc.connect()
 ```
 
-This creates a device table `a`,  which has a collection of methods (demarcated with `:`) and functions designed to handle arc + norns communication. We'll use methods to send commands to arc and we use functions to parse what comes back.
+This creates a device table `a`,  which has a collection of methods (demarcated with `:`) and functions (demarcated with `.`) designed to handle arc + norns communication. We'll use methods to send commands to arc and we use functions to parse what comes back.
 
 Let's light things up with two methods, `:led` and `:refresh`:
 
@@ -92,7 +92,7 @@ position = {1,17,33,49}
 a.delta = function(n,d)
   -- each encoder turn increments/decrements its position
   position[n] = position[n] + d
-  -- wrap position to valid LEDs:
+  -- wrap position to the 64 LED range:
   if position[n] >= 65 then
     position[n] = 1
   elseif position[n] <= 0 then
@@ -114,9 +114,9 @@ function init()
 end
 ```
 
-Behold, arc is simply lighting up an LED in response to encoder changes.
+Behold, arc is simply lighting up an LED in response to encoder changes. Boring, perhaps, but the road to exciting things is paved with boring things.
 
-Note a few things:
+Note:
 
 - `a:all(val)` sets the level of every LED on every ring to a provided value. In our example, we're using it to clear all the rings by providing an argument of `0`.
 - `a:led(ring, led, val)` sets the level of a specific LED on a specific ring. In our example, we're using it to draw the current position.
@@ -126,7 +126,7 @@ Now, let's _do_ something with our position changes.
 
 ### expanding: notes {#expanding-notes}
 
-Let's try adding some sound to these interactions! Maybe when the position of our tick crosses over at 12:00, we'll strike a tone. Since we're already separating clockwise and counter-clockwise movement, we can specify different notes for each direction.
+Let's try adding some sound to these interactions! Maybe when the position of our tick crosses over at 12:00, we'll strike a tone. Since we're already separating clockwise and counter-clockwise movement, we can also specify different notes for each direction.
 
 Clear any previous code in the editor and start anew with:
 
@@ -140,7 +140,7 @@ MU = require 'musicutil'
 
 a = arc.connect()
 
-position = {1,1,1,1}
+position = {62, 62, 62, 62}
 cw_hz = MU.note_nums_to_freqs({67, 70, 74, 77})
 ccw_hz = MU.note_nums_to_freqs({62, 65, 69, 72})
 
@@ -148,10 +148,10 @@ a.delta = function(n,d)
   position[n] = position[n] + d
   -- when moving CW:
   if position[n] >= 65 then
-    position[n] = 1
+    position[n] = 2
     engine.hz(cw_hz[n])
   -- when moving CCW:
-  elseif position[n] <= 0 then
+  elseif position[n] <= 1 then
     position[n] = 64
     engine.hz(ccw_hz[n]) -- drop a fifth
   end
@@ -196,18 +196,16 @@ cw_hz = MU.note_nums_to_freqs({67, 70, 74, 77})
 ccw_hz = MU.note_nums_to_freqs({62, 65, 69, 72})
 
 a.delta = function(n,d)
-  speed[n] = util.clamp(speed[n]+d, -48, 48)
+  speed[n] = util.clamp(speed[n] + d/8, -48, 48)
 end
 
 function redraw_arc()
   a:all(0)
   for i = 1,#position do
+    -- NEW: draw a segment for each 'playhead'
+    local degree = (360/1024) * position[i]
+    a:segment(i, math.rad(degree-10), math.rad(degree+10), 10)
     a:led(i, 1, 5)
-    local pos = math.floor(position[i])
-    local led = pos >> 4
-    a:led(i, (led % 64) + 1, 15)
-    a:led(i, ((led + 1) % 64) + 1, pos % 16)
-    a:led(i, ((led + 63) % 64) + 1, 15 - (pos % 16))
   end
   a:refresh()
 end
@@ -223,9 +221,9 @@ function tick()
     for i = 1,4 do
       position[i] = position[i] + speed[i]
       if position[i] >= 1025 then
-        position[i] = 1
+        position[i] = 2
         engine.hz(cw_hz[i])
-      elseif position[i] <= 0 then
+      elseif position[i] <= 1 then
         position[i] = 1024
         engine.hz(ccw_hz[i]) -- drop a fifth
       end
@@ -238,7 +236,8 @@ end
 
 New things:
 
-- We're using the full 1024-step resolution of arc to tune our interactions a bit and to draw a fading animation around our 'playhead'
+- We're using the full 1024-step resolution of arc to tune our interactions a bit and to draw an anti-aliased window around our 'playhead'
+- Our 'playhead' window is drawn with `a:segment(ring, from, to, level)`, which accepts radians for `from` and `to`. In-between values will automatically fade the LEDs, giving a very clean look.
 - We repurpose our encoder turns to set a `speed` variable for each ring, which is then added to each encoder's `position` value on a 30 frame-per-second `tick`. This is performed by a `clock` (more below).
 
 #### clocks
@@ -253,9 +252,9 @@ function tick()
     for i = 1,4 do
       position[i] = position[i] + speed[i]
       if position[i] >= 1025 then
-        position[i] = 1
+        position[i] = 2
         engine.hz(cw_hz[i])
-      elseif position[i] <= 0 then
+      elseif position[i] <= 1 then
         position[i] = 1024
         engine.hz(ccw_hz[i]) -- drop a fifth
       end
@@ -295,6 +294,7 @@ a = arc.connect()
 
 brake = false -- NEW
 friction = 0.9 -- NEW
+notch_level = {5,5,5,5} -- NEW
 
 speed = {0,0,0,0}
 position = {950,950,950,950}
@@ -314,12 +314,10 @@ end
 function redraw_arc()
   a:all(0)
   for i = 1,#position do
-    a:led(i, 1, 5)
-    local pos = math.floor(position[i])
-    local led = pos >> 4
-    a:led(i, (led % 64) + 1, 15)
-    a:led(i, ((led + 1) % 64) + 1, pos % 16)
-    a:led(i, ((led + 63) % 64) + 1, 15 - (pos % 16))
+    local degree = (360/1024) * position[i]
+    a:segment(i, math.rad(degree-10), math.rad(degree+10), notch_level[i])
+    a:led(i, 1, notch_level[i])
+    notch_level[i] = 5
   end
   a:refresh()
 end
@@ -337,11 +335,13 @@ function tick()
       
       position[i] = position[i] + speed[i]
       if position[i] >= 1025 then
-        position[i] = 1
+        position[i] = 2
         engine.hz(cw_hz[i])
-      elseif position[i] <= 0 then
+        notch_level[i] = 15
+      elseif position[i] <= 1 then
         position[i] = 1024
         engine.hz(ccw_hz[i]) -- drop a fifth
+        notch_level[i] = 15
       end
     end
     redraw_arc()
@@ -352,12 +352,11 @@ end
 
 ## reference
 ### norns-specific
-- `grid` -- module to manage messages to/from a connected monome grid and send LED state data, see [`grid` API docs](../api/modules/grid) for detailed usage
-- `midi` -- module to manage messages to/from connected MIDI devices, see [`midi` API docs](../api/modules/midi) and [MIDI API reference](../reference/midi) for detailed usage
-- `musicutil` -- library to perform standard musical functions, see [`MusicUtil` API docs](https://monome.org/docs/norns/api/modules/lib.MusicUtil.html) for detailed usage
+- `arc` -- module to manage messages to/from a connected monome arc and send LED state data, see [`arc` API docs](../api/modules/arc) for detailed usage
+- `musicutil` -- library to perform standard musical functions, see [`MusicUtil` API docs](../api/modules/lib.MusicUtil.html) for detailed usage
+- `util` -- library to perform common utility functions, see [`Util` API docs](../api/modules/lib.util.html) for detailed usage
 
 ### general
-- `and` / `or` -- a terse combination of binary operators, see [this tutorial](http://lua-users.org/wiki/TernaryOperator) for detailed usage
 - `require` -- a higher-level function, see [Lua docs](https://www.lua.org/pil/8.1.html) for more details but suffice to say you only need to use `require` when running and loading norns libraries outside of your script's folder (like we did with `musicutil`). When loading from inside of your script's folder, use `include`. See the `libraries` section of [the extended reference](/docs/norns/reference/#libraries) for more detail.
 
 ## continued
@@ -366,7 +365,8 @@ end
 - part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
 - part 2: [patterning](../study-2/) // screen drawing, for/while loops, tables
 - part 3: [spacetime](../study-3/) // functions, parameters, time
-- part 4: physical
+- part 4: [physical](../study-4/) // grids, MIDI, clock syncing
+  - part 4b: physical tangent: arc
 - part 5: [streams](../study-5/) // system polls, OSC, file storage
 - further: [softcut studies](../softcut/) // a multi-voice sample playback and recording system built into norns
 

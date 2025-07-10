@@ -958,7 +958,8 @@ end
 - part 1: [many tomorrows](../study-1/) //  variables, simple maths, keys + encoders
 - part 2: patterning
 - part 3: [spacetime](../study-3/) // functions, parameters, time
-- part 4: [physical](../study-4/) // grids + MIDI
+- part 4: [physical](../study-4/) // grids, MIDI, clock syncing
+  - part 4b: [physical tangent: arc](../study-4b) // arc
 - part 5: [streams](../study-5/) // system polls, OSC, file storage
 - further: [softcut studies](../softcut/) // a multi-voice sample playback and recording system built into norns
 

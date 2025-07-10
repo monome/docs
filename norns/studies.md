@@ -37,6 +37,7 @@ Tutorials written by monome.
 - [patterning](../study-2/) // screen drawing, for/while loops, tables
 - [spacetime](../study-3/) // functions, parameters, time
 - [physical](../study-4/) // incorporating grids, midi, clock syncing
+  - [physical tangent: arc](../study-4b) // incorporating arc
 - [streams](../study-5/) // system polls, osc, file storage
 
 **norns: extended API techniques**

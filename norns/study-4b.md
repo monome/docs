@@ -173,7 +173,14 @@ function init()
 end
 ```
 
-Behold! We have eight notes which trigger when we pass our 'north' position. Note that we draw a low-level marker for this with `a:led(i, 1, 5)`. But what if we want to automate our play?
+Behold! We have eight notes which trigger when any 'playhead' passes our 'north' position.
+
+Note:
+
+- We draw a low-level marker for this with `a:led(i, 1, 5)`.
+- We never allow the 'playhead' to occupy the north position, forcing it either behind or ahead to simulate a 'pluck'.
+
+This is a very simple and fun interaction, so what if we want to automate our play?
 
 ### expanding: cycle {#expanding-cycle}
 
@@ -236,8 +243,8 @@ end
 
 New things:
 
-- We're using the full 1024-step resolution of arc to tune our interactions a bit and to draw an anti-aliased window around our 'playhead'
-- Our 'playhead' window is drawn with `a:segment(ring, from, to, level)`, which accepts radians for `from` and `to`. In-between values will automatically fade the LEDs, giving a very clean look.
+- We're using the full 1024-step resolution of arc to tune our interactions a bit and to draw an anti-aliased window around our 'playhead'.
+- Our 'playhead' window is drawn with `a:segment(ring, from, to, level)`, which accepts radians for `from` and `to`. In-between values will automatically fade the LEDs, giving a very clean look. Note that if we want any additional LEDs drawn to the ring, we must draw them on top of the segment.
 - We repurpose our encoder turns to set a `speed` variable for each ring, which is then added to each encoder's `position` value on a 30 frame-per-second `tick`. This is performed by a `clock` (more below).
 
 #### clocks

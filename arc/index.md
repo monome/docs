@@ -93,4 +93,5 @@ See [VCV Rack](/docs/grid/computer/vcv-rack) to use a virtual version on your co
 
 - [editions](editions) - information about different device generations
 - [disassembly](disassembly) - guides for disassembling the hardware
+- [2025 edition knob tuning howto](/docs/arc/tuning) - reset friction per knob
 - [2015-2019 edition knob reconditioning howto](https://vimeo.com/449444177)

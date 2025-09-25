@@ -88,6 +88,8 @@ If you do not have a CM3+ installed, the steps in the next section walk through 
 
 ### CM3+ upgrade {#standard-cm3-upgrade}
 
+You can buy a CM3+ through [these links](https://www.raspberrypi.com/products/compute-module-3-plus/).
+
 There is no soldering needed, but you will have to disassemble your norns a bit. Please follow this tutorial video:
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/523980765?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>

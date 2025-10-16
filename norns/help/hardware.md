@@ -38,6 +38,8 @@ For support with specific scripts and libraries, please visit [lines](https://ll
 
 The norns screen is a Newhaven Display 2.7" Graphic OLED Module with Molex Connector. Every standard norns comes built with the white model (`NHD-2.7-12864WDW3-M`), though it may be swapped out for yellow (`NHD-2.7-12864WDY3-M`). Either can be ordered online from many electronic component distributors.
 
+The ribbon is Molex part 0151670359. If replacing the screen we'd suggest replacing the ribbon as well.
+
 When installing, be sure to handle from the sides -- wiping away debris or oil from the viewing area can cause damage, even with a microfiber cloth. For the least amount of frustration, also be sure to have an air blower nearby -- dust can quickly accumulate in this process, which is easiest to remove with a quick shot of concentrated air.
 
 ### wifi nub
@@ -46,13 +48,11 @@ When installing, be sure to handle from the sides -- wiping away debris or oil f
 
 ### charger
 
-The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 5.25V. A direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/1994). This brick is of *very* high quality and can use 110 or 240 VAC input, so it can be used outside of the US with a simple plug adapter.
+The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 5.25V. A direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/1994). This brick is high quality and can use 110 or 240 VAC input, so it can be used outside of the US with a simple plug adapter.
 
 ### battery
 
-Standard norns has a PKCELL LP803860 3.7V / 2000mAh with a JST connector.
-
-If performance does not improve, then a direct replacement can be purchased [from Adafruit](https://www.adafruit.com/product/2011) or [DigiKey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/2011/6612469), or by emailing help@monome.org for a replacement (20 USD, shipping included, only US or can be bundled with an existing international purchase).
+Standard norns has a PKCELL LP803860 3.7V / 2000mAh with a JST connector. Replacements can be purchased from [Adafruit](https://www.adafruit.com/product/2011) or [DigiKey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/2011/6612469).
 
 Before you purchase a new battery, please consider that your norns may not be reporting battery performance accurately. To test, fully drain the battery and then charge it fully.
 
@@ -70,7 +70,6 @@ We do *not* recommend at-home repair, as the encoders are extremely sensitive to
 
 - your order number (if you purchased the unit from monome directly)
 - if you did not purchase from monome, please provide any details you have about the unit's prior life
-- use a small screwdriver to remove the bottom plate and let us know if your board is either black or forest green
 
 ## standard norns: CM3+ {#storage}
 

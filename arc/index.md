@@ -44,6 +44,7 @@ Most use cases (computers with serialosc, norns, ansible) require the arc to be 
  
 ### studies
 
+- [norns](/docs/norns/study-4b) -- monome's sound computer
 - [SuperCollider](/docs/arc/studies/sc) -- synthesis engine and programming environment
 
 monome libraries for other environments:

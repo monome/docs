@@ -64,12 +64,12 @@ If your encoders feel "jumpy", you can verify that your encoders are in need of 
 - turn a level all the way up and continue to turn the encoder
 - if the level jumps and does not remain at maximum, then you might want to replace that encoder
 
-For in-depth testing, see [this thread on lines](https://llllllll.co/t/norns-jumpy-defect-encoders/18856).
-
-We do *not* recommend at-home repair, as the encoders are extremely sensitive to heat and require quick, confident soldering. To arrange repair / replacement, please email `help@monome.org` with the following info:
+We do *not* recommend at-home repair, as the encoders are sensitive to heat and require quick, confident soldering. To arrange replacement, please email `help@monome.org` with the following info:
 
 - your order number (if you purchased the unit from monome directly)
 - if you did not purchase from monome, please provide any details you have about the unit's prior life
+
+If you're extremely confident with your soldering capabilities, the replacement part is PEC11R-4015F-N0024.
 
 ## standard norns: CM3+ {#storage}
 

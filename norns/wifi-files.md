@@ -85,7 +85,7 @@ If your norns is running software version `220129` (January 29 2022) or earlier,
 
 To see which version of the norns software you're running, navigate to the **SELECT / SYSTEM / SLEEP** menu and hit K2 to toggle the informational display. Software version is listed on mid-right of your screen, under the currently-running script's name.
 
-If you are running anything *earlier* than `220306` (March 06 2022), be sure to perform a [backup](#backup) and follow the [fresh install instructions](/docs/norns/help/#fresh-install) instructions to get the necessary norns software installed on your device.
+If you are running anything *earlier* than `220306` (March 06 2022), be sure to perform a [backup](#backup) and follow the [fresh install instructions](/docs/norns/help/data/#fresh-install) instructions to get the necessary norns software installed on your device.
 
 ### "disk full. need 400M." {#full}
 

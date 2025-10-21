@@ -10,14 +10,15 @@ redirect_from: /setup/
 
 ### macOS
 
-*Note: if you have an older installation of serialosc, please remove the `Monome` folder from `~/Library/Application Support`, as it will supersede the homebrew installation.*
+For various reasons we don't use the App Store. [Homebrew](https://brew.sh) is a package manager for Mac. You'll have open a terminal window and paste a few commands:
 
-Install via homebrew:
+- `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` to install homebrew
 
-- install [homebrew](https://brew.sh) on your Mac
-- execute `brew install serialosc` to install serialosc
-- execute `brew services start serialosc` to start serialosc
-- execute `brew services list` to confirm serialosc is running
+once completed, copy-paste these commands:
+
+- `brew install serialosc` to install serialosc
+- `brew services start serialosc` to start serialosc
+- `brew services list` to confirm serialosc is running
 
 Successful `brew services list` output looks like:
 
@@ -27,6 +28,8 @@ serialosc   started   <you>   ~/Library/LaunchAgents/homebrew.mxcl.serialosc.pli
 ```
 
 If you need to stop the serialosc process, execute `brew services stop serialosc`. Note that if you stop the serialosc process it will **not** start again, even if your machine is restarted, until you execute `brew services start serialosc`.
+
+*Note: if you have an older installation of serialosc, please remove the `Monome` folder from `~/Library/Application Support`, as it will supersede the homebrew installation.*
 
 ### Windows
 

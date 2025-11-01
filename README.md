@@ -4,6 +4,18 @@ http://monome.org/docs
 
 contributions welcome.
 
+## developing with Docker
+
+run:
+
+```bash
+git clone https://github.com/monome/docs
+cd docs/
+docker compose up
+```
+
+then go to [http://localhost:4000/docs/](http://localhost:4000/docs/) to view the site.
+
 ## developing locally
 
 it is recommended to install [rvm](https://rvm.io/rvm/install) and us ruby 2.7.2.

@@ -19,6 +19,7 @@ has_children: false
 | my_arc:segment(ring, from, to, val) | Create an anti-aliased point to point arc segment/range on a specific ring of this connected arc, 'from' and 'to' expect radians |
 | my_arc:refresh()                    | Update any dirty LEDs on this connected arc                                                                                      |
 | my_arc.delta(n, delta)              | Pass encoder delta events to a script : function                                                                                 |
+| my_arc.key(n, z)                    | Pass key events to a script (Arc 2025 has a single pushbutton, n=1) : function                                                   |
 | arc.add()                           | User script callback when any arc is connected                                                                                   |
 | arc.remove()                        | User script callback when any arc is disconnected                                                                                |
 

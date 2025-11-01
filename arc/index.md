@@ -41,11 +41,6 @@ Most use cases (computers with serialosc, norns, ansible) require the arc to be 
 * [pear](https://llllllll.co/t/32699) -- dual manual tape player
 * [arc4live](https://github.com/robbielyman/arc4live/tree/main) -- simplified arc-as-four-knobs Max for Live patch featuring trimmers on modulation range
 * more patches can be found at the library of [llllllll.co](https://llllllll.co/tag/max), the [monome-community github](https://github.com/orgs/monome-community/) and the [collected repository](https://github.com/monome-community/collected)
- 
-### studies
-
-- [norns](/docs/norns/study-4b) -- monome's sound computer
-- [SuperCollider](/docs/arc/studies/sc) -- synthesis engine and programming environment
 
 monome libraries for other environments:
 
@@ -55,6 +50,11 @@ monome libraries for other environments:
 * [monome-processing](https://github.com/monome/monome-processing) -- Processing
 * [monomeSC](https://github.com/monome/monomeSC/) -- SuperCollider
 * [pymonome](https://github.com/artfwo/pymonome) -- Python
+
+### studies
+
+- [norns](/docs/norns/study-4b) -- monome's sound computer (see below)
+- [SuperCollider](/docs/arc/studies/sc) -- synthesis engine and programming environment
 
 Note: the [grid studies](https://monome.org/docs/grid/grid-computer/#studies) broadly apply to arc but the OSC patterns differ.
 
@@ -78,6 +78,10 @@ Selection of community contributed scripts that support arc:
 - [arcify](https://llllllll.co/t/arcify/22133): map arc to norns parameters
 - [easygrain](https://llllllll.co/t/easygrain/21047): granulator with arc support
 - [larc](https://llllllll.co/t/larc/39790): three play-heads, one rec-head
+- [awake](https://llllllll.co/t/awake/21022): one sequence transposed by another
+- [euclidigons](https://llllllll.co/t/euclidigons/36666/): polygons collide, make sounds
+
+Reference API docs for Arc on Norns can be found [here](/docs/norns/reference/arc).
 
 ## with modular
 

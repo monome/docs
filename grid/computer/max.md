@@ -14,14 +14,7 @@ While grid's compatibility and potential with Max remains current, computing has
 
 Max can be [downloaded and run for free](http://cycling74.com), without a license (a license is required to save your changes, however). In the section below, you'll also find many Max for Live devices, which can be run in Max for free (just drag the `.amxd` file directly into a patcher) or within Ableton's Live Suite (or using Ableton's Max for Live add-on).
 
-<details open markdown="block">
-  <summary>
-    sections
-  </summary>
-  {: .text-delta }
-- TOC
-{:toc}
-</details>
+Here's a small selection:
 
 ## audio
 * [grainfields](https://github.com/kasperskov/monome_grainfields_m4l-v1.0) -- 8 voice granular synthesizer.
@@ -40,10 +33,6 @@ Max can be [downloaded and run for free](http://cycling74.com), without a licens
 * [cascades](https://l.llllllll.co/cascades/) -- 65,536 combinations of 16th note patterns across seven tracks.
 * [pear](https://llllllll.co/t/32699) -- dual manual tape player for arc and Max.
 
-## archive 
-
-[collected](https://github.com/monome-community/collected) is a large unsorted repository of applications contributed over the years. We've also collected numerous [old monomeserial applications](https://github.com/monome-community/collected-ms) which are basically obsolete, but could be updated easily given some small ambition.
-
 ## Max for Live
 
 If you have access to Ableton Live Suite (or the Max for Live add-on for Live Standard), there are a number of Max for Live devices which integrate grid into your Live Sets.
@@ -53,3 +42,12 @@ If you have access to Ableton Live Suite (or the Max for Live add-on for Live St
 - [grainfields](https://github.com/kasperskov/monome_grainfields_m4l-v1.1): eight-voice granulator with grid control
 - [control](https://github.com/benjaminvanesser/control): transforms grid into a collection of assignable MIDI controls
 - [elements](https://github.com/benjaminvanesser/elements) -- a collection of Max for Live midi controls for grids.
+
+## more
+
+Quite a few more patches can be found scattered in the [monome community](https://github.com/orgs/monome-community/repositories) repository.
+
+## archive
+
+[collected](https://github.com/monome-community/collected) is a large unsorted repository of applications contributed over the years. We've also collected numerous [old monomeserial applications](https://github.com/monome-community/collected-ms) which are basically obsolete, but could be updated easily given some small ambition.
+

@@ -9,9 +9,15 @@ has_toc: false
 
 ### serialosc (required) {#serialosc}
 
-grid uses serialosc to communicate back and forth with applications on your computer. Once you install it, it runs in the background and converts serial communication (over USB) into Open Sound Control (OSC). Applications query serialosc to connect to grid and arc, so while you'll never interact with serialosc directly, it's necessary to have installed before we do anything else.
+grid uses serialosc to communicate back and forth with applications on your computer. Once you install it, it runs in the background and converts serial communication (over USB) into Open Sound Control (OSC). Applications query serialosc to connect to grid and arc, so while you'll never interact with serialosc directly, it's necessary to have installed before we do anything else. Follow [these steps](/docs/serialosc/setup) to get it installed.
 
-To begin, [check out the serialosc docs](/docs/serialosc/setup).
+### applications
+
+Various software that has monome grid support.
+
+- [VCV Rack](/docs/grid/computer/vcv-rack) (macOS + Windows + Linux)
+- [Max and Max for Live](/docs/grid/computer/max) (macOS + Windows)
+- [Mark Eats Sequencer](/docs/grid/computer/mark-eats) (macOS only)
 
 #### studies
 
@@ -36,10 +42,3 @@ Additional resources to help you exercise greater control over the grid's serial
 - [libmonome](https://github.com/monome/libmonome) // a library which simplifies serial communication with the grid, which serialosc is built on
 - [libmonome tutorial](/docs/libmonome/tutorial) // control grids with libmonome + C
 
-### community {#community}
-
-We've collected a handful of contributed applications over the years which are excellent starting points.
-
-- [VCV Rack](/docs/grid/computer/vcv-rack) (macOS + Windows + Linux)
-- [Max and Max for Live](/docs/grid/computer/max) (macOS + Windows)
-- [Mark Eats Sequencer](/docs/grid/computer/mark-eats) (macOS only)

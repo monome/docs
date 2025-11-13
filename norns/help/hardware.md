@@ -52,7 +52,7 @@ The charger that comes with norns is GEO151UB-6020 and its power specs are 2A / 
 
 ### battery
 
-Standard norns has a PKCELL LP803860 3.7V / 2000mAh with a JST connector. Replacements can be purchased from [Adafruit](https://www.adafruit.com/product/2011) or [DigiKey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/2011/6612469).
+Standard norns has a PKCELL LP803860 3.7V / 2000mAh with a JST connector. Replacements can be purchased from [Adafruit](https://www.adafruit.com/product/2011) or [DigiKey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/2011/6612469). Try websearching the battery name for other distributors.
 
 Before you purchase a new battery, please consider that your norns may not be reporting battery performance accurately. To test, fully drain the battery and then charge it fully.
 

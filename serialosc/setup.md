@@ -10,7 +10,13 @@ redirect_from: /setup/
 
 ### macOS
 
-For various reasons we don't use the App Store. [Homebrew](https://brew.sh) is a package manager for Mac. You'll have open a terminal window and paste a few commands:
+For various reasons we don't use the App Store.
+
+#### Installer
+Download the [latest release](https://github.com/monome/serialosc/releases) and run the installer.
+
+#### Homebrew
+[Homebrew](https://brew.sh) is a package manager for Mac. You'll have open a terminal window and paste a few commands:
 
 - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` to install homebrew
 

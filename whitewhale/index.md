@@ -28,6 +28,12 @@ Please make certain to check your case’s +5v power supply capacity. If it is u
 {:toc}
 </details>
 
+## FIRMWARE
+
+Be sure you're on the newest version.
+
+[See these instructions.](https://monome.org/docs/modular/update/)
+
 ## Introduction
 
 White Whale is the culmination of methods and experiments based on a decade of step sequencer design for the grid.

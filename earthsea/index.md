@@ -31,6 +31,12 @@ Please make certain to check your case’s +5v power supply capacity. If it is u
 {:toc}
 </details>
 
+## FIRMWARE
+
+Be sure you're on the newest version.
+
+[See these instructions.](https://monome.org/docs/modular/update/)
+
 ## Introduction
 
 Earthsea is a platform for playing, looping, and manipulating control-voltage gestures, which may take the form of melodies and timbral transformations.

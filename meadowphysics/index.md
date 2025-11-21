@@ -26,6 +26,12 @@ redirect_from: /modular/meadowphysics/
 {:toc}
 </details>
 
+## FIRMWARE
+
+Be sure you're on the newest version.
+
+[See these instructions.](https://monome.org/docs/modular/update/)
+
 ## Introduction
 
 Meadowphysics facilitates the exploration of polyrhythms and rule-based sequencing, producing a wide range of emergent patterns.

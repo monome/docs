@@ -105,7 +105,7 @@ To update when there's a new [release](https://github.com/monome/druid/releases)
 python -m pip install --upgrade monome-druid
 ```
 
-#### Windows errors
+#### windows errors
 
 After the installation is complete, you may see a message like this one:
 
@@ -158,6 +158,25 @@ sudo gpasswd -a <your username> <the group name found above>
 ```
 
 After this logout and login again or simply restart.
+
+## using druid in your browser
+
+If you'd rather avoid the command line, you can use **web-druid**, an in-progress browser-based REPL + Lua editor for crow developed by @dessertplanet. It works with Chromium-based browsers supporting Web Serial (e.g. Chrome, Edge, Opera). :contentReference[oaicite:4]{index=4} It features a split-screen layout with a Monaco code editor on the left and an output/input REPL on the right, similar to maiden's interface.
+
+### quick start
+1. Clone or download the `dessertplanet/web-druid` repository from GitHub. :contentReference[oaicite:5]{index=5}  
+2. Install dependencies:  
+   ```bash
+   npm install
+3. Serve locally
+  for instance, with python:
+  ```bash
+  python3 -m http.server 8000
+  Then open http://localhost:8000 in your browser.
+
+### some notes
+
+the web-druid project is in the works. web-druid currently cannot perform firmware updates. that being said, web-druid is open-source and is built on the efforts of other open-source projects. contributions are welcome.
 
 ## advanced
 

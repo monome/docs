@@ -54,6 +54,8 @@ Having trouble with connectivity? Please see [the WiFi section](/docs/norns/help
 
 If you do not have access to a router, you can also turn the norns into a WiFi hotspot. This will create a new network which you can then connect to with your computer.
 
+**Note: since a hotspot isn't connected to the internet, you will not be able to download scripts via maiden**
+
 Navigate to **SYSTEM > WIFI** and select **HOTSPOT**. After a few seconds, norns will begin broadcasting a network. To connect to it from another device:
 
 *network name / SSID*: `norns`  

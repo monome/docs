@@ -15,12 +15,23 @@ These functions are included on all iii devices.
 
 USB MIDI device functions
 
-`event_midi(byte1, byte2, byte3)` - callback function for incoming USB MIDI
-`midi_to_msg(data)` - returns decoded midi byte array `data` as a labeled table
-`midi_out(table)` - table can be data bytes or msg, sent to USB MIDI port
-`midi_note_on(note, vel, ch)` - shortcut function for sending note on
-`midi_note_off(note, vel, ch)` - shortcut function for sending note off
-`midi_cc(cc, val, ch)` - shortcut function for sending cc
+`event_midi(byte1, byte2, byte3)`  
+callback function for incoming USB MIDI
+
+`midi_to_msg(data)`  
+returns decoded midi byte array `data` as a labeled table
+
+`midi_out(table)`  
+table can be data bytes or msg, sent to USB MIDI port
+
+`midi_note_on(note, vel, ch)`  
+shortcut function for sending note on
+
+`midi_note_off(note, vel, ch)`  
+shortcut function for sending note off
+
+`midi_cc(cc, val, ch)`  
+shortcut function for sending cc
 
 ### metro
 

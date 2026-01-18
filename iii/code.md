@@ -9,32 +9,18 @@ nav_exclude: true
 
 ## device: grid
 
-`event_grid(x,y,z)`  
-callback function for grid key
-
-`grid_led(x,y,z)`  
-set coordinates _x_,_y_ to value _z_
-
-`grid_led_rel(x,y,z,zmin,zmax)`  
-add value _z_ to existing value for coordinates _x_,_y_ with optional range _zmin_ and _zmax_
-
-`grid_led_get(x,y)`  
-returns value at coordinates _x_,_y_
-
-`grid_led_all(z)`  
-set all values to _z_
-
-`grid_intensity(b)`  
-set global intensity to brightness _b_, triggers refresh
-
-`grid_refresh()`  
-refresh LED values
-
-`grid_size_x()`  
-returns x size
-
-`grid_size_y()`  
-returns y size
+| function | description |
+| --- | --- |
+| `event_grid(x,y,z)` | callback function for grid key |
+| `grid_led(x,y,z)` | set coordinates _x_,_y_ to value _z_ |
+| `grid_led_rel(x,y,z,zmin,zmax)` |
+add value _z_ to existing value for coordinates _x_,_y_ with optional range _zmin_ and _zmax_ |
+| `grid_led_get(x,y)` | returns value at coordinates _x_,_y_ |
+| `grid_led_all(z)` | set all values to _z_ |
+| `grid_intensity(b)` | set global intensity to brightness _b_, triggers refresh |
+| `grid_refresh()` | refresh LED values |
+| `grid_size_x()` | returns x size |
+| `grid_size_y()` | returns y size |
 
 ## device: arc
 

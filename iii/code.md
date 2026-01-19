@@ -12,10 +12,9 @@ nav_exclude: true
 | function | description |
 | --- | --- |
 | `event_grid(x,y,z)` | callback function for grid key |
-| `grid_led(x,y,z)` | set coordinates _x_,_y_ to value _z_ |
-| `grid_led_rel(x,y,z,zmin,zmax)` | add value _z_ to existing value for coordinates _x_,_y_ with optional range _zmin_ and _zmax_ |
+| `grid_led(x,y,z,rel)` | set coordinates _x_,_y_ to value _z_, or if _rel_ is true, add _z_ to existing value |
 | `grid_led_get(x,y)` | returns value at coordinates _x_,_y_ |
-| `grid_led_all(z)` | set all values to _z_ |
+| `grid_led_all(z,rel)` | set all values to _z_, or if _rel_ is true, add _z_ to all existing values |
 | `grid_intensity(b)` | set global intensity to brightness _b_, triggers refresh |
 | `grid_refresh()` | refresh LED values |
 | `grid_size_x()` | returns x size |
@@ -28,10 +27,9 @@ nav_exclude: true
 | `event_arc(n,d)` | callback function for arc knob ring _n_ delta _d_ |
 | `event_arc_key(n,d)` | callback function for arc knob ring _n_ delta _d_ |
 | `arc_res(n,div)` | set knob resolution for ring _n_ to _div_ (default 1, use higher values for less resolution) |
-| `arc_led(n,x,z)` | set ring _n_ segment _x_ to value _z_ |
-| `arc_led_rel(n,x,z,zmin,zmax)` | add value _z_ to existing value for ring _n_ segment _x_ with optional range _zmin_ and _zmax_ |
-| `arc_led_ring(n,z)` | set all values of ring _r_ to _z_ |
-| `arc_led_all(z)` | set all values to _z_ |
+| `arc_led(n,x,z,rel)` | set ring _n_ segment _x_ to value _z_, or if _rel_ is true, add _z_ to existing value |
+| `arc_led_ring(n,z,rel)` | set all values of ring _r_ to _z_, or if _rel_ is true, add _z_ to existing values |
+| `arc_led_all(z,rel)` | set all values to _z_, or if _rel_ is true, add _z_ to existing values |
 | `arc_intensity(b)` | set global intensity to brightness _b_, triggers refresh |
 | `arc_refresh()` | refresh LED values |
 

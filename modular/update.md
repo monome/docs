@@ -23,6 +23,8 @@ get a normal, inexpensive USB A-A cable such as [p/n 1175-1035-ND on digikey](ht
 
 *nb. if you run into verification troubles at any point through this process, please refer to the steps in this [Apple support article](https://support.apple.com/en-us/HT202491) to resolve!*
 
+Note: you can also install [dfu programmer](https://github.com/dfu-programmer/dfu-programmer/releases) directly by downloading the binary, which may be necessary for systems not supporting Hombrew, for which the following instructions apply. If installed directly, skip ahead past the Homebrew installation steps.
+
 we'll use [Homebrew](http://brew.sh) to install dfu-programmer. to get Homebrew installed on your Mac, go to the homebrew page and scroll down to "Install Homebrew" where it will prompt you to paste a line of text into Terminal.
 
 after Homebrew is installed, be sure to run any `Next steps` that it presents to you.

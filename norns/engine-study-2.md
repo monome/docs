@@ -1051,6 +1051,6 @@ To continue exploring + creating new synthesis engines for norns, we highly reco
 
 ### acknowledgements
 
-The `Moonshine` engine was written by Dan Derks + Ezra Buchla for [monome.org](https://monome.org).
+The `Moonshine` engine was written by Dani Derks + Ezra Buchla for [monome.org](https://monome.org).
 
-This study's text was initiated by Dan Derks with generous review from Jonathan Snyder and Zack Scholl.
+This study's text was initiated by Dani Derks with generous review from Jonathan Snyder and Zack Scholl.

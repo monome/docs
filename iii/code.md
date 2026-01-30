@@ -66,7 +66,7 @@ Note these are hardware driven, limited to 15 total. You can of course use one f
 
 ### slew
 
-Stepped interpolation between values over specified time interval. No hard limit to how many slews can be created, though memory or cpu time will eventually cause problems with high numbers of simaltaneous slews.
+Stepped interpolation between values over specified time interval. No hard limit to how many slews can be created, though memory or cpu time will eventually cause problems with high numbers of simultaneous slews.
 
 | function | description |
 | --- | --- |
@@ -89,7 +89,7 @@ Stepped interpolation between values over specified time interval. No hard limit
 
 | function | description |
 | --- | --- |
-| `dostring(lua_command)` | send text to lua interpretter, execute command |
+| `dostring(lua_command)` | send text to lua interpreter, execute command |
 | `get_time()` | returns time in seconds with usec precision |
 | `ps(formatted_string,...)` | print a formatted string, like printf |
 | `pt(table)` | print table |

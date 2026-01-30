@@ -39,7 +39,7 @@ This is a very basic application for the Aleph hardware to demonstrate developme
 
 Most use of the Aleph to this point has used Bees, which is a flexible/routable/extensible environment written for the AVR32. This application takes the place of Bees.
 
-Creating your own application allows you to radically alter the functionality of the Aleph and leverage the AVR32's processing power in more focussed ways than Bees. In general this is for specialized projects where adding an operator to Bees could not acheive the desired results.
+Creating your own application allows you to radically alter the functionality of the Aleph and leverage the AVR32's processing power in more focussed ways than Bees. In general this is for specialized projects where adding an operator to Bees could not achieve the desired results.
 
 ## app/mix
 
@@ -55,7 +55,7 @@ Main program file. `app_init()` and `app_launch()` are here, called from the AVR
 
 Here the DSP program is loaded via SPI. In this example the DSP is included in the code as a binary (as `src/aleph-mix.ldr.inc`) but DSP can be loaded via a file on the SD card (see [Bees](/docs/aleph/bees) for how this works).
 
-The event handlers are assigned at `assign_event_handlers()` and then `app_launch()` finishes, returning to the main loop. The AVR32 framework main loop simply checks the event hander continuously, so your program code fundamentally lives in these handlers, which is in the following file.
+The event handlers are assigned at `assign_event_handlers()` and then `app_launch()` finishes, returning to the main loop. The AVR32 framework main loop simply checks the event handler continuously, so your program code fundamentally lives in these handlers, which is in the following file.
 
 ### src/handler.c
 
@@ -65,7 +65,7 @@ Handler functions receive a single signed 32 bit argument. For switches this is 
 
 ### src/ctl.c
 
-This file contains data strutures and functions to change parameters of the DSP program.
+This file contains data structures and functions to change parameters of the DSP program.
 
 Used here are scaler lookups defined in `src/scaler.c` for interpolation and db conversion.
 

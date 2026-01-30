@@ -129,4 +129,4 @@ Part 6: Collaboration
 
 ## Credits
 
-This study was created by [Dan Derks](https://dndrks.com).
+This study was created by [Dani Derks](https://dndrks.com).

@@ -450,6 +450,6 @@ Done!
 
 *monome-processing* was written by and is maintained by [Tom Dinchak](https://soundcloud.com/phortran).
 
-This tutorial was created by [Brian Crabtree](https://nnnnnnnn.org) for [monome.org](https://monome.org), with updates in 2024 by [Dan/i Derks](https://dndrks.com).
+This tutorial was created by [Brian Crabtree](https://nnnnnnnn.org) for [monome.org](https://monome.org), with updates in 2024 by [Dani Derks](https://dndrks.com).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [help@monome.org](mailto:help@monome.org).

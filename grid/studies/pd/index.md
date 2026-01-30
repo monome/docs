@@ -291,6 +291,6 @@ We've created a minimal yet intuitive interface for rapidly exploring sequences.
 
 *Pure Data* was designed by Miller Puckette and is actively developed as an open source project. [puredata.info](http://puredata.info).
 
-This tutorial was created by [Trent Gill](http://whimsicalraps.com) for [monome.org](https://monome.org), with updates in 2023 by David Niemi and [Dan/i Derks](https://dndrks.com).
+This tutorial was created by [Trent Gill](http://whimsicalraps.com) for [monome.org](https://monome.org), with updates in 2023 by David Niemi and [Dani Derks](https://dndrks.com).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail [help@monome.org](mailto:help@monome.org).

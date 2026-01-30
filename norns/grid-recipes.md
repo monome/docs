@@ -19,13 +19,15 @@ these microstudies have been designed with simplicity and extensibility in mind.
 (grid GIFs created using `@Tyler`'s excellent [GridCapture](https://llllllll.co/t/33158) library)
 
 ## TOC
-- [simple redraw](#simple-redraw)
-- [momentary keys](#momentary-keys)
-- [toggles](#toggles)
-- [state machine](#state-machine)
-- [switches](#switches)
-- [range](#range)
-- [meters](#meters)
+- [grid recipes](#grid-recipes)
+- [TOC](#toc)
+  - [simple redraw](#simple-redraw)
+  - [momentary keys](#momentary-keys)
+  - [toggles](#toggles)
+  - [state machine](#state-machine)
+  - [switches](#switches)
+  - [range](#range)
+  - [meters](#meters)
 
 ***
 
@@ -185,7 +187,7 @@ function init()
     for y = 1,8 do -- for each y-row (8 on a 128-sized grid)...
       toggled[x][y] = false -- create a y state tracker,
       brightness[x][y] = 15 -- create a y brightness.
-      -- counters don't need futher initialization because they start as nil...
+      -- counters don't need further initialization because they start as nil...
       -- counter[x][y] = nil
     end
   end
@@ -282,7 +284,7 @@ function init()
     for y = 1,8 do -- 8 rows
       toggled[x][y] = false
       alt[x][y] = false
-      -- counters don't need futher initialization because they start as nil
+      -- counters don't need further initialization because they start as nil
     end
   end
 

@@ -141,6 +141,6 @@ Both environments offer parameters, each with a UI tailored for its hardware.
 
 *seamstress* was developed and designed by [Rylee Alanza Lyman](https://ryleealanza.org/), inspired by [*matron* from norns](https://github.com/monome/norns/tree/main/matron/src). *matron* was written by [`@catfact`](https://github.com/ryleelyman/seamstress). norns was initiated by [`@tehn`](https://github.com/tehn).
 
-This document was created by [Dan Derks](https://dndrks.com) and [Brian Crabtree](https://nnnnnnnn.co).
+This document was created by [Dani Derks](https://dndrks.com) and [Brian Crabtree](https://nnnnnnnn.co).
 
 Contributions welcome. Submit a pull request to [github.com/monome/docs](https://github.com/monome/docs) or e-mail `help@monome.org`.

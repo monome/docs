@@ -89,7 +89,7 @@ local state = {
 -- the callback function is called.
 --
 -- here we have dummy functionality to help confirm things are getting called
--- and test out access to mod level state via mod supplied fuctions.
+-- and test out access to mod level state via mod supplied functions.
 --
 
 mod.hook.register("system_post_startup", "my startup hacks", function()
@@ -135,7 +135,7 @@ m.deinit = function() end -- on menu exit
 
 -- register the mod menu
 --
--- NOTE: `mod.this_name` is a convienence variable which will be set to the name
+-- NOTE: `mod.this_name` is a convenience variable which will be set to the name
 -- of the mod which is being loaded. in order for the menu to work it must be
 -- registered with a name which matches the name of the mod in the dust folder.
 --

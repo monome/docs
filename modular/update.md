@@ -23,7 +23,7 @@ get a normal, inexpensive USB A-A cable such as [p/n 1175-1035-ND on digikey](ht
 
 *nb. if you run into verification troubles at any point through this process, please refer to the steps in this [Apple support article](https://support.apple.com/en-us/HT202491) to resolve!*
 
-Note: you can also install [dfu programmer](https://github.com/dfu-programmer/dfu-programmer/releases) directly by downloading the binary, which may be necessary for systems not supporting Hombrew, for which the following instructions apply. If installed directly, skip ahead past the Homebrew installation steps.
+Note: you can also install [dfu programmer](https://github.com/dfu-programmer/dfu-programmer/releases) directly by downloading the binary, which may be necessary for systems not supporting Homebrew, for which the following instructions apply. If installed directly, skip ahead past the Homebrew installation steps.
 
 we'll use [Homebrew](http://brew.sh) to install dfu-programmer. to get Homebrew installed on your Mac, go to the homebrew page and scroll down to "Install Homebrew" where it will prompt you to paste a line of text into Terminal.
 
@@ -33,7 +33,7 @@ then, you should be able to simply type:
 
 	brew install dfu-programmer
 
-(if you see `brew: command not found`, this means the commands Homebrew asked you to run in the **Next steps** did not get executed and Homebrew is not executible. please try installing homebrew again.)
+(if you see `brew: command not found`, this means the commands Homebrew asked you to run in the **Next steps** did not get executed and Homebrew is not executable. please try installing homebrew again.)
 
 now, we can move on to the firmware. download the firmware from the links at the top of this page. remember where these are stored on your computer. inside, there's a script called `update_firmware.command` within the named module folder.
 

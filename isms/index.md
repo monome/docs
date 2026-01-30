@@ -13,7 +13,7 @@ nav_order: 6
 
 **a [mannequins](https://whimsicalraps.com) + monome collaboration**
 
-isms ("*-isms*", \i\z\m\s\) is a eurorack modular synth case with an integrated top panel of carefully chosen fundamental circuits. necessary general functionality is densely packed into the case itself so you can focus available rack space on control and synthesis modules. rear-mount jacks are integrated into the case and out of the way of peformance. the size and proportions are designed for balance: large enough not to feel constrained, yet not so boundless as to be overwhelming. ergonomics and flexibility are central.
+isms ("*-isms*", \i\z\m\s\) is a eurorack modular synth case with an integrated top panel of carefully chosen fundamental circuits. necessary general functionality is densely packed into the case itself so you can focus available rack space on control and synthesis modules. rear-mount jacks are integrated into the case and out of the way of performance. the size and proportions are designed for balance: large enough not to feel constrained, yet not so boundless as to be overwhelming. ergonomics and flexibility are central.
 
 ## specifications
 

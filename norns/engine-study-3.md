@@ -1499,6 +1499,6 @@ To continue exploring and creating new synthesis engines for norns, we highly re
 
 ## acknowledgements
 
-The `FXBusDemo` engine was written by Ezra Buchla and Dan Derks for [monome.org](https://monome.org).
+The `FXBusDemo` engine was written by Ezra Buchla and Dani Derks for [monome.org](https://monome.org).
 
-This study's text was initiated by Dan Derks.
+This study's text was initiated by Dani Derks.

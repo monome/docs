@@ -6,7 +6,7 @@ permalink: /aleph/scenes/
 
 # Bees: Included Scenes
 
-A number of scenes are included in the offical Aleph software package. Below is a brief description of the functionality of these scenes and the interface to control them.
+A number of scenes are included in the official Aleph software package. Below is a brief description of the functionality of these scenes and the interface to control them.
 
 These are ideal starting points to modify and extend functionality by changing the Bees network.
 

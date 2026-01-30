@@ -109,7 +109,7 @@ If you are consistently unable to connect your norns to WiFi through the [connec
 
 2. Confirm that your router is broadcasting a 2.4GHz band -- the WiFi nub does not support 5GHz.
 
-3. If your network name has any apostrophes, it might be interpretted as a [*prime*](https://en.wikipedia.org/wiki/Prime_(symbol)), which would cause connection failure. Removing apostrophes from network names has helped resolve most issues with connectivity.
+3. If your network name has any apostrophes, it might be interpreted as a [*prime*](https://en.wikipedia.org/wiki/Prime_(symbol)), which would cause connection failure. Removing apostrophes from network names has helped resolve most issues with connectivity.
 
 4. Try getting very close to your WiFi router. Bad signal can make it seem nonfunctional.
 
@@ -138,7 +138,7 @@ For the best overall performance, for both CPU and RF interference, we highly re
 
 If you are consistently unable to connect your shield to WiFi through the [connection steps outlined here](/docs/norns/wifi-files/#wifi-connect) and you are sure your password is being entered correctly, please perform the following steps:
 
-1. If your network name has any apostrophes, it might be interpretted as a [*prime*](https://en.wikipedia.org/wiki/Prime_(symbol)), which would cause connection failure. Removing apostrophes from network names has helped resolve most issues with connectivity.
+1. If your network name has any apostrophes, it might be interpreted as a [*prime*](https://en.wikipedia.org/wiki/Prime_(symbol)), which would cause connection failure. Removing apostrophes from network names has helped resolve most issues with connectivity.
 
 2. Try connecting shield to your router via ethernet and connecting to it from another computer [via SSH](/docs/norns/advanced-access/#ssh).
 
@@ -158,7 +158,7 @@ If you've hit the end of this list without success, we recommend searching onlin
 
 If your norns does not seem to booting, it's possible that either the Compute Module (CM3) is not seated correctly, or the screen ribbon is pressing against the CM3 when its fully assembled and shorting the chip.
 
-Follow along with the dissassembly video [here](https://vimeo.com/523980765). Re-seating the CM3 will simply involve ejecting it (shown ~2:30 in the video), aligning it confidently, and placing it in again. As you reassemble the unit, before you screw the board back to the enclosure, check to see if it will power as expected -- the board will be loosely tethered by the screen ribbon and the battery connector. If it boots, then you'll need to ensure that the folds on the screen ribbon are tight -- this should help reduce the pressure against the CM3. Just fold them a bit tighter and, as a final test, try screwing the board back to the enclosure to verify that the ribbon is no longer pushing the chip down.
+Follow along with the disassembly video [here](https://vimeo.com/523980765). Re-seating the CM3 will simply involve ejecting it (shown ~2:30 in the video), aligning it confidently, and placing it in again. As you reassemble the unit, before you screw the board back to the enclosure, check to see if it will power as expected -- the board will be loosely tethered by the screen ribbon and the battery connector. If it boots, then you'll need to ensure that the folds on the screen ribbon are tight -- this should help reduce the pressure against the CM3. Just fold them a bit tighter and, as a final test, try screwing the board back to the enclosure to verify that the ribbon is no longer pushing the chip down.
 
 ### norns shield {#boot-shield}
 
@@ -272,7 +272,7 @@ When you hit K2 on the SELECT / SYSTEM / SLEEP screen, you'll be shown helpful s
 ![](/docs/norns/image/help-images/battery.png)
 
 - if the `mA` reading is negative, this means power is being drawn
-  - if you ever see a consistently negative reading _while plugged into wall power_, then the draw on the built-in USB hub is likely too high and you should use an externallty-powered hub
+  - if you ever see a consistently negative reading _while plugged into wall power_, then the draw on the built-in USB hub is likely too high and you should use an externally-powered hub
 - if the `mA` reading is positive, this means power is being supplied and the battery is charging up
 - on wall power, as the battery gets closer and closer to 100%, you may see the positive `mA` begin to reduce – this is normal / expected, as norns is ‘trickling’ charge in
 - at 100% battery, you’ll likely see `0mA`, since norns does not need to draw any more power to charge the battery – this is a safety against overcharging and degrading your battery, so that if you leave your norns plugged into wall power for months, you’ll still have a working battery when you detach

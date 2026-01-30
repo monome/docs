@@ -456,7 +456,7 @@ end
 Though the encoders are endless, we'll sometimes want changes made by the encoders to be clamped to a specific range. This is where special utilities built for norns come in, specifically one called `util.clamp()`, which accepts three arguments:
 
 - `n`: value
-- `min`: minumum
+- `min`: minimum
 - `max`: maximum
 
 Let's try it in our script by replacing our `enc` function with a clamped version:

@@ -336,11 +336,11 @@ While on the *HOME* menu, press **K2** to toggle helpful system status informati
 
 The first four `cpu` readings show the state of each of the processor's four cores, followed by an average CPU load.
 
-Occassionally, you may see `!!!` next to the CPU average. This indicates that the audio system has detected the occurence of [xruns](https://alsa.opensrc.org/Xruns). This indicator is normal during script switching, when SuperCollider engines are being swapped out. If the indicator is present during a script's run, it likely corresponds to audio glitching due to CPU overload.
+Occasionally, you may see `!!!` next to the CPU average. This indicates that the audio system has detected the occurrence of [xruns](https://alsa.opensrc.org/Xruns). This indicator is normal during script switching, when SuperCollider engines are being swapped out. If the indicator is present during a script's run, it likely corresponds to audio glitching due to CPU overload.
 
 The `disk` reading shows the storage available, in megabytes.
 
-Underneath the script's name (or `NONE` if no script is running), you'll see the software version currently running on your norns. In the screenshot above, we're running `230405`, formatted as YYMMDD. See the [update docs](/docs/norns/wifi-files/#update) for more infomation.
+Underneath the script's name (or `NONE` if no script is running), you'll see the software version currently running on your norns. In the screenshot above, we're running `230405`, formatted as YYMMDD. See the [update docs](/docs/norns/wifi-files/#update) for more information.
 
 The current state of the battery is shown in the bottom right corner:
 

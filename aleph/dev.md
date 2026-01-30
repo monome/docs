@@ -71,7 +71,7 @@ Making a release entails doing these things:
 
 ### Versions
 
-The Aleph repository includes several indepenent software components. Each may be developed at a different pace, so they have different version numbers.
+The Aleph repository includes several independent software components. Each may be developed at a different pace, so they have different version numbers.
 
 In particular, each dsp module (.ldr) and each application (.hex) should be versioned. This is so that we can track compatibility between a given app and any module(s) associated with it.
 

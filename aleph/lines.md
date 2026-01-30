@@ -160,7 +160,7 @@ Notch output amplitude for filter N
 - Parameter type: Amp
 - Range: [0, 1.0] (bees will display dB)
 
-### Paramaters: per Input -> Delay Pair
+### Parameters: per Input -> Delay Pair
 
 #### adcX_delY
 

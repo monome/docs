@@ -10,7 +10,7 @@ A technical note on the system of parameter representation and scaling in aleph/
 
 ###Architecture
 
-PARAMETERS on the Aleph DSP are quantities that directly affect the running audio algorithm. Examples are oscillator frequency, amplitude, and position in a buffer. These values are all represented with 32 bits, although the exact representation may vary. They are not necessarily in a human-friendly unit; instead they represent the “native” unit which can be immediately used in the algorithm, with a minimum of conversion. Each paremeter has a defined TYPE which very specifically describes how it is used. (e.g., the Integrator type is the raw coefficient in a 1-pole lowpass filter running at the sampling rate.)
+PARAMETERS on the Aleph DSP are quantities that directly affect the running audio algorithm. Examples are oscillator frequency, amplitude, and position in a buffer. These values are all represented with 32 bits, although the exact representation may vary. They are not necessarily in a human-friendly unit; instead they represent the “native” unit which can be immediately used in the algorithm, with a minimum of conversion. Each parameter has a defined TYPE which very specifically describes how it is used. (e.g., the Integrator type is the raw coefficient in a 1-pole lowpass filter running at the sampling rate.)
 
 CONTROL values in the BEES application are linear, 16-bit signed values. Expressed as integers, they range from -32768 to 32767. We chose this range partly to speed calculation, and (more so) because a higher resolution also has limitations, which in a way are harder to make transparent to the user.
 
@@ -52,7 +52,7 @@ The data structure fields are:
 The types are:
 
 - Bool : boolean value; can only assume the values 0 and 1.
-- Fix : “generic” linear value. The 32 bits of data are used arbitarily to represent integer and fractional parts. The “radix” field equals the number of bits in the integer part (including sign bit.) for example, a Fixed param with radix=1 can include the range [-1, 1.0), while radix=5 would be [-16.0,16.0) with a lower resolution, and radix=16 would mean the CV value is interpreted as an integer in its original range.
+- Fix : “generic” linear value. The 32 bits of data are used arbitrarily to represent integer and fractional parts. The “radix” field equals the number of bits in the integer part (including sign bit.) for example, a Fixed param with radix=1 can include the range [-1, 1.0), while radix=5 would be [-16.0,16.0) with a lower resolution, and radix=16 would mean the CV value is interpreted as an integer in its original range.
 - Amp : amplitude from [0,1], displayed in decibels and using an arbitrary audio taper. This is table-based and can be customized by editing the data at aleph/utils/param_scaling/scaler_amp_*.dat
 Integrator : raw coefficient for a 1-pole lowpass filter run at audio rate, commonly used for parameter smoothing. Displays seconds in [0, 64). Can be customized in aleph/utils/param_scaling/scaler_amp_*.dat
 - Note : oscillator frequency in hertz. By default, this maps the CV input to 128 semitones in 12-tone equal temperament, with 8 tuned steps between each semitone. The range is midi 0 to midi 128+. Can be customized (for just intonation, etc!) at aleph/utils/param_scaling/scaler_note_val.dat . There is no separate table for representation.

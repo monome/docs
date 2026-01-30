@@ -244,4 +244,4 @@ most LEDs fall into this range.
 
 ## source
 
-[schems, boards, firmwares](http://github.com/monome/40h)
+[schematics, boards, firmwares](http://github.com/monome/40h)

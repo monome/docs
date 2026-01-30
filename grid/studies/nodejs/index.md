@@ -140,7 +140,7 @@ The monome-grid library calls the function passed to `grid.key()` upon receiving
 	y : vertical position (0-7)
 	s : state (1 = key down, 0 = key up)
 
-Inside our aysnc function, we define the key function and simply print out incoming data.
+Inside our async function, we define the key function and simply print out incoming data.
 
 ```javascript
 grid.key((x, y, s) => console.log(`key received: ${x}, ${y}, $[s}`));

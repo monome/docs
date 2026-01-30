@@ -202,7 +202,7 @@ A sprocket's `action` is passed the lattice's transport position. This can be us
 
 A sprocket's `swing` allows you to control the swing of the emitted actions. The default swing is 50% (no swing). A swing above 50% will cause a long rest and then a short rest. A swing below 50% will create a short rest and then a long rest.
 
-A sprocket's `delay` allows you to control how much the sprocket is delayed, as a fraction of the current `division`. For example, a `division` of `1/4` with a `delay` of `0.5` will cause the action to be emitted every quarter note, but delayed from the main clock by an eigth note (0.5 * quarter note). This is useful for controlling the duration of a note when using note-on and note-off functions. You can set two sprockets - one for note-on and one for note-off - with the same division, but the note-off sprocket is delayed from the note-on sprocket (and can be modulated).
+A sprocket's `delay` allows you to control how much the sprocket is delayed, as a fraction of the current `division`. For example, a `division` of `1/4` with a `delay` of `0.5` will cause the action to be emitted every quarter note, but delayed from the main clock by an eighth note (0.5 * quarter note). This is useful for controlling the duration of a note when using note-on and note-off functions. You can set two sprockets - one for note-on and one for note-off - with the same division, but the note-off sprocket is delayed from the note-on sprocket (and can be modulated).
 
 Multiple lattices can be run simultaneously. Multiple sprockets in different lattices can call the same action. Sprockets can be added and destroyed while lattices are running.
 

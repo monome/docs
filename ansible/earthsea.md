@@ -180,7 +180,7 @@ The RUNES page offers several large icons that can be selected by pushing anywhe
   These runes control the direction of playback: the right rune represents the order the pattern was recorded in; the left rune represents reverse playback.
 
 * *Double speed, half speed*
-  These runes destructively edit the playback speed of a pattern, even while it is currently playing. Press double-speed a couple times to make rapid arpeggios, or even Gameboy-esque chords when taken to the limit. Half speed opens up the possibility for long evolving chord sequences, especially when applied to a linearized pattern.
+  These runes destructively edit the playback speed of a pattern, even while it is currently playing. Press double-speed a couple times to make rapid arpeggios, or even *Game Boy*-esque chords when taken to the limit. Half speed opens up the possibility for long evolving chord sequences, especially when applied to a linearized pattern.
 
 ### Presets
 

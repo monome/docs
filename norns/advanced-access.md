@@ -84,7 +84,7 @@ This tutorial will help you connect norns to a Mac or Windows computer using [Cy
 
 Be careful when editing files on norns.  If you delete files that norns needs to run, it could corrupt the filesystem which would require a complicated re-flash of the image to get back up and running. You most likely only want to be updating things in the dust subdirectory.
 
-Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, windows and linux.  While the screens will be different, the goal is the same -- to connect to norns over the IP adress provided using SFTP/port 22.
+Alternatives to Cyberduck include Transmit for macOS and FileZilla for macOS, windows and linux.  While the screens will be different, the goal is the same -- to connect to norns over the IP address provided using SFTP/port 22.
 
 1. If norns is not already running, boot it up.  Navigate to SYSTEM / WIFI.  You can either use norns in HOTSPOT mode, or by connecting to the same NETWORK that the computer you'll be downloading the SFTP client to is on. See the [network connect docs](../play/#network-connect) for more information about WiFi setup.
 

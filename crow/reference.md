@@ -72,7 +72,7 @@ input[n].mode( 'scale', notes, temperament, scaling ) -- set input n to:
     -- 'scale':     quantize the input, raising an event when a new note is entered
     -- notes:       a table of notes representing the scale, eg: {0,2,4,5,7,9,11}
     -- temperament: number of possible notes per octave. defaults to 12
-    -- scaling:     volts-per-octave. default to 1.0, but use 1.2 for buchla systems
+    -- scaling:     volts-per-octave. default to 1.0, but use 1.2 for Buchla systems
 -- 'scale' also supports just intonation ratios in the 'notes' position
     -- notes appears as {1/1, 3/2, 9/8} etc
     -- temperament must be set to 'ji'
@@ -201,7 +201,7 @@ output[n].scale( {scale}, temperament, scaling )
   -- scale: a table of note values, eg: {0,2,3,5,7,9,10}
   --        use the empty table {} for chromatic scale
   -- temperament: how many divisions in an octave, default 12 (ie 12TET)
-  -- scaling: volts per octave, default to 1.0, but use eg. 1.2 for buchla systems
+  -- scaling: volts per octave, default to 1.0, but use eg. 1.2 for Buchla systems
 
 -- deactivate any active scaling with the 'none' argument
 output[n].scale( 'none' )
@@ -1049,7 +1049,7 @@ math.srandomseed(unique_id()) -- creates a sequence specific to your crow's hard
 
 ```lua
 -- deactivate input modes, zero outputs and slews, and free all metros
--- equivalent to restarting crow, but supresses any active userscript
+-- equivalent to restarting crow, but suppresses any active userscript
 crow.reset()
 ```
 

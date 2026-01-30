@@ -33,7 +33,7 @@ then, you should be able to simply type:
 
 	brew install dfu-programmer
 
-(if you see `brew: command not found`, this means the commands Homebrew asked you to run in the **Next steps** did not get executed and Homebrew is not executible. please try installing homebrew again.)
+(if you see `brew: command not found`, this means the commands Homebrew asked you to run in the **Next steps** did not get executed and Homebrew is not executable. please try installing homebrew again.)
 
 now, we can move on to the firmware. download the firmware from the links at the top of this page. remember where these are stored on your computer. inside, there's a script called `update_firmware.command` within the named module folder.
 

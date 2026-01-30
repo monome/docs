@@ -11,7 +11,7 @@ permalink: /aleph/dev/dsp/
 - AD 'Blackfin' BF533: DSP processor where all audio & cv output processing occurs
 - Atmel AVR32: Controller where all UI elements, external device connection & cv input is processed.
 
-The DSP runs at 500Mhz with 16b/32b fixed-point arithmetic and 24b fixed-point audio I/O. by default, the sampleratae is 48k but the hardware allows up to 192k. each audio frame is processed one sample at a time for minimal latency. The chip has 64kB of on board SRAM memory that can be accessed at run time, plus an additional 64MB of SDRAM with slower access but enough space for large audio buffers.
+The DSP runs at 500Mhz with 16b/32b fixed-point arithmetic and 24b fixed-point audio I/O. by default, the samplerate is 48k but the hardware allows up to 192k. each audio frame is processed one sample at a time for minimal latency. The chip has 64kB of on board SRAM memory that can be accessed at run time, plus an additional 64MB of SDRAM with slower access but enough space for large audio buffers.
 
 ## Git Project
 
@@ -64,7 +64,7 @@ Follow along with `modules/mix` as it's a simple module with lots of comments sp
 - version.mk: A simple version control file in the subversion style.
 - README
 
-Modules with many parameters will often use an additional file to store parameter set functons called `param_setup.h`. If using this file you need to refer to it in `<your_mod>.c` with `#include param_setup.h`.
+Modules with many parameters will often use an additional file to store parameter set functions called `param_setup.h`. If using this file you need to refer to it in `<your_mod>.c` with `#include param_setup.h`.
 
 ## File Structure
 

@@ -296,7 +296,7 @@ Conway's game of life. With monome grid support.
 - NEXT: non-zero input triggers algorithm.
 - XSIZE: size of field, 8 or 16
 - YSIZE: size of field, 8 or 16
-- X: postion for edit by SET, output of VAL
+- X: position for edit by SET, output of VAL
 - Y: position for edit by SET, output of VAL
 - SET: 0/1 set at X/Y
 - NOISE: (not yet implemented)

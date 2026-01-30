@@ -53,8 +53,8 @@ function init()
   )
 
   key1_down = false -- we'll use key1's state to send either coarse or fine-tune changes
-  norns.enc.accel(1,true) -- add resistence to encoder 1's initial turn
-  norns.enc.sens(3,10) -- add resistence to encoder 3's turns
+  norns.enc.accel(1,true) -- add resistance to encoder 1's initial turn
+  norns.enc.sens(3,10) -- add resistance to encoder 3's turns
 
 end
 

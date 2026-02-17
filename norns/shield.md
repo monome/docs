@@ -63,7 +63,7 @@ new 2022 shields (revision 211028): use the cs4271 images for pi 3 or pi 4 accor
 {: .label}
 
 1. download and install [Etcher](https://www.balena.io/etcher/) or the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) on your computer
-2. download the [latest norns shield image](https://github.com/monome/norns-image/releases/latest) to your computer. be sure to select the correct file according to your hardware: pi3 or pi4, and the correct audio codec. older shields use the cs4270, newer ones (version number 211028 or greater printed on the circuit board) use the cs4271.
+2. download the [latest norns shield image](https://github.com/monome/norns-image/releases/tag/231114-img) to your computer. be sure to select the correct file according to your hardware: pi3 or pi4, and the correct audio codec. older shields use the cs4270, newer ones (version number 211028 or greater printed on the circuit board) use the cs4271.
 3. unpack the shield image from the `.tgz` (which will result in an `.img` file) and insert your SD card into your computer
 4. run Etcher or the Imager, which will ask you to direct it to the unpacked shield image and to identify your microSD card as the target -- after that, the program will take care of everything
 5. once the process completes (allow it to verify!), eject the microSD card from your computer and move onto the assembly steps below

@@ -430,5 +430,3 @@ Send networked data via Open Sound Control. See the [osc docs](/docs/norns/api/m
 Contributions to the script reference are welcomed + we are very grateful for any assistance covering these topics.
 
 Have questions about how to contribute? Please feel free to email [help@monome.org](mailto:help@monome.org) and we can collaborate!
-
-Many thanks to `@fardles` ([site](https://shelfordhill.com/site/home.html)) for building the reference pages for `er`, `fileselect`, `musicutil`, `textentry`, and `ui`.

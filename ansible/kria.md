@@ -193,7 +193,7 @@ To edit the data just select the *pattern sequence* button you wish to change. I
 
 You can also change the duration the pattern is played by selecting the end step of the *meta-sequencer* on row 7. Visually the *meta-sequencer* will show you the sequence length for the current step **and** the end point of the selected patterns duration at maximum brightness.
 
-The *meta-sequencer* is clocked by the divider in row 2 and controls how long the current pattern will play before moving on to the next pattern. Row 2 itself is clocked by the current tempo (either internal or external), however if you hold the *Duration* modifier you can subdivide the current tempo driving the row 2 clock divider, for extremely long step times.
+The *meta-sequencer* is clocked by the divider in row 2 and controls how long the current pattern will play before moving on to the next pattern. Row 2 itself is clocked by the current tempo (either internal or external), however if you hold the *Time* modifier you can subdivide the current tempo driving the row 2 clock divider, for extremely long step times.
 
 The *loop* modifier can effect the length and start position of the *pattern sequence* in rows 3-6. The same multi touch gestures while holding the *loop* modifier work in these rows. This loop will wrap around the end. And like other views, you can push the same position twice to create a single-slot loop. Pushing a *pattern sequence* once while holding the *loop* modifier will cause the current loop to start at the new position.
 

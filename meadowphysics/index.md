@@ -6,7 +6,9 @@ nav_order: 2
 redirect_from: /modular/meadowphysics/
 ---
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/146731772?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div class="vid">
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.monome.org/meadowphysics-two/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – meadowphysics two&quot;"></iframe>
+</div>
 
 # Meadowphysics
 {: .no_toc }
@@ -171,4 +173,6 @@ It is possible to backup all your presets as part of the module's firmware; see 
 
 ## Video Tutorial
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/146731772?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div class="vid">
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.monome.org/meadowphysics-two/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – meadowphysics two&quot;"></iframe>
+</div>

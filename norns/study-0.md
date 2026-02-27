@@ -4,7 +4,9 @@ nav_exclude: true
 permalink: /norns/study-0/
 ---
 
-<div class="vid"><iframe src="https://player.vimeo.com/video/503167191?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="vid">
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.monome.org/study-zero/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – norns study zero&quot;"></iframe>
+</div>
 
 # first light
 {: .no_toc }

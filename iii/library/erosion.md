@@ -16,8 +16,8 @@ _four meta-knobs controlling four MIDI CC each_
 
 ## media
 
-- performance: [vimeo.com/1072397621](https://vimeo.com/1072397621)
-- howto: [vimeo.com/1082217606](https://vimeo.com/1082217606)
+- performance: [monome.org/erosion/](https://hyper8.monome.org/erosion/)
+- howto: [monome.org/erosion-how/](https://hyper8.monome.org/erosion-how/)
 
 
 ## download

@@ -6,7 +6,9 @@ nav_exclude: true
 has_toc: false
 ---
 
-<div class="vid"><iframe src="https://player.vimeo.com/video/1071043221?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="vid">
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.monome.org/arc-iii-cycles/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – arc iii cycles&quot;"></iframe>
+</div>
 
 # cycles
 

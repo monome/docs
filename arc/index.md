@@ -68,7 +68,9 @@ Note: the [grid studies](https://monome.org/docs/grid/grid-computer/#studies) br
 
 ## with norns
 
-<div class="vid"><iframe src="https://player.vimeo.com/video/312196152?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="vid">
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.monome.org/intersubjective-speed-and-pitch/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – intersubjective speed and pitch&quot;"></iframe>
+</div>
 
 [angl](https://llllllll.co/t/ash-a-small-collection/21349) is the script used in this video. It is part of the `ash` collection from monome, which can be installed via [maiden](/docs/norns/maiden).
 
@@ -85,7 +87,9 @@ Reference API docs for Arc on Norns can be found [here](/docs/norns/reference/ar
 
 ## with modular
 
-<div class="vid"><iframe src="https://player.vimeo.com/video/182119406?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="vid">
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.monome.org/ansible-introduction/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – ansible introduction&quot;"></iframe>
+</div>
 
 [Ansible](/docs/ansible) (discontinued) connects an arc to the eurorack ecosystem. Note: be sure to get the latest firmware for complete arc support.
 
@@ -99,4 +103,4 @@ See [VCV Rack](/docs/grid/computer/vcv-rack) to use a virtual version on your co
 - [editions](editions) - information about different device generations
 - [disassembly](disassembly) - guides for disassembling the hardware
 - [2025 edition knob tuning howto](/docs/arc/tuning) - reset friction per knob
-- [2015-2019 edition knob reconditioning howto](https://vimeo.com/449444177)
+- [2015-2019 edition knob reconditioning howto](https://hyper8.monome.org/tech/arc-knob-reconditioning/)

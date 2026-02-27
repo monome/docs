@@ -11,7 +11,9 @@ The clock library provides a way to create timed function calls: loops, repetiti
 
 Curious to see it all work together in realtime? Here's an introduction to working with clocks + [softcut](/docs/norns/softcut):
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/416730766?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div class="vid">
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.monome.org/tech/norns-circle-02-tutorialclocks-and-softcut/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – norns tutorial clocks softcut&quot;"></iframe>
+</div>
 
 <details open markdown="block">
   <summary>

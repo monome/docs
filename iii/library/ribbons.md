@@ -6,7 +6,9 @@ nav_exclude: true
 has_toc: false
 ---
 
-<div class="vid"><iframe src="https://player.vimeo.com/video/1099770303?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="vid">
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.monome.org/arc-ribbons/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – arc ribbons&quot;"></iframe>
+</div>
 
 # ribbons
 
@@ -16,7 +18,7 @@ made by [tehn](https://nnnnnnnn.co)
 
 ## media
 
-- video: [vimeo.com/1099770303](https://vimeo.com/1099770303)
+- video: [monome.org/arc-ribbons/](https://hyper8.monome.org/arc-ribbons/)
 
 ## download
 

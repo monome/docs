@@ -100,8 +100,6 @@ If you encounter situations where your aleph stops responding, or does so in an 
 [Tutorial 6: More Presets](../tutorial-6)
 [Tutorial 7: Control Voltage](../tutorial-7)
 
-Also see the contributed [video tutorials!](/docs/aleph/videos/)
-
 ### Quick Reference
 
 - Hold down the MODE key when shutting down the aleph to bypass the automatic scene save to default.scn

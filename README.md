@@ -1,6 +1,6 @@
 # monome docs
 
-http://monome.org/docs
+https://monome.org/docs
 
 contributions welcome.
 
@@ -18,7 +18,7 @@ then go to [http://localhost:4000/docs/](http://localhost:4000/docs/) to view th
 
 ## developing locally
 
-it is recommended to install [rvm](https://rvm.io/rvm/install) and us ruby 2.7.2.
+it is recommended to install [rvm](https://rvm.io/rvm/install) and use ruby 2.7.2.
 
 if running ruby 3.0.0+, `bundle exec jekyll serve` will fail since `webrick` is no longer a bundled gem. execute `bundle add webrick` to resolve.
 

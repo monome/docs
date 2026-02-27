@@ -4,7 +4,9 @@ nav_exclude: true
 redirect_from: /app/sum/
 ---
 
-<div class="vid"><html><iframe src="//player.vimeo.com/video/91524122" width="570" height="321" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></html></div>
+<div class="vid">
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.monome.org/monome-sum-in-part/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – monome-sum-in-part&quot;"></iframe>
+</div>
 
 # monome sum
 

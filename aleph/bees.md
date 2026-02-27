@@ -8,7 +8,9 @@ permalink: /aleph/bees/
 
 *Quick Links*: [Operators](/docs/aleph/ops/) - [Tutorials](/docs/aleph/tutorial-0/)
 
-<div class="vid"><iframe src="https://player.vimeo.com/video/87359988?color=ffffff&title=0&byline=0&portrait=0" width="860" height="484" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+<div class="vid">
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.monome.org/aleph-bees-introduction/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – aleph-bees-introduction&quot;"></iframe>
+</div>
 
 ## Introduction
 

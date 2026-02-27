@@ -18,7 +18,7 @@ made by [tehn](https://nnnnnnnn.co)
 
 ## media
 
-- performance: [vimeo.com/1069216011](https://vimeo.com/1069216011)
+- performance: [monome.org/arc-snows/](https://hyper8.monome.org/arc-snows/)
 
 ## download
 

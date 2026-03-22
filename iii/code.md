@@ -5,7 +5,9 @@ permalink: /iii/code
 nav_exclude: true
 ---
 
-# iii code
+# iii scripting reference
+
+Note: if you're updating v1.0.0 iii code, see the [porting guide](/docs/iii/porting).
 
 ## device: grid
 
@@ -61,7 +63,7 @@ Note these are hardware driven, limited to 15 total. You can of course use one f
 | function | description |
 | --- | --- |
 | `m = metro.init(callback, time_sec, count_optional)` | initialize a metro _m_, with callback function, time in seconds, (optional) count before stop |
-| `m:start()` | start metro |
+| `m:start(time_optional)` | start metro, with optional new time value |
 | `m:stop()` | stop metro |
 
 ### slew
@@ -83,6 +85,7 @@ Stepped interpolation between values over specified time interval. No hard limit
 | --- | --- |
 | `pset_init(name)` | assign _name_ to pset files to be written and read |
 | `pset_write(index, table)` | writes pset number _index_ with data _table_ |
+| `pset_delete(index)` | deletes pset at _index_|
 | `table = pset_read(index)` | read pset number _index_ into _table_ |
 
 ### utils
@@ -103,11 +106,11 @@ Stepped interpolation between values over specified time interval. No hard limit
 | function | description |
 | --- | --- |
 | `device_id()` | returns device name |
-| `first(file)` | set _file_ to be run at startup, omit _file_ to remove current startup |
 | `ls()` | list files |
 | `cat(file)` | display _file_ |
 | `rm(file)` | remove _file_ |
 | `mem()` | display current memory availability |
 | `gc()` | garbage collector (see lua docs) |
 | `require(file)` | run _file_ |
+| `first(file)` | set _file_ to be run at startup, omit _file_ to remove current startup |
 

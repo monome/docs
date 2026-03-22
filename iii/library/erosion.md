@@ -14,17 +14,18 @@ for iii arc
 
 _four meta-knobs controlling four MIDI CC each_
 
-## media
+## Media
 
-- performance: [monome.org/erosion/](https://hyper8.monome.org/erosion/)
-- howto: [monome.org/erosion-how/](https://hyper8.monome.org/erosion-how/)
+- performance: [coolmaritime/erosion/](https://hyper8.monome.org/erosion/)
+- howto: [coolmaritime/erosion-how/](https://hyper8.monome.org/erosion-how/)
 
 
-## download
+## Download
 
-- [erosion.lua](https://raw.githubusercontent.com/tehn/erosion/refs/heads/main/erosion.lua) -- most recent version
+- [erosion.lua](https://codeberg.org/tehn/erosion/raw/branch/main/erosion.lua)
+- (archive) [erosion.lua](https://raw.githubusercontent.com/tehn/erosion/refs/heads/main/erosion.lua) -- v1.0.0 original firmware version
 
-## instructions
+## Instructions
 
 *erosion* starts in **PLAY**.
 

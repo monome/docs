@@ -22,7 +22,8 @@ made by [tehn](https://nnnnnnnn.co)
 
 ## download
 
-- [ribbons.lua](ribbons.lua)
+- [ribbons.lua](https://codeberg.org/tehn/iii-scripts/raw/branch/main/arc/ribbons.lua)
+- (archive)[ribbons.lua](archive/ribbons.lua) -- v1.0.0 original firmware version
 
 ## instructions
 

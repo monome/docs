@@ -22,7 +22,8 @@ made by [tehn](https://nnnnnnnn.co)
 
 ## download
 
-- [snows.lua](snows.lua)
+- [snows.lua](https://codeberg.org/tehn/iii-scripts/raw/branch/main/arc/snows.lua)
+- (archive) [snows.lua](snows.lua) -- v1.0.0 original firmware version
 
 ## instructions
 

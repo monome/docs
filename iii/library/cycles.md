@@ -16,11 +16,12 @@ _rotating MIDI CC with friction_
 
 made by [tehn](https://nnnnnnnn.co)
 
-## download
+## Download
 
-- [cycles.lua](cycles.lua)
+- [cycles.lua](https://codeberg.org/tehn/iii-scripts/raw/branch/main/arc/cycles.lua)
+- (archive) [cycles.lua](archive/cycles.lua) -- v1.0.0 original firmware version
 
-## instructions
+## Instructions
 
 Each knob spins a position which can be accelerated or decelerated with a turn. This position is transmitted as USB-MIDI CC.
 

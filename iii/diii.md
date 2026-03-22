@@ -1,3 +1,11 @@
+---
+layout: default
+title: diii
+has_children: false
+nav_exclude: false
+has_toc: false
+---
+
 ![](images/diii.png)
 
 # diii

@@ -1,3 +1,11 @@
+---
+layout: default
+title: diii-cli
+has_children: false
+nav_exclude: false
+has_toc: false
+---
+
 # diii-cli
 
 `diii` is a command line utility to manage and live-code iii devices. Also available is a [chromium-based version](/docs/iii/diii).

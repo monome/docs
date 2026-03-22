@@ -1,3 +1,11 @@
+---
+layout: default
+title: porting
+has_children: false
+nav_exclude: true
+has_toc: false
+---
+
 # Porting
 
 A few checklists and tips for porting to lua to iii.

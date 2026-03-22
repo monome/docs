@@ -1,6 +1,6 @@
-# diii
-
 ![](images/diii.png)
+
+# diii
 
 A web-based live-coding and management interface for iii devices, available [here](https://monome.org/diii). The iii sibling of [web-druid](https://github.com/dessertplanet/web-druid) that communicates with [crow](https://monome.org/docs/crow) and is in turn based on the python-based [druid](https://monome.org/docs/crow/druid) terminal app. Send commands, get text feedback, and manage the files on your iii device. See the source [here](https://github.com/monome/web-diii).
 
@@ -56,8 +56,8 @@ Above the repl input box are a few helpful buttons:
 - **bootloader** restarts the device into bootloader mode, which is only necessary for firmware updates
 - **reformat** clears all the files on the device. Note that lib.lua will be recreated automatically on reboot.
 
-## Acknowledgements 
+## Acknowledgements
 
 Based on [web-druid](https://github.com/dessertplanet/web-druid) which is in turn based on [druid](https://github.com/monome/druid).
 
-Code by [@dessertplanet](https://github.com/dessertplanet), commissioned by @tehn. 
+Code by Dune Desormeaux aka [@dessertplanet](https://github.com/dessertplanet), commissioned by @tehn.

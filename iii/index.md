@@ -11,8 +11,9 @@ nav_exclude: false
 An evolution of capabilities for monome grid and arc, where an interactive scripting environment runs on the device itself.
 
 - scripting is in Lua (which is familiar to [norns](https://monome.org/docs/norns) and [crow](https://monome.org/docs/crow))
-- scripts can be uploaded and stored, to be executed on startup
-- the device enumerates as USB-MIDI and provides scripting control over all MIDI communication. additionally USB-TTY access provides file transfer and live scripting interaction
+- scripts can be uploaded and executed on startup
+- the device enumerates as USB-MIDI for connecting directly to MIDI hosts
+- also enumerates as USB-TTY for file transfer and live scripting interaction
 - Lua libraries are provided for time-based operations (metros, measurement) and writing arbitrary data to the internal file system (ie: presets or stored sequences)
 
 The grid was originally conceived of as "doing nothing by itself" without being connected to a computer running a program. Now the tiny computer inside the grid (RP2040) is capable of various musical operations on its own. We're hoping this means in some cases simply requiring less complexity (as in, a specialized eurorack module or DAW plugin or tricky command line framework). It also provides the possibility to connect to less-general-purpose computers (like phones) who prefer MIDI rather than serial.

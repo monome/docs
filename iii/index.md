@@ -28,7 +28,7 @@ grid -- [editions](/docs/grid/editions)
 
 - yes: 2022 and later grids (includes grids one and zero).
 - no: 2020-2021 grids use different microcontroller, hence cannot use this firmware. (they are, however, mechanically compatible so we are considering a PCB upgrade. TBA.)
-- no: all other grids use an FTDI USB Serial chip which means they can't do USB-MIDI. 
+- no: all other grids use an FTDI USB Serial chip which means they can't do USB-MIDI.
 
 arc -- [editions](/docs/arc/editions)
 
@@ -41,9 +41,9 @@ See [github.com/monome/iii](https://github.com/monome/iii/releases) for latest r
 
 ## Firmware via Bootloader Switch
 
-Note 1: arc ships with iii support but still may need to be updated to the newest version. For firmware updates, activate the bootloader via `diii`.
+_Note:_ arc ships with iii support but still needs to be updated to the newest version. For firmware updates, activate the bootloader via `diii`, see below.
 
-Note 2: grids from 2022 have a different LED driver and hence require a different firmware. Identify the PCB revision by checking the date on the corner.
+_Note:_ grids from 2022 have a different LED driver and hence require a different firmware. Identify the PCB revision by checking the date on the corner.
 
 - Remove the bottom screws.
 - Locate the golden pushbutton near the USB port. Hold it down while connecting the grid to a computer. This will start the device in bootloader mode.
@@ -66,7 +66,7 @@ The "mode" is indicated by the startup light pattern.
 (Particles looks like an explosion, plasma more like waves).
 
 To change the mode, while powering up the device hold down
-- grid: key 1,1 (top left) 
+- grid: key 1,1 (top left)
 - arc: there's only one key
 
 To force-clear a script, switch _into_ iii mode while holding down the key until the timer animation completes. (This may be helpful for debugging a locked-up script).

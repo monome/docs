@@ -99,7 +99,7 @@ grid
 - [meadowphysics](library/mp) - rhizomatic cascading counter
 - [wake](library/wake) - polymodulated parameter sequencer
 
-See the [iii thread]() on the lines forum for other community scripts.
+See the [iii thread](https://llllllll.co/t/iii/74311) on the lines forum for other community scripts.
 
 Note: if you've written a script for the old firmware, here's a short [porting guide](/docs/iii/porting) to update the syntax.
 
@@ -123,7 +123,7 @@ end
 
 See the [scripting reference](/docs/iii/code) for library functions.
 
-Discussion happens at [iii scripting thread]() on the lines forum.
+Discussion happens at [iii scripting thread](https://llllllll.co/t/iii-scripting/74312) on the lines forum.
 
 
 ## Further

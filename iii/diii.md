@@ -4,6 +4,8 @@
 
 A web-based live-coding and management interface for iii devices, available [here](https://monome.org/diii). The iii sibling of [web-druid](https://github.com/dessertplanet/web-druid) that communicates with [crow](https://monome.org/docs/crow) and is in turn based on the python-based [druid](https://monome.org/docs/crow/druid) terminal app. Send commands, get text feedback, and manage the files on your iii device. See the source [here](https://github.com/monome/web-diii).
 
+&rarr; [monome.org/diii](https://monome.org/diii)
+
 ## requirements
 
 Uses the Web Serial API that is only available in chromium-based browsers like Chrome, Chromium, Edge, and Opera.

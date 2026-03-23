@@ -37,7 +37,7 @@ arc -- [editions](/docs/arc/editions)
 
 ## Firmware Files
 
-See [github.com/monome/iii](https://github.com/monome/iii/releases) for latest release files.
+See [github.com/monome/iii](https://github.com/monome/iii/releases/latest) for latest release files.
 
 ## Firmware via Bootloader Switch
 
@@ -55,6 +55,7 @@ _Note:_ grids from 2022 have a different LED driver and hence require a differen
 
 For firmware _updates_ you can use the `diii` application (see below) to reboot the device into bootloader mode without opening the unit again.
 
+_Note:_ If you had a previous beta firmware installed, execute `fs_reformat()` (or click the reformat button) and restart the device to ensure the newest lib is installed.
 
 ## Modes
 

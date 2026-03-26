@@ -63,8 +63,12 @@ Note these are hardware driven, limited to 15 total. You can of course use one f
 | function | description |
 | --- | --- |
 | `m = metro.init(callback, time_sec, count_optional)` | initialize a metro _m_, with callback function, time in seconds, (optional) count before stop |
-| `m:start(time_optional)` | start metro, with optional new time value |
+| `m:start(time_optional)` | start metro, with optional new time value. can be repeatedly called to restart and set new values |
 | `m:stop()` | stop metro |
+| `m.time = 0.1` | set metro time |
+| `m.free(m.id)` | free metro |
+| `m.free_all()` | free all metros |
+
 
 ### slew
 

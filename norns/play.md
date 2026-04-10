@@ -282,13 +282,17 @@ Jump to the menus interface and use **E1** to navigate to the tape screen.
 
 *nb. PLAY expects 48khz files (both stereo and mono supported). WAV, AIFF, FLAC and other uncompressed header / sample formats supported by libsndfile will all work (including RAW).*
 
-**start/stop loop**
+**loop enable / disable**
+
+- turn **E3** clockwise to enable looping
+- turn **E3** counter-clockwise to disable looping
+
+**transport controls**
 
 - when a clip is loaded, its name will appear in the PLAY lane
 - press **K3** to START playback
-- during playback, press **K3** to STOP and clear the clip
-
-As of this writing, sounds always loop and there are no additional transport controls.
+- during playback, press **K3** to PAUSE and RESUME playback
+- press **K2** and select `unload` to stop playback or press `cancel` to return
 
 ### rec
 
@@ -305,12 +309,15 @@ On the tape screen, press **K2** to switch between the PLAY and REC lanes.
 - name your tape, or feel free to use the pre-populated counter
   - see [*figure 5*](image/play-images/menu-params_pset.png) for tips on navigating the naming dialogue
 - when you arrive back at the tape menu, press **K3** to record
+- during recording, press **K3** to PAUSE and RESUME the recording
 
 REC creates 48khz stereo WAV files and stores them under `we/dust/audio/tape`
 
 **stop recording**
 
-- with the REC lane selected, press **K3** stop an active recording
+- with the REC lane selected, press **K2** to open the stop dialog
+  - choose `unload` to stop the recording and save the file
+  - choose `cancel` to return to the tape screen without stopping
 - the tape will be saved as a stereo 48khz .wav file with the name you gave it
 
 **deleting, exporting, and importing files**

@@ -12,7 +12,7 @@ A few checklists and tips for porting to lua to iii.
 
 ## from v1.0.0
 
-- Time units changed from ms to second. Multiply your time units by 1000 for metro, get_time(), and slews. Time units are now a float (decimal) and not an int (whole number).
+- Time units changed from ms to second. Divide your time units by 1000 for metro, get_time(), and slews. Time units are now a float (decimal) and not an int (whole number).
 - `metro` syntax now is the same as on norns.
 
 Example old script:

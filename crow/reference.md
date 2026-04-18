@@ -603,8 +603,23 @@ coro_id = clock.run(func [, args]) -- run function "func", and optional [args] g
 clock.cancel(coro_id)              -- cancel a clock started by clock.run (requires coro_id)
 clock.sleep(seconds)               -- sleep specified time (in seconds)
 clock.sync(beats)                  -- sleep until next sync at intervals "beats" (ie, 1/4)
+clock.sync(beats, offset)          -- clock.sync can take an optional beat "offset"
 clock.cleanup()                    -- kill all currently-running clocks
 ```
+
+The `offset` parameter to `clock.sync(beats, offset)` allows for the synchronization to be shifted forward or backward in time from the clock division specified by `beats`:
+```lua
+-- sync and resume at the next whole beat as usual:
+clock.sync(1)
+-- sync and resume at the next whole beat with a half-beat delay:
+clock.sync(1, 0.5)
+-- sync to the next 4th beat, but resume earlier by a quarter-beat:
+clock.sync(4, -1/4)
+```
+
+A bit of extra care should be taken with negative offsets, as they can lead to somewhat unexpected delays. For example, `clock.sync(2, -2.5)` called at beat 0 will schedule resumption of the coroutine at beat 1.5. This is computed as 4 - 2.5, where 4 is the least possible beat divisible by the sync value of 2 which can also be scheduled in the future with an offset of -2.5 beats.
+
+With positive offsets, sync will just be delayed by the time specified (in beats).
 
 ### Tempo and Timing
 {: .no_toc }
@@ -614,9 +629,44 @@ clock.tempo = t           -- assign clock tempo to t beats-per-minute
 _ = clock.tempo           -- get tempo value (BPM)
 _ = clock.get_beats       -- get count of beats since the clock started
 _ = clock.get_beat_sec    -- get the length of a beat in seconds
+
+-- assign a function to be called when the tempo changes
+clock.handlers.tempo_change = function(tempo)
+  print("tempo: "..tempo)
+end
 ```
 
 crow's clock can also be driven by one of crow's inputs using the 'clock' [input mode](#input-modes). In this mode, setting `clock.tempo` has no effect, but the current input tempo can be queried with `clock.tempo`.
+
+`clock.time_since_last_input()` returns the time in seconds since an input in 'clock' mode received a trigger. If no 'clock' mode input has received a trigger since crow powered on, it will return -1. You can use this value to implement a timeout that checks if an input is actually receiving a clock signal:
+```lua
+function await_clock()
+  -- put input 1 into "change" mode, waiting for a trigger
+  input[1].mode( 'change', 3, 0.1, 'rising' )
+  input[1].change = function()
+    -- when the input receives a trigger, put it into clock mode
+    input[1].mode('clock', 1/4)
+    print('clocked')
+    clock_timeout:start() -- start the timeout metro
+  end
+end
+
+clock_timeout = metro.init{
+  event = function()
+    if clock.time_since_last_input() > 4 then -- 4 second timeout
+      -- stop the timeout metro
+      clock_timeout:stop()
+      -- put the input back into "change" mode, waiting for a clock
+      await_clock()
+      print('unclocked')
+    end
+  end,
+  time  = 1.0,
+  count = -1
+}
+
+await_clock()
+```
 
 The clock can be stopped & started, and events can occur when doing either. The clock starts running when crow awakens. Note start/stopping the clock does not affect `clock.sleep` calls.
 

@@ -80,7 +80,7 @@ Running: clock divider
 
 You just uploaded your first crow script!
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/902346947?color=ff7700&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.dndrks.com/monome/clockdiv-lua/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – clockdiv.lua&quot;"></iframe>
 
 Patch a trigger or LFO into input 1 and crow will now be sending clock divided gates to all 4 outputs. Try patching crow's outputs to anything expecting triggers. Make some envelopes with Just Friends' *trigger* inputs in *shape/transient* mode, or ping Three Sisters' filters by patching crow's outputs directly to Three Sisters' 4 input jacks and turn *quality* up to 3:00 on the dial.
 

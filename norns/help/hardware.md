@@ -92,7 +92,7 @@ You can buy a CM3+ through [these links](https://www.raspberrypi.com/products/co
 
 There is no soldering needed, but you will have to disassemble your norns a bit. Please follow this tutorial video:
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/523980765?byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.dndrks.com/monome/norns-cm3-upgrade-walkthrough/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – norns CM3+ upgrade walkthrough&quot;"></iframe>
 
 *Note: please see [data management help](/docs/norns/help/data/#expanding-storage) for up-to-date information about the filesystem expansion steps.*
 
@@ -158,7 +158,7 @@ If you've hit the end of this list without success, we recommend searching onlin
 
 If your norns does not seem to booting, it's possible that either the Compute Module (CM3) is not seated correctly, or the screen ribbon is pressing against the CM3 when its fully assembled and shorting the chip.
 
-Follow along with the disassembly video [here](https://vimeo.com/523980765). Re-seating the CM3 will simply involve ejecting it (shown ~2:30 in the video), aligning it confidently, and placing it in again. As you reassemble the unit, before you screw the board back to the enclosure, check to see if it will power as expected -- the board will be loosely tethered by the screen ribbon and the battery connector. If it boots, then you'll need to ensure that the folds on the screen ribbon are tight -- this should help reduce the pressure against the CM3. Just fold them a bit tighter and, as a final test, try screwing the board back to the enclosure to verify that the ribbon is no longer pushing the chip down.
+Follow along with the disassembly video [here](https://hyper8.dndrks.com/monome/norns-cm3-upgrade-walkthrough/). Re-seating the CM3 will simply involve ejecting it (shown ~2:30 in the video), aligning it confidently, and placing it in again. As you reassemble the unit, before you screw the board back to the enclosure, check to see if it will power as expected -- the board will be loosely tethered by the screen ribbon and the battery connector. If it boots, then you'll need to ensure that the folds on the screen ribbon are tight -- this should help reduce the pressure against the CM3. Just fold them a bit tighter and, as a final test, try screwing the board back to the enclosure to verify that the ribbon is no longer pushing the chip down.
 
 ### norns shield {#boot-shield}
 

@@ -6,7 +6,7 @@ nav_order: 6
 permalink: /crow/max-m4l/
 ---
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/437853836" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.dndrks.com/monome/crow-2-0-max-and-max-for-live/embed/" style="aspect-ratio: 1.7777778; border: none; width: 100%;" title="Video player widget for &quot;Embed – crow 2.0: max and max for live&quot;"></iframe>
 
 # Max and Max for Live
 

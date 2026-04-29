@@ -77,7 +77,7 @@ The easiest method to flash the disk image is using either [Etcher](https://www.
 
 For a visual guide to the Imager, see [this video from the Raspberry Pi Foundation](https://www.youtube.com/watch?v=ntaXWS8Lk34).
 
-If you'd like a visual companion to the Etcher process, steps 2 and onward are also demonstrated [in this video from monome](https://vimeo.com/523980765#t=220s).
+If you'd like a visual companion to the Etcher process, steps 2 and onward are also demonstrated [in this video](https://hyper8.dndrks.com/monome/norns-cm3-upgrade-walkthrough/#time=220s).
 
 If Etcher or the Imager do not work for you, or if you prefer to use the command line, see [this guide](https://github.com/monome/norns-image/blob/main/readme-usbdisk.md).
 

@@ -608,7 +608,7 @@ and then on to [study 1: many tomorrows](../study-1) for a more in-depth scripti
 ## resources
 
 - [script reference](../reference) - lists of norns API commands and how to use them
-- [firstlight walkthrough](https://vimeo.com/515473339) - a recorded livestream of a _firstlight_ study walkthrough
+- [firstlight walkthrough](https://hyper8.dndrks.com/monome/first-light-norns-study-0-livestream/) - a recorded livestream of a _firstlight_ study walkthrough
 
 ## continued
 {: .no_toc }

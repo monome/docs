@@ -29,8 +29,8 @@ shield has its own WiFi antenna built in (3B: 2.4Ghz, 3B+/4: 2.4Ghz and 5Ghz), t
 
 The first few minutes of this video walks through how to host a hotspot from norns and how to connect norns to a known WiFi network:
 
-<div style="padding:62.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/436460489?title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-*[figure 1: WiFi + maiden access video](https://vimeo.com/436460489)*
+<iframe allow="fullscreen" loading="lazy" src="https://hyper8.dndrks.com/monome/norns-walkthrough-wifi-maiden/embed/" style="aspect-ratio: 1.6; border: none; width: 100%;" title="Video player widget for &quot;Embed – norns walkthrough: WIFI + maiden&quot;"></iframe>
+*[figure 1: WiFi + maiden access video](https://hyper8.dndrks.com/monome/norns-walkthrough-wifi-maiden/)*
 
 To connect norns to your local network router:
 

@@ -93,7 +93,7 @@ async function run() {
 run()
 ```
 
-The library communicates with *serialosc* to discover attached devices using OSC. For a detailed description of how the mechanism and protocol work, see [monome.org/docs/tech:osc](http://monome.org/docs/tech:osc).
+The library communicates with *serialosc* to discover attached devices using OSC. For a detailed description of how the mechanism and protocol work, see [monome.org/docs/serialosc](https://monome.org/docs/serialosc/).
 
 ## 2. Basics
 

@@ -35,6 +35,8 @@ arc -- [editions](/docs/arc/editions)
 - yes: 2025. has pushbutton.
 - no: everything else.
 
+_Note:_ [viii](https://github.com/dessertplanet/viii) is a browser-based virtual iii environment for grid and arc editions that don't support iii.
+
 ## Firmware Files
 
 See [github.com/monome/iii](https://github.com/monome/iii/releases/latest) for latest release files.
@@ -80,10 +82,9 @@ A browser-based utility to manage and live-code iii devices.
 
 [monome.org/diii](https://monome.org/diii)
 
-See the [full docmentation](/docs/iii/diii).
+See the [full documentation](/docs/iii/diii).
 
 Alternatively, see the Python-based [command line version](/docs/iii/diii-cli).
-
 
 ## Library
 

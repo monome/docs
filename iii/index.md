@@ -139,5 +139,5 @@ Please do not clone monome designs for commercial purposes. It directly impacts 
 
 ## Acknowledgements
 
-iii is a monome initiative, designed and coded primary by Brian Crabtree aka [tehn](https://nnnnnnnn.co) and [Ezra Buchla](https://ezrabuchla.com). web-diii was coded by Dune Desormeaux aka [dessertplanet](https://github.com/dessertplanet).
+iii is a monome initiative, designed and coded primary by Brian Crabtree aka [tehn](https://nnnnnnnn.co) and [Ezra Buchla](https://ezrabuchla.com). web-diii was coded by Dune Desormeaux aka [dessertplanet](https://dessertplanet.co).
 

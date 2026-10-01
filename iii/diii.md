@@ -70,4 +70,4 @@ Above the repl input box are a few helpful buttons:
 
 Based on [web-druid](https://github.com/dessertplanet/web-druid) which is in turn based on [druid](https://github.com/monome/druid).
 
-Code by Dune Desormeaux aka [@dessertplanet](https://github.com/dessertplanet), commissioned by @tehn.
+Code by Dune Desormeaux aka [@dessertplanet](https://dessertplanet.co), commissioned by @tehn.

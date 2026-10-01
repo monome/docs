@@ -161,7 +161,7 @@ After this logout and login again or simply restart.
 
 ## using druid in your browser
 
-If you'd rather avoid the command line, you can use **web-druid**, an in-progress browser-based REPL + Lua editor for crow developed by [@dessertplanet](https://github.com/dessertplanet). It works with Chromium-based browsers supporting Web Serial (e.g. Chrome, Edge, Opera). It features a split-screen layout with a Monaco code editor on the left and an output/input REPL on the right, similar to maiden's interface.
+If you'd rather avoid the command line, you can use **web-druid**, an in-progress browser-based REPL + Lua editor for crow developed by [@dessertplanet](https://dessertplanet.co). It works with Chromium-based browsers supporting Web Serial (e.g. Chrome, Edge, Opera). It features a split-screen layout with a Monaco code editor on the left and an output/input REPL on the right, similar to maiden's interface.
 
 ### quick start
 1. Clone or download the `dessertplanet/web-druid` repository from GitHub. 

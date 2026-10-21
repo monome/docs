@@ -1,0 +1,663 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>norns/docs</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>norns</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Presets">Presets </a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/arc.html">arc</a></li>
+  <li><a href="../modules/audio.html">audio</a></li>
+  <li><a href="../modules/clock.html">clock</a></li>
+  <li><strong>controlspec</strong></li>
+  <li><a href="../modules/crow.html">crow</a></li>
+  <li><a href="../modules/core.crow.public.html">core.crow.public</a></li>
+  <li><a href="../modules/core.crow.quote.html">core.crow.quote</a></li>
+  <li><a href="../modules/encoders.html">encoders</a></li>
+  <li><a href="../modules/engine.html">engine</a></li>
+  <li><a href="../modules/gamepad.html">gamepad</a></li>
+  <li><a href="../modules/grid.html">grid</a></li>
+  <li><a href="../modules/hid.html">hid</a></li>
+  <li><a href="../modules/keyboard.html">keyboard</a></li>
+  <li><a href="../modules/metro.html">metro</a></li>
+  <li><a href="../modules/midi.html">midi</a></li>
+  <li><a href="../modules/norns.html">norns</a></li>
+  <li><a href="../modules/osc.html">osc</a></li>
+  <li><a href="../modules/params.binary.html">params.binary</a></li>
+  <li><a href="../modules/params.control.html">params.control</a></li>
+  <li><a href="../modules/params.file.html">params.file</a></li>
+  <li><a href="../modules/params.group.html">params.group</a></li>
+  <li><a href="../modules/params.number.html">params.number</a></li>
+  <li><a href="../modules/params.option.html">params.option</a></li>
+  <li><a href="../modules/params.separator.html">params.separator</a></li>
+  <li><a href="../modules/params.taper.html">params.taper</a></li>
+  <li><a href="../modules/params.text.html">params.text</a></li>
+  <li><a href="../modules/params.trigger.html">params.trigger</a></li>
+  <li><a href="../modules/paramset.html">paramset</a></li>
+  <li><a href="../modules/poll.html">poll</a></li>
+  <li><a href="../modules/screen.html">screen</a></li>
+  <li><a href="../modules/script.html">script</a></li>
+  <li><a href="../modules/serial.html">serial</a></li>
+  <li><a href="../modules/softcut.html">softcut</a></li>
+  <li><a href="../modules/lib.beatclock.html">lib.beatclock</a></li>
+  <li><a href="../modules/lib.container.defaulttable.html">lib.container.defaulttable</a></li>
+  <li><a href="../modules/lib.container.deque.html">lib.container.deque</a></li>
+  <li><a href="../modules/lib.container.observable.html">lib.container.observable</a></li>
+  <li><a href="../modules/lib.container.watchtable.html">lib.container.watchtable</a></li>
+  <li><a href="../modules/lib.container.weaktable.html">lib.container.weaktable</a></li>
+  <li><a href="../modules/lib.elca.html">lib.elca</a></li>
+  <li><a href="../modules/lib.envgraph.html">lib.envgraph</a></li>
+  <li><a href="../modules/lib.er.html">lib.er</a></li>
+  <li><a href="../modules/lib.fileselect.html">lib.fileselect</a></li>
+  <li><a href="../modules/lib.filtergraph.html">lib.filtergraph</a></li>
+  <li><a href="../modules/lib.filters.html">lib.filters</a></li>
+  <li><a href="../modules/lib.formatters.html">lib.formatters</a></li>
+  <li><a href="../modules/lib.graph.html">lib.graph</a></li>
+  <li><a href="../modules/lib.intonation.html">lib.intonation</a></li>
+  <li><a href="../modules/lib.lattice.html">lib.lattice</a></li>
+  <li><a href="../modules/lib.lfo.html">lib.lfo</a></li>
+  <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
+  <li><a href="../modules/lib.musicutil.html">lib.musicutil</a></li>
+  <li><a href="../modules/lib.pattern_time.html">lib.pattern_time</a></li>
+  <li><a href="../modules/lib.reflection.html">lib.reflection</a></li>
+  <li><a href="../modules/lib.sequins.html">lib.sequins</a></li>
+  <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
+  <li><a href="../modules/lib.textentry.html">lib.textentry</a></li>
+  <li><a href="../modules/lib.textentry_kbd.html">lib.textentry_kbd</a></li>
+  <li><a href="../modules/lib.timeline.html">lib.timeline</a></li>
+  <li><a href="../modules/lib.ui.html">lib.ui</a></li>
+  <li><a href="../modules/lib.util.html">lib.util</a></li>
+  <li><a href="../modules/lib.voice.html">lib.voice</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>controlspec</code></h1>
+<p>ControlSpec Class</p>
+<p> The <a href="https://monome.org/docs/norns/reference/">norns script reference</a>
+ has <a href="https://monome.org/docs/norns/reference/controlspec">examples for this module</a>.</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new">new (min, max, warp, step, default, units, quantum, wrap)</a></td>
+	<td class="summary">constructor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#def">def (args)</a></td>
+	<td class="summary">create generic controlspec
+ helper function to create controlspec using a table of parameters</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#map">map (value)</a></td>
+	<td class="summary">transform an incoming value between 0 and 1 through this ControlSpec</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#unmap">unmap (value)</a></td>
+	<td class="summary">untransform a transformed value into its original value</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#copy">copy ()</a></td>
+	<td class="summary">copy this ControlSpec into a new one</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#print">print ()</a></td>
+	<td class="summary">print out the configuration of this ControlSpec</td>
+	</tr>
+</table>
+<h2><a href="#Presets">Presets </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#UNIPOLAR">UNIPOLAR</a></td>
+	<td class="summary">converts values to a unipolar range</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#BIPOLAR">BIPOLAR</a></td>
+	<td class="summary">converts values to bipolar range</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#FREQ">FREQ</a></td>
+	<td class="summary">converts to a frequency range</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#LOFREQ">LOFREQ</a></td>
+	<td class="summary">converts to a low frequency range</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#MIDFREQ">MIDFREQ</a></td>
+	<td class="summary">converts to a mid frequency range</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WIDEFREQ">WIDEFREQ</a></td>
+	<td class="summary">converts to an exponential frequency range from 0.1 to 20khz</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#PHASE">PHASE</a></td>
+	<td class="summary">maps into pi for controlling phase values</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#RQ">RQ</a></td>
+	<td class="summary">converts to an exponential RQ range</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#MIDI">MIDI</a></td>
+	<td class="summary">converts to a MIDI range (default 64)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#MIDINOTE">MIDINOTE</a></td>
+	<td class="summary">converts to a range for MIDI notes (default 60)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#MIDIVELOCITY">MIDIVELOCITY</a></td>
+	<td class="summary">converts to a range for MIDI velocity (default 64)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DB">DB</a></td>
+	<td class="summary">converts to a dB range</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AMP">AMP</a></td>
+	<td class="summary">converts to a linear amplitude range (0-1)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#PAN">PAN</a></td>
+	<td class="summary">converts to a panning range (-1 - 1)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DETUNE">DETUNE</a></td>
+	<td class="summary">converts to a detune range</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#RATE">RATE</a></td>
+	<td class="summary">converts to a sensible range for playback rate</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#BEATS">BEATS</a></td>
+	<td class="summary">convert to a good range for beats</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DELAY">DELAY</a></td>
+	<td class="summary">converts to a good range for delay</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new (min, max, warp, step, default, units, quantum, wrap)</strong>
+    </dt>
+    <dd>
+    constructor
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">min</span>
+            <span class="types"><span class="type">number</span></span>
+         the minimum value of the output range
+        </li>
+        <li><span class="parameter">max</span>
+            <span class="types"><span class="type">number</span></span>
+         the maximum value of the output range
+        </li>
+        <li><span class="parameter">warp</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         ('exp', 'db', 'lin') a shaping option for incoming data (default is 'lin')
+        </li>
+        <li><span class="parameter">step</span>
+            <span class="types"><span class="type">number</span></span>
+         quantization value. output will be rounded to a multiple of step
+        </li>
+        <li><span class="parameter">default</span>
+            <span class="types"><span class="type">number</span></span>
+         a default value for when no value has been set
+        </li>
+        <li><span class="parameter">units</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         an indicator for the unit of measure the data represents
+        </li>
+        <li><span class="parameter">quantum</span>
+            <span class="types"><span class="type">number</span></span>
+         input quantization value. adjustments are made by this fraction of the range
+        </li>
+        <li><span class="parameter">wrap</span>
+            <span class="types"><span class="type">boolean</span></span>
+         true to wrap around on overflow rather than clamping
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ControlSpec</span></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "def"></a>
+    <strong>def (args)</strong>
+    </dt>
+    <dd>
+    create generic controlspec
+ helper function to create controlspec using a table of parameters
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">args</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "map"></a>
+    <strong>map (value)</strong>
+    </dt>
+    <dd>
+    transform an incoming value between 0 and 1 through this ControlSpec
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span></span>
+         the incoming value
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        the transformed value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "unmap"></a>
+    <strong>unmap (value)</strong>
+    </dt>
+    <dd>
+    untransform a transformed value into its original value
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span></span>
+         a previously transformed value
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        the reverse-transformed value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "copy"></a>
+    <strong>copy ()</strong>
+    </dt>
+    <dd>
+    copy this ControlSpec into a new one
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">ControlSpec</span></span>
+        a new ControlSpec
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "print"></a>
+    <strong>print ()</strong>
+    </dt>
+    <dd>
+    print out the configuration of this ControlSpec
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Presets"></a>Presets </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "UNIPOLAR"></a>
+    <strong>UNIPOLAR</strong>
+    </dt>
+    <dd>
+    converts values to a unipolar range
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "BIPOLAR"></a>
+    <strong>BIPOLAR</strong>
+    </dt>
+    <dd>
+    converts values to bipolar range
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "FREQ"></a>
+    <strong>FREQ</strong>
+    </dt>
+    <dd>
+    converts to a frequency range
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "LOFREQ"></a>
+    <strong>LOFREQ</strong>
+    </dt>
+    <dd>
+    converts to a low frequency range
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "MIDFREQ"></a>
+    <strong>MIDFREQ</strong>
+    </dt>
+    <dd>
+    converts to a mid frequency range
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "WIDEFREQ"></a>
+    <strong>WIDEFREQ</strong>
+    </dt>
+    <dd>
+    converts to an exponential frequency range from 0.1 to 20khz
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "PHASE"></a>
+    <strong>PHASE</strong>
+    </dt>
+    <dd>
+    maps into pi for controlling phase values
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "RQ"></a>
+    <strong>RQ</strong>
+    </dt>
+    <dd>
+    converts to an exponential RQ range
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "MIDI"></a>
+    <strong>MIDI</strong>
+    </dt>
+    <dd>
+    converts to a MIDI range (default 64)
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "MIDINOTE"></a>
+    <strong>MIDINOTE</strong>
+    </dt>
+    <dd>
+    converts to a range for MIDI notes (default 60)
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "MIDIVELOCITY"></a>
+    <strong>MIDIVELOCITY</strong>
+    </dt>
+    <dd>
+    converts to a range for MIDI velocity (default 64)
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DB"></a>
+    <strong>DB</strong>
+    </dt>
+    <dd>
+    converts to a dB range
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AMP"></a>
+    <strong>AMP</strong>
+    </dt>
+    <dd>
+    converts to a linear amplitude range (0-1)
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "PAN"></a>
+    <strong>PAN</strong>
+    </dt>
+    <dd>
+    converts to a panning range (-1 - 1)
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DETUNE"></a>
+    <strong>DETUNE</strong>
+    </dt>
+    <dd>
+    converts to a detune range
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "RATE"></a>
+    <strong>RATE</strong>
+    </dt>
+    <dd>
+    converts to a sensible range for playback rate
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "BEATS"></a>
+    <strong>BEATS</strong>
+    </dt>
+    <dd>
+    convert to a good range for beats
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DELAY"></a>
+    <strong>DELAY</strong>
+    </dt>
+    <dd>
+    converts to a good range for delay
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2026-10-21 11:48:37 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

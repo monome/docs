@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>norns/docs</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>norns</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/arc.html">arc</a></li>
+  <li><a href="../modules/audio.html">audio</a></li>
+  <li><a href="../modules/clock.html">clock</a></li>
+  <li><a href="../modules/controlspec.html">controlspec</a></li>
+  <li><a href="../modules/crow.html">crow</a></li>
+  <li><a href="../modules/core.crow.public.html">core.crow.public</a></li>
+  <li><a href="../modules/core.crow.quote.html">core.crow.quote</a></li>
+  <li><a href="../modules/encoders.html">encoders</a></li>
+  <li><a href="../modules/engine.html">engine</a></li>
+  <li><a href="../modules/gamepad.html">gamepad</a></li>
+  <li><a href="../modules/grid.html">grid</a></li>
+  <li><a href="../modules/hid.html">hid</a></li>
+  <li><a href="../modules/keyboard.html">keyboard</a></li>
+  <li><a href="../modules/metro.html">metro</a></li>
+  <li><a href="../modules/midi.html">midi</a></li>
+  <li><a href="../modules/norns.html">norns</a></li>
+  <li><a href="../modules/osc.html">osc</a></li>
+  <li><a href="../modules/params.binary.html">params.binary</a></li>
+  <li><a href="../modules/params.control.html">params.control</a></li>
+  <li><a href="../modules/params.file.html">params.file</a></li>
+  <li><a href="../modules/params.group.html">params.group</a></li>
+  <li><a href="../modules/params.number.html">params.number</a></li>
+  <li><a href="../modules/params.option.html">params.option</a></li>
+  <li><a href="../modules/params.separator.html">params.separator</a></li>
+  <li><a href="../modules/params.taper.html">params.taper</a></li>
+  <li><a href="../modules/params.text.html">params.text</a></li>
+  <li><a href="../modules/params.trigger.html">params.trigger</a></li>
+  <li><a href="../modules/paramset.html">paramset</a></li>
+  <li><a href="../modules/poll.html">poll</a></li>
+  <li><a href="../modules/screen.html">screen</a></li>
+  <li><a href="../modules/script.html">script</a></li>
+  <li><a href="../modules/serial.html">serial</a></li>
+  <li><a href="../modules/softcut.html">softcut</a></li>
+  <li><a href="../modules/lib.beatclock.html">lib.beatclock</a></li>
+  <li><a href="../modules/lib.container.defaulttable.html">lib.container.defaulttable</a></li>
+  <li><a href="../modules/lib.container.deque.html">lib.container.deque</a></li>
+  <li><a href="../modules/lib.container.observable.html">lib.container.observable</a></li>
+  <li><a href="../modules/lib.container.watchtable.html">lib.container.watchtable</a></li>
+  <li><a href="../modules/lib.container.weaktable.html">lib.container.weaktable</a></li>
+  <li><a href="../modules/lib.elca.html">lib.elca</a></li>
+  <li><a href="../modules/lib.envgraph.html">lib.envgraph</a></li>
+  <li><a href="../modules/lib.er.html">lib.er</a></li>
+  <li><a href="../modules/lib.fileselect.html">lib.fileselect</a></li>
+  <li><a href="../modules/lib.filtergraph.html">lib.filtergraph</a></li>
+  <li><a href="../modules/lib.filters.html">lib.filters</a></li>
+  <li><a href="../modules/lib.formatters.html">lib.formatters</a></li>
+  <li><a href="../modules/lib.graph.html">lib.graph</a></li>
+  <li><a href="../modules/lib.intonation.html">lib.intonation</a></li>
+  <li><a href="../modules/lib.lattice.html">lib.lattice</a></li>
+  <li><strong>lib.lfo</strong></li>
+  <li><a href="../modules/lib.listselect.html">lib.listselect</a></li>
+  <li><a href="../modules/lib.musicutil.html">lib.musicutil</a></li>
+  <li><a href="../modules/lib.pattern_time.html">lib.pattern_time</a></li>
+  <li><a href="../modules/lib.reflection.html">lib.reflection</a></li>
+  <li><a href="../modules/lib.sequins.html">lib.sequins</a></li>
+  <li><a href="../modules/lib.tabutil.html">lib.tabutil</a></li>
+  <li><a href="../modules/lib.textentry.html">lib.textentry</a></li>
+  <li><a href="../modules/lib.textentry_kbd.html">lib.textentry_kbd</a></li>
+  <li><a href="../modules/lib.timeline.html">lib.timeline</a></li>
+  <li><a href="../modules/lib.ui.html">lib.ui</a></li>
+  <li><a href="../modules/lib.util.html">lib.util</a></li>
+  <li><a href="../modules/lib.voice.html">lib.voice</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>lib.lfo</code></h1>
+<p>LFOs for general-purpose scripting</p>
+<p> inspired by contributions from @markwheeler (changes), @justmat (hnds), and @sixolet (toolkit)
+ added by @dndrks + @sixolet, with improvements by @Dewb and @sonoCircuit</p>
+
+<p> The <a href="https://monome.org/docs/norns/reference/">norns script reference</a>
+ has <a href="https://monome.org/docs/norns/reference/lib/lfo">examples for this module</a>.</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new">new (shape, min, max, depth, mode, period, action, phase, baseline)</a></td>
+	<td class="summary">construct an LFO</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#add">add (args)</a></td>
+	<td class="summary">construct an LFO via table arguments
+ eg.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#start">start (from_parameter)</a></td>
+	<td class="summary">start LFO</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stop">stop ()</a></td>
+	<td class="summary">stop LFO</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#set">set (var, arg)</a></td>
+	<td class="summary">set LFO variable state</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#get">get (var)</a></td>
+	<td class="summary">get LFO variable state</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#reset_phase">reset_phase ()</a></td>
+	<td class="summary">reset the LFO's phase</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#add_params">add_params (id[, sep[, group]])</a></td>
+	<td class="summary">Build parameter menu UI for an already-constructed LFO.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new (shape, min, max, depth, mode, period, action, phase, baseline)</strong>
+    </dt>
+    <dd>
+    construct an LFO
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">shape</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         The shape for this LFO (options: 'sine', 'tri', 'up', 'down', 'square', 'random'; default: 'sine')
+        </li>
+        <li><span class="parameter">min</span>
+            <span class="types"><span class="type">number</span></span>
+         The minimum bound for this LFO (default: 0)
+        </li>
+        <li><span class="parameter">max</span>
+            <span class="types"><span class="type">number</span></span>
+         The maximum bound for this LFO (default: 1)
+        </li>
+        <li><span class="parameter">depth</span>
+            <span class="types"><span class="type">number</span></span>
+         The depth of modulation between min/max (range: 0.0 to 1.0; default: 0.0)
+        </li>
+        <li><span class="parameter">mode</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         How to advance the LFO (options: 'clocked', 'free'; default: 'clocked')
+        </li>
+        <li><span class="parameter">period</span>
+            <span class="types"><span class="type">number</span></span>
+         The timing of this LFO's advancement. If mode is 'clocked', argument is in beats. If mode is 'free', argument is in seconds.
+        </li>
+        <li><span class="parameter">action</span>
+            <span class="types"><span class="type">function</span></span>
+         A callback function to perform as the LFO advances. This library passes both the scaled and the raw value to the callback function.
+        </li>
+        <li><span class="parameter">phase</span>
+            <span class="types"><span class="type">number</span></span>
+         The phase shift amount for this LFO (range: 0.0 to 1.0,; default: 0)
+        </li>
+        <li><span class="parameter">baseline</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         From where the LFO should start (options: 'min', 'center', 'max'; default: 'min')
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "add"></a>
+    <strong>add (args)</strong>
+    </dt>
+    <dd>
+
+<p>construct an LFO via table arguments
+ eg.  my_lfo:add{shape = 'sine', min = 200, max = 12000}</p>
+
+<ul>
+    <li>shape: (string) The shape for this LFO (options: 'sine', 'tri', 'up', 'down', 'square', 'random'; default: 'sine')</li>
+    <li>min: (number) The minimum bound for this LFO (default: 0)</li>
+    <li>max: (number) The maximum bound for this LFO (default: 1)</li>
+    <li>depth: (number) The depth of modulation between min/max (range: 0.0 to 1.0; default: 0.0)</li>
+    <li>mode: (string) How to advance the LFO (options: 'clocked', 'free'; default: 'clocked')</li>
+    <li>period: (number) The timing of this LFO's advancement. If mode is 'clocked', argument is in beats. If mode is 'free', argument is in seconds.</li>
+    <li>action: (function) A callback function to perform as the LFO advances. This library passes both the scaled and the raw value to the callback function.</li>
+    <li>phase: (number) The phase shift amount for this LFO (range: 0.0 to 1.0,; default: 0)</li>
+    <li>baseline: (string) From where the LFO should start (options: 'min', 'center', 'max'; default: 'min')</li>
+</ul>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">args</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "start"></a>
+    <strong>start (from_parameter)</strong>
+    </dt>
+    <dd>
+    start LFO
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">from_parameter</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "stop"></a>
+    <strong>stop ()</strong>
+    </dt>
+    <dd>
+    stop LFO
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "set"></a>
+    <strong>set (var, arg)</strong>
+    </dt>
+    <dd>
+    set LFO variable state
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">var</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         The variable to target (options: 'shape', 'min', 'max', 'depth', 'offset', 'phase', 'mode', 'period', 'reset_target', 'baseline', 'action', 'ppqn')
+        </li>
+        <li><span class="parameter">arg</span>
+            <span class="types"><span class="type">various</span></span>
+         The argument to pass to the target (often numbers + strings, but 'action' expects a function)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "get"></a>
+    <strong>get (var)</strong>
+    </dt>
+    <dd>
+    get LFO variable state
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">var</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         The variable to query (options: 'shape', 'min', 'max', 'depth', 'offset', 'phase', 'mode', 'period', 'reset_target', 'baseline', 'action', 'enabled', 'controlspec')
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "reset_phase"></a>
+    <strong>reset_phase ()</strong>
+    </dt>
+    <dd>
+    reset the LFO's phase
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "add_params"></a>
+    <strong>add_params (id[, sep[, group]])</strong>
+    </dt>
+    <dd>
+    Build parameter menu UI for an already-constructed LFO.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">id</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         The parameter ID to use for this LFO.
+        </li>
+        <li><span class="parameter">sep</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         A separator name for the LFO parameters.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">group</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         A group name for the LFO parameters.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2026-10-21 11:48:37 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

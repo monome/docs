@@ -97,6 +97,7 @@ While you don't need to master the entire Lua language to make the most of norns
 - [lua 5.3 reference manual](https://www.lua.org/manual/5.3/)
 - [lua-users tutorials](http://lua-users.org/wiki/TutorialDirectory)
 - [lua in 15 mins](http://tylerneylon.com/a/learn-lua/)
+- [lua course on coddy (interactive, in the browser)](https://coddy.tech/landing/lua)
 
 Ask questions and share what you're making at [llllllll.co](https://llllllll.co/t/norns-studies/14109)
 
